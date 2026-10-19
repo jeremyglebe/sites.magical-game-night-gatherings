@@ -1,4 +1,8 @@
-# Horde Magic 2.0: Introducing The Raid
+# Horde Magic 2.0: Introducing The Raid — Source Notes
+
+::: info Reference notes
+For the play procedure, open the [dedicated rules page](../variants/raid.md). These notes preserve source context and historical discussion.
+:::
 
 Source: <https://www.quietspeculation.com/2013/02/horde-magic-2-0-introducing-the-raid/>
 

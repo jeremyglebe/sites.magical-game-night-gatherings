@@ -1,4 +1,8 @@
-# MTG Treachery
+# MTG Treachery — Source Notes
+
+::: info Reference notes
+For the play procedure, open the [dedicated rules page](../variants/treachery.md). These notes preserve source context and historical discussion.
+:::
 
 Source: <https://mtgtreachery.net/en/>
 

@@ -1,43 +1,23 @@
 # Horde
 
-Horde formats are cooperative Magic variants where one to four players fight an automated enemy deck. The enemy deck usually has no hand, no life total, and no pilot; damage mills its library, and the players win by surviving until the Horde is empty and its board is cleared.
+[All formats](../)
 
-## Base Play Pattern
+Horde is a family of cooperative formats in which players face an automated enemy deck. Its versions use different life totals, wave rules, targeting decisions, and victory conditions. Pick one rules page before preparing a game.
 
-- Players take several setup turns before the Horde begins.
-- The Horde reveals cards from the top of its library until the wave ends.
-- The Horde has effectively infinite mana for casting and activation costs.
-- Horde creatures usually have haste and attack each turn if able.
-- Damage dealt to the Horde mills that many cards from the Horde library.
-- Players win when the Horde library and battlefield are empty.
-- The Horde wins when the players lose by life total, poison, draw failure, or another agreed loss condition.
+| Ruleset | Setup and main differences |
+| --- | --- |
+| [Classic Zombie Horde](variants/classic.md) | Original 2011 rules: 20 shared life per survivor, a 45–100-card Horde, three setup turns, random choices. |
+| [Open Source version](variants/open-source.md) | The 2011 follow-up: reduced setup time for larger groups, a planeswalker attack procedure, and its historical ban list. |
+| [HordeMagic.com](variants/hordemagic.md) | Approximately 300 cards, rarity-based waves, 100/85/70/55 shared life, and best-interest decisions. |
+| [Archived wiki version](variants/wiki.md) | The repository's wiki rules snapshot, including its hand/graveyard handling, victory conditions, and difficulty options. |
+| [Raid](variants/raid.md) | Ordered scenario stages and survivor loot; survivors cannot attack the Horde. The original scenario framework leaves some decisions to the designer. |
 
-## Source References
+## Boxed-set possibilities
 
-- [HordeMagic.com notes](sources/hordemagic-com.md)
-  Original URL: <https://hordemagic.com/>
-- [Original Horde Magic article by Peter Knudson](sources/original-horde-magic-quiet-speculation.md)
-  Original URL: <https://www.quietspeculation.com/2011/09/horde-magic-a-new-way-to-play-magic-and-survive-zombie-invasions/>
-- [Horde Magic: An Open Source Project](sources/horde-magic-open-source-quiet-speculation.md)
-  Original URL: <https://www.quietspeculation.com/2011/10/horde-magic-an-open-source-project/>
-- [Horde Magic wiki rules](sources/horde-magic-wiki.md)
-  Original URL: <https://mtg.fandom.com/wiki/Horde_Magic#Rules_for_The_Horde>
-- [Horde Magic 2.0: The Raid](sources/horde-raid-quiet-speculation.md)
-  Original URL: <https://www.quietspeculation.com/2013/02/horde-magic-2-0-introducing-the-raid/>
+A Horde box can supply an enemy deck, fixed survivor decks, tokens, counters, a player-count difficulty chart, and targeting reminders. A Raid box also needs stage ordering, loot allocation, and its exact scenario victory rules.
 
-## Variants To Track
+Record each box's changes against the named version. Do not automatically apply HordeMagic.com's decisions or its life totals to a Classic Horde box.
 
-- Classic Zombie Horde.
-- HordeMagic.com EDH-style variant.
-- Raid-style staged Horde decks.
-- Companion-deck or class-deck versions where the players use prebuilt survivor decks.
+## References
 
-## Boxed-Set Notes
-
-A Horde box should probably include:
-
-- One Horde deck.
-- Tokens and counters used by that Horde.
-- A difficulty chart by player count.
-- A ban/watch list for player decks.
-- A quick reference for Horde targeting and decision rules.
+The [Horde source index](../../sources/#horde) links the original articles and archived notes.

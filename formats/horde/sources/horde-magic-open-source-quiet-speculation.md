@@ -1,4 +1,8 @@
-# Horde Magic: An Open Source Project
+# Horde Magic: An Open Source Project — Source Notes
+
+::: info Reference notes
+For the play procedure, open the [dedicated rules page](../variants/open-source.md). These notes preserve source context and historical discussion.
+:::
 
 Source: <https://www.quietspeculation.com/2011/10/horde-magic-an-open-source-project/>
 

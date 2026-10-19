@@ -1,36 +1,22 @@
 # BANG-Like Hidden Role Formats
 
-This family covers multiplayer Magic variants inspired by BANG!, Kingdoms, Usurper, and Treachery. They work best when the table wants politics, bluffing, and shifting incentives instead of a normal free-for-all.
+[All formats](../)
 
-## Core Pattern
+These games add secret roles and competing objectives to multiplayer Magic. Choose a complete version below. The leader's bonus, role visibility, rewards, and victory rules vary by version.
 
-- One public leader starts revealed and is usually protected by one or more allies.
-- Most other roles stay hidden until death, reveal, or a format-specific trigger.
-- The attacking team wins by killing the leader.
-- A solo chaos role usually needs to survive to the end or engineer a specific final kill.
-- The table needs clear rules against directly proving roles through out-of-game promises or reveals.
+| Ruleset | Players | Roles and distinguishing rules |
+| --- | --- | --- |
+| [BANG! Magic](variants/bang-magic.md) | 5–7+, with agreed role counts | Sheriff, Deputy, Outlaw, Renegade; simple hidden roles. |
+| [Kingdoms](variants/kingdoms.md) | 5–6 | Basic-land role cards; the Usurper can replace the King. |
+| [Kingdom / BANG EDH](variants/kingdom-bang-edh.md) | 5–6 | Emperor bonuses, Assassin rewards, Guard penalty, and a source ambiguity in the Rogue's victory wording. |
+| [MTG Treachery](variants/treachery.md) | 4+, with published setups through 8 | Custom Identity cards, unveil abilities, and formal team rules. |
 
-## Source References
+## Related boxed sets
 
-- [BANG! Magic Reddit post](sources/bang-magic-reddit.md): Commander/EDH BANG! rules using Sheriff, Deputy, Outlaw, and Renegade.
-  Original URL: <https://www.reddit.com/r/magicTCG/comments/1w81fm/bang_magic/>
-- [Kingdoms EDH Reddit post](sources/kingdoms-edh-reddit.md): The commonly shared land-card version with King, Knight, Bandits, Assassin, and optional Usurper.
-  Original URL: <https://www.reddit.com/r/EDH/comments/1plyyj/kingdoms_edh_variant/>
-- [Kingdom/Bang EDH MTGSalvation thread](sources/kingdom-bang-edh-mtgsalvation.md): Emperor, Guard, Assassin, and Rogue version with explicit rewards, penalties, and table-talk rules.
-  Original URL: <https://www.mtgsalvation.com/forums/the-game/commander-edh/616543-kingdom-aka-bang-edh-a-variant-format>
-- [MTG Treachery](sources/mtg-treachery.md): A maintained fan format with custom Identity cards, unveil abilities, printable materials, oracle data, and comprehensive rules.
-  Original URL: <https://mtgtreachery.net/en/>
+[Feudalism](../../boxed-sets/feudalism.md) is a draft monarch-focused box. Its page records the recurring crown rule and the base-version and role decisions still needed.
 
-## Related Boxed Sets
+A hidden-role box normally needs role cards, a player-count chart, the chosen ruleset, and any extra reminder cards. Unless its rules explicitly tie a deck to a role, each included deck should function with any role.
 
-- [Feudalism](../../boxed-sets/feudalism.md): A monarch-focused hidden-role set concept.
+## Reference notes
 
-## Boxed-Set Notes
-
-For a prebuilt box, this family probably wants:
-
-- Role or identity cards.
-- A player-count chart.
-- A one-page quick rules card.
-- Optional role-specific reminder cards.
-- Decks that can function under any hidden role, unless the box deliberately assigns decks to roles.
+The [source index](../../sources/#bang-like-hidden-roles) links the original posts and archived research. Those references stay separate from the rules pages above.

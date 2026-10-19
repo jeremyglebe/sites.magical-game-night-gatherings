@@ -1,0 +1,9 @@
+[mcp_servers.scryfall]
+command = "npx"
+args = ["--no-install", "scryfall-mcp-server"]
+startup_timeout_sec = 30
+tool_timeout_sec = 30
+env_vars = ["HTTP_PROXY", "HTTPS_PROXY", "NO_PROXY", "http_proxy", "https_proxy", "no_proxy", "NODE_EXTRA_CA_CERTS", "SSL_CERT_FILE", "SSL_CERT_DIR"]
+
+[mcp_servers.scryfall.env]
+NODE_USE_ENV_PROXY = "1"

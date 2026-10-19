@@ -1,4 +1,8 @@
-# Kingdoms: EDH Variant
+# Kingdoms: EDH Variant — Source Notes
+
+::: info Reference notes
+For the play procedure, open the [dedicated rules page](../variants/kingdoms.md). These notes preserve source context and historical discussion.
+:::
 
 Source: <https://www.reddit.com/r/EDH/comments/1plyyj/kingdoms_edh_variant/>
 

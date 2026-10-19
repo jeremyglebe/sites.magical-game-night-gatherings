@@ -1,15 +1,20 @@
 # Formats
 
-Formats are the rulesets or play structures that can support a game night. Some are broad families, while others are specific variants with their own setup and components.
+Choose a family below, then open one of its rulesets. Each version has a separate page so that its setup, turn procedure, and victory conditions stay together.
 
-## Current Formats
-
-| Format | Brief | Sub variants / notes |
+| Format family | Choose this for… | Rulesets in this catalogue |
 | --- | --- | --- |
-| [BANG-like hidden role formats](bang-like/) | Secret-role multiplayer formats built around a public leader, hidden allies, attackers, and solo chaos roles. | Kingdoms, BANG EDH / Kingdom-Bang EDH, BANG! Magic, MTG Treachery, and the [Feudalism](../boxed-sets/feudalism.md) boxed-set concept. |
-| [Big Deck](big-deck/) | Shared-library and large communal-pool formats for chaotic, low-prep games. | [Pile o' Magic](big-deck/pile-o-magic/) is the local formalized version with Heap Lands and Commander options. |
-| [Creature Feature](creature-feature/) | Pegasus Loft 60-card constructed format with creature-density and shared creature-type deck-building rules. | Event knobs include temporary bans for winning creature types and a ban on negative creature-type hate. |
-| [Cube](cube/) | Reusable draft environments built from a curated card pool instead of retail boosters. | Common forms include powered, unpowered, peasant, pauper, set, theme, and Commander cubes, plus alternate draft methods. |
-| [Assassin](assassin/) | Target-assignment formats where each player receives a secret mark or quarry. | [Hitmen](assassin/variants/hitmen.md) is the local Pegasus Loft variant with constrained attacking and targeting. |
-| [Archenemy](archenemy/) | One-villain-versus-the-table formats where the archenemy uses a scheme deck. | Standard Archenemy uses 60-card decks; Archenemy Commander turns the structure into a Commander boss fight. |
-| [Horde](horde/) | Cooperative player team versus an automated enemy deck that casts waves of threats. | Tracks Classic Zombie Horde, HordeMagic.com EDH-style rules, Raid-style staged decks, and survivor or companion-deck versions. |
+| [Archenemy](archenemy/) | One villain against a team, with an extra scheme deck. | Standard, Commander, and both Supervillain Rumble versions. |
+| [Assassin](assassin/) | Secret player-to-player targets. | Hitmen, the local Pegasus Loft rules. |
+| [BANG-like hidden roles](bang-like/) | Bluffing, hidden allies, and competing victory conditions. | BANG! Magic, Kingdoms, Kingdom / BANG EDH, and MTG Treachery. |
+| [Big Deck](big-deck/) | A communal library and unexpected card combinations. | Pile o' Magic and Pile o' Magic Commander. |
+| [Creature Feature](creature-feature/) | Constructed decks built around a shared creature type. | Pegasus Loft rules and event restrictions. |
+| [Cube](cube/) | Drafting a reusable, curated card pool. | Booster-draft Cube; design notes for different cube types. |
+| [Horde](horde/) | Cooperative games against an automated enemy deck. | Classic Zombie Horde, Open Source options, HordeMagic.com, the archived wiki version, and Raid. |
+| [Jumpstart](jumpstart/) | Combining two prepared themed packets for a quick game. | Full two-packet play rules and a reusable custom-packet preparation guide. |
+
+## Formats and boxed sets
+
+A format defines how the game works. A [boxed set](../boxed-sets/) supplies a particular collection of decks and components, and may add its own rules. Box-specific changes belong on the boxed-set page, with a link back to the exact base ruleset.
+
+[Using the rules](../rules/) explains page status and rules precedence. [Sources](../sources/) collects the original references and archived notes.

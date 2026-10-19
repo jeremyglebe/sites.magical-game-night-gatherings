@@ -1,22 +1,16 @@
 # Boxed Sets
 
-Boxed sets are personal, prebuilt game-night packages. They are not products; they are curated play kits that pair a format with decks, role cards, tokens, rules notes, and any local twists needed to make the night run smoothly.
+A boxed set is a personal, prebuilt game-night kit: decks, tokens, role cards, and the rules needed to use them together. Each box identifies its base ruleset and writes out every rule it adds or replaces.
 
-## Current Sets
-
-| Set | Base format | Brief | Sub variants / status |
+| Box | Format family | Base ruleset | Status |
 | --- | --- | --- | --- |
-| [Feudalism](feudalism.md) | [BANG-like hidden-role formats](../formats/bang-like/) | Monarch-focused hidden-role concept where the King keeps reclaiming the crown until the table breaks that power structure. | Concept sketch. Open variant knobs include role mix, win conditions, King bonuses, monarchy reveal rules, role triggers, and final deck count. |
+| [Feudalism](feudalism.md) | [BANG-like hidden roles](../formats/bang-like/) | Not yet selected | Draft: recurring monarchy is recorded; roles, victory conditions, and components are still being designed. |
 
-## Suggested Page Shape
+## Read a box's rules
 
-Use this structure when a set becomes detailed enough:
+1. Open the box's named base ruleset.
+2. Read its setup and component list.
+3. Apply the box's additional and replacement rules.
+4. Choose any optional modules before play.
 
-- Concept
-- Base format
-- Player count
-- Components
-- Deck/decklist notes
-- Rule twists
-- Source references
-- Open questions
+The box page must state what a replacement rule does. A note such as “uses different win conditions” is not sufficient; those conditions must appear on the page.

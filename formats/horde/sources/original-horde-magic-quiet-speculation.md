@@ -1,4 +1,8 @@
-# Horde Magic: A New Way To Play Magic And Survive Zombie Invasions
+# Horde Magic: A New Way To Play Magic And Survive Zombie Invasions — Source Notes
+
+::: info Reference notes
+For the play procedure, open the [dedicated rules page](../variants/classic.md). These notes preserve source context and historical discussion.
+:::
 
 Source: <https://www.quietspeculation.com/2011/09/horde-magic-a-new-way-to-play-magic-and-survive-zombie-invasions/>
 

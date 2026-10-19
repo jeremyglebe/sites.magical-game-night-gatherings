@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress --host 127.0.0.1",
+    "research:render": "node scripts/render-everyday-research.mjs",
     "build": "vitepress build",
     "build:github": "node scripts/build-github-pages.mjs",
     "copy:docs": "node scripts/copy-dist-to-docs.mjs",
@@ -14,6 +15,7 @@
     "serve:docs": "python -m http.server 5175 --directory docs"
   },
   "devDependencies": {
+    "scryfall-mcp-server": "0.1.1",
     "vitepress": "^1.6.4"
   }
 }

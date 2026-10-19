@@ -1,5 +1,15 @@
 # Cube
 
+[All formats](../)
+
+## Rulesets
+
+- [Booster-draft Cube: full play rules](variants/booster-draft.md), including pack preparation, every draft round, deck construction, and game setup.
+
+The construction styles below describe the card pool. Other draft methods mentioned here need separate rules pages before they can be used as self-contained instructions.
+
+## The Cube
+
 Cube is a Limited format built from a curated pool of Magic cards. Instead of opening retail booster packs, players draft from custom "packs" made from the cube owner's card pool, then build decks from the cards they drafted. Wizards describes Cube as being like Booster Draft, but with cards pulled from across Magic's history. [Source: Arena Powered Cube Draft](https://magic.wizards.com/en/news/mtg-arena/arena-powered-cube-draft).
 
 The cube itself is not a deck. It is the reusable draft environment.

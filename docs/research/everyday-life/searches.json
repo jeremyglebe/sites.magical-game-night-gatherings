@@ -1,0 +1,157 @@
+{
+  "checked_at": "2026-10-19",
+  "source": "Scryfall via project MCP server",
+  "method": "Large result sets were split by name prefixes; card identities and printings overlap across searches. Extra/token records were screened out of the main catalogue.",
+  "searches": [
+    {
+      "key": "mundane-objects-4",
+      "query": "(t:artifact or t:land or t:enchantment) (name:\"brush\" or name:\"broom\" or name:\"teddy\" or name:\"toy\" or name:\"doll\" or name:\"ball\" or name:\"kite\" or name:\"puppet\" or name:\"park\" or name:\"street\" or name:\"alley\" or name:\"plaza\" or name:\"promenade\" or name:\"market\" or name:\"bazaar\" or name:\"shop\" or name:\"store\" or name:\"cafe\" or name:\"tavern\" or name:\"inn\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 159
+    },
+    {
+      "key": "tmnt-city",
+      "query": "(set:tmt or set:tmc or set:pza) date<=2026-10-19 -t:token unique:cards",
+      "returned_records": 332
+    },
+    {
+      "key": "mundane-actions-2",
+      "query": "(t:instant or t:sorcery or t:enchantment) (name:\"evidence\" or name:\"clue\" or name:\"ransom\" or name:\"blackmail\" or name:\"bribe\" or name:\"extort\" or name:\"tax\" or name:\"evict\" or name:\"eviction\" or name:\"foreclos\" or name:\"bankrupt\" or name:\"debt\" or name:\"rent\" or name:\"mortgage\" or name:\"payday\" or name:\"paycheck\" or name:\"vacation\" or name:\"holiday\" or name:\"birthday\" or name:\"wedding\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 51
+    },
+    {
+      "key": "mundane-actions-1",
+      "query": "(t:instant or t:sorcery or t:enchantment) (name:\"brawl\" or name:\"fight\" or name:\"punch\" or name:\"kick\" or name:\"slap\" or name:\"bite\" or name:\"scratch\" or name:\"stab\" or name:\"murder\" or name:\"assault\" or name:\"robbery\" or name:\"heist\" or name:\"theft\" or name:\"arrest\" or name:\"detain\" or name:\"detention\" or name:\"interrogate\" or name:\"question\" or name:\"interview\" or name:\"investigate\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 134
+    },
+    {
+      "key": "food-and-vehicles",
+      "query": "(t:food or t:vehicle) date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 254
+    },
+    {
+      "key": "gaps-objects",
+      "query": "(name:\"umbrella\" or name:\"trowel\" or name:\"supply\" or name:\"supplies\" or name:\"shoes\" or name:\"clothes\" or name:\"scissors\" or name:\"potion\" or name:\"pillow\" or name:\"bed\" or name:\"table\" or name:\"chair\" or name:\"chairman\" or name:\"broom\" or name:\"cake\" or name:\"pie\" or name:\"bread\" or name:\"fruit\" or name:\"candy\" or name:\"ramen\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 163
+    },
+    {
+      "key": "bears",
+      "query": "t:bear t:creature date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 59
+    },
+    {
+      "key": "mundane-actions-3",
+      "query": "(t:instant or t:sorcery or t:enchantment) (name:\"picnic\" or name:\"feast\" or name:\"meal\" or name:\"breakfast\" or name:\"lunch\" or name:\"dinner\" or name:\"snack\" or name:\"tea\" or name:\"coffee\" or name:\"cook\" or name:\"bake\" or name:\"shopping\" or name:\"commute\" or name:\"traffic\" or name:\"rush hour\" or name:\"nap\" or name:\"sleep\" or name:\"rest\" or name:\"relax\" or name:\"break\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 213
+    },
+    {
+      "key": "pets",
+      "query": "(t:cat or t:dog or t:rat or t:mouse) t:creature date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 695
+    },
+    {
+      "key": "birds",
+      "query": "t:bird t:creature date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 493
+    },
+    {
+      "key": "mundane-objects-6",
+      "query": "(t:artifact or t:land or t:enchantment) (name:\"dock\" or name:\"bridge\" or name:\"sewer\" or name:\"fountain\" or name:\"garden\" or name:\"field\" or name:\"court\" or name:\"arena\" or name:\"laboratory\" or name:\"lab\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 153
+    },
+    {
+      "key": "marvel-all",
+      "query": "art:marvel-comics date<=2026-10-19 unique:cards",
+      "returned_records": 1354
+    },
+    {
+      "key": "mundane-objects-3",
+      "query": "(t:artifact or t:land or t:enchantment) (name:\"letter\" or name:\"envelope\" or name:\"instrument\" or name:\"guitar\" or name:\"violin\" or name:\"lute\" or name:\"drum\" or name:\"horn\" or name:\"fiddle\" or name:\"basket\" or name:\"bottle\" or name:\"vial\" or name:\"flask\" or name:\"jug\" or name:\"kettle\" or name:\"cup\" or name:\"mug\" or name:\"teapot\" or name:\"stove\" or name:\"oven\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 100
+    },
+    {
+      "key": "literal-animal-tokens",
+      "query": "(name:cat or name:dog or name:bird or name:rat or name:mouse or name:squirrel or name:bear) t:token include:extras date<=2026-10-19 unique:cards",
+      "returned_records": 59
+    },
+    {
+      "key": "citizens",
+      "query": "t:citizen t:creature date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 110
+    },
+    {
+      "key": "everyday-names-5",
+      "query": "(name:\"bagel\" or name:\"hot dog\" or name:\"pizza\" or name:\"hamburger\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 12
+    },
+    {
+      "key": "precision",
+      "query": "(!\"Scurry Oak\" or !\"Nuka-Cola Vending Machine\" or !\"Manhole Cover\" or !\"Wooden Cane\" or !\"Big Apple, 3 a.m.\" or !\"Illegitimate Business\" or !\"Grounded for Life\" or !\"Study the Classics\" or !\"Ninja Pizza\" or !\"Entirely Normal Armchair\" or !\"A Good Day to Pie\" or !\"An Offer You Can't Refuse\") date<=2026-10-19 unique:cards",
+      "returned_records": 12
+    },
+    {
+      "key": "everyday-names-3",
+      "query": "(name:\"detective\" or name:\"inspector\" or name:\"investigator\" or name:\"constable\" or name:\"police\" or name:\"bouncer\" or name:\"bodyguard\" or name:\"doorman\" or name:\"thief\" or name:\"pickpocket\" or name:\"mugger\" or name:\"crook\" or name:\"burglar\" or name:\"hoodlum\" or name:\"ruffian\" or name:\"gangster\" or name:\"pigeon\" or name:\"pest\" or name:\"stray\" or name:\"alley\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 274
+    },
+    {
+      "key": "everyday-names-4",
+      "query": "(name:\"sidewalk\" or name:\"subway\" or name:\"taxi\" or name:\"bicycle\" or name:\"tricycle\" or name:\"skateboard\" or name:\"motorcycle\" or name:\"scooter\" or name:\"newspaper\" or name:\"camera\" or name:\"telephone\" or name:\"television\" or name:\"radio\" or name:\"computer\" or name:\"laptop\" or name:\"shopping\" or name:\"grocery\" or name:\"supermarket\" or name:\"coffee\" or name:\"sandwich\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 21
+    },
+    {
+      "key": "modern-people",
+      "query": "(set:snc or set:ncc or set:mkm or set:mkc or set:neo or set:nec or set:tmt or set:tmc or set:pip or set:who) t:human -t:wizard -t:warlock -t:zombie -t:mutant -t:ninja -t:samurai -t:shaman date<=2026-10-19 unique:cards",
+      "returned_records": 221
+    },
+    {
+      "key": "everyday-names-1",
+      "query": "(name:\"citizen\" or name:\"villager\" or name:\"peasant\" or name:\"baker\" or name:\"chef\" or name:\"cook\" or name:\"waiter\" or name:\"waitress\" or name:\"butcher\" or name:\"barkeep\" or name:\"bartender\" or name:\"shopkeeper\" or name:\"shopkeep\" or name:\"merchant\" or name:\"vendor\" or name:\"grocer\" or name:\"gardener\" or name:\"groundskeeper\" or name:\"librarian\" or name:\"journalist\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 91
+    },
+    {
+      "key": "more-animals",
+      "query": "(t:squirrel or t:turtle or t:raccoon or t:bat or t:fox or t:horse or t:goat or t:ox or t:sheep or t:rabbit or t:boar or t:frog or t:fish or t:crab) t:creature date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 701
+    },
+    {
+      "key": "mundane-objects-5",
+      "query": "(t:artifact or t:land or t:enchantment) (name:\"pub\" or name:\"bar\" or name:\"apartment\" or name:\"house\" or name:\"home\" or name:\"mansion\" or name:\"manor\" or name:\"estate\" or name:\"office\" or name:\"hospital\" or name:\"school\" or name:\"university\" or name:\"library\" or name:\"theater\" or name:\"theatre\" or name:\"club\" or name:\"station\" or name:\"airport\" or name:\"harbor\" or name:\"port\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 163
+    },
+    {
+      "key": "insect-city",
+      "query": "(name:\"cockroach\" or name:\"roach\" or name:\"fly\" or name:\"flies\" or name:\"mosquito\" or name:\"bee\" or name:\"wasp\" or name:\"ant\" or name:\"spider\") (t:insect or t:spider) date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 196
+    },
+    {
+      "key": "mundane-objects-1",
+      "query": "(t:artifact or t:land or t:enchantment) (name:\"knife\" or name:\"fork\" or name:\"spoon\" or name:\"pan\" or name:\"pot\" or name:\"hammer\" or name:\"shovel\" or name:\"pickaxe\" or name:\"crowbar\" or name:\"wrench\" or name:\"saw\" or name:\"axe\" or name:\"machete\" or name:\"lantern\" or name:\"torch\" or name:\"candle\" or name:\"rope\" or name:\"net\" or name:\"trap\" or name:\"key\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 262
+    },
+    {
+      "key": "everyday-names-2",
+      "query": "(name:\"reporter\" or name:\"photographer\" or name:\"postman\" or name:\"mailman\" or name:\"courier\" or name:\"messenger\" or name:\"mechanic\" or name:\"repair\" or name:\"plumber\" or name:\"electrician\" or name:\"janitor\" or name:\"cleaner\" or name:\"custodian\" or name:\"nurse\" or name:\"doctor\" or name:\"surgeon\" or name:\"medic\" or name:\"paramedic\" or name:\"lawyer\" or name:\"attorney\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 129
+    },
+    {
+      "key": "mundane-objects-2",
+      "query": "(t:artifact or t:land or t:enchantment) (name:\"lock\" or name:\"door\" or name:\"window\" or name:\"bell\" or name:\"book\" or name:\"journal\" or name:\"diary\" or name:\"scroll\" or name:\"tome\" or name:\"map\" or name:\"compass\" or name:\"glasses\" or name:\"spectacles\" or name:\"hat\" or name:\"coat\" or name:\"cloak\" or name:\"boots\" or name:\"shoes\" or name:\"gloves\" or name:\"quill\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 207
+    },
+    {
+      "key": "mundane-actions-4",
+      "query": "(t:instant or t:sorcery or t:enchantment) (name:\"repair\" or name:\"renovat\" or name:\"clean\" or name:\"sweep\" or name:\"wash\" or name:\"laundry\" or name:\"music\" or name:\"dance\" or name:\"perform\" or name:\"rehears\" or name:\"practice\" or name:\"work\" or name:\"shift\" or name:\"overtime\" or name:\"job\" or name:\"business\" or name:\"assignment\") date<=2026-10-19 -is:digital unique:cards",
+      "returned_records": 113
+    },
+    {
+      "key": "actual-animal-names",
+      "query": "(name:\"squirrel\" or name:\"raccoon\" or name:\"cat\" or name:\"dog\" or name:\"bear\") (set:sld or set:slc) date<=2026-10-19 unique:prints",
+      "returned_records": 42
+    },
+    {
+      "key": "nonmarvel-prints",
+      "query": "(!\"Port Town\") -art:marvel-comics date<=2026-10-19 unique:cards",
+      "returned_records": 1
+    }
+  ]
+}

@@ -1,21 +1,17 @@
 # Assassin
 
-Assassin formats give each player a secret target, mark, or quarry. The game is still multiplayer, but players are not simply trying to kill everyone at once; the target map creates constrained attacks, temporary incentives, and sudden shifts when a target dies.
+[All formats](../)
 
-This is separate from BANG-like hidden-role formats. BANG-like games assign team or solo victory roles; Assassin-style games assign a player-to-player target.
+Assassin formats assign each player a secret target, mark, or quarry. This is different from BANG-like formats, which assign team or solo victory roles.
 
-## Core Pattern
+## Rulesets
 
-- Each player receives a secret target.
-- Players are restricted, rewarded, or otherwise incentivized to pursue their target.
-- When a target dies, their mark may pass to the killer or otherwise change the target map.
-- The game usually ends when one player remains, or when a player reaches a required number of kills.
+| Ruleset | Contents |
+| --- | --- |
+| [Hitmen](variants/hitmen.md) | The local Pegasus Loft rules for Mark Cards, Spheres, attacking, targeting expansion, defensive responses, passing Marks, and Free Agents. |
 
-## Local Variants
+There is no single general Assassin ruleset recorded here. The Hitmen page preserves the actual local procedures and identifies unresolved interactions.
 
-- [Hitmen](variants/hitmen.md): A local Pegasus Loft mark/target variant with constrained attacking and targeting.
+## Other versions
 
-## Open Questions
-
-- Add more source notes for the broader Assassin format when you have them.
-- Decide whether Assassin gets `sources/` later if you find or copy external reference material.
+Additional Assassin versions should receive their own rules pages and original source links. Their targeting or reward rules should not be folded into Hitmen without a deliberate house-rule change.

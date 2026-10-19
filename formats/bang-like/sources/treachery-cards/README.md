@@ -1,7 +1,3 @@
 # Treachery Card Images
 
-This folder contains local copies of MTG Treachery Identity card and token images used as source/reference material.
-
-Primary source page: [MTG Treachery](../mtg-treachery.md)
-
-Original site: <https://mtgtreachery.net/en/>
+Read the [format or section page](index.md) for the current catalogue and its linked rules. This README points to the maintained page rather than keeping a second copy of the rules.

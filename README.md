@@ -4,7 +4,7 @@ This is a fan-made working catalogue for Magic: The Gathering game-night formats
 
 The boxed sets described here are personal play kits and catalogue entries, not products.
 
-The site is intentionally still in Markdown. Treat these files as structured notes first and publishable pages later.
+The site is authored in Markdown. Format parent pages link to separate, complete rulesets; boxed-set pages identify their base rules and spell out every change. Preserve rules detail when editing. See [AGENTS.md](AGENTS.md) for the editing conventions.
 
 ## Running The Site
 
@@ -129,14 +129,50 @@ If you later use a custom domain or a `YOUR-USER.github.io` user site where the 
 
 - [Formats](formats/): Rulesets and play modes, including fan-maintained formats and personal variants.
 - [Boxed Sets](boxed-sets/): Curated game-night boxes built around those formats.
+- [Using the Rules](rules/): Shared conventions and how boxed-set overrides work.
+- [Research](research/): Saved card-pool catalogues, Marvel set codes, thematic candidates, and repeatable searches.
+- [Sources](sources/): The original references and archived research notes.
 
 ## Organization
 
 Each format folder should separate playable notes from archived reference material:
 
-- `index.md`: The clean, readable publishable page. A matching `README.md` can be kept when GitHub/local browsing benefits from it.
+- `index.md`: The format parent page, linking to each separate ruleset. Section READMEs link to this maintained page.
 - `sources/`: Copy-pasted or archived external material. Keep original links here.
-- `variants/`: Local house variants or small twists.
+- `variants/`: Complete rules for distinct versions, including local house variants. Keep established URLs when a rules page already lives elsewhere.
 - `assets/`: Images, printable cards, and other supporting files.
 
 When a format comes from another fan site or community post, preserve the original URL in both the source archive and the relevant overview page.
+
+
+## Scryfall MCP
+
+This project uses [cryppadotta/scryfall-mcp](https://github.com/cryppadotta/scryfall-mcp), installed as the exact development dependency **scryfall-mcp-server 0.1.1**. It provides card search, exact-name and ID lookup, card rulings, random cards, and prices. No API key is required.
+
+Run `npm ci` to install the pinned dependency. The project-scoped configuration is in `.codex/config.toml`. Open this repository as a trusted project in a compatible Codex client, then restart or reload its MCP connections. The server runs over stdio using the locally installed executable; it does not need a public HTTP endpoint.
+
+The configuration forwards existing proxy and CA environment settings and enables Node's environment-proxy support. **Use Node 24.5 or later when running through an HTTP proxy**, as in this cloud workspace. TLS verification stays enabled. There are no credentials in the project configuration.
+
+A running chat may not hot-load a newly added MCP server. Until it reloads, a local MCP client can invoke the same server. The installation was verified with actual card, search, and ruling requests. Client registration and a successful card lookup are separate checks.
+
+Use Scryfall to verify official card names, Oracle text, and card rulings. Fan-format rules come from their cited format sources. Custom Treachery identities remain in the local oracle/archive and the Treachery authors' own database.
+
+## Editing rules without losing detail
+
+- `formats/<family>/index.md` is the parent directory linking to every recorded version.
+- Each version has its own rules page, normally under `variants/`. Existing Pile o' Magic and Hitmen URLs are retained.
+- Rules pages contain materials, deck construction, setup, play procedure, victory conditions, and explicit exceptions. Do not replace these with a synopsis or a link to an external source.
+- `boxed-sets/<name>.md` names the exact base version and writes out additional, replacement, and optional rules. Unchosen mechanics stay visibly marked as draft decisions.
+- `sources/` is the reference index. Existing source notes remain available at their original URLs and link to the corresponding rules page.
+- Shared Markdown includes live in `.vitepress/partials/`. VitePress expands them into the full rendered page; readers do not have to open a partial to get the rules.
+- Section READMEs link to the maintained Markdown pages instead of duplicating their contents.
+
+The Treachery oracle JSON and research CSV/JSON downloads are copied into the built site by the VitePress build hook because an ordinary Markdown download link does not emit those files automatically.
+
+## Maintaining the research catalogue
+
+The [research index](research/index.md) links the saved Marvel set reference and everyday-life card catalogue. Research notes are distinct from playable format rules and finished box lists.
+
+The everyday-life card entries are maintained in `research/everyday-life/cards.json`. Each entry has a verified printing, exact type line, editorial fit label, explanation, and date. Edit those records, then run `npm run research:render` to refresh the category tables, counts, and spreadsheet CSV together. The renderer preserves prose outside the marked catalogue blocks. Keep the search log and research date current when adding a new research pass.
+
+Token profiles are maintained separately in `research/everyday-life/tokens.md`. They must not be silently mixed into the ordinary deck-card list. Preserve the explanations on almost matches and the distinction between thematic judgments and actual card/format rules.

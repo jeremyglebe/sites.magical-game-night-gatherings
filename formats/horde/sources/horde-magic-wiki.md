@@ -1,4 +1,8 @@
-# Horde Magic Wiki Summary
+# Horde Magic Wiki Summary — Source Notes
+
+::: info Reference notes
+For the play procedure, open the [dedicated rules page](../variants/wiki.md). These notes preserve source context and historical discussion.
+:::
 
 Source: <https://mtg.fandom.com/wiki/Horde_Magic#Rules_for_The_Horde>
 

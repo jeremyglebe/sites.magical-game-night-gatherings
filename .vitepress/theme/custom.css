@@ -28,8 +28,9 @@
 }
 
 .VPDoc table {
-  display: table;
+  display: block;
   width: 100%;
+  overflow-x: auto;
 }
 
 .VPDoc img {

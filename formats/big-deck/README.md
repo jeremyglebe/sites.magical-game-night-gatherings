@@ -1,7 +1,3 @@
 # Big Deck
 
-Big Deck formats use a shared library or large communal pool to create a chaotic, low-prep game. The exact rules vary by group, so local clarity matters more than trying to find one canonical version.
-
-## Formats
-
-- [Pile o' Magic](pile-o-magic/): A personal formalization of Big Deck Magic with shared-library rules, Heap Lands, and Commander options.
+Read the [format or section page](index.md) for the current catalogue and its linked rules. This README points to the maintained page rather than keeping a second copy of the rules.

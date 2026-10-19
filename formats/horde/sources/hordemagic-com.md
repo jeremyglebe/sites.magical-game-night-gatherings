@@ -1,4 +1,8 @@
-# HordeMagic.com EDH-Style Variant
+# HordeMagic.com EDH-Style Variant — Source Notes
+
+::: info Reference notes
+For the play procedure, open the [dedicated rules page](../variants/hordemagic.md). These notes preserve source context and historical discussion.
+:::
 
 Source: <https://hordemagic.com/>
 

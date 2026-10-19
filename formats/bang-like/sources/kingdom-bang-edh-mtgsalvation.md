@@ -1,4 +1,8 @@
-# Kingdom / BANG EDH
+# Kingdom / BANG EDH — Source Notes
+
+::: info Reference notes
+For the play procedure, open the [dedicated rules page](../variants/kingdom-bang-edh.md). These notes preserve source context and historical discussion.
+:::
 
 Source: <https://www.mtgsalvation.com/forums/the-game/commander-edh/616543-kingdom-aka-bang-edh-a-variant-format>
 
