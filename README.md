@@ -94,7 +94,7 @@ Then open:
 http://127.0.0.1:5175/
 ```
 
-Use this local static test after `npm run publish`. If you build for GitHub project Pages with `npm run publish:github`, the generated site expects to live under `/magical-game-night-gatherings/`, which matches GitHub Pages but not a plain local server rooted at `docs/`.
+Use this local static test after `npm run publish`. If you build for GitHub project Pages with `npm run publish:github`, the generated site expects to live under `/sites.magical-game-night-gatherings/`, which matches GitHub Pages but not a plain local server rooted at `docs/`.
 
 ## GitHub Pages
 
@@ -112,7 +112,7 @@ In GitHub:
 For a normal project Pages URL like:
 
 ```text
-https://YOUR-USER.github.io/magical-game-night-gatherings/
+https://YOUR-USER.github.io/sites.magical-game-night-gatherings/
 ```
 
 build the docs folder with:
@@ -121,11 +121,11 @@ build the docs folder with:
 npm run publish:github
 ```
 
-That sets the VitePress base path to `/magical-game-night-gatherings/`, copies the build into `docs/`, and makes GitHub Pages asset paths resolve correctly.
+That sets the VitePress base path to `/sites.magical-game-night-gatherings/`, copies the build into `docs/`, and makes GitHub Pages asset paths resolve correctly. This path follows the GitHub repository name, not the npm package name. The current published site is [jeremyglebe.com/sites.magical-game-night-gatherings/](https://jeremyglebe.com/sites.magical-game-night-gatherings/).
 
 Commit and push the updated `docs/` folder after running that command.
 
-If you later use a custom domain or a `YOUR-USER.github.io` user site where the site lives at `/`, use `npm run publish` instead.
+If the site later moves to the domain root (`/`), use `npm run publish` instead. The current custom-domain project URL still needs the `/sites.magical-game-night-gatherings/` prefix.
 
 ## Sections
 

@@ -1,10 +1,9 @@
 import { spawn } from 'node:child_process'
-import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 const root = resolve(import.meta.dirname, '..')
-const packageJson = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8'))
-const repoName = packageJson.name
+// GitHub Pages uses the repository name, which differs from the npm package name.
+const githubPagesBase = '/sites.magical-game-night-gatherings/'
 
 const command = process.platform === 'win32' ? 'npm.cmd' : 'npm'
 const env = Object.fromEntries(
@@ -15,7 +14,7 @@ const child = spawn(command, ['run', 'build'], {
   cwd: root,
   env: {
     ...env,
-    VITEPRESS_BASE: `/${repoName}/`
+    VITEPRESS_BASE: githubPagesBase
   },
   shell: true,
   stdio: 'inherit'
