@@ -1,0 +1,511 @@
+{
+  "title": "Game Night 2018 · White vs Green",
+  "source": {
+    "decklists": "https://magic.wizards.com/en/news/announcements/introducing-magic-game-night-and-updated-gift-pack-2018-08-27",
+    "card_data": "Scryfall via cryppadotta/scryfall-mcp 0.1.1",
+    "checked": "2026-10-19",
+    "note": "Original preconstructed deck contents. Images use GNT printings where available, otherwise the Scryfall default printing. These are fixtures, not a proposed box or a balance claim."
+  },
+  "references": [],
+  "players": [
+    {
+      "id": "p1",
+      "name": "Game Night White",
+      "life": 20,
+      "deck": [
+        {
+          "count": 1,
+          "name": "Benalish Marshal",
+          "scryfall_id": "fc395215-a2ec-49e1-9b1b-f8fcfe73e361",
+          "type_line": "Creature — Human Knight",
+          "oracle_text": "Other creatures you control get +1/+1.",
+          "mana_cost": "{W}{W}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/f/c/fc395215-a2ec-49e1-9b1b-f8fcfe73e361.jpg?1783933992",
+          "power": "3",
+          "toughness": "3"
+        },
+        {
+          "count": 1,
+          "name": "Mentor of the Meek",
+          "scryfall_id": "05b6a101-4d12-4f50-8f02-5c778e08b149",
+          "type_line": "Creature — Human Soldier",
+          "oracle_text": "Whenever another creature you control with power 2 or less enters, you may pay {1}. If you do, draw a card.",
+          "mana_cost": "{2}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/0/5/05b6a101-4d12-4f50-8f02-5c778e08b149.jpg?1785497406",
+          "power": "2",
+          "toughness": "2"
+        },
+        {
+          "count": 1,
+          "name": "Valiant Knight",
+          "scryfall_id": "5a85b8d6-36f7-4bde-a5f5-12509adac68f",
+          "type_line": "Creature — Human Knight",
+          "oracle_text": "Other Knights you control get +1/+1.\n{3}{W}{W}: Knights you control gain double strike until end of turn.",
+          "mana_cost": "{3}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/5/a/5a85b8d6-36f7-4bde-a5f5-12509adac68f.jpg?1783917174",
+          "power": "3",
+          "toughness": "4"
+        },
+        {
+          "count": 2,
+          "name": "Dwarven Priest",
+          "scryfall_id": "7e1e0f13-35a6-4a5e-8666-47bc5c275be7",
+          "type_line": "Creature — Dwarf Cleric",
+          "oracle_text": "When this creature enters, you gain 1 life for each creature you control.",
+          "mana_cost": "{3}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/7/e/7e1e0f13-35a6-4a5e-8666-47bc5c275be7.jpg?1783934608",
+          "power": "2",
+          "toughness": "4"
+        },
+        {
+          "count": 2,
+          "name": "Gallant Cavalry",
+          "scryfall_id": "e388c433-3a37-45f6-825a-d13d2223b6f7",
+          "type_line": "Creature — Human Knight",
+          "oracle_text": "Vigilance (Attacking doesn't cause this creature to tap.)\nWhen this creature enters, create a 2/2 white Knight creature token with vigilance.",
+          "mana_cost": "{3}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/e/3/e388c433-3a37-45f6-825a-d13d2223b6f7.jpg?1783934607",
+          "power": "2",
+          "toughness": "2"
+        },
+        {
+          "count": 3,
+          "name": "Militia Bugler",
+          "scryfall_id": "5fe9413b-5702-4998-aed7-d3a1102a8d7e",
+          "type_line": "Creature — Human Soldier",
+          "oracle_text": "Vigilance (Attacking doesn't cause this creature to tap.)\nWhen this creature enters, look at the top four cards of your library. You may reveal a creature card with power 2 or less from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
+          "mana_cost": "{2}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/5/f/5fe9413b-5702-4998-aed7-d3a1102a8d7e.jpg?1783921931",
+          "power": "2",
+          "toughness": "3"
+        },
+        {
+          "count": 2,
+          "name": "Pegasus Courser",
+          "scryfall_id": "0c04eafe-8be0-416e-a5b9-486a3b3b5984",
+          "type_line": "Creature — Pegasus",
+          "oracle_text": "Flying\nWhenever this creature attacks, another target attacking creature gains flying until end of turn.",
+          "mana_cost": "{2}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/0/c/0c04eafe-8be0-416e-a5b9-486a3b3b5984.jpg?1783934598",
+          "power": "1",
+          "toughness": "3"
+        },
+        {
+          "count": 1,
+          "name": "Aerial Responder",
+          "scryfall_id": "b94b1649-2ce7-40f3-8dff-87bf60d274df",
+          "type_line": "Creature — Dwarf Soldier",
+          "oracle_text": "Flying, vigilance, lifelink",
+          "mana_cost": "{1}{W}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/b/9/b94b1649-2ce7-40f3-8dff-87bf60d274df.jpg?1783933993",
+          "power": "2",
+          "toughness": "3"
+        },
+        {
+          "count": 1,
+          "name": "Everdawn Champion",
+          "scryfall_id": "46c38e2a-3a82-402f-a436-f9ebb2ba2ea4",
+          "type_line": "Creature — Human Soldier",
+          "oracle_text": "Prevent all combat damage that would be dealt to this creature.",
+          "mana_cost": "{1}{W}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/4/6/46c38e2a-3a82-402f-a436-f9ebb2ba2ea4.jpg?1783933990",
+          "power": "2",
+          "toughness": "2"
+        },
+        {
+          "count": 2,
+          "name": "Fan Bearer",
+          "scryfall_id": "4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f",
+          "type_line": "Creature — Zombie",
+          "oracle_text": "{2}, {T}: Tap target creature.",
+          "mana_cost": "{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.jpg?1783933990",
+          "power": "1",
+          "toughness": "2"
+        },
+        {
+          "count": 2,
+          "name": "Inspiring Captain",
+          "scryfall_id": "d1aab968-fdf2-4035-8c04-04169c113153",
+          "type_line": "Creature — Human Knight",
+          "oracle_text": "When this creature enters, creatures you control get +1/+1 until end of turn.",
+          "mana_cost": "{3}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/d/1/d1aab968-fdf2-4035-8c04-04169c113153.jpg?1783933988",
+          "power": "3",
+          "toughness": "3"
+        },
+        {
+          "count": 2,
+          "name": "Mesa Unicorn",
+          "scryfall_id": "fed11288-5c3d-47de-bbad-6ca5912a3bce",
+          "type_line": "Creature — Unicorn",
+          "oracle_text": "Lifelink (Damage dealt by this creature also causes you to gain that much life.)",
+          "mana_cost": "{1}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/f/e/fed11288-5c3d-47de-bbad-6ca5912a3bce.jpg?1783933987",
+          "power": "2",
+          "toughness": "2"
+        },
+        {
+          "count": 2,
+          "name": "Serra Angel",
+          "scryfall_id": "88e29f9c-8ef8-4c04-a7d8-69ec52e6c4b5",
+          "type_line": "Creature — Angel",
+          "oracle_text": "Flying\nVigilance (Attacking doesn't cause this creature to tap.)",
+          "mana_cost": "{3}{W}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/8/8/88e29f9c-8ef8-4c04-a7d8-69ec52e6c4b5.jpg?1783933987",
+          "power": "4",
+          "toughness": "4"
+        },
+        {
+          "count": 1,
+          "name": "Subjugator Angel",
+          "scryfall_id": "23b909f8-ad6b-43f0-b517-7d02f2a97cd4",
+          "type_line": "Creature — Angel",
+          "oracle_text": "Flying\nWhen this creature enters, tap all creatures your opponents control.",
+          "mana_cost": "{4}{W}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/2/3/23b909f8-ad6b-43f0-b517-7d02f2a97cd4.jpg?1783933986",
+          "power": "4",
+          "toughness": "3"
+        },
+        {
+          "count": 1,
+          "name": "Cleansing Nova",
+          "scryfall_id": "670e4457-927e-42ed-a36f-28b60c2f7566",
+          "type_line": "Sorcery",
+          "oracle_text": "Choose one —\n• Destroy all creatures.\n• Destroy all artifacts and enchantments.",
+          "mana_cost": "{3}{W}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/6/7/670e4457-927e-42ed-a36f-28b60c2f7566.jpg?1783903251"
+        },
+        {
+          "count": 2,
+          "name": "Call the Cavalry",
+          "scryfall_id": "5ffd9de5-c0b9-4d41-ab11-c77ce6f67c60",
+          "type_line": "Sorcery",
+          "oracle_text": "Create two 2/2 white Knight creature tokens with vigilance.",
+          "mana_cost": "{3}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/5/f/5ffd9de5-c0b9-4d41-ab11-c77ce6f67c60.jpg?1783933991"
+        },
+        {
+          "count": 2,
+          "name": "Bright Reprisal",
+          "scryfall_id": "0f3044c9-865b-4869-a2c0-ed11a5841bf5",
+          "type_line": "Instant",
+          "oracle_text": "Destroy target attacking creature.\nDraw a card.",
+          "mana_cost": "{4}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/0/f/0f3044c9-865b-4869-a2c0-ed11a5841bf5.jpg?1783933990"
+        },
+        {
+          "count": 1,
+          "name": "Always Watching",
+          "scryfall_id": "cf65bfa0-9c05-4e9e-b4c7-d705e1a822c1",
+          "type_line": "Enchantment",
+          "oracle_text": "Nontoken creatures you control get +1/+1 and have vigilance.",
+          "mana_cost": "{1}{W}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/c/f/cf65bfa0-9c05-4e9e-b4c7-d705e1a822c1.jpg?1783933993"
+        },
+        {
+          "count": 1,
+          "name": "Hieromancer's Cage",
+          "scryfall_id": "197743cd-249c-42ba-ac8d-027c088f8418",
+          "type_line": "Enchantment",
+          "oracle_text": "When this enchantment enters, exile target nonland permanent an opponent controls until this enchantment leaves the battlefield.",
+          "mana_cost": "{3}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/1/9/197743cd-249c-42ba-ac8d-027c088f8418.jpg?1783934606"
+        },
+        {
+          "count": 2,
+          "name": "Knightly Valor",
+          "scryfall_id": "c0f20ca6-1a92-4be5-a84a-e7f8f0b7f648",
+          "type_line": "Enchantment — Aura",
+          "oracle_text": "Enchant creature\nWhen this Aura enters, create a 2/2 white Knight creature token with vigilance. (Attacking doesn't cause it to tap.)\nEnchanted creature gets +2/+2 and has vigilance.",
+          "mana_cost": "{4}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/c/0/c0f20ca6-1a92-4be5-a84a-e7f8f0b7f648.jpg?1783921934"
+        },
+        {
+          "count": 2,
+          "name": "Luminous Bonds",
+          "scryfall_id": "5d471de4-a7b2-4e13-9492-3fa94f5867ac",
+          "type_line": "Enchantment — Aura",
+          "oracle_text": "Enchant creature\nEnchanted creature can't attack or block.",
+          "mana_cost": "{2}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/5/d/5d471de4-a7b2-4e13-9492-3fa94f5867ac.jpg?1783934196"
+        },
+        {
+          "count": 25,
+          "name": "Plains",
+          "scryfall_id": "feada93b-aabf-45d6-ac46-98b33caf9112",
+          "type_line": "Basic Land — Plains",
+          "oracle_text": "({T}: Add {W}.)",
+          "mana_cost": "",
+          "image_url": "https://cards.scryfall.io/normal/front/f/e/feada93b-aabf-45d6-ac46-98b33caf9112.jpg?1783933967"
+        },
+        {
+          "count": 1,
+          "name": "Militant Angel",
+          "scryfall_id": "762fa38f-a760-4e84-bdd5-c14cbc21db72",
+          "type_line": "Creature — Angel",
+          "oracle_text": "Flying, lifelink\nWhen this creature enters, create a number of 2/2 white Knight creature tokens with vigilance equal to the number of opponents you attacked this turn.",
+          "mana_cost": "{3}{W}{W}",
+          "image_url": "https://cards.scryfall.io/normal/front/7/6/762fa38f-a760-4e84-bdd5-c14cbc21db72.jpg?1783933994",
+          "power": "3",
+          "toughness": "4"
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "name": "Game Night Green",
+      "life": 20,
+      "deck": [
+        {
+          "count": 1,
+          "name": "Ghalta, Primal Hunger",
+          "scryfall_id": "b2a93747-720a-4ddf-8325-36db78e0a584",
+          "type_line": "Legendary Creature — Elder Dinosaur",
+          "oracle_text": "This spell costs {X} less to cast, where X is the total power of creatures you control.\nTrample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)",
+          "mana_cost": "{10}{G}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/b/2/b2a93747-720a-4ddf-8325-36db78e0a584.jpg?1783933975",
+          "power": "12",
+          "toughness": "12"
+        },
+        {
+          "count": 1,
+          "name": "Gigantosaurus",
+          "scryfall_id": "c1db84d8-d426-4c0d-b44e-5be7b0f5f5bf",
+          "type_line": "Creature — Dinosaur",
+          "oracle_text": "",
+          "mana_cost": "{G}{G}{G}{G}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/c/1/c1db84d8-d426-4c0d-b44e-5be7b0f5f5bf.jpg?1783934535",
+          "power": "10",
+          "toughness": "10"
+        },
+        {
+          "count": 1,
+          "name": "Goreclaw, Terror of Qal Sisma",
+          "scryfall_id": "ee47f23a-3ba9-4615-b170-c89d8ab99d78",
+          "type_line": "Legendary Creature — Bear",
+          "oracle_text": "Creature spells you cast with power 4 or greater cost {2} less to cast.\nWhenever Goreclaw attacks, each creature you control with power 4 or greater gets +1/+1 and gains trample until end of turn.",
+          "mana_cost": "{3}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/e/e/ee47f23a-3ba9-4615-b170-c89d8ab99d78.jpg?1783915630",
+          "power": "4",
+          "toughness": "3"
+        },
+        {
+          "count": 1,
+          "name": "Pelakka Wurm",
+          "scryfall_id": "304c635c-de4d-46ee-8ab0-e5c4d55b61b3",
+          "type_line": "Creature — Wurm",
+          "oracle_text": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nWhen this creature enters, you gain 7 life.\nWhen this creature dies, draw a card.",
+          "mana_cost": "{4}{G}{G}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/3/0/304c635c-de4d-46ee-8ab0-e5c4d55b61b3.jpg?1787562509",
+          "power": "7",
+          "toughness": "7"
+        },
+        {
+          "count": 2,
+          "name": "Colossal Dreadmaw",
+          "scryfall_id": "8059c52b-5d25-4052-b48a-e9e219a7a546",
+          "type_line": "Creature — Dinosaur",
+          "oracle_text": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)",
+          "mana_cost": "{4}{G}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/8/0/8059c52b-5d25-4052-b48a-e9e219a7a546.jpg?1783930678",
+          "power": "6",
+          "toughness": "6"
+        },
+        {
+          "count": 2,
+          "name": "Elvish Rejuvenator",
+          "scryfall_id": "03ef5cff-2e2b-4096-8310-4c5aabcb0eac",
+          "type_line": "Creature — Elf Druid",
+          "oracle_text": "When this creature enters, look at the top five cards of your library. You may put a land card from among them onto the battlefield tapped. Put the rest on the bottom of your library in a random order.",
+          "mana_cost": "{2}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/0/3/03ef5cff-2e2b-4096-8310-4c5aabcb0eac.jpg?1783911912",
+          "power": "1",
+          "toughness": "1"
+        },
+        {
+          "count": 2,
+          "name": "Ghastbark Twins",
+          "scryfall_id": "d470e441-3520-4669-aaa5-f0c57829352a",
+          "type_line": "Creature — Treefolk",
+          "oracle_text": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nThis creature can block an additional creature each combat.",
+          "mana_cost": "{5}{G}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/d/4/d470e441-3520-4669-aaa5-f0c57829352a.jpg?1783934537",
+          "power": "7",
+          "toughness": "7"
+        },
+        {
+          "count": 2,
+          "name": "Giant Spider",
+          "scryfall_id": "213c9202-b6f4-43ab-b57f-b97a1da5e263",
+          "type_line": "Creature — Spider",
+          "oracle_text": "Reach (This creature can block creatures with flying.)",
+          "mana_cost": "{3}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/2/1/213c9202-b6f4-43ab-b57f-b97a1da5e263.jpg?1783918443",
+          "power": "2",
+          "toughness": "4"
+        },
+        {
+          "count": 1,
+          "name": "Reclamation Sage",
+          "scryfall_id": "1918ea65-ab7f-4d40-97fd-a656c892a2a1",
+          "type_line": "Creature — Elf Shaman",
+          "oracle_text": "When this creature enters, you may destroy target artifact or enchantment.",
+          "mana_cost": "{2}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/1/9/1918ea65-ab7f-4d40-97fd-a656c892a2a1.jpg?1783909055",
+          "power": "2",
+          "toughness": "1"
+        },
+        {
+          "count": 1,
+          "name": "Vigilant Baloth",
+          "scryfall_id": "34ad8e5d-0c26-4588-8161-b22197715d63",
+          "type_line": "Creature — Beast",
+          "oracle_text": "Vigilance (Attacking doesn't cause this creature to tap.)",
+          "mana_cost": "{3}{G}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/3/4/34ad8e5d-0c26-4588-8161-b22197715d63.jpg?1783934529",
+          "power": "5",
+          "toughness": "5"
+        },
+        {
+          "count": 1,
+          "name": "Jungle Delver",
+          "scryfall_id": "ae4328fc-20d2-487b-9a74-57c39b0810c0",
+          "type_line": "Creature — Merfolk Warrior",
+          "oracle_text": "{3}{G}: Put a +1/+1 counter on this creature.",
+          "mana_cost": "{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/a/e/ae4328fc-20d2-487b-9a74-57c39b0810c0.jpg?1783933973",
+          "power": "1",
+          "toughness": "1"
+        },
+        {
+          "count": 3,
+          "name": "Llanowar Elves",
+          "scryfall_id": "8bbcfb77-daa1-4ce5-b5f9-48d0a8edbba9",
+          "type_line": "Creature — Elf Druid",
+          "oracle_text": "{T}: Add {G}.",
+          "mana_cost": "{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/8/b/8bbcfb77-daa1-4ce5-b5f9-48d0a8edbba9.jpg?1783933972",
+          "power": "1",
+          "toughness": "1"
+        },
+        {
+          "count": 2,
+          "name": "Thrashing Brontodon",
+          "scryfall_id": "d3a45c57-9dc5-418b-99f3-b770a94eea47",
+          "type_line": "Creature — Dinosaur",
+          "oracle_text": "{1}, Sacrifice this creature: Destroy target artifact or enchantment.",
+          "mana_cost": "{1}{G}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/d/3/d3a45c57-9dc5-418b-99f3-b770a94eea47.jpg?1783933970",
+          "power": "3",
+          "toughness": "4"
+        },
+        {
+          "count": 2,
+          "name": "Eager Construct",
+          "scryfall_id": "a4beab22-6824-4039-9266-8e6bcf1c91e5",
+          "type_line": "Artifact Creature — Construct",
+          "oracle_text": "When this creature enters, each player may scry 1. (To scry 1, look at the top card of your library, then you may put that card on the bottom.)",
+          "mana_cost": "{2}",
+          "image_url": "https://cards.scryfall.io/normal/front/a/4/a4beab22-6824-4039-9266-8e6bcf1c91e5.jpg?1783933970",
+          "power": "2",
+          "toughness": "2"
+        },
+        {
+          "count": 2,
+          "name": "Howling Golem",
+          "scryfall_id": "24c4089d-8af1-490e-b12f-9d3f0918ce66",
+          "type_line": "Artifact Creature — Golem",
+          "oracle_text": "Whenever this creature attacks or blocks, each player draws a card.",
+          "mana_cost": "{3}",
+          "image_url": "https://cards.scryfall.io/normal/front/2/4/24c4089d-8af1-490e-b12f-9d3f0918ce66.jpg?1783933970",
+          "power": "2",
+          "toughness": "3"
+        },
+        {
+          "count": 1,
+          "name": "Nissa's Revelation",
+          "scryfall_id": "a229b53f-f34b-44f5-b0b4-94239b85a15b",
+          "type_line": "Sorcery",
+          "oracle_text": "Scry 5, then reveal the top card of your library. If it's a creature card, you draw cards equal to its power and you gain life equal to its toughness.",
+          "mana_cost": "{5}{G}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/a/2/a229b53f-f34b-44f5-b0b4-94239b85a15b.jpg?1783933972"
+        },
+        {
+          "count": 3,
+          "name": "Rabid Bite",
+          "scryfall_id": "53a73200-b798-4bfd-a431-8b94e17b70be",
+          "type_line": "Sorcery",
+          "oracle_text": "Target creature you control deals damage equal to its power to target creature you don't control.",
+          "mana_cost": "{1}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/5/3/53a73200-b798-4bfd-a431-8b94e17b70be.jpg?1783910739"
+        },
+        {
+          "count": 1,
+          "name": "Overcome",
+          "scryfall_id": "0f1e7344-390c-49b4-943d-2056b41fd3ae",
+          "type_line": "Sorcery",
+          "oracle_text": "Creatures you control get +2/+2 and gain trample until end of turn. (Each of those creatures can deal excess combat damage to the player or planeswalker it's attacking.)",
+          "mana_cost": "{3}{G}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/0/f/0f1e7344-390c-49b4-943d-2056b41fd3ae.jpg?1783933971"
+        },
+        {
+          "count": 2,
+          "name": "Seek the Wilds",
+          "scryfall_id": "4ac58ffa-a9ea-4bc3-bd43-76b0764742bb",
+          "type_line": "Sorcery",
+          "oracle_text": "Look at the top four cards of your library. You may reveal a creature or land card from among them and put it into your hand. Put the rest on the bottom of your library in any order.",
+          "mana_cost": "{1}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/4/a/4ac58ffa-a9ea-4bc3-bd43-76b0764742bb.jpg?1783933971"
+        },
+        {
+          "count": 1,
+          "name": "Manalith",
+          "scryfall_id": "f0d7d904-f29b-4524-9223-27910d748bdb",
+          "type_line": "Artifact",
+          "oracle_text": "{T}: Add one mana of any color.",
+          "mana_cost": "{3}",
+          "image_url": "https://cards.scryfall.io/normal/front/f/0/f0d7d904-f29b-4524-9223-27910d748bdb.jpg?1783933970"
+        },
+        {
+          "count": 1,
+          "name": "Rhonas's Monument",
+          "scryfall_id": "7d24b200-5cab-406a-a0e6-71a4d33b26fb",
+          "type_line": "Legendary Artifact",
+          "oracle_text": "Green creature spells you cast cost {1} less to cast.\nWhenever you cast a creature spell, target creature you control gets +2/+2 and gains trample until end of turn.",
+          "mana_cost": "{3}",
+          "image_url": "https://cards.scryfall.io/normal/front/7/d/7d24b200-5cab-406a-a0e6-71a4d33b26fb.jpg?1783933969"
+        },
+        {
+          "count": 1,
+          "name": "Talons of Wildwood",
+          "scryfall_id": "9ffa2e83-bc78-4bde-9692-e5165c4ef63b",
+          "type_line": "Enchantment — Aura",
+          "oracle_text": "Enchant creature\nEnchanted creature gets +1/+1 and has trample. (It can deal excess combat damage to the player or planeswalker it's attacking.)\n{2}{G}: Return this card from your graveyard to your hand.",
+          "mana_cost": "{1}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/9/f/9ffa2e83-bc78-4bde-9692-e5165c4ef63b.jpg?1783934526"
+        },
+        {
+          "count": 25,
+          "name": "Forest",
+          "scryfall_id": "58fe058d-7796-4233-8d74-2a12f9bd0023",
+          "type_line": "Basic Land — Forest",
+          "oracle_text": "({T}: Add {G}.)",
+          "mana_cost": "",
+          "image_url": "https://cards.scryfall.io/normal/front/5/8/58fe058d-7796-4233-8d74-2a12f9bd0023.jpg?1783933963"
+        },
+        {
+          "count": 1,
+          "name": "Avatar of Growth",
+          "scryfall_id": "f524a232-7158-4f85-880e-fede2f9d35d1",
+          "type_line": "Creature — Elemental Avatar",
+          "oracle_text": "This spell costs {1} less to cast for each opponent you have.\nTrample\nWhen this creature enters, each player searches their library for up to two basic land cards, puts them onto the battlefield, then shuffles.",
+          "mana_cost": "{4}{G}{G}",
+          "image_url": "https://cards.scryfall.io/normal/front/f/5/f524a232-7158-4f85-880e-fede2f9d35d1.jpg?1783933994",
+          "power": "4",
+          "toughness": "4"
+        }
+      ]
+    }
+  ]
+}

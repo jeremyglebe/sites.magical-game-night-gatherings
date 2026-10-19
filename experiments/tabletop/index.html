@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Night · Table</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #18201e; color: #edf1ea; font: 15px system-ui,sans-serif; }
+  main { max-width: 1280px; margin: auto; padding: 18px; }
+  header, .player-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header { margin-bottom: 18px; justify-content: space-between; }
+  h1 { font-size: 20px; margin: 0; font-weight: 600; }
+  h2 { font-size: 17px; margin: 0; }
+  .muted, .counts { color: #b6c4bc; font-size: 13px; }
+  #connection { font-size: 12px; color: #aed8b4; }
+  #table { display: grid; gap: 14px; }
+  .player { min-width: 0; background: #202c27; border: 1px solid #3b4c43; border-radius: 8px; padding: 14px; }
+  .player.active { border-color: #90b59a; }
+  .life { font-size: 24px; font-variant-numeric: tabular-nums; }
+  .counts { margin-left: auto; }
+  .lane-label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #a1b1a7; margin-top: 12px; }
+  .lane { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; align-items: center; padding: 8px 0; }
+  .empty { color: #8c9f92; font-size: 12px; }
+  .card { width: 152px; min-height: 163px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .card img { width: 106px; border-radius: 5px; display: block; }
+  .card.tapped img { transform: rotate(90deg); }
+  .face { width: 106px; min-height: 148px; padding: 12px; background: #374c42; border: 1px solid #657e6e; border-radius: 5px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; }
+  .card.tapped .face { transform: rotate(90deg); }
+  .markers { position: absolute; left: 2px; bottom: 0; right: 2px; display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; }
+  .marker { background: #f1e9c8; color: #252c24; font-size: 11px; border-radius: 3px; padding: 2px 5px; overflow-wrap: anywhere; }
+  .marker.damage { background: #f0b5a9; }
+  .zones { display: flex; flex-wrap: wrap; gap: 16px; color: #b6c4bc; font-size: 12px; margin-top: 6px; }
+  details ul { padding-left: 16px; max-width: 320px; }
+  summary { cursor: pointer; }
+  #stack { margin: 14px 0; }
+  #notes, #events { color: #b6c4bc; font-size: 12px; line-height: 1.6; }
+  #result { color: #f1e9c8; font-size: 18px; }
+  @media (min-width: 1000px) { #table { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) {
+    main { padding: 10px; } .counts { margin-left: 0; width: 100%; }
+    .card { width: 126px; min-height: 140px; } .card img,.face { width: 88px; }
+    .face { min-height: 123px; }
+  }
+</style>
+<main>
+  <header>
+    <div><h1 id="title">Game Night · Table</h1><div id="turn" class="muted">Waiting for the table</div></div>
+    <span id="connection" role="status">Connecting…</span>
+  </header>
+  <p id="result" hidden></p>
+  <div id="table"></div>
+  <section id="stack" hidden><div class="lane-label">Stack · top first</div><div class="lane"></div></section>
+  <div id="notes"></div>
+  <details><summary class="muted">Recent moves</summary><ol id="events"></ol></details>
+</main>
+<script type="module">
+  const $ = selector => document.querySelector(selector);
+  const make = (tag, className, value) => {
+    const el = document.createElement(tag);
+    if (className) el.className = className;
+    if (value !== undefined) el.textContent = value;
+    return el;
+  };
+  let cardNames = new Map();
+  function cardView(card) {
+    const el = make('div', 'card' + (card.tapped ? ' tapped' : ''));
+    el.title = card.name + (card.tapped ? ' · tapped' : '') + (card.note ? ' · ' + card.note : '');
+    if (card.image_url) {
+      const image = make('img');
+      image.src = card.image_url;
+      image.alt = card.name;
+      image.loading = 'lazy';
+      image.addEventListener('error', () => image.replaceWith(make('div', 'face', card.name)), { once: true });
+      el.append(image);
+    } else el.append(make('div', 'face', card.name));
+    const markers = make('div', 'markers');
+    for (const [name, count] of Object.entries(card.counters)) if (count) markers.append(make('span', 'marker', count + ' ' + name));
+    if (card.damage) markers.append(make('span', 'marker damage', card.damage + ' damage'));
+    if (card.attached_to) markers.append(make('span', 'marker', 'Attached to ' + (cardNames.get(card.attached_to) || 'card')));
+    if (card.note) markers.append(make('span', 'marker', card.note));
+    el.append(markers);
+    return el;
+  }
+  function lane(label, cards) {
+    const fragment = document.createDocumentFragment();
+    fragment.append(make('div', 'lane-label', label));
+    const row = make('div', 'lane');
+    if (!cards.length) row.append(make('span', 'empty', '—'));
+    for (const c of cards) row.append(cardView(c));
+    fragment.append(row);
+    return fragment;
+  }
+  function render(state) {
+    cardNames = new Map(Object.values(state.zones).flatMap(z => z.cards).map(c => [c.id, c.name]));
+    $('#title').textContent = state.title;
+    const name = id => state.players.find(p => p.id === id)?.name || '—';
+    $('#turn').textContent = 'Turn ' + state.turn.number + ' · ' + name(state.turn.active) + ' · ' + state.turn.phase
+      + (state.turn.priority ? ' · Priority: ' + name(state.turn.priority) : '');
+    const players = document.createDocumentFragment();
+    for (const p of state.players) {
+      const section = make('section', 'player' + (state.turn.active === p.id ? ' active' : ''));
+      const head = make('div', 'player-head');
+      head.append(make('h2', '', p.name), make('span', 'life', p.life + ' life'));
+      const counts = [state.zones[p.id + ':library'].count + ' in library', state.zones[p.id + ':hand'].count + ' in hand'];
+      for (const [key, value] of Object.entries(p.counters)) if (value) counts.push(value + ' ' + key);
+      for (const [key, value] of Object.entries(p.mana)) if (value) counts.push(value + ' ' + key + ' mana');
+      head.append(make('div', 'counts', counts.join(' · ')));
+      section.append(head);
+      const battlefield = state.zones.battlefield.cards.filter(c => c.controller === p.id);
+      const land = c => (c.type_line || '').split('—')[0].includes('Land');
+      section.append(lane('Creatures & other permanents', battlefield.filter(c => !land(c))), lane('Lands', battlefield.filter(land)));
+      const zones = make('div', 'zones');
+      for (const kind of ['graveyard', 'exile', 'command']) {
+        const z = state.zones[p.id + ':' + kind];
+        const details = make('details');
+        details.append(make('summary', '', kind + ' · ' + z.count));
+        const list = make('ul');
+        for (const c of z.cards) list.append(make('li', '', c.name));
+        details.append(list);
+        zones.append(details);
+      }
+      section.append(zones);
+      if (p.note) section.append(make('p', 'muted', p.note));
+      players.append(section);
+    }
+    $('#table').replaceChildren(players);
+    const stack = state.zones.stack.cards;
+    $('#stack').hidden = !stack.length;
+    $('#stack .lane').replaceChildren(...stack.map(cardView));
+    $('#notes').replaceChildren(...state.notes.slice(-5).map(n => make('p', '', n.text)));
+    $('#events').replaceChildren(...state.events.slice(-8).map(e => make('li', '', e.summary)));
+    $('#result').hidden = !state.result;
+    if (state.result) $('#result').textContent = (state.result.winners.length ? state.result.winners.map(name).join(' & ') + ' won' : 'Draw') + ' — reported by ' + name(state.result.reported_by);
+  }
+  let revision = -1;
+  async function poll() {
+    try {
+      const response = await fetch('/api/table', { cache: 'no-store', signal: AbortSignal.timeout(5000) });
+      if (!response.ok) throw new Error('Unavailable');
+      const state = await response.json();
+      if (state.revision !== revision) { render(state); revision = state.revision; }
+      $('#connection').textContent = 'Live · public view';
+    } catch { $('#connection').textContent = 'Disconnected · retrying'; }
+    setTimeout(poll, 750);
+  }
+  poll();
+</script>
+</html>

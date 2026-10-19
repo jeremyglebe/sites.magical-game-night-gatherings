@@ -4,6 +4,8 @@ This is a fan-made working catalogue for Magic: The Gathering game-night formats
 
 The boxed sets described here are personal play kits and catalogue entries, not products.
 
+The [tabletop experiment](experiments/tabletop/README.md) provides a shared manual table, player MCP connections and a minimal spectator page for trying AI playtests. Run `npm run playtest:demo` for its scripted precon demonstration; it is separate from the published catalogue.
+
 The site is authored in Markdown. Format parent pages link to separate, complete rulesets; boxed-set pages identify their base rules and spell out every change. Preserve rules detail when editing. See [AGENTS.md](AGENTS.md) for the editing conventions.
 
 ## Running The Site

@@ -3,6 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "playtest:serve": "node experiments/tabletop/server.mjs",
+    "playtest:mcp": "node experiments/tabletop/mcp.mjs",
+    "playtest:demo": "node experiments/tabletop/demo.mjs",
+    "playtest:test": "node --test experiments/tabletop/*.test.mjs",
     "dev": "vitepress --host 127.0.0.1",
     "research:render": "node scripts/render-everyday-research.mjs",
     "build": "vitepress build",
@@ -15,6 +19,7 @@
     "serve:docs": "python -m http.server 5175 --directory docs"
   },
   "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.0.1",
     "scryfall-mcp-server": "0.1.1",
     "vitepress": "^1.6.4"
   }
