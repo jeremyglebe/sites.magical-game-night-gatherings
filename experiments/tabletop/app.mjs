@@ -136,7 +136,8 @@ export async function startApp({
         message = 'Waiting for another player to hand control to you.';
       }
     }
-    return { matchId, playerId, table: view, canAct, message };
+    const boardRevision = state.events.findLast(event => event.actions.some(action => action.type !== 'say'))?.revision ?? 0;
+    return { matchId, playerId, table: view, canAct, canChat: !state.result && !closing && !creating, boardRevision, message };
   }
   function saveMatch() {
     if (match) save(join(root, 'matches', match.id, 'match.json'), {
@@ -225,6 +226,24 @@ export async function startApp({
           if (nextTable.getState().result) throw new Error('Gameplay has ended; submit post-game feedback instead');
           if (config.players.find(p => p.id === seat)?.ai) nextCoordinator.authorizeDecision(seat, args.decision_id);
           else nextCoordinator.authorizeManual(seat);
+        },
+        takeSteering: (seat, decisionId, requestedRevision) => {
+          const state = nextTable.getState();
+          let since = nextCoordinator?.takeSteeringCursor(seat, decisionId, state.revision);
+          if (since === null || since === undefined) return null;
+          // A stale write must carry the messages that invalidated it even if
+          // another read has already delivered them. Successful reads do not
+          // otherwise repeat steering on every subsequent tool call.
+          if (Number.isInteger(requestedRevision) && requestedRevision >= 0 && requestedRevision < state.revision) {
+            since = Math.min(since, requestedRevision);
+          }
+          const humans = new Set(config.players.filter(player => player.ai === false).map(player => player.id));
+          const messages = eventsSince(state, null, since).events
+            .filter(event => humans.has(event.actor))
+            .flatMap(event => (event.changes || []).filter(change => change.type === 'say')
+              .map(change => ({ revision: event.revision, playerId: event.actor, text: change.text })));
+          return messages.length ? { revision: state.revision, messages,
+            instruction: 'New public messages arrived from a human player. Read them and reconsider your planned actions against the current table before continuing. Speech alone does not transfer priority or the turn.' } : null;
         },
       });
       const runPlayer = runPlayerFactory({
@@ -352,7 +371,7 @@ export async function startApp({
         response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' });
         response.end(readFileSync(join(here, 'survey.mjs'))); return;
       }
-      if (request.method === 'GET' && ['/human-controls.mjs', '/human-controls.css'].includes(url.pathname)) {
+      if (request.method === 'GET' && ['/human-controls.mjs', '/human-controls.css', '/human-preview.mjs'].includes(url.pathname)) {
         response.writeHead(200, { 'Content-Type': url.pathname.endsWith('.css') ? 'text/css; charset=utf-8' : 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' });
         response.end(readFileSync(join(here, url.pathname.slice(1)))); return;
       }
@@ -376,7 +395,18 @@ export async function startApp({
         if (closing || creating) throw new Error('The table is changing. Refresh before acting.');
         // Identity is selected from configured human seats, never from an
         // arbitrary action actor or a browser-supplied AI decision credential.
-        table.act(playerId, { revision: args.revision, actions: args.actions, reason: 'Human table actions' });
+        const state = table.getState();
+        const speechOnly = Number.isInteger(args.revision) && args.revision >= 0 && args.revision < state.revision
+          && state.events.filter(event => event.revision > args.revision)
+            .every(event => event.actions.length && event.actions.every(action => action.type === 'say'));
+        table.act(playerId, { revision: speechOnly ? state.revision : args.revision, actions: args.actions, reason: 'Human table actions' });
+        json(response, 200, humanView(args.matchId, playerId)); return;
+      }
+      if (request.method === 'POST' && url.pathname === '/api/human/chat') {
+        const args = await bodyJSON(request);
+        const playerId = humanPlayer(args.matchId, args.playerId);
+        if (closing || creating) throw new Error('The table is changing. Refresh before sending a message.');
+        table.chat(playerId, args.text);
         json(response, 200, humanView(args.matchId, playerId)); return;
       }
       if (request.method === 'GET' && url.pathname === '/api/survey') {

@@ -1,3 +1,5 @@
+import { previewHumanActions } from './human-preview.mjs';
+
 const make = (tag, className = '', text = '') => {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -29,45 +31,62 @@ function readCounters(node) {
   return Object.fromEntries(pairs);
 }
 
-export function createHumanControls({ root, request, onChange = () => {} }) {
+export function createHumanControls({ root, composerRoot, request, onChange = () => {}, onPreview = () => {} }) {
   root.classList.add('human-controls');
   root.setAttribute('aria-label', 'Human player controls');
   root.innerHTML = `<div class="hc-header"><div><div class="eyebrow">YOUR SEAT AT THE TABLE</div><h2>Human player</h2></div><div class="hc-seat-picker"><label>Play as <select class="hc-seat"></select></label><button type="button" class="hc-enter primary">Enter seat · show hand</button><button type="button" class="hc-hide quiet" hidden>Hide private controls</button></div></div>
     <p class="hc-status" role="status"></p><p class="hc-error" role="alert" hidden></p>
     <div class="hc-private" hidden>
-      <p class="hc-help">Your hand is private to this seat. Make table changes, explain your play, then explicitly pass priority or the turn. These controls do not enforce Magic rules.</p>
+      <p class="hc-help">Your hand is private to this seat. Pending actions preview on your board and can be undone from the chat before you send. Explain your play, then explicitly pass priority or the turn. These controls do not enforce Magic rules.</p>
       <div class="hc-main"><section class="hc-cards-section"><div class="hc-zone-head"><label>Cards <select class="hc-zone"></select></label><span class="hc-zone-count"></span></div><div class="hc-cards"></div>
       <div class="hc-tools"><label>Draw <input class="hc-draw-count" type="number" min="1" max="100" value="1" aria-label="Cards to draw"></label><button type="button" class="hc-draw" data-hc-act>Queue draw</button><button type="button" class="hc-shuffle" data-hc-act>Shuffle library</button><button type="button" class="hc-return" data-hc-act>Return entire hand</button><button type="button" class="hc-untap" data-hc-act>Untap my board</button><button type="button" class="hc-life" data-hc-act>Life & counters</button></div></section>
-      <section class="hc-compose"><h3>Your next play</h3><p class="hc-draft-state"></p><ol class="hc-queue"></ol><button type="button" class="hc-clear quiet">Discard queued actions</button><label class="hc-field">Say to the table<textarea class="hc-message" maxlength="2000" placeholder="Explain your actions, ask for a response, or agree to a shortcut."></textarea></label><div class="hc-send-row"><button type="button" class="hc-send primary" data-hc-act>Send actions & message</button></div><div class="hc-handoff"><label>Hand off to<select class="hc-recipient"></select></label><div class="hc-send-row"><button type="button" class="hc-pass" data-hc-act>Pass priority</button><button type="button" class="hc-turn" data-hc-act>Pass turn</button></div><p class="hc-help">Pass turn advances the turn marker to the named player. Passing priority leaves the active turn unchanged.</p></div></section></div>
+      </div>
       <details class="hc-more"><summary>More table controls</summary><div class="hc-tools"><button type="button" class="hc-markers" data-hc-act>Turn & phase markers</button><button type="button" class="hc-peek" data-hc-act>Look at library cards</button><button type="button" class="hc-token" data-hc-act>Create a token</button><button type="button" class="hc-ability" data-hc-act>Add a stack ability</button><button type="button" class="hc-outcome" data-hc-act>Concede or declare outcome</button></div><p class="hc-help">Use these physical table controls only when the rules or an agreed correction allow it. Moving a card does not clear its markers automatically.</p></details>
     </div>`;
-  const q = selector => root.querySelector(selector);
+  // Keep the private cards separate from the public chat until a seat is entered.
+  if (!composerRoot) { composerRoot = make('section'); root.append(composerRoot); }
+  composerRoot.classList.add('human-chat-composer');
+  composerRoot.setAttribute('aria-label', 'Chat and pending actions');
+  composerRoot.innerHTML = `<div class="hc-chat-entry"><p>Join the conversation from your human seat.</p><a class="hc-chat-enter" href="#${root.id || 'human-controls'}">Enter a human seat ↓</a></div>
+    <div class="hc-compose" hidden><div class="hc-chat-heading"><strong class="hc-chat-identity"></strong><a class="hc-private-link" href="#${root.id || 'human-controls'}">Hand & controls ↓</a></div>
+      <div class="hc-pending"><div class="hc-queue-heading"><span class="hc-draft-state"></span><div class="hc-queue-controls"><button type="button" class="hc-undo quiet">Undo last</button><button type="button" class="hc-clear quiet">Clear</button></div></div><ol class="hc-queue"></ol></div>
+      <p class="hc-chat-error hc-error" role="alert" hidden></p>
+      <label class="hc-field hc-message-field"><span class="hc-message-label">Message the table</span><textarea class="hc-message" aria-label="Message the table" maxlength="2000" rows="2" placeholder="Message the table…"></textarea></label>
+      <div class="hc-handoff"><label>Pass to<select class="hc-recipient" aria-label="Pass to"></select></label></div>
+      <div class="hc-send-row"><button type="button" class="hc-send primary">Send</button><button type="button" class="hc-pass" data-hc-act>Pass priority</button><button type="button" class="hc-turn" data-hc-act>Pass turn</button></div>
+      <p class="hc-chat-hint hc-help"></p><p class="hc-key-hint hc-help">Enter to send · Shift+Enter for a new line</p>
+    </div>`;
+  const q = selector => root.querySelector(selector) || composerRoot.querySelector(selector);
+  const all = selector => [...new Set([...root.querySelectorAll(selector), ...composerRoot.querySelectorAll(selector)])];
   const modal = make('dialog', 'hc-dialog');
   modal.setAttribute('aria-label', 'Human table action');
   root.append(modal);
   let app = null, publicTable = null, connected = false, matchId = '', playerId = '', visible = false;
-  let view = null, queue = [], baseRevision = null, sending = false, fetching = false, generation = 0, cardSignature = '', choicesSignature = '', stateSignature = '', modalRevision = null, savedRecipient = '', draftSignature = '';
+  let view = null, queue = [], baseRevision = null, sending = false, fetching = false, generation = 0, cardSignature = '', choicesSignature = '', stateSignature = '', modalRevision = null, modalBoardRevision = null, savedRecipient = '', draftSignature = '';
+  let preview = null, previewSignature = '', failedDraft = false, draftBoardRevision = null;
   const draftKey = () => `game-night-human-draft:${matchId}:${playerId}`;
   function saveDraft() {
     if (!matchId || !playerId) return;
-    try { sessionStorage.setItem(draftKey(), JSON.stringify({ queue, baseRevision, message: q('.hc-message').value, recipient: q('.hc-recipient').value })); } catch {}
+    try { sessionStorage.setItem(draftKey(), JSON.stringify({ queue, baseRevision, draftBoardRevision, failedDraft, message: q('.hc-message').value, recipient: q('.hc-recipient').value })); } catch {}
   }
   function restoreDraft() {
-    queue = []; baseRevision = null; q('.hc-message').value = '';
+    queue = []; baseRevision = null; draftBoardRevision = null; failedDraft = false; q('.hc-message').value = '';
     try {
       const data = JSON.parse(sessionStorage.getItem(draftKey()) || 'null');
       if (data && Array.isArray(data.queue) && data.queue.length <= 30 && data.queue.every(item => item && typeof item.label === 'string' && item.op && typeof item.op.type === 'string')) {
         queue = data.queue; baseRevision = data.baseRevision; q('.hc-message').value = String(data.message || '').slice(0, 2000);
+        draftBoardRevision = Number.isSafeInteger(data.draftBoardRevision) ? data.draftBoardRevision : null; failedDraft = data.failedDraft === true;
         savedRecipient = data.recipient || ''; q('.hc-recipient').value = savedRecipient;
       }
     } catch {}
   }
-  function error(message = '') { q('.hc-error').textContent = message; q('.hc-error').hidden = !message; const local = modal.querySelector('.hc-modal-error'); if (local) { local.textContent = message; local.hidden = !message; } }
-  function players() { return view?.table?.players || publicTable?.players || []; }
+  function error(message = '') { for (const node of all('.hc-error')) { node.textContent = message; node.hidden = !message; } }
+  function currentTable() { return preview?.table || view?.table; }
+  function players() { return currentTable()?.players || publicTable?.players || []; }
   function playerName(id) { return players().find(p => p.id === id)?.name || id; }
   function zoneName(id) {
     if (id === 'battlefield') return 'Battlefield'; if (id === 'stack') return 'Stack';
-    const zone = view?.table?.zones?.[id]; const suffix = id.includes(':') ? id.slice(id.indexOf(':') + 1) : id;
+    const zone = currentTable()?.zones?.[id]; const suffix = id.includes(':') ? id.slice(id.indexOf(':') + 1) : id;
     return `${zone?.owner === playerId ? 'Your' : zone?.owner ? playerName(zone.owner) + ' ·' : ''} ${suffix}`.trim();
   }
   function isStale() { return queue.length > 0 && baseRevision !== view?.table?.revision; }
@@ -75,58 +94,102 @@ export function createHumanControls({ root, request, onChange = () => {} }) {
     const run = app?.coordinator;
     return connected && visible && view?.table?.revision === publicTable?.revision && !!view?.canAct && !view?.table?.result && !app?.postgame && run?.pendingRecipient?.playerId === playerId && !(run?.players || []).some(p => p.active) && !sending;
   }
+  function canChat() { return connected && visible && !!view && view.canChat !== false && !!playerId && !view.table.result && !app?.postgame && !sending; }
+  function canCommit() { return eligible() && !isStale() && !failedDraft && preview?.valid !== false; }
+  function refreshPreview() {
+    const ready = visible && connected && view && view.table.revision === publicTable?.revision && !isStale() && !failedDraft;
+    preview = ready && queue.length ? previewHumanActions(view.table, playerId, queue.map(item => item.op)) : null;
+    const meta = { matchId, playerId, baseRevision, pendingCount: queue.length, valid: preview?.valid !== false, errors: preview?.errors || [], warnings: preview?.warnings || [] };
+    const next = JSON.stringify([preview?.table || null, meta]);
+    if (next !== previewSignature) { previewSignature = next; onPreview(preview?.table || null, meta); }
+  }
+  function acceptView(result) {
+    if (!result.table || (view && result.table.revision < view.table.revision)) return;
+    // Speech changes the transcript revision, but cannot invalidate a physical draft.
+    if (queue.length && !failedDraft) {
+      if (draftBoardRevision === null && baseRevision === result.table.revision) draftBoardRevision = result.boardRevision ?? null;
+      if (draftBoardRevision !== null && result.boardRevision === draftBoardRevision) {
+        baseRevision = result.table.revision; saveDraft();
+      }
+    }
+    view = result;
+  }
   function ensureWritable() {
     if (!eligible()) throw Error(view?.message || 'Wait until control is handed to this seat.');
     if (isStale()) throw Error('The table changed after these actions were queued. Discard them and rebuild your play from the current state.');
-    if (modal.open && modalRevision !== null && modalRevision !== view.table.revision) throw Error('The table changed while this editor was open. Close it and inspect the card again.');
+    if (failedDraft) throw Error('The previous send could not be confirmed. Clear these actions and check the current table before rebuilding the play.');
+    if (preview?.valid === false) throw Error(`Undo or remove the invalid queued action: ${preview.errors[0]?.message || 'this play cannot be submitted.'}`);
+    if (modal.open && modalRevision !== null && modalRevision !== view.table.revision && (modalBoardRevision === null || modalBoardRevision !== view.boardRevision)) throw Error('The table changed while this editor was open. Close it and inspect the card again.');
   }
   function attempt(action) { try { error(); action(); } catch (err) { error(err.message); } }
   function add(items) {
     ensureWritable();
     if (!Array.isArray(items)) items = [items];
     if (queue.length + items.length > 28) throw Error('Send these actions first. A play can queue up to 28 actions, leaving room for your message and handoff.');
-    if (!queue.length) baseRevision = view.table.revision;
-    queue.push(...items); saveDraft(); renderDraft(); updateButtons();
+    if (!queue.length) { baseRevision = view.table.revision; draftBoardRevision = view.boardRevision ?? null; }
+    queue.push(...items); draftChanged();
   }
-  function clearDraft() { if (sending) return; queue = []; baseRevision = null; saveDraft(); renderDraft(); updateButtons(); }
+  function draftChanged() { saveDraft(); refreshPreview(); renderCards(); renderDraft(); updateButtons(); }
+  function clearDraft() { if (sending) return; queue = []; baseRevision = null; draftBoardRevision = null; failedDraft = false; error(); draftChanged(); }
+  function removeDraft(index) { if (sending) return; queue.splice(index, 1); if (!queue.length) { baseRevision = null; draftBoardRevision = null; failedDraft = false; } draftChanged(); }
+  function followTranscriptAfterLayout() {
+    const list = composerRoot.closest('.table-talk')?.querySelector('.recent-moves');
+    const following = list && list.scrollHeight - list.clientHeight - list.scrollTop < 32;
+    return () => { if (following) list.scrollTop = list.scrollHeight; };
+  }
   function renderDraft() {
-    const signature = JSON.stringify([queue, baseRevision, view?.table?.revision, sending]);
+    const restoreTranscript = followTranscriptAfterLayout();
+    const signature = JSON.stringify([queue, baseRevision, view?.table?.revision, sending, preview?.errors]);
     if (signature !== draftSignature) {
       draftSignature = signature;
       const list = q('.hc-queue'); list.replaceChildren();
       for (const [index, item] of queue.entries()) {
         const row = make('li'); row.append(make('span', '', item.label));
-        const remove = button('×', () => { if (sending) return; queue.splice(index, 1); if (!queue.length) baseRevision = null; saveDraft(); renderDraft(); updateButtons(); }, 'quiet hc-remove');
+        if (preview?.errors?.some(err => err.index === index)) row.classList.add('hc-warning');
+        const remove = button('×', () => removeDraft(index), 'quiet hc-remove');
         remove.setAttribute('aria-label', `Remove queued action ${index + 1}: ${item.label}`); remove.disabled = sending;
         row.append(remove); list.append(row);
       }
     }
-    q('.hc-clear').hidden = !queue.length;
+    q('.hc-pending').hidden = !queue.length;
     q('.hc-clear').disabled = sending;
-    q('.hc-draft-state').textContent = isStale() ? 'Table changed — discard and rebuild these queued actions.' : queue.length ? `${queue.length} queued · not yet sent to the table` : 'No queued actions. Select cards or use the controls to build a play.';
-    q('.hc-draft-state').classList.toggle('hc-warning', isStale());
+    q('.hc-undo').disabled = sending || !queue.length;
+    q('.hc-draft-state').textContent = isStale() ? 'Table changed — clear and rebuild this play.' : failedDraft ? 'Send unconfirmed — clear and check the table.' : preview?.valid === false ? preview.errors[0]?.message : `${queue.length} pending`;
+    q('.hc-draft-state').title = 'Only you see pending changes. Undo or clear them before sending.';
+    q('.hc-draft-state').classList.toggle('hc-warning', isStale() || failedDraft || preview?.valid === false);
+    restoreTranscript();
   }
   function updateButtons() {
-    const can = eligible() && !isStale();
-    for (const node of root.querySelectorAll('[data-hc-act]')) node.disabled = !can;
-    q('.hc-send').disabled = !can || (!queue.length && !q('.hc-message').value.trim());
+    const restoreTranscript = followTranscriptAfterLayout();
+    const can = canCommit(), chat = canChat(), message = !!q('.hc-message').value.trim();
+    for (const node of all('[data-hc-act]')) node.disabled = !can;
+    q('.hc-send').disabled = !(can && queue.length) && !(chat && message);
+    q('.hc-send').textContent = sending ? 'Sending…' : can && queue.length ? 'Send play' : 'Send';
     q('.hc-pass').disabled = !can || !q('.hc-recipient').value;
     q('.hc-turn').disabled = !can || !q('.hc-recipient').value;
     q('.hc-seat').disabled = visible || sending;
     q('.hc-enter').disabled = !connected || sending || !playerId;
     q('.hc-hide').disabled = sending;
-    q('.hc-message').disabled = sending;
+    q('.hc-message').disabled = !chat;
     q('.hc-clear').disabled = sending;
-    for (const remove of root.querySelectorAll('.hc-remove')) remove.disabled = sending;
+    q('.hc-undo').disabled = sending || !queue.length;
+    for (const remove of all('.hc-remove')) remove.disabled = sending;
     q('.hc-recipient').disabled = sending;
     const name = playerName(playerId);
+    q('.hc-chat-entry').hidden = visible;
+    q('.hc-compose').hidden = !visible;
+    q('.hc-chat-identity').textContent = name;
+    const chatHint = !view ? 'Loading your seat…' : view.table.result ? 'The game has ended.' : !can && queue.length ? 'Chat still sends; pending actions stay here.' : !eligible() ? 'You can chat while another player plays.' : '';
+    q('.hc-chat-hint').textContent = chatHint; q('.hc-chat-hint').hidden = !chatHint;
     let status = !connected ? 'Disconnected. Controls are unavailable until the table reconnects.' : !visible ? 'Choose your seat and enter it to reveal private cards. Hide the controls before sharing this screen.' : !view ? 'Loading your private view…' : view.table.result ? 'The game has ended. Complete your post-game questionnaire above.' : !eligible() ? (view.message || `Waiting for control to pass to ${name}. You can still inspect your cards.`) : `Your move, ${name}. Changes are queued until you send them.`;
     if (visible && view && ['paused', 'stopped'].includes(app?.coordinator?.mode) && !view.table.result) status += ' The runner is paused; after your handoff, press Resume to continue AI play.';
     q('.hc-status').textContent = status;
+    restoreTranscript();
   }
   function renderCards() {
     if (!view || !visible) return;
-    const zones = Object.values(view.table.zones);
+    const table = currentTable();
+    const zones = Object.values(table.zones);
     const options = zones.map(z => [z.id, `${zoneName(z.id)} (${z.count})`]);
     const sig = JSON.stringify(options);
     if (q('.hc-zone').dataset.choices !== sig) {
@@ -134,18 +197,19 @@ export function createHumanControls({ root, request, onChange = () => {} }) {
       q('.hc-zone').replaceChildren(...select(options, current).childNodes); q('.hc-zone').value = options.some(([id]) => id === current) ? current : `${playerId}:hand`;
       q('.hc-zone').dataset.choices = sig;
     }
-    const zone = view.table.zones[q('.hc-zone').value];
+    const zone = table.zones[q('.hc-zone').value];
     if (!zone) return;
     const next = JSON.stringify([zone, playerId]); if (next === cardSignature) return; cardSignature = next;
     q('.hc-zone-count').textContent = `${zone.count} card${zone.count === 1 ? '' : 's'}${zone.hidden_count ? ` · ${zone.hidden_count} concealed` : ''}`;
     const cards = q('.hc-cards'); cards.replaceChildren();
     for (const card of zone.cards) {
       const node = button('', () => openCard(card)); node.className = 'hc-card';
+      if (card.draft || card.editable === false) { node.classList.add('hc-card-pending'); node.disabled = true; node.title = 'Send this play to inspect or edit the card.'; }
       node.setAttribute('aria-label', `Inspect ${card.name}${card.tapped ? ', tapped' : ''}`);
       if (card.image_url) { const img = make('img'); img.src = card.image_url; img.alt = ''; img.loading = 'lazy'; node.append(img); }
       else node.append(make('div', 'hc-card-fallback', card.name || 'Face-down card'));
       node.append(make('span', 'hc-card-name', card.name || 'Face-down card'));
-      const markers = [card.tapped ? 'Tapped' : '', card.damage ? `${card.damage} damage` : '', ...Object.entries(card.counters || {}).map(([k, v]) => `${v} ${k}`)].filter(Boolean);
+      const markers = [card.draft ? 'Pending · send to use' : '', card.tapped ? 'Tapped' : '', card.damage ? `${card.damage} damage` : '', ...Object.entries(card.counters || {}).map(([k, v]) => `${v} ${k}`)].filter(Boolean);
       if (markers.length) node.append(make('span', 'hc-card-markers', markers.join(' · ')));
       cards.append(node);
     }
@@ -165,33 +229,52 @@ export function createHumanControls({ root, request, onChange = () => {} }) {
     try {
       const result = await request(`/api/human?${new URLSearchParams({ matchId: match, playerId: seat })}`);
       if (serial !== generation || !visible || result.matchId !== match || result.playerId !== seat) return;
-      view = result; renderCards(); renderDraft(); updateButtons();
-    } catch (err) { if (serial === generation) { view = null; error(err.message); updateButtons(); } }
+      acceptView(result); refreshPreview(); renderCards(); renderDraft(); updateButtons();
+    } catch (err) { if (serial === generation) { view = null; refreshPreview(); error(err.message); updateButtons(); } }
     finally { fetching = false; }
   }
   async function send(terminal = null) {
     const serial = generation, requestMatch = matchId, requestPlayer = playerId;
+    let attemptedActions = false;
     try {
-      error(); ensureWritable();
-      const actions = queue.map(item => item.op); const message = q('.hc-message').value.trim();
-      if (terminal && ['pass', 'pass_turn'].includes(terminal.type)) { if (message) terminal = { ...terminal, message }; actions.push(terminal); }
-      else { if (message) actions.push({ type: 'say', text: message }); if (terminal) actions.push(terminal); }
-      if (!actions.length) return;
-      if (actions.length > 30) throw Error('Send fewer than 31 actions at once.');
-      const revision = queue.length ? baseRevision : view.table.revision;
+      error();
+      const message = q('.hc-message').value.trim();
+      const commit = !!terminal || (queue.length > 0 && canCommit());
+      let path, body;
+      if (commit) {
+        ensureWritable();
+        const actions = queue.map(item => item.op);
+        if (terminal && ['pass', 'pass_turn'].includes(terminal.type)) { if (message) terminal = { ...terminal, message }; actions.push(terminal); }
+        else { if (message) actions.push({ type: 'say', text: message }); if (terminal) actions.push(terminal); }
+        if (!actions.length) return;
+        if (actions.length > 30) throw Error('Send fewer than 31 actions at once.');
+        const revision = queue.length ? baseRevision : view.table.revision;
+        path = '/api/human/act'; body = { matchId: requestMatch, playerId: requestPlayer, revision, actions };
+      } else {
+        if (!message) return;
+        if (!canChat()) throw Error('Enter your human seat and reconnect to send a message.');
+        path = '/api/human/chat'; body = { matchId: requestMatch, playerId: requestPlayer, text: message };
+      }
       sending = true; updateButtons();
-      const result = await request('/api/human/act', { matchId: requestMatch, playerId: requestPlayer, revision, actions });
+      attemptedActions = commit;
+      const result = await request(path, body);
       if (serial !== generation || matchId !== requestMatch || playerId !== requestPlayer) return;
-      queue = []; baseRevision = null; q('.hc-message').value = ''; saveDraft();
-      if (result.table) view = result;
-      if (modal.open) modal.close();
-      cardSignature = ''; renderCards(); renderDraft();
+      if (commit) { queue = []; baseRevision = null; draftBoardRevision = null; failedDraft = false; }
+      q('.hc-message').value = ''; saveDraft();
+      acceptView(result);
+      if (commit && modal.open) modal.close();
+      refreshPreview(); cardSignature = ''; renderCards(); renderDraft();
       await onChange();
-    } catch (err) { if (serial === generation && matchId === requestMatch && playerId === requestPlayer) error(`${err.message} Your draft has been kept; it was not automatically retried.`); }
-    finally { sending = false; updateButtons(); void loadView(true); }
+    } catch (err) {
+      if (serial === generation && matchId === requestMatch && playerId === requestPlayer) {
+        if (attemptedActions && queue.length) { failedDraft = true; saveDraft(); }
+        refreshPreview(); renderCards(); renderDraft();
+        error(`${err.message} Your draft has been kept; it was not automatically retried.`);
+      }
+    } finally { sending = false; updateButtons(); void loadView(true); }
   }
   function openModal(title) {
-    modal.replaceChildren(); modalRevision = view?.table?.revision ?? null;
+    modal.replaceChildren(); modalRevision = view?.table?.revision ?? null; modalBoardRevision = view?.boardRevision ?? null;
     const head = make('div', 'hc-modal-head'); head.append(make('h2', '', title), button('Close ×', () => modal.close(), 'quiet'));
     const body = make('div', 'hc-modal-body'); const alert = make('p', 'hc-error hc-modal-error'); alert.setAttribute('role', 'alert'); alert.hidden = true; body.append(alert); modal.append(head, body); modal.showModal(); return body;
   }
@@ -206,7 +289,9 @@ export function createHumanControls({ root, request, onChange = () => {} }) {
   }
   async function openCard(card) {
     if (!visible || !view) return;
-    card = { ...card, ...Object.assign({}, ...queue.filter(item => item.op.type === 'card' && item.op.card === card.id).map(item => item.op.set)) };
+    card = Object.values(currentTable().zones).flatMap(zone => zone.cards).find(item => item.id === card.id);
+    if (!card) return;
+    if (card.draft || card.editable === false) { error('Send this play before inspecting or editing its pending cards.'); return; }
     const body = openModal(card.name || 'Face-down card');
     const intro = make('div', 'hc-card-info');
     if (card.image_url) { const art = make('img', 'hc-modal-art'); art.src = card.image_url; art.alt = card.name; intro.append(art); }
@@ -215,7 +300,7 @@ export function createHumanControls({ root, request, onChange = () => {} }) {
     actions.append(actionButton(card.tapped ? 'Queue untap' : 'Queue tap', () => { add({ op: { type: 'card', card: card.id, set: { tapped: !card.tapped } }, label: `${card.tapped ? 'Untap' : 'Tap'} ${card.name}` }); modal.close(); }), actionButton('Reveal to all players', () => { add({ op: { type: 'reveal', card: card.id }, label: `Reveal ${card.name} to all players` }); modal.close(); }));
     body.append(actions);
     const moveSection = make('section', 'hc-editor-section'); moveSection.append(make('h3', '', 'Move card'));
-    const destination = select(Object.keys(view.table.zones).map(id => [id, zoneName(id)]), 'battlefield');
+    const destination = select(Object.keys(currentTable().zones).map(id => [id, zoneName(id)]), 'battlefield');
     const position = select([['bottom', 'Bottom'], ['top', 'Top']], 'bottom');
     destination.addEventListener('change', () => { position.value = destination.value === 'stack' ? 'top' : 'bottom'; });
     moveSection.append(label('Destination', destination), label('Position (library or stack)', position), actionButton('Queue move', () => { add({ op: { type: 'move', card: card.id, to: destination.value, position: position.value }, label: `Move ${card.name} to ${zoneName(destination.value)} · ${position.value}` }); modal.close(); }), make('p', 'hc-help', 'Moving keeps existing markers. Clear damage, counters, or tapped state explicitly when needed.'));
@@ -225,7 +310,7 @@ export function createHumanControls({ root, request, onChange = () => {} }) {
     const count = make('textarea'); count.value = counterText(card.counters); count.placeholder = '+1/+1: 2';
     const note = make('textarea'); note.value = card.note || ''; note.maxLength = 2000;
     const controller = select(players().map(p => [p.id, p.name]), card.controller);
-    const targets = Object.values(view.table.zones).flatMap(z => z.cards).filter(c => c.id !== card.id);
+    const targets = Object.values(currentTable().zones).flatMap(z => z.cards).filter(c => c.id !== card.id && !c.draft && c.editable !== false);
     const attached = select([['', 'None'], ...targets.map(c => [c.id, `${c.name} · ${playerName(c.controller)}`])], card.attached_to || '');
     const tapped = input('', 'checkbox'); tapped.checked = !!card.tapped; const facedown = input('', 'checkbox'); facedown.checked = !!card.face_down;
     edit.append(label('Damage marked', damage), label('Counters · one name: count per line', count), label('Controller', controller), label('Attached to', attached), label('Tapped', tapped), label('Face down', facedown), label('Card note', note), actionButton('Queue marker changes', () => {
@@ -248,12 +333,12 @@ export function createHumanControls({ root, request, onChange = () => {} }) {
       add({ op: { type: 'player', player: who.value, set: { life: number(life), counters: readCounters(counters), mana: readCounters(mana) } }, label: `Set ${playerName(who.value)} to ${life.value} life and update counters / mana` });
     });
     const who = select(players().map(p => [p.id, p.name]), playerId); const life = input('', 'number'); const counters = make('textarea'); counters.placeholder = 'poison: 1'; const mana = make('textarea'); mana.placeholder = 'G: 2\nC: 1';
-    const fill = () => { const original = players().find(p => p.id === who.value); const p = { ...original, ...Object.assign({}, ...queue.filter(item => item.op.type === 'player' && (item.op.player || playerId) === who.value).map(item => item.op.set)) }; life.value = p.life; counters.value = counterText(p.counters); mana.value = counterText(p.mana); }; fill(); who.addEventListener('change', fill);
+    const fill = () => { const p = players().find(p => p.id === who.value); life.value = p.life; counters.value = counterText(p.counters); mana.value = counterText(p.mana); }; fill(); who.addEventListener('change', fill);
     form.append(label('Player', who), label('Life total', life), label('Counters · one name: count per line', counters), label('Mana pool · one color: amount per line', mana), make('p', 'hc-help', 'Track floating mana explicitly. Card costs and mana clearing remain the players’ responsibility.'), submit); updateButtons();
   }
   function markerEditor() {
     const body = openModal('Turn & phase markers'); const { form, submit } = guardedForm(body, 'Queue marker changes', () => add({ op: { type: 'turn', set: { number: number(turn, 1), phase: phase.value, active: active.value } }, label: `Turn ${turn.value} · ${playerName(active.value)} · ${phase.value}` }));
-    const stagedTurn = { ...view.table.turn, ...Object.assign({}, ...queue.filter(item => item.op.type === 'turn').map(item => item.op.set)) };
+    const stagedTurn = currentTable().turn;
     const turn = input(stagedTurn.number, 'number'); const phase = input(stagedTurn.phase); phase.maxLength = 100; const active = select(players().map(p => [p.id, p.name]), stagedTurn.active);
     form.append(make('p', 'hc-help', 'These are display markers. Use Pass priority or Pass turn to actually notify another player.'), label('Turn number', turn), label('Active player', active), label('Phase or step', phase), submit); updateButtons();
   }
@@ -287,25 +372,30 @@ export function createHumanControls({ root, request, onChange = () => {} }) {
     form.addEventListener('submit', e => { e.preventDefault(); if (confirmed.checked) void send({ type: 'result', winners: winners.filter(c => c.checked).map(c => c.value), explanation: explanation.value.trim() }); });
     body.append(form); updateButtons();
   }
-  q('.hc-enter').addEventListener('click', () => { visible = true; generation++; cardSignature = ''; q('.hc-private').hidden = false; q('.hc-enter').hidden = true; q('.hc-hide').hidden = false; updateButtons(); void loadView(true); });
+  q('.hc-enter').addEventListener('click', () => { visible = true; generation++; cardSignature = ''; q('.hc-private').hidden = false; q('.hc-enter').hidden = true; q('.hc-hide').hidden = false; refreshPreview(); renderDraft(); updateButtons(); void loadView(true); });
+  q('.hc-chat-enter').addEventListener('click', () => { root.scrollIntoView({ behavior: 'smooth', block: 'center' }); q('.hc-enter').focus({ preventScroll: true }); });
   q('.hc-hide').addEventListener('click', () => {
-    saveDraft(); visible = false; generation++; view = null; cardSignature = ''; if (modal.open) modal.close(); modal.replaceChildren(); q('.hc-cards').replaceChildren(); q('.hc-private').hidden = true; q('.hc-enter').hidden = false; q('.hc-hide').hidden = true; error(); updateButtons();
+    saveDraft(); visible = false; generation++; view = null; cardSignature = ''; if (modal.open) modal.close(); modal.replaceChildren(); q('.hc-cards').replaceChildren(); q('.hc-private').hidden = true; q('.hc-enter').hidden = false; q('.hc-hide').hidden = true; refreshPreview(); error(); updateButtons();
   });
-  q('.hc-seat').addEventListener('change', () => { saveDraft(); playerId = q('.hc-seat').value; generation++; view = null; q('.hc-zone').value = playerId + ':hand'; q('.hc-zone').dataset.choices = ''; cardSignature = ''; savedRecipient = ''; q('.hc-recipient').replaceChildren(); q('.hc-recipient').dataset.choices = ''; choicesSignature = ''; stateSignature = ''; restoreDraft(); try { sessionStorage.setItem(`game-night-human-seat:${matchId}`, playerId); } catch {} renderDraft(); updateButtons(); });
+  q('.hc-seat').addEventListener('change', () => { saveDraft(); playerId = q('.hc-seat').value; generation++; view = null; q('.hc-zone').value = playerId + ':hand'; q('.hc-zone').dataset.choices = ''; cardSignature = ''; savedRecipient = ''; q('.hc-recipient').replaceChildren(); q('.hc-recipient').dataset.choices = ''; choicesSignature = ''; stateSignature = ''; restoreDraft(); refreshPreview(); try { sessionStorage.setItem(`game-night-human-seat:${matchId}`, playerId); } catch {} renderDraft(); updateButtons(); });
   q('.hc-zone').addEventListener('change', () => { cardSignature = ''; renderCards(); });
   q('.hc-message').addEventListener('input', () => { saveDraft(); updateButtons(); });
+  q('.hc-message').addEventListener('keydown', event => { if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); if (!q('.hc-send').disabled) void send(); } });
   q('.hc-recipient').addEventListener('change', () => { saveDraft(); updateButtons(); });
   q('.hc-clear').addEventListener('click', clearDraft);
+  q('.hc-undo').addEventListener('click', () => { if (queue.length) removeDraft(queue.length - 1); });
   q('.hc-draw').addEventListener('click', () => attempt(() => { const count = number(q('.hc-draw-count'), 1, 100); add({ op: { type: 'draw', count }, label: `Draw ${count} card${count === 1 ? '' : 's'}` }); }));
   q('.hc-shuffle').addEventListener('click', () => attempt(() => add({ op: { type: 'shuffle' }, label: 'Shuffle your library' })));
   q('.hc-return').addEventListener('click', () => attempt(() => {
-    const cards = view.table.zones[playerId + ':hand'].cards;
+    const cards = currentTable().zones[playerId + ':hand'].cards;
     if (!cards.length) throw Error('Your hand is empty.');
+    if (cards.some(card => card.draft || card.editable === false)) throw Error('Send your pending draw before returning the newly drawn cards.');
     add(cards.map(c => ({ op: { type: 'move', card: c.id, to: playerId + ':library', position: 'bottom' }, label: `Return ${c.name} to your library` })));
   }));
   q('.hc-untap').addEventListener('click', () => attempt(() => {
-    const cards = view.table.zones.battlefield.cards.filter(c => c.controller === playerId && c.tapped);
+    const cards = currentTable().zones.battlefield.cards.filter(c => c.controller === playerId && c.tapped);
     if (!cards.length) throw Error('You have no tapped battlefield cards.');
+    if (cards.some(card => card.draft || card.editable === false)) throw Error('Send your pending play before changing its new cards.');
     add(cards.map(c => ({ op: { type: 'card', card: c.id, set: { tapped: false } }, label: `Untap ${c.name}` })));
   }));
   q('.hc-send').addEventListener('click', () => void send());
@@ -316,22 +406,23 @@ export function createHumanControls({ root, request, onChange = () => {} }) {
     app = next.app; publicTable = next.table; connected = next.connected;
     const humans = app?.match?.players?.filter(p => p.ai === false) || [];
     root.hidden = !humans.length || !app?.match;
-    if (root.hidden) { if (modal.open) modal.close(); return; }
+    composerRoot.hidden = root.hidden;
+    if (root.hidden) { if (visible) saveDraft(); if (modal.open) modal.close(); visible = false; view = null; q('.hc-private').hidden = true; q('.hc-cards').replaceChildren(); q('.hc-enter').hidden = false; q('.hc-hide').hidden = true; refreshPreview(); return; }
     if (matchId !== app.match.id) {
-      saveDraft(); matchId = app.match.id; visible = false; generation++; view = null; playerId = ''; queue = []; baseRevision = null; choicesSignature = ''; stateSignature = ''; cardSignature = '';
+      saveDraft(); matchId = app.match.id; visible = false; generation++; view = null; playerId = ''; queue = []; baseRevision = null; draftBoardRevision = null; failedDraft = false; choicesSignature = ''; stateSignature = ''; cardSignature = '';
       try { playerId = sessionStorage.getItem(`game-night-human-seat:${matchId}`) || ''; } catch {}
       if (!humans.some(p => p.id === playerId)) playerId = humans[0].id;
       if (modal.open) modal.close(); modal.replaceChildren(); q('.hc-private').hidden = true; q('.hc-enter').hidden = false; q('.hc-hide').hidden = true; q('.hc-zone').replaceChildren(); q('.hc-zone').dataset.choices = ''; q('.hc-recipient').replaceChildren(); q('.hc-recipient').dataset.choices = ''; savedRecipient = ''; restoreDraft(); error();
     }
     const choices = JSON.stringify(humans.map(p => [p.id, p.name]));
     if (choices !== choicesSignature) { choicesSignature = choices; q('.hc-seat').replaceChildren(...select(humans.map(p => [p.id, p.name]), playerId).childNodes); q('.hc-seat').value = playerId; }
-    updateButtons();
+    refreshPreview(); renderDraft(); updateButtons();
     const newState = JSON.stringify([publicTable?.revision, app.coordinator?.mode, app.coordinator?.pendingRecipient, app.coordinator?.active, app.postgame?.status]);
     if (visible) { stateSignature = newState; void loadView(); }
   }
   return { update, hide: () => q('.hc-hide').click(), inspectCard(card) {
     if (!visible || !view) return false;
-    const visibleCard = Object.values(view.table.zones).flatMap(zone => zone.cards).find(item => item.id === (typeof card === 'string' ? card : card.id));
+    const visibleCard = Object.values(currentTable().zones).flatMap(zone => zone.cards).find(item => item.id === (typeof card === 'string' ? card : card.id));
     if (!visibleCard) return false;
     void openCard(visibleCard); return true;
   } };

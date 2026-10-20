@@ -10,7 +10,8 @@ test('managed MCP uses only the supplied seat token and keeps decision acknowled
   const http = createServer(async (request, response) => {
     let body = '';
     for await (const chunk of request) body += chunk;
-    requests.push({ url: request.url, authorization: request.headers.authorization, body: body ? JSON.parse(body) : null });
+    requests.push({ url: request.url, authorization: request.headers.authorization,
+      decisionId: request.headers['x-tabletop-decision-id'], body: body ? JSON.parse(body) : null });
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end(JSON.stringify({ ok: true }));
   });
@@ -76,6 +77,32 @@ test('managed MCP uses only the supplied seat token and keeps decision acknowled
     assert.deepEqual(requests[9].body, { answers: { fixture: true }, decision_id: 'decision-123' });
     assert.equal(requests[9].url, '/api/survey');
     assert.ok(requests.every(request => request.authorization === 'Bearer one-seat-token'));
+    assert.ok(requests.every(request => request.decisionId === 'decision-123'));
+  } finally {
+    await client.close();
+    await new Promise(resolve => http.close(resolve));
+  }
+});
+
+test('MCP steering errors preserve every public message and the fresh player view', async () => {
+  const payload = { error: 'New human table speech needs your attention. No action was applied.',
+    steering: { revision: 24, instruction: 'Reconsider before continuing.',
+      messages: Array.from({ length: 20 }, (_, i) => ({ revision: i + 5, playerId: 'human', text: `Message ${i + 1}` })) },
+    table: { revision: 24, zones: { 'other:hand': { count: 7, cards: [] } } } };
+  const http = createServer((request, response) => {
+    response.writeHead(400, { 'Content-Type': 'application/json' });
+    response.end(JSON.stringify(payload));
+  });
+  await new Promise(resolve => http.listen(0, '127.0.0.1', resolve));
+  const client = new Client({ name: 'steering-test', version: '1' }, { capabilities: {} });
+  const transport = new StdioClientTransport({ command: process.execPath,
+    args: [fileURLToPath(new URL('./mcp.mjs', import.meta.url)), '--seat', 'ai', '--url', `http://127.0.0.1:${http.address().port}`],
+    env: { TABLETOP_PLAYER_TOKEN: 'one-seat-token', TABLETOP_DECISION_ID: 'decision-123' }, stderr: 'pipe' });
+  try {
+    await client.connect(transport);
+    const result = await client.callTool({ name: 'act', arguments: { revision: 4, reason: 'Original plan', actions: [{ type: 'draw' }] } });
+    assert.equal(result.isError, true);
+    assert.deepEqual(JSON.parse(result.content[0].text), payload);
   } finally {
     await client.close();
     await new Promise(resolve => http.close(resolve));

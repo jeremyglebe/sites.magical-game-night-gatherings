@@ -214,6 +214,7 @@ export function createCoordinator({
         validRevision(view.revision);
         if (view.revision < wake.revision) throw new Error('Table view is older than the handoff');
         active.revision = view.revision;
+        active.steeringRevision = view.revision;
         latestRevision = Math.max(latestRevision, view.revision);
         const history = await getEvents(seat.config.id, seat.lastCompleted, active.revision);
         const events = (Array.isArray(history) ? history : history.events || [])
@@ -301,6 +302,16 @@ export function createCoordinator({
       throw new Error('This manual player is not the current recipient');
     }
     return true;
+  }
+  function takeSteeringCursor(id, decisionId, revision) {
+    const active = seats.get(id)?.active;
+    if (!active || active.id !== decisionId || active.completion || active.controller.signal.aborted) return null;
+    validRevision(revision);
+    const since = active.steeringRevision ?? active.revision;
+    active.steeringRevision = Math.max(since, revision);
+    // Delivery is scoped to this worker. On recovery its ordinary durable
+    // event history supplies every message since the last completed decision.
+    return since;
   }
   function handoff(actor, next, revision, kind = 'priority') {
     if (mode === 'finished') throw new Error('This match has finished');
@@ -397,7 +408,7 @@ export function createCoordinator({
     changed(); return status();
   }
   return {
-    notify, wake, handoff, authorizeDecision, authorizeManual, complete, beginSurvey, authorizeSurvey, submitSurvey,
+    notify, wake, handoff, authorizeDecision, authorizeManual, takeSteeringCursor, complete, beginSurvey, authorizeSurvey, submitSurvey,
     start, step, status, snapshot, configure,
     pause: () => cancel('paused'), stop: () => cancel('stopped'), finish: () => cancel('finished'),
     async idle() { await Promise.all([...seats.values()].flatMap(s => s.active?.promise ? [s.active.promise] : [])); },

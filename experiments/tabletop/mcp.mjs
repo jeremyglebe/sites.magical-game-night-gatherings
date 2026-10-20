@@ -22,12 +22,18 @@ if (!token) throw new Error('Unknown player');
 export async function requestTable(path, body) {
   const response = await fetch(new URL(path, values.url), {
     method: body ? 'POST' : 'GET',
-    headers: { Authorization: 'Bearer ' + token, ...(body ? { 'Content-Type': 'application/json' } : {}) },
+    headers: { Authorization: 'Bearer ' + token,
+      ...(process.env.TABLETOP_DECISION_ID ? { 'X-Tabletop-Decision-ID': process.env.TABLETOP_DECISION_ID } : {}),
+      ...(body ? { 'Content-Type': 'application/json' } : {}) },
     ...(body ? { body: JSON.stringify(body) } : {}),
     signal: AbortSignal.timeout(10000),
   });
   const value = await response.json();
-  if (!response.ok) throw new Error(value.error || 'Table request failed');
+  if (!response.ok) {
+    const error = new Error(value.error || 'Table request failed');
+    if (value.steering) error.details = value;
+    throw error;
+  }
   return value;
 }
 
@@ -199,7 +205,7 @@ server.setRequestHandler(CallToolRequestSchema, async ({ params }) => {
     }
     return { content: [{ type: 'text', text: JSON.stringify(result) }] };
   } catch (error) {
-    return { isError: true, content: [{ type: 'text', text: error.message }] };
+    return { isError: true, content: [{ type: 'text', text: error.details ? JSON.stringify(error.details) : error.message }] };
   }
 });
 await server.connect(new StdioServerTransport());

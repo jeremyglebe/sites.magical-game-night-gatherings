@@ -1897,6 +1897,7 @@
                 aria-atomic="true"
                 hidden
               ></div>
+              <div id="human-chat-composer" hidden></div>
             </section>
             <section id="log-section">
               <h2>Game log</h2>
@@ -2091,6 +2092,8 @@
       syncSidebarWidth();
       let app = null,
         table = null,
+        displayedTable = null,
+        draftPreview = null,
         tableConnected = false,
         legacy = false,
         setupReady = false,
@@ -2104,6 +2107,8 @@
       let humanControls = null,
         humanControlsLoading = false;
       async function updateHumanControls() {
+        const transcript = $("#recent-moves");
+        const followLatest = transcript.scrollHeight - transcript.clientHeight - transcript.scrollTop < 32;
         if (!legacy && !humanControls && !humanControlsLoading && app?.humanControls
           && app?.match?.players?.some(player => player.ai === false)) {
           humanControlsLoading = true;
@@ -2113,12 +2118,24 @@
             stylesheet.href = "/human-controls.css";
             document.head.append(stylesheet);
             const { createHumanControls } = await import("/human-controls.mjs");
-            humanControls = createHumanControls({ root: $("#human-controls"), request, onChange: refresh });
+            humanControls = createHumanControls({
+              root: $("#human-controls"),
+              composerRoot: $("#human-chat-composer"),
+              request,
+              onChange: refresh,
+              onPreview: (preview, meta) => {
+                const current = preview && table && meta?.matchId === app?.match?.id
+                  && meta.baseRevision === table.revision && meta.pendingCount > 0;
+                draftPreview = current ? { table: preview, meta } : null;
+                if (table) renderTable(draftPreview?.table || table);
+              },
+            });
           } catch (error) {
             setError("Human controls could not load: " + error.message);
           } finally { humanControlsLoading = false; }
         }
         humanControls?.update({ app: legacy ? null : app, table, connected: tableConnected });
+        if (followLatest) transcript.scrollTop = transcript.scrollHeight;
       }
       let seats = [];
       let seatSequence = 0;
@@ -2400,7 +2417,7 @@
             event.target.close();
         }
       });
-      const cardsIn = (zone) => table?.zones?.[zone]?.cards || [];
+      const cardsIn = (zone) => displayedTable?.zones?.[zone]?.cards || [];
       function cardAnnotations(card) {
         const values = [];
         if (card.tapped) values.push("Tapped");
@@ -2411,7 +2428,7 @@
         if (card.power !== undefined)
           values.push(`${card.power} / ${card.toughness ?? "?"}`);
         if (card.attached_to) {
-          const attached = Object.values(table?.zones || {})
+          const attached = Object.values(displayedTable?.zones || {})
             .flatMap((z) => z.cards || [])
             .find((c) => c.id === card.attached_to);
           values.push(`Attached to ${attached?.name || "a card"}`);
@@ -2626,8 +2643,8 @@
         const node = make(
           "section",
           "player-board" +
-            (table.turn.active === player.id ? " active" : "") +
-            (table.turn.priority === player.id ? " priority" : "") +
+            (displayedTable.turn.active === player.id ? " active" : "") +
+            (displayedTable.turn.priority === player.id ? " priority" : "") +
             (outcome ? ` has-outcome outcome-${outcome.key}` : ""),
         );
         node.dataset.player = player.id;
@@ -2636,7 +2653,7 @@
         const identity = make("div", "player-identity");
         const labels = make("div");
         const team =
-          app?.match?.layout === "emperor" && table.players.length === 6;
+          app?.match?.layout === "emperor" && displayedTable.players.length === 6;
         const label = team
           ? `${index < 3 ? "Team A" : "Team B"} · ${index % 3 === 1 ? "Emperor" : "Flank"}`
           : `Seat ${index + 1}`;
@@ -2654,12 +2671,12 @@
           make(
             "span",
             "",
-            `${table.zones[player.id + ":library"]?.count ?? 0} library`,
+            `${displayedTable.zones[player.id + ":library"]?.count ?? 0} library`,
           ),
           make(
             "span",
             "",
-            `${table.zones[player.id + ":hand"]?.count ?? 0} hand`,
+            `${displayedTable.zones[player.id + ":hand"]?.count ?? 0} hand`,
           ),
         );
         for (const [name, value] of Object.entries(player.counters || {}))
@@ -2688,7 +2705,7 @@
           ["exile", "Exile"],
           ["command", "Command"],
         ]) {
-          const zone = table.zones[player.id + ":" + kind] || {
+          const zone = displayedTable.zones[player.id + ":" + kind] || {
             count: 0,
             cards: [],
           };
@@ -2726,11 +2743,13 @@
         return node;
       }
       function renderTable(state) {
-        table = state;
+        displayedTable = state;
         $("#match-title").textContent = state.title;
         $("#match-subtitle").textContent =
           `${state.players.length} player${state.players.length === 1 ? "" : "s"} · ${app?.match?.layout === "emperor" ? "Two teams of three" : "Public spectator view"}`;
-        $("#revision").textContent = "Update " + state.revision;
+        $("#revision").textContent = draftPreview
+          ? `Update ${table.revision} · Preview: ${draftPreview.meta.pendingCount} unsent action${draftPreview.meta.pendingCount === 1 ? "" : "s"}`
+          : "Update " + state.revision;
         const supported = state.players.length <= 6;
         $("#unsupported").hidden = supported;
         $("#table-stage").hidden = !supported;
@@ -3598,6 +3617,9 @@
             const matchId =
               app?.match?.session || state.created_at || state.title;
             const matchChanged = matchId !== displayedMatch;
+            table = state;
+            if (matchChanged || draftPreview?.meta.baseRevision !== state.revision)
+              draftPreview = null;
             if (matchChanged) {
               displayedMatch = matchId;
               displayedRevision = -1;
@@ -3612,7 +3634,7 @@
             if (state.revision !== displayedRevision) {
               displayedRevision = state.revision;
               renderTable(state);
-            } else table = state;
+            }
             if (matchChanged) {
               const recent = $("#recent-moves");
               recent.scrollTop = recent.scrollHeight;

@@ -19,7 +19,7 @@ const json = (response, status, value) => {
 };
 
 export async function startTable({ session, setup, port = 5180, onCommit, onDecision, beforeAction,
-  postgame = false, beforeSurvey, onSurvey, comprehensivePath, basicPath, cardRulings = {} }) {
+  postgame = false, beforeSurvey, onSurvey, takeSteering, comprehensivePath, basicPath, cardRulings = {} }) {
   // The host supplies a validated, match-pinned reference cache. It augments
   // reads of legacy cards without editing the authoritative state or its log.
   cardRulings = structuredClone(cardRulings);
@@ -114,12 +114,34 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
       ...(completion && typeof completion === 'object' ? completion : {}) };
   }
 
+  function steeringReply(actor, decisionId, requestedRevision) {
+    const steering = takeSteering?.(actor, decisionId, requestedRevision);
+    return steering ? { steering, table: observe(saved.state, actor) } : {};
+  }
+  function checkSteering(actor, args) {
+    const details = steeringReply(actor, args.decision_id, args.revision);
+    if (details.steering) {
+      const error = new Error('New human table speech needs your attention. No action was applied. Read the steering messages and current table, then reconsider before retrying.');
+      error.details = details;
+      throw error;
+    }
+  }
   function act(actor, args) {
     const authorization = beforeAction?.(actor, args);
     if (authorization && typeof authorization.then === 'function') {
       authorization.catch?.(() => {});
       throw new Error('Action authorization must be synchronous');
     }
+    checkSteering(actor, args);
+    return commit(actor, args);
+  }
+  function chat(actor, text) {
+    // Only the trusted local host exposes this entry point, after validating
+    // a configured human seat. It cannot bypass action ownership for moves.
+    return commit(actor, { revision: saved.state.revision, actions: [{ type: 'say', text }], reason: 'Public human table speech' });
+  }
+  function commit(actor, args) {
+    if (saved.state.result) throw new Error('Gameplay has ended; only post-game feedback may be submitted');
     if (saved.recording?.postgame) throw new Error('Gameplay has ended; only post-game feedback may be submitted');
     // No asynchronous boundary between checking revision and saving the batch.
     const previous = saved.state;
@@ -137,6 +159,8 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
   }
 
   const server = createServer(async (request, response) => {
+    let actor;
+    let decisionId;
     try {
       const url = new URL(request.url, 'http://localhost');
       if (request.method === 'GET' && serveAvatar(url.pathname, response)) return;
@@ -154,22 +178,24 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
         return;
       }
       const token = request.headers.authorization?.replace(/^Bearer /, '');
-      const actor = Object.entries(saved.credentials).find(([, value]) => value === token)?.[0];
+      actor = Object.entries(saved.credentials).find(([, value]) => value === token)?.[0];
       if (!actor) { json(response, 401, { error: 'Player connection required' }); return; }
+      decisionId = request.headers['x-tabletop-decision-id'];
+      const reply = value => json(response, 200, { ...value, ...steeringReply(actor, decisionId) });
       if (request.method === 'GET' && url.pathname === '/api/observe') {
-        json(response, 200, observe(saved.state, actor));
+        reply(observe(saved.state, actor));
       } else if (request.method === 'GET' && url.pathname === '/api/events') {
-        json(response, 200, eventsSince(saved.state, actor, Number(url.searchParams.get('since') || 0)));
+        reply(eventsSince(saved.state, actor, Number(url.searchParams.get('since') || 0)));
       } else if (request.method === 'GET' && url.pathname === '/api/rules') {
-        json(response, 200, readRules(Object.fromEntries(url.searchParams), { comprehensivePath, basicPath }));
+        reply(readRules(Object.fromEntries(url.searchParams), { comprehensivePath, basicPath }));
       } else if (request.method === 'GET' && url.pathname === '/api/card') {
-        json(response, 200, readCard(actor, url.searchParams.get('id')));
+        reply(readCard(actor, url.searchParams.get('id')));
       } else if (request.method === 'GET' && url.pathname === '/api/references') {
         const allowed = saved.state.references;
         if (!Array.isArray(allowed)) throw new Error('Invalid reference list');
         const path = url.searchParams.get('path');
         if (!path) {
-          json(response, 200, {
+          reply({
             paths: allowed,
             note: allowed.length
               ? 'Read these selected format and box rules. General Magic rules are available through read_rules.'
@@ -182,7 +208,7 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
         const lines = pinned ? pinned.text.split('\n') : referenceLines(path);
         const query = url.searchParams.get('query');
         if (query) {
-          json(response, 200, {
+          reply({
             path, total_lines: lines.length,
             matches: lines.map((line, i) => ({ line: i + 1, text: line }))
               .filter(line => line.text.toLowerCase().includes(query.toLowerCase())).slice(0, 30),
@@ -191,10 +217,10 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
           const start = Math.max(1, Number(url.searchParams.get('start') || 1));
           const count = Math.min(120, Math.max(1, Number(url.searchParams.get('count') || 80)));
           if (!Number.isInteger(start) || !Number.isInteger(count)) throw new Error('Invalid line range');
-          json(response, 200, { path, start, total_lines: lines.length, text: lines.slice(start - 1, start - 1 + count).join('\n') });
+          reply({ path, start, total_lines: lines.length, text: lines.slice(start - 1, start - 1 + count).join('\n') });
         }
       } else if (request.method === 'GET' && url.pathname === '/api/survey') {
-        json(response, 200, surveyForPlayer(actor));
+        reply(surveyForPlayer(actor));
       } else if (request.method === 'POST' && ['/api/act', '/api/decision', '/api/survey'].includes(url.pathname)) {
         let body = '';
         for await (const chunk of request) {
@@ -208,6 +234,7 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
         }
         if (url.pathname === '/api/decision') {
           if (!onDecision) throw new Error('No player coordinator is attached to this table');
+          checkSteering(actor, args);
           const result = await onDecision(actor, args);
           json(response, 200, result ?? { accepted: true });
           return;
@@ -215,7 +242,7 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
         json(response, 200, act(actor, args));
       } else json(response, 404, { error: 'Unknown endpoint' });
     } catch (error) {
-      json(response, 400, { error: error.message });
+      json(response, 400, { error: error.message, ...(error.details || (actor ? steeringReply(actor, decisionId) : {})) });
     }
   });
   server.on('close', () => { if (existsSync(lock)) unlinkSync(lock); });
@@ -230,7 +257,7 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
     getState: () => saved.state,
     getRecording: () => saved.recording,
     getSurvey: surveyForPlayer,
-    submitSurvey, act, readCard,
+    submitSurvey, act, chat, readCard,
     getExportError: () => exportError,
     getToken: seat => saved.credentials[seat],
   };
