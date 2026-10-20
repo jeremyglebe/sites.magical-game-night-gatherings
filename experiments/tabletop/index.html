@@ -822,10 +822,12 @@
         user-select: none;
       }
       .sidebar h2,
+      .player-details h2,
       .plan-usage h2 {
         font-size: 13px;
       }
-      .plan-usage {
+      .plan-usage,
+      .player-details {
         grid-column: 1 / -1;
         min-width: 0;
         border-top: 1px solid var(--line);
@@ -872,6 +874,11 @@
         padding: 10px 0;
         border-bottom: 1px solid #2a3c30;
       }
+      .runner-players {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 8px 24px;
+      }
       .runner-player > div {
         min-width: 0;
       }
@@ -880,6 +887,9 @@
         padding: 10px;
         border: 1px solid var(--line);
         border-radius: 6px;
+      }
+      .player-details .control-recovery {
+        max-width: 420px;
       }
       .control-recovery select,
       .control-recovery button {
@@ -1355,24 +1365,12 @@
           grid-column: 1 / -1;
           min-width: 0;
         }
-        .runner-players {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-        }
         .runner-player {
           border: 0;
           padding: 6px 0;
         }
         .runner-player strong {
           font-size: 11px;
-        }
-        .sidebar-run {
-          grid-column: 1/-1;
-        }
-        .sidebar-run .runner-players {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
         }
         .recent-moves {
           max-height: 220px;
@@ -1594,12 +1592,6 @@
         }
         .sidebar {
           grid-template-columns: 1fr;
-        }
-        .sidebar-run .runner-players {
-          grid-template-columns: 1fr 1fr;
-        }
-        .sidebar-run {
-          grid-column: auto;
         }
         .sidebar .new-match {
           grid-column: auto;
@@ -1849,30 +1841,6 @@
                 hidden
               ></div>
             </section>
-            <section class="sidebar-run">
-              <h2>Players</h2>
-              <div class="run-summary">
-                <span id="run-state" class="status-pill">Manual table</span>
-                <button id="run-limits" class="quiet">Run limits</button>
-              </div>
-              <p id="run-detail" class="run-detail"></p>
-              <form id="control-recovery" class="control-recovery" hidden>
-                <label class="field" for="control-recipient"
-                  >Choose who responds next</label
-                >
-                <select id="control-recipient" required>
-                  <option value="" disabled selected>Select a player</option>
-                </select>
-                <button id="give-control" type="submit" disabled>
-                  Give control
-                </button>
-                <p class="run-detail">
-                  Queues this player and leaves the match paused. Use Start or
-                  Step when ready.
-                </p>
-              </form>
-              <div id="runner-players" class="runner-players"></div>
-            </section>
             <section id="log-section">
               <h2>Game log</h2>
               <p class="run-detail">
@@ -1885,6 +1853,30 @@
             </section>
             <button id="new-match" class="quiet new-match">New table</button>
           </aside>
+          <section class="player-details" aria-label="Player models and status">
+            <h2>Players</h2>
+            <div class="run-summary">
+              <span id="run-state" class="status-pill">Manual table</span>
+              <button id="run-limits" class="quiet">Run limits</button>
+            </div>
+            <p id="run-detail" class="run-detail"></p>
+            <form id="control-recovery" class="control-recovery" hidden>
+              <label class="field" for="control-recipient"
+                >Choose who responds next</label
+              >
+              <select id="control-recipient" required>
+                <option value="" disabled selected>Select a player</option>
+              </select>
+              <button id="give-control" type="submit" disabled>
+                Give control
+              </button>
+              <p class="run-detail">
+                Queues this player and leaves the match paused. Use Start or
+                Step when ready.
+              </p>
+            </form>
+            <div id="runner-players" class="runner-players"></div>
+          </section>
           <section id="plan-usage-section" class="plan-usage" aria-label="Codex plan usage">
             <div class="moves-summary">
               <h2>Plan usage</h2>
