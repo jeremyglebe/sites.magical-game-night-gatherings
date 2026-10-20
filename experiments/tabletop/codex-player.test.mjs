@@ -81,6 +81,27 @@ test('prompt clearly separates notifications, no-op and passes; quickstart is in
   assert(!resumed.includes('Begin the configured game'));
 });
 
+test('new and resumed sessions distinguish optional overrides and hidden libraries from missing setup', () => {
+  for (const sessionId of [null, 'existing-player-history']) {
+    for (const phase of ['Setup', 'Upkeep']) {
+      const prompt = playerPrompt({
+        ...request, sessionId, view: {
+          turn: { phase, active: 'p1', priority: null },
+          zones: { 'p1:library': { count: 60, cards: [], visibility: 'hidden' } },
+        },
+      });
+      assert.match(prompt, /empty paths list means no custom overrides/);
+      assert.match(prompt, /ordinary casual Magic with the supplied decks and life totals/);
+      assert.match(prompt, /not a sanctioned Standard deck-legality check/);
+      assert.match(prompt, /count:60 and cards:\[\] contains 60 real cards/);
+      assert.match(prompt, /Drawing does not require card IDs/);
+      assert.match(prompt, /\{"type":"draw","count":7\}/);
+      assert.match(prompt, /earlier decision reported needs_help/);
+      assert.match(prompt, /Do not peek or reveal a library/);
+    }
+  }
+});
+
 test('runner parses split JSON events and reports session and usage without storing transcripts', async t => {
   const capture = {}, sessions = [], usages = [];
   const runner = createCodexRunner({

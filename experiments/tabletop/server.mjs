@@ -96,7 +96,15 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
         const allowed = saved.state.references;
         if (!Array.isArray(allowed)) throw new Error('Invalid reference list');
         const path = url.searchParams.get('path');
-        if (!path) { json(response, 200, { paths: allowed }); return; }
+        if (!path) {
+          json(response, 200, {
+            paths: allowed,
+            note: allowed.length
+              ? 'Read these selected format and box rules. General Magic rules are available through read_rules.'
+              : 'No optional format or box overrides are selected. Play ordinary Magic with the supplied decks, life totals, and starting player. This is not a missing configuration. Use read_rules for the quickstart and Comprehensive Rules.',
+          });
+          return;
+        }
         if (!allowed.includes(path) || !/^(formats|rules|boxed-sets)\/.*\.md$/.test(path)) throw new Error('Reference not configured');
         const pinned = saved.recording?.references?.find(reference => reference.path === path);
         const lines = pinned ? pinned.text.split('\n') : referenceLines(path);

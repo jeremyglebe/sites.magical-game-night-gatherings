@@ -35,12 +35,12 @@ const string = { type: 'string' };
 const tools = [
   {
     name: 'observe_table',
-    description: 'Read the latest table, public zones, your private hand, counts, turn markers, and recent events. Your seat is fixed. Use read_events for complete unseen history. Read the latest state before acting on a queued notification. Card rules text is fetched separately with read_card. Library/stack top is index 0. Game rules and legal timing are the players’ responsibility.',
+    description: 'Read the latest table, public zones, your private hand, counts, turn markers, and recent events. Each zone count is its actual number of cards; cards lists only objects visible to you, and hidden_count counts the omitted objects. A library with count:60, hidden_count:60, cards:[] is a loaded hidden deck, NOT an empty or missing deck. Draw from it through act without knowing card IDs. Your seat is fixed. Use read_events for complete unseen history. Read the latest state before acting on a queued notification. Card rules text is fetched separately with read_card. Library/stack top is index 0. Game rules and legal timing are the players’ responsibility.',
     inputSchema: object({}),
   },
   {
     name: 'act',
-    description: 'Apply an atomic batch of physical table changes using the revision from observe_table. No Magic effects, costs, triggers, turns, cleanup, or legality are automated. Wait for opponents’ response opportunities; batch only changes that require no intervening choice. Use pass with next player for an actual priority pass. If you have nothing to do, use complete_decision(no_op), never a note or turn update. A short reason is private to your seat in player views. Peek/reveal must be justified by the rules. Hidden/shuffled cards get new IDs; read the returned view. Counter/mana maps replace the previous map. Result is a player report, not a verified outcome.',
+    description: 'Apply an atomic batch of physical table changes using the revision from observe_table. To draw an opening hand, actions:[{type:"draw",count:7}] draws real cards from your hidden library into your private hand; no card IDs or deck inspection are needed. No Magic effects, costs, triggers, turns, cleanup, or legality are automated. Wait for opponents’ response opportunities; batch only changes that require no intervening choice. Use pass with next player for an actual priority pass. If you have nothing to do, use complete_decision(no_op), never a note or turn update. A short reason is private to your seat in player views. Peek/reveal must be justified by the rules. Hidden/shuffled cards get new IDs; read the returned view. Counter/mana maps replace the previous map. Result is a player report, not a verified outcome.',
     inputSchema: {
       ...object({
         revision: { type: 'integer', minimum: 0 },
@@ -84,7 +84,7 @@ const tools = [
   },
   {
     name: 'read_reference',
-    description: 'List configured complete format/box rules (no path), search a reference (path + query), or read exact numbered lines (path + start/count, max 120). No summaries replace the source. This does not yet include the Comprehensive Rules.',
+    description: 'List optional format/box rule overrides (no path), search a selected reference (path + query), or read exact numbered lines (path + start/count, max 120). An empty paths list means ordinary Magic with the supplied decks and starting state; no custom rules were selected, and play can begin. General Magic quickstart and Comprehensive Rules are available through read_rules. No summaries replace a configured source.',
     inputSchema: object({ path: string, query: string, start: { type: 'integer' }, count: { type: 'integer' } }),
   },
   {

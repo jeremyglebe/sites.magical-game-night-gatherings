@@ -1,14 +1,22 @@
 # Table protocol and ordinary Magic grounding
 
-This reference starts a supervised game; it is not the complete Magic rules or a replacement for a chosen format. Read the configured format and box references through `read_reference`, and exact imported Oracle text through `read_card`. Use `read_rules` for the installed official Comprehensive Rules when a timing, keyword, or interaction needs checking. If that source is unavailable and the answer matters, complete the decision with `needs_help` instead of guessing.
+This reference starts a supervised game; it is not the complete Magic rules or a replacement for a chosen format. Read any configured format and box overrides through `read_reference`, and exact imported Oracle text through `read_card`. Format/box overrides are optional: an empty `paths` list means ordinary casual Magic with the supplied decks and life totals, not missing rules or an incomplete setup. This is not a sanctioned Standard deck-legality check. Use `read_rules` for the installed official Comprehensive Rules when a timing, keyword, or interaction needs checking. If that source is unavailable and the answer matters, complete the decision with `needs_help` instead of guessing.
 
 ## Before the first move
 
-Confirm the chosen ruleset, player and team assignments, starting player, turn order, decks, life totals, and any custom overrides. The table can represent one or more seats, but a solo exercise needs its own stated setup; that is not automatically an ordinary Magic game. The white/green fixture is an ordinary two-player trial unless the run instructions say otherwise.
+Use the configured player and team assignments, decks, life totals, and custom overrides. During Setup, `turn.active` identifies the starting player and the players list gives turn order unless configured rules say otherwise. Treat these supplied settings as the accepted setup; no operator reconfirmation is needed. The table can represent one or more seats, but a solo exercise needs its own stated setup; that is not automatically an ordinary Magic game. The supplied white/green decks form an ordinary two-player trial unless the run instructions say otherwise, regardless of player names.
 
 For ordinary two-player constructed Magic, use decks of at least 60 cards, normally at most four copies per name except basic lands and card-specific exceptions. Start at 20 life, shuffle, and draw seven. Under the London mulligan, shuffle the hand back, draw seven again, and when keeping put one card on the library's bottom for each mulligan taken. There is no free mulligan in this ordinary two-player trial. The starting player skips their first draw step. Different formats can change these requirements.
 
 Do not draw a second opening hand on a resumed session. Inspect the table and history first. Public setup notes may record ready/keep decisions without revealing a hand.
+
+## Reading hidden zones and drawing
+
+`zone.count` is the actual number of cards in that zone. `zone.cards` lists only identities currently visible to your seat. A hidden library with `count: 60` and `cards: []` contains 60 real cards; the server intentionally hides their identities and order, even from that library's owner. An empty visible-card list does not mean a deck is missing.
+
+Drawing needs no card IDs. After observing the current revision, use `act` with an action such as `{ "type": "draw", "count": 7 }` to take your opening hand from your own library. The action defaults to your library and hand. The returned table shows the cards that are now visible in your hand, so evaluate the hand after drawing. Do not peek at or reveal a library to obtain IDs for drawing. Draw only the number required by the rules, and inspect existing hand/history to avoid repeating a completed draw.
+
+Neither hidden library contents nor an empty optional-reference list is a setup blocker. If an earlier decision requested help for either reason alone, re-observe the table and proceed using this protocol.
 
 ## Work from updates, not assumptions
 

@@ -41,7 +41,7 @@ Each seat has its own Codex conversation and working directory. Subsequent decis
 
 Every accepted table revision queues an update for each AI seat, processed in order with at most one active call per seat. Idle seats make no model calls and perform no polling. Updates describe historical events and include the current visible table; a player must re-observe before writing. Revision checks reject stale writes, and decision IDs reject writes from canceled or completed workers.
 
-A notification is not permission or an obligation to act. `complete_decision` with `no_op` acknowledges it quietly and produces no table event or game-log entry. An actual `pass` action changes the priority marker, records the handoff, and wakes players even if no cards moved. Players determine when passing or responding is legal. They also control how physical actions are batched so opponents get response opportunities. If everyone becomes idle, the coordinator reports that instead of inventing moves. Errors, timeouts, and requests for help pause the run.
+A notification is not permission or an obligation to act. `complete_decision` with `no_op` acknowledges it quietly and produces no table event or game-log entry. An actual `pass` action changes the priority marker, records the handoff, and wakes players even if no cards moved. Players determine when passing or responding is legal. They also control how physical actions are batched so opponents get response opportunities. If everyone becomes idle, the coordinator reports that instead of inventing moves. Errors, timeouts, and requests for help pause the run. After resolving a help request, Start or Step explicitly asks that player to reconsider the latest state in the same conversation, even if no game action has occurred. The coordinator never retries help requests on its own.
 
 Seven MCP tools are available: `observe_table`, `act`, `read_card`, `read_reference`, `read_events`, `read_rules`, and `complete_decision`. Human board editing and an automated game reviewer are not included.
 
@@ -122,7 +122,7 @@ Copy `precons.json` for another setup: each player has an `id`, `name`, `life`, 
 
 ## Operations and conventions
 
-`observe_table` returns the current revision, your hand, visible public objects, counts, markers and recent events. Image URLs are omitted from player observations to save context; the spectator receives them. `read_card` supplies the imported text for a visible card. It refuses concealed identities. Retain card text in the pilot's context rather than fetching unchanged text every move.
+`observe_table` returns the current revision, your hand, visible public objects, counts, markers and recent events. A zone’s `count` is its actual number of cards; `cards` lists only visible objects and `hidden_count` counts the omitted objects. A 60-card library with `cards: []` is a loaded, concealed deck. Draw actions do not require card IDs or inspecting its contents first. Image URLs are omitted from player observations to save context; the spectator receives them. `read_card` supplies the imported text for a visible card. It refuses concealed identities. Retain card text in the pilot's context rather than fetching unchanged text every move.
 
 `act` takes the revision you just observed, a short reason, and 1–30 actions. A failed batch changes nothing. When another connection has acted, read the new state and reconsider the move. Do not blindly retry an old decision.
 
@@ -165,7 +165,7 @@ Ability text, attachments and temporary notes can represent decisions without a 
 
 ## Rules lookup
 
-Add repository-relative Markdown paths to the setup's `references` array before creating the session, for example:
+Format and box references are optional. Leaving them blank selects ordinary casual Magic with the supplied decks and starting state. Add repository-relative Markdown paths to the setup's `references` array when selecting a custom ruleset, for example:
 
 ```json
 "references": ["formats/horde/variants/classic.md"]

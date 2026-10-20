@@ -165,7 +165,10 @@ export function observe(state, actor = null) {
       } else publicState.name = 'Face-down card';
       cards.push(publicState);
     }
-    zones[z.id] = { id: z.id, owner: z.owner, visibility: z.visibility, count: z.cards.length, cards };
+    zones[z.id] = {
+      id: z.id, owner: z.owner, visibility: z.visibility, count: z.cards.length,
+      hidden_count: z.cards.length - cards.length, cards,
+    };
   }
   return {
     title: state.title, revision: state.revision, players: copy(state.players),

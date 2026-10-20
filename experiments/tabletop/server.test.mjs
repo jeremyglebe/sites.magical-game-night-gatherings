@@ -9,6 +9,41 @@ import { demoSetup, runDemo } from './demo.mjs';
 
 const close = server => new Promise((ok, fail) => server.close(error => error ? fail(error) : ok()));
 
+test('default game needs no optional references and draws actual cards from a concealed library', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'game-night-default-'));
+  const session = join(dir, 'session.json');
+  let table, player;
+  try {
+    const setup = JSON.parse(readFileSync(new URL('./precons.json', import.meta.url), 'utf8'));
+    table = await startTable({ session, setup, port: 0 });
+    player = await connectPlayer({ seat: 'p1', session, url: table.url });
+    const references = await player.tool('read_reference');
+    assert.deepEqual(references.paths, []);
+    assert.match(references.note, /No optional.*ordinary Magic/);
+    const initial = await player.tool('observe_table');
+    assert.equal(initial.zones['p1:library'].count, 60);
+    assert.equal(initial.zones['p1:library'].hidden_count, 60);
+    assert.deepEqual(initial.zones['p1:library'].cards, []);
+    assert.equal(initial.zones['p1:hand'].count, 0);
+    const drawn = await player.tool('act', {
+      revision: initial.revision, reason: 'Prepare opening hand.',
+      actions: [{ type: 'draw', count: 7 }],
+    });
+    assert.equal(drawn.zones['p1:library'].count, 53);
+    assert.equal(drawn.zones['p1:library'].hidden_count, 53);
+    assert.equal(drawn.zones['p1:hand'].cards.length, 7);
+    assert.equal(drawn.zones['p1:hand'].hidden_count, 0);
+    const spectator = await (await fetch(table.url + '/api/table')).json();
+    assert.equal(spectator.zones['p1:hand'].count, 7);
+    assert.equal(spectator.zones['p1:hand'].hidden_count, 7);
+    assert.deepEqual(spectator.zones['p1:hand'].cards, []);
+  } finally {
+    if (player) await player.close();
+    if (table?.server.listening) await close(table.server);
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('two real MCP processes share saved state with private views, conflict detection, and recovery', async () => {
   const dir = mkdtempSync(join(tmpdir(), 'game-night-table-'));
   const session = join(dir, 'session.json');

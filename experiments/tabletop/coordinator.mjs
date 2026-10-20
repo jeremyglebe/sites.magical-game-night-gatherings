@@ -4,6 +4,10 @@ export const DEFAULT_PLAYER = Object.freeze({ model: 'gpt-6-luna', reasoning: 'h
 export const DEFAULT_LIMITS = Object.freeze({
   maxConcurrent: 4, maxDecisions: 2000, decisionTimeoutMs: 120000,
 });
+const budgetMessages = {
+  decisions: 'Decision limit reached. Increase the limit before resuming.',
+  output: 'Output-token limit reached. Increase the limit before resuming.',
+};
 
 const clone = value => structuredClone(value);
 const usageKeys = ['input_tokens', 'cached_input_tokens', 'output_tokens', 'reasoning_output_tokens'];
@@ -38,17 +42,21 @@ export function createCoordinator({
     }
     const previous = saved?.players?.find(p => p.id === input.id);
     let lastCompleted = Number.isSafeInteger(previous?.lastCompleted) ? previous.lastCompleted : -1;
+    let retryRevision = Number.isSafeInteger(previous?.retryRevision) && previous.retryRevision >= 0 ? previous.retryRevision : null;
     const pending = [...(previous?.pending || [])];
-    if (previous?.active?.completion) lastCompleted = Math.max(lastCompleted, previous.active.revision);
+    if (previous?.active?.completion) {
+      lastCompleted = Math.max(lastCompleted, previous.active.revision);
+      if (retryRevision === previous.active.revision) retryRevision = null;
+    }
     else if (Number.isSafeInteger(previous?.active?.revision)) pending.unshift(previous.active.revision);
     seats.set(input.id, {
       config: { ...DEFAULT_PLAYER, ...input },
       sessionId: previous?.sessionId || null,
-      pending: [...new Set(pending)].filter(r => Number.isSafeInteger(r) && r > lastCompleted).sort((a, b) => a - b),
-      lastCompleted,
+      pending: [...new Set(pending)].filter(r => Number.isSafeInteger(r) && (r > lastCompleted || r === retryRevision)).sort((a, b) => a - b),
+      lastCompleted, retryRevision,
       decisions: previous?.decisions || 0,
       usage: { ...emptyUsage(), ...previous?.usage },
-      lastDecision: previous?.lastDecision || null,
+      lastDecision: previous?.active?.completion || previous?.lastDecision || null,
       error: previous?.active ? 'Previous decision was interrupted; resume to reconsider the current table.' : previous?.error || null,
       active: null,
     });
@@ -70,7 +78,7 @@ export function createCoordinator({
         id: s.config.id, name: s.config.name || s.config.id,
         model: s.config.model, reasoning: s.config.reasoning,
         enabled: s.config.enabled !== false, sessionId: s.sessionId,
-        pending: [...s.pending], lastCompleted: s.lastCompleted,
+        pending: [...s.pending], lastCompleted: s.lastCompleted, retryRevision: s.retryRevision,
         decisions: s.decisions, usage: clone(s.usage),
         lastDecision: clone(s.lastDecision), error: s.error,
         active: s.active ? {
@@ -100,9 +108,9 @@ export function createCoordinator({
     queueMicrotask(() => { scheduled = false; pump(); });
   }
   function limitReached() {
-    if (decisions >= settings.maxDecisions) return 'Decision limit reached. Increase the limit before resuming.';
+    if (decisions >= settings.maxDecisions) return budgetMessages.decisions;
     const output = [...seats.values()].reduce((total, s) => total + s.usage.output_tokens, 0);
-    if (settings.maxOutputTokens && output >= settings.maxOutputTokens) return 'Output-token limit reached. Increase the limit before resuming.';
+    if (settings.maxOutputTokens && output >= settings.maxOutputTokens) return budgetMessages.output;
     return null;
   }
   function pump() {
@@ -191,6 +199,7 @@ export function createCoordinator({
         if (active.completion) {
           seat.lastCompleted = Math.max(seat.lastCompleted, revision);
           seat.lastDecision = active.completion;
+          if (seat.retryRevision === revision) seat.retryRevision = null;
         } else if (mode !== 'finished' && !seat.pending.includes(revision)) {
           seat.pending.unshift(revision);
         }
@@ -231,10 +240,21 @@ export function createCoordinator({
     changed();
     return { accepted: true, status: completion.status };
   }
+  function prepareExplicitResume() {
+    for (const seat of seats.values()) {
+      seat.error = null;
+      if (seat.config.enabled === false || seat.active || seat.pending.length
+        || seat.lastDecision?.status !== 'needs_help' || latestRevision < 0) continue;
+      // A human explicitly asked this player to reconsider after help. Keep the
+      // completed cursor and mark the repeat so restoring a snapshot retains it.
+      seat.retryRevision = latestRevision;
+      seat.pending.push(latestRevision);
+    }
+  }
   function start() {
     if (mode === 'finished') throw new Error('This match has finished');
     issue = null;
-    for (const seat of seats.values()) seat.error = null;
+    prepareExplicitResume();
     mode = 'running'; stepPermits = 0;
     changed(); schedule(); return status();
   }
@@ -242,7 +262,7 @@ export function createCoordinator({
     mode = nextMode; stepPermits = 0;
     for (const seat of seats.values()) {
       seat.active?.controller.abort(new Error(nextMode));
-      if (nextMode === 'finished') seat.pending = [];
+      if (nextMode === 'finished') { seat.pending = []; seat.retryRevision = null; }
     }
     changed();
     return status();
@@ -250,7 +270,7 @@ export function createCoordinator({
   function step() {
     if (mode === 'finished') throw new Error('This match has finished');
     if ([...seats.values()].some(s => s.active)) throw new Error('Wait for active decisions to stop before stepping');
-    for (const seat of seats.values()) seat.error = null;
+    prepareExplicitResume();
     issue = null; mode = 'stepping'; stepPermits = 1;
     changed(); schedule(); return status();
   }
@@ -262,6 +282,7 @@ export function createCoordinator({
     }
     for (const key of Object.keys(settings)) delete settings[key];
     Object.assign(settings, updated);
+    if (Object.values(budgetMessages).includes(issue)) issue = limitReached();
     changed();
     return status();
   }

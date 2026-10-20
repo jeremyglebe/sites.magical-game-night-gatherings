@@ -12,13 +12,20 @@ const tabletopTools = ['observe_table', 'act', 'read_card', 'read_reference', 'r
 const json = value => JSON.stringify(value);
 
 export function playerPrompt({ player, sessionId, revision, view, events, quickstart = '' }) {
+  // Repeat the contract on resumed turns: older histories may contain an
+  // incorrect conclusion that hidden cards or optional references are missing.
+  const tableContract = [
+    'Match contract: read_reference lists optional format/box overrides. An empty paths list means no custom overrides; use ordinary casual Magic with the supplied decks and life totals. This is not a sanctioned Standard deck-legality check. During Setup, turn.active names the starting player and the players list gives turn order unless configured rules say otherwise. These supplied settings do not need operator reconfirmation.',
+    'Visibility contract: zone.count is the actual number of cards; zone.cards contains only card identities currently visible to you. A hidden library with count:60 and cards:[] contains 60 real cards, not an empty or unconfigured deck. Drawing does not require card IDs or seeing the library first: use act with the current revision and an action such as {"type":"draw","count":7} to draw from your own library into your hand, only when the rules require that draw. Read the returned hand before evaluating it. Do not peek or reveal a library just to prepare an opening hand.',
+    'Empty optional references and hidden library contents are not setup blockers. If an earlier decision reported needs_help for either reason alone, that misunderstanding is resolved by this contract; observe the current table and continue.',
+  ].join('\n\n');
   const setupReminder = view?.turn?.phase?.toLowerCase() === 'setup'
     ? 'Begin the configured game. During Setup, priority:null means ordinary priority has not started; it does not require everyone to wait. Prepare your own opening hand once according to the chosen rules, make any required mulligan choices, and record readiness publicly without revealing your cards. Inspect your hand and history first so you do not repeat completed setup. The starting player coordinates the first turn after everyone is ready. If a setup choice needs agreement, make a concrete public proposal; use needs_help if essential setup information is missing.'
     : '';
   const introduction = sessionId ? '' : [
     `You are ${player.name || player.id}, player ${player.id}, in a manual Magic tabletop playtest.`,
     'Your conversation and MCP connection belong only to this player. The MCP server filters information for your seat.',
-    'Play using only the tabletop MCP tools. Read configured format and box rules using read_reference before starting.',
+    'Play using only the tabletop MCP tools. List optional format and box overrides with read_reference and read them when configured; otherwise use the ordinary Magic baseline below.',
     'Interpret game rules yourself: the application does not check legality, resolve spells, run turns, or decide winners.',
     'A notification is information, not permission or an obligation to act. Most updates need no action from you.',
     'When you have no legal or useful action, call complete_decision with status no_op and finish promptly. No explanation is required.',
@@ -35,6 +42,7 @@ export function playerPrompt({ player, sessionId, revision, view, events, quicks
   return introduction + [
     `Game update ${revision}. This is an ordered historical notification; the current table may already be newer.`,
     `Your player ID: ${player.id}.`,
+    tableContract,
     `Events for this notification:\n${json(events)}`,
     `Current player-visible table:\n${json(view)}`,
     setupReminder,

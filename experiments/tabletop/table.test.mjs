@@ -30,6 +30,9 @@ test('each seat sees its own hand, public observers see counts, and secret IDs d
   const spectator = observe(state);
   assert.equal(a.zones['p1:hand'].cards[0].name, 'Secret p1');
   assert.equal(a.zones['p2:hand'].count, 1);
+  assert.equal(a.zones['p2:hand'].hidden_count, 1);
+  assert.equal(a.zones['p1:hand'].hidden_count, 0);
+  assert.equal(a.zones['p1:library'].hidden_count, 3);
   assert.deepEqual(a.zones['p2:hand'].cards, []);
   assert.deepEqual(b.zones['p1:hand'].cards, []);
   assert.deepEqual(a.zones['p1:library'].cards, []);

@@ -258,3 +258,195 @@ test('invalid limit update cannot partially mutate other settings', () => {
   assert.throws(() => coordinator.configure({ maxConcurrent: 3, maxDecisions: -1, maxOutputTokens: null }), /positive integer/);
   assert.deepEqual(coordinator.snapshot().limits, before);
 });
+
+test('changing limits refreshes budget notices without resuming the match', async () => {
+  let coordinator;
+  let calls = 0;
+  coordinator = createCoordinator({
+    players: players(1), limits: { maxDecisions: 1, maxOutputTokens: 1 },
+    getView: () => ({ revision: 0 }),
+    runPlayer: async request => {
+      calls++;
+      request.onUsage({ output_tokens: 1 });
+      coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
+    },
+  });
+  coordinator.notify(0); coordinator.start();
+  await settle(coordinator);
+  assert.match(coordinator.status().message, /Decision limit reached/);
+  coordinator.configure({ maxConcurrent: 2 });
+  assert.match(coordinator.status().message, /Decision limit reached/);
+  coordinator.configure({ maxDecisions: 2 });
+  assert.match(coordinator.status().message, /Output-token limit reached/);
+  coordinator.configure({ maxOutputTokens: null });
+  assert.equal(coordinator.status().message, null);
+  assert.equal(coordinator.status().mode, 'paused');
+  await nextTurn();
+  assert.equal(calls, 1);
+});
+
+test('changing limits preserves player help and failure messages', async () => {
+  for (const outcome of ['help', 'error']) {
+    let coordinator;
+    coordinator = createCoordinator({
+      players: players(1), getView: () => ({ revision: 0 }),
+      runPlayer: async request => {
+        if (outcome === 'error') throw new Error('Fixture worker failure');
+        coordinator.complete('p1', { decision_id: request.decisionId, status: 'needs_help', note: 'Fixture question' });
+      },
+    });
+    coordinator.notify(0); coordinator.start();
+    await settle(coordinator);
+    const message = coordinator.status().message;
+    assert.match(message, outcome === 'help' ? /requested help/ : /Fixture worker failure/);
+    coordinator.configure({ maxDecisions: 3000 });
+    assert.equal(coordinator.status().message, message);
+    assert.equal(coordinator.status().mode, 'paused');
+  }
+});
+
+test('explicit start retries saved help once in the same session with a new decision ID', async () => {
+  let coordinator;
+  let firstRequest;
+  coordinator = createCoordinator({
+    players: players(1), getView: () => ({ revision: 0 }),
+    runPlayer: async request => {
+      firstRequest = request;
+      request.onSession('help-session');
+      coordinator.complete('p1', { decision_id: request.decisionId, status: 'needs_help', note: 'Fixture question' });
+    },
+  });
+  coordinator.notify(0); coordinator.start();
+  await settle(coordinator);
+  const saved = coordinator.snapshot();
+  assert.equal(saved.players[0].lastCompleted, 0);
+  assert.deepEqual(saved.players[0].pending, []);
+  const calls = [];
+  coordinator = createCoordinator({
+    players: players(1), saved, getView: () => ({ revision: 0 }),
+    runPlayer: async request => {
+      calls.push(request);
+      assert.equal(request.sessionId, 'help-session');
+      assert.notEqual(request.decisionId, firstRequest.decisionId);
+      coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
+    },
+  });
+  coordinator.start(); coordinator.start();
+  await settle(coordinator);
+  assert.deepEqual(calls.map(request => request.revision), [0]);
+  assert.equal(coordinator.status().state, 'stalled');
+  assert.equal(coordinator.snapshot().latestRevision, 0);
+  assert.equal(coordinator.snapshot().players[0].lastCompleted, 0);
+  assert.equal(coordinator.snapshot().players[0].retryRevision, null);
+  coordinator.start(); coordinator.notify(0);
+  await settle(coordinator);
+  assert.equal(calls.length, 1, 'ordinary idle completion does not trigger another retry');
+});
+
+test('step retries help only on explicit request and preserves newer queued notifications', async () => {
+  const saved = {
+    mode: 'paused', latestRevision: 0,
+    players: players(2).map(p => ({
+      id: p.id, sessionId: `session-${p.id}`, lastCompleted: 0, pending: [],
+      lastDecision: { status: 'needs_help', revision: 0 },
+    })),
+  };
+  const calls = [];
+  let coordinator;
+  coordinator = createCoordinator({
+    players: players(2), saved, getView: () => ({ revision: coordinator.snapshot().latestRevision }),
+    runPlayer: async request => {
+      calls.push({ id: request.player.id, revision: request.revision });
+      coordinator.complete(request.player.id, { decision_id: request.decisionId, status: 'needs_help' });
+    },
+  });
+  coordinator.step();
+  await settle(coordinator);
+  assert.equal(calls.length, 1);
+  assert.equal(coordinator.status().state, 'paused');
+  await nextTurn();
+  assert.equal(calls.length, 1, 'a repeated help request must not retry automatically');
+  coordinator.notify(1);
+  coordinator.step();
+  await settle(coordinator);
+  assert.deepEqual(calls, [{ id: 'p1', revision: 0 }, { id: 'p2', revision: 0 }]);
+  assert.deepEqual(coordinator.snapshot().players.map(p => p.pending), [[1], [1]]);
+  coordinator.step();
+  await settle(coordinator);
+  assert.deepEqual(calls.at(-1), { id: 'p1', revision: 1 });
+  assert.deepEqual(coordinator.snapshot().players[0].pending, []);
+});
+
+test('queued and interrupted explicit help retries survive snapshot restore', async () => {
+  const saved = {
+    mode: 'paused', latestRevision: 0,
+    players: [{
+      id: 'p1', sessionId: 'retry-session', lastCompleted: 0, pending: [],
+      lastDecision: { status: 'needs_help', revision: 0 },
+    }],
+  };
+  let coordinator = createCoordinator({
+    players: players(1), saved, getView: () => ({ revision: 0 }),
+    runPlayer: () => assert.fail('Paused retry should not launch'),
+  });
+  coordinator.start(); coordinator.pause();
+  const queued = coordinator.snapshot();
+  assert.deepEqual(queued.players[0].pending, [0]);
+  assert.equal(queued.players[0].retryRevision, 0);
+  assert.equal(queued.players[0].lastCompleted, 0);
+  await nextTurn();
+  let activeRequest;
+  coordinator = createCoordinator({
+    players: players(1), saved: queued, getView: () => ({ revision: 0 }),
+    runPlayer: request => {
+      activeRequest = request;
+      return new Promise((_, reject) => request.signal.addEventListener('abort', () => reject(request.signal.reason), { once: true }));
+    },
+  });
+  assert.deepEqual(coordinator.snapshot().players[0].pending, [0]);
+  coordinator.start();
+  await nextTurn();
+  const interrupted = coordinator.snapshot();
+  assert.equal(interrupted.players[0].active.revision, 0);
+  coordinator.pause();
+  await coordinator.idle();
+  let count = 0;
+  coordinator = createCoordinator({
+    players: players(1), saved: interrupted, getView: () => ({ revision: 0 }),
+    runPlayer: async request => {
+      count++;
+      assert.equal(request.sessionId, 'retry-session');
+      assert.notEqual(request.decisionId, activeRequest.decisionId);
+      coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
+    },
+  });
+  assert.deepEqual(coordinator.snapshot().players[0].pending, [0]);
+  coordinator.start();
+  await settle(coordinator);
+  assert.equal(count, 1);
+  assert.equal(coordinator.snapshot().players[0].lastCompleted, 0);
+  assert.equal(coordinator.snapshot().players[0].retryRevision, null);
+});
+
+test('restore retains a help completion saved before the worker exited', async () => {
+  const saved = {
+    mode: 'running', latestRevision: 0,
+    players: [{
+      id: 'p1', sessionId: 'help-session', lastCompleted: -1, pending: [],
+      active: { revision: 0, completion: { status: 'needs_help', revision: 0, note: 'Question' } },
+    }],
+  };
+  let coordinator;
+  let count = 0;
+  coordinator = createCoordinator({
+    players: players(1), saved, getView: () => ({ revision: 0 }),
+    runPlayer: async request => {
+      count++;
+      coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
+    },
+  });
+  assert.equal(coordinator.snapshot().players[0].lastDecision.status, 'needs_help');
+  coordinator.step();
+  await settle(coordinator);
+  assert.equal(count, 1);
+});
