@@ -432,6 +432,19 @@
       .table-shell {
         min-width: 0;
       }
+      .table-shell > .human-controls { margin-top: 12px; }
+      .has-human-seat .human-board { border-color: #a8b98c; }
+      .has-human-seat .human-board .seat-label:after { content: " · YOUR BATTLEFIELD"; }
+      .has-human-seat [data-hc-drop-zone] { scroll-margin-block: 90px; }
+      @media (min-width: 1051px) {
+        .workspace.has-human-seat .sidebar {
+          position: sticky;
+          top: 12px;
+          align-self: start;
+          height: max(600px, calc(100dvh - 180px));
+        }
+        .workspace.has-human-seat .sidebar .table-talk { min-height: 0; }
+      }
       .table-stage {
         display: flex;
         flex-direction: column;
@@ -1852,13 +1865,14 @@
                   <strong id="turn-label">Setup</strong>
                   <div id="priority-label" class="muted"></div>
                 </div>
-                <div class="stack-area">
+                <div class="stack-area" data-hc-drop-zone="stack" data-hc-drop-position="top" data-hc-drop-label="Stack · top">
                   <span class="stack-label">Stack<br />Top first</span>
                   <div id="stack-cards" class="stack-cards"></div>
                 </div>
               </section>
               <div id="near-seats" class="seat-row"></div>
             </div>
+            <section id="human-controls" aria-label="Human player controls" hidden></section>
             <div id="table-note" class="table-note"></div>
             <div class="footer-hint">
               <span>Public information · Select a card to inspect it</span
@@ -1910,7 +1924,6 @@
             </section>
             <button id="new-match" class="quiet new-match">New table</button>
           </aside>
-          <section id="human-controls" aria-label="Human player controls" hidden></section>
           <section class="player-details" aria-label="Player models and status">
             <h2>Players</h2>
             <div class="run-summary">
@@ -2105,7 +2118,8 @@
       let usageRefreshing = false,
         usageRequestError = "";
       let humanControls = null,
-        humanControlsLoading = false;
+        humanControlsLoading = false,
+        humanSeat = null;
       async function updateHumanControls() {
         const transcript = $("#recent-moves");
         const followLatest = transcript.scrollHeight - transcript.clientHeight - transcript.scrollTop < 32;
@@ -2121,7 +2135,15 @@
             humanControls = createHumanControls({
               root: $("#human-controls"),
               composerRoot: $("#human-chat-composer"),
+              interactionRoot: workspace,
               request,
+              onSeatChange: ({ playerId, visible }) => {
+                const next = visible ? playerId : null;
+                if (next === humanSeat) return;
+                humanSeat = next;
+                workspace.classList.toggle("has-human-seat", !!next);
+                if (table) renderTable(draftPreview?.table || table);
+              },
               onChange: refresh,
               onPreview: (preview, meta) => {
                 const current = preview && table && meta?.matchId === app?.match?.id
@@ -2483,6 +2505,7 @@
           "table-card" + (card.tapped ? " tapped" : ""),
         );
         button.type = "button";
+        button.dataset.hcCard = card.id;
         button.setAttribute(
           "aria-label",
           [card.name || "Face-down card", ...cardAnnotations(card)].join(" · "),
@@ -2648,6 +2671,10 @@
             (outcome ? ` has-outcome outcome-${outcome.key}` : ""),
         );
         node.dataset.player = player.id;
+        node.dataset.hcDropZone = "battlefield";
+        node.dataset.hcDropController = player.id;
+        node.dataset.hcDropLabel = `${player.name}’s battlefield`;
+        node.classList.toggle("human-board", humanSeat === player.id);
         node.setAttribute("aria-label", player.name + " battlefield");
         const head = make("div", "player-head");
         const identity = make("div", "player-identity");
@@ -2715,6 +2742,8 @@
             `${label} ${zone.count}`,
           );
           button.type = "button";
+          button.dataset.hcDropZone = player.id + ":" + kind;
+          button.dataset.hcDropLabel = `${player.name}’s ${kind}`;
           button.setAttribute(
             "aria-label",
             `${player.name}: ${kind}, ${zone.count} cards`,
@@ -2765,17 +2794,20 @@
             state.players.length === 1
               ? 0
               : Math.ceil(state.players.length / 2);
-          const far = state.players.slice(0, split),
-            near = state.players.slice(split);
-          for (const [id, players, offset] of [
-            ["#far-seats", far, 0],
-            ["#near-seats", near, split],
+          const ordered = humanSeat && state.players.length === 2 && app?.match?.layout !== "emperor"
+            ? [...state.players.filter(p => p.id !== humanSeat), ...state.players.filter(p => p.id === humanSeat)]
+            : state.players;
+          const far = ordered.slice(0, split),
+            near = ordered.slice(split);
+          for (const [id, players] of [
+            ["#far-seats", far],
+            ["#near-seats", near],
           ]) {
             const row = $(id);
             row.hidden = !players.length;
             row.style.setProperty("--columns", Math.max(players.length, 1));
             row.dataset.seats = players.length;
-            row.replaceChildren(...players.map((p, i) => board(p, offset + i)));
+            row.replaceChildren(...players.map(p => board(p, state.players.findIndex(seat => seat.id === p.id))));
           }
         }
         const stack = $("#stack-cards");
@@ -2786,6 +2818,7 @@
         else
           for (const [order, card] of items.entries()) {
             const button = make("button", "stack-item");
+            button.dataset.hcCard = card.id;
             button.append(
               make(
                 "span",
@@ -2809,6 +2842,7 @@
           state.notes?.filter((note) => note.kind !== "speech").at(-1)?.text ||
           "";
         renderMoves();
+        humanControls?.syncDragTargets?.();
       }
       let activityInspector = 0,
         activityHistory = [],
