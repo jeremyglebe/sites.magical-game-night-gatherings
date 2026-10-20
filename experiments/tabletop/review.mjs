@@ -1,4 +1,5 @@
 import { createReplay, startingDecks, conversationEvents, validateRecording } from '/review/replay.mjs';
+import { appendRevealedCards, revealedCardSnapshots } from '/revealed-cards.mjs';
 
 const $ = id => document.getElementById(id);
 const make = (tag, className = '', text) => {
@@ -309,7 +310,11 @@ function renderConversation() {
     }
     for (const change of event.changes?.length ? event.changes : [event]) {
       if (change.type === 'say') speech(change.text);
-      else {
+      else if (revealedCardSnapshots(change).length) {
+        flush();
+        bubble.append(make('p', 'activity-line', change.summary || 'Revealed cards'));
+        appendRevealedCards(bubble, change, { onInspect: card => inspectCard(card) });
+      } else {
         actions.push({ text: change.type === 'note' ? `Note: ${change.text}` : change.summary || 'Table updated', note: change.type === 'note' });
         if (['pass', 'pass_turn'].includes(change.type)) speech(change.message);
       }
@@ -410,10 +415,10 @@ function sharedStrip(state) {
   stack.append(make('span', '', 'STACK · TOP FIRST'));
   const cards = cardsIn(state, 'stack');
   if (!cards.length) stack.append(make('span', 'muted small', 'Stack is empty'));
-  for (const card of cards) {
-    const button = make('button', '', card.definition?.name || 'Face-down card');
-    button.addEventListener('click', () => inspectCard(card.definition || {}, card));
-    stack.append(button);
+  for (const [index, card] of cards.entries()) {
+    const item = make('div', 'stack-card');
+    item.append(make('span', 'stack-position', index === 0 ? 'TOP' : `#${index + 1}`), cardButton(card));
+    stack.append(item);
   }
   strip.append(turn, stack);
   return strip;

@@ -371,7 +371,7 @@ export async function startApp({
         response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' });
         response.end(readFileSync(join(here, 'survey.mjs'))); return;
       }
-      if (request.method === 'GET' && ['/human-controls.mjs', '/human-controls.css', '/human-preview.mjs', '/card-drag.mjs', '/human-card-moves.mjs'].includes(url.pathname)) {
+      if (request.method === 'GET' && ['/human-controls.mjs', '/human-controls.css', '/human-preview.mjs', '/card-drag.mjs', '/human-card-moves.mjs', '/revealed-cards.mjs', '/revealed-cards.css'].includes(url.pathname)) {
         response.writeHead(200, { 'Content-Type': url.pathname.endsWith('.css') ? 'text/css; charset=utf-8' : 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' });
         response.end(readFileSync(join(here, url.pathname.slice(1)))); return;
       }

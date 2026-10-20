@@ -33,20 +33,19 @@ function readCounters(node) {
   return Object.fromEntries(pairs);
 }
 
-export function createHumanControls({ root, composerRoot, interactionRoot = root, request, onChange = () => {}, onPreview = () => {}, onSeatChange = () => {} }) {
+export function createHumanControls({ root, composerRoot, interactionRoot = root, request, onChange = () => {}, onPreview = () => {}, onSeatChange = () => {}, onView = () => {} }) {
   root.classList.add('human-controls');
   root.setAttribute('aria-label', 'Human player controls');
-  root.innerHTML = `<div class="hc-header"><div><div class="eyebrow">YOUR SEAT AT THE TABLE</div><h2>Human player</h2></div><div class="hc-seat-picker"><label>Play as <select class="hc-seat"></select></label><button type="button" class="hc-enter primary">Enter seat · show hand</button><button type="button" class="hc-hide quiet" hidden>Hide private controls</button></div></div>
+  root.innerHTML = `<div class="hc-header"><h2>Join the table</h2><div class="hc-seat-picker"><label>Play as <select class="hc-seat"></select></label><button type="button" class="hc-enter primary">Enter seat · show hand</button></div></div>
     <p class="hc-status" role="status"></p><p class="hc-error" role="alert" hidden></p>
     <div class="hc-private" hidden>
-      <p class="hc-help">Drag cards to a zone to queue a move. Undo in chat before sending. Click a card for details, or press Space to pick it up and choose a destination.</p>
-      <div class="hc-selected" hidden><span class="hc-selected-text" role="status"></span><button type="button" class="hc-cancel-selection quiet">Cancel selection</button></div>
-      <p class="hc-drag-status" role="status" aria-live="polite"></p>
-      <div class="hc-zone-dock" aria-label="Card destinations"></div>
-      <section class="hc-hand-section"><div class="hc-zone-head"><button type="button" class="hc-destination hc-hand-target">Your hand</button><span class="hc-hand-count"></span></div><div class="hc-hand hc-cards" aria-label="Your hand"></div></section>
-      <div class="hc-tools"><label>Draw <input class="hc-draw-count" type="number" min="1" max="100" value="1" aria-label="Cards to draw"></label><button type="button" class="hc-draw" data-hc-act>Queue draw</button><button type="button" class="hc-shuffle" data-hc-act>Shuffle library</button><button type="button" class="hc-return" data-hc-act>Return entire hand</button><button type="button" class="hc-untap" data-hc-act>Untap my board</button><button type="button" class="hc-life" data-hc-act>Life & counters</button></div>
-      <details class="hc-zone-browser"><summary>Browse zones &amp; known library cards</summary><div class="hc-main"><section class="hc-cards-section"><div class="hc-zone-head"><label>Cards <select class="hc-zone"></select></label><span class="hc-zone-count"></span></div><div class="hc-browse-cards hc-cards"></div></section></div></details>
-      <details class="hc-more"><summary>More table controls</summary><div class="hc-tools"><button type="button" class="hc-markers" data-hc-act>Turn & phase markers</button><button type="button" class="hc-peek" data-hc-act>Look at library cards</button><button type="button" class="hc-token" data-hc-act>Create a token</button><button type="button" class="hc-ability" data-hc-act>Add a stack ability</button><button type="button" class="hc-outcome" data-hc-act>Concede or declare outcome</button></div><p class="hc-help">Use these physical table controls only when the rules or an agreed correction allow it. Moving a card does not clear its markers automatically.</p></details>
+      <section class="hc-hand-section"><div class="hc-zone-head"><button type="button" class="hc-destination hc-hand-target">Your hand</button><span class="hc-hand-count"></span><button type="button" class="hc-hide quiet" hidden>Hide hand</button></div>
+        <p class="hc-help hc-hand-help">Drag onto the battlefield or a zone. Moves stay queued until you send. Click to inspect; Space to choose a destination.</p>
+        <div class="hc-selected" hidden><span class="hc-selected-text" role="status"></span><button type="button" class="hc-cancel-selection quiet">Cancel selection</button></div>
+        <p class="hc-drag-status" role="status" aria-live="polite"></p>
+        <div class="hc-hand hc-cards" aria-label="Your hand"></div>
+      </section>
+      <details class="hc-more"><summary>More table actions</summary><div class="hc-tools"><label>Draw <input class="hc-draw-count" type="number" min="1" max="100" value="1" aria-label="Cards to draw"></label><button type="button" class="hc-draw" data-hc-act>Queue draw</button><button type="button" class="hc-shuffle" data-hc-act>Shuffle library</button><button type="button" class="hc-return" data-hc-act>Return entire hand</button><button type="button" class="hc-untap" data-hc-act>Untap my board</button><button type="button" class="hc-life" data-hc-act>Life & counters</button><button type="button" class="hc-markers" data-hc-act>Turn & phase markers</button><button type="button" class="hc-peek" data-hc-act>Look at library cards</button><button type="button" class="hc-token" data-hc-act>Create a token</button><button type="button" class="hc-ability" data-hc-act>Add a stack ability</button><button type="button" class="hc-outcome" data-hc-act>Concede or declare outcome</button></div><p class="hc-help">Only use actions allowed by the rules or an agreed correction. Zone changes retain card markers.</p></details>
     </div>`;
   // Keep the private cards separate from the public chat until a seat is entered.
   if (!composerRoot) { composerRoot = make('section'); root.append(composerRoot); }
@@ -67,9 +66,9 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
   modal.setAttribute('aria-label', 'Human table action');
   root.append(modal);
   let app = null, publicTable = null, connected = false, matchId = '', playerId = '', visible = false;
-  let view = null, queue = [], baseRevision = null, sending = false, fetching = false, generation = 0, cardSignature = '', choicesSignature = '', stateSignature = '', modalRevision = null, modalBoardRevision = null, savedRecipient = '', draftSignature = '';
-  let preview = null, previewSignature = '', failedDraft = false, draftBoardRevision = null;
-  let dragController = null, draftVersion = 0, selectedSource = null, selectedContext = '', handSignature = '', dockSignature = '', seatSignature = '';
+  let view = null, queue = [], baseRevision = null, sending = false, fetching = false, generation = 0, choicesSignature = '', stateSignature = '', modalRevision = null, modalBoardRevision = null, savedRecipient = '', draftSignature = '';
+  let preview = null, previewSignature = '', viewSignature = '', failedDraft = false, draftBoardRevision = null;
+  let dragController = null, draftVersion = 0, selectedSource = null, selectedContext = '', handSignature = '', seatSignature = '';
   const draftKey = () => `game-night-human-draft:${matchId}:${playerId}`;
   function saveDraft() {
     if (!matchId || !playerId) return;
@@ -103,7 +102,13 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
   function canChat() { return connected && visible && !!view && view.canChat !== false && !!playerId && !view.table.result && !app?.postgame && !sending; }
   function canCommit() { return eligible() && !isStale() && !failedDraft && preview?.valid !== false; }
   function refreshPreview() {
-    const ready = visible && connected && view && view.table.revision === publicTable?.revision && !isStale() && !failedDraft;
+    // The entered seat's authoritative projection also includes permitted
+    // reveals in opponents' hands. Never substitute the unsent draft here.
+    const freshView = visible && connected && view && view.table.revision === publicTable?.revision ? view.table : null;
+    const viewMeta = { matchId, playerId };
+    const nextView = JSON.stringify([freshView, viewMeta]);
+    if (nextView !== viewSignature) { viewSignature = nextView; onView(freshView, viewMeta); }
+    const ready = !!freshView && !isStale() && !failedDraft;
     preview = ready && queue.length ? previewHumanActions(view.table, playerId, queue.map(item => item.op)) : null;
     const meta = { matchId, playerId, baseRevision, pendingCount: queue.length, valid: preview?.valid !== false, errors: preview?.errors || [], warnings: preview?.warnings || [] };
     const next = JSON.stringify([preview?.table || null, meta]);
@@ -173,6 +178,7 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
     q('.hc-send').textContent = sending ? 'Sending…' : can && queue.length ? 'Send play' : 'Send';
     q('.hc-pass').disabled = !can || !q('.hc-recipient').value;
     q('.hc-turn').disabled = !can || !q('.hc-recipient').value;
+    root.classList.toggle('hc-entered', visible);
     q('.hc-seat').disabled = visible || sending;
     q('.hc-enter').disabled = !connected || sending || !playerId;
     q('.hc-hide').disabled = sending;
@@ -187,8 +193,8 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
     q('.hc-chat-identity').textContent = name;
     const chatHint = !view ? 'Loading your seat…' : view.table.result ? 'The game has ended.' : !can && queue.length ? 'Chat still sends; pending actions stay here.' : !eligible() ? 'You can chat while another player plays.' : '';
     q('.hc-chat-hint').textContent = chatHint; q('.hc-chat-hint').hidden = !chatHint;
-    let status = !connected ? 'Disconnected. Controls are unavailable until the table reconnects.' : !visible ? 'Choose your seat and enter it to reveal private cards. Hide the controls before sharing this screen.' : !view ? 'Loading your private view…' : view.table.result ? 'The game has ended. Complete your post-game questionnaire above.' : !eligible() ? (view.message || `Waiting for control to pass to ${name}. You can still inspect your cards.`) : `Your move, ${name}. Changes are queued until you send them.`;
-    if (visible && view && ['paused', 'stopped'].includes(app?.coordinator?.mode) && !view.table.result) status += ' The runner is paused; after your handoff, press Resume to continue AI play.';
+    let status = !connected ? 'Disconnected. Controls are unavailable until the table reconnects.' : !visible ? 'Choose your seat and enter it to reveal private cards. Hide the controls before sharing this screen.' : !view ? 'Loading your private view…' : view.table.result ? 'The game has ended. Complete your post-game questionnaire above.' : !eligible() ? (view.message || `Waiting for control to pass to ${name}. You can still inspect your cards.`) : 'Your response · moves stay queued until you send.';
+    if (visible && view && ['paused', 'stopped'].includes(app?.coordinator?.mode) && !view.table.result) status += ' Runner paused.';
     q('.hc-status').textContent = status;
     syncDragTargets();
     notifySeatChange();
@@ -255,6 +261,15 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
       for (const image of node.querySelectorAll('img')) image.draggable = false;
     }
     for (const node of interactionRoot.querySelectorAll('[data-hc-drop-zone]')) node.classList.toggle('hc-selected-destination', !!selectedSource && canDrop(selectedSource, targetFor(node)));
+    for (const node of interactionRoot.querySelectorAll('[data-hc-command]')) {
+      if (node.dataset.hcCommand !== 'browse') node.disabled = !ready || (!!node.dataset.hcPlayer && node.dataset.hcPlayer !== playerId);
+    }
+    for (const node of interactionRoot.querySelectorAll('[data-hc-phase]')) {
+      node.disabled = !ready;
+      const phase = currentTable()?.turn?.phase || publicTable?.turn?.phase || '';
+      if (node.tagName === 'SELECT' && ![...node.options].some(option => option.value === phase)) node.append(new Option(phase, phase));
+      if (node.value !== phase) node.value = phase;
+    }
     dragController?.sync();
   }
   function decorateTarget(node, zoneId, position = 'bottom', controller) {
@@ -262,8 +277,8 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
     if (controller) node.dataset.hcDropController = controller;
     node.dataset.hcDropLabel = zoneId === 'battlefield' ? 'Your battlefield' : zoneName(zoneId) + (zoneId.endsWith(':library') ? ` · ${position}` : '');
   }
-  function cardNode(card, compact = false) {
-    const node = button('', () => void openCard(card)); node.className = 'hc-card' + (compact ? ' hc-mini-card' : '');
+  function cardNode(card) {
+    const node = button('', () => void openCard(card)); node.className = 'hc-card';
     node.dataset.hcCard = card.id; node.dataset.hcDragLabel = card.name || 'Face-down card';
     if (card.draft || card.editable === false || card.preview_unknown) { node.classList.add('hc-card-pending'); node.disabled = true; node.title = 'Send this play to inspect or edit the card.'; }
     else node.title = `${card.name || 'Card'} · drag to move, click for details, Space to choose a destination`;
@@ -272,51 +287,32 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
     else node.append(make('div', 'hc-card-fallback', card.name || 'Face-down card'));
     node.append(make('span', 'hc-card-name', card.name || 'Face-down card'));
     const markers = [card.draft ? 'Pending · send to use' : '', card.tapped ? 'Tapped' : '', card.damage ? `${card.damage} damage` : '', ...Object.entries(card.counters || {}).map(([k, v]) => `${v} ${k}`)].filter(Boolean);
-    if (markers.length && !compact) node.append(make('span', 'hc-card-markers', markers.join(' · ')));
+    if (markers.length) node.append(make('span', 'hc-card-markers', markers.join(' · ')));
     return node;
-  }
-  function renderDock(table) {
-    const zoneIds = ['battlefield', 'stack', ...['library', 'graveyard', 'exile', 'command', 'sideboard'].map(kind => `${playerId}:${kind}`)].filter(id => table.zones[id]);
-    const signature = JSON.stringify([playerId, zoneIds.map(id => table.zones[id])]);
-    if (signature === dockSignature) return;
-    dockSignature = signature;
-    const dock = q('.hc-zone-dock'); dock.replaceChildren();
-    for (const id of zoneIds) {
-      const zone = table.zones[id], kind = id.split(':').at(-1);
-      const tile = make('section', 'hc-zone-tile hc-zone-' + kind);
-      const name = id === 'battlefield' ? 'Your battlefield' : id === 'stack' ? 'Stack' : kind[0].toUpperCase() + kind.slice(1);
-      const target = button('', () => destinationClick(target), 'hc-destination hc-zone-title');
-      target.append(make('strong', '', name), make('span', 'hc-zone-total', id === 'battlefield' ? zone.cards.filter(card => card.controller === playerId).length : zone.count));
-      decorateTarget(target, id, id === 'stack' || kind === 'library' ? 'top' : 'bottom', id === 'battlefield' ? playerId : null);
-      target.setAttribute('aria-label', `Destination: ${name}${kind === 'library' ? ' top' : ''}`);
-      if (kind !== 'library') decorateTarget(tile, id, id === 'stack' ? 'top' : 'bottom', id === 'battlefield' ? playerId : null);
-      tile.append(target);
-      if (kind === 'library') {
-        const pile = button('✦', () => attempt(() => selectSource({ drawFrom: id })), 'hc-library-pile');
-        pile.dataset.hcDrawFrom = id; pile.dataset.hcDragLabel = 'Top card of your library';
-        pile.title = 'Drag to your hand to queue a draw'; pile.setAttribute('aria-label', 'Library top card · drag to hand to draw');
-        const destinations = make('div', 'hc-library-ends');
-        for (const [position, label] of [['top', 'Top'], ['bottom', 'Bottom']]) {
-          const end = button(label, () => destinationClick(end), 'hc-destination'); decorateTarget(end, id, position); end.setAttribute('aria-label', `Destination: Library ${position}`); destinations.append(end);
-        }
-        tile.append(pile, destinations);
-      } else if (['graveyard', 'exile', 'command', 'sideboard'].includes(kind)) {
-        const cards = make('div', 'hc-zone-preview');
-        for (const card of zone.cards.slice(-3)) cards.append(cardNode(card, true));
-        if (!zone.cards.length) cards.append(make('span', 'hc-zone-empty', zone.count ? 'Concealed' : 'Drop here'));
-        tile.append(cards);
-      } else tile.append(make('span', 'hc-zone-empty', id === 'stack' ? 'Spells & abilities · top' : 'Permanents & lands'));
-      dock.append(tile);
-    }
   }
   function destinationClick(node) {
     if (selectedSource) {
       const source = selectedSource;
       attempt(() => { if (selectedContext !== dragContext()) throw Error('The table changed. Select the card again.'); queueDrop(source, targetFor(node)); });
-    } else {
-      const id = node.dataset.hcDropZone;
-      q('.hc-zone').value = id; q('.hc-zone-browser').open = true; cardSignature = ''; renderCards();
+    } else browseZone(node.dataset.hcDropZone);
+  }
+  function browseZone(id = `${playerId}:library`) {
+    if (!visible || !view) return false;
+    const zone = currentTable()?.zones?.[id];
+    if (!zone) return false;
+    const body = openModal(zoneName(id));
+    body.append(make('p', 'hc-help', `${zone.count} card${zone.count === 1 ? '' : 's'}${zone.hidden_count ? ` · ${zone.hidden_count} concealed` : ''}`));
+    const cards = make('div', 'hc-zone-grid');
+    for (const card of zone.cards || []) cards.append(cardNode(card));
+    if (!zone.cards?.length) cards.append(make('p', 'hc-empty', zone.count ? 'These cards are concealed. Use a permitted look or draw action.' : 'This zone is empty.'));
+    body.append(cards);
+    if (id === `${playerId}:library`) {
+      const tools = make('div', 'hc-tools');
+      tools.append(actionButton('Queue draw', () => { queueDraw(1); modal.close(); }), actionButton('Look at cards…', peekEditor), actionButton('Shuffle library', () => { queueShuffle(); modal.close(); }));
+      body.append(tools);
     }
+    updateButtons();
+    return true;
   }
   function renderCards() {
     if (!view || !visible || dragController?.pending) return;
@@ -331,25 +327,6 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
         q('.hc-hand-count').textContent = `${hand.count} card${hand.count === 1 ? '' : 's'} · private`;
         q('.hc-hand').replaceChildren(...hand.cards.map(card => cardNode(card)));
         if (!hand.cards.length) q('.hc-hand').append(make('p', 'hc-empty', 'Your hand is empty. Drag from your library to draw.'));
-      }
-    }
-    renderDock(table);
-    const zones = Object.values(table.zones);
-    const options = zones.map(z => [z.id, `${zoneName(z.id)} (${z.count})`]);
-    const sig = JSON.stringify(options);
-    if (q('.hc-zone').dataset.choices !== sig) {
-      const current = q('.hc-zone').value || `${playerId}:hand`;
-      q('.hc-zone').replaceChildren(...select(options, current).childNodes); q('.hc-zone').value = options.some(([id]) => id === current) ? current : `${playerId}:hand`;
-      q('.hc-zone').dataset.choices = sig;
-    }
-    const zone = table.zones[q('.hc-zone').value];
-    if (zone) {
-      const next = JSON.stringify([zone, playerId]);
-      if (next !== cardSignature) {
-        cardSignature = next;
-        q('.hc-zone-count').textContent = `${zone.count} card${zone.count === 1 ? '' : 's'}${zone.hidden_count ? ` · ${zone.hidden_count} concealed` : ''}`;
-        const cards = q('.hc-browse-cards'); cards.replaceChildren(...zone.cards.map(card => cardNode(card)));
-        if (!zone.cards.length) cards.append(make('p', 'hc-empty', zone.count ? 'These cards are concealed. Use a permitted look or draw action.' : 'This zone is empty.'));
       }
     }
     const recipient = q('.hc-recipient'); const existing = recipient.value || savedRecipient;
@@ -402,7 +379,7 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
       q('.hc-message').value = ''; saveDraft();
       acceptView(result);
       if (commit && modal.open) modal.close();
-      refreshPreview(); cardSignature = ''; renderCards(); renderDraft();
+      refreshPreview(); renderCards(); renderDraft();
       await onChange();
     } catch (err) {
       if (serial === generation && matchId === requestMatch && playerId === requestPlayer) {
@@ -528,34 +505,67 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
     event.preventDefault(); event.stopPropagation();
     attempt(() => selectSource(source.dataset.hcCard ? { cardId: source.dataset.hcCard } : { drawFrom: source.dataset.hcDrawFrom }));
   }, true);
+  // Battlefield controls live outside the hand element and are recreated with
+  // the public board; delegate their actions without retaining detached nodes.
+  interactionRoot.addEventListener('click', event => {
+    const target = event.target.closest?.('[data-hc-drop-zone]');
+    const control = event.target.closest?.('button, input, select, textarea, a, summary');
+    const destinationClickOnly = !control || control.matches('[data-hc-drop-zone], [data-hc-command="browse"]');
+    if (selectedSource && target && destinationClickOnly && !event.target.closest?.('[data-hc-card]')) {
+      event.preventDefault(); event.stopImmediatePropagation(); destinationClick(target); return;
+    }
+    const command = event.target.closest?.('[data-hc-command]');
+    if (!command || !interactionRoot.contains(command) || !visible || !view) return;
+    const action = command.dataset.hcCommand;
+    if (action === 'browse') {
+      if (!currentTable()?.zones?.[command.dataset.hcZone || `${playerId}:library`]) return;
+      event.preventDefault(); event.stopImmediatePropagation(); browseZone(command.dataset.hcZone); return;
+    }
+    const actions = { markers: markerEditor, untap: queueUntap, life: lifeEditor, draw: () => queueDraw(1), shuffle: queueShuffle, peek: peekEditor };
+    if (!actions[action]) return;
+    event.preventDefault(); event.stopImmediatePropagation();
+    attempt(() => { ensureWritable(); if (command.dataset.hcPlayer && command.dataset.hcPlayer !== playerId) throw Error('Enter that player’s seat to use its controls.'); actions[action](); });
+  }, true);
+  interactionRoot.addEventListener('change', event => {
+    if (!event.target.matches?.('[data-hc-phase]')) return;
+    attempt(() => {
+      ensureWritable();
+      const phase = event.target.value.trim();
+      if (!phase || phase.length > 100) throw Error('Choose a phase or step.');
+      if (phase !== currentTable().turn.phase) add({ op: { type: 'turn', set: { phase } }, label: `Set phase to ${phase}` });
+    });
+    syncDragTargets();
+  });
   q('.hc-cancel-selection').addEventListener('click', clearSelection);
   q('.hc-hand-target').addEventListener('click', () => destinationClick(q('.hc-hand-target')));
-  q('.hc-enter').addEventListener('click', () => { visible = true; generation++; cardSignature = ''; q('.hc-private').hidden = false; q('.hc-enter').hidden = true; q('.hc-hide').hidden = false; refreshPreview(); renderDraft(); updateButtons(); void loadView(true); });
+  q('.hc-enter').addEventListener('click', () => { visible = true; generation++; q('.hc-private').hidden = false; q('.hc-enter').hidden = true; q('.hc-hide').hidden = false; refreshPreview(); renderDraft(); updateButtons(); void loadView(true); });
   q('.hc-chat-enter').addEventListener('click', () => { root.scrollIntoView({ behavior: 'smooth', block: 'center' }); q('.hc-enter').focus({ preventScroll: true }); });
   q('.hc-hide').addEventListener('click', () => {
-    dragController.cancel(); clearSelection(); saveDraft(); visible = false; generation++; view = null; cardSignature = ''; handSignature = ''; dockSignature = ''; if (modal.open) modal.close(); modal.replaceChildren(); q('.hc-hand').replaceChildren(); q('.hc-browse-cards').replaceChildren(); q('.hc-zone-dock').replaceChildren(); q('.hc-private').hidden = true; q('.hc-enter').hidden = false; q('.hc-hide').hidden = true; refreshPreview(); error(); updateButtons();
+    dragController.cancel(); clearSelection(); saveDraft(); visible = false; generation++; view = null; handSignature = ''; if (modal.open) modal.close(); modal.replaceChildren(); q('.hc-hand').replaceChildren(); q('.hc-private').hidden = true; q('.hc-enter').hidden = false; q('.hc-hide').hidden = true; refreshPreview(); error(); updateButtons();
   });
-  q('.hc-seat').addEventListener('change', () => { dragController.cancel(); clearSelection(); handSignature = ''; dockSignature = ''; saveDraft(); playerId = q('.hc-seat').value; generation++; view = null; q('.hc-zone').value = playerId + ':hand'; q('.hc-zone').dataset.choices = ''; cardSignature = ''; savedRecipient = ''; q('.hc-recipient').replaceChildren(); q('.hc-recipient').dataset.choices = ''; choicesSignature = ''; stateSignature = ''; restoreDraft(); refreshPreview(); try { sessionStorage.setItem(`game-night-human-seat:${matchId}`, playerId); } catch {} renderDraft(); updateButtons(); });
-  q('.hc-zone').addEventListener('change', () => { cardSignature = ''; renderCards(); });
+  q('.hc-seat').addEventListener('change', () => { dragController.cancel(); clearSelection(); handSignature = ''; saveDraft(); playerId = q('.hc-seat').value; generation++; view = null; savedRecipient = ''; q('.hc-recipient').replaceChildren(); q('.hc-recipient').dataset.choices = ''; choicesSignature = ''; stateSignature = ''; restoreDraft(); refreshPreview(); try { sessionStorage.setItem(`game-night-human-seat:${matchId}`, playerId); } catch {} renderDraft(); updateButtons(); });
   q('.hc-message').addEventListener('input', () => { saveDraft(); updateButtons(); });
   q('.hc-message').addEventListener('keydown', event => { if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); if (!q('.hc-send').disabled) void send(); } });
   q('.hc-recipient').addEventListener('change', () => { saveDraft(); updateButtons(); });
   q('.hc-clear').addEventListener('click', clearDraft);
   q('.hc-undo').addEventListener('click', () => { if (queue.length) removeDraft(queue.length - 1); });
-  q('.hc-draw').addEventListener('click', () => attempt(() => { const count = number(q('.hc-draw-count'), 1, 100); add({ op: { type: 'draw', count }, label: `Draw ${count} card${count === 1 ? '' : 's'}` }); }));
-  q('.hc-shuffle').addEventListener('click', () => attempt(() => add({ op: { type: 'shuffle' }, label: 'Shuffle your library' })));
+  function queueDraw(count = 1) { add({ op: { type: 'draw', count }, label: `Draw ${count} card${count === 1 ? '' : 's'}` }); }
+  function queueShuffle() { add({ op: { type: 'shuffle' }, label: 'Shuffle your library' }); }
+  function queueUntap() {
+    const cards = currentTable().zones.battlefield.cards.filter(c => c.controller === playerId && c.tapped);
+    if (!cards.length) throw Error('You have no tapped battlefield cards.');
+    if (cards.some(card => card.draft || card.editable === false)) throw Error('Send your pending play before changing its new cards.');
+    add(cards.map(c => ({ op: { type: 'card', card: c.id, set: { tapped: false } }, label: `Untap ${c.name}` })));
+  }
+  q('.hc-draw').addEventListener('click', () => attempt(() => queueDraw(number(q('.hc-draw-count'), 1, 100))));
+  q('.hc-shuffle').addEventListener('click', () => attempt(queueShuffle));
   q('.hc-return').addEventListener('click', () => attempt(() => {
     const cards = currentTable().zones[playerId + ':hand'].cards;
     if (!cards.length) throw Error('Your hand is empty.');
     if (cards.some(card => card.draft || card.editable === false)) throw Error('Send your pending draw before returning the newly drawn cards.');
     add(cards.map(c => ({ op: { type: 'move', card: c.id, to: playerId + ':library', position: 'bottom' }, label: `Return ${c.name} to your library` })));
   }));
-  q('.hc-untap').addEventListener('click', () => attempt(() => {
-    const cards = currentTable().zones.battlefield.cards.filter(c => c.controller === playerId && c.tapped);
-    if (!cards.length) throw Error('You have no tapped battlefield cards.');
-    if (cards.some(card => card.draft || card.editable === false)) throw Error('Send your pending play before changing its new cards.');
-    add(cards.map(c => ({ op: { type: 'card', card: c.id, set: { tapped: false } }, label: `Untap ${c.name}` })));
-  }));
+  q('.hc-untap').addEventListener('click', () => attempt(queueUntap));
   q('.hc-send').addEventListener('click', () => void send());
   q('.hc-pass').addEventListener('click', () => void send({ type: 'pass', next: q('.hc-recipient').value }));
   q('.hc-turn').addEventListener('click', () => void send({ type: 'pass_turn', next: q('.hc-recipient').value }));
@@ -565,12 +575,12 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
     const humans = app?.match?.players?.filter(p => p.ai === false) || [];
     root.hidden = !humans.length || !app?.match;
     composerRoot.hidden = root.hidden;
-    if (root.hidden) { dragController.cancel(); clearSelection(); if (visible) saveDraft(); if (modal.open) modal.close(); visible = false; view = null; cardSignature = ''; handSignature = ''; dockSignature = ''; q('.hc-drag-status').textContent = ''; q('.hc-private').hidden = true; q('.hc-hand').replaceChildren(); q('.hc-browse-cards').replaceChildren(); q('.hc-zone-dock').replaceChildren(); q('.hc-enter').hidden = false; q('.hc-hide').hidden = true; refreshPreview(); syncDragTargets(); notifySeatChange(); return; }
+    if (root.hidden) { dragController.cancel(); clearSelection(); if (visible) saveDraft(); if (modal.open) modal.close(); visible = false; view = null; handSignature = ''; q('.hc-drag-status').textContent = ''; q('.hc-private').hidden = true; q('.hc-hand').replaceChildren(); q('.hc-enter').hidden = false; q('.hc-hide').hidden = true; refreshPreview(); syncDragTargets(); notifySeatChange(); return; }
     if (matchId !== app.match.id) {
-      dragController.cancel(); clearSelection(); handSignature = ''; dockSignature = ''; saveDraft(); matchId = app.match.id; visible = false; generation++; view = null; playerId = ''; queue = []; baseRevision = null; draftBoardRevision = null; failedDraft = false; choicesSignature = ''; stateSignature = ''; cardSignature = '';
+      dragController.cancel(); clearSelection(); handSignature = ''; saveDraft(); matchId = app.match.id; visible = false; generation++; view = null; playerId = ''; queue = []; baseRevision = null; draftBoardRevision = null; failedDraft = false; choicesSignature = ''; stateSignature = '';
       try { playerId = sessionStorage.getItem(`game-night-human-seat:${matchId}`) || ''; } catch {}
       if (!humans.some(p => p.id === playerId)) playerId = humans[0].id;
-      if (modal.open) modal.close(); modal.replaceChildren(); q('.hc-private').hidden = true; q('.hc-enter').hidden = false; q('.hc-hide').hidden = true; q('.hc-zone').replaceChildren(); q('.hc-zone').dataset.choices = ''; q('.hc-recipient').replaceChildren(); q('.hc-recipient').dataset.choices = ''; savedRecipient = ''; restoreDraft(); error();
+      if (modal.open) modal.close(); modal.replaceChildren(); q('.hc-private').hidden = true; q('.hc-enter').hidden = false; q('.hc-hide').hidden = true; q('.hc-recipient').replaceChildren(); q('.hc-recipient').dataset.choices = ''; savedRecipient = ''; restoreDraft(); error();
     }
     const choices = JSON.stringify(humans.map(p => [p.id, p.name]));
     if (choices !== choicesSignature) { choicesSignature = choices; q('.hc-seat').replaceChildren(...select(humans.map(p => [p.id, p.name]), playerId).childNodes); q('.hc-seat').value = playerId; }
@@ -578,7 +588,7 @@ export function createHumanControls({ root, composerRoot, interactionRoot = root
     const newState = JSON.stringify([publicTable?.revision, app.coordinator?.mode, app.coordinator?.pendingRecipient, app.coordinator?.active, app.postgame?.status]);
     if (visible) { stateSignature = newState; void loadView(); }
   }
-  return { update, syncDragTargets, hide: () => q('.hc-hide').click(), inspectCard(card) {
+  return { update, syncDragTargets, browseZone, hide: () => q('.hc-hide').click(), inspectCard(card) {
     if (!visible || !view) return false;
     const visibleCard = Object.values(currentTable().zones).flatMap(zone => zone.cards).find(item => item.id === (typeof card === 'string' ? card : card.id));
     if (!visibleCard) return false;

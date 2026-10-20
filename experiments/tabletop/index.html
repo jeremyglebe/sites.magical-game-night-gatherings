@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>Game Night · Playtest table</title>
+    <link rel="stylesheet" href="/revealed-cards.css" />
     <style>
       :root {
         color-scheme: dark;
@@ -457,7 +458,7 @@
         min-width: 0;
       }
       .player-board {
-        height: var(--board-height);
+        min-height: max(270px, var(--board-height));
         min-width: 0;
         display: flex;
         flex-direction: column;
@@ -603,6 +604,46 @@
         justify-content: center;
         gap: 3px;
         margin-top: 5px;
+      }
+      .board-play-area { display: grid; grid-template-columns: minmax(0, 1fr) 152px; gap: 12px; flex: 1; min-height: 180px; margin-top: 6px; }
+      .board-play-area .lanes { margin: 0; }
+      .board-zone-rail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; align-content: stretch; border-left: 1px solid var(--line); padding-left: 9px; }
+      .board-zone { min-width: 0; border: 1px dashed #526451; border-radius: 6px; padding: 4px; background: #10181666; display: flex; flex-direction: column; align-items: stretch; gap: 3px; }
+      .board-zone-heading { display: flex; align-items: center; justify-content: space-between; gap: 3px; font-size: 9px; }
+      .board-zone-heading strong { font-weight: 550; }
+      .board-zone-count { color: var(--muted); font-variant-numeric: tabular-nums; }
+      .board-zone-pile { padding: 0; border: 0; width: 33px; height: 46px; min-height: 0; align-self: center; overflow: hidden; background: #263b31; border-radius: 3px; }
+      .board-zone-pile img { width: 100%; height: 100%; object-fit: contain; display: block; }
+      .board-zone-pile.card-back { border: 3px double #a59f78; background: repeating-linear-gradient(45deg,#263b31,#263b31 4px,#1b2d25 4px,#1b2d25 8px); color: var(--accent); }
+      .board-zone-pile.empty-zone { border: 1px dashed #526451; background: transparent; color: #758d7b; font-size: 9px; }
+      .board-zone-ends { display: flex; gap: 2px; }
+      .board-zone-ends button { flex: 1; font-size: 8px; padding: 1px 2px; background: transparent; }
+      .board-zone-library { grid-row: span 2; justify-content: space-between; }
+      .board-zone-library .board-zone-pile { width: 43px; height: 60px; }
+      .board-zone:not(.board-zone-library) .board-zone-pile { height: 37px; width: 27px; }
+      .board-zone-tools { display: flex; justify-content: center; gap: 4px; }
+      .board-zone-tools button { padding: 2px 4px; font-size: 9px; }
+      .board-controls { display: flex; align-items: center; gap: 5px; }
+      .board-controls button, .table-turn-controls button, .table-turn-controls select { font-size: 10px; padding: 4px 6px; }
+      .table-turn-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 7px; }
+      .table-turn-controls label { display: flex; gap: 5px; align-items: center; font-size: 10px; color: var(--muted); }
+      .table-turn-controls select { max-width: 128px; }
+      .human-board { height: auto; }
+      .human-board .board-play-area { min-height: 185px; }
+      .human-board .human-controls { flex: 0 0 auto; }
+      .board-hand-lane { margin: 8px -4px 0; border-top: 1px solid #62715c; padding: 8px 5px 5px; background: #0c151250; border-radius: 0 0 6px 6px; }
+      .board-hand-heading { display: flex; justify-content: space-between; gap: 6px; margin-bottom: 5px; font-size: 10px; color: var(--muted); }
+      .board-hand-heading strong { color: var(--ink); font-size: 11px; }
+      .board-hand-cards { --card-width: 39px; --card-height: 55px; display: grid; grid-template-columns: repeat(var(--cards,1),minmax(1px,43px)); padding-right: var(--card-width); min-height: 57px; align-items: start; }
+      .board-hand-cards .card-back { width: var(--card-width); height: var(--card-height); display: grid; place-items: center; border: 3px double #a59f78; border-radius: 4px; color: var(--accent); background: repeating-linear-gradient(45deg,#263b31,#263b31 4px,#1b2d25 4px,#1b2d25 8px); box-shadow: 0 2px 5px #0005; font-size: 17px; }
+      .board-hand-cards .table-card { --card-width:39px; --card-height:55px; }
+      .seat-row[data-seats="3"] .board-play-area { grid-template-columns: minmax(0, 1fr); }
+      .seat-row[data-seats="3"] .board-zone-rail { grid-template-columns: repeat(5,minmax(0,1fr)); border-left: 0; border-top: 1px solid var(--line); padding: 5px 0 0; }
+      .seat-row[data-seats="3"] .board-zone-library { grid-row: auto; }
+      @media(max-width:520px) {
+        .board-play-area { grid-template-columns: minmax(0, 1fr) 120px; gap: 6px; }
+        .board-zone-rail { padding-left: 5px; }
+        .shared-strip { grid-template-columns: minmax(0,1fr); gap: 9px; }
       }
       .lane {
         min-height: 0;
@@ -777,18 +818,15 @@
         padding: 2px;
       }
       .stack-item {
-        font-size: 11px;
-        min-width: 110px;
-        max-width: 170px;
-        justify-content: flex-start;
-        text-align: left;
-        padding: 7px 9px;
-        border-color: #62715c;
-        background: #27392c;
+        flex: 0 0 55px; width: 55px; min-width: 55px;
+        padding: 0; background: transparent; border: 0; position: relative;
+        display: flex; flex-direction: column; gap: 3px; align-items: stretch;
       }
+      .stack-item img, .stack-item .stack-card-fallback { width: 55px; height: 77px; object-fit: contain; border-radius: 4px; background: #27392c; }
+      .stack-card-fallback { display: grid; place-items: center; font-size: 10px; padding: 4px; }
+      .stack-card-name { font-size: 9px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
       .stack-item .stack-position {
-        color: var(--accent);
-        font-size: 10px;
+        position: absolute; top: 2px; left: 2px; color: #16231b; background: var(--accent); font-size: 8px; font-weight: 700; padding: 0 3px; border-radius: 2px;
       }
       .table-note {
         font-size: 11px;
@@ -1864,6 +1902,10 @@
                 <div class="shared-turn">
                   <strong id="turn-label">Setup</strong>
                   <div id="priority-label" class="muted"></div>
+                  <div id="table-turn-controls" class="table-turn-controls" hidden>
+                    <label>Phase <select data-hc-phase aria-label="Turn phase"></select></label>
+                    <button type="button" data-hc-command="markers">Edit turn</button>
+                  </div>
                 </div>
                 <div class="stack-area" data-hc-drop-zone="stack" data-hc-drop-position="top" data-hc-drop-label="Stack · top">
                   <span class="stack-label">Stack<br />Top first</span>
@@ -1872,10 +1914,10 @@
               </section>
               <div id="near-seats" class="seat-row"></div>
             </div>
-            <section id="human-controls" aria-label="Human player controls" hidden></section>
+            <div id="human-controls-home"><section id="human-controls" aria-label="Human player controls" hidden></section></div>
             <div id="table-note" class="table-note"></div>
             <div class="footer-hint">
-              <span>Public information · Select a card to inspect it</span
+              <span id="view-visibility">Public information · Select a card to inspect it</span
               ><span id="revision"></span>
             </div>
           </div>
@@ -2006,6 +2048,7 @@
       </div>
     </dialog>
     <script type="module">
+      import { appendRevealedCards } from '/revealed-cards.mjs';
       const $ = (selector) => document.querySelector(selector);
       const make = (tag, className, text) => {
         const node = document.createElement(tag);
@@ -2014,6 +2057,7 @@
         return node;
       };
       const workspace = $(".workspace");
+      const humanControlsElement = $("#human-controls");
       const sidebar = $("#game-sidebar");
       const sidebarResizer = $("#sidebar-resizer");
       const sidebarWidthKey = "game-night.sidebar-width";
@@ -2119,7 +2163,20 @@
         usageRequestError = "";
       let humanControls = null,
         humanControlsLoading = false,
-        humanSeat = null;
+        humanSeat = null,
+        humanView = null,
+        inspectorSeat = null;
+      function clearSeatInspector() {
+        if (!inspectorSeat) return;
+        inspectorSeat = null; inspectorRequest++;
+        $("#inspector").close();
+        $("#inspector-content").replaceChildren();
+      }
+      function visibleTable() {
+        const privateTable = humanView?.matchId === app?.match?.id && humanView?.playerId === humanSeat
+          && humanView.table.revision === table?.revision ? humanView.table : null;
+        return draftPreview?.table || privateTable || table;
+      }
       async function updateHumanControls() {
         const transcript = $("#recent-moves");
         const followLatest = transcript.scrollHeight - transcript.clientHeight - transcript.scrollTop < 32;
@@ -2140,16 +2197,23 @@
               onSeatChange: ({ playerId, visible }) => {
                 const next = visible ? playerId : null;
                 if (next === humanSeat) return;
+                clearSeatInspector();
                 humanSeat = next;
+                if (!next) humanView = null;
                 workspace.classList.toggle("has-human-seat", !!next);
-                if (table) renderTable(draftPreview?.table || table);
+                if (table) renderTable(visibleTable());
+              },
+              onView: (view, meta) => {
+                if (!view) clearSeatInspector();
+                humanView = view ? {table: view, ...meta} : null;
+                if (table) renderTable(visibleTable());
               },
               onChange: refresh,
               onPreview: (preview, meta) => {
                 const current = preview && table && meta?.matchId === app?.match?.id
                   && meta.baseRevision === table.revision && meta.pendingCount > 0;
                 draftPreview = current ? { table: preview, meta } : null;
-                if (table) renderTable(draftPreview?.table || table);
+                if (table) renderTable(visibleTable());
               },
             });
           } catch (error) {
@@ -2418,6 +2482,7 @@
       });
       function openInspector(title, kicker = "") {
         inspectorRequest++;
+        inspectorSeat = humanSeat;
         $("#inspector-title").textContent = title;
         $("#inspector-kicker").textContent = kicker;
         $("#inspector-content").replaceChildren();
@@ -2457,11 +2522,11 @@
         }
         return values;
       }
-      async function inspectCard(card) {
-        if (humanControls?.inspectCard(card)) return;
+      async function inspectCard(card, { historical = false } = {}) {
+        if (!historical && humanControls?.inspectCard(card)) return;
         const serial = openInspector(
           card.name || "Unknown card",
-          "Card detail",
+          historical ? "Revealed during this game" : "Card detail",
         );
         const layout = make("div", "inspector-layout");
         if (card.image_url) {
@@ -2484,7 +2549,7 @@
         if (card.note) info.append(make("p", "card-text", card.note));
         layout.append(info);
         $("#inspector-content").append(layout);
-        if (!card.face_down && !card.oracle_text && !legacy) {
+        if (!historical && !card.face_down && !card.oracle_text && !legacy) {
           try {
             const details = await request(
               "/api/public-card?id=" + encodeURIComponent(card.id),
@@ -2725,33 +2790,70 @@
           ),
           lane("Lands", battlefield.filter(isLand)),
         );
+        const area = make("div", "board-play-area");
+        const rail = make("div", "board-zone-rail");
+        rail.setAttribute("aria-label", `${player.name}’s card zones`);
+        const own = humanSeat === player.id;
+        for (const [kind, label] of [["library", "Deck"], ["graveyard", "Graveyard"], ["exile", "Exile"], ["command", "Command"], ["sideboard", "Sideboard"]]) {
+          const id = `${player.id}:${kind}`, zone = displayedTable.zones[id];
+          if (!zone) continue;
+          const tile = make("section", `board-zone board-zone-${kind}`);
+          tile.dataset.hcDropZone = id;
+          tile.dataset.hcDropPosition = kind === "library" ? "top" : "bottom";
+          tile.dataset.hcDropLabel = `${player.name}’s ${kind}${kind === "library" ? " · top" : ""}`;
+          const heading = make("div", "board-zone-heading");
+          heading.append(make("strong", "", label), make("span", "board-zone-count", zone.count));
+          const pile = make("button", "board-zone-pile"); pile.type = "button";
+          pile.setAttribute("aria-label", `${player.name}: ${kind}, ${zone.count} cards`);
+          if (own) { pile.dataset.hcCommand = "browse"; pile.dataset.hcZone = id; }
+          pile.addEventListener("click", () => inspectZone(`${player.name} · ${label}`, zone.cards || []));
+          if (kind === "library" || (zone.count && !zone.cards?.length)) {
+            pile.classList.add("card-back"); pile.textContent = "✦";
+            if (own && kind === "library") {
+              pile.dataset.hcDrawFrom = id;
+              pile.dataset.hcDragLabel = "Top card of your deck";
+              pile.title = "Drag to your hand to queue a draw. Click to inspect known cards.";
+            }
+          } else {
+            const topCard = kind === "graveyard" ? zone.cards?.at(-1) : zone.cards?.[0];
+            if (topCard?.image_url) {
+              const image = make("img"); image.src = topCard.image_url; image.alt = ""; image.loading = "lazy"; image.draggable = false;
+              image.addEventListener("error", () => { image.remove(); pile.textContent = topCard.name || label; }, {once:true});
+              pile.append(image);
+              pile.dataset.hcCard = topCard.id;
+            } else { pile.classList.add("empty-zone"); pile.textContent = topCard?.name || "Empty"; if (topCard) pile.dataset.hcCard = topCard.id; }
+          }
+          tile.append(heading, pile);
+          if (kind === "library") {
+            const ends = make("div", "board-zone-ends");
+            for (const position of ["top", "bottom"]) {
+              const end = make("button", "", position === "top" ? "Top" : "Bottom"); end.type = "button";
+              end.dataset.hcDropZone = id; end.dataset.hcDropPosition = position; end.dataset.hcDropLabel = `${player.name}’s deck · ${position}`;
+              end.setAttribute("aria-label", `${player.name}’s library ${position}`);
+              if (own) { end.dataset.hcCommand = "browse"; end.dataset.hcZone = id; }
+              end.addEventListener("click", () => inspectZone(`${player.name} · Deck`, zone.cards || []));
+              ends.append(end);
+            }
+            tile.append(ends);
+            if (own) {
+              const tools = make("div", "board-zone-tools");
+              for (const [command, text] of [["draw", "Draw"], ["shuffle", "Shuffle"]]) {
+                const button = make("button", "", text); button.type = "button"; button.dataset.hcCommand = command; button.dataset.hcPlayer = player.id;
+                tools.append(button);
+              }
+              tile.append(tools);
+            }
+          }
+          rail.append(tile);
+        }
+        area.append(lanes, rail);
         const footer = make("div", "player-footer");
-        const zones = make("div", "zone-actions");
-        for (const [kind, label] of [
-          ["graveyard", "Grave"],
-          ["exile", "Exile"],
-          ["command", "Command"],
-        ]) {
-          const zone = displayedTable.zones[player.id + ":" + kind] || {
-            count: 0,
-            cards: [],
-          };
-          const button = make(
-            "button",
-            "zone-button",
-            `${label} ${zone.count}`,
-          );
-          button.type = "button";
-          button.dataset.hcDropZone = player.id + ":" + kind;
-          button.dataset.hcDropLabel = `${player.name}’s ${kind}`;
-          button.setAttribute(
-            "aria-label",
-            `${player.name}: ${kind}, ${zone.count} cards`,
-          );
-          button.addEventListener("click", () =>
-            inspectZone(player.name + " · " + kind, zone.cards || []),
-          );
-          zones.append(button);
+        const controls = make("div", "board-controls");
+        if (own) {
+          for (const [command, text] of [["untap", "Untap all"], ["life", "Life & counters"]]) {
+            const button = make("button", "quiet", text); button.type = "button"; button.dataset.hcCommand = command; button.dataset.hcPlayer = player.id;
+            controls.append(button);
+          }
         }
         const inspect = make(
           "button",
@@ -2761,8 +2863,25 @@
         inspect.addEventListener("click", () =>
           inspectZone(player.name + " · battlefield", battlefield),
         );
-        footer.append(zones, inspect);
-        node.append(head, counts, status, lanes, footer);
+        footer.append(controls, inspect);
+        node.append(head, counts, status, area, footer);
+        if (!own) {
+          const hand = displayedTable.zones[`${player.id}:hand`] || {count:0,cards:[]};
+          const handLane = make("section", "board-hand-lane");
+          handLane.setAttribute("aria-label", `${player.name}’s hand`);
+          const heading = make("div", "board-hand-heading");
+          heading.append(make("strong", "", "Hand"), make("span", "", `${hand.count} card${hand.count === 1 ? "" : "s"}`));
+          const cards = make("div", "board-hand-cards");
+          cards.style.setProperty("--cards", Math.max(1,hand.count));
+          for (const card of hand.cards || []) cards.append(cardButton(card));
+          for (let i = (hand.cards || []).length; i < hand.count; i++) {
+            const back = make("span", "card-back", "✦");
+            back.setAttribute("role", "img"); back.setAttribute("aria-label", "Concealed card");
+            cards.append(back);
+          }
+          if (!hand.count) cards.append(make("span", "small muted", "Empty hand"));
+          handLane.append(heading,cards); node.append(handLane);
+        }
         if (outcome) {
           const overlay = make("div", "board-outcome");
           overlay.setAttribute("aria-label", `${player.name}: ${outcome.status}`);
@@ -2772,10 +2891,13 @@
         return node;
       }
       function renderTable(state) {
+        // Keep the private hand's live DOM when rebuilding the public boards.
+        // Its action queue, focusable cards and event listeners belong to the seat.
+        $("#human-controls-home").append(humanControlsElement);
         displayedTable = state;
         $("#match-title").textContent = state.title;
         $("#match-subtitle").textContent =
-          `${state.players.length} player${state.players.length === 1 ? "" : "s"} · ${app?.match?.layout === "emperor" ? "Two teams of three" : "Public spectator view"}`;
+          `${state.players.length} player${state.players.length === 1 ? "" : "s"} · ${humanSeat ? "Playing as " + state.players.find(p => p.id === humanSeat)?.name : app?.match?.layout === "emperor" ? "Two teams of three" : "Public spectator view"}`;
         $("#revision").textContent = draftPreview
           ? `Update ${table.revision} · Preview: ${draftPreview.meta.pendingCount} unsent action${draftPreview.meta.pendingCount === 1 ? "" : "s"}`
           : "Update " + state.revision;
@@ -2789,6 +2911,12 @@
           `Turn ${state.turn.number} · ${name(state.turn.active)}`;
         $("#priority-label").textContent =
           `${state.turn.phase || "Setup"}${state.turn.priority ? " · Priority: " + name(state.turn.priority) : ""}`;
+        $("#view-visibility").textContent = humanSeat ? "Your seat’s view · Select a card to inspect it" : "Public information · Select a card to inspect it";
+        $("#table-turn-controls").hidden = !humanSeat;
+        const phaseSelect = $("[data-hc-phase]");
+        const phases = [...new Set(["Setup", "Untap", "Upkeep", "Draw", "Main 1", "Begin combat", "Declare attackers", "Declare blockers", "Combat damage", "End combat", "Main 2", "End step", "Cleanup", state.turn.phase].filter(Boolean))];
+        phaseSelect.replaceChildren(...phases.map(phase => { const option = make("option", "", phase); option.value = phase; return option; }));
+        phaseSelect.value = state.turn.phase || "Setup";
         if (supported) {
           const split =
             state.players.length === 1
@@ -2810,6 +2938,8 @@
             row.replaceChildren(...players.map(p => board(p, state.players.findIndex(seat => seat.id === p.id))));
           }
         }
+        const ownBoard = [...document.querySelectorAll(".player-board")].find(node => node.dataset.player === humanSeat);
+        if (supported && ownBoard) ownBoard.append(humanControlsElement);
         const stack = $("#stack-cards");
         stack.replaceChildren();
         const items = state.zones.stack?.cards || [];
@@ -2818,14 +2948,22 @@
         else
           for (const [order, card] of items.entries()) {
             const button = make("button", "stack-item");
+            button.type = "button";
             button.dataset.hcCard = card.id;
+            button.title = card.name || "Face-down card";
+            button.setAttribute("aria-label", `Inspect ${card.name || "Face-down card"}, ${order === 0 ? "top of stack" : "stack position " + (order + 1)}`);
+            if (card.image_url) {
+              const image = make("img"); image.src = card.image_url; image.alt = ""; image.loading = "lazy"; image.draggable = false;
+              image.addEventListener("error", () => image.replaceWith(make("span", "stack-card-fallback", card.name || "Card")), {once:true});
+              button.append(image);
+            } else button.append(make("span", "stack-card-fallback", card.name || "Ability"));
             button.append(
               make(
                 "span",
                 "stack-position",
                 order === 0 ? "TOP" : String(order + 1),
               ),
-              make("span", "", card.name || "Face-down card"),
+              make("span", "stack-card-name", card.name || "Face-down card"),
             );
             button.addEventListener("click", () => inspectCard(card));
             stack.append(button);
@@ -2918,7 +3056,13 @@
             ? event.changes
             : [event];
         for (const change of changes) {
-          if (change.type === "say") {
+          if (change.type === "reveal" && change.revealedCards?.length) {
+            flushActions();
+            const revealed = make("div", "activity-reveal");
+            revealed.append(make("p", "activity-line", change.summary || "Revealed a card"));
+            appendRevealedCards(revealed, change, { onInspect: card => inspectCard(card, {historical: true}) });
+            bubble.append(revealed);
+          } else if (change.type === "say") {
             say(change.text);
           } else if (
             change.type === "note" &&
@@ -2991,7 +3135,7 @@
         if (followLatest) list.scrollTop = list.scrollHeight;
       }
       function renderMoves() {
-        fillActivity($("#recent-moves"), (table?.events || []).slice(-12));
+        fillActivity($("#recent-moves"), (visibleTable()?.events || []).slice(-12));
         if (activityInspector === inspectorRequest && $("#inspector").open)
           refreshActivity();
       }

@@ -171,6 +171,9 @@ export function createArchive({ directory: rootDirectory = '.playtest', getCurre
       '/review/review.css': ['review.css', 'text/css; charset=utf-8'],
       '/review/replay.mjs': ['replay.mjs', 'text/javascript; charset=utf-8'],
       '/review/survey.mjs': ['survey.mjs', 'text/javascript; charset=utf-8'],
+      '/revealed-cards.mjs': ['revealed-cards.mjs', 'text/javascript; charset=utf-8'],
+      '/review/revealed-cards.mjs': ['revealed-cards.mjs', 'text/javascript; charset=utf-8'],
+      '/revealed-cards.css': ['revealed-cards.css', 'text/css; charset=utf-8'],
     };
     const asset = own(assets, pathname) ? assets[pathname] : null;
     if (!ui && !asset && pathname !== '/api/games' && !pathname.startsWith('/api/games/')) return false;

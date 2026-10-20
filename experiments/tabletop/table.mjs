@@ -406,6 +406,14 @@ function captureAction(state, actor, op) {
 
 function finishAction(state, actor, op, change, summary) {
   change.summary = summary;
+  if (op.type === 'reveal') {
+    // Keep a display-only identity at the moment of disclosure. A later hidden
+    // move rotates the live handle, but cannot undo what these viewers saw.
+    // No ID, location, private note, or other mutable game state belongs here.
+    change.revealedCards = change.cards.map(card => ({
+      ...copy(card.definition), kind: card.kind, token: card.token,
+    }));
+  }
   if (change.previousCards) {
     change.cards = Object.values(state.cards).filter(card => !change.previousCards.has(card));
     change.count = change.cards.length;
@@ -444,6 +452,9 @@ function describeChanges(original, state, changes, viewer, initialIds, host = fa
     const cards = change.cards.filter(card => identityKnown(card, change)).map(card => card.definition.name);
     const detail = { type: change.type, summary: change.summary };
     if (cards.length) detail.cards = cards;
+    if (change.type === 'reveal' && (host || viewer === change.actor || change.disclosedTo?.includes(viewer))) {
+      detail.revealedCards = copy(change.revealedCards);
+    }
     for (const key of ['from', 'to', 'count', 'next', 'player', 'text', 'message', 'result', 'zone']) {
       if (change[key] !== undefined) detail[key] = copy(change[key]);
     }

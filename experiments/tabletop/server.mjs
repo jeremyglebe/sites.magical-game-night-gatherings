@@ -164,6 +164,10 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
     try {
       const url = new URL(request.url, 'http://localhost');
       if (request.method === 'GET' && serveAvatar(url.pathname, response)) return;
+      if (request.method === 'GET' && ['/revealed-cards.mjs', '/revealed-cards.css'].includes(url.pathname)) {
+        response.writeHead(200, { 'Content-Type': url.pathname.endsWith('.css') ? 'text/css; charset=utf-8' : 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' });
+        response.end(readFileSync(resolve(here, url.pathname.slice(1)))); return;
+      }
       if (request.method === 'GET' && url.pathname === '/') {
         response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
         response.end(html);

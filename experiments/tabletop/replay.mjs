@@ -1,3 +1,5 @@
+import { revealedCardSnapshots } from './revealed-cards.mjs';
+
 // Browser-compatible owner-review helpers. Replay applies recorded deltas;
 // it never executes game actions, shuffles again, or interprets game rules.
 const clone = value => structuredClone(value);
@@ -127,6 +129,8 @@ function chatChange(change) {
   for (const key of ['summary', 'actor', 'player', 'next', 'from', 'to']) if (typeof change?.[key] === 'string') result[key] = change[key];
   if (Number.isFinite(change?.count)) result.count = change.count;
   if (Array.isArray(change?.cards)) result.cards = change.cards.filter(card => typeof card === 'string');
+  const revealed = revealedCardSnapshots(change);
+  if (revealed.length) result.revealedCards = revealed;
   if (['say', 'note'].includes(result.type) && typeof change?.text === 'string') result.text = change.text;
   if (['pass', 'pass_turn'].includes(result.type) && typeof change?.message === 'string') result.message = change.message;
   if (!result.summary) result.summary = result.type === 'say' ? result.text || 'Spoke to the table' : 'Table updated';

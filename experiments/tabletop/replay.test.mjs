@@ -198,3 +198,25 @@ test('legacy conversation uses captured outcomes when present and avoids inventi
   summaryOnly.frames[0].event.public = { summary: 'A legacy table update' };
   assert.equal(conversationEvents(summaryOnly)[0].event.summary, 'A legacy table update');
 });
+
+test('conversation keeps public reveal references after cards are hidden again, without live handles or private reveals', () => {
+  const config = setup();
+  config.players.push({ id: 'three', name: 'Carol', deck: [{ name: 'Forest' }] });
+  config.players[0].deck = [{ name: 'Public reference', image_url: 'https://cards.scryfall.io/reveal.jpg', oracle_text: 'Saved text.', count: 2 }];
+  const game = fixture(config);
+  game.act('one', [{ type: 'draw', count: 2 }]);
+  const [publicCard, privateCard] = game.state.zones['one:hand'].cards;
+  game.act('one', [{ type: 'reveal', card: publicCard }]);
+  game.act('one', [{ type: 'reveal', card: privateCard, to: ['two'] }]);
+  game.act('one', [{ type: 'move', card: publicCard, to: 'one:library' }, { type: 'shuffle' }]);
+  const saved = structuredClone(game.recording);
+  saved.frames[1].event.public.changes[0].revealedCards[0].id = 'stale-live-handle';
+  saved.frames[1].event.public.changes[0].revealedCards[0].private_reason = 'Do not show this';
+  const events = conversationEvents(saved);
+  assert.equal(events[1].event.changes[0].revealedCards[0].name, 'Public reference');
+  assert.equal(events[1].event.changes[0].revealedCards[0].oracle_text, 'Saved text.');
+  assert.equal(events[2].event.changes[0].revealedCards, undefined);
+  assert.doesNotMatch(JSON.stringify(events), /stale-live-handle|Do not show this/);
+  events[1].event.changes[0].revealedCards[0].name = 'Modified locally';
+  assert.equal(saved.frames[1].event.public.changes[0].revealedCards[0].name, 'Public reference');
+});
