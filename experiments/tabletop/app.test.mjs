@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync, readFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { startApp } from './app.mjs';
+import { startApp as startAppWithUsage } from './app.mjs';
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -16,6 +16,69 @@ const setup = (count, ai = true) => ({
   })),
 });
 const tick = () => new Promise(resolve => setImmediate(resolve));
+// Integration tests must not query the developer's account or launch Codex.
+const startApp = options => startAppWithUsage({ readPlanUsage: null, ...options });
+
+test('plan usage reads are shared and cached, saved per match and never fabricate a game charge', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'game-night-usage-'));
+  let app, finishRead;
+  let reads = 0;
+  const reader = () => { reads++; return new Promise(resolve => { finishRead = resolve; }); };
+  const sample = { checkedAt: new Date().toISOString(), buckets: [{ id: 'codex', name: 'Codex', windows: [
+    { id: 'primary', usedPercent: 16, windowDurationMins: 10080, resetsAt: 2000000000 },
+  ] }] };
+  try {
+    app = await startApp({ directory, port: 0, setup: setup(1), readPlanUsage: reader, runPlayerFactory: () => async () => {} });
+    assert.equal(reads, 1);
+    assert.equal(app.appState().planUsage.refreshing, true);
+    const first = app.refreshPlanUsage({ force: true });
+    const second = app.refreshPlanUsage({ force: true });
+    finishRead(sample);
+    await Promise.all([first, second]);
+    await app.refreshPlanUsage({ force: true });
+    assert.equal(reads, 1);
+    assert.equal(app.appState().planUsage.buckets[0].windows[0].usedPercent, 16);
+    assert.equal(app.appState().planUsage.buckets[0].windows[0].changeSinceBaseline, 0);
+    const id = app.appState().match.id;
+    assert.equal(JSON.parse(readFileSync(join(directory, 'matches', id, 'match.json'))).planUsage.latest.checkedAt, sample.checkedAt);
+    await app.close();
+    app = await startApp({ directory, port: 0, readPlanUsage: async () => { throw new Error('private error details'); }, runPlayerFactory: () => async () => {} });
+    await app.refreshPlanUsage();
+    assert.equal(app.appState().planUsage.checkedAt, sample.checkedAt);
+    assert.match(app.appState().planUsage.error, /Could not refresh/);
+    assert.ok(!JSON.stringify(app.appState()).includes('private error details'));
+    const invalid = await fetch(app.url + '/api/usage/refresh', { method: 'POST', headers: { Origin: 'https://unrelated.example' } });
+    assert.equal(invalid.status, 403);
+  } finally {
+    if (app?.server.listening) await app.close();
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('a later Pause cancels Start while a quota read is pending', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'game-night-usage-controls-'));
+  let app, finishRead;
+  let calls = 0;
+  try {
+    app = await startApp({ directory, port: 0, setup: setup(1),
+      readPlanUsage: () => new Promise(resolve => { finishRead = resolve; }),
+      runPlayerFactory: () => async () => { calls++; },
+    });
+    const control = action => fetch(app.url + '/api/control', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action }),
+    });
+    const starting = control('start');
+    await new Promise(resolve => setTimeout(resolve, 30));
+    assert.equal((await control('pause')).status, 200);
+    finishRead({ checkedAt: new Date().toISOString(), buckets: [] });
+    assert.equal((await starting).status, 400);
+    assert.equal(app.getCoordinator().status().mode, 'paused');
+    assert.equal(calls, 0);
+  } finally {
+    if (app?.server.listening) await app.close();
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
 
 test('headless match, separate player histories, quiet acknowledgments and recovery', async () => {
   const directory = mkdtempSync(join(tmpdir(), 'game-night-app-'));

@@ -11,13 +11,15 @@ const allowedReasoning = ['low', 'medium', 'high', 'xhigh', 'max'];
 const tabletopTools = ['observe_table', 'act', 'read_card', 'read_reference', 'read_events', 'read_rules', 'complete_decision'];
 const json = value => JSON.stringify(value);
 
-export function playerPrompt({ player, sessionId, revision, view, events, quickstart = '' }) {
+export function playerPrompt({ player, sessionId, revision, fromRevision = revision, view, events, turnHistory, quickstart = '' }) {
   // Repeat the contract on resumed turns: older histories may contain an
   // incorrect conclusion that hidden cards or optional references are missing.
   const tableContract = [
     'Match contract: read_reference lists optional format/box overrides. An empty paths list means no custom overrides; use ordinary casual Magic with the supplied decks and life totals. This is not a sanctioned Standard deck-legality check. During Setup, turn.active names the starting player and the players list gives turn order unless configured rules say otherwise. These supplied settings do not need operator reconfirmation.',
     'Visibility contract: zone.count is the actual number of cards; zone.cards contains only card identities currently visible to you. A hidden library with count:60 and cards:[] contains 60 real cards, not an empty or unconfigured deck. Drawing does not require card IDs or seeing the library first: use act with the current revision and an action such as {"type":"draw","count":7} to draw from your own library into your hand, only when the rules require that draw. Read the returned hand before evaluating it. Do not peek or reveal a library just to prepare an opening hand.',
     'Empty optional references and hidden library contents are not setup blockers. If an earlier decision reported needs_help for either reason alone, that misunderstanding is resolved by this contract; observe the current table and continue.',
+    'Turn discipline: the normal allowance is ONE land play across the entire turn, not one per main phase or notification. Before playing a land, check the current-turn history for a land you already played; another main phase does not reset that allowance. Additional land plays need an identified effect. A land entering through an effect is not necessarily a land play; apply the actual rule.',
+    'Priority discipline: track consecutive passes since the last game action. Once all players have passed in succession, the top stack item resolves or the empty-stack step/phase ends. Do not start another identical pass round. The active player coordinates the resulting manual changes and the next priority window, respecting required choices, triggers, and response opportunities. Any intervening action begins a new pass sequence. The application does not decide this for you.',
   ].join('\n\n');
   const setupReminder = view?.turn?.phase?.toLowerCase() === 'setup'
     ? 'Begin the configured game. During Setup, priority:null means ordinary priority has not started; it does not require everyone to wait. Prepare your own opening hand once according to the chosen rules, make any required mulligan choices, and record readiness publicly without revealing your cards. Inspect your hand and history first so you do not repeat completed setup. The starting player coordinates the first turn after everyone is ready. If a setup choice needs agreement, make a concrete public proposal; use needs_help if essential setup information is missing.'
@@ -40,11 +42,12 @@ export function playerPrompt({ player, sessionId, revision, view, events, quicks
     quickstart,
   ].filter(Boolean).join('\n\n') + '\n\n';
   return introduction + [
-    `Game update ${revision}. This is an ordered historical notification; the current table may already be newer.`,
+    `Game updates ${fromRevision} through ${revision}. All events accumulated for this decision are included in order; the current table may already be newer. Consider the whole batch once, then decide from the current state. Do not repeat an action for each historical notification.`,
     `Your player ID: ${player.id}.`,
     tableContract,
     `Events for this notification:\n${json(events)}`,
     `Current player-visible table:\n${json(view)}`,
+    turnHistory ? `Public actions in the current turn (historical context, not new notifications):\n${json(turnHistory)}` : '',
     setupReminder,
     'Consider whether the rules currently allow or require you to do anything. A quick no_op is normal. Finish with complete_decision.',
   ].filter(Boolean).join('\n\n');
@@ -179,7 +182,10 @@ export function createCodexRunner({
           }
           if (event.type === 'turn.completed') {
             completed = true;
-            if (event.usage) onUsage(event.usage);
+            // exec resume reports the conversation's cumulative token usage,
+            // including earlier turns. The coordinator must replace this seat's
+            // session total instead of adding that history again on each turn.
+            if (event.usage) onUsage(event.usage, { scope: 'session', sessionId: discovered });
           }
           if (event.type === 'turn.failed' || event.type === 'error') {
             rejectRun(new Error(event.error?.message || event.message || 'Codex player failed'));

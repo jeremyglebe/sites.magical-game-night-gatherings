@@ -10,6 +10,8 @@ import { recordingMarkdown } from './game-log.mjs';
 import { createCoordinator } from './coordinator.mjs';
 import { createCodexRunner } from './codex-player.mjs';
 import { readRules } from './rules.mjs';
+import { readCodexPlanUsage } from './plan-usage.mjs';
+import { recordPlanUsage, planUsageView } from './usage-tracking.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const precons = JSON.parse(readFileSync(join(here, 'precons.json'), 'utf8'));
@@ -64,6 +66,7 @@ export function normalizeSetup(input) {
 export async function startApp({
   directory = '.playtest', port = 5180, setup, resume = true,
   runPlayerFactory = createCodexRunner, comprehensivePath,
+  readPlanUsage = readCodexPlanUsage, usageRefreshMs = 60_000,
 } = {}) {
   const root = resolve(directory);
   mkdirSync(root, { recursive: true, mode: 0o700 });
@@ -73,6 +76,11 @@ export async function startApp({
   let coordinator = null;
   let creating = false;
   let activeRulesPath;
+  let usageRequest = null;
+  let usageError = null;
+  let lastUsageAttempt = 0;
+  let closing = false;
+  let controlVersion = 0;
   const configuredRulesPath = comprehensivePath || process.env.TABLETOP_COMPREHENSIVE_RULES
     || resolve(here, '../../.playtest/rules/ComprehensiveRules.txt');
 
@@ -84,13 +92,38 @@ export async function startApp({
         session: match.session, players: match.config.players.map(({ deck, ...p }) => p),
       } : null,
       coordinator: coordinator?.status() || null, presets, defaults,
+      planUsage: planUsageView(match?.planUsage, { error: usageError, refreshing: !!usageRequest }),
       rules: readRules({}, { comprehensivePath: activeRulesPath || configuredRulesPath }),
     };
   }
   function saveMatch() {
     if (match) save(join(root, 'matches', match.id, 'match.json'), {
       id: match.id, config: match.config, coordinator: coordinator?.snapshot() || match.savedCoordinator,
+      planUsage: match.planUsage,
     });
+  }
+  async function refreshPlanUsage({ force = false } = {}) {
+    if (usageRequest) return usageRequest;
+    if (!match || !readPlanUsage || !match.config.players.some(p => p.ai)) return appState().planUsage;
+    // The browser can poll local state freely; quota reads are cached separately.
+    if (Date.now() - lastUsageAttempt < (force ? 5_000 : usageRefreshMs)) return appState().planUsage;
+    lastUsageAttempt = Date.now();
+    const target = match;
+    const decisionsAtStart = coordinator.status().decisions;
+    usageRequest = (async () => {
+      try {
+        const sample = await Promise.resolve().then(() => readPlanUsage());
+        if (match === target) {
+          target.planUsage = recordPlanUsage(target.planUsage, sample, decisionsAtStart);
+          usageError = null;
+          saveMatch();
+        }
+      } catch {
+        if (match === target) usageError = 'Could not refresh your Codex allowance. Last successful reading is shown when available.';
+      } finally { usageRequest = null; }
+      return appState().planUsage;
+    })();
+    return usageRequest;
   }
   async function unload() {
     if (coordinator) {
@@ -104,14 +137,14 @@ export async function startApp({
     match = null;
     activeRulesPath = undefined;
   }
-  async function loadMatch(id, config, savedCoordinator) {
+  async function loadMatch(id, config, savedCoordinator, savedPlanUsage) {
     if (!/^[a-zA-Z0-9_-]+$/.test(id)) throw new Error('Invalid saved match');
     const folder = join(root, 'matches', id);
     const session = join(folder, 'session.json');
     const rulesPath = join(folder, 'ComprehensiveRules.txt');
     mkdirSync(folder, { recursive: true, mode: 0o700 });
     if (!existsSync(rulesPath) && existsSync(configuredRulesPath)) copyFileSync(configuredRulesPath, rulesPath);
-    const nextMatch = { id, config, session, savedCoordinator };
+    const nextMatch = { id, config, session, savedCoordinator, planUsage: savedPlanUsage };
     let nextTable;
     let nextCoordinator;
     try {
@@ -137,22 +170,31 @@ export async function startApp({
         limits: { ...config.limits, ...savedCoordinator?.limits },
         getView: seat => observe(nextTable.getState(), seat),
         getEvents: (seat, after, through) => eventsSince(nextTable.getState(), seat, Math.max(0, after)).events.filter(e => e.revision <= through),
+        getPublicEvents: (after, through) => eventsSince(nextTable.getState(), null, Math.max(0, after)).events.filter(e => e.revision <= through),
         onChange: snapshot => {
+          const wasActive = nextMatch.savedCoordinator?.players?.some(p => p.active);
           nextMatch.savedCoordinator = snapshot;
-          save(join(folder, 'match.json'), { id, config, coordinator: snapshot });
+          save(join(folder, 'match.json'), { id, config, coordinator: snapshot, planUsage: nextMatch.planUsage });
+          if (match === nextMatch && !closing && !creating) {
+            const becameIdle = wasActive && !snapshot.players.some(p => p.active);
+            void refreshPlanUsage({ force: becameIdle && !['running', 'stepping'].includes(snapshot.mode) });
+          }
         },
       });
       if (nextTable.getState().result) nextCoordinator.finish();
       else if (!savedCoordinator || nextTable.getState().revision > (savedCoordinator.latestRevision ?? -1)) {
         nextCoordinator.notify(nextTable.getState().revision);
       }
-      save(join(folder, 'match.json'), { id, config, coordinator: nextCoordinator.snapshot() });
+      save(join(folder, 'match.json'), { id, config, coordinator: nextCoordinator.snapshot(), planUsage: nextMatch.planUsage });
       // Fully construct and persist the replacement before releasing the current match.
+      await usageRequest;
       await unload();
       match = nextMatch;
       table = nextTable;
       coordinator = nextCoordinator;
       activeRulesPath = rulesPath;
+      usageError = null;
+      lastUsageAttempt = 0;
       save(currentFile, { id });
       return appState();
     } catch (error) {
@@ -179,7 +221,10 @@ export async function startApp({
       if (['running', 'stepping'].includes(coordinator?.status().mode)) {
         throw new Error('Pause the current match before creating another');
       }
-      return await loadMatch(randomUUID(), config);
+      controlVersion++;
+      const result = await loadMatch(randomUUID(), config);
+      void refreshPlanUsage();
+      return result;
     } finally { creating = false; }
   }
 
@@ -188,7 +233,7 @@ export async function startApp({
     const { id } = JSON.parse(readFileSync(currentFile, 'utf8'));
     if (!/^[a-zA-Z0-9_-]+$/.test(id)) throw new Error('Invalid saved match');
     const saved = JSON.parse(readFileSync(join(root, 'matches', id, 'match.json'), 'utf8'));
-    await loadMatch(id, saved.config, saved.coordinator);
+    await loadMatch(id, saved.config, saved.coordinator, saved.planUsage);
   }
 
   const server = createServer(async (request, response) => {
@@ -208,6 +253,9 @@ export async function startApp({
         response.end(readFileSync(join(here, 'index.html'))); return;
       }
       if (request.method === 'GET' && url.pathname === '/api/app') { json(response, 200, appState()); return; }
+      if (request.method === 'POST' && url.pathname === '/api/usage/refresh') {
+        json(response, 200, await refreshPlanUsage({ force: true })); return;
+      }
       if (request.method === 'POST' && url.pathname === '/api/match') {
         json(response, 201, await createMatch(await bodyJSON(request))); return;
       }
@@ -223,11 +271,17 @@ export async function startApp({
       if (request.method === 'POST' && url.pathname === '/api/control') {
         const { action, limits } = await bodyJSON(request);
         if (!['start', 'pause', 'step', 'stop', 'configure'].includes(action)) throw new Error('Unknown match control');
+        const target = coordinator;
+        const version = ++controlVersion;
         if (action === 'configure') {
           if (!limits || typeof limits !== 'object' || Array.isArray(limits)) throw new Error('Supply run limits');
           coordinator.configure(limits);
           match.config.limits = coordinator.snapshot().limits;
-        } else await coordinator[action]();
+        } else {
+          if (action === 'start' || action === 'step') await refreshPlanUsage({ force: true });
+          if (closing || version !== controlVersion || target !== coordinator) throw new Error('This control was superseded by a newer match control.');
+          await coordinator[action]();
+        }
         saveMatch();
         json(response, 200, coordinator.status()); return;
       }
@@ -251,10 +305,25 @@ export async function startApp({
     await unload();
     throw error;
   }
+  void refreshPlanUsage();
+  const usageTimer = setInterval(() => {
+    if (['running', 'stepping'].includes(coordinator?.status().mode)) void refreshPlanUsage();
+  }, usageRefreshMs);
+  usageTimer.unref();
   return {
     server, url: `http://127.0.0.1:${server.address().port}`, createMatch, appState,
+    refreshPlanUsage,
     getTable: () => table, getCoordinator: () => coordinator,
-    async close() { await unload(); await closeServer(server); },
+    async close() {
+      closing = true;
+      controlVersion++;
+      clearInterval(usageTimer);
+      if (coordinator && coordinator.status().mode !== 'finished') coordinator.pause();
+      await coordinator?.idle();
+      await refreshPlanUsage({ force: true });
+      await unload();
+      await closeServer(server);
+    },
   };
 }
 
@@ -272,16 +341,19 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
       comprehensivePath: values['comprehensive-rules'] || process.env.TABLETOP_COMPREHENSIVE_RULES,
     });
     console.log(values.headless ? 'Headless match host ready. The viewer is optional.' : `Local playtester: ${app.url}`);
+    let shuttingDown = false;
+    for (const signal of ['SIGINT', 'SIGTERM']) process.once(signal, async () => {
+      shuttingDown = true;
+      await app.close(); process.exit(0);
+    });
     if (values.run) {
       if (!app.getCoordinator()) {
         await app.close();
         throw new Error('--run requires a setup or an existing saved match');
       }
-      app.getCoordinator().start();
+      await app.refreshPlanUsage({ force: true });
+      if (!shuttingDown) app.getCoordinator().start();
     }
-    for (const signal of ['SIGINT', 'SIGTERM']) process.once(signal, async () => {
-      await app.close(); process.exit(0);
-    });
   } catch (error) {
     if (app?.server.listening) await app.close();
     console.error(error.message);

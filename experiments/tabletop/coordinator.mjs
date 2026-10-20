@@ -20,6 +20,29 @@ function positive(value, name) {
   return value;
 }
 
+function revisionsBetween(first, last) {
+  return Array.from({ length: last - first + 1 }, (_, index) => first + index);
+}
+
+function currentTurnHistory(history, turn) {
+  const events = Array.isArray(history) ? history : history.events || [];
+  let start = 0;
+  const marker = {};
+  for (let index = 0; index < events.length; index++) {
+    for (const change of events[index].changes || []) {
+      if (change.type !== 'turn') continue;
+      const updated = { ...marker };
+      for (const key of ['number', 'active']) if (change.set?.[key] !== undefined) updated[key] = change.set[key];
+      if (updated.number !== marker.number || updated.active !== marker.active) start = index;
+      Object.assign(marker, updated);
+    }
+  }
+  return {
+    number: turn?.number, active: turn?.active,
+    events: events.slice(start).map(({ revision, actor, summary }) => ({ revision, actor, summary })),
+  };
+}
+
 /**
  * A notification scheduler, not a Magic rules engine.
  * getView/getEvents must return projections for the supplied seat. onChange is a
@@ -27,7 +50,7 @@ function positive(value, name) {
  * private table views. A restored coordinator always begins paused.
  */
 export function createCoordinator({
-  players, runPlayer, getView, getEvents = () => [], onChange = () => {},
+  players, runPlayer, getView, getEvents = () => [], getPublicEvents, onChange = () => {},
   saved = null, limits = {},
 }) {
   if (!Array.isArray(players) || !players.length) throw new Error('Supply at least one player');
@@ -46,9 +69,12 @@ export function createCoordinator({
     const pending = [...(previous?.pending || [])];
     if (previous?.active?.completion) {
       lastCompleted = Math.max(lastCompleted, previous.active.revision);
-      if (retryRevision === previous.active.revision) retryRevision = null;
+      if (retryRevision !== null && retryRevision <= previous.active.revision) retryRevision = null;
     }
-    else if (Number.isSafeInteger(previous?.active?.revision)) pending.unshift(previous.active.revision);
+    else if (Number.isSafeInteger(previous?.active?.revision)) {
+      const first = previous.active.fromRevision ?? previous.active.revision;
+      pending.unshift(...revisionsBetween(first, previous.active.revision));
+    }
     seats.set(input.id, {
       config: { ...DEFAULT_PLAYER, ...input },
       sessionId: previous?.sessionId || null,
@@ -56,6 +82,7 @@ export function createCoordinator({
       lastCompleted, retryRevision,
       decisions: previous?.decisions || 0,
       usage: { ...emptyUsage(), ...previous?.usage },
+      usageScope: previous?.usageScope || 'legacy',
       lastDecision: previous?.active?.completion || previous?.lastDecision || null,
       error: previous?.active ? 'Previous decision was interrupted; resume to reconsider the current table.' : previous?.error || null,
       active: null,
@@ -71,6 +98,21 @@ export function createCoordinator({
   let scheduled = false;
   let nextSeat = 0;
 
+  function recordUsage(seat, usage, metadata = {}) {
+    if (metadata.scope === 'session') {
+      if (!seat.sessionId || metadata.sessionId !== seat.sessionId) throw new Error('Usage belongs to a different player session');
+      // One seat owns one conversation. A cumulative report already includes
+      // its earlier turns, including turns before a restart. Replacing also
+      // repairs legacy snapshots that incorrectly summed cumulative reports.
+      seat.usage = emptyUsage();
+      addUsage(seat.usage, usage);
+      seat.usageScope = 'session';
+    } else {
+      addUsage(seat.usage, usage);
+      seat.usageScope = 'turn';
+    }
+  }
+
   function snapshot() {
     return {
       version: 1, mode, latestRevision, decisions, limits: clone(settings), issue,
@@ -79,10 +121,10 @@ export function createCoordinator({
         model: s.config.model, reasoning: s.config.reasoning,
         enabled: s.config.enabled !== false, sessionId: s.sessionId,
         pending: [...s.pending], lastCompleted: s.lastCompleted, retryRevision: s.retryRevision,
-        decisions: s.decisions, usage: clone(s.usage),
+        decisions: s.decisions, usage: clone(s.usage), usageScope: s.usageScope,
         lastDecision: clone(s.lastDecision), error: s.error,
         active: s.active ? {
-          revision: s.active.revision, decisionId: s.active.id, startedAt: s.active.startedAt,
+          revision: s.active.revision, fromRevision: s.active.fromRevision, decisionId: s.active.id, startedAt: s.active.startedAt,
           completion: clone(s.active.completion),
         } : null,
       })),
@@ -134,10 +176,14 @@ export function createCoordinator({
     }
   }
   async function launch(seat) {
-    const revision = seat.pending.shift();
+    // One current decision can consider every event accumulated while this seat
+    // was busy. Preserve their complete ordered history; only combine prompts.
+    const pending = seat.pending.splice(0);
+    const fromRevision = pending[0];
+    const revision = pending.at(-1);
     const controller = new AbortController();
     const active = {
-      id: randomUUID(), revision, startedAt: new Date().toISOString(),
+      id: randomUUID(), revision, fromRevision, startedAt: new Date().toISOString(),
       controller, completion: null, timedOut: false, promise: null,
     };
     seat.active = active;
@@ -149,8 +195,11 @@ export function createCoordinator({
     const job = (async () => {
       try {
         const view = await getView(seat.config.id);
-        const history = await getEvents(seat.config.id, revision - 1, revision);
-        const events = (Array.isArray(history) ? history : history.events || []).filter(e => e.revision <= revision);
+        const history = await getEvents(seat.config.id, fromRevision - 1, revision);
+        const events = (Array.isArray(history) ? history : history.events || [])
+          .filter(e => e.revision >= fromRevision && e.revision <= revision).sort((a, b) => a.revision - b.revision);
+        const turnHistory = getPublicEvents
+          ? currentTurnHistory(await getPublicEvents(0, view.revision), view.turn) : undefined;
         if (controller.signal.aborted) return;
         timeout = setTimeout(() => {
           active.timedOut = true;
@@ -158,7 +207,7 @@ export function createCoordinator({
         }, settings.decisionTimeoutMs);
         const result = await runPlayer({
           player: clone(seat.config), sessionId: seat.sessionId,
-          revision, decisionId: active.id, view, events,
+          revision, fromRevision, decisionId: active.id, view, events, turnHistory,
           signal: controller.signal,
           onSession(id) {
             if (typeof id !== 'string' || !id) throw new Error('Invalid Codex session ID');
@@ -167,7 +216,7 @@ export function createCoordinator({
             seat.sessionId = id;
             changed();
           },
-          onUsage(usage) { addUsage(seat.usage, usage); changed(); },
+          onUsage(usage, metadata) { recordUsage(seat, usage, metadata); changed(); },
         });
         if (result?.sessionId) {
           if (seat.sessionId && seat.sessionId !== result.sessionId) throw new Error('Codex resumed a different player session');
@@ -175,7 +224,7 @@ export function createCoordinator({
           seat.sessionId = result.sessionId;
         }
         // Runners either stream usage with onUsage or return it, not both.
-        if (result?.usage) addUsage(seat.usage, result.usage);
+        if (result?.usage) recordUsage(seat, result.usage, result.usageMetadata);
         if (active.timedOut) throw new Error('Player decision timed out');
         if (!controller.signal.aborted && !active.completion) throw new Error('Player exited without calling complete_decision');
         if (active.completion) {
@@ -199,9 +248,9 @@ export function createCoordinator({
         if (active.completion) {
           seat.lastCompleted = Math.max(seat.lastCompleted, revision);
           seat.lastDecision = active.completion;
-          if (seat.retryRevision === revision) seat.retryRevision = null;
-        } else if (mode !== 'finished' && !seat.pending.includes(revision)) {
-          seat.pending.unshift(revision);
+          if (seat.retryRevision !== null && seat.retryRevision <= revision) seat.retryRevision = null;
+        } else if (mode !== 'finished') {
+          seat.pending = [...new Set([...revisionsBetween(fromRevision, revision), ...seat.pending])].sort((a, b) => a - b);
         }
         seat.active = null;
         if (mode === 'stepping' && stepPermits === 0 && ![...seats.values()].some(s => s.active)) mode = 'paused';

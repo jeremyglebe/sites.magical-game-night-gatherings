@@ -102,8 +102,20 @@ test('new and resumed sessions distinguish optional overrides and hidden librari
   }
 });
 
-test('runner parses split JSON events and reports session and usage without storing transcripts', async t => {
-  const capture = {}, sessions = [], usages = [];
+test('resumed batched prompts preserve turn history and explain whole-turn land and pass tracking', () => {
+  const prompt = playerPrompt({ ...request, sessionId: 'own-history', fromRevision: 14, revision: 20,
+    turnHistory: { number: 1, active: 'p1', events: [{ revision: 7, actor: 'p1', summary: 'Plains played in Main1' }] },
+  });
+  assert.match(prompt, /Game updates 14 through 20/);
+  assert.match(prompt, /Do not repeat an action for each historical notification/);
+  assert.match(prompt, /ONE land play across the entire turn/);
+  assert.match(prompt, /another main phase does not reset/);
+  assert.match(prompt, /Do not start another identical pass round/);
+  assert.match(prompt, /Plains played in Main1/);
+});
+
+test('runner parses split JSON events and reports cumulative session usage without storing transcripts', async t => {
+  const capture = {}, sessions = [], usages = [], usageMetadata = [];
   const runner = createCodexRunner({
     workspaceRoot: temporary(t), getConnection: () => connection,
     spawnImpl: fakeSpawn((child, prompt) => {
@@ -113,10 +125,11 @@ test('runner parses split JSON events and reports session and usage without stor
       output(child, [{ type: 'turn.completed', usage: { input_tokens: 21, output_tokens: 3 } }]);
     }, capture),
   });
-  const result = await runner({ ...request, onSession: id => sessions.push(id), onUsage: usage => usages.push(usage) });
+  const result = await runner({ ...request, onSession: id => sessions.push(id), onUsage: (usage, metadata) => { usages.push(usage); usageMetadata.push(metadata); } });
   assert.deepEqual(result, { sessionId: 'own-history' });
   assert.deepEqual(sessions, ['own-history']);
   assert.equal(usages[0].output_tokens, 3);
+  assert.deepEqual(usageMetadata, [{ scope: 'session', sessionId: 'own-history' }]);
   assert.equal(capture.options.shell, false);
   assert(capture.options.cwd.endsWith('/p1'));
   assert.match(capture.prompt, /My own card/);

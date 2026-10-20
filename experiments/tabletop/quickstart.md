@@ -22,6 +22,8 @@ Neither hidden library contents nor an empty optional-reference list is a setup 
 
 Every notification is information, not permission to act. Read `observe_table` before making changes and use its current revision. Use `read_events(since)` to read all unseen events in order; an older notification may already be superseded. Keep the returned revision as the history cursor. Only use current card IDs from the latest table.
 
+Updates that arrive while your seat is busy are delivered together as one ordered batch. Every accepted event remains included. Read the batch once, use the current table to decide what you can do now, and complete one decision. Do not replay a move for each older notification. The prompt also includes public current-turn history so that actions earlier in the turn remain available even after they leave the table's short recent-events list.
+
 Determine whether the rules require your seat to act, pass, or make a choice. Being the active player is different from having priority; a blocking choice or choice during resolution may belong to another player. Respect response opportunities.
 
 - To take a game action, use `act` with a short explanation and only the changes that need no intervening opponent choice.
@@ -37,7 +39,11 @@ The ordinary turn proceeds through untap, upkeep, draw, first main, beginning of
 
 With priority, instants and most activated abilities can be used. Ordinary sorcery timing requires your main phase and an empty stack. Playing a land is a special action with that timing, normally once per turn. Pay costs and choose required modes and targets when casting or activating. Mana abilities usually do not use the stack.
 
+The normal land allowance is **one land play for the entire turn**, shared by both main phases and all notifications. A land played during the first main phase uses that turn's allowance; arriving at the second main phase does not grant another. Check the current-turn action history before playing a land. Additional plays need an identified effect that permits them. Do not confuse a land put onto the battlefield by an effect with playing a land. See Comprehensive Rules 305.2.
+
 Priority passes in turn order. After all players pass consecutively without intervening action, resolve the top stack object, or advance the step/phase if the stack is empty. After resolution the active player normally receives priority, after state-based actions and waiting triggers are handled. The table never performs this sequence for you.
+
+Count passes in the current priority sequence. When every player has passed in succession, **do not begin another identical round of passes**. For this manual table, the active player coordinates the resulting resolution or step/phase change while honoring any required choices, triggers, and response opportunities. An intervening action resets the pass sequence. In an ordinary two-player example, if p1 passes and then p2 passes with no action between, resolution or advancement is due; p1 must not simply pass again in the same window. See Comprehensive Rules 117.4. These are player responsibilities, not automated table rules.
 
 ## Combat, effects, and the end of the game
 
