@@ -96,11 +96,47 @@ export async function startApp({
         phase: postgame?.status === 'pending' ? 'survey_pending' : coordinator?.status().state || 'paused',
         session: match.session, players: match.config.players.map(({ deck, ...p }) => p),
       } : null,
-      coordinator: coordinator?.status() || null, presets, defaults, avatars: avatarNames, archive: true,
+      coordinator: coordinator?.status() || null, presets, defaults, avatars: avatarNames, archive: true, humanControls: true,
       postgame,
       planUsage: planUsageView(match?.planUsage, { error: usageError, refreshing: !!usageRequest }),
       rules: readRules({}, { comprehensivePath: activeRulesPath || configuredRulesPath, basicPath: activeBasicPath || basicRulesPath }),
     };
+  }
+  function humanPlayer(matchId, playerId) {
+    if (!match || match.id !== matchId) throw new Error('This view belongs to a different match. Refresh the table.');
+    if (!match.config.players.some(player => player.id === playerId && player.ai === false)) {
+      throw new Error('Choose a configured human player. AI seats cannot be controlled from this view.');
+    }
+    return playerId;
+  }
+  function humanView(matchId, playerId) {
+    humanPlayer(matchId, playerId);
+    const state = table.getState();
+    const view = observe(state, playerId);
+    for (const zone of Object.values(view.zones)) for (const card of zone.cards) {
+      // A visible object can still have a concealed identity. Apply the same
+      // card-read check before adding artwork to the player's projection.
+      try {
+        const details = table.readCard(playerId, card.id);
+        if (details.image_url) card.image_url = details.image_url;
+      } catch { /* Leave other players' face-down cards unidentified. */ }
+    }
+    let canAct = false;
+    let message;
+    if (state.result) message = 'The game has ended. Complete your post-game questionnaire.';
+    else if (closing || creating) message = 'The table is changing. Wait for it to reconnect.';
+    else {
+      try {
+        coordinator.authorizeManual(playerId);
+        canAct = true;
+        message = ['running', 'stepping'].includes(coordinator.status().mode)
+          ? 'You have control. Make your moves, then pass priority or the turn.'
+          : 'You have control while paused. Your moves are saved; Resume starts an AI after you hand off.';
+      } catch {
+        message = 'Waiting for another player to hand control to you.';
+      }
+    }
+    return { matchId, playerId, table: view, canAct, message };
   }
   function saveMatch() {
     if (match) save(join(root, 'matches', match.id, 'match.json'), {
@@ -316,6 +352,10 @@ export async function startApp({
         response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' });
         response.end(readFileSync(join(here, 'survey.mjs'))); return;
       }
+      if (request.method === 'GET' && ['/human-controls.mjs', '/human-controls.css'].includes(url.pathname)) {
+        response.writeHead(200, { 'Content-Type': url.pathname.endsWith('.css') ? 'text/css; charset=utf-8' : 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' });
+        response.end(readFileSync(join(here, url.pathname.slice(1)))); return;
+      }
       if (request.method === 'POST' && url.pathname === '/api/usage/refresh') {
         json(response, 200, await refreshPlanUsage({ force: true })); return;
       }
@@ -323,6 +363,22 @@ export async function startApp({
         json(response, 201, await createMatch(await bodyJSON(request))); return;
       }
       if (!match) { json(response, 404, { error: 'Create a match first' }); return; }
+      if (request.method === 'GET' && url.pathname === '/api/human') {
+        json(response, 200, humanView(url.searchParams.get('matchId'), url.searchParams.get('playerId'))); return;
+      }
+      if (request.method === 'GET' && url.pathname === '/api/human/card') {
+        const playerId = humanPlayer(url.searchParams.get('matchId'), url.searchParams.get('playerId'));
+        json(response, 200, table.readCard(playerId, url.searchParams.get('id'))); return;
+      }
+      if (request.method === 'POST' && url.pathname === '/api/human/act') {
+        const args = await bodyJSON(request);
+        const playerId = humanPlayer(args.matchId, args.playerId);
+        if (closing || creating) throw new Error('The table is changing. Refresh before acting.');
+        // Identity is selected from configured human seats, never from an
+        // arbitrary action actor or a browser-supplied AI decision credential.
+        table.act(playerId, { revision: args.revision, actions: args.actions, reason: 'Human table actions' });
+        json(response, 200, humanView(args.matchId, playerId)); return;
+      }
       if (request.method === 'GET' && url.pathname === '/api/survey') {
         json(response, 200, table.getRecording()?.postgame || null); return;
       }

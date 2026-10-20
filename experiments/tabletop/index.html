@@ -324,6 +324,9 @@
       .seat-settings {
         margin-top: 10px;
       }
+      .seat-editor > .field {
+        margin-top: 10px;
+      }
       .seat-settings summary {
         font-size: 12px;
         color: var(--muted);
@@ -1677,8 +1680,8 @@
             <div class="eyebrow">Set the table</div>
             <h1 id="lobby-title">Give your decks a game.</h1>
             <p>
-              Choose the players, open a table, and watch a playtest—or leave it
-              running and come back to the log.
+              Join a game against AI players, or watch a playtest and come back
+              to its saved log.
             </p>
           </div>
           <div class="controls">
@@ -1772,7 +1775,7 @@
                 <div id="seat-editors"></div>
                 <div class="setup-footer">
                   <button type="button" id="add-seat">
-                    ＋ Add Codex player</button
+                    ＋ Add player</button
                   ><span class="small muted"
                     >Up to six players in the viewer</span
                   >
@@ -1796,6 +1799,7 @@
                 <h2>Ready to play</h2>
                 <ul>
                   <li>Each AI has its own session and private hand.</li>
+                  <li>Choose Human to play from this browser.</li>
                   <li>Players interpret the rules and make the moves.</li>
                   <li>The table saves a log for you to review later.</li>
                 </ul>
@@ -1819,6 +1823,7 @@
             <div id="match-subtitle" class="muted">Public spectator view</div>
           </div>
           <div id="controls" class="controls">
+            <a id="human-seat-link" href="#human-controls" hidden>Human controls ↓</a>
             <button class="primary" data-control="start" id="start-button">
               ▶ Start</button
             ><button data-control="pause">Ⅱ Pause</button
@@ -1904,6 +1909,7 @@
             </section>
             <button id="new-match" class="quiet new-match">New table</button>
           </aside>
+          <section id="human-controls" aria-label="Human player controls" hidden></section>
           <section class="player-details" aria-label="Player models and status">
             <h2>Players</h2>
             <div class="run-summary">
@@ -2095,6 +2101,25 @@
         inspectorRequest = 0;
       let usageRefreshing = false,
         usageRequestError = "";
+      let humanControls = null,
+        humanControlsLoading = false;
+      async function updateHumanControls() {
+        if (!legacy && !humanControls && !humanControlsLoading && app?.humanControls
+          && app?.match?.players?.some(player => player.ai === false)) {
+          humanControlsLoading = true;
+          try {
+            const stylesheet = document.createElement("link");
+            stylesheet.rel = "stylesheet";
+            stylesheet.href = "/human-controls.css";
+            document.head.append(stylesheet);
+            const { createHumanControls } = await import("/human-controls.mjs");
+            humanControls = createHumanControls({ root: $("#human-controls"), request, onChange: refresh });
+          } catch (error) {
+            setError("Human controls could not load: " + error.message);
+          } finally { humanControlsLoading = false; }
+        }
+        humanControls?.update({ app: legacy ? null : app, table, connected: tableConnected });
+      }
       let seats = [];
       let seatSequence = 0;
       const defaults = { model: "gpt-6-luna", reasoning: "high" };
@@ -2162,6 +2187,7 @@
       }
       function field(label, element) {
         const wrapper = make("label", "field", label);
+        element.setAttribute("aria-label", label);
         wrapper.append(element);
         return wrapper;
       }
@@ -2225,14 +2251,27 @@
               select(presetList(), seat.deck, (v) => (seat.deck = v)),
             ),
           );
+          const controller = field(
+            "Controlled by",
+            select(
+              [
+                { id: "ai", name: "AI · Codex" },
+                { id: "manual", name: "Human · this browser" },
+              ],
+              seat.ai ? "ai" : "manual",
+              (v) => { seat.ai = v === "ai"; renderSetup(); },
+            ),
+          );
           const settings = make("details", "seat-settings");
-          settings.append(make("summary", "", "Player, model, and reasoning"));
+          settings.hidden = !seat.ai;
+          settings.append(make("summary", "", "Model and reasoning"));
           const settingsRow = make("div", "field-row");
           settingsRow.append(
             field(
               "Model",
               input(seat.model, (v) => (seat.model = v), {
-                required: true,
+                required: seat.ai,
+                disabled: !seat.ai,
                 spellcheck: false,
               }),
             ),
@@ -2248,21 +2287,8 @@
               ),
             ),
           );
-          settings.append(
-            settingsRow,
-            field(
-              "Controlled by",
-              select(
-                [
-                  { id: "ai", name: "Codex CLI" },
-                  { id: "manual", name: "External MCP player" },
-                ],
-                seat.ai ? "ai" : "manual",
-                (v) => (seat.ai = v === "ai"),
-              ),
-            ),
-          );
-          section.append(head, row, settings);
+          settings.append(settingsRow);
+          section.append(head, row, controller, settings);
           root.append(section);
         });
         $("#seat-count").textContent = `${seats.length} / 6`;
@@ -2393,6 +2419,7 @@
         return values;
       }
       async function inspectCard(card) {
+        if (humanControls?.inspectCard(card)) return;
         const serial = openInspector(
           card.name || "Unknown card",
           "Card detail",
@@ -2578,7 +2605,8 @@
         const worker = workerFor(id);
         if (!worker) return legacy ? "MCP player" : "Ready";
         if (worker.enabled === false || playerConfig(id).ai === false)
-          return "External MCP player";
+          return coordinator()?.pendingRecipient?.playerId === id
+            ? "Your response · human player" : "Human · awaiting handoff";
         const queue =
           worker.queueLength ??
           worker.pending?.length ??
@@ -3389,6 +3417,11 @@
       function renderRunner() {
         const run = coordinator();
         const phase = runPhase();
+        const hasHuman = !!app?.humanControls && app?.match?.players?.some(player => player.ai === false);
+        $("#human-seat-link").hidden = !hasHuman;
+        $("#human-seat-link").textContent = hasHuman && !app?.postgame
+          && playerConfig(run?.pendingRecipient?.playerId).ai === false
+          ? "Your response ↓" : "Human controls ↓";
         const moving = ["running", "stepping"].includes(run?.mode || phase);
         $("#controls").hidden = legacy;
         $("#log-section").hidden = legacy;
@@ -3596,6 +3629,7 @@
               ? "Detailed rules reference available."
               : rules?.message || "";
           }
+          void updateHumanControls();
           $("#loading").hidden = true;
           $("#connection").classList.remove("offline");
           $("#connection").textContent = legacy
@@ -3604,6 +3638,7 @@
         } catch (error) {
           tableConnected = false;
           renderThinking();
+          void updateHumanControls();
           $("#connection").classList.add("offline");
           $("#connection").textContent = "Disconnected · retrying";
           if ($("#loading").hidden === false)

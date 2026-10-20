@@ -114,6 +114,28 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
       ...(completion && typeof completion === 'object' ? completion : {}) };
   }
 
+  function act(actor, args) {
+    const authorization = beforeAction?.(actor, args);
+    if (authorization && typeof authorization.then === 'function') {
+      authorization.catch?.(() => {});
+      throw new Error('Action authorization must be synchronous');
+    }
+    if (saved.recording?.postgame) throw new Error('Gameplay has ended; only post-game feedback may be submitted');
+    // No asynchronous boundary between checking revision and saving the batch.
+    const previous = saved.state;
+    const state = applyActions(saved.state, actor, args.revision, args.actions, args.reason);
+    const recording = appendRecording(saved.recording || createRecording(previous), previous, state);
+    if (postgame && state.result && !previous.result) {
+      recording.postgame = createSurvey(recording.setup?.players || state.players, state.revision);
+    }
+    persist({ ...saved, state, recording });
+    const completion = onCommit?.(state, actor);
+    return {
+      ...observe(state, actor),
+      ...(completion && typeof completion === 'object' && !Array.isArray(completion) ? completion : {}),
+    };
+  }
+
   const server = createServer(async (request, response) => {
     try {
       const url = new URL(request.url, 'http://localhost');
@@ -190,25 +212,7 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
           json(response, 200, result ?? { accepted: true });
           return;
         }
-        const authorization = beforeAction?.(actor, args);
-        if (authorization && typeof authorization.then === 'function') {
-          authorization.catch?.(() => {});
-          throw new Error('Action authorization must be synchronous');
-        }
-        if (saved.recording?.postgame) throw new Error('Gameplay has ended; only post-game feedback may be submitted');
-        // No asynchronous boundary between checking revision and saving the batch.
-        const previous = saved.state;
-        const state = applyActions(saved.state, actor, args.revision, args.actions, args.reason);
-        const recording = appendRecording(saved.recording || createRecording(previous), previous, state);
-        if (postgame && state.result && !previous.result) {
-          recording.postgame = createSurvey(recording.setup?.players || state.players, state.revision);
-        }
-        persist({ ...saved, state, recording });
-        const completion = onCommit?.(state, actor);
-        json(response, 200, {
-          ...observe(state, actor),
-          ...(completion && typeof completion === 'object' && !Array.isArray(completion) ? completion : {}),
-        });
+        json(response, 200, act(actor, args));
       } else json(response, 404, { error: 'Unknown endpoint' });
     } catch (error) {
       json(response, 400, { error: error.message });
@@ -226,7 +230,7 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
     getState: () => saved.state,
     getRecording: () => saved.recording,
     getSurvey: surveyForPlayer,
-    submitSurvey,
+    submitSurvey, act, readCard,
     getExportError: () => exportError,
     getToken: seat => saved.credentials[seat],
   };

@@ -1,0 +1,58 @@
+.human-controls { grid-column: 1 / -1; border: 1px solid var(--line,#35483d); border-radius: 10px; background: var(--bg,#101816); padding: 20px; min-width: 0; }
+.human-controls[hidden], .human-controls [hidden] { display: none !important; }
+.human-controls h2, .human-controls h3, .human-controls p { margin: 0; }
+.hc-header, .hc-seat-picker, .hc-zone-head, .hc-send-row, .hc-tools, .hc-modal-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.hc-header { justify-content: space-between; gap: 18px; }
+.hc-header h2 { margin-top: 4px; font-size: 20px; }
+.hc-seat-picker label, .hc-zone-head label, .hc-handoff > label, .hc-tools > label { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.hc-seat-picker select { min-width: 130px; }
+.human-controls .hc-status { margin-top: 12px; color: var(--green,#b9d8b1); }
+.human-controls .hc-error { border-left: 3px solid var(--red,#efa797); padding: 8px 12px; margin-top: 12px; color: var(--red,#efa797); background: #291e1a; }
+.hc-private { margin-top: 14px; }
+.hc-help, .hc-draft-state, .hc-zone-count { color: var(--muted,#a8b9ac); font-size: 12px; line-height: 1.5; }
+.hc-main { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(300px,1fr); gap: 22px; margin-top: 18px; }
+.hc-cards-section { min-width: 0; }
+.hc-zone-head { justify-content: space-between; margin-bottom: 12px; }
+.hc-zone-head select { min-width: 150px; }
+.hc-cards { display: flex; align-items: flex-start; gap: 10px; overflow-x: auto; min-height: 215px; padding: 3px 3px 12px; scrollbar-color: var(--line) transparent; }
+.human-controls .hc-card { flex: 0 0 112px; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 6px; padding: 5px; text-align: left; background: var(--surface,#182420); }
+.hc-card img, .hc-card-fallback { width: 100%; aspect-ratio: 0.716; object-fit: contain; border-radius: 5px; }
+.hc-card-fallback { display: grid; place-items: center; padding: 8px; background: #263b31; font-size: 12px; text-align: center; }
+.hc-card-name { font-size: 11px; line-height: 1.3; }
+.hc-card-markers { color: var(--accent,#dbd3a8); font-size: 10px; line-height: 1.3; }
+.hc-empty { padding: 30px 10px; max-width: 440px; color: var(--muted); }
+.hc-tools { margin-top: 12px; }
+.hc-tools button { font-size: 12px; }
+.hc-tools input[type=number] { width: 65px; }
+.hc-compose { padding-left: 22px; border-left: 1px solid var(--line); }
+.hc-compose h3 { font-size: 15px; margin-bottom: 7px; }
+.hc-queue { padding-left: 24px; max-height: 170px; overflow-y: auto; margin: 8px 0; }
+.hc-queue li { padding: 3px 0; font-size: 12px; }
+.hc-queue li > span { vertical-align: middle; }
+.human-controls .hc-remove { padding: 0 5px; margin-left: 6px; min-height: 23px; }
+.hc-field { display: flex; flex-direction: column; align-items: stretch; gap: 6px; margin: 12px 0; font-size: 12px; font-weight: 600; }
+.hc-field input, .hc-field textarea, .hc-field select { font-size: 13px; font-weight: 400; }
+.hc-field input[type=checkbox] { width: auto; align-self: flex-start; }
+.human-controls .hc-message { min-height: 85px; }
+.hc-handoff { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.hc-handoff .hc-send-row { margin: 10px 0 7px; }
+.hc-handoff select { min-width: 120px; }
+.hc-warning { color: var(--red,#efa797); }
+.hc-more { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
+.hc-more summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+.hc-more .hc-help { margin-top: 10px; }
+.hc-dialog { width: min(740px, calc(100vw - 32px)); padding: 0; }
+.hc-modal-head { padding: 16px 20px; justify-content: space-between; position: sticky; top: 0; z-index: 1; background: var(--bg); border-bottom: 1px solid var(--line); }
+.hc-modal-head h2 { font-size: 18px; }
+.hc-modal-body { padding: 20px; }
+.hc-card-info { display: flex; gap: 20px; align-items: flex-start; }
+.hc-card-info > div { min-width: 0; flex: 1; }
+.hc-modal-art { width: 140px; border-radius: 8px; }
+.hc-oracle { white-space: pre-wrap; margin: 10px 0 !important; }
+.hc-card-info details p { margin-top: 10px; font-size: 12px; }
+.hc-editor-section { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 16px; }
+.hc-editor-section > h3 { font-size: 15px; margin-bottom: 10px; }
+.hc-editor-section > summary { cursor: pointer; }
+.hc-editor-section .hc-help { margin-top: 10px; }
+@media(max-width:900px) { .hc-main { grid-template-columns: minmax(0,1fr); } .hc-compose { padding-left: 0; border-left: 0; padding-top: 16px; border-top: 1px solid var(--line); } }
+@media(max-width:520px) { .human-controls { padding: 14px; } .hc-seat-picker { width: 100%; } .hc-seat-picker > label { flex: 1; } .hc-card-info { flex-direction: column; } .hc-modal-art { width: 110px; } .hc-tools button { padding: 7px 8px; } }
