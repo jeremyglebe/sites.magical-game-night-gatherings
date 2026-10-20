@@ -763,8 +763,23 @@
         cursor: col-resize !important;
         user-select: none;
       }
-      .sidebar h2 {
+      .sidebar h2,
+      .plan-usage h2 {
         font-size: 13px;
+      }
+      .plan-usage {
+        grid-column: 1 / -1;
+        min-width: 0;
+        border-top: 1px solid var(--line);
+        padding-top: 16px;
+      }
+      .usage-content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 24px;
+      }
+      .usage-context .run-detail:first-child {
+        margin-top: 0;
       }
       .run-summary {
         margin-top: 10px;
@@ -1126,6 +1141,21 @@
         font-size: 11px;
         color: var(--muted);
       }
+      @media (min-width: 1051px) {
+        .table-talk {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          min-height: 260px;
+          contain: size;
+        }
+        .table-talk .recent-moves {
+          height: 0;
+          min-height: 0;
+          flex: 1;
+          max-height: none;
+        }
+      }
       @media (min-width: 1600px) {
         :root {
           --board-height: clamp(260px, calc((100dvh - 240px) / 2), 420px);
@@ -1167,6 +1197,10 @@
           margin-top: 0;
           align-self: start;
         }
+        .table-talk {
+          grid-column: 1 / -1;
+          min-width: 0;
+        }
         .runner-players {
           display: flex;
           gap: 8px;
@@ -1187,7 +1221,7 @@
           grid-template-columns: repeat(3, 1fr);
         }
         .recent-moves {
-          max-height: 130px;
+          max-height: 220px;
         }
         .app-header,
         .match-toolbar {
@@ -1205,6 +1239,10 @@
         }
       }
       @media (max-width: 720px) {
+        .usage-content {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 16px;
+        }
         .lobby {
           margin-top: 25px;
           padding: 0 16px 25px;
@@ -1635,7 +1673,7 @@
               aria-valuenow="224"
               title="Drag or use arrow keys to resize the log sidebar. Double-click to reset."
             ></div>
-            <section aria-label="Table talk and actions">
+            <section class="table-talk" aria-label="Table talk and actions">
               <div class="moves-summary">
                 <h2>Table talk &amp; actions</h2>
                 <button id="all-moves" class="quiet">Expand</button>
@@ -1645,34 +1683,6 @@
                 class="recent-moves"
                 aria-label="Recent table talk and actions"
               ></ol>
-            </section>
-            <section id="plan-usage-section" aria-label="Codex plan usage">
-              <div class="moves-summary">
-                <h2>Plan usage</h2>
-                <button id="refresh-usage" class="quiet">Refresh</button>
-              </div>
-              <div id="usage-buckets"></div>
-              <p
-                id="usage-error"
-                class="run-detail usage-error"
-                role="status"
-                hidden
-              ></p>
-              <p id="usage-checked" class="run-detail"></p>
-              <p class="run-detail">
-                Account-wide usage, including other Codex activity. Changes are
-                not this game’s cost.
-              </p>
-              <p id="usage-baseline" class="run-detail"></p>
-              <details class="usage-technical">
-                <summary>Technical token counts</summary>
-                <p id="usage-token-counts"></p>
-                <p>
-                  Tokens describe model traffic, not your plan charge. Cached
-                  input and reasoning output are included in their respective
-                  totals.
-                </p>
-              </details>
             </section>
             <section class="sidebar-run">
               <h2>Players</h2>
@@ -1710,6 +1720,38 @@
             </section>
             <button id="new-match" class="quiet new-match">New table</button>
           </aside>
+          <section id="plan-usage-section" class="plan-usage" aria-label="Codex plan usage">
+            <div class="moves-summary">
+              <h2>Plan usage</h2>
+              <button id="refresh-usage" class="quiet">Refresh</button>
+            </div>
+            <div class="usage-content">
+              <div id="usage-buckets"></div>
+              <div class="usage-context">
+                <p
+                  id="usage-error"
+                  class="run-detail usage-error"
+                  role="status"
+                  hidden
+                ></p>
+                <p id="usage-checked" class="run-detail"></p>
+                <p class="run-detail">
+                  Account-wide usage, including other Codex activity. Changes are
+                  not this game’s cost.
+                </p>
+                <p id="usage-baseline" class="run-detail"></p>
+                <details class="usage-technical">
+                  <summary>Technical token counts</summary>
+                  <p id="usage-token-counts"></p>
+                  <p>
+                    Tokens describe model traffic, not your plan charge. Cached
+                    input and reasoning output are included in their respective
+                    totals.
+                  </p>
+                </details>
+              </div>
+            </div>
+          </section>
         </div>
       </section>
     </main>
