@@ -39,6 +39,7 @@ Every write needs the current table revision. A rejected stale write requires ob
 - Represent a spell on top of `stack`, then move it to its destination when its resolution or other disposition has been decided under the rules. Represent an ability with `stack_item` and remove that entry when appropriate.
 - Record attackers, blockers, targets, and temporary effects in public notes when needed. Keep hidden information and private strategy out of public notes and speech; an action's `reason` is private to that player.
 - Perform required cleanup explicitly, including updating marked damage and temporary effects when the rules require it. A phase or turn marker change does none of that work. Report a game result only when established under the configured rules.
+- Mark a player leaving the game explicitly with `act` and `{type:"player",player:"p2",set:{status:"eliminated"}}`, or `status:"conceded"` for a concession. These are public player reports; life totals alone never set them. Use `status:"active"` to correct a mistaken marker. Perform any required cleanup yourself and hand off to an appropriate remaining player according to the rules. In multiplayer, marking one player out does not finish the game. When the whole game has ended, report `{type:"result",winners:["p1"],explanation:"..."}` (all winning player IDs, or `[]` for a draw); the app then stops the run.
 
 ## Explicit handoffs and efficient play
 

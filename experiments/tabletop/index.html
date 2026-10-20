@@ -448,6 +448,50 @@
         border-color: #9cae87;
         box-shadow: inset 0 3px 0 #9cae87;
       }
+      .player-board.has-outcome {
+        container-type: inline-size;
+        border-color: var(--outcome-color);
+        box-shadow: inset 0 3px 0 var(--outcome-color);
+      }
+      .player-board.outcome-winner { --outcome-color: #edda98; }
+      .player-board.outcome-eliminated { --outcome-color: #dea295; }
+      .player-board.outcome-conceded { --outcome-color: #c0c5cf; }
+      .player-board.outcome-draw { --outcome-color: #adcede; }
+      .player-board.has-outcome.priority .player-name:after { display: none; }
+      .player-board.has-outcome .lanes {
+        opacity: .48;
+        filter: saturate(.55);
+      }
+      .player-board.outcome-winner .lanes {
+        opacity: .72;
+        filter: none;
+      }
+      .board-outcome {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        padding: 16px;
+        pointer-events: none;
+        background: radial-gradient(ellipse at center, #0d171466, transparent 72%);
+      }
+      .board-outcome-label {
+        max-width: 100%;
+        padding: .12em .3em .18em;
+        border: 2px solid currentColor;
+        border-radius: 8px;
+        color: var(--outcome-color);
+        background: #101b18e8;
+        font-size: clamp(10px, 8cqi, 76px);
+        font-weight: 850;
+        line-height: 1.1;
+        letter-spacing: .06em;
+        text-align: center;
+        text-shadow: 0 2px 12px #0008;
+        box-shadow: 0 6px 28px #0004;
+        transform: rotate(-5deg);
+      }
       .player-board.priority .player-name:after {
         content: "Priority";
         margin-left: 7px;
@@ -2444,7 +2488,22 @@
           ? workers.find((w) => (w.id || w.seat) === id)
           : workers[id];
       }
+      function playerOutcome(player) {
+        const winners = table?.result?.winners;
+        if (Array.isArray(winners) && winners.includes(player.id))
+          return { key: "winner", label: "WINNER", status: "Winner" };
+        if (player.status === "conceded")
+          return { key: "conceded", label: "CONCEDED", status: "Conceded" };
+        if (player.status === "eliminated" || (Array.isArray(winners) && winners.length))
+          return { key: "eliminated", label: "DEAD", status: "Eliminated" };
+        if (Array.isArray(winners))
+          return { key: "draw", label: "DRAW", status: "Draw" };
+        return null;
+      }
       function workerText(id) {
+        const player = table?.players?.find((p) => p.id === id);
+        const outcome = player && playerOutcome(player);
+        if (outcome) return outcome.status;
         const worker = workerFor(id);
         if (!worker) return legacy ? "MCP player" : "Ready";
         if (worker.enabled === false || playerConfig(id).ai === false)
@@ -2464,11 +2523,13 @@
         return humanize(state);
       }
       function board(player, index) {
+        const outcome = playerOutcome(player);
         const node = make(
           "section",
           "player-board" +
             (table.turn.active === player.id ? " active" : "") +
-            (table.turn.priority === player.id ? " priority" : ""),
+            (table.turn.priority === player.id ? " priority" : "") +
+            (outcome ? ` has-outcome outcome-${outcome.key}` : ""),
         );
         node.dataset.player = player.id;
         node.setAttribute("aria-label", player.name + " battlefield");
@@ -2557,6 +2618,12 @@
         );
         footer.append(zones, inspect);
         node.append(head, counts, status, lanes, footer);
+        if (outcome) {
+          const overlay = make("div", "board-outcome");
+          overlay.setAttribute("aria-label", `${player.name}: ${outcome.status}`);
+          overlay.append(make("span", "board-outcome-label", outcome.label));
+          node.append(overlay);
+        }
         return node;
       }
       function renderTable(state) {
@@ -2650,6 +2717,7 @@
           image.src = `/avatars/${config.avatar}.png`;
           image.alt = "";
           image.decoding = "async";
+          avatar.title = app?.avatars?.[config.avatar] || "";
           // Keep the seat badge if an asset is unavailable, including older servers.
           image.addEventListener("error", () => image.remove(), { once: true });
           avatar.append(image);

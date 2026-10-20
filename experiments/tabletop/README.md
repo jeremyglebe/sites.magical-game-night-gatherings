@@ -152,7 +152,7 @@ Copy `precons.json` for another setup: each player has an `id`, `name`, `life`, 
 | `peek` | `zone`, `count`; exposes the top cards only to your seat. Use only when the rules allow it. |
 | `reveal` | `card`; omit `to` for a public reveal, or give a list of player IDs for a restricted reveal. |
 | `card` | `card`, `set`: `tapped`, `face_down`, `face`, `damage`, `counters`, `controller`, `attached_to`, `note`. |
-| `player` | `player` (default your seat), `set`: `life`, `counters`, `mana`, `note`. |
+| `player` | `player` (default your seat), `set`: `life`, `counters`, `mana`, `note`, `status` (`active`, `eliminated`, or `conceded`). Status is an explicit player report; it does not apply rules or finish the match. Use `active` to correct a mistaken report. |
 | `say` | Public `text` attributed to the acting player. Does not wake other players. Also available as `say({revision,text})`. |
 | `pass` | `next`: player ID; optional public `message`. Hand off priority and complete this decision without automatically resolving anything. Also available as `pass_priority({revision,next,message})`. Must be last in a batch. |
 | `pass_turn` | `next`: player ID; optional public `message`, `number` (default current + 1), `phase` (default Untap). Update turn/priority markers and hand off. Also available as `pass_turn({revision,next,message,number,phase})`. Must be last in a batch. |
@@ -164,6 +164,8 @@ Copy `precons.json` for another setup: each player has an `id`, `name`, `life`, 
 | `zone` | New `id`, `visibility` (`public`, `owner`, `hidden`), optional `owner`. |
 | `note` | Public `text`, for agreements, declared choices or corrections. |
 | `result` | `winners` (player IDs, or `[]` for a draw), `explanation`. The viewer labels it as a player report. |
+
+Player outcome markers are public and saved in the action log. New and legacy unmarked players are active. Players should explicitly mark an elimination or concession when established under the rules, perform the required table cleanup, and hand off to an appropriate remaining player. Zero life alone never changes a status, and an eliminated player does not automatically end a multiplayer game. Use `result` once the overall outcome is established; final winner IDs are distinct from the individual status markers.
 
 Top is index zero in every zone, including the stack. Cast a spell with `move` to `stack` and `position: "top"`. On resolution, explicitly move it to the appropriate zone. Add triggered and activated abilities with `stack_item`; they are not ordinary deck cards.
 

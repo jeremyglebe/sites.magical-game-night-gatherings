@@ -12,7 +12,7 @@ import { createCodexRunner } from './codex-player.mjs';
 import { readRules, defaultBasicRulesPath } from './rules.mjs';
 import { readCodexPlanUsage } from './plan-usage.mjs';
 import { recordPlanUsage, planUsageView } from './usage-tracking.mjs';
-import { assignAvatars, serveAvatar } from './avatars.mjs';
+import { assignAvatars, serveAvatar, avatarNames } from './avatars.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const precons = JSON.parse(readFileSync(join(here, 'precons.json'), 'utf8'));
@@ -93,7 +93,7 @@ export async function startApp({
         phase: coordinator?.status().state || 'paused',
         session: match.session, players: match.config.players.map(({ deck, ...p }) => p),
       } : null,
-      coordinator: coordinator?.status() || null, presets, defaults,
+      coordinator: coordinator?.status() || null, presets, defaults, avatars: avatarNames,
       planUsage: planUsageView(match?.planUsage, { error: usageError, refreshing: !!usageRequest }),
       rules: readRules({}, { comprehensivePath: activeRulesPath || configuredRulesPath, basicPath: activeBasicPath || basicRulesPath }),
     };

@@ -152,7 +152,7 @@ export function createTable(config) {
   for (const p of config.players) {
     requireThat(typeof p.id === 'string' && /^[a-zA-Z0-9_-]{1,40}$/.test(p.id), 'Invalid player ID');
     requireThat(!state.players.some(other => other.id === p.id), 'Duplicate player ID');
-    state.players.push({ id: p.id, name: text(p.name || p.id, 100), life: integer(p.life ?? 20), counters: {}, mana: {}, note: '' });
+    state.players.push({ id: p.id, name: text(p.name || p.id, 100), life: integer(p.life ?? 20), counters: {}, mana: {}, note: '', status: 'active' });
     makeZone(p.id + ':library', p.id, 'hidden');
     makeZone(p.id + ':hand', p.id, 'owner');
     makeZone(p.id + ':sideboard', p.id, 'owner');
@@ -203,7 +203,8 @@ export function observe(state, actor = null) {
     };
   }
   return {
-    title: state.title, revision: state.revision, players: copy(state.players),
+    title: state.title, revision: state.revision,
+    players: state.players.map(p => ({ status: 'active', ...copy(p) })),
     turn: copy(state.turn), zones, notes: copy(state.notes), result: copy(state.result),
     events: state.events.slice(-12).map(e => projectEvent(e, actor)),
   };
@@ -299,6 +300,10 @@ function perform(state, actor, op) {
         if (key === 'life') p.life = integer(value);
         else if (key === 'counters' || key === 'mana') p[key] = counters(value);
         else if (key === 'note') p.note = text(value);
+        else if (key === 'status') {
+          requireThat(['active', 'eliminated', 'conceded'].includes(value), 'Player status must be active, eliminated, or conceded');
+          p.status = value;
+        }
         else throw new Error('Unsupported player field: ' + key);
       }
       return actor + ' updated ' + p.id + ': ' + Object.keys(op.set).join(', ');

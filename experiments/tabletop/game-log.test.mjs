@@ -80,3 +80,28 @@ test('host Markdown renders attributed public speech after each action and repla
   assert.deepEqual(replay.turn, final.turn);
   assert.deepEqual(replay.notes, final.notes);
 });
+
+test('reported player outcomes and corrections survive log export and replay', () => {
+  const setup = { shuffle: false, players: ['one', 'two', 'three'].map(id => ({ id, deck: [{ name: 'Card' }] })) };
+  let state = createTable(setup);
+  let recording = createRecording(state, setup);
+  for (const actions of [
+    [{ type: 'player', player: 'two', set: { status: 'eliminated' } }],
+    [{ type: 'player', player: 'two', set: { status: 'active' } }],
+    [{ type: 'player', player: 'three', set: { status: 'conceded' } }, { type: 'result', winners: ['one'], explanation: 'The table reported its outcome.' }],
+  ]) {
+    const next = applyActions(state, 'one', state.revision, actions, 'Report player outcome');
+    recording = appendRecording(recording, state, next);
+    state = next;
+  }
+  const saved = JSON.parse(JSON.stringify(recording));
+  let replay = saved.initial;
+  for (const frame of saved.frames) replay = applyFrame(replay, frame);
+  assert.deepEqual(replay.players, state.players);
+  assert.deepEqual(replay.result, state.result);
+  const markdown = recordingMarkdown(saved);
+  assert.match(markdown, /two: \{"status":"eliminated"\}/);
+  assert.match(markdown, /two: \{"status":"active"\}/);
+  assert.match(markdown, /three: \{"status":"conceded"\}/);
+  assert.match(markdown, /Reported result: one/);
+});

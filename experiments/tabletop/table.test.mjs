@@ -59,6 +59,42 @@ test('failed batches and stale concurrent writes leave the table intact', () => 
   checkConservation(next, 10);
 });
 
+test('eliminations and concessions are explicit public markers without rules or match automation', () => {
+  const config = setup();
+  config.players.push({ id: 'p3', deck: [{ name: 'Third player card' }] });
+  let state = createTable(config);
+  const initialTurn = structuredClone(state.turn);
+  const initialZones = structuredClone(state.zones);
+  assert.ok(state.players.every(p => p.status === 'active'));
+  state = act(state, 'p1', { type: 'player', player: 'p2', set: { life: 0 } });
+  assert.equal(state.players[1].status, 'active', 'life alone never adjudicates elimination');
+  state = act(state, 'p1',
+    { type: 'player', player: 'p2', set: { status: 'eliminated' } },
+    { type: 'player', player: 'p3', set: { status: 'conceded' } },
+  );
+  assert.equal(state.result, null, 'even a sole remaining player requires an explicit overall result');
+  assert.deepEqual(state.turn, initialTurn, 'status does not choose a handoff');
+  assert.deepEqual(state.zones, initialZones, 'status does not clean up objects');
+  for (const seat of [null, 'p1', 'p2', 'p3']) {
+    assert.deepEqual(observe(state, seat).players.map(p => p.status), ['active', 'eliminated', 'conceded']);
+    const changes = eventsSince(state, seat).events.at(-1).changes;
+    assert.equal(changes[0].set.status, 'eliminated');
+    assert.equal(changes[1].set.status, 'conceded');
+    assert.match(changes[0].summary, /status="eliminated"/);
+  }
+  const saved = JSON.parse(JSON.stringify(state));
+  assert.deepEqual(observe(saved).players, observe(state).players);
+  assert.throws(() => act(state, 'p1', { type: 'player', player: 'p2', set: { status: 'winner' } }), /Player status must/);
+  assert.deepEqual(state, saved, 'invalid changes preserve the original state');
+  state = act(state, 'p1', { type: 'player', player: 'p2', set: { status: 'active' } });
+  assert.equal(state.players[1].status, 'active');
+  assert.equal(state.players[1].life, 0, 'correcting the status does not alter other facts');
+  const legacy = createTable(setup());
+  for (const p of legacy.players) delete p.status;
+  assert.ok(observe(legacy).players.every(p => p.status === 'active'));
+  assert.equal(legacy.players[0].status, undefined, 'reading a legacy session does not rewrite it');
+});
+
 test('cached official rulings survive card creation and saved state while respecting identity visibility', () => {
   const config = setup();
   const cached = {

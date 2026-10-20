@@ -65,7 +65,7 @@ const tools = [
               phase: { type: 'string', maxLength: 100, description: 'pass_turn phase marker; defaults to Untap. Does not untap cards or carry out the phase.' },
               set: {
                 type: 'object',
-                description: 'card fields: tapped, face_down, face, damage, counters, controller, attached_to, note. player: life, counters, mana, note. turn: number, active, priority (player ID or null), phase. No fields change automatically.',
+                description: 'card fields: tapped, face_down, face, damage, counters, controller, attached_to, note. player: life, counters, mana, note, status (active, eliminated, or conceded). Report player status explicitly when established under the rules; it does not end the match or infer a winner. Use active to correct a mistaken status. turn: number, active, priority (player ID or null), phase. No fields change automatically.',
               },
               definition: { type: 'object', description: 'token or stack_item: name, type_line, oracle_text, optional mana_cost, power, toughness, Scryfall image_url. stack_item creates a triggered/activated ability at the top; remove_stack_item removes it after manual resolution.' },
               owner: { ...string, description: 'Token/custom zone owner.' },

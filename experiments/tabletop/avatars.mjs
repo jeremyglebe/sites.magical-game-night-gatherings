@@ -1,10 +1,12 @@
 import { randomInt } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 
-export const avatarIds = Object.freeze([
-  'robot-orc', 'robot-wizard', 'robot-dwarf', 'robot-elf-ranger',
-  'robot-knight', 'robot-rogue', 'robot-cleric', 'robot-bard',
-]);
+export const avatarNames = Object.freeze({
+  'robot-orc': 'Orc', 'robot-wizard': 'Wizard', 'robot-dwarf': 'Dwarf',
+  'robot-elf-ranger': 'Elf', 'robot-knight': 'Knight', 'robot-rogue': 'Rogue',
+  'robot-cleric': 'Cleric', 'robot-bard': 'Bard',
+});
+export const avatarIds = Object.freeze(Object.keys(avatarNames));
 const knownAvatars = new Set(avatarIds);
 
 export function assignAvatars(players) {
