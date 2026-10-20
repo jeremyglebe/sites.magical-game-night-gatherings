@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "playtest": "node experiments/tabletop/app.mjs",
+    "playtest:review": "node experiments/tabletop/review-server.mjs",
     "playtest:rules": "node experiments/tabletop/sync-rules.mjs",
     "playtest:headless": "node experiments/tabletop/app.mjs --headless",
     "playtest:serve": "node experiments/tabletop/server.mjs",

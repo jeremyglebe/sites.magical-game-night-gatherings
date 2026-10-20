@@ -21,7 +21,7 @@ Open **http://127.0.0.1:5180/**. Add players, choose decks and model settings, t
 
 The proposed default is **gpt-6-luna, high reasoning, standard speed**. Every player can use a different model or reasoning setting. The app uses its pinned project-local CLI because the older global CLI tested here rejected current models. Model availability still depends on your account: an unavailable model pauses with an error, with no silent substitution. Choose a supported model when creating a match. `TABLETOP_CODEX_BIN` can select a different installed binary; it must support `--ignore-user-config` and `--ignore-rules`. No API key or desktop-app private endpoint is used.
 
-The two built-in decks are fixtures for getting started. Import a setup JSON for custom lists, player counts beyond six, format references, or other starting state. Saved games live under ignored `.playtest/`, excluded from catalogue builds. The browser only shows public information; inspect a card or a player's board for details.
+The two built-in decks are fixtures for getting started. Import a setup JSON for custom lists, player counts beyond six, format references, or other starting state. Saved games live under ignored `.playtest/`, excluded from catalogue builds. The live table shows public information; inspect a card or a player's board for details. **Saved games** opens the owner's recording library, including full starting decks and replay.
 
 ## Running without the viewer
 
@@ -60,7 +60,20 @@ Each match folder contains `session.json`, coordinator/configuration in `match.j
 - `session.json.game.md`: readable starting lists, selected format references, actual actions, attributed public speech, explanations, and reported result.
 - `session.json.game.json`: starting state and concrete revision deltas, including random shuffle outcomes, for reconstructing the game.
 
-Use the viewer's download buttons, or take these files directly to a separate Codex chat for analysis. The app does not run a reviewer or generate findings. These are owner logs and include hidden cards; they are never supplied to opposing players. Quiet acknowledgments are omitted. Keep logs and session credentials out of the published website.
+These files are saved automatically after every accepted batch of actions, including during headless play. No export button is needed to preserve a game. The authoritative session also contains the recording, so a failed derived export can be repaired and does not discard the game history.
+
+Open **Saved games** in the app header to browse previous completed and unfinished games, or **Review this game** beside the live chat. The library is also at **http://127.0.0.1:5180/games**. Each game has its recorded conversation with grouped actions, a replay table, and player deck lists with quantities and cached card details. Recordings preserve their original random outcomes. Replay steps through saved batches; it does not rerun player decisions, infer intermediate states inside a batch, or change the live match. Starting decks come from the recorded setup; older recordings without a setup identify lists reconstructed from the first saved position.
+
+To open recordings independently while an existing host continues running, use the read-only reviewer:
+
+```bash
+npm run playtest:review
+# http://127.0.0.1:5181/games
+```
+
+`--directory` selects another playtest directory and `--port` changes the review port. The reviewer reads saved files without taking a game lock or launching AI players. When upgrading an already-running host that predates the integrated library, the live page's review links use this standalone viewer until the host next restarts.
+
+JSON downloads remain available for taking a recording to a separate Codex chat for analysis. The app does not run an AI reviewer or generate findings. These are owner logs and include hidden cards; they are never supplied to opposing players. Quiet acknowledgments are omitted. Keep logs and session credentials out of the published website.
 
 ## Scripted demonstration and standalone MCP table
 

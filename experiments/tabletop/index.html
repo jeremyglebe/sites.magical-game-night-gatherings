@@ -171,6 +171,14 @@
         align-items: center;
         gap: 12px;
       }
+      .header-tools {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px 18px;
+        flex-wrap: wrap;
+        font-size: 12px;
+      }
       .brand-symbol {
         display: flex;
         gap: 3px;
@@ -1618,7 +1626,10 @@
           <div class="eyebrow">Local playtest table</div>
         </div>
       </div>
-      <div id="connection" class="connection" role="status">Connecting</div>
+      <div class="header-tools">
+        <a id="saved-games-nav" href="/games" target="_blank" rel="noopener" hidden>Saved games ↗</a>
+        <div id="connection" class="connection" role="status">Connecting</div>
+      </div>
     </header>
     <div id="error" class="error-banner" role="alert" hidden></div>
     <main>
@@ -1844,11 +1855,10 @@
             <section id="log-section">
               <h2>Game log</h2>
               <p class="run-detail">
-                Save the game’s actions for review in any chat.
+                Saved automatically after every move.
               </p>
               <div class="sidebar-links">
-                <a href="/api/log?format=markdown" download>Readable log ↗</a
-                ><a href="/api/log?format=json" download>JSON ↗</a>
+                <a id="review-current-game" href="/games" target="_blank" rel="noopener">Review this game ↗</a>
               </div>
             </section>
             <button id="new-match" class="quiet new-match">New table</button>
@@ -2462,6 +2472,18 @@
       function playerConfig(id) {
         return app?.match?.players?.find?.((p) => p.id === id) || {};
       }
+      function savedGameURL(id) {
+        // Older hosts can keep a match running while the read-only reviewer
+        // serves its saved recordings. New hosts include the viewer directly.
+        const base = app?.archive ? "/games" : "http://127.0.0.1:5181/games";
+        return base + (id ? "/" + encodeURIComponent(id) : "");
+      }
+      function renderArchiveLinks() {
+        const link = $("#saved-games-nav");
+        link.hidden = legacy || !app;
+        link.href = savedGameURL();
+        $("#review-current-game").href = savedGameURL(app?.match?.id);
+      }
       function coordinator() {
         return app?.coordinator || null;
       }
@@ -2901,9 +2923,10 @@
         fillActivity(list, table?.events || []);
         $("#inspector-content").append(status, list);
         if (!legacy) {
-          const link = make("a", "button", "Download complete log ↗");
-          link.href = "/api/log?format=markdown";
-          link.download = "";
+          const link = make("a", "button", "Review this game ↗");
+          link.href = savedGameURL(app?.match?.id);
+          link.target = "_blank";
+          link.rel = "noopener";
           $("#inspector-content").append(link);
         }
         refreshActivity();
@@ -3311,6 +3334,7 @@
               else throw error;
             }
           }
+          renderArchiveLinks();
           if (legacy || app?.match) {
             const state = await request("/api/table");
             tableConnected = true;

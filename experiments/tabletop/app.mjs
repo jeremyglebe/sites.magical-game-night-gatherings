@@ -13,6 +13,7 @@ import { readRules, defaultBasicRulesPath } from './rules.mjs';
 import { readCodexPlanUsage } from './plan-usage.mjs';
 import { recordPlanUsage, planUsageView } from './usage-tracking.mjs';
 import { assignAvatars, serveAvatar, avatarNames } from './avatars.mjs';
+import { createArchive } from './archive.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const precons = JSON.parse(readFileSync(join(here, 'precons.json'), 'utf8'));
@@ -93,7 +94,7 @@ export async function startApp({
         phase: coordinator?.status().state || 'paused',
         session: match.session, players: match.config.players.map(({ deck, ...p }) => p),
       } : null,
-      coordinator: coordinator?.status() || null, presets, defaults, avatars: avatarNames,
+      coordinator: coordinator?.status() || null, presets, defaults, avatars: avatarNames, archive: true,
       planUsage: planUsageView(match?.planUsage, { error: usageError, refreshing: !!usageRequest }),
       rules: readRules({}, { comprehensivePath: activeRulesPath || configuredRulesPath, basicPath: activeBasicPath || basicRulesPath }),
     };
@@ -268,6 +269,8 @@ export async function startApp({
     await loadMatch(id, saved.config, saved.coordinator, saved.planUsage);
   }
 
+  const archive = createArchive({ directory: root, getCurrent: id => match?.id === id
+    ? { id: match.id, config: match.config, recording: table?.getRecording() } : null });
   const server = createServer(async (request, response) => {
     try {
       const host = request.headers.host;
@@ -280,6 +283,7 @@ export async function startApp({
       }
       const url = new URL(request.url, `http://${host}`);
       if (request.method === 'GET' && serveAvatar(url.pathname, response)) return;
+      if (archive.handle(request, response, url)) return;
       if (request.method === 'GET' && url.pathname === '/') {
         response.writeHead(200, { 'Content-Type': 'text/html', 'Cache-Control': 'no-store',
           'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://cards.scryfall.io data:; connect-src 'self'; frame-ancestors 'none'" });
