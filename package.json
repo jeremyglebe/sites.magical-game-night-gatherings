@@ -3,6 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "playtest": "node experiments/tabletop/app.mjs",
+    "playtest:rules": "node experiments/tabletop/sync-rules.mjs",
+    "playtest:headless": "node experiments/tabletop/app.mjs --headless",
     "playtest:serve": "node experiments/tabletop/server.mjs",
     "playtest:mcp": "node experiments/tabletop/mcp.mjs",
     "playtest:demo": "node experiments/tabletop/demo.mjs",
@@ -20,6 +23,7 @@
   },
   "devDependencies": {
     "@modelcontextprotocol/sdk": "1.0.1",
+    "@openai/codex": "0.163.0",
     "scryfall-mcp-server": "0.1.1",
     "vitepress": "^1.6.4"
   }

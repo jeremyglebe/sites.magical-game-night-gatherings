@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { createTable, observe, applyActions, cardDetails } from './table.mjs';
+import { createTable, observe, applyActions, cardDetails, eventsSince } from './table.mjs';
 import { referenceLines } from './references.mjs';
 
 const setup = () => ({
@@ -172,4 +172,111 @@ test('both supplied precons contain 60 verified cards and the demo preserves tho
     const counts = entries => entries.reduce((all, c) => { all[c.name] = (all[c.name] || 0) + c.count; return all; }, {});
     assert.deepEqual(counts(demo.players[i].deck), counts(p.deck));
   }
+});
+
+test('the core supports one or many players while requiring nonempty unique seats', () => {
+  for (const count of [1, 6, 12]) {
+    let state = createTable({
+      shuffle: false,
+      players: Array.from({ length: count }, (_, i) => ({
+        id: 'seat' + i, deck: [{ name: 'Private ' + i, count: 2 }],
+      })),
+    });
+    const last = 'seat' + (count - 1);
+    state = act(state, last, { type: 'draw', count: 1 });
+    const view = observe(state, last);
+    assert.equal(view.players.length, count);
+    assert.equal(view.zones[last + ':hand'].cards[0].name, 'Private ' + (count - 1));
+    assert.equal(observe(state).zones[last + ':hand'].cards.length, 0);
+    checkConservation(state, count * 2);
+  }
+  assert.throws(() => createTable({ players: [] }), /at least one/);
+  assert.throws(() => createTable({ players: [setup().players[0], setup().players[0]] }), /Duplicate player/);
+});
+
+test('a pass is a recorded event even when board and priority do not change', () => {
+  let state = createTable({ shuffle: false, players: [setup().players[0]] });
+  state = act(state, 'p1', { type: 'pass', next: 'p1' });
+  const board = structuredClone(state.cards);
+  state = act(state, 'p1', { type: 'pass', next: 'p1' });
+  assert.equal(state.revision, 2);
+  assert.deepEqual(state.cards, board);
+  const history = eventsSince(state, null, 0);
+  assert.equal(history.events.length, 2);
+  assert.equal(history.events[1].changes[0].type, 'pass');
+  assert.equal(history.events[1].changes[0].next, 'p1');
+  assert.match(history.events[1].summary, /passed priority to p1/);
+  assert.throws(() => act(state, 'p1', { type: 'pass', next: 'absent' }), /Unknown player/);
+  assert.throws(() => act(state, 'p1', { type: 'no_op' }), /Unknown action/);
+});
+
+test('complete history retains private draws without exposing them to another seat or spectator', () => {
+  let state = createTable(setup());
+  state = applyActions(state, 'p1', 0, [{ type: 'draw' }], 'Keep Secret p1 for later');
+  const drawn = observe(state, 'p1').zones['p1:hand'].cards[0];
+  for (let i = 0; i < 15; i++) state = act(state, 'p2', { type: 'pass', next: 'p1' });
+  assert.equal(observe(state, 'p1').events.length, 12);
+  assert.equal(eventsSince(state, 'p1').events.length, 16);
+  assert.equal(eventsSince(state, 'p1', 14).events.length, 2);
+  assert.match(eventsSince(state, 'p1').events[0].summary, /Secret p1/);
+  assert.match(eventsSince(state, 'p1').events[0].reason, /Keep Secret/);
+  for (const viewer of [null, 'p2']) {
+    const json = JSON.stringify(eventsSince(state, viewer));
+    assert.doesNotMatch(json, /Secret p1|Keep Secret|oracle_text/);
+    assert.ok(!json.includes(drawn.id));
+  }
+  // Revealing it later must not rewrite knowledge in the first event.
+  state = act(state, 'p1', { type: 'reveal', card: drawn.id });
+  assert.doesNotMatch(eventsSince(state).events[0].summary, /Secret p1/);
+  assert.match(eventsSince(state).events.at(-1).summary, /Secret p1/);
+  assert.throws(() => eventsSince(state, null, -1), /Invalid event revision/);
+  assert.throws(() => eventsSince(state, null, state.revision + 1), /Invalid event revision/);
+  assert.throws(() => eventsSince(state, 'absent'), /Unknown player/);
+});
+
+test('historical public plays retain names and outcomes after cards are concealed again', () => {
+  let state = act(createTable(setup()), 'p1', { type: 'draw' });
+  const card = observe(state, 'p1').zones['p1:hand'].cards[0];
+  state = act(state, 'p1',
+    { type: 'move', card: card.id, to: 'battlefield' },
+    { type: 'player', player: 'p2', set: { life: 17 } });
+  state = act(state, 'p1', { type: 'move', card: card.id, to: 'p1:library' }, { type: 'shuffle' });
+  const events = eventsSince(state).events;
+  assert.match(events[1].summary, /Secret p1.*battlefield.*life=17/);
+  assert.deepEqual(events[1].changes[1].set, { life: 17 });
+  assert.match(events[2].summary, /Secret p1.*p1:library.*shuffled/);
+  assert.doesNotMatch(JSON.stringify(events[2]), /"id":|"cards":\["Land/);
+});
+
+test('history does not reveal transient face-up identities or private face-down annotations in atomic batches', () => {
+  let state = act(createTable(setup()), 'p1', { type: 'draw' });
+  const card = observe(state, 'p1').zones['p1:hand'].cards[0];
+  state = act(state, 'p1',
+    { type: 'move', card: card.id, to: 'battlefield' },
+    { type: 'card', card: card.id, set: { face_down: true, note: 'Secret p1 private annotation' } });
+  for (const viewer of [null, 'p2']) {
+    assert.doesNotMatch(JSON.stringify(eventsSince(state, viewer)), /Secret p1|private annotation/);
+  }
+  assert.match(JSON.stringify(eventsSince(state, 'p1')), /Secret p1/);
+});
+
+test('restricted reveals and peeks are recorded only for the recipients', () => {
+  let state = createTable(setup());
+  state = act(state, 'p1', { type: 'peek', zone: 'p1:library', count: 1 }, { type: 'shuffle' });
+  assert.match(eventsSince(state, 'p1').events[0].summary, /Secret p1/);
+  assert.doesNotMatch(eventsSince(state, 'p2').events[0].summary, /Secret p1/);
+  assert.doesNotMatch(eventsSince(state).events[0].summary, /Secret p1/);
+  state = act(state, 'p1', { type: 'draw' });
+  const card = observe(state, 'p1').zones['p1:hand'].cards[0];
+  state = act(state, 'p1', { type: 'reveal', card: card.id, to: ['p2'] }, { type: 'move', card: card.id, to: 'p1:library' });
+  assert.ok(eventsSince(state, 'p2').events.at(-1).changes[0].cards.includes(card.name));
+  assert.ok(!JSON.stringify(eventsSince(state).events.at(-1)).includes(card.name));
+});
+
+test('legacy event history remains readable without exposing raw actions', () => {
+  const state = createTable(setup());
+  state.revision = 1;
+  state.events = [{ revision: 1, actor: 'p1', at: 'then', summary: 'p1 drew a card', reason: 'private', actions: [{ secret: 'do not expose' }] }];
+  assert.deepEqual(eventsSince(state).events, [{ revision: 1, actor: 'p1', at: 'then', summary: 'p1 drew a card' }]);
+  assert.equal(eventsSince(state, 'p1').events[0].reason, 'private');
 });

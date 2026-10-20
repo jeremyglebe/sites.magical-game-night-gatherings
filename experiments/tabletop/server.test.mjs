@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { startTable } from './server.mjs';
@@ -23,7 +23,8 @@ test('two real MCP processes share saved state with private views, conflict dete
     const [a, b] = players;
     assert.equal((await fetch(url + '/api/observe')).status, 401);
     assert.equal((await fetch(url + '/api/act', { method: 'POST', body: '{}' })).status, 401);
-    assert.deepEqual((await a.client.listTools()).tools.map(t => t.name), ['observe_table', 'act', 'read_card', 'read_reference']);
+    assert.deepEqual((await a.client.listTools()).tools.map(t => t.name),
+      ['observe_table', 'act', 'read_card', 'read_reference', 'read_events', 'read_rules', 'complete_decision']);
     const initial = await a.tool('observe_table');
     const calls = await Promise.allSettled([a, b].map(p => p.tool('act', {
       revision: initial.revision, actions: [{ type: 'draw', count: 7 }], reason: 'Private reasoning about Serra Angel.',
@@ -85,6 +86,95 @@ test('the precon demonstration completes over MCP without claiming an AI result'
     const disk = JSON.parse(readFileSync(session, 'utf8'));
     assert.equal(Object.values(disk.state.zones).reduce((sum, z) => sum + z.cards.length, 0), 120);
     assert.equal(disk.state.events.length, result.revision);
+  } finally {
+    if (table?.server.listening) await close(table.server);
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('resume repairs derived exports and serves the recorded rules reference', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'game-night-export-recovery-'));
+  const session = join(dir, 'session.json');
+  const path = 'formats/horde/variants/classic.md';
+  let table;
+  try {
+    table = await startTable({
+      session, port: 0,
+      setup: { players: [{ id: 'one', deck: [{ name: 'Test card' }] }], references: [path] },
+    });
+    await close(table.server);
+    const saved = JSON.parse(readFileSync(session, 'utf8'));
+    // An archived match may contain an older reference than the current source.
+    saved.recording.references[0].text = '# Pinned reference\nKeep this exact original procedure.';
+    writeFileSync(session, JSON.stringify(saved));
+    rmSync(session + '.game.json');
+    rmSync(session + '.game.md');
+    table = await startTable({ session, port: 0 });
+    assert.equal(existsSync(session + '.game.json'), true);
+    assert.match(readFileSync(session + '.game.md', 'utf8'), /Keep this exact original procedure/);
+    const headers = { Authorization: 'Bearer ' + table.getToken('one') };
+    const reference = await (await fetch(table.url + '/api/references?' + new URLSearchParams({ path }), { headers })).json();
+    assert.equal(reference.text, saved.recording.references[0].text);
+    const search = await (await fetch(table.url + '/api/references?' + new URLSearchParams({ path, query: 'exact original' }), { headers })).json();
+    assert.equal(search.matches.length, 1);
+    assert.equal(table.getState().revision, 0);
+  } finally {
+    if (table?.server.listening) await close(table.server);
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('a derived export failure does not reject a durable game action and is repaired on resume', async t => {
+  const dir = mkdtempSync(join(tmpdir(), 'game-night-export-failure-'));
+  const session = join(dir, 'session.json');
+  let table, committed = 0;
+  const warnings = [];
+  t.mock.method(console, 'warn', message => warnings.push(message));
+  try {
+    table = await startTable({
+      session, port: 0, onCommit: () => committed++,
+      setup: { players: [{ id: 'one', deck: [{ name: 'Test card', count: 2 }] }] },
+    });
+    rmSync(session + '.game.md');
+    mkdirSync(session + '.game.md');
+    const result = await fetch(table.url + '/api/act', {
+      method: 'POST', headers: { Authorization: 'Bearer ' + table.getToken('one') },
+      body: JSON.stringify({ revision: 0, actions: [{ type: 'draw' }], reason: 'Draw one' }),
+    });
+    assert.equal(result.status, 200);
+    assert.equal((await result.json()).revision, 1);
+    assert.equal(committed, 1);
+    assert.equal(JSON.parse(readFileSync(session, 'utf8')).state.revision, 1);
+    assert.ok(table.getExportError());
+    assert.equal(warnings.length, 1);
+    await close(table.server);
+    rmSync(session + '.game.md', { recursive: true });
+    table = await startTable({ session, port: 0 });
+    assert.equal(table.getExportError(), null);
+    assert.match(readFileSync(session + '.game.md', 'utf8'), /Draw from one:library: Test card/);
+    assert.equal(table.getState().revision, 1);
+  } finally {
+    if (table?.server.listening) await close(table.server);
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('action authorization must complete synchronously before any mutation', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'game-night-action-guard-'));
+  let table;
+  try {
+    table = await startTable({
+      session: join(dir, 'session.json'), port: 0,
+      beforeAction: async () => {},
+      setup: { players: [{ id: 'one', deck: [{ name: 'Test card' }] }] },
+    });
+    const result = await fetch(table.url + '/api/act', {
+      method: 'POST', headers: { Authorization: 'Bearer ' + table.getToken('one') },
+      body: JSON.stringify({ revision: 0, actions: [{ type: 'draw' }], reason: 'Attempt action' }),
+    });
+    assert.equal(result.status, 400);
+    assert.match((await result.json()).error, /must be synchronous/);
+    assert.equal(table.getState().revision, 0);
   } finally {
     if (table?.server.listening) await close(table.server);
     rmSync(dir, { recursive: true, force: true });

@@ -1,148 +1,2449 @@
 <!doctype html>
 <html lang="en">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Game Night · Table</title>
-<style>
-  * { box-sizing: border-box; }
-  body { margin: 0; background: #18201e; color: #edf1ea; font: 15px system-ui,sans-serif; }
-  main { max-width: 1280px; margin: auto; padding: 18px; }
-  header, .player-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  header { margin-bottom: 18px; justify-content: space-between; }
-  h1 { font-size: 20px; margin: 0; font-weight: 600; }
-  h2 { font-size: 17px; margin: 0; }
-  .muted, .counts { color: #b6c4bc; font-size: 13px; }
-  #connection { font-size: 12px; color: #aed8b4; }
-  #table { display: grid; gap: 14px; }
-  .player { min-width: 0; background: #202c27; border: 1px solid #3b4c43; border-radius: 8px; padding: 14px; }
-  .player.active { border-color: #90b59a; }
-  .life { font-size: 24px; font-variant-numeric: tabular-nums; }
-  .counts { margin-left: auto; }
-  .lane-label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: #a1b1a7; margin-top: 12px; }
-  .lane { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; align-items: center; padding: 8px 0; }
-  .empty { color: #8c9f92; font-size: 12px; }
-  .card { width: 152px; min-height: 163px; position: relative; display: flex; align-items: center; justify-content: center; }
-  .card img { width: 106px; border-radius: 5px; display: block; }
-  .card.tapped img { transform: rotate(90deg); }
-  .face { width: 106px; min-height: 148px; padding: 12px; background: #374c42; border: 1px solid #657e6e; border-radius: 5px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; }
-  .card.tapped .face { transform: rotate(90deg); }
-  .markers { position: absolute; left: 2px; bottom: 0; right: 2px; display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; }
-  .marker { background: #f1e9c8; color: #252c24; font-size: 11px; border-radius: 3px; padding: 2px 5px; overflow-wrap: anywhere; }
-  .marker.damage { background: #f0b5a9; }
-  .zones { display: flex; flex-wrap: wrap; gap: 16px; color: #b6c4bc; font-size: 12px; margin-top: 6px; }
-  details ul { padding-left: 16px; max-width: 320px; }
-  summary { cursor: pointer; }
-  #stack { margin: 14px 0; }
-  #notes, #events { color: #b6c4bc; font-size: 12px; line-height: 1.6; }
-  #result { color: #f1e9c8; font-size: 18px; }
-  @media (min-width: 1000px) { #table { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 600px) {
-    main { padding: 10px; } .counts { margin-left: 0; width: 100%; }
-    .card { width: 126px; min-height: 140px; } .card img,.face { width: 88px; }
-    .face { min-height: 123px; }
-  }
-</style>
-<main>
-  <header>
-    <div><h1 id="title">Game Night · Table</h1><div id="turn" class="muted">Waiting for the table</div></div>
-    <span id="connection" role="status">Connecting…</span>
-  </header>
-  <p id="result" hidden></p>
-  <div id="table"></div>
-  <section id="stack" hidden><div class="lane-label">Stack · top first</div><div class="lane"></div></section>
-  <div id="notes"></div>
-  <details><summary class="muted">Recent moves</summary><ol id="events"></ol></details>
-</main>
-<script type="module">
-  const $ = selector => document.querySelector(selector);
-  const make = (tag, className, value) => {
-    const el = document.createElement(tag);
-    if (className) el.className = className;
-    if (value !== undefined) el.textContent = value;
-    return el;
-  };
-  let cardNames = new Map();
-  function cardView(card) {
-    const el = make('div', 'card' + (card.tapped ? ' tapped' : ''));
-    el.title = card.name + (card.tapped ? ' · tapped' : '') + (card.note ? ' · ' + card.note : '');
-    if (card.image_url) {
-      const image = make('img');
-      image.src = card.image_url;
-      image.alt = card.name;
-      image.loading = 'lazy';
-      image.addEventListener('error', () => image.replaceWith(make('div', 'face', card.name)), { once: true });
-      el.append(image);
-    } else el.append(make('div', 'face', card.name));
-    const markers = make('div', 'markers');
-    for (const [name, count] of Object.entries(card.counters)) if (count) markers.append(make('span', 'marker', count + ' ' + name));
-    if (card.damage) markers.append(make('span', 'marker damage', card.damage + ' damage'));
-    if (card.attached_to) markers.append(make('span', 'marker', 'Attached to ' + (cardNames.get(card.attached_to) || 'card')));
-    if (card.note) markers.append(make('span', 'marker', card.note));
-    el.append(markers);
-    return el;
-  }
-  function lane(label, cards) {
-    const fragment = document.createDocumentFragment();
-    fragment.append(make('div', 'lane-label', label));
-    const row = make('div', 'lane');
-    if (!cards.length) row.append(make('span', 'empty', '—'));
-    for (const c of cards) row.append(cardView(c));
-    fragment.append(row);
-    return fragment;
-  }
-  function render(state) {
-    cardNames = new Map(Object.values(state.zones).flatMap(z => z.cards).map(c => [c.id, c.name]));
-    $('#title').textContent = state.title;
-    const name = id => state.players.find(p => p.id === id)?.name || '—';
-    $('#turn').textContent = 'Turn ' + state.turn.number + ' · ' + name(state.turn.active) + ' · ' + state.turn.phase
-      + (state.turn.priority ? ' · Priority: ' + name(state.turn.priority) : '');
-    const players = document.createDocumentFragment();
-    for (const p of state.players) {
-      const section = make('section', 'player' + (state.turn.active === p.id ? ' active' : ''));
-      const head = make('div', 'player-head');
-      head.append(make('h2', '', p.name), make('span', 'life', p.life + ' life'));
-      const counts = [state.zones[p.id + ':library'].count + ' in library', state.zones[p.id + ':hand'].count + ' in hand'];
-      for (const [key, value] of Object.entries(p.counters)) if (value) counts.push(value + ' ' + key);
-      for (const [key, value] of Object.entries(p.mana)) if (value) counts.push(value + ' ' + key + ' mana');
-      head.append(make('div', 'counts', counts.join(' · ')));
-      section.append(head);
-      const battlefield = state.zones.battlefield.cards.filter(c => c.controller === p.id);
-      const land = c => (c.type_line || '').split('—')[0].includes('Land');
-      section.append(lane('Creatures & other permanents', battlefield.filter(c => !land(c))), lane('Lands', battlefield.filter(land)));
-      const zones = make('div', 'zones');
-      for (const kind of ['graveyard', 'exile', 'command']) {
-        const z = state.zones[p.id + ':' + kind];
-        const details = make('details');
-        details.append(make('summary', '', kind + ' · ' + z.count));
-        const list = make('ul');
-        for (const c of z.cards) list.append(make('li', '', c.name));
-        details.append(list);
-        zones.append(details);
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Game Night · Playtest table</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #101816;
+        --surface: #182420;
+        --surface2: #1d2d27;
+        --line: #35483d;
+        --ink: #edf0e7;
+        --muted: #a8b9ac;
+        --accent: #dbd3a8;
+        --green: #b9d8b1;
+        --red: #efa797;
+        --blue: #b3cde2;
+        --board-height: clamp(220px, calc((100dvh - 260px) / 2), 360px);
       }
-      section.append(zones);
-      if (p.note) section.append(make('p', 'muted', p.note));
-      players.append(section);
-    }
-    $('#table').replaceChildren(players);
-    const stack = state.zones.stack.cards;
-    $('#stack').hidden = !stack.length;
-    $('#stack .lane').replaceChildren(...stack.map(cardView));
-    $('#notes').replaceChildren(...state.notes.slice(-5).map(n => make('p', '', n.text)));
-    $('#events').replaceChildren(...state.events.slice(-8).map(e => make('li', '', e.summary)));
-    $('#result').hidden = !state.result;
-    if (state.result) $('#result').textContent = (state.result.winners.length ? state.result.winners.map(name).join(' & ') + ' won' : 'Draw') + ' — reported by ' + name(state.result.reported_by);
-  }
-  let revision = -1;
-  async function poll() {
-    try {
-      const response = await fetch('/api/table', { cache: 'no-store', signal: AbortSignal.timeout(5000) });
-      if (!response.ok) throw new Error('Unavailable');
-      const state = await response.json();
-      if (state.revision !== revision) { render(state); revision = state.revision; }
-      $('#connection').textContent = 'Live · public view';
-    } catch { $('#connection').textContent = 'Disconnected · retrying'; }
-    setTimeout(poll, 750);
-  }
-  poll();
-</script>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          14px/1.45 system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      button,
+      a,
+      input,
+      select,
+      textarea {
+        -webkit-tap-highlight-color: transparent;
+      }
+      button,
+      a {
+        touch-action: manipulation;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:disabled {
+        cursor: default;
+        opacity: 0.4;
+      }
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible,
+      select:focus-visible,
+      textarea:focus-visible,
+      summary:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--surface);
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 9px 10px;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 72px;
+      }
+      button,
+      .button {
+        padding: 8px 12px;
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+        color: var(--ink);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      button:hover:not(:disabled),
+      .button:hover {
+        background: var(--surface2);
+        border-color: #6e8776;
+      }
+      .primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #202820;
+        font-weight: 600;
+      }
+      .primary:hover:not(:disabled) {
+        background: #eee4b5;
+        border-color: #eee4b5;
+      }
+      .quiet {
+        background: transparent;
+      }
+      .danger {
+        color: var(--red);
+      }
+      .small {
+        font-size: 12px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--muted);
+      }
+      [hidden] {
+        display: none !important;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1 {
+        font-size: 25px;
+        font-weight: 550;
+        letter-spacing: -0.04em;
+      }
+      h2 {
+        font-size: 18px;
+        font-weight: 550;
+      }
+      h3 {
+        font-size: 14px;
+        font-weight: 550;
+      }
+      a {
+        color: var(--accent);
+      }
+      .app-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 17px 24px;
+        border-bottom: 1px solid var(--line);
+        gap: 20px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand-symbol {
+        display: flex;
+        gap: 3px;
+        transform: rotate(-9deg);
+      }
+      .brand-symbol span {
+        width: 13px;
+        height: 23px;
+        border: 1px solid var(--accent);
+        border-radius: 2px;
+        display: block;
+      }
+      .brand-symbol span:nth-child(2) {
+        transform: translateY(-3px);
+      }
+      .brand strong {
+        font-size: 16px;
+        font-weight: 550;
+        letter-spacing: -0.02em;
+      }
+      .brand .eyebrow {
+        margin-top: 2px;
+      }
+      .connection {
+        font-size: 12px;
+        color: var(--muted);
+        display: flex;
+        gap: 7px;
+        align-items: center;
+        white-space: nowrap;
+      }
+      .connection:before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+      .connection.offline:before {
+        background: var(--red);
+      }
+      .error-banner {
+        margin: 12px 24px;
+        padding: 10px 13px;
+        background: #402a25;
+        border: 1px solid #744c40;
+        border-radius: 6px;
+        color: #f5c7b9;
+      }
+      .lobby {
+        max-width: 1120px;
+        margin: 38px auto;
+        padding: 0 24px 40px;
+      }
+      .lobby-intro {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 25px;
+      }
+      .lobby-intro p {
+        max-width: 540px;
+        margin-top: 9px;
+        color: var(--muted);
+      }
+      .setup-columns {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 286px;
+        gap: 24px;
+      }
+      .setup-main,
+      .setup-side {
+        min-width: 0;
+      }
+      .setup-section {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 18px;
+      }
+      .setup-section h2 {
+        margin-bottom: 17px;
+      }
+      .field {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        margin-top: 6px;
+        font-size: 14px;
+      }
+      .field + .field {
+        margin-top: 14px;
+      }
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .field-row .field + .field {
+        margin-top: 0;
+      }
+      .seat-editor {
+        padding: 16px 0;
+        border-top: 1px solid var(--line);
+      }
+      .seat-editor:first-child {
+        padding-top: 0;
+        border: 0;
+      }
+      .seat-editor-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .seat-number {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .seat-number span {
+        display: flex;
+        width: 24px;
+        height: 24px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--ink);
+      }
+      .remove-seat {
+        padding: 3px 8px;
+        font-size: 12px;
+      }
+      .seat-settings {
+        margin-top: 10px;
+      }
+      .seat-settings summary {
+        font-size: 12px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+      .seat-settings .field-row {
+        margin-top: 10px;
+      }
+      .setup-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+      }
+      .setup-help {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 12px;
+      }
+      .setup-side .setup-section {
+        background: transparent;
+      }
+      .setup-side p {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .setup-side p + p {
+        margin-top: 12px;
+      }
+      .setup-side ul {
+        margin: 10px 0 0;
+        padding-left: 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .setup-side li + li {
+        margin-top: 7px;
+      }
+      .setup-side .primary {
+        width: 100%;
+        padding: 12px;
+      }
+      .layout-sketch {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        margin: 14px 0;
+      }
+      .layout-sketch span {
+        padding: 9px 0;
+        background: var(--surface2);
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        text-align: center;
+        font-size: 11px;
+      }
+      .layout-sketch .sketch-middle {
+        grid-column: 1/-1;
+        background: transparent;
+        border: none;
+        padding: 1px 0;
+        color: var(--muted);
+      }
+      .match-toolbar {
+        padding: 14px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .match-heading {
+        min-width: 0;
+      }
+      .match-heading h1 {
+        font-size: 20px;
+        overflow-wrap: anywhere;
+      }
+      .match-heading .muted {
+        margin-top: 3px;
+        font-size: 12px;
+      }
+      .controls {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .controls button {
+        font-size: 12px;
+        padding: 7px 11px;
+      }
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 224px;
+        gap: 16px;
+        padding: 0 24px 20px;
+        max-width: 2200px;
+        margin: auto;
+      }
+      .table-shell {
+        min-width: 0;
+      }
+      .table-stage {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .seat-row {
+        display: grid;
+        grid-template-columns: repeat(var(--columns, 2), minmax(0, 1fr));
+        gap: 10px;
+        min-width: 0;
+      }
+      .player-board {
+        height: var(--board-height);
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding: 11px 12px 9px;
+        border: 1px solid var(--line);
+        background: linear-gradient(145deg, var(--surface2), var(--surface));
+        border-radius: 9px;
+        overflow: hidden;
+      }
+      .player-board.active {
+        border-color: #9cae87;
+        box-shadow: inset 0 3px 0 #9cae87;
+      }
+      .player-board.priority .player-name:after {
+        content: "Priority";
+        margin-left: 7px;
+        font-size: 10px;
+        padding: 2px 5px;
+        background: #40553b;
+        color: #e6efdc;
+        border-radius: 3px;
+        font-weight: 400;
+      }
+      .player-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 5px;
+      }
+      .player-head > div:first-child {
+        min-width: 0;
+        flex: 1;
+      }
+      .player-name {
+        font-size: 13px;
+        font-weight: 550;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .seat-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 2px;
+      }
+      .life {
+        flex-shrink: 0;
+        font-size: 25px;
+        font-weight: 400;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+      }
+      .life small {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .player-counts {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 3px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .player-status {
+        font-size: 10px;
+        color: var(--muted);
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .lanes {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 3px;
+        margin-top: 5px;
+      }
+      .lane {
+        min-height: 0;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .lane-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin-bottom: 2px;
+      }
+      .fan {
+        --card-height: clamp(
+          43px,
+          calc((var(--board-height) - 138px) / 2),
+          112px
+        );
+        --card-width: calc(var(--card-height) * 0.715);
+        display: grid;
+        grid-template-columns: repeat(var(--cards, 1), minmax(1px, 1fr));
+        padding-right: var(--card-width);
+        flex: 1;
+        min-height: 0;
+        align-items: center;
+        position: relative;
+      }
+      .fan.empty {
+        display: flex;
+        padding: 0;
+        color: #778f7e;
+        font-size: 11px;
+      }
+      .table-card {
+        position: relative;
+        width: var(--card-width);
+        height: var(--card-height);
+        aspect-ratio: 63/88;
+        border: 0;
+        border-radius: 4px;
+        padding: 0;
+        display: block;
+        background: #314336;
+        box-shadow: 0 2px 5px #0005;
+        transition: transform 0.12s;
+        isolation: isolate;
+      }
+      .table-card:hover,
+      .table-card:focus-visible {
+        z-index: 25;
+        transform: translateY(-6px);
+      }
+      .table-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        border-radius: 4px;
+        background: #314336;
+      }
+      .table-card.tapped {
+        transform: rotate(90deg);
+        z-index: 1;
+      }
+      .table-card.tapped:hover,
+      .table-card.tapped:focus-visible {
+        transform: rotate(90deg) translateX(-6px);
+        z-index: 25;
+      }
+      .card-fallback {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 5px;
+        font-size: 9px;
+        text-align: center;
+        overflow: hidden;
+        overflow-wrap: anywhere;
+      }
+      .card-markers {
+        position: absolute;
+        bottom: 1px;
+        right: 1px;
+        left: 1px;
+        display: flex;
+        justify-content: center;
+        gap: 2px;
+        flex-wrap: wrap;
+        pointer-events: none;
+      }
+      .card-marker {
+        font-size: 9px;
+        padding: 0 3px;
+        border-radius: 2px;
+        background: #e8dcae;
+        color: #20271f;
+        box-shadow: 0 1px 2px #0006;
+      }
+      .card-marker.damage {
+        background: #f0b3a5;
+      }
+      .player-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 4px;
+        margin-top: 4px;
+        min-height: 23px;
+      }
+      .zone-actions {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .zone-button {
+        font-size: 9px;
+        padding: 2px 4px;
+        border-color: transparent;
+        background: transparent;
+        color: var(--muted);
+      }
+      .inspect-board {
+        font-size: 10px;
+        padding: 3px 6px;
+        white-space: nowrap;
+      }
+      .shared-strip {
+        min-height: 70px;
+        border-top: 1px solid #425143;
+        border-bottom: 1px solid #425143;
+        display: grid;
+        grid-template-columns: minmax(140px, 1fr) minmax(0, 2fr);
+        gap: 16px;
+        align-items: center;
+        padding: 9px 12px;
+      }
+      .shared-turn {
+        font-size: 13px;
+      }
+      .shared-turn strong {
+        font-weight: 550;
+      }
+      .shared-turn .muted {
+        font-size: 11px;
+        margin-top: 2px;
+      }
+      .stack-area {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .stack-label {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        flex-shrink: 0;
+      }
+      .stack-cards {
+        display: flex;
+        gap: 6px;
+        overflow: auto;
+        align-items: center;
+        min-height: 44px;
+        padding: 2px;
+      }
+      .stack-item {
+        font-size: 11px;
+        min-width: 110px;
+        max-width: 170px;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 7px 9px;
+        border-color: #62715c;
+        background: #27392c;
+      }
+      .stack-item .stack-position {
+        color: var(--accent);
+        font-size: 10px;
+      }
+      .table-note {
+        font-size: 11px;
+        color: var(--muted);
+        padding: 8px 2px;
+        overflow-wrap: anywhere;
+      }
+      .sidebar {
+        border-left: 1px solid var(--line);
+        padding-left: 17px;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .sidebar h2 {
+        font-size: 13px;
+      }
+      .run-summary {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+      }
+      .run-summary button {
+        margin-left: auto;
+        padding: 4px 7px;
+        font-size: 11px;
+      }
+      .status-pill {
+        display: inline-block;
+        border: 1px solid #52664d;
+        padding: 3px 7px;
+        border-radius: 4px;
+        color: var(--green);
+        font-size: 11px;
+      }
+      .run-detail {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 7px;
+        overflow-wrap: anywhere;
+      }
+      .runner-player {
+        padding: 10px 0;
+        border-bottom: 1px solid #2a3c30;
+      }
+      .runner-player strong {
+        font-size: 12px;
+        font-weight: 500;
+        display: block;
+      }
+      .runner-player .small {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 3px;
+        overflow-wrap: anywhere;
+      }
+      .runner-player .seat-error {
+        color: var(--red);
+      }
+      .sidebar-links {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+      .sidebar-links a {
+        font-size: 11px;
+      }
+      .sidebar .new-match {
+        font-size: 12px;
+        width: 100%;
+        margin-top: auto;
+      }
+      .moves-summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 9px;
+      }
+      .moves-summary button {
+        font-size: 10px;
+        padding: 3px 6px;
+      }
+      .recent-moves {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        max-height: 220px;
+        overflow: auto;
+      }
+      .recent-moves li {
+        font-size: 11px;
+        color: var(--muted);
+        padding: 8px 0;
+        border-bottom: 1px solid #293b30;
+        overflow-wrap: anywhere;
+      }
+      .recent-moves .move-revision {
+        font-variant-numeric: tabular-nums;
+        color: var(--accent);
+        font-size: 10px;
+        display: block;
+        margin-bottom: 2px;
+      }
+      .unsupported {
+        padding: 65px 35px;
+        text-align: center;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+      }
+      .unsupported h2 {
+        margin-bottom: 12px;
+      }
+      .unsupported p {
+        max-width: 500px;
+        margin: auto;
+        color: var(--muted);
+      }
+      .result-banner {
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        border: 1px solid #657457;
+        border-radius: 7px;
+        color: var(--accent);
+        background: #283526;
+      }
+      .loading {
+        padding: 70px;
+        text-align: center;
+        color: var(--muted);
+      }
+      dialog {
+        color: var(--ink);
+        background: var(--bg);
+        border: 1px solid #52634e;
+        border-radius: 12px;
+        padding: 0;
+        max-width: min(960px, calc(100vw - 32px));
+        max-height: calc(100dvh - 32px);
+        width: 860px;
+        box-shadow: 0 24px 90px #0009;
+      }
+      dialog::backdrop {
+        background: #07100acc;
+        backdrop-filter: blur(3px);
+      }
+      .dialog-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 18px 22px;
+        border-bottom: 1px solid var(--line);
+        position: sticky;
+        top: 0;
+        background: var(--bg);
+        z-index: 2;
+      }
+      .dialog-header h2 {
+        font-size: 18px;
+      }
+      .dialog-header button {
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+      .dialog-content {
+        padding: 22px;
+      }
+      .inspector-layout {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 28px;
+      }
+      .inspector-art {
+        width: 100%;
+        border-radius: 11px;
+        background: var(--surface);
+      }
+      .inspector-placeholder {
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        text-align: center;
+      }
+      .card-text {
+        white-space: pre-wrap;
+        line-height: 1.6;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+      .card-type {
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 7px;
+      }
+      .card-properties {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+      .card-properties span {
+        font-size: 11px;
+        background: var(--surface2);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 4px 7px;
+      }
+      .zone-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(126px, 1fr));
+        gap: 14px;
+      }
+      .zone-grid .zone-card {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 7px;
+        border: 0;
+        background: transparent;
+        padding: 0;
+        text-align: left;
+      }
+      .zone-card img {
+        width: 100%;
+        aspect-ratio: 63/88;
+        object-fit: contain;
+        border-radius: 6px;
+      }
+      .zone-card span {
+        font-size: 12px;
+      }
+      .zone-card .zone-state {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .moves-full {
+        padding-left: 20px;
+        line-height: 1.65;
+      }
+      .moves-full li {
+        padding: 8px 0;
+        border-bottom: 1px solid var(--line);
+        overflow-wrap: anywhere;
+      }
+      .modal-empty {
+        color: var(--muted);
+        padding: 30px;
+        text-align: center;
+      }
+      .solo .seat-row {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 820px;
+        width: 100%;
+        margin: auto;
+      }
+      .solo .player-board {
+        height: clamp(350px, calc(100dvh - 290px), 650px);
+      }
+      .solo .fan {
+        --card-height: clamp(72px, calc((100dvh - 440px) / 2), 140px);
+        --card-width: calc(var(--card-height) * 0.715);
+      }
+      .solo .shared-strip {
+        order: -1;
+      }
+      .footer-hint {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 9px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .headless-badge {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      @media (min-width: 1600px) {
+        :root {
+          --board-height: clamp(260px, calc((100dvh - 240px) / 2), 420px);
+        }
+        .workspace {
+          grid-template-columns: minmax(0, 1fr) 250px;
+        }
+        .player-name {
+          font-size: 15px;
+        }
+        .player-counts,
+        .player-status {
+          font-size: 11px;
+        }
+        .lane-heading {
+          font-size: 10px;
+        }
+        .zone-button {
+          font-size: 10px;
+        }
+      }
+      @media (max-width: 1050px) {
+        .workspace {
+          grid-template-columns: minmax(0, 1fr);
+          padding: 0 16px 20px;
+        }
+        .sidebar {
+          border: 0;
+          border-top: 1px solid var(--line);
+          padding: 15px 0 0;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 20px;
+        }
+        .sidebar .new-match {
+          margin-top: 0;
+          align-self: start;
+        }
+        .runner-players {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+        .runner-player {
+          border: 0;
+          padding: 6px 0;
+        }
+        .runner-player strong {
+          font-size: 11px;
+        }
+        .sidebar-run {
+          grid-column: 1/-1;
+        }
+        .sidebar-run .runner-players {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .recent-moves {
+          max-height: 130px;
+        }
+        .app-header,
+        .match-toolbar {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+        .setup-columns {
+          grid-template-columns: minmax(0, 1fr) 250px;
+        }
+        .controls button {
+          padding: 6px 8px;
+        }
+        .match-toolbar {
+          align-items: flex-start;
+        }
+      }
+      @media (max-width: 720px) {
+        .lobby {
+          margin-top: 25px;
+          padding: 0 16px 25px;
+        }
+        .lobby-intro {
+          align-items: flex-start;
+        }
+        .lobby-intro .headless-badge {
+          display: none;
+        }
+        .setup-columns {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .setup-side {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .setup-side > .primary,
+        .setup-side > .setup-help {
+          grid-column: 1/-1;
+        }
+        .setup-side .setup-section {
+          margin: 0;
+        }
+        .match-toolbar {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .controls {
+          width: 100%;
+        }
+        .controls .primary {
+          flex: 1;
+        }
+        .seat-row {
+          gap: 7px;
+        }
+        .player-board {
+          padding: 8px 8px 6px;
+        }
+        .player-name {
+          font-size: 11px;
+        }
+        .player-board.priority .player-name:after {
+          display: block;
+          width: max-content;
+          margin: 2px 0;
+        }
+        .life {
+          font-size: 20px;
+        }
+        .player-counts {
+          gap: 5px;
+          font-size: 9px;
+        }
+        .player-status {
+          font-size: 9px;
+        }
+        .zone-button {
+          font-size: 8px;
+          padding: 2px;
+        }
+        .player-footer {
+          flex-wrap: wrap;
+        }
+        .inspect-board {
+          font-size: 9px;
+        }
+        .shared-strip {
+          grid-template-columns: minmax(110px, 1fr) minmax(0, 1.5fr);
+          gap: 7px;
+          padding: 7px;
+        }
+        .stack-label {
+          display: none;
+        }
+        .inspector-layout {
+          grid-template-columns: 190px minmax(0, 1fr);
+          gap: 18px;
+        }
+        .dialog-content {
+          padding: 16px;
+        }
+        .sidebar {
+          grid-template-columns: 1fr 1fr;
+        }
+        .sidebar-run {
+          grid-column: 1/-1;
+        }
+        .sidebar .new-match {
+          grid-column: 1/-1;
+        }
+        .seat-row[data-seats="3"] {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .seat-row[data-seats="3"] .player-board {
+          height: 240px;
+        }
+        .seat-row[data-seats="3"] .fan {
+          --card-height: 51px;
+          --card-width: 37px;
+        }
+        .seat-row[data-seats="3"] .player-name {
+          font-size: 13px;
+        }
+        .seat-row[data-seats="3"] .player-counts {
+          font-size: 10px;
+        }
+        .seat-row[data-seats="3"] .player-footer {
+          flex-wrap: nowrap;
+        }
+        .seat-row[data-seats="3"] .zone-button {
+          font-size: 10px;
+        }
+        .seat-row[data-seats="3"] .player-board.priority .player-name:after {
+          display: inline-block;
+          margin-left: 7px;
+        }
+        .lobby-intro h1 {
+          font-size: 24px;
+        }
+      }
+      @media (max-width: 450px) {
+        .app-header {
+          padding: 13px 12px;
+        }
+        .brand .eyebrow {
+          font-size: 8px;
+        }
+        .connection {
+          font-size: 10px;
+        }
+        .lobby {
+          padding: 0 12px 20px;
+        }
+        .setup-section {
+          padding: 16px;
+        }
+        .setup-side {
+          grid-template-columns: 1fr;
+        }
+        .field-row {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .setup-footer {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .workspace {
+          padding: 0 10px 15px;
+        }
+        .match-toolbar {
+          padding: 12px 10px;
+        }
+        .seat-row {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .player-board {
+          height: 240px;
+        }
+        .fan {
+          --card-height: 51px;
+          --card-width: 37px;
+        }
+        .player-name {
+          font-size: 13px;
+        }
+        .player-counts {
+          font-size: 10px;
+        }
+        .zone-button {
+          font-size: 10px;
+        }
+        .inspector-layout {
+          grid-template-columns: 1fr;
+        }
+        .inspector-art,
+        .inspector-placeholder {
+          max-width: 260px;
+          margin: auto;
+        }
+        .dialog-header {
+          padding: 15px;
+        }
+        .shared-strip {
+          grid-template-columns: 1fr;
+        }
+        .stack-area {
+          min-height: 30px;
+        }
+        .stack-cards {
+          min-height: 30px;
+        }
+        .sidebar {
+          grid-template-columns: 1fr;
+        }
+        .sidebar-run .runner-players {
+          grid-template-columns: 1fr 1fr;
+        }
+        .sidebar-run {
+          grid-column: auto;
+        }
+        .sidebar .new-match {
+          grid-column: auto;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-symbol" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div>
+          <strong>Game Night</strong>
+          <div class="eyebrow">Local playtest table</div>
+        </div>
+      </div>
+      <div id="connection" class="connection" role="status">Connecting</div>
+    </header>
+    <div id="error" class="error-banner" role="alert" hidden></div>
+    <main>
+      <div id="loading" class="loading">Connecting to your table…</div>
+      <section id="lobby" class="lobby" hidden aria-labelledby="lobby-title">
+        <div class="lobby-intro">
+          <div>
+            <div class="eyebrow">Set the table</div>
+            <h1 id="lobby-title">Give your decks a game.</h1>
+            <p>
+              Choose the players, open a table, and watch a playtest—or leave it
+              running and come back to the log.
+            </p>
+          </div>
+          <div class="controls">
+            <button id="back-to-table" type="button" class="quiet" hidden>
+              Back to table</button
+            ><button id="import-setup" type="button" class="quiet">
+              Import setup JSON</button
+            ><input
+              type="file"
+              id="setup-file"
+              accept=".json,application/json"
+              hidden
+            />
+          </div>
+        </div>
+        <form id="setup-form">
+          <div class="setup-columns">
+            <div class="setup-main">
+              <section class="setup-section">
+                <h2>Match</h2>
+                <div class="field-row">
+                  <label class="field"
+                    >Name<input
+                      id="match-name"
+                      name="title"
+                      value="Game Night playtest"
+                      maxlength="200"
+                      required /></label
+                  ><label class="field"
+                    >Seating<select id="layout">
+                      <option value="table">Open table</option>
+                      <option value="emperor">Two teams of three</option>
+                    </select></label
+                  >
+                </div>
+                <details class="seat-settings">
+                  <summary>Format references</summary>
+                  <label class="field"
+                    >Catalogue paths, one per line<textarea
+                      id="references"
+                      placeholder="formats/horde/variants/classic.md"
+                      spellcheck="false"
+                    ></textarea>
+                  </label>
+                </details>
+                <details class="seat-settings">
+                  <summary>Run limits</summary>
+                  <div class="field-row">
+                    <label class="field"
+                      >Maximum decisions<input
+                        id="limit-decisions"
+                        type="number"
+                        min="1"
+                        step="1"
+                        value="2000"
+                        required /></label
+                    ><label class="field"
+                      >Simultaneous players<input
+                        id="limit-concurrent"
+                        type="number"
+                        min="1"
+                        step="1"
+                        value="4"
+                        required
+                    /></label>
+                  </div>
+                  <div class="field-row">
+                    <label class="field"
+                      >Seconds per decision<input
+                        id="limit-timeout"
+                        type="number"
+                        min="1"
+                        step="1"
+                        value="120"
+                        required /></label
+                    ><label class="field"
+                      >Output token limit (optional)<input
+                        id="limit-tokens"
+                        type="number"
+                        min="1"
+                        step="1"
+                        placeholder="No additional limit"
+                    /></label>
+                  </div>
+                </details>
+              </section>
+              <section class="setup-section">
+                <h2>
+                  Players <span id="seat-count" class="muted small"></span>
+                </h2>
+                <div id="seat-editors"></div>
+                <div class="setup-footer">
+                  <button type="button" id="add-seat">
+                    ＋ Add Codex player</button
+                  ><span class="small muted"
+                    >Up to six players in the viewer</span
+                  >
+                </div>
+              </section>
+            </div>
+            <aside class="setup-side">
+              <section class="setup-section">
+                <h2>Your seats stay put.</h2>
+                <div class="layout-sketch" aria-hidden="true">
+                  <span>A1</span><span>A2</span><span>A3</span
+                  ><span class="sketch-middle">Shared table</span><span>B1</span
+                  ><span>B2</span><span>B3</span>
+                </div>
+                <p>
+                  For teams of three, the middle seats are the emperors. Seating
+                  stays fixed throughout the game.
+                </p>
+              </section>
+              <section class="setup-section">
+                <h2>Ready to play</h2>
+                <ul>
+                  <li>Each AI has its own session and private hand.</li>
+                  <li>Players interpret the rules and make the moves.</li>
+                  <li>The table saves a log for you to review later.</li>
+                </ul>
+                <p id="rules-status" class="setup-help"></p>
+              </section>
+              <button id="create-match" class="primary" type="submit">
+                Create table
+              </button>
+              <p class="setup-help">
+                Creating a table does not start the AI players. Use Start when
+                you’re ready.
+              </p>
+            </aside>
+          </div>
+        </form>
+      </section>
+      <section id="match" hidden aria-label="Playtest table">
+        <div class="match-toolbar">
+          <div class="match-heading">
+            <h1 id="match-title">Playtest table</h1>
+            <div id="match-subtitle" class="muted">Public spectator view</div>
+          </div>
+          <div id="controls" class="controls">
+            <button class="primary" data-control="start" id="start-button">
+              ▶ Start</button
+            ><button data-control="pause">Ⅱ Pause</button
+            ><button data-control="step">Step</button
+            ><button class="quiet danger" data-control="stop">Stop</button>
+          </div>
+        </div>
+        <div class="workspace">
+          <div class="table-shell">
+            <div id="result" class="result-banner" role="status" hidden></div>
+            <div id="unsupported" class="unsupported" hidden>
+              <h2>This match has more than six players.</h2>
+              <p>
+                The visual table supports up to six seats. The match can
+                continue through MCP, and its saved log remains available.
+              </p>
+            </div>
+            <div id="table-stage" class="table-stage">
+              <div id="far-seats" class="seat-row"></div>
+              <section class="shared-strip" aria-label="Shared table">
+                <div class="shared-turn">
+                  <strong id="turn-label">Setup</strong>
+                  <div id="priority-label" class="muted"></div>
+                </div>
+                <div class="stack-area">
+                  <span class="stack-label">Stack<br />Top first</span>
+                  <div id="stack-cards" class="stack-cards"></div>
+                </div>
+              </section>
+              <div id="near-seats" class="seat-row"></div>
+            </div>
+            <div id="table-note" class="table-note"></div>
+            <div class="footer-hint">
+              <span>Public information · Select a card to inspect it</span
+              ><span id="revision"></span>
+            </div>
+          </div>
+          <aside class="sidebar">
+            <section class="sidebar-run">
+              <h2>Players</h2>
+              <div class="run-summary">
+                <span id="run-state" class="status-pill">Manual table</span>
+                <button id="run-limits" class="quiet">Run limits</button>
+              </div>
+              <p id="run-detail" class="run-detail"></p>
+              <div id="runner-players" class="runner-players"></div>
+            </section>
+            <section>
+              <div class="moves-summary">
+                <h2>Recent moves</h2>
+                <button id="all-moves" class="quiet">Expand</button>
+              </div>
+              <ol id="recent-moves" class="recent-moves"></ol>
+            </section>
+            <section id="log-section">
+              <h2>Game log</h2>
+              <p class="run-detail">
+                Save the game’s actions for review in any chat.
+              </p>
+              <div class="sidebar-links">
+                <a href="/api/log?format=markdown" download>Readable log ↗</a
+                ><a href="/api/log?format=json" download>JSON ↗</a>
+              </div>
+            </section>
+            <button id="new-match" class="quiet new-match">New table</button>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <dialog id="inspector" aria-labelledby="inspector-title">
+      <div class="dialog-header">
+        <div>
+          <div id="inspector-kicker" class="eyebrow"></div>
+          <h2 id="inspector-title">Card</h2>
+        </div>
+        <button id="close-inspector" class="quiet">Close ×</button>
+      </div>
+      <div id="inspector-content" class="dialog-content"></div>
+    </dialog>
+    <script type="module">
+      const $ = (selector) => document.querySelector(selector);
+      const make = (tag, className, text) => {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      };
+      let app = null,
+        table = null,
+        legacy = false,
+        setupReady = false,
+        busy = false,
+        displayedRevision = -1,
+        displayedMatch = "",
+        polling = false,
+        inspectorRequest = 0;
+      let seats = [];
+      let seatSequence = 0;
+      const defaults = { model: "gpt-6-luna", reasoning: "high" };
+      const fallbackPresets = [
+        { id: "white", name: "Game Night 2018 · White" },
+        { id: "green", name: "Game Night 2018 · Green" },
+      ];
+      const humanize = (value) =>
+        String(value || "idle")
+          .replace(/[_-]/g, " ")
+          .replace(/^./, (c) => c.toUpperCase());
+      const number = (value) =>
+        new Intl.NumberFormat().format(Number(value) || 0);
+      function setError(message) {
+        $("#error").textContent = message || "";
+        $("#error").hidden = !message;
+      }
+      async function request(path, body) {
+        const response = await fetch(path, {
+          cache: "no-store",
+          signal: AbortSignal.timeout(15000),
+          ...(body !== undefined
+            ? {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+              }
+            : {}),
+        });
+        let data;
+        try {
+          data = await response.json();
+        } catch {
+          data = { error: response.statusText };
+        }
+        if (!response.ok) {
+          const error = new Error(
+            data.error || data.message || `Request failed (${response.status})`,
+          );
+          error.status = response.status;
+          throw error;
+        }
+        return data;
+      }
+      function modelDefaults() {
+        return { ...defaults, ...(app?.defaults || {}) };
+      }
+      function presetList() {
+        return app?.presets?.length ? app.presets : fallbackPresets;
+      }
+      function addSeat() {
+        if (seats.length >= 6) return;
+        seatSequence++;
+        const presets = presetList();
+        const base = modelDefaults();
+        seats.push({
+          id: "p" + seatSequence,
+          name: "Player " + seatSequence,
+          deck: presets[seats.length % presets.length].id,
+          model: base.model,
+          reasoning: base.reasoning || base.reasoningEffort || "high",
+          ai: true,
+        });
+        renderSetup();
+      }
+      function field(label, element) {
+        const wrapper = make("label", "field", label);
+        wrapper.append(element);
+        return wrapper;
+      }
+      function input(value, onInput, options = {}) {
+        const node = make("input");
+        node.value = value;
+        Object.assign(node, options);
+        node.addEventListener("input", () => onInput(node.value));
+        return node;
+      }
+      function select(options, value, onChange) {
+        const node = make("select");
+        for (const option of options) {
+          const item = make(
+            "option",
+            "",
+            option.name || option.label || option.id,
+          );
+          item.value = option.id || option.value;
+          node.append(item);
+        }
+        node.value = value;
+        node.addEventListener("change", () => onChange(node.value));
+        return node;
+      }
+      function renderSetup() {
+        const root = $("#seat-editors");
+        root.replaceChildren();
+        seats.forEach((seat, index) => {
+          const section = make("div", "seat-editor");
+          const head = make("div", "seat-editor-header");
+          const title = make("div", "seat-number");
+          title.append(
+            make("span", "", index + 1),
+            document.createTextNode(
+              $("#layout").value === "emperor"
+                ? `${index < 3 ? "Team A" : "Team B"}${index % 3 === 1 ? " · Emperor" : ""}`
+                : "Player",
+            ),
+          );
+          const remove = make("button", "quiet remove-seat", "Remove");
+          remove.type = "button";
+          remove.disabled = seats.length <= 1;
+          remove.addEventListener("click", () => {
+            seats = seats.filter((s) => s.id !== seat.id);
+            if (seats.length !== 6) $("#layout").value = "table";
+            renderSetup();
+          });
+          head.append(title, remove);
+          const row = make("div", "field-row");
+          row.append(
+            field(
+              "Player name",
+              input(seat.name, (v) => (seat.name = v), {
+                maxLength: 100,
+                required: true,
+              }),
+            ),
+            field(
+              "Deck",
+              select(presetList(), seat.deck, (v) => (seat.deck = v)),
+            ),
+          );
+          const settings = make("details", "seat-settings");
+          settings.append(make("summary", "", "Player, model, and reasoning"));
+          const settingsRow = make("div", "field-row");
+          settingsRow.append(
+            field(
+              "Model",
+              input(seat.model, (v) => (seat.model = v), {
+                required: true,
+                spellcheck: false,
+              }),
+            ),
+            field(
+              "Reasoning",
+              select(
+                ["low", "medium", "high", "xhigh"].map((id) => ({
+                  id,
+                  name: humanize(id),
+                })),
+                seat.reasoning,
+                (v) => (seat.reasoning = v),
+              ),
+            ),
+          );
+          settings.append(
+            settingsRow,
+            field(
+              "Controlled by",
+              select(
+                [
+                  { id: "ai", name: "Codex CLI" },
+                  { id: "manual", name: "External MCP player" },
+                ],
+                seat.ai ? "ai" : "manual",
+                (v) => (seat.ai = v === "ai"),
+              ),
+            ),
+          );
+          section.append(head, row, settings);
+          root.append(section);
+        });
+        $("#seat-count").textContent = `${seats.length} / 6`;
+        $("#add-seat").disabled = seats.length >= 6;
+      }
+      function setup() {
+        if (setupReady) return;
+        setupReady = true;
+        addSeat();
+        addSeat();
+      }
+      $("#add-seat").addEventListener("click", addSeat);
+      $("#layout").addEventListener("change", () => {
+        if ($("#layout").value === "emperor") {
+          while (seats.length < 6) addSeat();
+        }
+        renderSetup();
+      });
+      $("#setup-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (busy) return;
+        busy = true;
+        $("#create-match").disabled = true;
+        setError("");
+        try {
+          const payload = {
+            title: $("#match-name").value.trim(),
+            layout: $("#layout").value,
+            players: seats.map((s) => ({
+              ...s,
+              name: s.name.trim(),
+              model: s.model.trim(),
+            })),
+            references: $("#references")
+              .value.split("\n")
+              .map((s) => s.trim())
+              .filter(Boolean),
+            limits: {
+              maxDecisions: Number($("#limit-decisions").value),
+              maxConcurrent: Number($("#limit-concurrent").value),
+              decisionTimeoutMs: Number($("#limit-timeout").value) * 1000,
+              ...($("#limit-tokens").value
+                ? { maxOutputTokens: Number($("#limit-tokens").value) }
+                : {}),
+            },
+          };
+          await request("/api/match", payload);
+          displayedRevision = -1;
+          displayedMatch = "";
+          window.scrollTo(0, 0);
+          await refresh();
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          busy = false;
+          $("#create-match").disabled = false;
+          if (table) renderRunner();
+        }
+      });
+      $("#import-setup").addEventListener("click", () =>
+        $("#setup-file").click(),
+      );
+      $("#setup-file").addEventListener("change", async () => {
+        const file = $("#setup-file").files[0];
+        if (!file || busy) return;
+        busy = true;
+        setError("");
+        try {
+          if (file.size > 4_000_000)
+            throw new Error("Setup file must be smaller than 4 MB.");
+          const payload = JSON.parse(await file.text());
+          if (!Array.isArray(payload.players) || !payload.players.length)
+            throw new Error(
+              "The setup needs a players list with at least one player.",
+            );
+          await request("/api/match", payload);
+          displayedRevision = -1;
+          displayedMatch = "";
+          showSetup = false;
+          window.scrollTo(0, 0);
+          await refresh();
+        } catch (error) {
+          setError("Could not import setup: " + error.message);
+        } finally {
+          busy = false;
+          $("#setup-file").value = "";
+          if (table) renderRunner();
+        }
+      });
+      function openInspector(title, kicker = "") {
+        inspectorRequest++;
+        $("#inspector-title").textContent = title;
+        $("#inspector-kicker").textContent = kicker;
+        $("#inspector-content").replaceChildren();
+        if (!$("#inspector").open) $("#inspector").showModal();
+        return inspectorRequest;
+      }
+      $("#close-inspector").addEventListener("click", () =>
+        $("#inspector").close(),
+      );
+      $("#inspector").addEventListener("click", (event) => {
+        if (event.target === $("#inspector")) {
+          const box = event.target.getBoundingClientRect();
+          if (
+            event.clientX < box.left ||
+            event.clientX > box.right ||
+            event.clientY < box.top ||
+            event.clientY > box.bottom
+          )
+            event.target.close();
+        }
+      });
+      const cardsIn = (zone) => table?.zones?.[zone]?.cards || [];
+      function cardAnnotations(card) {
+        const values = [];
+        if (card.tapped) values.push("Tapped");
+        if (card.face_down) values.push("Face down");
+        if (card.damage) values.push(`${card.damage} damage`);
+        for (const [name, count] of Object.entries(card.counters || {}))
+          if (count) values.push(`${count} ${name}`);
+        if (card.power !== undefined)
+          values.push(`${card.power} / ${card.toughness ?? "?"}`);
+        if (card.attached_to) {
+          const attached = Object.values(table?.zones || {})
+            .flatMap((z) => z.cards || [])
+            .find((c) => c.id === card.attached_to);
+          values.push(`Attached to ${attached?.name || "a card"}`);
+        }
+        return values;
+      }
+      async function inspectCard(card) {
+        const serial = openInspector(
+          card.name || "Unknown card",
+          "Card detail",
+        );
+        const layout = make("div", "inspector-layout");
+        if (card.image_url) {
+          const img = make("img", "inspector-art");
+          img.src = card.image_url;
+          img.alt = card.name;
+          layout.append(img);
+        } else
+          layout.append(
+            make("div", "inspector-placeholder", card.name || "Face-down card"),
+          );
+        const info = make("div");
+        const cost = make("div", "muted", card.mana_cost || "");
+        const type = make("p", "card-type", card.type_line || "");
+        const rules = make("p", "card-text", card.oracle_text || "");
+        const properties = make("div", "card-properties");
+        for (const label of cardAnnotations(card))
+          properties.append(make("span", "", label));
+        info.append(cost, type, rules, properties);
+        if (card.note) info.append(make("p", "card-text", card.note));
+        layout.append(info);
+        $("#inspector-content").append(layout);
+        if (!card.face_down && !card.oracle_text && !legacy) {
+          try {
+            const details = await request(
+              "/api/public-card?id=" + encodeURIComponent(card.id),
+            );
+            if (serial !== inspectorRequest || !$("#inspector").open) return;
+            rules.textContent = details.oracle_text || "";
+            type.textContent = details.type_line || card.type_line || "";
+            cost.textContent = details.mana_cost || card.mana_cost || "";
+          } catch (error) {
+            if (serial === inspectorRequest && !card.image_url)
+              rules.textContent = "Card details are unavailable.";
+          }
+        }
+      }
+      function cardButton(card) {
+        const button = make(
+          "button",
+          "table-card" + (card.tapped ? " tapped" : ""),
+        );
+        button.type = "button";
+        button.setAttribute(
+          "aria-label",
+          [card.name || "Face-down card", ...cardAnnotations(card)].join(" · "),
+        );
+        button.title = [
+          card.name || "Face-down card",
+          ...cardAnnotations(card),
+        ].join(" · ");
+        if (card.image_url) {
+          const image = make("img");
+          image.src = card.image_url;
+          image.alt = "";
+          image.loading = "lazy";
+          image.addEventListener(
+            "error",
+            () =>
+              image.replaceWith(
+                make("span", "card-fallback", card.name || "Card"),
+              ),
+            { once: true },
+          );
+          button.append(image);
+        } else
+          button.append(
+            make("span", "card-fallback", card.name || "Face-down card"),
+          );
+        const markers = make("div", "card-markers");
+        for (const [name, count] of Object.entries(card.counters || {}))
+          if (count)
+            markers.append(make("span", "card-marker", `${count} ${name}`));
+        if (card.damage)
+          markers.append(
+            make("span", "card-marker damage", `${card.damage} dmg`),
+          );
+        button.append(markers);
+        button.addEventListener("click", () => inspectCard(card));
+        return button;
+      }
+      function inspectZone(title, cards) {
+        openInspector(title, "Public cards");
+        const grid = make("div", "zone-grid");
+        for (const card of cards) {
+          const button = make("button", "zone-card");
+          button.type = "button";
+          if (card.image_url) {
+            const image = make("img");
+            image.src = card.image_url;
+            image.alt = card.name;
+            image.loading = "lazy";
+            button.append(image);
+          } else
+            button.append(
+              make(
+                "div",
+                "inspector-placeholder",
+                card.name || "Face-down card",
+              ),
+            );
+          button.append(make("span", "", card.name || "Face-down card"));
+          const annotations = cardAnnotations(card);
+          if (annotations.length)
+            button.append(make("span", "zone-state", annotations.join(" · ")));
+          button.addEventListener("click", () => inspectCard(card));
+          grid.append(button);
+        }
+        $("#inspector-content").append(
+          cards.length
+            ? grid
+            : make("p", "modal-empty", "No cards in this zone."),
+        );
+      }
+      function lane(label, cards) {
+        const node = make("div", "lane");
+        const heading = make("div", "lane-heading");
+        heading.append(make("span", "", label), make("span", "", cards.length));
+        const fan = make("div", "fan" + (!cards.length ? " empty" : ""));
+        fan.style.setProperty("--cards", Math.max(cards.length, 1));
+        if (cards.length)
+          for (const card of cards) fan.append(cardButton(card));
+        else fan.append(document.createTextNode("Empty"));
+        node.append(heading, fan);
+        return node;
+      }
+      function playerConfig(id) {
+        return app?.match?.players?.find?.((p) => p.id === id) || {};
+      }
+      function coordinator() {
+        return app?.coordinator || null;
+      }
+      function runPhase() {
+        return (
+          coordinator()?.state ||
+          coordinator()?.phase ||
+          coordinator()?.status ||
+          coordinator()?.mode ||
+          "ready"
+        );
+      }
+      function workerFor(id) {
+        const workers = coordinator()?.players || coordinator()?.seats || [];
+        return Array.isArray(workers)
+          ? workers.find((w) => (w.id || w.seat) === id)
+          : workers[id];
+      }
+      function workerText(id) {
+        const worker = workerFor(id);
+        if (!worker) return legacy ? "MCP player" : "Ready";
+        if (worker.enabled === false || playerConfig(id).ai === false)
+          return "External MCP player";
+        const state = worker.error
+          ? "needs attention"
+          : worker.active
+            ? "thinking"
+            : worker.state || worker.status || "idle";
+        const queue =
+          worker.queueLength ??
+          worker.pending?.length ??
+          worker.queue?.length ??
+          0;
+        return `${humanize(state)}${queue ? " · " + queue + " queued" : ""}`;
+      }
+      function board(player, index) {
+        const node = make(
+          "section",
+          "player-board" +
+            (table.turn.active === player.id ? " active" : "") +
+            (table.turn.priority === player.id ? " priority" : ""),
+        );
+        node.dataset.player = player.id;
+        node.setAttribute("aria-label", player.name + " battlefield");
+        const head = make("div", "player-head");
+        const identity = make("div");
+        const team =
+          app?.match?.layout === "emperor" && table.players.length === 6;
+        const label = team
+          ? `${index < 3 ? "Team A" : "Team B"} · ${index % 3 === 1 ? "Emperor" : "Flank"}`
+          : `Seat ${index + 1}`;
+        identity.append(
+          make("div", "seat-label", label),
+          make("h2", "player-name", player.name),
+        );
+        const life = make("div", "life", player.life);
+        life.append(make("small", "", "life"));
+        head.append(identity, life);
+        const counts = make("div", "player-counts");
+        counts.append(
+          make(
+            "span",
+            "",
+            `${table.zones[player.id + ":library"]?.count ?? 0} library`,
+          ),
+          make(
+            "span",
+            "",
+            `${table.zones[player.id + ":hand"]?.count ?? 0} hand`,
+          ),
+        );
+        for (const [name, value] of Object.entries(player.counters || {}))
+          if (value) counts.append(make("span", "", `${value} ${name}`));
+        for (const [name, value] of Object.entries(player.mana || {}))
+          if (value) counts.append(make("span", "", `${value} ${name} mana`));
+        const status = make("div", "player-status", workerText(player.id));
+        status.dataset.worker = player.id;
+        const battlefield = cardsIn("battlefield").filter(
+          (c) => c.controller === player.id,
+        );
+        const isLand = (card) =>
+          (card.type_line || "").split("—")[0].includes("Land");
+        const lanes = make("div", "lanes");
+        lanes.append(
+          lane(
+            "Permanents",
+            battlefield.filter((c) => !isLand(c)),
+          ),
+          lane("Lands", battlefield.filter(isLand)),
+        );
+        const footer = make("div", "player-footer");
+        const zones = make("div", "zone-actions");
+        for (const [kind, label] of [
+          ["graveyard", "Grave"],
+          ["exile", "Exile"],
+          ["command", "Command"],
+        ]) {
+          const zone = table.zones[player.id + ":" + kind] || {
+            count: 0,
+            cards: [],
+          };
+          const button = make(
+            "button",
+            "zone-button",
+            `${label} ${zone.count}`,
+          );
+          button.type = "button";
+          button.setAttribute(
+            "aria-label",
+            `${player.name}: ${kind}, ${zone.count} cards`,
+          );
+          button.addEventListener("click", () =>
+            inspectZone(player.name + " · " + kind, zone.cards || []),
+          );
+          zones.append(button);
+        }
+        const inspect = make(
+          "button",
+          "quiet inspect-board",
+          "Inspect board ↗",
+        );
+        inspect.addEventListener("click", () =>
+          inspectZone(player.name + " · battlefield", battlefield),
+        );
+        footer.append(zones, inspect);
+        node.append(head, counts, status, lanes, footer);
+        return node;
+      }
+      function renderTable(state) {
+        table = state;
+        $("#match-title").textContent = state.title;
+        $("#match-subtitle").textContent =
+          `${state.players.length} player${state.players.length === 1 ? "" : "s"} · ${app?.match?.layout === "emperor" ? "Two teams of three" : "Public spectator view"}`;
+        $("#revision").textContent = "Update " + state.revision;
+        const supported = state.players.length <= 6;
+        $("#unsupported").hidden = supported;
+        $("#table-stage").hidden = !supported;
+        $("#table-stage").classList.toggle("solo", state.players.length === 1);
+        const name = (id) =>
+          state.players.find((p) => p.id === id)?.name || "—";
+        $("#turn-label").textContent =
+          `Turn ${state.turn.number} · ${name(state.turn.active)}`;
+        $("#priority-label").textContent =
+          `${state.turn.phase || "Setup"}${state.turn.priority ? " · Priority: " + name(state.turn.priority) : ""}`;
+        if (supported) {
+          const split =
+            state.players.length === 1
+              ? 0
+              : Math.ceil(state.players.length / 2);
+          const far = state.players.slice(0, split),
+            near = state.players.slice(split);
+          for (const [id, players, offset] of [
+            ["#far-seats", far, 0],
+            ["#near-seats", near, split],
+          ]) {
+            const row = $(id);
+            row.hidden = !players.length;
+            row.style.setProperty("--columns", Math.max(players.length, 1));
+            row.dataset.seats = players.length;
+            row.replaceChildren(...players.map((p, i) => board(p, offset + i)));
+          }
+        }
+        const stack = $("#stack-cards");
+        stack.replaceChildren();
+        const items = state.zones.stack?.cards || [];
+        if (!items.length)
+          stack.append(make("span", "small muted", "Stack is empty"));
+        else
+          for (const [order, card] of items.entries()) {
+            const button = make("button", "stack-item");
+            button.append(
+              make(
+                "span",
+                "stack-position",
+                order === 0 ? "TOP" : String(order + 1),
+              ),
+              make("span", "", card.name || "Face-down card"),
+            );
+            button.addEventListener("click", () => inspectCard(card));
+            stack.append(button);
+          }
+        $("#result").hidden = !state.result;
+        if (state.result)
+          $("#result").textContent =
+            (state.result.winners?.length
+              ? state.result.winners.map(name).join(" & ") + " won"
+              : "Draw") +
+            " · reported by " +
+            name(state.result.reported_by);
+        $("#table-note").textContent = state.notes?.at(-1)?.text || "";
+        renderMoves();
+      }
+      function renderMoves() {
+        const items = table?.events || [];
+        const list = $("#recent-moves");
+        list.replaceChildren();
+        if (!items.length) list.append(make("li", "", "No moves yet."));
+        else
+          for (const event of items.slice(-5).reverse()) {
+            const item = make("li");
+            item.append(
+              make("span", "move-revision", "Move " + event.revision),
+              document.createTextNode(
+                event.summary || event.type || "Table updated",
+              ),
+            );
+            list.append(item);
+          }
+      }
+      $("#all-moves").addEventListener("click", () => {
+        openInspector("Recent game actions", "Game log");
+        const list = make("ol", "moves-full");
+        for (const event of table?.events || []) {
+          const item = make("li", "", event.summary || "Table updated");
+          item.value = event.revision;
+          list.append(item);
+        }
+        $("#inspector-content").append(list);
+        if (!legacy) {
+          const link = make("a", "button", "Download complete log ↗");
+          link.href = "/api/log?format=markdown";
+          link.download = "";
+          $("#inspector-content").append(link);
+        }
+      });
+      $("#run-limits").addEventListener("click", () => {
+        const run = coordinator();
+        if (!run || busy) return;
+        openInspector("Run limits", "Player coordinator");
+        const form = make("form");
+        const limits = run.limits || {};
+        form.append(
+          make(
+            "p",
+            "run-detail",
+            `${number(run.decisions || 0)} decisions recorded. Reaching a run limit pauses the players. Saving limits does not start them.`,
+          ),
+        );
+        const fields = {};
+        function field(row, key, label, value, optional = false) {
+          const wrapper = make("label", "field", label);
+          const input = make("input");
+          input.name = key;
+          input.type = "number";
+          input.min = "1";
+          input.step = "1";
+          input.required = !optional;
+          input.value = value ?? "";
+          if (optional) input.placeholder = "No additional limit";
+          wrapper.append(input);
+          row.append(wrapper);
+          fields[key] = input;
+        }
+        const firstRow = make("div", "field-row");
+        field(
+          firstRow,
+          "maxDecisions",
+          "Maximum decisions",
+          limits.maxDecisions ?? 2000,
+        );
+        field(
+          firstRow,
+          "maxConcurrent",
+          "Simultaneous players",
+          limits.maxConcurrent ?? 4,
+        );
+        const secondRow = make("div", "field-row");
+        field(
+          secondRow,
+          "timeout",
+          "Seconds per decision",
+          Math.ceil((limits.decisionTimeoutMs ?? 120000) / 1000),
+        );
+        field(
+          secondRow,
+          "maxOutputTokens",
+          "Output token limit (optional)",
+          limits.maxOutputTokens,
+          true,
+        );
+        const errorLine = make("p", "seat-error");
+        errorLine.setAttribute("role", "alert");
+        const actions = make("div", "setup-footer");
+        const save = make("button", "primary", "Save limits");
+        save.type = "submit";
+        actions.append(save);
+        form.append(firstRow, secondRow, errorLine, actions);
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          if (busy || !form.reportValidity()) return;
+          busy = true;
+          save.disabled = true;
+          errorLine.textContent = "";
+          renderRunner();
+          try {
+            await request("/api/control", {
+              action: "configure",
+              limits: {
+                maxDecisions: Number(fields.maxDecisions.value),
+                maxConcurrent: Number(fields.maxConcurrent.value),
+                decisionTimeoutMs: Number(fields.timeout.value) * 1000,
+                maxOutputTokens: fields.maxOutputTokens.value
+                  ? Number(fields.maxOutputTokens.value)
+                  : null,
+              },
+            });
+            await refresh();
+            $("#inspector").close();
+          } catch (error) {
+            errorLine.textContent = error.message;
+          } finally {
+            busy = false;
+            save.disabled = false;
+            renderRunner();
+          }
+        });
+        $("#inspector-content").append(form);
+      });
+      function renderRunner() {
+        const run = coordinator();
+        const phase = runPhase();
+        const moving = ["running", "stepping"].includes(run?.mode || phase);
+        $("#controls").hidden = legacy;
+        $("#log-section").hidden = legacy;
+        $("#new-match").hidden = legacy;
+        $("#run-limits").hidden = legacy || !run;
+        $("#run-limits").disabled = busy;
+        $("#run-state").textContent = legacy ? "Manual table" : humanize(phase);
+        const error = run?.error || run?.reason || run?.message;
+        const usage = run?.usage || {};
+        const input = usage.input_tokens ?? usage.inputTokens ?? 0,
+          output = usage.output_tokens ?? usage.outputTokens ?? 0;
+        $("#run-detail").textContent =
+          error ||
+          (run
+            ? `${number(input + output)} tokens recorded · Viewer can be closed`
+            : "AI players start when you press Start.");
+        $("#start-button").textContent =
+          run?.decisions > 0 &&
+          ["paused", "stopped", "idle", "stalled", "error"].includes(phase)
+            ? "▶ Resume"
+            : "▶ Start";
+        for (const button of document.querySelectorAll("[data-control]")) {
+          const action = button.dataset.control;
+          button.disabled =
+            busy ||
+            !app?.match ||
+            phase === "finished" ||
+            ((action === "start" || action === "step") && moving) ||
+            (action === "pause" && !moving) ||
+            (action === "stop" &&
+              ["stopped", "complete", "completed"].includes(phase));
+        }
+        const players = $("#runner-players");
+        players.replaceChildren();
+        for (const player of table?.players || []) {
+          const item = make("div", "runner-player");
+          item.append(make("strong", "", player.name));
+          const worker = workerFor(player.id);
+          item.append(make("p", "small", workerText(player.id)));
+          const conf = playerConfig(player.id);
+          if (conf.model && conf.ai !== false)
+            item.append(
+              make(
+                "p",
+                "small",
+                `${conf.model.replace(/^gpt-/, "")} · ${humanize(conf.reasoning || conf.reasoningEffort || "high")}`,
+              ),
+            );
+          if (worker?.error)
+            item.append(make("p", "small seat-error", worker.error));
+          players.append(item);
+        }
+        for (const node of document.querySelectorAll("[data-worker]"))
+          node.textContent = workerText(node.dataset.worker);
+      }
+      for (const button of document.querySelectorAll("[data-control]"))
+        button.addEventListener("click", async () => {
+          if (busy) return;
+          busy = true;
+          renderRunner();
+          setError("");
+          try {
+            await request("/api/control", { action: button.dataset.control });
+            await refresh();
+          } catch (error) {
+            setError(error.message);
+          } finally {
+            busy = false;
+            renderRunner();
+          }
+        });
+      let showSetup = false;
+      $("#new-match").addEventListener("click", () => {
+        if (
+          ["running", "stepping"].includes(coordinator()?.mode || runPhase())
+        ) {
+          setError(
+            "Pause or stop the current players before creating another table.",
+          );
+          return;
+        }
+        showSetup = true;
+        $("#match").hidden = true;
+        $("#lobby").hidden = false;
+        $("#back-to-table").hidden = false;
+        setup();
+        $("#match-name").focus({ preventScroll: true });
+        window.scrollTo(0, 0);
+      });
+      $("#back-to-table").addEventListener("click", () => {
+        showSetup = false;
+        $("#lobby").hidden = true;
+        $("#match").hidden = false;
+        window.scrollTo(0, 0);
+      });
+      async function refresh() {
+        if (polling) return;
+        polling = true;
+        try {
+          if (!legacy) {
+            try {
+              app = await request("/api/app");
+            } catch (error) {
+              if ([401, 404].includes(error.status)) legacy = true;
+              else throw error;
+            }
+          }
+          if (legacy || app?.match) {
+            const state = await request("/api/table");
+            const matchId =
+              app?.match?.session || state.created_at || state.title;
+            if (matchId !== displayedMatch) {
+              displayedMatch = matchId;
+              displayedRevision = -1;
+              showSetup = false;
+            }
+            if (state.revision !== displayedRevision) {
+              displayedRevision = state.revision;
+              renderTable(state);
+            } else table = state;
+            $("#match").hidden = showSetup;
+            $("#lobby").hidden = !showSetup;
+            renderRunner();
+          } else {
+            $("#match").hidden = true;
+            $("#lobby").hidden = false;
+            setup();
+            const rules = app?.rules;
+            $("#rules-status").textContent = rules?.available
+              ? "Detailed rules reference available."
+              : rules?.message || "";
+          }
+          $("#loading").hidden = true;
+          $("#connection").classList.remove("offline");
+          $("#connection").textContent = legacy
+            ? "Connected · public view"
+            : "Connected · local";
+        } catch (error) {
+          $("#connection").classList.add("offline");
+          $("#connection").textContent = "Disconnected · retrying";
+          if ($("#loading").hidden === false)
+            $("#loading").textContent = error.message;
+        } finally {
+          polling = false;
+        }
+      }
+      await refresh();
+      setInterval(refresh, 1200);
+    </script>
+  </body>
 </html>

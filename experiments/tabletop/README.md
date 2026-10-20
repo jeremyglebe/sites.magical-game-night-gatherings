@@ -1,53 +1,76 @@
-# Tabletop experiment
+# Local Magic playtester
 
-A shared Magic table for AI players, with a small spectator page. Players interpret the rules and apply effects themselves. The table stores their actions, keeps private views, and displays the public battlefield.
+A local Node application with an optional browser table, independent Codex CLI players, and saved game logs. It is separate from the published catalogue. Players interpret Magic and the selected format rules; the table stores their physical actions, filters private information, and displays the public game.
 
-This is an experiment for the catalogue's casual formats and prebuilt boxes. It does not assume that every box is humorous, relax deck-construction requirements, or prescribe box-specific rules. Custom exceptions must come from the chosen box's documented rules.
+The data model and coordinator accept any positive player count, subject to machine and account capacity. The viewer supports one through six players. Its six-seat team layout keeps three seats on each side, with the middle seats facing one another. Choosing that layout does not apply Emperor rules; supply the actual format reference when it exists.
+
+This is for the catalogue's casual formats and prebuilt boxes. Box-specific exceptions must come from the chosen box's documented rules. There is no automated legality, priority adjudication, effect resolution, trigger handling, cleanup, or winner detection.
 
 ## Start here
 
-Use Node 24.5 or newer, from the repository root:
+Use Node 24.5 or newer and an existing Codex ChatGPT login. `npm ci` installs the pinned project-local Codex CLI (0.163.0), leaving your global installation unchanged. From the repository root:
 
 ```bash
 npm ci
+npx --no-install codex login status
+npm run playtest:rules
+npm run playtest
+```
+
+Open **http://127.0.0.1:5180/**. Add players, choose decks and model settings, then create the match. It starts paused. Start runs queued decisions; Step runs one player decision; Pause and Stop cancel active work. Reopening the application restores the saved match paused. Reported finished matches stay finished. Use Run limits to adjust concurrency, decision count, decision timeout, and an optional output-token limit.
+
+The proposed default is **gpt-6-luna, high reasoning, standard speed**. Every player can use a different model or reasoning setting. The app uses its pinned project-local CLI because the older global CLI tested here rejected current models. Model availability still depends on your account: an unavailable model pauses with an error, with no silent substitution. Choose a supported model when creating a match. `TABLETOP_CODEX_BIN` can select a different installed binary; it must support `--ignore-user-config` and `--ignore-rules`. No API key or desktop-app private endpoint is used.
+
+The two built-in decks are fixtures for getting started. Import a setup JSON for custom lists, player counts beyond six, format references, or other starting state. Saved games live under ignored `.playtest/`, excluded from catalogue builds. The browser only shows public information; inspect a card or a player's board for details.
+
+## Running without the viewer
+
+The same application runs without opening a browser:
+
+```bash
+npm run playtest:headless -- --setup experiments/tabletop/precons.json --run
+```
+
+That example uses the default model, so choose explicit models in a copied setup if your CLI does not support it. Omit `--run` to load paused. Use `--directory .playtest/trial-02` to keep an independent run, and `--port 5181` when another app is using 5180. With no `--setup`, the most recent match in that directory resumes. Ctrl+C saves and closes the host.
+
+A setup may use `deck: "white"` or `"green"`, or the full deck definitions described below. Each player accepts `model`, `reasoning`, and `ai` (default true). A manual seat gets no CLI worker; it can be controlled by a separately configured MCP host. `limits` accepts `maxConcurrent` (default 4), `maxDecisions` (2000), `decisionTimeoutMs` (120000), and optional `maxOutputTokens`. These are stopping thresholds; an already-running call can finish above a token threshold. Token counts are reported usage, not an estimate of your subscription percentage.
+
+## How players are coordinated
+
+Each seat has its own Codex conversation and working directory. Subsequent decisions resume that exact session ID. Player prompts contain only that seat's table projection and event history. Managed workers receive one fixed-identity tabletop MCP connection; shell, file inspection, browser, unrelated MCP servers, and cross-player tools are disabled. The launcher uses the existing CLI login while ignoring user configuration and project instructions for these workers.
+
+Every accepted table revision queues an update for each AI seat, processed in order with at most one active call per seat. Idle seats make no model calls and perform no polling. Updates describe historical events and include the current visible table; a player must re-observe before writing. Revision checks reject stale writes, and decision IDs reject writes from canceled or completed workers.
+
+A notification is not permission or an obligation to act. `complete_decision` with `no_op` acknowledges it quietly and produces no table event or game-log entry. An actual `pass` action changes the priority marker, records the handoff, and wakes players even if no cards moved. Players determine when passing or responding is legal. They also control how physical actions are batched so opponents get response opportunities. If everyone becomes idle, the coordinator reports that instead of inventing moves. Errors, timeouts, and requests for help pause the run.
+
+Seven MCP tools are available: `observe_table`, `act`, `read_card`, `read_reference`, `read_events`, `read_rules`, and `complete_decision`. Human board editing and an automated game reviewer are not included.
+
+## Saved logs
+
+Each match folder contains `session.json`, coordinator/configuration in `match.json`, pinned Comprehensive Rules when available, and per-player workspaces. Beside the session are:
+
+- `session.json.game.md`: readable starting lists, selected format references, actual actions, explanations, and reported result.
+- `session.json.game.json`: starting state and concrete revision deltas, including random shuffle outcomes, for reconstructing the game.
+
+Use the viewer's download buttons, or take these files directly to a separate Codex chat for analysis. The app does not run a reviewer or generate findings. These are owner logs and include hidden cards; they are never supplied to opposing players. Quiet acknowledgments are omitted. Keep logs and session credentials out of the published website.
+
+## Scripted demonstration and standalone MCP table
+
+For a demonstration with no model calls:
+
+```bash
 npm run playtest:demo
 ```
 
-Open **http://127.0.0.1:5180/** in a browser on the machine running the server. This runs a short, reproducible demonstration through two separate MCP processes. It uses staged opening hands, displays casts and combat, and leaves the final position open. The demonstration is scripted; it does not use a model or establish anything about deck balance.
+It uses staged opening hands and two separate MCP processes, displays scripted casts/combat, and leaves the final position open. It demonstrates plumbing, not deck balance or model competence. The console prints the session path. `--step-ms 1500` slows playback; `--step-ms 0 --once` runs and exits. A demo requires a new session filename.
 
-The console prints the saved session path. Press Ctrl+C to stop the server. To resume that position, pass its path:
-
-```bash
-npm run playtest:serve -- --session .playtest/demo-TIMESTAMP.json
-```
-
-To create a fresh, shuffled table for actual AI players:
+The lower-level table service remains available for externally managed players:
 
 ```bash
-npm run playtest:serve
+npm run playtest:serve -- --session .playtest/table.json --setup experiments/tabletop/precons.json
 ```
 
-That uses `precons.json` and saves `.playtest/table.json`. If the file exists, it resumes it instead of replacing it. Choose another session path for another game:
-
-```bash
-npm run playtest:serve -- --session .playtest/game-02.json --setup experiments/tabletop/precons.json
-```
-
-Both commands accept `--port 5181` if 5180 is occupied. The demo also accepts `--step-ms 1500` for slower playback, or `--step-ms 0 --once` for a quick check that exits. A demo always needs a new session filename.
-
-The server runs separately from VitePress. GitHub Pages can host the catalogue but cannot run this Node process. In a cloud workspace, `127.0.0.1` refers to that workspace; viewing the live table from another machine needs the workspace's port-forwarding facility. No public deployment is included here.
-
-## What is included
-
-- Persistent shared table, one authenticated connection per player, and a spectator view with public information.
-- Library, hand, battlefield, stack, graveyard, exile, command zone, sideboard, and custom zones. Libraries shuffle privately; hands show only to their owner unless revealed.
-- Explicit card movement, draws, peeking/revealing, tap state, face-down state, counters, marked damage, attachments, controller changes, life, mana, turn and priority markers, tokens, and triggered/activated ability entries on the stack.
-- Atomic action batches and revision checks. A stale action is rejected rather than overwriting another player's move.
-- Four MCP tools: `observe_table`, `act`, `read_card`, and `read_reference`.
-- A watch-only page with card images, two battlefield rows per player, counts, life, stack, and small public-zone lists. No human play controls.
-- A saved move log with the acting seat's explanation. Rules corrections can be made through ordinary actions and explained in a public note.
-
-There is no automated legality, effect resolution, turn progression, trigger handling, cleanup, loss detection, or AI opponent bundled into the server. It does not call a model API, schedule model turns, measure model costs, or run match batches. These tools are ready for separate model sessions or a future match driver to use.
+It resumes an existing session rather than replacing it, and accepts `--port`. It does not launch Codex players. Both services bind to loopback. GitHub Pages hosts the catalogue and cannot run this local Node application.
 
 ## The two starting decks
 
@@ -57,7 +80,7 @@ All 47 distinct names, Oracle text, types and image URLs were checked through th
 
 Card text is cached in the fixture, so starting a game does not require Scryfall requests. The browser still fetches card images; a name placeholder appears if an image cannot load. For new deck imports, use Scryfall MCP to verify the names, text and printings.
 
-## Connect two players
+## Connect externally managed players
 
 Run the table server first. Each player gets **one** stdio MCP connection. For player one:
 
@@ -89,7 +112,7 @@ Use a separate host/model context for player two, changing only `p1` to `p2`. Co
 
 For a blind experiment, expose only that seat's tools and the chosen rules/card references to its model. The session file contains the complete table and connection tokens; it is administrator data, not model input. A model with unrestricted shell access to this workspace could read it. This local prototype assumes cooperative players, just as a physical table does: explicit `peek` operations are available for card effects, and the players must justify using them.
 
-The host or match driver must alternate model work at priority/decision boundaries. The MCP server itself does not wake a model when priority changes. Give each model a separate conversation and preserve it between decisions. A useful starting instruction is:
+For the lower-level `playtest:serve` service, the external host must arrange model work at decision boundaries. The full `playtest` application provides this coordination. In either case, give each player a separate conversation. A useful external-player starting instruction is:
 
 > You are the player assigned to this MCP connection. Play ordinary two-player Magic with the supplied precon, starting at 20 life. Player p1 starts. Use the current London mulligan; there is no multiplayer free mulligan in this two-player trial. Read the table before acting, draw your opening seven during setup, and coordinate completion of setup using public notes. Read exact card text when needed. The table does not enforce or resolve the rules. Apply costs, effects, triggers, state-based actions and cleanup yourself, using the normal timing and priority rules. Do not inspect hidden information without a rule that permits it. Stop for your opponent's decisions and response opportunities. Record attacks, blocks, targets and temporary effects in public card/table notes. Explain actions briefly. If a rule is uncertain, look it up or flag the uncertainty instead of silently inventing a ruling. Report a result only when the game's rules establish one.
 
@@ -120,6 +143,7 @@ Copy `precons.json` for another setup: each player has an `id`, `name`, `life`, 
 | `reveal` | `card`; omit `to` for a public reveal, or give a list of player IDs for a restricted reveal. |
 | `card` | `card`, `set`: `tapped`, `face_down`, `face`, `damage`, `counters`, `controller`, `attached_to`, `note`. |
 | `player` | `player` (default your seat), `set`: `life`, `counters`, `mana`, `note`. |
+| `pass` | `next`: player ID. Record an explicit priority handoff without automatically resolving anything. |
 | `turn` | `set`: `number`, `active`, `priority` (seat or null), `phase`. These are markers only. |
 | `token` | `definition`, optional `count`, `owner`, `to`; creates a physical token representation. |
 | `remove_token` | `card`; removes a token when players apply the appropriate rule. |
@@ -149,7 +173,9 @@ Add repository-relative Markdown paths to the setup's `references` array before 
 
 `read_reference` lists configured paths, searches one with `query`, or returns exact text with `start`/`count` (up to 120 lines at a time). VitePress's shared Markdown includes are expanded first so turn procedures are present. Line numbers refer to this expanded reference. Large rulesets remain available in full through successive reads; they are not replaced by summaries.
 
-The current reader covers configured catalogue rules under `formats/`, `rules/` and `boxed-sets/`. It does not yet download or index the Comprehensive Rules. Use a rules source through the pilot's host when needed. The starting precon fixture has no custom format reference configured.
+The reference reader covers configured catalogue rules under `formats/`, `rules/` and `boxed-sets/`. Their expanded text is saved with the match so later source edits do not change its rules. The starting precon fixture has no custom format reference configured.
+
+The first player prompt includes `quickstart.md`, with ordinary play and tool conventions. `read_rules` searches or reads the full official Comprehensive Rules by line range, keyword, or rule number. `npm run playtest:rules` explicitly downloads the current official TXT from Wizards; it is not refreshed during a game. The application pins a copy in each match folder. A later refresh affects new matches. Alternatively supply `--comprehensive-rules /absolute/path/to/ComprehensiveRules.txt` or `TABLETOP_COMPREHENSIVE_RULES`. When the full source is unavailable, the tool reports that instead of inventing a ruling. Card Oracle text comes from the imported Scryfall-verified definitions via `read_card`.
 
 ## Persistence and validation
 
@@ -161,6 +187,6 @@ Run:
 npm run playtest:test
 ```
 
-Tests cover private views and card text, hidden-handle changes, atomic failures, stale revisions, manual markers, tokens/abilities, complete reference includes, deck contents, real MCP round trips, persistence/recovery, and the scripted precon demonstration. No paid model calls are made.
+Tests cover private views and event history, hidden-handle changes, atomic failures, stale/revoked decisions, separate conversations, queues and limits, saved logs/reconstruction, rules references, real MCP round trips, restart recovery, and the scripted precon demonstration. The test suite uses fake model runners and makes no paid model calls. Bounded live CLI checks are a separate manual integration step; they do not establish playing competence or deck balance.
 
 For our later model experiment, keep rules mistakes separate from strategic quality. Record model/settings, the two lists, starting seat, completed or abandoned games, corrections, and observed token usage/cost. Swap seats and repeat before drawing conclusions about the decks. A coherent casual opponent is useful even if it makes weak strategic choices; repeated illegal actions are a different problem. No model-performance or balance findings have been collected yet.

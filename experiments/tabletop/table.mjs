@@ -105,7 +105,7 @@ function move(state, id, destination, position = 'bottom') {
 }
 
 export function createTable(config) {
-  requireThat(Array.isArray(config.players) && config.players.length >= 2 && config.players.length <= 8, 'Supply 2–8 players');
+  requireThat(Array.isArray(config.players) && config.players.length >= 1, 'Supply at least one player');
   requireThat(config.references === undefined || (Array.isArray(config.references)
     && config.references.every(p => typeof p === 'string')), 'References must be a list of paths');
   const state = {
@@ -170,10 +170,28 @@ export function observe(state, actor = null) {
   return {
     title: state.title, revision: state.revision, players: copy(state.players),
     turn: copy(state.turn), zones, notes: copy(state.notes), result: copy(state.result),
-    events: state.events.slice(-12).map(e => ({
-      revision: e.revision, actor: e.actor, summary: e.summary, at: e.at,
-      ...(e.actor === actor ? { reason: e.reason } : {}),
-    })),
+    events: state.events.slice(-12).map(e => projectEvent(e, actor)),
+  };
+}
+
+function projectEvent(event, actor) {
+  const projection = actor === null ? event.public : event.seats?.[actor];
+  return {
+    revision: event.revision, actor: event.actor, at: event.at,
+    summary: projection?.summary ?? event.summary,
+    ...(projection?.changes ? { changes: copy(projection.changes) } : {}),
+    ...(event.actor === actor ? { reason: event.reason } : {}),
+  };
+}
+
+// History is projected when the event happens, so a later reveal cannot expose
+// an earlier private draw and a later hidden move cannot erase a public play.
+export function eventsSince(state, actor = null, since = 0) {
+  if (actor !== null) player(state, actor);
+  requireThat(Number.isSafeInteger(since) && since >= 0 && since <= state.revision, 'Invalid event revision');
+  return {
+    revision: state.revision,
+    events: state.events.filter(event => event.revision > since).map(event => projectEvent(event, actor)),
   };
 }
 
@@ -261,6 +279,10 @@ function perform(state, actor, op) {
         } else throw new Error('Unsupported turn field: ' + key);
       }
       return actor + ' updated the turn marker';
+    case 'pass':
+      player(state, op.next);
+      state.turn.priority = op.next;
+      return actor + ' passed priority to ' + op.next;
     case 'token': {
       const count = integer(op.count ?? 1, 1, 100);
       for (let i = 0; i < count; i++) addCard(state, op.owner || actor, op.to || 'battlefield', op.definition, true);
@@ -304,6 +326,112 @@ function perform(state, actor, op) {
   }
 }
 
+function captureAction(state, actor, op) {
+  requireThat(op && typeof op === 'object', 'Invalid action');
+  const change = { type: op.type, actor, cards: [] };
+  if (op.card && state.cards[op.card]) {
+    change.cards.push(state.cards[op.card]);
+    change.from = location(state, op.card)?.id;
+  }
+  if (op.type === 'draw' || op.type === 'peek') {
+    const from = zone(state, op.type === 'draw' ? (op.from || actor + ':library') : op.zone);
+    const count = integer(op.count ?? 1, op.type === 'draw' ? 0 : 1, 100);
+    change.cards = from.cards.slice(0, count).map(id => state.cards[id]);
+    change.from = from.id;
+    change.count = change.cards.length;
+    if (op.type === 'draw') change.to = op.to || actor + ':hand';
+    // A peek grants knowledge at this point even if a later operation conceals
+    // those cards again within the same atomic batch.
+    if (op.type === 'peek') change.disclosedTo = [actor];
+  }
+  if (op.type === 'reveal') change.disclosedTo = op.to || [null, ...state.players.map(p => p.id)];
+  if (op.type === 'move') change.to = op.to;
+  if (op.type === 'shuffle') change.zone = op.zone || actor + ':library';
+  if (op.type === 'token' || op.type === 'stack_item') change.previousCards = new Set(Object.values(state.cards));
+  return change;
+}
+
+function finishAction(state, actor, op, change, summary) {
+  change.summary = summary;
+  if (change.previousCards) {
+    change.cards = Object.values(state.cards).filter(card => !change.previousCards.has(card));
+    change.count = change.cards.length;
+    change.to = op.type === 'stack_item' ? 'stack' : (op.to || 'battlefield');
+    delete change.previousCards;
+  }
+  if (op.type === 'card') {
+    change.set = copy(op.set);
+    if (op.set.attached_to) change.attachedTo = state.cards[op.set.attached_to];
+  }
+  if (op.type === 'player') {
+    change.player = op.player || actor;
+    change.set = copy(op.set);
+  }
+  if (op.type === 'turn') change.set = copy(op.set);
+  if (op.type === 'pass') change.next = op.next;
+  if (op.type === 'note') change.text = op.text;
+  if (op.type === 'result') change.result = copy(state.result);
+  if (op.type === 'zone') change.zone = copy(state.zones[op.id]);
+  return change;
+}
+
+function describeChanges(original, state, changes, viewer, initialIds, host = false) {
+  function identityKnown(card, change) {
+    if (host) return true;
+    const initialId = initialIds.get(card);
+    return (initialId && identityVisible(original, viewer, initialId))
+      || (state.cards[card.id] === card && identityVisible(state, viewer, card.id))
+      || change.disclosedTo?.includes(viewer);
+  }
+  const descriptions = changes.map(change => {
+    const cards = change.cards.filter(card => identityKnown(card, change)).map(card => card.definition.name);
+    const detail = { type: change.type, summary: change.summary };
+    if (cards.length) detail.cards = cards;
+    for (const key of ['from', 'to', 'count', 'next', 'player', 'text', 'result', 'zone']) {
+      if (change[key] !== undefined) detail[key] = copy(change[key]);
+    }
+    const label = cards.length ? cards.join(', ') : 'a concealed card';
+    if (change.type === 'move') detail.summary = `${change.actor} moved ${label} from ${change.from} to ${change.to}`;
+    if (change.type === 'draw' && cards.length) detail.summary += ': ' + cards.join(', ');
+    if (change.type === 'peek' && cards.length) detail.summary += ': ' + cards.join(', ');
+    if (change.type === 'reveal' && cards.length) detail.summary = `${change.summary}: ${cards.join(', ')}`;
+    if (change.type === 'token' || change.type === 'stack_item') {
+      if (cards.length) detail.summary += ': ' + cards.join(', ');
+    }
+    if (change.type === 'remove_token' || change.type === 'remove_stack_item') {
+      if (cards.length) detail.summary += ': ' + cards.join(', ');
+    }
+    if (change.type === 'card') {
+      const card = change.cards[0];
+      // Do not leak transient intermediate states (e.g. move face down then
+      // conceal) or private annotations through the public history.
+      const isVisible = host || (state.cards[card.id] === card && visible(state, viewer, card.id));
+      const seesIdentity = host || (isVisible && identityVisible(state, viewer, card.id));
+      const set = {};
+      if (isVisible) for (const [key, value] of Object.entries(change.set)) {
+        if (['note', 'face'].includes(key) && !seesIdentity) continue;
+        if (key === 'attached_to' && value !== null) {
+          const target = host ? change.attachedTo : state.cards[value];
+          if (!target || (!host && !identityVisible(state, viewer, value))) continue;
+          set[key] = target.definition.name;
+        } else set[key] = copy(value);
+      }
+      detail.summary = `${change.actor} updated ${label}`;
+      if (Object.keys(set).length) {
+        detail.set = set;
+        detail.summary += ': ' + Object.entries(set).map(([key, value]) => `${key}=${JSON.stringify(value)}`).join(', ');
+      }
+    } else if (change.set) {
+      detail.set = copy(change.set);
+      detail.summary += ': ' + Object.entries(change.set).map(([key, value]) => `${key}=${JSON.stringify(value)}`).join(', ');
+    }
+    if (change.result) detail.summary += ': ' + (change.result.winners.length ? change.result.winners.join(', ') + ' won' : 'draw')
+      + (change.result.explanation ? '; ' + change.result.explanation : '');
+    return detail;
+  });
+  return { summary: descriptions.map(change => change.summary).join('; '), changes: descriptions };
+}
+
 export function applyActions(original, actor, expectedRevision, actions, reason) {
   player(original, actor);
   requireThat(expectedRevision === original.revision, 'Table changed. Read the table and retry with its current revision.');
@@ -311,11 +439,23 @@ export function applyActions(original, actor, expectedRevision, actions, reason)
   text(reason);
   requireThat(reason.trim().length > 0, 'Give a short reason for the action');
   const state = copy(original);
-  const summaries = actions.map(op => perform(state, actor, op));
+  const initialIds = new Map(Object.entries(state.cards).map(([id, card]) => [card, id]));
+  const changes = actions.map(op => {
+    const before = captureAction(state, actor, op);
+    const summary = perform(state, actor, op);
+    return finishAction(state, actor, op, before, summary);
+  });
+  const publicEvent = describeChanges(original, state, changes, null, initialIds);
+  const outcomes = describeChanges(original, state, changes, null, initialIds, true).changes;
+  const seats = Object.fromEntries(state.players.map(p => [p.id, describeChanges(original, state, changes, p.id, initialIds)]));
   state.revision++;
   state.events.push({
     revision: state.revision, at: new Date().toISOString(), actor,
-    summary: summaries.join('; '), reason, actions: copy(actions),
+    summary: publicEvent.summary, reason, actions: copy(actions),
+    public: publicEvent, seats,
+    // Administrator-only per-operation outcomes preserve what happened inside a
+    // batch (especially shuffle/draw/draw). projectEvent never exposes this field.
+    outcomes,
   });
   return state;
 }

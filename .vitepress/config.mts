@@ -7,7 +7,7 @@ export default defineConfig({
   description: 'Magic: The Gathering format rules, house variants, and personal game-night boxes.',
   base: process.env.VITEPRESS_BASE ?? '/',
   cleanUrls: false,
-  srcExclude: ['**/README.md', '**/AGENTS.md', 'docs/**'],
+  srcExclude: ['**/README.md', '**/AGENTS.md', 'docs/**', 'experiments/**', '.playtest/**'],
   lastUpdated: true,
   themeConfig: {
     nav: [
