@@ -1,64 +1,63 @@
-# Table protocol and ordinary Magic grounding
+# Tabletop and MCP tool guide
 
-This reference starts a supervised game; it is not the complete Magic rules or a replacement for a chosen format. Read any configured format and box overrides through `read_reference`, and exact imported Oracle text through `read_card`. Format/box overrides are optional: an empty `paths` list means ordinary casual Magic with the supplied decks and life totals, not missing rules or an incomplete setup. This is not a sanctioned Standard deck-legality check. Use `read_rules` for the installed official Comprehensive Rules when a timing, keyword, or interaction needs checking. If that source is unavailable and the answer matters, complete the decision with `needs_help` instead of guessing.
+This assistant-authored guide explains the local application's controls. The separately supplied basic game guide teaches the game and states its own authorship, source, and version inside the reference. This file does not replace that guide or the rules of a configured format.
 
-## Before the first move
+## References and lookup order
 
-Use the configured player and team assignments, decks, life totals, and custom overrides. During Setup, `turn.active` identifies the starting player and the players list gives turn order unless configured rules say otherwise. Treat these supplied settings as the accepted setup; no operator reconfirmation is needed. The table can represent one or more seats, but a solo exercise needs its own stated setup; that is not automatically an ordinary Magic game. The supplied white/green decks form an ordinary two-player trial unless the run instructions say otherwise, regardless of player names.
+Use the basic game guide already supplied in your conversation for ordinary play. For a card question, use `read_card` for Oracle text and cached official rulings. `rulings_cache.status: "fetched"` with `rulings: []` means the cached official lookup returned none; `"not_fetched"` or missing cache metadata means unknown, not a confirmed absence of rulings.
 
-For ordinary two-player constructed Magic, use decks of at least 60 cards, normally at most four copies per name except basic lands and card-specific exceptions. Start at 20 life, shuffle, and draw seven. Under the London mulligan, shuffle the hand back, draw seven again, and when keeping put one card on the library's bottom for each mulligan taken. There is no free mulligan in this ordinary two-player trial. The starting player skips their first draw step. Different formats can change these requirements.
+The local `read_rules` sources are `quickstart` (this tool guide), `basic` (the supplied game guide, including its glossary), and `comprehensive` (the official Comprehensive Rules). Search `basic` for a procedure or glossary term when needed. Make a targeted `comprehensive` lookup only if the basics and available card information leave an unusual interaction or ambiguity unresolved. Do not read the entire Comprehensive Rules or query it routinely on every move. If an essential answer remains unavailable, use `needs_help` rather than guessing.
 
-Do not draw a second opening hand on a resumed session. Inspect the table and history first. Public setup notes may record ready/keep decisions without revealing a hand.
+`read_reference` lists configured format and box overrides. These are optional: an empty `paths` list means ordinary casual Magic with the supplied decks and life totals, not missing rules or incomplete setup. This is not a sanctioned Standard deck-legality check. Custom format rules and Treachery identities come from their own references. Imported card text and rulings are local caches; report materially missing or stale information for the host to refresh rather than inventing it.
 
-## Reading hidden zones and drawing
+## Starting and resuming a table
 
-`zone.count` is the actual number of cards in that zone. `zone.cards` lists only identities currently visible to your seat. A hidden library with `count: 60` and `cards: []` contains 60 real cards; the server intentionally hides their identities and order, even from that library's owner. An empty visible-card list does not mean a deck is missing.
+Use the configured seats, teams, decks, life totals, and overrides. During Setup, `turn.active` identifies the starting player and the players list gives the seat order unless configured rules say otherwise. Treat supplied settings as the accepted setup without requesting operator reconfirmation. The state supports one or more seats; follow the stated exercise when running a solo table.
 
-Drawing needs no card IDs. After observing the current revision, use `act` with an action such as `{ "type": "draw", "count": 7 }` to take your opening hand from your own library. The action defaults to your library and hand. The returned table shows the cards that are now visible in your hand, so evaluate the hand after drawing. Do not peek at or reveal a library to obtain IDs for drawing. Draw only the number required by the rules, and inspect existing hand/history to avoid repeating a completed draw.
+Only one worker runs at a time, but setup still follows the game guide's mulligan rounds. Ensure every seat has completed its initial draw before the first declaration round. Use public `say` or handoff messages to record the current stage and each keep/mulligan declaration in starting-player/turn order. All declarations for a round must be complete before anyone takes that round's mulligan. Then the players taking mulligans perform the redraw/bottom stage required by the game guide; finish that stage before starting the next declaration round. Players who already kept no longer participate in later mulligan rounds. Do not finish all of one player's mulligans before the others make their first declarations.
 
-Neither hidden library contents nor an empty optional-reference list is a setup blocker. If an earlier decision requested help for either reason alone, re-observe the table and proceed using this protocol.
+Use `pass_priority` to explicitly schedule the next seat with work in the current setup stage; avoid repeatedly waking seats that already kept. Once everyone has kept, hand back to the starting player to begin play. These are application handoffs, not assertions that ordinary Magic priority exists during setup. The application does not automate declarations, mulligans, or readiness.
 
-## Work from updates, not assumptions
+On resume or a return handoff, inspect your hand and history before changing anything. Do not repeat a completed opening draw or setup choice. Readiness announcements must not reveal hidden cards. Each player performs their own setup changes; the application never draws or mulligans automatically.
 
-Every notification is information, not permission to act. Read `observe_table` before making changes and use its current revision. Use `read_events(since)` to read all unseen events in order; an older notification may already be superseded. Keep the returned revision as the history cursor. Only use current card IDs from the latest table.
+## Visibility and card handles
 
-Updates that arrive while your seat is busy are delivered together as one ordered batch. Every accepted event remains included. Read the batch once, use the current table to decide what you can do now, and complete one decision. Do not replay a move for each older notification. The prompt also includes public current-turn history so that actions earlier in the turn remain available even after they leave the table's short recent-events list.
+`zone.count` is the actual number of cards in a zone. `zone.cards` lists only card identities visible to your seat. A hidden library with `count: 60` and `cards: []` contains 60 real cards. Its identities and order are hidden even from its owner. An empty visible-card list does not mean a deck is missing.
 
-Determine whether the rules require your seat to act, pass, or make a choice. Being the active player is different from having priority; a blocking choice or choice during resolution may belong to another player. Respect response opportunities.
+Drawing does not require card IDs. An `act` action such as `{ "type": "draw", "count": 7 }` draws that many cards from your library into your hand by default; use the count actually required by the rules. The response shows the newly visible hand. Do not peek or reveal a library to obtain IDs for drawing. Only peek or reveal when a rule permits it. Shuffles and hidden moves change card handles, so use the latest valid IDs.
 
-- To take a game action, use `act` with a short explanation and only the changes that need no intervening opponent choice.
-- To pass priority, submit `{ "type": "pass", "next": "p2" }` with the correct next seat. A pass is a real event even when no card changes.
-- When no action is appropriate, call `complete_decision` with `no_op`. This does not pass priority, mutate the table, or notify everyone again.
-- After acting or passing, finish with `complete_decision` status `acted`. For a dispute or missing rule, use `needs_help` and a concise note.
+Neither hidden library contents nor empty optional references block setup. If an earlier decision requested help for either alone, observe the table and continue using the supplied settings and game guide.
 
-Never create a public note, an empty turn update, or a pass merely to acknowledge receipt. A rejected stale revision requires reading and reconsidering the new state; never retry the same decision blindly.
+## Current state and physical actions
 
-## Turn and timing reminders
+Each prompt includes all player-visible events since your last acknowledged state, in order, followed by one current player-visible snapshot. Read the history once; do not replay actions for individual historical events. Public current-turn history preserves earlier land plays and handoffs. Use `observe_table` or `read_events` when you need a refresh; otherwise the prompt and updated tool responses already supply state.
 
-The ordinary turn proceeds through untap, upkeep, draw, first main, beginning of combat, declare attackers, declare blockers, combat damage, end of combat, second main, end step, and cleanup. First/double strike can create an additional combat-damage step. Nobody normally receives priority during untap; cleanup can require exceptions.
+Every write needs the current table revision. A rejected stale write requires observing and reconsidering, not blindly retrying. `act` accepts a batch of physical changes. The table does not pay costs, resolve objects, apply effects, perform cleanup, or identify winners. Keep the visible state accurate yourself:
 
-With priority, instants and most activated abilities can be used. Ordinary sorcery timing requires your main phase and an empty stack. Playing a land is a special action with that timing, normally once per turn. Pay costs and choose required modes and targets when casting or activating. Mana abilities usually do not use the stack.
+- Explicitly update life, mana, tap state, counters, damage, attachments, and temporary notes as required. Counter and mana maps replace the whole previous map.
+- When a zone change creates a new object, explicitly reset relevant old state. The table does not clear it for you.
+- Represent a spell on top of `stack`, then move it to its destination when its resolution or other disposition has been decided under the rules. Represent an ability with `stack_item` and remove that entry when appropriate.
+- Record attackers, blockers, targets, and temporary effects in public notes when needed. Keep hidden information and private strategy out of public notes and speech; an action's `reason` is private to that player.
+- Perform required cleanup explicitly, including updating marked damage and temporary effects when the rules require it. A phase or turn marker change does none of that work. Report a game result only when established under the configured rules.
 
-The normal land allowance is **one land play for the entire turn**, shared by both main phases and all notifications. A land played during the first main phase uses that turn's allowance; arriving at the second main phase does not grant another. Check the current-turn action history before playing a land. Additional plays need an identified effect that permits them. Do not confuse a land put onto the battlefield by an effect with playing a land. See Comprehensive Rules 305.2.
+## Explicit handoffs and efficient play
 
-Priority passes in turn order. After all players pass consecutively without intervening action, resolve the top stack object, or advance the step/phase if the stack is empty. After resolution the active player normally receives priority, after state-based actions and waiting triggers are handled. The table never performs this sequence for you.
+Only one player runs at a time. A prompt means another player or the operator selected your seat to continue play or answer a response window. It does not grant an otherwise illegal action. Ordinary table changes and public speech do not wake other players; the coordinator never infers who should act next.
 
-Count passes in the current priority sequence. When every player has passed in succession, **do not begin another identical round of passes**. For this manual table, the active player coordinates the resulting resolution or step/phase change while honoring any required choices, triggers, and response opportunities. An intervening action resets the pass sequence. In an ordinary two-player example, if p1 passes and then p2 passes with no action between, resolution or advancement is due; p1 must not simply pass again in the same window. See Comprehensive Rules 117.4. These are player responsibilities, not automated table rules.
+Communicate an efficient proposed sequence, apply its physical changes in a batch where appropriate, and hand off when somebody needs a response opportunity. For example, narrate a proposed shortcut through quiet phases, a land play, mana payment, and casting, followed by the appropriate request for responses. Do not create a separate model handoff for each mechanical step or empty phase. Do not silently skip mandatory opponent choices, triggers, or meaningful response opportunities. Explain the chronology so another player can request an earlier legal response point. Discuss any objection and correct the table explicitly together; the application neither adjudicates shortcuts nor rewinds automatically.
 
-## Combat, effects, and the end of the game
+When useful play is finished, the stack is clear, and no opponent choice, pending trigger, or relevant response window remains, perform required cleanup and use `pass_turn` directly. Describe the proposed shortcut through quiet remaining phases in its message. Do not hand off solely to confirm every empty phase or ask permission to end your turn. The recipient may still request an earlier legal response point and coordinate a correction.
 
-Declare legal attackers, then legal blockers, and leave the appropriate response windows. Attacking normally taps the creature; blocking does not. A creature normally cannot attack or use its own tap/untap-symbol ability unless controlled continuously since the start of its controller's most recent turn, unless haste applies. Trample, evasion, first strike, and other abilities require exact card/rule text.
+- `say({revision,text})` publishes an attributed message for choices, readiness, shortcut proposals, or questions. It does not wake another player. Follow a question requiring an answer with an explicit handoff to its recipient.
+- `pass_priority({revision,next,message?})` records a pass and schedules exactly the named player. Choose that recipient according to the rules and public conversation. During setup it transfers setup responsibility.
+- `pass_turn({revision,next,number?,phase?,message?})` hands the turn to the named player. It changes active/priority/turn/phase markers only; it does not untap, draw, resolve objects, or apply rules. Optional number/phase fields supply explicit agreed markers.
+- A successful `pass_priority` or `pass_turn` automatically completes your decision. End your response immediately and use no more tools, including `complete_decision`. A generic `act` batch may instead end with one `pass` or `pass_turn`; that final action is terminal too.
+- `complete_decision` without a handoff pauses for operator intervention. Use `needs_help` for an unresolved blocker, or `acted` after reporting an established game result. `no_op` is exceptional: when you have priority and no useful response, pass to the correct player instead of leaving the match without a recipient.
 
-Apply damage and its consequences, including lifelink, lethal damage and deathtouch where applicable. Check state-based actions and put waiting triggers on the stack when appropriate. In cleanup, discard to the applicable maximum hand size, remove marked damage and end applicable temporary effects. Ordinary losses include zero life, ten poison counters, or attempting to draw from an empty library; card text and formats can alter outcomes. Report only an outcome established by the chosen rules, with a short explanation.
+Public speech and informational updates are not themselves passes. Never add a message, empty marker update, or pass merely to acknowledge a prompt.
 
-## The table is manual
+## History checks that prevent repeated mistakes
 
-Moves do not automatically pay costs, resolve spells, clear old object state, apply continuous effects, or find winners. Explicitly update life, mana, tap state, counters, damage, attachments, and temporary notes as required. Counter and mana maps replace the whole previous map. When a zone change creates a new object, reset relevant old state explicitly.
+A main-phase change or a new prompt does not reset a turn's land allowance. Check public current-turn history before playing another land; identify a permitting effect if departing from the normal one-land allowance.
 
-Move spells to the top of `stack`, then to their destination upon resolution. Use `stack_item` for triggered/activated abilities and remove the entry after resolution or countering. Mark attackers, blockers, targets, and temporary effects in public notes where needed. A public note is visible to everyone; keep private decision explanations in the action's `reason`.
-
-Only peek or reveal when a rule permits it. Shuffles and hidden moves change card handles. Imported card text is a cache; use the project's Scryfall MCP for updated official Oracle text and rulings when available. Custom format rules and Treachery identities come from their own references.
-
-## Sources and lookup guide
-
-The grounding above follows [Wizards' introduction](https://magic.wizards.com/en/how-to-play) and the [official rules reference](https://magic.wizards.com/en/rules). It is an operational reminder, not a substitute for the full procedures in your selected format. Useful Comprehensive Rules sections include 103 (setup), 117 (priority), 500–514 (turns), 601–608 (casting, triggers, resolution), 704 (state-based actions), and 800 onward (multiplayer). The installed TXT reports its effective date; consult the rules page when an update is needed.
+Casting followed by `pass_priority` already records the caster's pass. Do not ask for another caster pass after all players have passed in that sequence. In a two-player example, p1 casts and passes, then p2 passes: p1 should coordinate the resulting resolution or advancement, not start an identical pass round. In multiplayer, one opponent's pass is not everyone's pass. Use the game guide to interpret the full sequence, and explicitly apply the required state changes and next handoff. The coordinator does none of this rules reasoning.

@@ -59,6 +59,73 @@ test('failed batches and stale concurrent writes leave the table intact', () => 
   checkConservation(next, 10);
 });
 
+test('cached official rulings survive card creation and saved state while respecting identity visibility', () => {
+  const config = setup();
+  const cached = {
+    rulings: [{ source: 'wotc', published_at: '2025-01-24', comment: 'A cached ruling available only through card details.' }],
+    rulings_cache: {
+      status: 'fetched', fetched_at: '2026-10-20T12:00:00.000Z', source: 'Scryfall MCP get_rulings',
+      uri: 'https://api.scryfall.com/cards/05b6a101-4d12-4f50-8f02-5c778e08b149/rulings',
+    },
+  };
+  Object.assign(config.players[0].deck[0], cached);
+  let state = act(createTable(config), 'p1', { type: 'draw' });
+  const id = state.zones['p1:hand'].cards[0];
+  const details = cardDetails(state, 'p1', id);
+  assert.deepEqual(details.rulings, cached.rulings);
+  assert.deepEqual(details.rulings_cache, cached.rulings_cache);
+  details.rulings[0].comment = 'Changed by the caller';
+  details.rulings_cache.status = 'not_fetched';
+  assert.deepEqual(cardDetails(state, 'p1', id).rulings, cached.rulings);
+  assert.throws(() => cardDetails(state, 'p2', id), /not available/);
+  assert.throws(() => cardDetails(state, null, id), /not available/);
+  state = act(state, 'p1', { type: 'move', card: id, to: 'battlefield' });
+  state = JSON.parse(JSON.stringify(state));
+  assert.deepEqual(cardDetails(state, 'p2', id).rulings_cache, cached.rulings_cache);
+  assert.deepEqual(cardDetails(state, null, id).rulings, cached.rulings);
+  // Even when a card becomes public, routine state/history keeps long card
+  // reference text out of every subsequent decision notification.
+  for (const actor of [null, 'p1', 'p2']) {
+    assert.doesNotMatch(JSON.stringify(observe(state, actor)), /rulings|A cached ruling/);
+    assert.doesNotMatch(JSON.stringify(eventsSince(state, actor)), /rulings|A cached ruling/);
+  }
+  state = act(state, 'p1', { type: 'card', card: id, set: { face_down: true } });
+  assert.deepEqual(cardDetails(state, 'p1', id).rulings, cached.rulings);
+  assert.throws(() => cardDetails(state, 'p2', id), /concealed/);
+  assert.throws(() => cardDetails(state, null, id), /concealed/);
+  // Token/ability creation records the input definition in the host-only
+  // action log; projected player history must still omit the cache payload.
+  state = act(state, 'p1', { type: 'token', definition: { name: 'Reference fixture', ...cached } });
+  for (const actor of [null, 'p1', 'p2']) {
+    assert.doesNotMatch(JSON.stringify(eventsSince(state, actor)), /rulings|A cached ruling/);
+  }
+});
+
+test('a fetched empty rulings result is distinct from absent or explicitly unfetched data', () => {
+  const config = setup();
+  config.players[0].deck = [
+    { name: 'Not imported' },
+    { name: 'Checked, no rulings', rulings: [], rulings_cache: {
+      status: 'fetched', fetched_at: '2026-10-20T12:00:00.000Z', source: 'Scryfall MCP get_rulings',
+      uri: 'https://api.scryfall.com/cards/05b6a101-4d12-4f50-8f02-5c778e08b149/rulings',
+    } },
+    { name: 'Explicitly not imported', rulings_cache: { status: 'not_fetched' } },
+  ];
+  const state = act(createTable(config), 'p1', { type: 'draw', count: 3 });
+  const [unknown, empty, unfetched] = state.zones['p1:hand'].cards.map(id => cardDetails(state, 'p1', id));
+  for (const card of [unknown, unfetched]) {
+    assert.deepEqual(card.rulings_cache, { status: 'not_fetched' });
+    assert.equal(Object.hasOwn(card, 'rulings'), false);
+  }
+  assert.equal(empty.rulings_cache.status, 'fetched');
+  assert.deepEqual(empty.rulings, []);
+  const invalid = structuredClone(config);
+  delete invalid.players[0].deck[1].rulings;
+  assert.throws(() => createTable(invalid), /Fetched rulings require an array/);
+  invalid.players[0].deck[1].rulings = [{ source: 'scryfall', published_at: '2025-01-24', comment: 'Not an official Wizards ruling' }];
+  assert.throws(() => createTable(invalid), /Only official Wizards/);
+});
+
 test('stack, attachments, control, tap, damage, and counters are explicit bookkeeping', () => {
   let state = act(createTable(setup()), 'p1', { type: 'draw', count: 5 });
   const hand = observe(state, 'p1').zones['p1:hand'].cards;
@@ -171,6 +238,16 @@ test('both supplied precons contain 60 verified cards and the demo preserves tho
     for (const c of p.deck) {
       assert.ok(c.scryfall_id && c.type_line && c.image_url);
       assert.equal(typeof c.oracle_text, 'string');
+      assert.equal(c.rulings_cache.status, 'fetched');
+      assert.equal(c.rulings_cache.source, 'Scryfall MCP get_rulings');
+      assert.equal(c.rulings_cache.uri, 'https://api.scryfall.com/cards/' + c.scryfall_id + '/rulings');
+      assert.ok(Number.isFinite(Date.parse(c.rulings_cache.fetched_at)));
+      assert.ok(Array.isArray(c.rulings));
+      for (const ruling of c.rulings) {
+        assert.equal(ruling.source, 'wotc');
+        assert.match(ruling.published_at, /^\d{4}-\d{2}-\d{2}$/);
+        assert.equal(typeof ruling.comment, 'string');
+      }
     }
     const counts = entries => entries.reduce((all, c) => { all[c.name] = (all[c.name] || 0) + c.count; return all; }, {});
     assert.deepEqual(counts(demo.players[i].deck), counts(p.deck));
@@ -282,4 +359,70 @@ test('legacy event history remains readable without exposing raw actions', () =>
   state.events = [{ revision: 1, actor: 'p1', at: 'then', summary: 'p1 drew a card', reason: 'private', actions: [{ secret: 'do not expose' }] }];
   assert.deepEqual(eventsSince(state).events, [{ revision: 1, actor: 'p1', at: 'then', summary: 'p1 drew a card' }]);
   assert.equal(eventsSince(state, 'p1').events[0].reason, 'private');
+});
+
+test('speech and handoff messages are public and attributed without publishing private reasons', () => {
+  const initial = createTable(setup());
+  let state = applyActions(initial, 'p1', 0, [{ type: 'say', text: 'I am ready.' }], 'Private hand assessment');
+  assert.deepEqual(state.cards, initial.cards);
+  assert.deepEqual(state.turn, initial.turn);
+  assert.deepEqual(state.notes, [{ actor: 'p1', text: 'I am ready.', kind: 'speech' }]);
+  state = applyActions(state, 'p1', 1, [
+    { type: 'draw' }, { type: 'pass', next: 'p2', message: 'Your response?' },
+  ], 'Keep Secret p1 for later');
+  for (const viewer of [null, 'p2']) {
+    const history = eventsSince(state, viewer).events;
+    assert.equal(history[0].actor, 'p1');
+    assert.equal(history[0].changes[0].type, 'say');
+    assert.equal(history[0].changes[0].text, 'I am ready.');
+    assert.equal(history[1].changes[1].message, 'Your response?');
+    assert.equal(history[1].changes[1].actor, 'p1');
+    assert.doesNotMatch(history[1].changes[1].summary, /Your response/);
+    assert.doesNotMatch(JSON.stringify(history), /Private hand assessment|Keep Secret|Secret p1|"reason"/);
+  }
+  assert.equal(eventsSince(state, 'p1').events[1].reason, 'Keep Secret p1 for later');
+  assert.equal(state.notes.at(-1).text, 'Your response?');
+  assert.throws(() => act(state, 'p1', { type: 'say', text: '   ' }), /must not be empty/);
+});
+
+test('turn handoff updates only explicit markers, with overridable number and phase', () => {
+  let state = act(createTable(setup()), 'p1',
+    { type: 'token', definition: { name: 'Token' } },
+    { type: 'stack_item', definition: { name: 'Unresolved ability' } });
+  const token = state.zones.battlefield.cards[0];
+  state = act(state, 'p1', { type: 'card', card: token, set: { tapped: true, damage: 2 } });
+  const before = structuredClone(state);
+  state = act(state, 'p1', { type: 'pass_turn', next: 'p2', message: 'Your turn.' });
+  assert.deepEqual(state.turn, { number: 2, active: 'p2', priority: 'p2', phase: 'Untap' });
+  assert.deepEqual(state.cards, before.cards);
+  assert.deepEqual(state.zones, before.zones);
+  assert.deepEqual(state.players, before.players);
+  const change = eventsSince(state).events.at(-1).changes[0];
+  assert.equal(change.type, 'pass_turn');
+  assert.equal(change.message, 'Your turn.');
+  assert.deepEqual(change.set, state.turn);
+  state = act(state, 'p2', { type: 'pass_turn', next: 'p1', number: 9, phase: 'Extra turn setup' });
+  assert.deepEqual(state.turn, { number: 9, active: 'p1', priority: 'p1', phase: 'Extra turn setup' });
+  assert.throws(() => act(state, 'p1', { type: 'pass_turn', next: 'missing' }), /Unknown player/);
+  assert.throws(() => act(state, 'p1', { type: 'pass_turn', next: 'p2', number: 0 }), /Invalid integer/);
+});
+
+test('only one final handoff is allowed and malformed batches roll back every change', () => {
+  const state = createTable(setup());
+  const before = structuredClone(state);
+  for (const actions of [
+    [{ type: 'draw' }, { type: 'pass', next: 'p2' }, { type: 'pass', next: 'p1' }],
+    [{ type: 'say', text: 'Hello' }, { type: 'pass_turn', next: 'p2' }, { type: 'pass', next: 'p1' }],
+    [{ type: 'pass', next: 'p2' }, { type: 'draw' }],
+    [{ type: 'pass_turn', next: 'p2' }, { type: 'say', text: 'Too late' }],
+  ]) {
+    assert.throws(() => act(state, 'p1', ...actions), /only one|must be the last/);
+    assert.deepEqual(state, before);
+  }
+  assert.throws(() => act(state, 'p1', { type: 'draw' }, { type: 'pass', next: 'p2', message: '' }), /must not be empty/);
+  assert.deepEqual(state, before);
+  const next = act(state, 'p1', { type: 'draw' }, { type: 'say', text: 'Ready' }, { type: 'pass', next: 'p2' });
+  assert.equal(next.revision, 1);
+  assert.equal(next.turn.priority, 'p2');
+  assert.equal(next.zones['p1:hand'].cards.length, 1);
 });

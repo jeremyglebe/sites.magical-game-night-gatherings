@@ -16,7 +16,10 @@ const json = (response, status, value) => {
   response.end(JSON.stringify(value));
 };
 
-export async function startTable({ session, setup, port = 5180, onCommit, onDecision, beforeAction, comprehensivePath }) {
+export async function startTable({ session, setup, port = 5180, onCommit, onDecision, beforeAction, comprehensivePath, basicPath, cardRulings = {} }) {
+  // The host supplies a validated, match-pinned reference cache. It augments
+  // reads of legacy cards without editing the authoritative state or its log.
+  cardRulings = structuredClone(cardRulings);
   session = resolve(session);
   mkdirSync(dirname(session), { recursive: true });
   const lock = session + '.lock';
@@ -65,6 +68,17 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
     if (resumed) refreshExports();
   } catch (error) { unlinkSync(lock); throw error; }
 
+  function readCard(actor, id) {
+    // Check visibility before looking up any reference data, including for
+    // anonymous spectators. Existing card-local snapshots always take priority.
+    const details = cardDetails(saved.state, actor, id);
+    if (details.rulings_cache.status !== 'not_fetched' || !details.scryfall_id
+      || !Object.hasOwn(cardRulings, details.scryfall_id)) return details;
+    const cached = cardRulings[details.scryfall_id];
+    if (cached?.rulings_cache?.status !== 'fetched' || !Array.isArray(cached.rulings)) return details;
+    return { ...details, rulings: structuredClone(cached.rulings), rulings_cache: structuredClone(cached.rulings_cache) };
+  }
+
   const server = createServer(async (request, response) => {
     try {
       const url = new URL(request.url, 'http://localhost');
@@ -78,7 +92,7 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
         return;
       }
       if (request.method === 'GET' && url.pathname === '/api/public-card') {
-        json(response, 200, cardDetails(saved.state, null, url.searchParams.get('id')));
+        json(response, 200, readCard(null, url.searchParams.get('id')));
         return;
       }
       const token = request.headers.authorization?.replace(/^Bearer /, '');
@@ -89,9 +103,9 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
       } else if (request.method === 'GET' && url.pathname === '/api/events') {
         json(response, 200, eventsSince(saved.state, actor, Number(url.searchParams.get('since') || 0)));
       } else if (request.method === 'GET' && url.pathname === '/api/rules') {
-        json(response, 200, readRules(Object.fromEntries(url.searchParams), { comprehensivePath }));
+        json(response, 200, readRules(Object.fromEntries(url.searchParams), { comprehensivePath, basicPath }));
       } else if (request.method === 'GET' && url.pathname === '/api/card') {
-        json(response, 200, cardDetails(saved.state, actor, url.searchParams.get('id')));
+        json(response, 200, readCard(actor, url.searchParams.get('id')));
       } else if (request.method === 'GET' && url.pathname === '/api/references') {
         const allowed = saved.state.references;
         if (!Array.isArray(allowed)) throw new Error('Invalid reference list');
@@ -144,8 +158,11 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
         const state = applyActions(saved.state, actor, args.revision, args.actions, args.reason);
         const recording = appendRecording(saved.recording || createRecording(previous), previous, state);
         persist({ ...saved, state, recording });
-        onCommit?.(state, actor);
-        json(response, 200, observe(state, actor));
+        const completion = onCommit?.(state, actor);
+        json(response, 200, {
+          ...observe(state, actor),
+          ...(completion && typeof completion === 'object' && !Array.isArray(completion) ? completion : {}),
+        });
       } else json(response, 404, { error: 'Unknown endpoint' });
     } catch (error) {
       json(response, 400, { error: error.message });

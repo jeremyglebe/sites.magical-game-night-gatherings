@@ -63,6 +63,8 @@ function describeAction(op, state, actor, outcome, canInfer = true) {
     case 'player': return `${seat(op.player || actor)}: ${JSON.stringify(op.set)}.`;
     case 'turn': return `Turn markers: ${JSON.stringify(op.set)}.`;
     case 'pass': return `Pass priority to ${seat(op.next)}.`;
+    case 'pass_turn': return `Pass the turn to ${seat(op.next)} (turn ${outcome?.set?.number ?? op.number ?? state.turn.number + 1}, ${outcome?.set?.phase ?? op.phase ?? 'Untap'}).`;
+    case 'say': return 'Speak to the table.';
     case 'shuffle': return `Shuffle ${op.zone || `${actor}:library`}; resulting order preserved in the JSON log.`;
     case 'peek': return `Look at ${op.count ?? 1} card(s) in ${op.zone}${outcome?.cards?.length ? ': ' + outcome.cards.join(', ') : ''}.`;
     case 'reveal': return `Reveal ${card(op.card)} to ${op.to?.map(seat).join(', ') || 'the table'}.`;
@@ -107,6 +109,10 @@ export function recordingMarkdown(recording) {
     lines.push(`### Action ${event.revision} · ${player}`, '', `${event.at} · Turn ${state.turn.number} · ${state.turn.phase}`, '');
     for (const [i, op] of (event.actions || []).entries()) {
       lines.push(`- ${describeAction(op, state, event.actor, event.outcomes?.[i], event.actions.length === 1)}`);
+      const speech = op.type === 'say' ? op.text : ['pass', 'pass_turn'].includes(op.type) ? op.message : undefined;
+      if (speech !== undefined) {
+        lines.push('', `> ${player}: ${speech.replace(/\r?\n/g, '\n> ')}`, '');
+      }
     }
     if (event.reason) lines.push('', `Reason: ${event.reason}`);
     state = applyFrame(state, frame);

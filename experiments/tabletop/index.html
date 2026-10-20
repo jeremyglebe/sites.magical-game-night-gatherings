@@ -754,6 +754,18 @@
         padding: 10px 0;
         border-bottom: 1px solid #2a3c30;
       }
+      .control-recovery {
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+      }
+      .control-recovery select,
+      .control-recovery button {
+        width: 100%;
+        font-size: 11px;
+        margin-top: 6px;
+      }
       .usage-bucket + .usage-bucket {
         border-top: 1px solid var(--line);
         margin-top: 12px;
@@ -860,12 +872,36 @@
         border-bottom: 1px solid #293b30;
         overflow-wrap: anywhere;
       }
-      .recent-moves .move-revision {
+      .activity-meta {
         font-variant-numeric: tabular-nums;
         color: var(--accent);
         font-size: 10px;
-        display: block;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px;
         margin-bottom: 2px;
+      }
+      .activity-meta strong {
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .activity-line {
+        margin: 4px 0;
+        white-space: pre-wrap;
+      }
+      .activity-speech {
+        margin: 7px 0;
+        padding: 6px 0 6px 10px;
+        border-left: 2px solid var(--accent);
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+      .activity-note {
+        color: var(--muted);
+        font-style: italic;
       }
       .unsupported {
         padding: 65px 35px;
@@ -1006,7 +1042,8 @@
         color: var(--muted);
       }
       .moves-full {
-        padding-left: 20px;
+        padding: 0;
+        list-style: none;
         line-height: 1.65;
       }
       .moves-full li {
@@ -1420,18 +1457,8 @@
                         min="1"
                         step="1"
                         value="2000"
-                        required /></label
-                    ><label class="field"
-                      >Simultaneous players<input
-                        id="limit-concurrent"
-                        type="number"
-                        min="1"
-                        step="1"
-                        value="4"
                         required
                     /></label>
-                  </div>
-                  <div class="field-row">
                     <label class="field"
                       >Seconds per decision<input
                         id="limit-timeout"
@@ -1439,8 +1466,11 @@
                         min="1"
                         step="1"
                         value="120"
-                        required /></label
-                    ><label class="field"
+                        required
+                    /></label>
+                  </div>
+                  <div class="field-row">
+                    <label class="field"
                       >Output token limit (optional)<input
                         id="limit-tokens"
                         type="number"
@@ -1450,6 +1480,10 @@
                     /></label>
                   </div>
                 </details>
+                <p class="setup-help">
+                  One AI acts at a time. Players hand off to whoever should
+                  respond next.
+                </p>
               </section>
               <section class="setup-section">
                 <h2>
@@ -1543,6 +1577,17 @@
             </div>
           </div>
           <aside class="sidebar">
+            <section aria-label="Table talk and actions">
+              <div class="moves-summary">
+                <h2>Table talk &amp; actions</h2>
+                <button id="all-moves" class="quiet">Expand</button>
+              </div>
+              <ol
+                id="recent-moves"
+                class="recent-moves"
+                aria-label="Recent table talk and actions"
+              ></ol>
+            </section>
             <section id="plan-usage-section" aria-label="Codex plan usage">
               <div class="moves-summary">
                 <h2>Plan usage</h2>
@@ -1578,14 +1623,22 @@
                 <button id="run-limits" class="quiet">Run limits</button>
               </div>
               <p id="run-detail" class="run-detail"></p>
+              <form id="control-recovery" class="control-recovery" hidden>
+                <label class="field" for="control-recipient"
+                  >Choose who responds next</label
+                >
+                <select id="control-recipient" required>
+                  <option value="" disabled selected>Select a player</option>
+                </select>
+                <button id="give-control" type="submit" disabled>
+                  Give control
+                </button>
+                <p class="run-detail">
+                  Queues this player and leaves the match paused. Use Start or
+                  Step when ready.
+                </p>
+              </form>
               <div id="runner-players" class="runner-players"></div>
-            </section>
-            <section>
-              <div class="moves-summary">
-                <h2>Recent moves</h2>
-                <button id="all-moves" class="quiet">Expand</button>
-              </div>
-              <ol id="recent-moves" class="recent-moves"></ol>
             </section>
             <section id="log-section">
               <h2>Game log</h2>
@@ -1838,7 +1891,6 @@
               .filter(Boolean),
             limits: {
               maxDecisions: Number($("#limit-decisions").value),
-              maxConcurrent: Number($("#limit-concurrent").value),
               decisionTimeoutMs: Number($("#limit-timeout").value) * 1000,
               ...($("#limit-tokens").value
                 ? { maxOutputTokens: Number($("#limit-tokens").value) }
@@ -2085,17 +2137,19 @@
         if (!worker) return legacy ? "MCP player" : "Ready";
         if (worker.enabled === false || playerConfig(id).ai === false)
           return "External MCP player";
-        const state = worker.error
-          ? "needs attention"
-          : worker.active
-            ? "thinking"
-            : worker.state || worker.status || "idle";
         const queue =
           worker.queueLength ??
           worker.pending?.length ??
           worker.queue?.length ??
           0;
-        return `${humanize(state)}${queue ? " · " + queue + " queued" : ""}`;
+        const state = worker.error
+          ? "needs attention"
+          : worker.active
+            ? "thinking"
+            : queue
+              ? "ready to respond"
+              : "awaiting handoff";
+        return humanize(state);
       }
       function board(player, index) {
         const node = make(
@@ -2251,41 +2305,146 @@
               : "Draw") +
             " · reported by " +
             name(state.result.reported_by);
-        $("#table-note").textContent = state.notes?.at(-1)?.text || "";
+        $("#table-note").textContent =
+          state.notes?.filter((note) => note.kind !== "speech").at(-1)?.text ||
+          "";
         renderMoves();
       }
-      function renderMoves() {
-        const items = table?.events || [];
-        const list = $("#recent-moves");
-        list.replaceChildren();
-        if (!items.length) list.append(make("li", "", "No moves yet."));
-        else
-          for (const event of items.slice(-5).reverse()) {
-            const item = make("li");
+      let activityInspector = 0,
+        activityHistory = [],
+        activityThrough = 0,
+        activityPending = 0,
+        historyAvailable = true;
+      const activityPlayer = (id) =>
+        table?.players?.find((player) => player.id === id)?.name ||
+        id ||
+        "Table";
+      function activityItem(event) {
+        const item = make("li");
+        const meta = make("div", "activity-meta");
+        meta.append(make("strong", "", activityPlayer(event.actor)));
+        const time = new Date(event.at);
+        const when = Number.isFinite(time.getTime())
+          ? ` · ${new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "2-digit" }).format(time)}`
+          : "";
+        meta.append(make("span", "", `#${event.revision}${when}`));
+        item.append(meta);
+        function say(text) {
+          if (typeof text === "string" && text.trim())
+            item.append(make("blockquote", "activity-speech", `“${text}”`));
+        }
+        const changes =
+          Array.isArray(event.changes) && event.changes.length
+            ? event.changes
+            : [event];
+        for (const change of changes) {
+          if (change.type === "say") {
+            say(change.text);
+          } else if (
+            change.type === "note" &&
+            typeof change.text === "string"
+          ) {
             item.append(
-              make("span", "move-revision", "Move " + event.revision),
-              document.createTextNode(
-                event.summary || event.type || "Table updated",
-              ),
+              make("p", "activity-line activity-note", `Note: ${change.text}`),
             );
-            list.append(item);
+          } else {
+            item.append(
+              make("p", "activity-line", change.summary || "Table updated"),
+            );
+            if (change.type === "pass" || change.type === "pass_turn")
+              say(change.message);
           }
+        }
+        return item;
+      }
+      function fillActivity(list, events) {
+        const previousScroll = list.scrollTop;
+        const followLatest =
+          list.scrollHeight - list.clientHeight - previousScroll < 32;
+        list.replaceChildren();
+        if (!events.length)
+          list.append(make("li", "", "No table talk or actions yet."));
+        else for (const event of events) list.append(activityItem(event));
+        if (list.id === "recent-moves")
+          list.scrollTop = followLatest ? list.scrollHeight : previousScroll;
+      }
+      function renderMoves() {
+        fillActivity($("#recent-moves"), (table?.events || []).slice(-12));
+        if (activityInspector === inspectorRequest && $("#inspector").open)
+          refreshActivity();
+      }
+      async function refreshActivity() {
+        const serial = activityInspector;
+        if (
+          activityPending === serial ||
+          serial !== inspectorRequest ||
+          !$("#inspector").open
+        )
+          return;
+        const list = $("#activity-history");
+        const status = $("#activity-history-status");
+        if (!list || !status) return;
+        if (!historyAvailable) {
+          fillActivity(list, table?.events || []);
+          status.textContent =
+            "Recent public activity. This host does not expose full public history.";
+          return;
+        }
+        activityPending = serial;
+        let receivedHistory = false;
+        try {
+          const result = await request(`/api/history?since=${activityThrough}`);
+          if (serial !== inspectorRequest || !$("#inspector").open) return;
+          const combined = new Map(
+            activityHistory.map((event) => [event.revision, event]),
+          );
+          for (const event of result.events || [])
+            combined.set(event.revision, event);
+          activityHistory = [...combined.values()].sort(
+            (a, b) => a.revision - b.revision,
+          );
+          activityThrough =
+            result.revision ?? activityHistory.at(-1)?.revision ?? 0;
+          fillActivity(list, activityHistory);
+          status.textContent = `${number(activityHistory.length)} public updates · Oldest first`;
+          receivedHistory = true;
+        } catch (error) {
+          if (serial !== inspectorRequest || !$("#inspector").open) return;
+          if ([401, 404].includes(error.status)) historyAvailable = false;
+          if (!activityHistory.length) fillActivity(list, table?.events || []);
+          status.textContent = historyAvailable
+            ? `Could not update public history: ${error.message}`
+            : "Recent public activity. This host does not expose full public history.";
+        } finally {
+          if (activityPending === serial) activityPending = 0;
+          if (
+            receivedHistory &&
+            serial === inspectorRequest &&
+            activityThrough < table.revision
+          )
+            refreshActivity();
+        }
       }
       $("#all-moves").addEventListener("click", () => {
-        openInspector("Recent game actions", "Game log");
+        activityInspector = openInspector(
+          "Table talk & actions",
+          "Public game history",
+        );
+        activityHistory = [];
+        activityThrough = 0;
+        const status = make("p", "run-detail", "Loading public history…");
+        status.id = "activity-history-status";
         const list = make("ol", "moves-full");
-        for (const event of table?.events || []) {
-          const item = make("li", "", event.summary || "Table updated");
-          item.value = event.revision;
-          list.append(item);
-        }
-        $("#inspector-content").append(list);
+        list.id = "activity-history";
+        fillActivity(list, table?.events || []);
+        $("#inspector-content").append(status, list);
         if (!legacy) {
           const link = make("a", "button", "Download complete log ↗");
           link.href = "/api/log?format=markdown";
           link.download = "";
           $("#inspector-content").append(link);
         }
+        refreshActivity();
       });
       $("#run-limits").addEventListener("click", () => {
         const run = coordinator();
@@ -2324,17 +2483,11 @@
         );
         field(
           firstRow,
-          "maxConcurrent",
-          "Simultaneous players",
-          limits.maxConcurrent ?? 4,
-        );
-        const secondRow = make("div", "field-row");
-        field(
-          secondRow,
           "timeout",
           "Seconds per decision",
           Math.ceil((limits.decisionTimeoutMs ?? 120000) / 1000),
         );
+        const secondRow = make("div", "field-row");
         field(
           secondRow,
           "maxOutputTokens",
@@ -2361,7 +2514,6 @@
               action: "configure",
               limits: {
                 maxDecisions: Number(fields.maxDecisions.value),
-                maxConcurrent: Number(fields.maxConcurrent.value),
                 decisionTimeoutMs: Number(fields.timeout.value) * 1000,
                 maxOutputTokens: fields.maxOutputTokens.value
                   ? Number(fields.maxOutputTokens.value)
@@ -2544,6 +2696,39 @@
           (run
             ? `${number(run.decisions)} decisions recorded · Viewer can be closed`
             : "AI players start when you press Start.");
+        const recoveryVisible =
+          !legacy &&
+          run &&
+          !run.pendingRecipient &&
+          ["paused", "stalled"].includes(phase);
+        $("#control-recovery").hidden = !recoveryVisible;
+        const recipient = $("#control-recipient");
+        const choices = (table?.players || []).map(({ id, name }) => ({
+          id,
+          name,
+        }));
+        const signature = JSON.stringify(choices);
+        if (recipient.dataset.choices !== signature) {
+          const selected = recipient.value;
+          recipient.replaceChildren();
+          const placeholder = make("option", "", "Select a player");
+          placeholder.value = "";
+          placeholder.disabled = true;
+          recipient.append(placeholder);
+          for (const player of choices) {
+            const option = make("option", "", player.name);
+            option.value = player.id;
+            recipient.append(option);
+          }
+          recipient.value = choices.some((player) => player.id === selected)
+            ? selected
+            : "";
+          recipient.dataset.choices = signature;
+        }
+        const activePlayer =
+          !!run?.active || (run?.players || []).some((player) => player.active);
+        recipient.disabled = busy || activePlayer || !recoveryVisible;
+        $("#give-control").disabled = recipient.disabled || !recipient.value;
         renderPlanUsage();
         $("#start-button").textContent =
           run?.decisions > 0 &&
@@ -2584,6 +2769,24 @@
         for (const node of document.querySelectorAll("[data-worker]"))
           node.textContent = workerText(node.dataset.worker);
       }
+      $("#control-recipient").addEventListener("change", renderRunner);
+      $("#control-recovery").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if ($("#give-control").disabled || busy) return;
+        const player = $("#control-recipient").value;
+        busy = true;
+        renderRunner();
+        setError("");
+        try {
+          await request("/api/control", { action: "wake", player });
+          await refresh();
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          busy = false;
+          renderRunner();
+        }
+      });
       for (const button of document.querySelectorAll("[data-control]"))
         button.addEventListener("click", async () => {
           if (busy) return;
@@ -2646,17 +2849,26 @@
             const state = await request("/api/table");
             const matchId =
               app?.match?.session || state.created_at || state.title;
-            if (matchId !== displayedMatch) {
+            const matchChanged = matchId !== displayedMatch;
+            if (matchChanged) {
               displayedMatch = matchId;
               displayedRevision = -1;
               showSetup = false;
+              activityInspector = 0;
+              activityHistory = [];
+              activityThrough = 0;
+              $("#inspector").close();
             }
+            $("#match").hidden = showSetup;
+            $("#lobby").hidden = !showSetup;
             if (state.revision !== displayedRevision) {
               displayedRevision = state.revision;
               renderTable(state);
             } else table = state;
-            $("#match").hidden = showSetup;
-            $("#lobby").hidden = !showSetup;
+            if (matchChanged) {
+              const recent = $("#recent-moves");
+              recent.scrollTop = recent.scrollHeight;
+            }
             renderRunner();
           } else {
             $("#match").hidden = true;

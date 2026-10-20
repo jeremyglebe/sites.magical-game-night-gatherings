@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { readRules } from './rules.mjs';
 import { syncRules } from './sync-rules.mjs';
 
-test('quickstart is available without a comprehensive file and distinguishes no-op from pass', () => {
+test('table guide is available without a comprehensive file and distinguishes no-op from pass', () => {
   const options = { comprehensivePath: null };
   const catalog = readRules({}, options);
   assert.equal(catalog.sources[0].available, true);
@@ -16,9 +16,27 @@ test('quickstart is available without a comprehensive file and distinguishes no-
   assert.match(source.text, /complete_decision/);
   assert.match(source.text, /no_op/);
   assert.match(source.text, /passed|pass priority/);
-  assert.match(source.text, /mulligan/);
+  assert.match(source.text, /basic/);
   assert.throws(() => readRules({ source: 'comprehensive' }, options), /not configured/);
   assert.throws(() => readRules({ source: '../../package.json' }, options), /Unknown rules source/);
+});
+
+test('basic game guide is a separate local searchable and paged source', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'tabletop-basic-rules-'));
+  try {
+    const basicPath = join(dir, 'BasicRules.txt');
+    writeFileSync(basicPath, 'Basic game rules\nInstants may be cast with priority.\nResponding uses the stack.\nAnother stack example.\n');
+    const options = { basicPath, comprehensivePath: null };
+    const sources = readRules({}, options).sources;
+    assert.equal(sources.find(s => s.source === 'basic').available, true);
+    assert.equal(sources.find(s => s.source === 'comprehensive').available, false);
+    const search = readRules({ source: 'basic', query: 'STACK', count: 1 }, options);
+    assert.equal(search.matches[0].line, 3);
+    assert.equal(search.next_start, 4);
+    assert.match(readRules({ source: 'basic', start: 2, count: 1 }, options).text, /^2: Instants/);
+    assert.throws(() => readRules({ source: 'basic', rule: '117' }, options), /Comprehensive/);
+    assert.throws(() => readRules({ source: 'basic' }, { basicPath: null }), /unavailable/);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
 test('explicit rules refresh follows the official TXT link and saves verified provenance', async () => {

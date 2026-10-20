@@ -60,3 +60,23 @@ test('legacy batches do not guess draw identities from the pre-batch position', 
   assert.match(text, /identities were not captured for this legacy batch/);
   assert.doesNotMatch(text, /Draw from one:library: First/);
 });
+
+test('host Markdown renders attributed public speech after each action and replays turn handoffs', () => {
+  const setup = { shuffle: false, players: ['one', 'two'].map(id => ({ id, name: id === 'one' ? 'First player' : 'Second player', deck: [{ name: 'Card' }] })) };
+  const initial = createTable(setup);
+  const next = applyActions(initial, 'one', 0, [
+    { type: 'say', text: 'I keep this hand.\nReady when you are.' },
+    { type: 'pass', next: 'two', message: 'Any response?' },
+  ], 'Private short justification');
+  let recording = appendRecording(createRecording(initial, setup), initial, next);
+  const final = applyActions(next, 'two', 1, [{ type: 'pass_turn', next: 'one', message: 'Your turn.' }], 'End my turn');
+  recording = appendRecording(recording, next, final);
+  const markdown = recordingMarkdown(recording);
+  assert.match(markdown, /- Speak to the table\.\n\n> First player: I keep this hand\.\n> Ready when you are\./);
+  assert.match(markdown, /- Pass priority to Second player\.\n\n> First player: Any response\?/);
+  assert.match(markdown, /- Pass the turn to First player \(turn 2, Untap\)\.\n\n> Second player: Your turn\./);
+  let replay = recording.initial;
+  for (const frame of recording.frames) replay = applyFrame(replay, frame);
+  assert.deepEqual(replay.turn, final.turn);
+  assert.deepEqual(replay.notes, final.notes);
+});

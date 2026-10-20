@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
-import { existsSync, mkdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { DEFAULT_PLAYER } from './coordinator.mjs';
@@ -8,48 +9,50 @@ const defaultMcpPath = fileURLToPath(new URL('./mcp.mjs', import.meta.url));
 const localCodex = fileURLToPath(new URL('../../node_modules/.bin/codex', import.meta.url));
 const defaultCodex = process.env.TABLETOP_CODEX_BIN || (existsSync(localCodex) ? localCodex : 'codex');
 const allowedReasoning = ['low', 'medium', 'high', 'xhigh', 'max'];
-const tabletopTools = ['observe_table', 'act', 'read_card', 'read_reference', 'read_events', 'read_rules', 'complete_decision'];
+const tabletopTools = ['observe_table', 'act', 'say', 'pass_priority', 'pass_turn', 'read_card', 'read_reference', 'read_events', 'read_rules', 'complete_decision'];
 const json = value => JSON.stringify(value);
 
-export function playerPrompt({ player, sessionId, revision, fromRevision = revision, view, events, turnHistory, quickstart = '' }) {
-  // Repeat the contract on resumed turns: older histories may contain an
-  // incorrect conclusion that hidden cards or optional references are missing.
+export function playerPrompt({ player, sessionId, revision, fromRevision = revision, wake, view, events, turnHistory, quickstart = '', basicRules = '' }) {
+  // Repeated on every resume so an older conversation cannot retain obsolete
+  // broadcast/no-op instructions or confuse hidden card lists with empty decks.
   const tableContract = [
     'Match contract: read_reference lists optional format/box overrides. An empty paths list means no custom overrides; use ordinary casual Magic with the supplied decks and life totals. This is not a sanctioned Standard deck-legality check. During Setup, turn.active names the starting player and the players list gives turn order unless configured rules say otherwise. These supplied settings do not need operator reconfirmation.',
     'Visibility contract: zone.count is the actual number of cards; zone.cards contains only card identities currently visible to you. A hidden library with count:60 and cards:[] contains 60 real cards, not an empty or unconfigured deck. Drawing does not require card IDs or seeing the library first: use act with the current revision and an action such as {"type":"draw","count":7} to draw from your own library into your hand, only when the rules require that draw. Read the returned hand before evaluating it. Do not peek or reveal a library just to prepare an opening hand.',
     'Empty optional references and hidden library contents are not setup blockers. If an earlier decision reported needs_help for either reason alone, that misunderstanding is resolved by this contract; observe the current table and continue.',
-    'Turn discipline: the normal allowance is ONE land play across the entire turn, not one per main phase or notification. Before playing a land, check the current-turn history for a land you already played; another main phase does not reset that allowance. Additional land plays need an identified effect. A land entering through an effect is not necessarily a land play; apply the actual rule.',
-    'Priority discipline: track consecutive passes since the last game action. Once all players have passed in succession, the top stack item resolves or the empty-stack step/phase ends. Do not start another identical pass round. The active player coordinates the resulting manual changes and the next priority window, respecting required choices, triggers, and response opportunities. Any intervening action begins a new pass sequence. The application does not decide this for you.',
+    'Turn discipline: the normal allowance is ONE land play across the entire turn, not one per main phase or prompt. Before playing a land, check the current-turn history for a land you already played; another main phase does not reset that allowance. Additional land plays need an identified effect. A land entering through an effect is not necessarily a land play; apply the actual rule.',
+    'Rules lookup order: use the supplied basic game guide in this conversation for ordinary play; its authorship, source, and version are stated inside the reference. For a card question, use read_card for its Oracle text and available cached official rulings; rulings_cache.status=fetched with rulings:[] means the cached official lookup returned none, while not_fetched or missing cache metadata means unknown, not a confirmed absence of rulings. If the basics need refreshing or a term needs explaining, query local read_rules with source basic; its included glossary can be searched by term. Only if those leave an unusual interaction or ambiguity unresolved should you make a targeted Comprehensive Rules lookup. Do not consult the Comprehensive Rules routinely on every move or read the entire document. The authored MCP tool guide explains application controls; it is separate from the supplied basic game guide.',
+  ].join('\n\n');
+  const handoffContract = [
+    'CURRENT COORDINATION PROTOCOL (replaces any older broadcast instructions): only one player runs at a time. You were explicitly selected to continue play or answer a response window; ordinary changes and public speech do not prompt other players. This handoff does not override Magic rules or grant otherwise illegal actions. Read the current situation, do the useful work your seat can legally do, then explicitly choose who needs to respond next.',
+    'Use efficient tabletop shorthand. Batch physical steps in act when no intervening opponent decision is required. Narrate the chronology and proposed shortcut publicly with say({revision,text}) or a handoff message. For example, propose moving through quiet phases, playing your one land, tapping mana, and casting a spell in one sequence, then offer the appropriate response window. Do not create a separate model handoff for every mechanical step or empty phase. Do not silently skip mandatory opponent choices, triggers, or meaningful response opportunities. Another player may object and request an earlier legal response point; communicate and correct the table explicitly together. The application does not adjudicate shortcuts or rewind automatically.',
+    'End-of-turn shortcut: when your useful play is finished, the stack is clear, and no opponent choice, pending trigger, or relevant response window remains, perform required cleanup and use pass_turn directly, describing the quiet remaining phases in its public message. Do not make a separate handoff solely to confirm every empty phase or ask permission to end your turn. The recipient can request an earlier legal response point and coordinate a correction, as with other shortcuts.',
+    'When another player needs to act or respond, use pass_priority({revision,next,message?}) with that exact player ID. To finish your turn and give the next player their turn, use pass_turn({revision,next,message?}); it changes turn markers only, so perform your own required cleanup first. Neither tool resolves spells, untaps cards, draws, or applies game rules. Public say messages communicate choices but do not wake anybody; a question needing an answer must be followed by a handoff to its recipient.',
+    'A successful pass_priority or pass_turn is TERMINAL for this decision: it records the handoff and completes your worker decision automatically. End your response immediately afterwards. Do not call complete_decision, observe, say, or any other tool after a successful handoff. A final pass/pass_turn in a generic act batch is terminal in the same way. If the tool rejected a stale revision, observe the current state and reconsider before trying a new action.',
+    'No action and passing are different. If you have priority and nothing useful to do, promptly pass_priority to the correct next player; do not use no_op to avoid handing off. complete_decision with no_op or acted without a handoff pauses for operator intervention and is exceptional. Use complete_decision status needs_help only when a real unresolved uncertainty prevents play, or acted after reporting an established game result. Do not add acknowledgments merely to consume a prompt.',
+    'Priority discipline: track consecutive passes since the last game action. Casting a spell followed by pass_priority already records the caster\'s pass; count it. For example, p1 casts and passes, then p2 passes: both have passed and resolution is due, without another pass from p1. Do not say a spell will resolve only if its caster passes again after everyone already passed. Once ALL players have passed in succession, the top stack item resolves or the empty-stack step/phase ends. Do not start another identical pass round. In multiplayer, one opponent passing does not mean everyone passed. The active player coordinates the resulting manual resolution or advancement, respecting choices and triggers, and can propose a useful shortcut through quiet play before offering the next response. Players explicitly choose each next recipient; the coordinator never chooses it or applies Magic rules.',
   ].join('\n\n');
   const setupReminder = view?.turn?.phase?.toLowerCase() === 'setup'
-    ? 'Begin the configured game. During Setup, priority:null means ordinary priority has not started; it does not require everyone to wait. Prepare your own opening hand once according to the chosen rules, make any required mulligan choices, and record readiness publicly without revealing your cards. Inspect your hand and history first so you do not repeat completed setup. The starting player coordinates the first turn after everyone is ready. If a setup choice needs agreement, make a concrete public proposal; use needs_help if essential setup information is missing.'
+    ? 'Begin the configured game. During Setup, priority:null means ordinary priority has not started; it does not require everyone to wait. Inspect your hand and history; prepare your own opening hand once as required and ensure all seats have completed their initial draws before the first mulligan declaration round. Coordinate each round with public messages and explicit pass_priority handoffs: keep/mulligan declarations proceed in starting-player/turn order, skipping players who already kept in an earlier round. Complete every declaration for the current round BEFORE any player takes that round\'s mulligan; then those taking mulligans perform their redraw/bottom stage under the basic guide, and only after that stage is complete begin the next declaration round. Kept players no longer participate in later mulligan rounds. Do not finish all of one player\'s mulligans before others make their first declarations. Hand off to the next seat that needs to perform the current setup stage, without revealing hidden cards or repeatedly waking kept seats. Once everyone has kept, explicitly hand back to the starting player to begin play. Inspect recorded setup choices to avoid repeating a completed draw or mulligan on a resume. These handoffs schedule setup work; they do not assert that ordinary priority exists during setup, and the application performs none of the rules automatically.'
     : '';
   const introduction = sessionId ? '' : [
     `You are ${player.name || player.id}, player ${player.id}, in a manual Magic tabletop playtest.`,
-    'Your conversation and MCP connection belong only to this player. The MCP server filters information for your seat.',
-    'Play using only the tabletop MCP tools. List optional format and box overrides with read_reference and read them when configured; otherwise use the ordinary Magic baseline below.',
-    'Interpret game rules yourself: the application does not check legality, resolve spells, run turns, or decide winners.',
-    'A notification is information, not permission or an obligation to act. Most updates need no action from you.',
-    'When you have no legal or useful action, call complete_decision with status no_op and finish promptly. No explanation is required.',
-    'Passing priority is different: use the pass table action with the next player, then complete_decision with status acted.',
-    'Use current turn/priority markers, public handoffs and rules to decide who acts. Never assume another player acted just because you received a prompt.',
-    'Setup is player-led. In setup, prepare your own opening hand once, follow the chosen mulligan rules, and record readiness. Coordinate publicly before beginning play.',
-    'Before changing the table, observe its CURRENT state. If a write says the table changed, observe and reconsider; do not blindly retry old moves.',
-    'Only batch physical changes that require no intervening response or choice. Give opponents response opportunities and keep active/priority/phase markers accurate.',
-    'You may use public notes to communicate game choices, but never publish your hidden hand or private strategy. Never add a note merely to acknowledge an update.',
-    'Consult exact card text or rules when needed. Ask for help through complete_decision status needs_help when an uncertainty prevents play.',
-    'A reported game result must follow the chosen rules. Complete the decision once using complete_decision, then end your response.',
-    quickstart,
+    'Your independent conversation and MCP connection belong only to this player. The MCP server filters information for your seat. Use only the tabletop MCP tools.',
+    'Interpret game rules yourself: the application does not check legality, resolve spells, run turns, or decide winners. Read optional format and box overrides with read_reference; follow the rules lookup order below for other questions.',
+    'The current player-visible snapshot and ordered events are supplied below. Check their current revision before writes; tool responses return an updated table. If information is stale or unclear, observe_table and reconsider. Never blindly retry a rejected move.',
+    'Keep hidden cards and private strategy out of public messages. Public choices, response requests, shortcut proposals, and readiness belong in say or a handoff message.',
+    quickstart ? `Authored tabletop MCP tool guide:\n${quickstart}` : '',
   ].filter(Boolean).join('\n\n') + '\n\n';
   return introduction + [
-    `Game updates ${fromRevision} through ${revision}. All events accumulated for this decision are included in order; the current table may already be newer. Consider the whole batch once, then decide from the current state. Do not repeat an action for each historical notification.`,
-    `Your player ID: ${player.id}.`,
+    basicRules ? `Supplied basic game guide (source/version inside; separate from the authored MCP tool guide):\n${basicRules}\nEnd of supplied basic game guide.` : '',
+    `Explicit player handoff. Unseen events ${fromRevision} through ${revision} are included in order, followed by one current table snapshot. Read all changes once; do not replay actions for individual historical events.`,
+    `Your player ID: ${player.id}. Handoff: ${json(wake || { kind: 'setup', revision })}.`,
+    handoffContract,
     tableContract,
-    `Events for this notification:\n${json(events)}`,
+    `Unseen player-visible events:\n${json(events)}`,
     `Current player-visible table:\n${json(view)}`,
-    turnHistory ? `Public actions in the current turn (historical context, not new notifications):\n${json(turnHistory)}` : '',
+    turnHistory ? `Public actions in the current turn (historical context, not additional requests):\n${json(turnHistory)}` : '',
     setupReminder,
-    'Consider whether the rules currently allow or require you to do anything. A quick no_op is normal. Finish with complete_decision.',
+    'Continue the game efficiently. Make the appropriate moves and public communication, explicitly hand off when another player needs to respond, and end immediately after the successful handoff.',
   ].filter(Boolean).join('\n\n');
 }
 
@@ -128,11 +131,13 @@ export function codexInvocation({
 }
 
 export function createCodexRunner({
-  workspaceRoot, getConnection, quickstart = '', codexBin = defaultCodex,
+  workspaceRoot, getConnection, quickstart = '', basicRules = '', codexBin = defaultCodex,
   mcpPath = defaultMcpPath, nodeBin = process.execPath, spawnImpl = spawn,
   maxTranscriptBytes = 8 * 1024 * 1024,
 }) {
   if (!workspaceRoot || typeof getConnection !== 'function') throw new Error('Player workspace and connection callback are required');
+  if (typeof basicRules !== 'string') throw new Error('Basic rules must be reference text');
+  const basicRulesHash = basicRules ? createHash('sha256').update(basicRules).digest('hex') : null;
   const root = resolve(workspaceRoot);
   mkdirSync(root, { recursive: true, mode: 0o700 });
   return async function runPlayer(request) {
@@ -141,9 +146,14 @@ export function createCodexRunner({
     if (signal?.aborted) throw signal.reason || new Error('Player cancelled');
     const workspace = join(root, player.id);
     mkdirSync(workspace, { recursive: true, mode: 0o700 });
+    const contextPath = join(workspace, 'basic-rules-context.json');
+    let previousContext = null;
+    try { previousContext = JSON.parse(readFileSync(contextPath, 'utf8')); }
+    catch (error) { if (error.code !== 'ENOENT' && !(error instanceof SyntaxError)) throw error; }
+    const deliverBasicRules = !!basicRulesHash && (!sessionId || previousContext?.sessionId !== sessionId || previousContext?.sha256 !== basicRulesHash);
     const connection = await getConnection(player.id);
     const invocation = codexInvocation({ player, sessionId, decisionId, workspace, connection, mcpPath, nodeBin });
-    const prompt = playerPrompt({ ...request, quickstart });
+    const prompt = playerPrompt({ ...request, quickstart, basicRules: deliverBasicRules ? basicRules : '' });
     return new Promise((ok, fail) => {
       let child;
       try {
@@ -217,6 +227,15 @@ export function createCodexRunner({
           return;
         }
         if (!completed || !discovered) { fail(new Error('Codex ended without a completed turn and session ID')); return; }
+        if (deliverBasicRules) {
+          // An old session receives the guide once too. Never mark a failed or
+          // cancelled turn; on the next attempt it still needs the reference.
+          try {
+            const temporary = `${contextPath}.tmp`;
+            writeFileSync(temporary, JSON.stringify({ version: 1, sessionId: discovered, sha256: basicRulesHash }) + '\n', { mode: 0o600 });
+            renameSync(temporary, contextPath);
+          } catch (error) { fail(new Error(`Unable to record basic rules delivery: ${error.message}`)); return; }
+        }
         ok({ sessionId: discovered });
       });
       signal?.addEventListener('abort', abort, { once: true });

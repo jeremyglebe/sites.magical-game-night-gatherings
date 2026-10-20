@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 export const officialRulesURL = 'https://magic.wizards.com/en/rules';
 export const defaultRulesPath = fileURLToPath(new URL('../../.playtest/rules/ComprehensiveRules.txt', import.meta.url));
+export const defaultBasicRulesPath = fileURLToPath(new URL('./basic-rules.txt', import.meta.url));
 const quickstartURL = new URL('./quickstart.md', import.meta.url);
 
 function positive(value, fallback, maximum = Number.MAX_SAFE_INTEGER) {
@@ -13,21 +14,23 @@ function positive(value, fallback, maximum = Number.MAX_SAFE_INTEGER) {
 
 // Only the administrator chooses the comprehensive text path. Player requests
 // select a named source and cannot read arbitrary local files.
-export function readRules(options = {}, { comprehensivePath = process.env.TABLETOP_COMPREHENSIVE_RULES || defaultRulesPath } = {}) {
+export function readRules(options = {}, { comprehensivePath = process.env.TABLETOP_COMPREHENSIVE_RULES || defaultRulesPath, basicPath = defaultBasicRulesPath } = {}) {
   const available = Boolean(comprehensivePath && existsSync(comprehensivePath));
   const sources = [
-    { source: 'quickstart', title: 'Table protocol and ordinary Magic grounding', available: true },
+    { source: 'quickstart', title: 'Table and MCP tool guide', available: true },
     { source: 'comprehensive', title: 'Magic: The Gathering Comprehensive Rules', available, source_url: officialRulesURL },
+    { source: 'basic', title: 'Basic game rules — adapted and updated from the Wizards basic rulebook', available: Boolean(basicPath && existsSync(basicPath)) },
   ];
   if (!options.source) return {
     sources,
-    note: 'Read quickstart first. Run node experiments/tabletop/sync-rules.mjs to download or explicitly refresh the official TXT, or supply TABLETOP_COMPREHENSIVE_RULES. The local file has its own effective date; it is not automatically refreshed. Active matches should use a pinned copy.',
+    note: 'Use basic for ordinary gameplay and quickstart for table/MCP controls. Read exact card text and available cached rulings through read_card. Search comprehensive only for unresolved rules questions; do not read it on every move. All these lookups are local. Run node experiments/tabletop/sync-rules.mjs only to explicitly refresh the official Comprehensive Rules TXT. Matches pin their own rules copies.',
   };
-  if (!['quickstart', 'comprehensive'].includes(options.source)) throw new Error('Unknown rules source');
+  if (!['quickstart', 'basic', 'comprehensive'].includes(options.source)) throw new Error('Unknown rules source');
+  if (options.source === 'basic' && (!basicPath || !existsSync(basicPath))) throw new Error('The local basic game guide is unavailable');
   if (options.source === 'comprehensive' && !available) {
     throw new Error('Comprehensive Rules are not configured. Ask the administrator to run node experiments/tabletop/sync-rules.mjs or supply the official TXT from ' + officialRulesURL + ' via TABLETOP_COMPREHENSIVE_RULES. Do not invent a ruling.');
   }
-  const text = readFileSync(options.source === 'quickstart' ? quickstartURL : comprehensivePath, 'utf8').replace(/^\uFEFF/, '');
+  const text = readFileSync(options.source === 'quickstart' ? quickstartURL : options.source === 'basic' ? basicPath : comprehensivePath, 'utf8').replace(/^\uFEFF/, '');
   if (options.source === 'comprehensive' && !/^Magic: The Gathering Comprehensive Rules/m.test(text)) {
     throw new Error('The configured file is not recognized as the official Comprehensive Rules TXT');
   }
@@ -52,6 +55,7 @@ export function readRules(options = {}, { comprehensivePath = process.env.TABLET
     };
   }
   if (options.rule !== undefined) {
+    if (options.source !== 'comprehensive') throw new Error('Numbered rule lookup is for the Comprehensive Rules; search the basic guide with query');
     if (typeof options.rule !== 'string' || !/^\d{3}(?:\.\d+[a-z]?)?\.?$/.test(options.rule)) throw new Error('Supply a rule number such as 117.3 or 704.5a');
     const rule = options.rule.replace(/\.$/, '');
     // The contents list repeats section headings. Prefer the last exact section

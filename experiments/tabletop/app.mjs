@@ -9,7 +9,7 @@ import { observe, eventsSince } from './table.mjs';
 import { recordingMarkdown } from './game-log.mjs';
 import { createCoordinator } from './coordinator.mjs';
 import { createCodexRunner } from './codex-player.mjs';
-import { readRules } from './rules.mjs';
+import { readRules, defaultBasicRulesPath } from './rules.mjs';
 import { readCodexPlanUsage } from './plan-usage.mjs';
 import { recordPlanUsage, planUsageView } from './usage-tracking.mjs';
 
@@ -65,7 +65,7 @@ export function normalizeSetup(input) {
 
 export async function startApp({
   directory = '.playtest', port = 5180, setup, resume = true,
-  runPlayerFactory = createCodexRunner, comprehensivePath,
+  runPlayerFactory = createCodexRunner, comprehensivePath, basicRulesPath = defaultBasicRulesPath,
   readPlanUsage = readCodexPlanUsage, usageRefreshMs = 60_000,
 } = {}) {
   const root = resolve(directory);
@@ -76,6 +76,7 @@ export async function startApp({
   let coordinator = null;
   let creating = false;
   let activeRulesPath;
+  let activeBasicPath;
   let usageRequest = null;
   let usageError = null;
   let lastUsageAttempt = 0;
@@ -93,7 +94,7 @@ export async function startApp({
       } : null,
       coordinator: coordinator?.status() || null, presets, defaults,
       planUsage: planUsageView(match?.planUsage, { error: usageError, refreshing: !!usageRequest }),
-      rules: readRules({}, { comprehensivePath: activeRulesPath || configuredRulesPath }),
+      rules: readRules({}, { comprehensivePath: activeRulesPath || configuredRulesPath, basicPath: activeBasicPath || basicRulesPath }),
     };
   }
   function saveMatch() {
@@ -136,34 +137,48 @@ export async function startApp({
     coordinator = null;
     match = null;
     activeRulesPath = undefined;
+    activeBasicPath = undefined;
   }
   async function loadMatch(id, config, savedCoordinator, savedPlanUsage) {
     if (!/^[a-zA-Z0-9_-]+$/.test(id)) throw new Error('Invalid saved match');
     const folder = join(root, 'matches', id);
     const session = join(folder, 'session.json');
     const rulesPath = join(folder, 'ComprehensiveRules.txt');
+    const basicPath = join(folder, 'BasicRules.txt');
+    const rulingsPath = join(folder, 'CardRulings.json');
     mkdirSync(folder, { recursive: true, mode: 0o700 });
     if (!existsSync(rulesPath) && existsSync(configuredRulesPath)) copyFileSync(configuredRulesPath, rulesPath);
+    if (!existsSync(basicPath) && basicRulesPath && existsSync(basicRulesPath)) copyFileSync(basicRulesPath, basicPath);
+    if (!existsSync(rulingsPath)) save(rulingsPath, Object.fromEntries(precons.players.flatMap(p => p.deck)
+      .filter(card => card.scryfall_id && card.rulings_cache?.status === 'fetched')
+      .map(({ scryfall_id, rulings, rulings_cache }) => [scryfall_id, { rulings, rulings_cache }])));
+    const cardRulings = JSON.parse(readFileSync(rulingsPath, 'utf8'));
     const nextMatch = { id, config, session, savedCoordinator, planUsage: savedPlanUsage };
     let nextTable;
     let nextCoordinator;
     try {
       nextTable = await startTable({
-        session, setup: config, port: 0, comprehensivePath: rulesPath,
-        onCommit: state => {
-          nextCoordinator?.notify(state.revision);
+        session, setup: config, port: 0, comprehensivePath: rulesPath, basicPath, cardRulings,
+        onCommit: (state, actor) => {
+          const action = state.events.at(-1)?.actions?.at(-1);
+          let handoff;
+          if (action?.type === 'pass' || action?.type === 'pass_turn') {
+            handoff = nextCoordinator?.handoff(actor, action.next, state.revision, action.type === 'pass_turn' ? 'turn' : 'priority');
+          } else nextCoordinator?.notify(state.revision);
           if (state.result) nextCoordinator?.finish();
+          return handoff;
         },
         onDecision: (seat, decision) => nextCoordinator?.complete(seat, decision),
         beforeAction: (seat, args) => {
-          if (!config.players.find(p => p.id === seat)?.ai) return;
-          nextCoordinator.authorizeDecision(seat, args.decision_id);
+          if (config.players.find(p => p.id === seat)?.ai) nextCoordinator.authorizeDecision(seat, args.decision_id);
+          else nextCoordinator.authorizeManual(seat);
         },
       });
       const runPlayer = runPlayerFactory({
         workspaceRoot: join(folder, 'players'),
         getConnection: seat => ({ url: nextTable.url, token: nextTable.getToken(seat), seat }),
         quickstart: readRules({ source: 'quickstart', start: 1, count: 120 }, { comprehensivePath: rulesPath }).text,
+        basicRules: existsSync(basicPath) ? readFileSync(basicPath, 'utf8') : '',
       });
       nextCoordinator = createCoordinator({
         players: config.players.map(p => ({ ...p, enabled: p.ai })), runPlayer, saved: savedCoordinator,
@@ -182,8 +197,22 @@ export async function startApp({
         },
       });
       if (nextTable.getState().result) nextCoordinator.finish();
-      else if (!savedCoordinator || nextTable.getState().revision > (savedCoordinator.latestRevision ?? -1)) {
-        nextCoordinator.notify(nextTable.getState().revision);
+      else {
+        const state = nextTable.getState();
+        nextCoordinator.notify(state.revision);
+        if (!savedCoordinator || (savedCoordinator.version ?? 1) < 2) {
+          // New matches start with setup; old broadcast queues migrate to one
+          // explicit owner inferred from their existing physical turn marker.
+          nextCoordinator.wake(state.turn.priority || state.turn.active, state.revision,
+            state.turn.phase.toLowerCase() === 'setup' ? 'setup' : 'resume');
+        } else if (state.revision > (savedCoordinator.latestRevision ?? -1)) {
+          // A table commit can survive a crash just before coordinator save.
+          // Recover the last explicit handoff, never broadcast ordinary actions.
+          const action = state.events.at(-1)?.actions?.at(-1);
+          if (action?.type === 'pass' || action?.type === 'pass_turn') {
+            nextCoordinator.wake(action.next, state.revision, action.type === 'pass_turn' ? 'turn' : 'priority');
+          }
+        }
       }
       save(join(folder, 'match.json'), { id, config, coordinator: nextCoordinator.snapshot(), planUsage: nextMatch.planUsage });
       // Fully construct and persist the replacement before releasing the current match.
@@ -193,6 +222,7 @@ export async function startApp({
       table = nextTable;
       coordinator = nextCoordinator;
       activeRulesPath = rulesPath;
+      activeBasicPath = basicPath;
       usageError = null;
       lastUsageAttempt = 0;
       save(currentFile, { id });
@@ -204,7 +234,7 @@ export async function startApp({
       }
       if (nextTable?.server.listening) await closeServer(nextTable.server);
       if (table === nextTable) {
-        match = null; table = null; coordinator = null; activeRulesPath = undefined;
+        match = null; table = null; coordinator = null; activeRulesPath = undefined; activeBasicPath = undefined;
       }
       throw error;
     }
@@ -260,6 +290,10 @@ export async function startApp({
         json(response, 201, await createMatch(await bodyJSON(request))); return;
       }
       if (!match) { json(response, 404, { error: 'Create a match first' }); return; }
+      if (request.method === 'GET' && url.pathname === '/api/history') {
+        const since = Number(url.searchParams.get('since') || 0);
+        json(response, 200, eventsSince(table.getState(), null, since)); return;
+      }
       if (request.method === 'GET' && ['/api/table', '/api/public-card'].includes(url.pathname)) {
         const result = await fetch(table.url + url.pathname + url.search);
         response.writeHead(result.status, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
@@ -269,14 +303,18 @@ export async function startApp({
         json(response, 200, coordinator.status()); return;
       }
       if (request.method === 'POST' && url.pathname === '/api/control') {
-        const { action, limits } = await bodyJSON(request);
-        if (!['start', 'pause', 'step', 'stop', 'configure'].includes(action)) throw new Error('Unknown match control');
+        const { action, limits, player } = await bodyJSON(request);
+        if (!['start', 'pause', 'step', 'stop', 'configure', 'wake'].includes(action)) throw new Error('Unknown match control');
         const target = coordinator;
         const version = ++controlVersion;
         if (action === 'configure') {
           if (!limits || typeof limits !== 'object' || Array.isArray(limits)) throw new Error('Supply run limits');
           coordinator.configure(limits);
           match.config.limits = coordinator.snapshot().limits;
+        } else if (action === 'wake') {
+          if (coordinator.status().mode !== 'paused' && coordinator.status().state !== 'stalled') throw new Error('Pause the match before giving control');
+          coordinator.pause();
+          coordinator.wake(player, table.getState().revision, 'resume');
         } else {
           if (action === 'start' || action === 'step') await refreshPlanUsage({ force: true });
           if (closing || version !== controlVersion || target !== coordinator) throw new Error('This control was superseded by a newer match control.');

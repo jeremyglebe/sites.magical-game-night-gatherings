@@ -1,0 +1,469 @@
+MAGIC: THE GATHERING — BASIC GAME GUIDE
+
+Application-authored adaptation, version 2026-10-20.
+
+This is an independently worded guide to ordinary casual Magic, adapted from the useful gameplay material in Wizards of the Coast's July 2013 Magic 2014 printed basic rulebook. It has been checked against the locally installed Comprehensive Rules effective September 25, 2026. It is not an official updated Wizards rulebook. Source details and specific corrections to the 2013 material are at the end.
+
+Use this guide for routine play. The current Oracle text of a card determines what that card does, including corrections to old printings. A selected format or boxed set may specify different decks, starting life, teams, setup, or victory rules; use its actual rules for those differences. If no variant has been selected, the ordinary defaults below apply. Special card interactions not explained here may require a targeted Comprehensive Rules lookup.
+
+CONTENTS
+1. The aim of the game and getting ready
+2. Starting a game and mulligans
+3. Reading cards and understanding card types
+4. Zones, ownership, and visible information
+5. Lands, tapping, mana, and costs
+6. Priority, responses, and the stack
+7. Casting spells, choosing targets, and resolving effects
+8. Activated, triggered, static, and mana abilities
+9. A complete turn
+10. Attacking, blocking, and combat damage
+11. Damage, state-based actions, and the end of the game
+12. Auras, Equipment, planeswalkers, tokens, and counters
+13. Common keywords
+14. Other useful terms and procedures
+15. Limited play and multiplayer differences
+16. Sources and changes from the 2013 guide
+
+
+1. THE AIM OF THE GAME AND GETTING READY
+
+In an ordinary two-player game, each player uses a separate deck and starts at 20 life. Players take turns developing their battlefield and using spells and abilities. Creatures can attack opponents and block attacks. An opponent normally loses after their life falls to 0 or less, but there are other ways to win or lose, described in section 11.
+
+Each player needs a deck, a way to track life and other totals, and distinguishable markers for tokens and counters. Keep tapped cards, damage, attachments, and temporary effects clear to everyone.
+
+For ordinary Constructed play, build a deck with at least 60 cards. The combined deck and any sideboard may contain at most four cards with the same English name, except basic lands and cards whose rules explicitly permit otherwise. There is no ordinary maximum deck size, but the deck must be manageable for shuffling. A chosen format can impose additional restrictions. A preconstructed casual deck need not be legal in a particular tournament format merely to be used in a casual game.
+
+A Constructed sideboard is optional and can contain up to 15 cards. It is set aside during the game. Between games of a match, the agreed sideboarding rules let players exchange cards with it while keeping their decks legal. Cards in the sideboard are not part of the library. Limited decks have different construction rules, explained in section 15.
+
+For a first 60-card deck, about 24 lands is a useful starting estimate, not a rule. The appropriate number depends on the deck's costs and other mana sources. Include enough early plays as well as more expensive cards. These are deck-building choices, not additional legality requirements.
+
+Card instructions can override the normal rules where they directly conflict. For example, an effect may permit an additional land play or require a permanent to enter tapped. Apply only the exception the card actually creates. If one applicable effect permits an action and another says it cannot happen, the prohibition normally wins. An instruction to do something impossible is carried out as far as possible; paying a cost still requires the full payment.
+
+
+2. STARTING A GAME AND MULLIGANS
+
+Determine the starting player before looking at opening hands. For the first game, agree on a method such as a die roll to choose who decides which player takes the first turn. In a match, the loser of the previous game normally makes that choice; after a drawn game, the previous chooser chooses again. The normal turn order starts with that player and continues clockwise. Team variants may instead use a starting team and shared turns.
+
+Set aside sideboards and perform any setup required by the selected format. Each player shuffles their deck thoroughly; opponents may shuffle or cut it. Each shuffled deck becomes that player's face-down library. Set starting life to 20 unless the chosen rules specify another value. Each player draws seven cards as an opening hand.
+
+The current ordinary mulligan is the London mulligan:
+
+1. Starting with the starting player, each player who has not already kept declares whether to keep or mulligan. Players who choose to keep cannot take a later mulligan.
+2. After those declarations, every player choosing a mulligan shuffles their entire hand into their library and draws seven new cards.
+3. That player chooses cards from this new hand to put on the bottom of their library in any order: one card for the first counted mulligan, two for the second, and so on. The player chooses the bottomed cards, rather than simply drawing a smaller random hand.
+4. Repeat declarations and mulligans among players who have not kept. The opening hand may be reduced to zero cards, but no further mulligan is then possible.
+
+For example, in an ordinary two-player game a first mulligan draws seven and bottoms one, leaving six. A second mulligan again draws seven and bottoms two, leaving five. There is no free first mulligan in that ordinary two-player game. In a multiplayer game, and in Brawl, the first mulligan is free: it does not increase the number of cards bottomed or count toward the mulligan limit. Thus the first redraw can keep seven, the next redraw bottoms one, and so on. Use the chosen format if it changes starting hand size or this procedure.
+
+Once everyone has kept, perform any card instructions specifically allowing opening-hand actions, in starting-player order, then begin the first turn. Do not repeat setup during later turns.
+
+In a two-player game, the starting player skips the draw step of their first turn. The other player draws normally on their first turn. In Two-Headed Giant, the starting team skips its first draw step. In other multiplayer games, nobody skips that first draw step. These exceptions do not remove upkeep or change later turns.
+
+
+3. READING CARDS AND UNDERSTANDING CARD TYPES
+
+A card's name identifies it. Its mana cost gives the normal payment to cast it. Its type line lists card types, any supertypes before them, and subtypes after the dash. Its rules text gives instructions and abilities. Italic flavor text has no game effect. Reminder text explains an ability but may omit detail; use the actual rules when an interaction needs it. Set symbols, rarity, collector numbers, and artwork normally do not change how the card plays.
+
+A card is usually the colors of the colored symbols in its mana cost. A cost containing both {W} and {U} normally makes a card white and blue. Color indicators and abilities can change or define color. Colorless is not a sixth color. A land does not become green merely because it produces green mana; most lands are colorless. An artifact need not be colorless.
+
+Mana value is the total amount of mana represented by a mana cost, ignoring color. A cost of {3}{U}{U} gives mana value 5. What you actually pay after cost changes does not change mana value. For an ordinary {X} cost, X is normally 0 away from the stack and the chosen value while the spell is on the stack. Cards with no mana cost normally have mana value 0, with special rules for certain double-faced and split cards. Older cards may call mana value "converted mana cost."
+
+Card types have these basic roles:
+
+Land: A permanent played directly onto the battlefield under special timing rules, not cast as a spell. Most lands produce mana. Playing lands is explained in section 5.
+
+Creature: A permanent that can attack and block. Its power is the first number in its power/toughness pair; its toughness is the second. Power determines normal combat damage. Toughness determines how much marked damage is lethal, and a toughness of 0 or less causes it to go to the graveyard. A star in these values is defined by the card's text. Creatures are subject to the control-duration restriction often called summoning sickness.
+
+Artifact: A permanent. Some are Equipment or artifact creatures. A card with multiple types has all of them: an artifact creature is affected by instructions concerning artifacts and by instructions concerning creatures.
+
+Enchantment: A permanent with continuing abilities. An Aura is an enchantment that attaches to something allowed by its enchant ability. Most other enchantments stand on their own.
+
+Planeswalker: A permanent with loyalty counters and usually loyalty abilities. It can be attacked, and damage to it removes loyalty. Its detailed procedures are in section 12. It is not a player and is not normally a creature.
+
+Battle: A permanent with defense counters that can be attacked. Its designated protector can block for it. Damage removes defense counters. The Siege subtype has additional rules: its controller chooses an opponent as protector, and removing the last defense counter triggers its exile and an optional cast of its transformed face without paying its mana cost. Follow the battle's current text and subtype rules if one is in the game.
+
+Instant: A spell normally cast whenever you have priority, including during another player's turn or in response to something on the stack. It carries out its instructions when it resolves and then normally goes to its owner's graveyard.
+
+Sorcery: A spell normally cast only during a main phase of your turn, while you have priority and the stack is empty. After resolving its instructions it normally goes to its owner's graveyard.
+
+Creature, artifact, enchantment, planeswalker, and battle spells normally use the same casting timing as sorceries. When one resolves, it enters the battlefield as a permanent. Flash and other card instructions may change that timing.
+
+Kindred is another card type, formerly called tribal, used together with another card type to give a noncreature card creature subtypes. It does not by itself make the card a creature or change how it is played. Special variants can use additional card types; their own rules explain them.
+
+Basic, legendary, and snow are examples of supertypes. Creature subtypes include things such as Elf and Warrior; land subtypes include Forest and Island. A subtype is not normally an ability. "Legendary" invokes the legend rule, described in section 11. "Basic" determines whether a land is a basic land.
+
+
+4. ZONES, OWNERSHIP, AND VISIBLE INFORMATION
+
+Library: Your face-down draw pile. Its order is hidden and may not be inspected or rearranged without permission from a rule or effect. Drawing normally takes its top card. Anyone may count how many cards remain. Each player has a separate library.
+
+Hand: Cards drawn or otherwise put into your hand. You may look at your own hand. Other players do not gain permission to inspect it merely because they need to make a decision. Hand size is countable. The ordinary maximum hand size is seven, enforced during your own cleanup step; having more cards at other times is allowed.
+
+Battlefield: The shared zone containing permanents. Each player normally arranges the permanents they control together, but these are not separate game zones. Keep public characteristics, tap status, counters, attachments, and marked damage apparent. A face-down permanent follows its special rules; opponents do not get to inspect its hidden face merely because it is on the battlefield.
+
+Stack: The shared zone where cast spells and most activated and triggered abilities wait to resolve. New objects go on top. The top object resolves first after everyone passes. A creature card on the stack is a creature spell; it is not yet a creature permanent and cannot attack or be targeted by an instruction that only targets a creature on the battlefield.
+
+Graveyard: Each player's face-up discard pile. Cards discarded, sacrificed, destroyed, or normally finished as instant or sorcery spells go to their owner's graveyard. Players can inspect graveyards. Preserve graveyard order, since some older cards care about it.
+
+Exile: A separate shared zone. Exile is not a graveyard. Cards there are normally face up, but an effect can exile them face down and specify who may look at them. Exiled cards return or may be played only when a rule or effect permits it.
+
+Command zone: A shared zone used by commanders, emblems, and some variant components. It is not the battlefield. An emblem is not a permanent, so an effect that destroys permanents does not destroy an emblem.
+
+A card's owner is normally the player who started the game with it in their deck. Borrowing a physical deck does not change this game definition. Control can change; ownership normally does not. You control spells you cast and permanents that enter under your control, until something changes control. Unless an effect says otherwise, only a permanent's controller can activate its abilities.
+
+When a card goes to a hand, library, or graveyard, it goes to that zone of its owner, even if another player controlled it. A permanent that changes controller without changing zones keeps its counters, damage, attachments, and tap status. When a card changes zones, it usually becomes a new object, without the old object's counters, damage, or temporary effects. A creature that leaves and returns must again satisfy the control-duration rule before attacking or using its own tap-symbol ability, unless haste applies.
+
+
+5. LANDS, TAPPING, MANA, AND COSTS
+
+You may normally play one land during your entire turn. You must have priority, be in one of your main phases, and have an empty stack. Put the land from your hand onto the battlefield. This is not a spell and does not use the stack, so nobody can respond to the land play itself or counter it as a spell. Abilities triggered by the land entering can be responded to after they go on the stack.
+
+The land allowance is shared by both main phases. If you played a land before combat, reaching your second main phase does not grant a second land. An extra land play requires an effect that allows it. An effect that says to put a land onto the battlefield does not use a land play; an effect that says to play a land does. A land normally enters untapped unless an effect says otherwise, and an untapped noncreature land can normally produce mana immediately.
+
+To tap a permanent, turn it sideways. To untap it, return it upright. The symbol {T} in a cost means tap that permanent; {Q} means untap that permanent. An already tapped permanent cannot pay a tap cost, and an already untapped permanent cannot pay an untap cost. You cannot freely tap or untap a permanent just because you want to: an action, cost, rule, or effect must do it. Tapping does not turn off an ordinary static ability.
+
+A creature cannot attack or activate its own ability containing {T} or {Q} in the cost unless you have controlled it continuously since the beginning of your most recent turn, or it has haste. This applies after gaining control of an old creature as well as after a new creature enters. Such a creature can still block, use abilities without those symbols, or be tapped to pay another instruction's cost when that instruction allows it. Noncreature permanents are not subject to this restriction merely because they just entered.
+
+Mana is a resource you produce and then spend. Lands remain on the battlefield when they produce mana; you do not discard a land to pay for a spell. A tapped land normally stays tapped until your next untap step or an effect untaps it. Spending mana does not untap its source.
+
+There are five colors of mana and also colorless mana:
+{W} = white; the Plains basic land type grants "{T}: Add {W}."
+{U} = blue; Island grants "{T}: Add {U}."
+{B} = black; Swamp grants "{T}: Add {B}."
+{R} = red; Mountain grants "{T}: Add {R}."
+{G} = green; Forest grants "{T}: Add {G}."
+{C} = colorless mana, produced by a source that says it adds colorless mana.
+
+These are five basic land TYPES, not an exhaustive list of basic land card names. A land is basic only if it has the basic supertype. Snow-covered basic lands are basic too. Wastes is a basic land that produces {C}, but it has no basic land type. A nonbasic land can have a basic land type and the associated mana ability without becoming a basic land.
+
+A colored symbol in a cost requires that color. {C} in a cost specifically requires colorless mana. A number such as {2} is a generic cost payable with any two mana, colored or colorless. Generic is a kind of cost, not a kind of mana. For example, {2}{G} needs three mana total, including at least one green; {2}{C} needs three total, including at least one colorless. A cost of {0} needs no mana but must still be legally cast or activated.
+
+Hybrid {W/U} can be paid with either one white or one blue mana. A two-generic hybrid symbol such as {2/W} can be paid with either two mana of any types or one white. A Phyrexian symbol such as {G/P} can be paid with one green or 2 life. A snow symbol {S} requires mana from a snow source. Follow the exact symbols and any spending restrictions. Choose the required value of X when casting or activating, and pay for that choice.
+
+Mana you have made waits in your mana pool until spent. Unless an effect preserves it, unspent mana empties at the end of each step and phase. Losing unspent mana does not itself cause life loss. Mana does not carry from one main phase to the other by default. There is no requirement to spend all of it immediately, but its type and any restrictions must remain clear.
+
+Costs can also require life, tapping, discarding, sacrificing, or removing counters. Pay every required part. You cannot pay 3 life with only 2 life, sacrifice a permanent you do not control, or use the same sacrifice to pay for two different abilities. A cost is paid before opponents can respond; an opponent cannot interrupt halfway through payment to remove the thing being sacrificed. Paying a cost does not wait for the resulting spell or ability to resolve and is not refunded if it later fails.
+
+
+6. PRIORITY, RESPONSES, AND THE STACK
+
+Priority is permission to take ordinary voluntary game actions at that moment. Having a turn and having priority are different: you can have priority during someone else's turn, and they can have it during yours. Receiving priority does not require you to do anything. Passing is normal and often the correct decision.
+
+With priority you may cast a legal instant, cast a spell with flash, activate a permitted ability, take an allowed special action, or pass. A noninstant spell normally requires your own main phase and an empty stack. Playing a land has those conditions too. Card-specific restrictions still apply even if you have priority.
+
+At the start of most steps and phases, complete the automatic turn action first, handle required state-based actions and waiting triggers, then the active player gets priority. The active player is the player whose turn it is. There is no ordinary priority during untap; cleanup usually has none either.
+
+After you cast a spell, activate an ability, or take a special action while you have priority, you normally receive priority again. You may do something else or pass. Passing gives priority to the next player in turn order. An intervening action breaks a sequence of consecutive passes.
+
+When every player passes consecutively without an intervening action:
+- If the stack contains anything, resolve only its top object.
+- If the stack is empty, end the current step or phase and move to the next one.
+
+After one object resolves, check state-based actions, put waiting triggers on the stack, and give priority to the active player again. The rest of the stack does not automatically resolve as a group. Players can respond between resolutions.
+
+For example, in a two-player game, you cast a spell and pass. Your opponent passes. The spell now resolves; you do not need to pass a second time before it does. In a four-player game, all four players must have passed in the same uninterrupted sequence. A single opponent passing is not the whole table passing.
+
+An instant response goes on top of the spell or ability it responds to. If both players then pass, the response resolves first. Suppose an opponent casts a spell dealing 2 damage to your 2/2 creature, and you respond with a spell giving it +2/+2 until end of turn. If your response resolves first, the creature becomes 4/4 before it takes the 2 damage. If the damage spell instead resolves before the growth spell, the 2/2 is destroyed before the growth can save it.
+
+No player receives priority in the middle of casting a spell, paying a cost, resolving an object, or assigning and dealing combat damage. Make any choices or mana payments an instruction calls for, but do not insert an unrelated instant into the middle of that process. After a spell begins resolving, it is too late to respond to that spell.
+
+Players can agree on shortcuts through predictable actions and passes. Announce enough of a proposed sequence that another player can stop it at a legal response point. For example, "go to combat" gives an opponent a chance to act before attackers are declared. Silence about a shortcut must not be used to conceal a required choice or deny a meaningful response. A shortcut does not change the underlying timing rules.
+
+
+7. CASTING SPELLS, CHOOSING TARGETS, AND RESOLVING EFFECTS
+
+To cast an ordinary spell:
+1. Confirm that you have permission to cast it now and from its current zone. Normally that zone is your hand.
+2. Announce it and put it on the stack, revealing the card as appropriate.
+3. Choose its modes, such as an option following "choose one"; choose X; announce any alternative or optional additional costs. Choose required targets and any required division of damage or counters among them.
+4. Determine the total cost: the normal mana cost or chosen alternative cost, plus additional costs and increases, minus applicable reductions. Generate needed mana using mana abilities and pay the full cost.
+5. The spell is cast. Handle waiting triggers and the priority procedure. It has not yet had its effect.
+
+A cheaper or free casting instruction does not normally remove additional costs, and does not automatically override timing restrictions. Read the permission carefully. Putting a card directly onto the battlefield is different from casting it: no spell was cast and no ordinary casting cost is paid.
+
+The word "target" specifies choices made when the spell is cast or ability put on the stack. Only objects or players meeting the targeting requirements are legal. "Target creature" normally means a creature permanent on the battlefield, not a creature card in a hand or graveyard. "Target creature card in your graveyard" means exactly that. "Any target" for damage means a creature, player, planeswalker, or battle, not any arbitrary game object.
+
+Aura spells target what they will enchant even if their printed text does not spell out "target." Some keyword abilities also include targeting in their rules, such as equip. Merely affecting something does not necessarily target it: a spell saying "destroy all creatures" does not target each creature. You cannot cast a spell with a required target if no legal choice exists. "Up to one target" permits choosing none.
+
+Targets and modes do not change just because circumstances later change. An effect must permit changing targets. A single instance of "target" cannot select the same object more than once, but separate instances can allow it. If you must divide damage or counters among targets, choose that division when putting the spell or ability on the stack; each chosen target normally receives at least one of what is divided.
+
+On resolution, check targets again. A target that left its expected zone is illegal, even if the same card returned as a new object. If every target is illegal, the spell or ability does not resolve at all; remove it from the stack, normally putting a spell card in its owner's graveyard. It does not perform a later "draw a card" instruction either. This is not called countering the spell under current rules, so "can't be countered" does not prevent it.
+
+If at least one target remains legal, the object resolves as far as its instructions allow, without applying its targeted effects to illegal targets. Instructions that need unavailable information about an illegal target may fail too. A spell with no targets is not stopped by this all-targets-illegal rule.
+
+Carry out instructions in their written order, taking replacement and prevention effects into account. Make choices not required earlier at the time the instruction asks for them. Draw multiple cards one at a time. If part of an effect is impossible, do what remains possible; an "if you do" or "unless" condition may make later instructions depend on a particular action or payment.
+
+A resolving instant or sorcery normally finishes in its owner's graveyard. A resolving permanent spell enters the battlefield under its controller's control. An Aura enters attached to its legal target. A resolved ability disappears from the stack; the permanent that produced it does not go to the graveyard merely because its ability resolved.
+
+To counter a spell or ability is to remove it from the stack without its resolving, normally putting a spell card in its owner's graveyard. Only an effect or rule that actually counters it does this. Removing an ability's source normally does not counter the ability already on the stack. Lands being played are not spells and cannot be countered as spells.
+
+
+8. ACTIVATED, TRIGGERED, STATIC, AND MANA ABILITIES
+
+Activated abilities have a cost followed by a colon and an effect. To activate one, announce it, put the ability on the stack, choose modes and targets as required, and pay its costs. The source stays where it is unless the cost moves it. You normally need priority; the ability may impose additional timing restrictions. It can be activated repeatedly if each payment is possible and no restriction says otherwise. An ability containing {T} cannot be activated again while its source remains tapped.
+
+Triggered abilities use "when," "whenever," or "at." They trigger when the specified event occurs. They are not optional merely because their controller would prefer to ignore them. If the effect says "may," the relevant choice is optional at the indicated time. A trigger waits until the next time a player would receive priority, then goes on the stack after state-based actions. Choose its required targets and modes then. If there is no legal required choice, it is removed instead of being used with an illegal choice.
+
+If several ordinary triggers are waiting, the active player puts their triggers on the stack in an order they choose, then each other player does the same in turn order. Consequently the last player's triggers are on top. Current rules make a second such pass for triggers whose condition is another ability triggering. Handle these unusual trigger-on-trigger cases carefully if they occur. A "when ... if ..." intervening-if condition must be true both when the event occurs and when the ability resolves.
+
+Once an activated or triggered ability is on the stack, it normally exists independently of its source. Destroying the creature that activated an ability does not undo its paid cost or automatically stop the ability. An ability may still need a legal target or information about its source; apply its actual text.
+
+Static abilities continuously state something true while they apply; they are not activated and do not go on the stack. For example, a bonus to creatures you control applies while its source and conditions make it applicable. Most permanent abilities work on the battlefield unless their wording or rules make them function elsewhere. An ability saying a permanent enters tapped or enters with counters changes how it enters; there is not an intervening moment when it is on the battlefield without that change.
+
+Ordinary land abilities such as "{T}: Add {G}" are mana abilities. They resolve immediately without using the stack and cannot be responded to. You can activate them with priority and during a required mana-payment opportunity, including while casting a spell. A normal activated mana ability must be able to add mana, have no target, not be a loyalty ability, and not move cards to or from a library in its cost or effect. An ability that produces mana but fails these conditions uses the stack normally. Certain untargeted triggers from mana production or activated mana abilities are mana abilities too. A spell that adds mana is still a spell and uses the stack.
+
+Loyalty abilities have their own restrictions, described in section 12. Equip normally has sorcery timing. An ability that says "activate only once each turn" has that limit even if you can pay repeatedly. Read these restrictions instead of assuming every ability can always be used like an instant.
+
+
+9. A COMPLETE TURN
+
+A turn has a beginning phase, first main phase, combat phase, second main phase, and ending phase. The beginning, combat, and ending phases contain steps. Empty steps still exist even when players use shortcuts through them. At the end of every step and phase, unspent mana normally disappears.
+
+BEGINNING PHASE
+
+Untap step: Apply phasing if relevant, determine which permanents untap, and untap your permanents as instructed, normally all of them simultaneously. Something that says it does not untap is an exception. Players do not receive priority here. Abilities triggered during this step wait for upkeep. Even the first turn has an untap step; it simply usually has nothing to untap.
+
+Upkeep step: Put beginning-of-upkeep and other waiting triggers on the stack as appropriate. After state-based actions and triggers, the active player gets priority. Players may use instants and permitted abilities. Resolve required upkeep actions; the normal draw has not happened yet.
+
+Draw step: Draw one card as the automatic action, before anyone gets priority. Then handle state-based actions and triggers, and let players act. Apply the first-turn draw-step exceptions from section 2. Drawing extra cards from an effect does not replace this draw unless the effect says so.
+
+FIRST MAIN PHASE
+
+The active player can cast any normally timed spell when the stack is empty, play a land if their turn's allowance remains, and use permitted abilities. Other players can use instants and permitted abilities when they receive priority. There is no fixed limit on spells, provided timing, costs, and other restrictions are satisfied.
+
+COMBAT PHASE
+
+Beginning of combat step: Handle beginning-of-combat triggers, then priority. This is a response opportunity before attackers are chosen. For example, tapping a prospective attacker now can prevent its being declared; waiting until after declaration does not undo its attack.
+
+Declare attackers step: The active player declares all attackers and what each attacks as one turn action, pays any attack costs, and taps attackers that lack vigilance. Then put attack triggers on the stack and give priority. If no creatures are declared as attackers and none are put onto the battlefield attacking, the declare-blockers and combat-damage steps are skipped.
+
+Declare blockers step: Defending players declare legal blocks, in turn order if several are involved. Then handle block triggers and priority. Attackers and blockers do not deal their combat damage yet. This is normally the final response opportunity before ordinary combat damage.
+
+Combat damage step: Assign damage and deal it simultaneously as described in section 10. Nobody acts between assignment and dealing. Handle state-based actions, put waiting triggers on the stack, and give priority. First strike or double strike can create an additional combat damage step, with a response opportunity between the two.
+
+End of combat step: Handle end-of-combat triggers and priority. Creatures remain attacking or blocking until combat ends unless an effect removes them earlier.
+
+SECOND MAIN PHASE
+
+This has the same permissions as the first main phase. The turn's land allowance does not reset. A land already played before combat still counts. Attacking creatures also remain tapped; combat ending does not untap them.
+
+ENDING PHASE
+
+End step: Put beginning-of-end-step triggers on the stack, including applicable delayed triggers, then give priority. An effect lasting "until end of turn" normally still applies during this step. This is the usual last opportunity for ordinary instants and abilities before cleanup.
+
+Cleanup step: First the active player discards down to their maximum hand size, normally seven. Then remove all marked damage from permanents and end all "until end of turn" and "this turn" effects simultaneously. Counters remain unless an effect removes them. Life totals and loyalty do not automatically reset or heal.
+
+Normally nobody receives priority during cleanup. If a state-based action is needed or a trigger is waiting, perform the state-based actions, put those triggers on the stack, and give the active player priority. Once the stack is empty and everyone passes, perform another cleanup step. Continue until cleanup finishes without needing another response window.
+
+Then the next player begins their turn. Only that player's permanents normally untap, and the same sequence repeats.
+
+
+10. ATTACKING, BLOCKING, AND COMBAT DAMAGE
+
+Only the active player normally attacks. Declare any number of legal attackers, including none, all at once. A normal attacker must be an untapped creature you control that is allowed to attack and satisfies the control-duration rule or has haste. Obey restrictions and requirements such as defender, "can't attack," or "attacks if able," and any attack costs. An untapped creature does not have to attack just because it can, unless a rule or effect requires it.
+
+For each attacker choose a legal defending player, a planeswalker that player controls, or a battle that player protects. Creatures do not attack other creatures. In multiplayer, which opponents may be attacked can depend on the selected variant. Attacking normally taps the creature, but tapping is not a cost of attacking and vigilance prevents that tap. Tapping an already declared attacker does not remove it from combat.
+
+After attackers are declared, players can respond before blockers are declared. A defending player chooses which of their untapped creatures will block and which attacker each will block, obeying flying, menace, protection, and other restrictions. A creature ordinarily blocks only one attacker, but multiple creatures can block the same attacker. Blocking is optional unless an effect requires it. Blocking does not tap the blocker, and a newly entered creature can block.
+
+A defending player normally uses their own creatures to block attacks at themselves, their planeswalkers, or battles they protect. Being a teammate does not automatically allow blocking for another player; a team format must provide that permission. Attacks and blocks are declarations, not spells or abilities and not targets.
+
+Once a creature is blocked, it remains blocked for that combat even if every blocker leaves. Without trample or a special exception, it will not then hit the player or permanent it attacked. A creature removed from combat no longer deals combat damage. Tapping or untapping a creature after it blocked does not by itself remove it from combat or stop its damage. Removing an attacker does not let its blocker assign damage to the attacking player instead.
+
+At combat damage, use each remaining creature's current power:
+- An unblocked attacker assigns that much damage to the player, planeswalker, or battle it attacked. If that object left combat, the damage does not automatically redirect to its controller.
+- A blocked attacker assigns its damage among its remaining blockers as its controller chooses. With no remaining blockers it normally assigns no damage; trample is an exception.
+- A blocker assigns its damage to the creature it blocks. If an ability lets it block several, its controller divides its damage among them as they choose.
+- A creature with power 0 or less assigns no combat damage.
+
+There is no current requirement to announce a blocker damage order. There is also no general requirement to assign lethal damage to one blocker before assigning any to another. For example, a 4-power attacker blocked by two 3/3 creatures may assign 2 damage to each, or 3 to one and 1 to the other. Trample has a separate lethal-damage requirement before damage may go past blockers.
+
+After every assignment is legal, deal all that step's combat damage simultaneously. There is no window to sacrifice a creature after its damage is assigned but before it is dealt. Damage assigned by an attacker and its blocker normally happens together, so both can die. Check state-based actions before anyone can cast a spell to save a lethally damaged creature.
+
+Damage stays marked on surviving creatures until cleanup. It does not reduce their toughness. A 3/3 with 2 damage marked is still a 3/3 and deals 3 combat damage, but one more damage that turn is normally lethal. Several separate damage events can add up to lethal damage.
+
+First strike and double strike: If any attacking or blocking creature has either ability as the combat damage step begins, that step deals damage only from creatures with first strike or double strike. After damage, check state-based actions and handle triggers and priority. Then have a second combat damage step. Survivors that had neither ability as the first damage step began, plus survivors that now have double strike, assign damage in the second step. An ordinary first-strike creature does not deal damage again merely because it survives. A blocker killed in the first step cannot deal damage in the second. A double-strike attacker that was blocked remains blocked after killing its blocker; without trample it does not automatically hit the defending player in the second step.
+
+Trample: When an attacking creature with trample is blocked, its controller may assign damage beyond the blockers only after assigning lethal damage to every remaining blocker. Account for damage already marked and damage being assigned by other creatures in the same step. Deathtouch makes one point assigned by that source lethal for this purpose. Ignore prevention and indestructible when determining the lethal assignment. Excess may go to the player, planeswalker, or battle being attacked, or more may be assigned to the blockers. If no blockers remain, trample lets its damage go to the attacked object. Ordinary trample against a planeswalker does not send excess loyalty damage on to that planeswalker's controller.
+
+
+11. DAMAGE, STATE-BASED ACTIONS, AND THE END OF THE GAME
+
+Ordinary damage to a player causes that much life loss. Damage to a creature is marked on it; lethal marked damage normally destroys it. Damage to a planeswalker removes that many loyalty counters. Damage to a battle removes that many defense counters. Abilities such as infect or replacement effects can change these results.
+
+Damage and life loss are not interchangeable. An instruction to lose life or pay life is not damage, so preventing damage does not prevent that loss or payment. Gaining life can raise a total above its starting value. Paying life cannot exceed the amount you have; paying your last life will normally cause you to lose when state-based actions are checked.
+
+State-based actions are the game's required housekeeping, not spells and not optional decisions to postpone. Before a player would receive priority, perform all applicable state-based actions simultaneously; repeat until no more apply. Then put waiting triggers on the stack, repeating the checks as needed before priority. They are not ordinarily checked halfway through a resolving spell or ability. Common checks are:
+
+- A player at 0 life or less loses.
+- A player who tried to draw from an empty library loses. Merely having zero cards in the library is not enough; the failed draw matters.
+- A player with ten or more poison counters loses, except where a variant such as Two-Headed Giant specifies a different threshold.
+- A creature with toughness 0 or less goes to its owner's graveyard. This is not destruction, so indestructible and regeneration do not save it.
+- A creature with positive toughness and lethal marked damage is destroyed. A creature with positive toughness dealt damage by a source with deathtouch is also destroyed. Indestructible prevents these destructions; regeneration may replace them.
+- A planeswalker with zero loyalty goes to its owner's graveyard.
+- If one player controls two or more legendary permanents with the same name, that player keeps one and puts the others into their owners' graveyards. This is the legend rule, not sacrifice or destruction. Different players can control the same named legend. Different named legendary planeswalkers may coexist even if they share a planeswalker subtype.
+- An Aura attached illegally or attached to nothing goes to its owner's graveyard. Illegally attached Equipment becomes unattached and normally stays on the battlefield.
+- Tokens outside the battlefield cease to exist. Applicable leaves-the-battlefield or dies triggers can still have triggered before this happens.
+- If a permanent has both +1/+1 and -1/-1 counters, remove equal numbers of each until only one kind remains.
+
+Do not wait for an opponent's response to perform these checks. Conversely, do not declare a loss or kill a creature halfway through a resolution merely because an intermediate state meets a condition; finish the instructions first unless a rule specifically ends the game immediately.
+
+Other game endings include an effect saying a player wins or loses, or a player conceding. A player may concede at any time. In an ordinary two-player game, when one player loses and the other remains, the other wins. If all remaining players lose simultaneously, the game is a draw. Mandatory repeating actions with no way to stop can also produce a draw; an optional loop is not permission to play forever. Card effects can modify normal win or loss conditions.
+
+In multiplayer, eliminating one opponent normally does not finish the game. Continue until the chosen victory condition is met, ordinarily when a remaining player has no opponents left. A departing player's owned objects leave the game; control-changing effects giving them objects end; their noncard stack objects cease to exist; and anything still controlled by that departed player is exiled. Other players' surviving objects do not automatically disappear merely because they interacted with the departed player. More involved departure cases use the multiplayer rules.
+
+
+12. AURAS, EQUIPMENT, PLANESWALKERS, TOKENS, AND COUNTERS
+
+Auras have an enchant ability describing legal attachments, such as enchant creature or enchant player. When casting an Aura, target something meeting that requirement. On resolution it enters attached to that target. It does not continually target the enchanted object afterward. An Aura cannot stay attached to an object it cannot legally enchant. If the enchanted permanent leaves, the Aura normally goes to its owner's graveyard. An Aura put onto the battlefield without being cast can use a different attachment procedure and does not normally target; follow that effect.
+
+Equipment normally enters unattached. Its equip ability is an activated ability targeting a creature you control, usable with sorcery timing. Pay the equip cost, let players respond, and attach it when the ability resolves. Moving it from one creature to another is allowed. If the targeted creature becomes illegal, the equip ability does not resolve and the Equipment does not move. If an equipped creature leaves the battlefield, the Equipment remains. You cannot detach Equipment freely just because you wish to, but an effect or legal attachment change can detach it. Control of the Equipment and control of the equipped creature are separate.
+
+A planeswalker enters with loyalty counters equal to its printed starting loyalty. A loyalty cost such as +1 adds a counter as payment; -3 removes three; 0 changes none. You cannot pay a negative loyalty cost without enough counters. Normally you can activate one loyalty ability of a particular permanent each turn, during a main phase of your turn with priority and an empty stack. This means one of that permanent's abilities, not once for each printed ability. A newly entered planeswalker can normally use one immediately. Another planeswalker has its own allowance.
+
+Adding or removing loyalty is a cost, so opponents respond after that change. If paying a cost leaves a planeswalker at zero loyalty, it goes to the graveyard during the next state-based check, but its ability already on the stack can still resolve. An opposing creature can attack a planeswalker, and its controller can block for it. Direct damage must affect or target it as the current card text permits; there is no blanket option to redirect damage from its controller to it. All planeswalkers are subject to the ordinary legend rule only if legendary, not a separate same-subtype uniqueness rule.
+
+A token represents a permanent without being a card. Its creating effect defines its types, color, power/toughness, abilities, and other characteristics. Tokens are not necessarily creatures: artifact tokens such as Treasures are common. Creature tokens follow the same attack, block, damage, and control-duration rules as creature cards. The player who creates a token owns it, even if control later changes.
+
+A token that leaves the battlefield goes to the specified zone, then ceases to exist at the next state-based check. A creature token that goes to a graveyard therefore dies and can trigger dies abilities. It cannot return to the battlefield or move to another zone after leaving, even before the state-based check. Tokens are not cards in a graveyard and cannot be returned as creature cards.
+
+Use separate markers to distinguish counters from temporary effects and damage. A +1/+1 counter changes both power and toughness by one while it remains; an effect giving +1/+1 until end of turn is not a counter. Multiple counters add together. Counters do not normally disappear during cleanup, but marked damage does. When a permanent leaves the battlefield, its counters do not travel with it unless a specific rule or effect says otherwise. "Counter target spell" is an entirely different use of the word counter.
+
+Common artifact tokens have specific abilities: a Treasure can be tapped and sacrificed for one mana of any color; a Clue can be sacrificed for {2} to draw a card; Food can be tapped and sacrificed for {2} to gain 3 life. Pay the full stated costs. A token's actual creating effect may modify these characteristics.
+
+
+13. COMMON KEYWORDS
+
+Deathtouch: Any positive damage a source with this ability deals to a creature can cause that creature's destruction at the next state-based check. Zero damage is not enough. It works with noncombat damage too. Indestructible still prevents destruction. See the trample procedure for lethal assignment.
+
+Defender: The creature cannot attack unless another effect permits an exception. It can still block.
+
+Double strike: The creature can deal combat damage in both damage steps. See section 10; it is not simply a doubling of every damage event.
+
+Enchant: Specifies what an Aura spell can target and what its permanent can remain attached to.
+
+Equip: Pay the stated cost to attach the Equipment to a target creature you control, normally only with sorcery timing. See section 12.
+
+First strike: The creature deals combat damage in the earlier damage step when one is created. See section 10.
+
+Flash: You may play the card at instant timing. You still need the relevant permission and must pay its costs.
+
+Flying: The attacker can be blocked only by creatures with flying or reach. A flying creature can block an attacker without flying unless another restriction prevents it.
+
+Haste: The creature ignores the usual control-duration restriction for attacking and for its own {T} or {Q} abilities. Haste does not untap it or grant extra attacks.
+
+Hexproof: The permanent cannot be targeted by spells or abilities controlled by its controller's opponents. Its controller can target it. Hexproof on a player similarly prevents opponents' targeting that player. It does not stop effects that do not target.
+
+Indestructible: The permanent cannot be destroyed, including by lethal damage or deathtouch. It can still be sacrificed, exiled, returned to a hand, or put into a graveyard for a reason other than destruction. A creature with toughness 0 or less still goes to the graveyard.
+
+Intimidate: The creature can be blocked only by artifact creatures or creatures sharing a color with it. This older keyword still works when present on a card.
+
+Landwalk: The creature cannot be blocked while the defending player controls a land meeting the stated quality. For example, islandwalk checks for a land with the Island type, not just for a land that can produce blue. A blocker with the same landwalk does not cancel it.
+
+Lifelink: Damage dealt by the source also causes its controller, or owner if it has no controller, to gain that much life at the same time as the damage's other results. This is not a trigger waiting on the stack. It works with noncombat damage too. Prevented damage gives no life, and multiple instances of lifelink do not multiply the gain.
+
+Menace: The creature cannot be blocked except by two or more creatures. It may still go unblocked. Once a legal block has been declared, removing one blocker does not retroactively make the attack unblocked.
+
+Protection from a quality: Prevent damage from sources of that quality; disallow targeting by spells or abilities from sources of that quality; disallow Auras, Equipment, and Fortifications of that quality being attached; and prevent an attacking creature from being blocked by creatures of that quality. It does not stop every possible effect. For example, a nontargeting instruction to destroy all creatures can still destroy a protected creature, and protection does not prevent a required sacrifice.
+
+Reach: Lets a creature block an attacker with flying. It does not itself give flying or make the reach creature harder to block.
+
+Shroud: The permanent or player cannot be targeted by any player's spells or abilities, including their own. Nontargeting effects can still apply.
+
+Trample: Changes how an attacking creature can assign combat damage past blockers. It has no such effect while blocking or when dealing noncombat damage. See the full assignment procedure in section 10.
+
+Vigilance: Attacking does not tap the creature. It still needs to be untapped to be declared as an attacker and must satisfy the other attack requirements.
+
+Ward: When an opponent's spell or ability targets the permanent, ward triggers. When that trigger resolves, counter the targeting spell or ability unless that opponent pays the ward cost. Ward does not make the original target illegal; an uncounterable spell is not stopped merely because the ward cost was unpaid.
+
+Wither and infect: Damage to creatures from either ability is represented by -1/-1 counters instead of marked damage. Infect also causes damage to players to give poison counters instead of ordinary life loss. These are still damage, so prevention, deathtouch, and lifelink can apply. Toxic instead gives the stated poison counters when its creature deals combat damage to a player, in addition to that damage's ordinary results. Use the exact keyword value and card text.
+
+Not every keyword appears here. Read reminder text and the current Oracle text first when a less common ability occurs, and consult that keyword's rules when needed rather than assuming it behaves like a similar ability.
+
+
+14. OTHER USEFUL TERMS AND PROCEDURES
+
+Active player and opponent: The active player is whose turn it is. An opponent is a player you are playing against; a teammate is not normally an opponent. "You" and "your" on a spell or ability normally refer to its controller. On a permanent they normally refer to its controller, not its owner.
+
+Choose and modes: "Choose one" and similar modal instructions require the stated number of options. Spell modes are normally chosen during casting, not after seeing responses. Other choices, such as which nontargeted creature to sacrifice, occur when the relevant instruction is performed.
+
+Destroy, sacrifice, and die: Destroying a permanent normally moves it from battlefield to its owner's graveyard. Sacrificing also moves it there but is not destruction. Only the controller can sacrifice it, and only when a cost or instruction permits or requires it. "Dies" means a creature is put into a graveyard from the battlefield, whatever caused that move. Exile and returning to hand are not dying.
+
+Discard: Move a card from your hand to your graveyard. You normally choose which one unless instructed otherwise. An instruction to discard randomly requires an actual random choice. Returning a permanent to hand is not discarding it.
+
+Draw: Move the top card of your library into your hand. Drawing several means several individual draws. An effect that searches for or otherwise puts a card into your hand without saying draw is not a draw. The failed-draw loss condition concerns an attempted draw, not simply searching an empty library.
+
+Fight: Each of the two creatures deals damage equal to its power to the other simultaneously. This is noncombat damage; it neither declares attackers nor taps creatures, and first strike, double strike, and trample do not change it. Deathtouch and lifelink can apply. If a creature required for the fight has left the battlefield, is no longer a creature, or is an illegal target of the resolving effect, neither creature fights.
+
+Look, reveal, search, and shuffle: Looking gives only the permitted player access to the specified hidden cards. Revealing shows the cards to all players for the required time; it does not itself move them. Search only the zone and for the cards allowed, perform required reveals, and shuffle if instructed. When searching a hidden zone for a card with a stated quality, you may fail to find one even if one is there; a search simply for a stated number of cards has different requirements. Shuffle means randomize, not choose a favorable order.
+
+Mill: Put the specified number of cards from the top of a library into its owner's graveyard. Milling is not drawing; an instruction to mill more cards than remain does not itself cause the failed-draw loss.
+
+Scry: Look at the indicated number of top cards of your library, put any number on its bottom in any order, and put the rest back on top in any order. Surveil instead permits putting any of those cards into the graveyard and returning the rest to the top in any order. Neither action is drawing.
+
+Play and put onto the battlefield: Playing a card means playing it as a land or casting it as a spell, according to its type. Putting a permanent onto the battlefield by an effect is neither of those unless the effect specifically instructs you to play or cast it. Putting a card directly onto the battlefield without casting it does not trigger "when you cast" abilities.
+
+Regenerate: A resolving regeneration effect normally sets up a replacement for the next destruction that turn. When that destruction would occur, instead remove all damage from the permanent, tap it, and remove it from combat if it is attacking or blocking. It never left the battlefield. Create this effect before destruction, not after the card is already in the graveyard. It does not stop sacrifice, exile, the legend rule, or toughness 0 or less. A shield used for one destruction does not stop later destruction, and an instruction that something cannot be regenerated prevents its application.
+
+Replacement and prevention effects: A replacement effect changes an event rather than waiting for it to happen. "Instead" commonly signals one, but entering tapped or with counters can also be replacement effects. A prevention effect prevents specified damage; establish it before the damage occurs. A trigger reacts to an event after it happens. If replacement or prevention effects overlap, determine the applicable choices and order before carrying out the affected event; the affected player or affected object's controller normally chooses among them, with special ordering rules for some kinds.
+
+Temporary and continuous effects: An instruction can do something once, such as draw a card, or establish an effect with a duration. "Until end of turn" lasts through the end step and ends in cleanup. A static bonus normally stops when its source stops applying. A counter is not a temporary bonus and normally remains. If several continuous effects alter the same characteristics, their interaction may require the layer rules; do not choose an arbitrary result.
+
+Source: The object responsible for an ability or damage. Combat damage comes from the creature dealing it, not from its controller. A spell instructing a creature to deal damage makes that creature the damage source. Removing a source does not normally remove its ability already on the stack.
+
+Non-, another, and up to: "Nonland" excludes anything that is a land, even if it also has another type. "Another" excludes the object doing the referring. "Up to" permits a smaller number, including zero. Apply the actual restrictions rather than treating these words as flavor.
+
+
+15. LIMITED PLAY AND MULTIPLAYER DIFFERENCES
+
+Limited play builds decks from a supplied card pool instead of a prebuilt collection. A normal Limited deck has at least 40 cards. Use only cards from the allowed pool and the basic lands the event or product permits adding. There is no four-copy limit within that allowed pool. Unused pool cards form the sideboard. About 17 lands in a 40-card deck is a common starting estimate, not a rule.
+
+In Sealed Deck, each player opens the specified product and builds from their own pool plus permitted basic lands. Six suitable boosters is a common setup, but follow the actual product or event: booster sizes and contents are not universally the 15-card packs described in 2013.
+
+In an ordinary three-pack Booster Draft, each player opens a first pack, chooses one card without showing it, and passes the remaining cards left. Repeat picking and passing until those packs are exhausted. Open second packs and pass right, then third packs and pass left. Build a deck from your picks plus permitted basic lands. Products can specify different draft procedures; use those when selected.
+
+A multiplayer game starts with more than two players. The normal free-for-all uses clockwise turns and the same individual priority system: each remaining player participates in a pass sequence. Each player has a separate library, hand, graveyard, mana pool, and controlled permanents unless a chosen variant changes something. The first mulligan is free, and the usual free-for-all does not skip anyone's first draw step. Other rules such as range of influence, allowed attacks, teams, and shared turns must come from the chosen variant, not from the number of seats alone.
+
+Two-Headed Giant, Commander, Planechase, Archenemy, and Emperor each add real procedures beyond these basics. For example, Two-Headed Giant uses shared team turns and a team life total, while Commander has special deck construction, a command zone, and additional commander rules. Selecting one requires its complete rules and any boxed-set changes. These names do not by themselves alter an otherwise ordinary game. This guide does not combine their incompatible setup or victory conditions into one default.
+
+
+16. SOURCES AND CHANGES FROM THE 2013 GUIDE
+
+Source supplied by the user:
+Magic 2014 Printed Basic Rulebook, Wizards of the Coast, July 2013, 36-page PDF.
+https://media.wizards.com/images/magic/resources/rules/EN_MTGM14_PrintedRulebook_LR.pdf
+
+Current comparison source:
+Magic: The Gathering Comprehensive Rules, local version effective September 25, 2026, obtained from the official rules reference at https://magic.wizards.com/en/rules .
+
+This adaptation is original explanatory prose about the game's procedures. It retains the supplied guide's useful basic coverage, reorganizes it for text reading, removes promotional material and lore, and incorporates the corrections below. It is not a transcription, a Wizards-issued revision, or a substitute for a selected format's full rules. The card illustrations and old printed card text in the source are not the current Oracle reference. Basic play does not require reading the full Comprehensive Rules; use the relevant numbered section when an actual unresolved interaction needs it.
+
+Confirmed rule changes and updated terminology:
+
+Mulligans: Source pages 16, 20, and 28 draw progressively smaller random hands. The current London procedure redraws the starting hand size, then bottoms chosen cards. The free first multiplayer/Brawl mulligan is accounted for. Current CR 103.5 and 103.5c.
+
+Planeswalker uniqueness: Source pages 25 and 29 describe a separate limit based on planeswalker subtype. That rule was removed. Older planeswalkers received legendary Oracle errata; the normal same-name legend rule applies. Current CR 306.4 and 704.5j.
+
+Planeswalker damage: Source page 7 describes damaging a planeswalker instead of its controller. The general noncombat-damage redirection rule was removed. Use the actual current card targeting/effect text; "any target" includes planeswalkers and battles. Current CR 306.7 and 115.4.
+
+Combat damage assignment: Source pages 13 and 17 require ordering blockers and assigning lethal damage to one before assigning to the next. Current ordinary assignment permits the controller's chosen division without that order. Trample still requires lethal assignment to blockers before excess can pass them. Current CR 510.1c–d and 702.19b.
+
+Mana language: Source pages 21 and 24 use a numeral for colorless production and "converted mana cost." This guide distinguishes generic costs from {C} and uses "mana value." Current CR 107.4b–c and 202.3. The phrase "mana pool" is still valid; unspent mana normally expires at each step/phase boundary under CR 106.4.
+
+Illegal targets: Source pages 10–11 call an all-targets-illegal failure "countered." Current wording is that the spell or ability does not resolve. A spell that cannot be countered can still fail this way. Current CR 608.2b.
+
+Tokens: Source pages 29 and 32 use older ownership wording and describe token disappearance as immediate. The creator owns the token; a token outside the battlefield ceases to exist at a state-based check and cannot change zones again after leaving. Tokens can represent any permanent type, not only creatures. Current CR 111.1–2, 111.6–8, and 704.5d.
+
+Card types and lands: Battles and modern colorless symbols postdate the supplied guide. Basic lands are defined by their supertype, not an exhaustive list of five names; basic land types remain the five listed in section 5. This also avoids the old guide's overbroad description of every other land as nonbasic. Current CR 110.4, 205.4c, 305.6, and 310.
+
+Current procedural clarifications:
+
+Priority and responses retain the supplied guide's central model. This text spells out all-player consecutive passes, priority after resolution, costs before responses, and no actions midway through a resolution. Current CR 117, 601–608.
+
+Cleanup and losses are stated at their actual state-based checkpoints rather than as interrupting an unfinished resolution. Current CR 514 and 704. Multiplayer departure and victory use CR 800.4 and 104.
+
+Mana abilities are distinguished from all abilities that merely produce mana, including the current restriction concerning library movement. Trigger ordering also includes the current separate handling of trigger-on-trigger abilities. Current CR 605.1 and 603.3b.
+
+Modern common terms such as menace, ward, mill, scry, surveil, and named artifact tokens supplement the older glossary. Their definitions come from the corresponding current CR 701/702 entries and CR 111.10. Unusual keywords still require their own reference when used.
+
+The supplied guide's historical Standard/Modern legality descriptions and product pack contents are not reproduced as current requirements. Choose current format and product rules when those are relevant. Commander and other variants remain separate rulesets rather than partial additions guessed from a short introduction.

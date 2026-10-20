@@ -12,603 +12,368 @@ async function settle(coordinator) {
   }
   throw new Error('Coordinator did not settle');
 }
+const noop = (coordinator, request) => coordinator.complete(request.player.id, { decision_id: request.decisionId, status: 'no_op' });
+const eventsBetween = (id, after, through) => Array.from({ length: through - Math.max(after, 0) }, (_, i) => ({
+  revision: Math.max(after, 0) + i + 1, actor: id, secret: `event-${id}`,
+}));
 
-test('batches every queued revision in order, isolates seat views and resumes only that seat', async () => {
-  let coordinator;
+test('ordinary changes never wake players; explicit handoffs serialize independent seat histories', async () => {
+  let coordinator, revision = 0, workers = 0, maxWorkers = 0;
   const calls = [];
-  const active = new Set();
-  let maxActive = 0;
-  let currentRevision = 0;
   coordinator = createCoordinator({
-    players: players(9),
-    getView: id => ({ revision: currentRevision, privateHand: `hand-${id}` }),
-    getEvents: (id, after, through) => ({ events: Array.from({ length: through - after }, (_, index) => ({ revision: after + index + 1, actor: id, secret: `event-${id}` })) }),
+    players: players(9), limits: { maxConcurrent: 9 },
+    getView: id => ({ revision, privateHand: `hand-${id}` }), getEvents: eventsBetween,
     runPlayer: async request => {
-      const { player, sessionId, decisionId, view, events, revision } = request;
-      assert(!active.has(player.id));
-      active.add(player.id); maxActive = Math.max(maxActive, active.size);
+      workers++; maxWorkers = Math.max(workers, maxWorkers);
+      const { player, sessionId, view, events } = request;
       assert.equal(view.privateHand, `hand-${player.id}`);
-      assert.equal(events[0].secret, `event-${player.id}`);
-      const prior = calls.filter(c => c.id === player.id);
-      assert.equal(sessionId, prior.length ? `session-${player.id}` : null);
-      request.onSession(`session-${player.id}`);
-      calls.push({ id: player.id, revision, events: events.map(event => event.revision) });
-      await nextTurn();
-      coordinator.complete(player.id, { decision_id: decisionId, status: 'no_op' });
-      active.delete(player.id);
-      return { sessionId: `session-${player.id}`, usage: { input_tokens: 10, output_tokens: 1 } };
+      for (const event of events) assert.equal(event.secret, `event-${player.id}`);
+      assert.equal(sessionId, calls.some(c => c.player.id === player.id) ? `session-${player.id}` : null);
+      request.onSession(`session-${player.id}`); calls.push(request);
+      if (calls.length < 3) {
+        coordinator.notify(++revision); coordinator.notify(++revision);
+        assert.equal(coordinator.status().queued, 0, 'physical actions must not broadcast');
+        const next = player.id === 'p1' ? 'p2' : 'p1';
+        assert.deepEqual(coordinator.handoff(player.id, next, ++revision, 'priority'), {
+          accepted: true, decision_completed: true, recipient: next, revision, kind: 'priority',
+        });
+        assert.throws(() => coordinator.authorizeDecision(player.id, request.decisionId), /already completed/);
+        assert.equal(coordinator.status().active, 1);
+        const callsBeforeExit = calls.length;
+        await nextTurn();
+        assert.equal(calls.length, callsBeforeExit, 'next worker waits for process exit');
+      } else noop(coordinator, request);
+      workers--;
     },
   });
-  coordinator.notify(0);
-  coordinator.start();
-  currentRevision = 2;
-  coordinator.notify(1); coordinator.notify(2); coordinator.notify(2);
-  await settle(coordinator);
-  assert.equal(calls.length, 9);
-  currentRevision = 3;
-  coordinator.notify(3);
-  await settle(coordinator);
-  assert.equal(calls.length, 18);
-  assert(maxActive > 1 && maxActive <= 4);
-  for (const p of players(9)) assert.deepEqual(calls.filter(c => c.id === p.id).map(c => c.events), [[0, 1, 2], [3]]);
-  assert.equal(coordinator.status().state, 'stalled');
-  assert.equal(coordinator.status().usage.output_tokens, 18);
-  const count = calls.length;
-  await nextTurn();
-  assert.equal(calls.length, count, 'no-op completion must not wake players again');
-});
-
-test('step launches only one decision and rejects stale or duplicate completions', async () => {
-  let coordinator;
-  const requests = [];
-  coordinator = createCoordinator({
-    players: players(2), getView: () => ({ revision: 0 }),
-    runPlayer: async request => {
-      requests.push(request);
-      assert.throws(() => coordinator.complete(request.player.id, { decision_id: 'old', status: 'no_op' }), /no longer active/);
-      coordinator.complete(request.player.id, { decision_id: request.decisionId, status: 'no_op' });
-      assert.throws(() => coordinator.complete(request.player.id, { decision_id: request.decisionId, status: 'no_op' }), /already completed/);
-    },
-  });
-  coordinator.notify(0);
-  coordinator.step();
-  await settle(coordinator);
-  assert.equal(requests.length, 1);
-  assert.equal(coordinator.status().state, 'paused');
-  assert.equal(coordinator.status().queued, 1);
-  coordinator.step();
-  await settle(coordinator);
-  assert.equal(requests.length, 2);
+  coordinator.notify(0); coordinator.start(); await nextTurn();
+  assert.equal(calls.length, 0, 'start does not infer a recipient');
+  coordinator.wake('p1', 0); await settle(coordinator);
+  assert.deepEqual(calls.map(r => r.player.id), ['p1', 'p2', 'p1']);
+  assert.deepEqual(calls.map(r => r.events.map(e => e.revision)), [[], [1, 2, 3], [4, 5, 6]]);
+  assert.equal(maxWorkers, 1); assert.equal(coordinator.status().limits.maxConcurrent, 1);
   assert.equal(coordinator.status().queued, 0);
+  coordinator.notify(++revision); coordinator.start(); await nextTurn();
+  assert.equal(calls.length, 3, 'completed idle decisions and revision changes create no notification loop');
 });
 
-test('changes arriving during a decision form the next complete batch without duplicate events', async () => {
-  const calls = [];
-  let revision = 2;
-  let release;
-  const firstFinished = new Promise(resolve => { release = resolve; });
-  let coordinator;
+test('handoff authority ends immediately and next starts only after worker exit', async () => {
+  const calls = []; let release, coordinator;
   coordinator = createCoordinator({
-    players: players(1), getView: () => ({ revision }),
-    getEvents: (id, after, through) => Array.from({ length: through - after }, (_, i) => ({ revision: after + i + 1, actor: id })),
-    runPlayer: async request => {
-      calls.push(request);
-      request.onSession('batch-session');
-      if (calls.length === 1) await firstFinished;
-      coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
-    },
-  });
-  coordinator.notify(2); coordinator.start();
-  await nextTurn();
-  assert.equal(calls.length, 1);
-  assert.deepEqual(calls[0].events.map(e => e.revision), [0, 1, 2]);
-  revision = 4;
-  coordinator.notify(3); coordinator.notify(4); coordinator.notify(4);
-  assert.deepEqual(coordinator.snapshot().players[0].pending, [3, 4]);
-  assert.equal(calls.length, 1, 'a player never starts concurrent decisions');
-  release();
-  await settle(coordinator);
-  assert.deepEqual(calls.map(r => [r.fromRevision, r.revision]), [[0, 2], [3, 4]]);
-  assert.deepEqual(calls.flatMap(r => r.events.map(e => e.revision)), [0, 1, 2, 3, 4]);
-  assert.equal(calls[1].sessionId, 'batch-session');
-  assert.deepEqual(calls.map(r => r.view.revision), [2, 4]);
-  assert.equal(coordinator.snapshot().players[0].lastCompleted, 4);
-});
-
-test('restoring an interrupted batch retains its entire range and newer queued events', async () => {
-  for (const completed of [false, true]) {
-    const saved = {
-      latestRevision: 5,
-      players: [{ id: 'p1', sessionId: 'restored-batch', lastCompleted: 0, pending: [4, 5],
-        active: { fromRevision: 1, revision: 3, ...(completed ? { completion: { status: 'no_op', revision: 3 } } : {}) } }],
-    };
-    let coordinator;
-    const calls = [];
-    coordinator = createCoordinator({
-      players: players(1), saved, getView: () => ({ revision: 5 }),
-      getEvents: (id, after, through) => Array.from({ length: through - after }, (_, i) => ({ revision: after + i + 1, actor: id })),
-      runPlayer: async request => {
-        calls.push(request);
-        coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
-      },
-    });
-    coordinator.start();
-    await settle(coordinator);
-    assert.equal(calls.length, 1);
-    assert.deepEqual(calls[0].events.map(e => e.revision), completed ? [4, 5] : [1, 2, 3, 4, 5]);
-    assert.equal(calls[0].sessionId, 'restored-batch');
-    assert.equal(coordinator.snapshot().players[0].lastCompleted, 5);
-  }
-});
-
-test('current-turn public history retains early land plays across main phases and resets at the next turn', async () => {
-  const history = [
-    { revision: 1, actor: 'p1', summary: 'Turn 1, p1 active', changes: [{ type: 'turn', set: { number: 1, active: 'p1', phase: 'Main1' } }] },
-    { revision: 2, actor: 'p1', summary: 'p1 moved Plains from p1:hand to battlefield', changes: [{ type: 'move', to: 'battlefield' }], reason: 'private reason omitted' },
-    ...Array.from({ length: 17 }, (_, i) => ({ revision: i + 3, actor: 'p1', summary: 'Public action ' + (i + 3) })),
-    { revision: 20, actor: 'p1', summary: 'Turn 1, p1 Main2', changes: [{ type: 'turn', set: { number: 1, active: 'p1', phase: 'Main2' } }] },
-    { revision: 21, actor: 'p2', summary: 'Turn 2, p2 active', changes: [{ type: 'turn', set: { number: 2, active: 'p2', phase: 'Untap' } }] },
-    { revision: 22, actor: 'p2', summary: 'p2 public action' },
-  ];
-  let revision = 20;
-  const calls = [];
-  let coordinator;
-  coordinator = createCoordinator({
-    players: players(1), getView: () => ({ revision, turn: revision === 20 ? { number: 1, active: 'p1' } : { number: 2, active: 'p2' } }),
-    getPublicEvents: (after, through) => history.filter(e => e.revision > after && e.revision <= through),
-    runPlayer: async request => {
-      calls.push(request);
-      coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
-    },
-  });
-  coordinator.notify(20); coordinator.start();
-  await settle(coordinator);
-  assert.equal(calls[0].turnHistory.events.length, 20);
-  assert.match(calls[0].turnHistory.events[1].summary, /Plains/);
-  assert(!JSON.stringify(calls[0].turnHistory).includes('private reason omitted'));
-  revision = 22;
-  coordinator.notify(22);
-  await settle(coordinator);
-  assert.deepEqual(calls[1].turnHistory.events.map(e => e.revision), [21, 22]);
-});
-
-test('cumulative CLI reports are not counted again on resume or duplicate delivery', async () => {
-  let coordinator;
-  let calls = 0;
-  coordinator = createCoordinator({
-    players: players(1), limits: { maxOutputTokens: 18 }, getView: () => ({ revision: 2 }),
-    runPlayer: async request => {
-      assert.equal(request.sessionId, calls ? 'player-history' : null);
-      request.onSession('player-history');
-      const usage = calls++ ? { input_tokens: 175, cached_input_tokens: 90, output_tokens: 17 }
-        : { input_tokens: 100, cached_input_tokens: 40, output_tokens: 10 };
-      const metadata = { scope: 'session', sessionId: 'player-history' };
-      request.onUsage(usage, metadata);
-      request.onUsage(usage, metadata);
-      coordinator.complete(request.player.id, { decision_id: request.decisionId, status: 'no_op' });
-    },
-  });
-  for (let revision = 0; revision <= 2; revision++) {
-    coordinator.notify(revision); coordinator.start();
-    await settle(coordinator);
-  }
-  assert.equal(calls, 3, 'counting cumulative reports twice must not exhaust the token budget');
-  assert.equal(coordinator.status().state, 'stalled');
-  assert.deepEqual(coordinator.status().usage, { input_tokens: 175, cached_input_tokens: 90, output_tokens: 17, reasoning_output_tokens: 0 });
-  assert.equal(coordinator.snapshot().players[0].usageScope, 'session');
-});
-
-test('a fresh cumulative report repairs legacy totals and survives coordinator restoration', async () => {
-  let coordinator;
-  const runPlayer = async request => {
-    assert.equal(request.sessionId, 'saved-player-history');
-    request.onUsage({ input_tokens: 188709, cached_input_tokens: 137856, output_tokens: 1291, reasoning_output_tokens: 630 },
-      { scope: 'session', sessionId: request.sessionId });
-    coordinator.complete(request.player.id, { decision_id: request.decisionId, status: 'no_op' });
-  };
-  const options = { players: players(1), runPlayer, getView: () => ({ revision: 2 }) };
-  coordinator = createCoordinator({ ...options, saved: { latestRevision: 1, players: [{
-    id: 'p1', sessionId: 'saved-player-history', lastCompleted: 1,
-    usage: { input_tokens: 281156, cached_input_tokens: 211072, output_tokens: 1994, reasoning_output_tokens: 919 },
-  }] } });
-  assert.equal(coordinator.status().usage.output_tokens, 1994, 'do not guess the correct legacy count without a fresh report');
-  assert.equal(coordinator.snapshot().players[0].usageScope, 'legacy');
-  coordinator.notify(2); coordinator.start();
-  await settle(coordinator);
-  const saved = coordinator.snapshot();
-  assert.equal(saved.players[0].usage.input_tokens, 188709);
-  assert.equal(saved.players[0].usage.output_tokens, 1291);
-  assert.equal(saved.players[0].usage.reasoning_output_tokens, 630);
-  coordinator = createCoordinator({ ...options, saved });
-  coordinator.notify(3); coordinator.start();
-  await settle(coordinator);
-  assert.deepEqual(coordinator.snapshot().players[0].usage, saved.players[0].usage);
-});
-
-test('usage metadata cannot replace another player session totals', async () => {
-  let coordinator;
-  coordinator = createCoordinator({
-    players: players(1), getView: () => ({ revision: 0 }),
-    runPlayer: async request => {
-      request.onSession('own-session');
-      request.onUsage({ input_tokens: 10, output_tokens: 1 }, { scope: 'session', sessionId: 'different-session' });
-    },
-  });
-  coordinator.notify(0); coordinator.start();
-  await settle(coordinator);
-  assert.equal(coordinator.status().usage.output_tokens, 0);
-  assert.match(coordinator.status().message, /different player session/);
-});
-
-test('pause cancels an active request and preserves it for reconsideration', async () => {
-  let first;
-  const coordinator = createCoordinator({
-    players: players(1), getView: () => ({ revision: 0 }),
+    players: players(2), getView: () => ({ revision: 1 }),
     runPlayer: request => {
-      first = request;
-      return new Promise((_, reject) => request.signal.addEventListener('abort', () => reject(request.signal.reason), { once: true }));
+      calls.push(request);
+      if (calls.length === 1) return new Promise(resolve => { release = resolve; });
+      noop(coordinator, request);
     },
   });
-  coordinator.notify(0); coordinator.start();
-  await nextTurn();
-  coordinator.pause();
-  await coordinator.idle();
-  assert(first.signal.aborted);
-  assert.equal(coordinator.status().active, 0);
-  assert.deepEqual(coordinator.snapshot().players[0].pending, [0]);
-  assert.equal(coordinator.snapshot().players[0].error, null);
+  coordinator.wake('p1', 0); coordinator.start(); await nextTurn();
+  const first = calls[0];
+  coordinator.handoff('p1', 'p2', 1);
+  assert.throws(() => coordinator.authorizeDecision('p1', first.decisionId), /already completed/);
+  assert.throws(() => coordinator.complete('p1', { decision_id: first.decisionId, status: 'acted' }), /already completed/);
+  assert.throws(() => coordinator.handoff('p1', 'p2', 1), /already completed/);
+  await nextTurn(); assert.equal(calls.length, 1);
+  assert.equal(coordinator.status().pendingRecipient.playerId, 'p2');
+  release(); await settle(coordinator); assert.equal(calls.length, 2);
 });
 
-test('restore is paused, retains session identity and requeues interrupted decisions', async () => {
-  const saved = {
-    mode: 'running', decisions: 2, latestRevision: 2,
-    players: [{ id: 'p1', sessionId: 'only-p1', lastCompleted: 0, pending: [2], active: { revision: 1 } }],
-  };
-  const calls = [];
-  let coordinator;
+test('step processes exactly one handoff and leaves its named recipient queued', async () => {
+  const calls = []; let coordinator, revision = 0;
   coordinator = createCoordinator({
-    players: players(1), saved, getView: () => ({ revision: 2 }),
-    runPlayer: async r => {
-      calls.push(r);
-      assert.equal(r.sessionId, 'only-p1');
-      coordinator.complete(r.player.id, { decision_id: r.decisionId, status: 'no_op' });
+    players: players(2), getView: () => ({ revision }),
+    runPlayer: async request => {
+      calls.push(request);
+      assert.throws(() => coordinator.complete(request.player.id, { decision_id: 'stale', status: 'no_op' }), /no longer active/);
+      coordinator.handoff(request.player.id, request.player.id === 'p1' ? 'p2' : 'p1', ++revision);
     },
   });
-  assert.equal(coordinator.status().state, 'paused');
-  assert.deepEqual(coordinator.snapshot().players[0].pending, [1, 2]);
-  coordinator.start();
-  await settle(coordinator);
-  assert.deepEqual(calls.map(c => [c.fromRevision, c.revision]), [[1, 2]]);
+  coordinator.wake('p1', 0); coordinator.step(); await settle(coordinator);
+  assert.equal(calls.length, 1); assert.equal(coordinator.status().state, 'paused');
+  assert.equal(coordinator.status().pendingRecipient.playerId, 'p2');
+  coordinator.step(); await settle(coordinator);
+  assert.equal(calls.length, 2); assert.equal(coordinator.status().pendingRecipient.playerId, 'p1');
 });
 
-test('worker failure pauses and preserves work without automatic retry or model fallback', async () => {
-  let count = 0;
-  const coordinator = createCoordinator({
-    players: players(1), getView: () => ({ revision: 0 }),
-    runPlayer: async () => { count++; throw new Error('Selected model unavailable'); },
-  });
-  coordinator.notify(0); coordinator.start();
-  await settle(coordinator);
-  assert.equal(coordinator.status().state, 'paused');
-  assert.match(coordinator.status().message, /Selected model unavailable/);
-  assert.deepEqual(coordinator.snapshot().players[0].pending, [0]);
-  await nextTurn();
-  assert.equal(count, 1);
-});
-
-test('decision timeout cancels worker and preserves pending notification', async () => {
-  const coordinator = createCoordinator({
-    players: players(1), limits: { decisionTimeoutMs: 10 }, getView: () => ({ revision: 0 }),
-    runPlayer: r => new Promise((_, reject) => r.signal.addEventListener('abort', () => reject(r.signal.reason), { once: true })),
-  });
-  coordinator.notify(0); coordinator.start();
-  await nextTurn();
-  await coordinator.idle();
-  assert.equal(coordinator.status().state, 'paused');
-  assert.match(coordinator.status().message, /timed out/);
-  assert.equal(coordinator.status().queued, 1);
-});
-
-test('budget counts started decisions and stops at limit; finished games start no more work', async () => {
-  let coordinator;
-  let count = 0;
+test('manual recipient owns the table after worker exits and must explicitly hand back', async () => {
+  let coordinator, release, count = 0;
   coordinator = createCoordinator({
-    players: players(4), limits: { maxDecisions: 2 }, getView: () => ({ revision: 0 }),
-    runPlayer: async r => {
+    players: [{ id: 'p1' }, { id: 'human', enabled: false }], getView: () => ({ revision: 3 }),
+    runPlayer: request => {
       count++;
-      coordinator.complete(r.player.id, { decision_id: r.decisionId, status: 'no_op' });
-    },
-  });
-  coordinator.notify(0); coordinator.start();
-  await settle(coordinator);
-  assert.equal(count, 2);
-  assert.equal(coordinator.status().state, 'paused');
-  assert.equal(coordinator.status().queued, 2);
-  coordinator.finish(); coordinator.notify(1);
-  assert.equal(coordinator.status().queued, 0);
-  assert.throws(() => coordinator.start(), /finished/);
-});
-
-test('missing explicit completion pauses instead of silently passing priority', async () => {
-  const coordinator = createCoordinator({
-    players: players(1), getView: () => ({ revision: 0 }),
-    runPlayer: async () => ({ sessionId: 'p1-thread' }),
-  });
-  coordinator.notify(0); coordinator.start();
-  await settle(coordinator);
-  assert.equal(coordinator.status().state, 'paused');
-  assert.match(coordinator.status().message, /without calling complete_decision/);
-  assert.equal(coordinator.snapshot().players[0].lastCompleted, -1);
-});
-
-test('saved sessions cannot be shared between players', () => {
-  assert.throws(() => createCoordinator({
-    players: players(2), getView: () => ({}), runPlayer: async () => {},
-    saved: { players: [{ id: 'p1', sessionId: 'shared' }, { id: 'p2', sessionId: 'shared' }] },
-  }), /cannot share/);
-});
-
-test('step with no queued decisions stays paused', async () => {
-  const coordinator = createCoordinator({
-    players: players(1), getView: () => ({}),
-    runPlayer: () => assert.fail('No pending work should run'),
-  });
-  coordinator.step();
-  await nextTurn();
-  assert.equal(coordinator.status().state, 'paused');
-  assert.equal(coordinator.status().message, 'No pending player decisions.');
-});
-
-test('pause and immediate start never restore authority to the aborted decision', async () => {
-  let first, release;
-  let coordinator;
-  coordinator = createCoordinator({
-    players: players(1), getView: () => ({ revision: 0 }),
-    runPlayer: request => {
-      if (!first) {
-        first = request;
+      if (count === 1) {
+        coordinator.handoff('p1', 'human', 3);
         return new Promise(resolve => { release = resolve; });
       }
-      assert.notEqual(request.decisionId, first.decisionId);
-      assert.equal(coordinator.authorizeDecision(request.player.id, request.decisionId), true);
-      coordinator.complete(request.player.id, { decision_id: request.decisionId, status: 'no_op' });
+      noop(coordinator, request);
     },
   });
-  coordinator.notify(0); coordinator.start();
-  await nextTurn();
-  assert.equal(coordinator.authorizeDecision('p1', first.decisionId), true);
+  coordinator.wake('p1', 0); coordinator.start(); await nextTurn();
+  assert.throws(() => coordinator.authorizeManual('human'), /worker to exit/);
+  release(); await settle(coordinator);
+  assert.equal(coordinator.status().state, 'waiting_manual');
+  assert.equal(coordinator.authorizeManual('human'), true);
+  assert.throws(() => coordinator.authorizeManual('p1'), /not the current recipient/);
+  coordinator.notify(4); await nextTurn(); assert.equal(count, 1);
+  assert.deepEqual(coordinator.handoff('human', 'p1', 5, 'turn'), {
+    accepted: true, decision_completed: false, recipient: 'p1', revision: 5, kind: 'turn',
+  });
+  // A fresh view must reach the durable handoff revision.
+  await settle(coordinator);
+  assert.equal(count, 1); assert.match(coordinator.status().message, /view is older/);
+});
+
+test('manual handoff resumes the named AI and solo self-handoff is serial', async () => {
+  let coordinator, revision = 0; const calls = [];
+  coordinator = createCoordinator({
+    players: [{ id: 'p1' }, { id: 'human', enabled: false }], getView: () => ({ revision }),
+    runPlayer: request => {
+      calls.push(request);
+      if (calls.length === 1) coordinator.handoff('p1', 'p1', ++revision, 'turn');
+      else noop(coordinator, request);
+    },
+  });
+  coordinator.wake('human', 0); coordinator.start(); await nextTurn();
+  assert.equal(calls.length, 0);
+  coordinator.handoff('human', 'p1', ++revision);
+  await settle(coordinator);
+  assert.deepEqual(calls.map(r => r.player.id), ['p1', 'p1']);
+  assert.notEqual(calls[0].decisionId, calls[1].decisionId);
+});
+
+test('completion without handoff pauses for intervention; start never invents the next player', async () => {
+  for (const status of ['no_op', 'acted', 'needs_help']) {
+    let coordinator, count = 0;
+    coordinator = createCoordinator({
+      players: players(2), getView: () => ({ revision: 0 }),
+      runPlayer: request => {
+        count++;
+        coordinator.complete(request.player.id, { decision_id: request.decisionId, status, note: 'Question' });
+      },
+    });
+    coordinator.wake('p1', 0); coordinator.start(); await settle(coordinator);
+    assert.equal(coordinator.status().mode, 'paused'); assert.equal(coordinator.status().queued, 0);
+    assert.match(coordinator.status().message, status === 'needs_help' ? /requested help/ : /without a handoff/);
+    coordinator.start(); coordinator.notify(1); await settle(coordinator);
+    assert.equal(count, 1);
+  }
+});
+
+test('legacy broadcast backlogs are discarded while identities, history cursors and usage survive', async () => {
+  const saved = { version: 1, mode: 'running', latestRevision: 40, decisions: 20, players: [
+    { id: 'p1', sessionId: 'one', pending: [1, 2, 3], active: { revision: 3 }, lastCompleted: 0, usage: { output_tokens: 50 } },
+    { id: 'p2', sessionId: 'two', pending: [4, 5, 6], lastCompleted: 2 },
+  ] };
+  let coordinator; const calls = [];
+  coordinator = createCoordinator({
+    players: players(2), saved, getView: () => ({ revision: 40 }), getEvents: eventsBetween,
+    runPlayer: request => { calls.push(request); noop(coordinator, request); },
+  });
+  assert.equal(coordinator.status().state, 'paused'); assert.equal(coordinator.status().queued, 0);
+  assert.equal(coordinator.status().usage.output_tokens, 50);
+  coordinator.start(); await nextTurn(); assert.equal(calls.length, 0);
+  coordinator.wake('p2', 40, 'resume'); await settle(coordinator);
+  assert.equal(calls[0].sessionId, 'two');
+  assert.deepEqual(calls[0].events.map(e => e.revision), Array.from({ length: 38 }, (_, i) => i + 3));
+});
+
+test('restoring an interrupted serial decision is paused and retains all unseen events', async () => {
+  const saved = { version: 2, mode: 'running', latestRevision: 5, players: [
+    { id: 'p1', sessionId: 'restored', lastCompleted: 1,
+      active: { revision: 3, fromRevision: 2, wake: { kind: 'priority', from: 'p2' } } },
+    { id: 'p2', sessionId: 'other', lastCompleted: 0 },
+  ] };
+  let coordinator; const calls = [];
+  coordinator = createCoordinator({
+    players: players(2), saved, getView: () => ({ revision: 5 }), getEvents: eventsBetween,
+    runPlayer: request => { calls.push(request); noop(coordinator, request); },
+  });
+  assert.equal(coordinator.status().state, 'paused');
+  assert.equal(coordinator.status().pendingRecipient.playerId, 'p1');
+  coordinator.start(); await settle(coordinator);
+  assert.equal(calls[0].sessionId, 'restored');
+  assert.deepEqual(calls[0].events.map(e => e.revision), [2, 3, 4, 5]);
+  assert.equal(calls[0].wake.kind, 'priority');
+});
+
+test('saved terminal handoff resumes recipient, never the old speaker, including self-handoff', async () => {
+  for (const next of ['p1', 'p2']) {
+    const handoff = { recipient: next, revision: 4, kind: 'priority' };
+    const saved = { version: 2, mode: 'running', latestRevision: 4, players: [
+      { id: 'p1', sessionId: 'one', lastCompleted: 0,
+        active: { revision: 1, completion: { status: 'acted', revision: 4, handoff } } },
+      { id: 'p2', sessionId: 'two', lastCompleted: 2 },
+    ] };
+    let coordinator; const calls = [];
+    coordinator = createCoordinator({
+      players: players(2), saved, getView: () => ({ revision: 4 }), getEvents: eventsBetween,
+      runPlayer: request => { calls.push(request); noop(coordinator, request); },
+    });
+    assert.equal(coordinator.status().pendingRecipient.playerId, next);
+    coordinator.start(); await settle(coordinator);
+    assert.equal(calls.length, 1); assert.equal(calls[0].player.id, next);
+    assert.deepEqual(calls[0].events.map(e => e.revision), next === 'p1' ? [] : [3, 4]);
+  }
+});
+
+test('recovery can replace an interrupted recipient explicitly but never a live worker', async () => {
+  let request, release;
+  const coordinator = createCoordinator({
+    players: players(2), saved: { version: 2, pendingRecipient: { playerId: 'p1', revision: 1, kind: 'resume' } },
+    getView: () => ({ revision: 2 }),
+    runPlayer: input => { request = input; return new Promise(resolve => { release = resolve; }); },
+  });
+  coordinator.wake('p2', 2, 'recovery'); coordinator.start(); await nextTurn();
+  assert.equal(request.player.id, 'p2');
+  assert.throws(() => coordinator.wake('p1', 2), /active worker to exit/);
+  coordinator.pause(); release(); await coordinator.idle();
+});
+
+test('current-turn public history preserves land plays across phases and resets only on a new turn', async () => {
+  const history = [
+    { revision: 1, actor: 'p1', summary: 'Turn 1', changes: [{ type: 'turn', set: { number: 1, active: 'p1', phase: 'Main1' } }] },
+    { revision: 2, actor: 'p1', summary: 'Played Plains', reason: 'private reason omitted' },
+    { revision: 3, actor: 'p1', summary: 'Main2', changes: [{ type: 'turn', set: { number: 1, active: 'p1', phase: 'Main2' } }] },
+    { revision: 4, actor: 'p2', summary: 'Turn 2', changes: [{ type: 'pass_turn', set: { number: 2, active: 'p2', phase: 'Untap' } }] },
+  ];
+  let revision = 3, coordinator; const calls = [];
+  coordinator = createCoordinator({
+    players: players(1), getView: () => ({ revision, turn: { number: revision === 3 ? 1 : 2, active: revision === 3 ? 'p1' : 'p2' } }),
+    getPublicEvents: (after, through) => history.filter(e => e.revision > after && e.revision <= through),
+    runPlayer: request => { calls.push(request); noop(coordinator, request); },
+  });
+  coordinator.wake('p1', 3); coordinator.start(); await settle(coordinator);
+  assert.equal(calls[0].turnHistory.events.length, 3);
+  assert.match(calls[0].turnHistory.events[1].summary, /Plains/);
+  assert(!JSON.stringify(calls[0].turnHistory).includes('private reason omitted'));
+  revision = 4; coordinator.wake('p1', 4); coordinator.start(); await settle(coordinator);
+  assert.deepEqual(calls[1].turnHistory.events.map(e => e.revision), [4]);
+});
+
+test('pause and immediate start never resurrect aborted decision authority', async () => {
+  let first, release, coordinator; const calls = [];
+  coordinator = createCoordinator({
+    players: players(1), getView: () => ({ revision: 0 }),
+    runPlayer: request => {
+      calls.push(request);
+      if (!first) { first = request; return new Promise(resolve => { release = resolve; }); }
+      assert.notEqual(request.decisionId, first.decisionId); noop(coordinator, request);
+    },
+  });
+  coordinator.wake('p1', 0); coordinator.start(); await nextTurn();
   coordinator.pause(); coordinator.start();
   assert(first.signal.aborted);
   assert.throws(() => coordinator.authorizeDecision('p1', first.decisionId), /no longer active/);
-  assert.throws(() => coordinator.complete('p1', { decision_id: first.decisionId, status: 'acted' }), /no longer active/);
-  release();
-  await settle(coordinator);
-  assert.equal(coordinator.snapshot().players[0].lastCompleted, 0);
+  assert.throws(() => coordinator.handoff('p1', 'p1', 0), /no longer active/);
+  release(); await settle(coordinator); assert.equal(calls.length, 2);
 });
 
-test('completion revokes mutation authority immediately, before worker exit', async () => {
+test('completion revokes mutation authority before worker exits', async () => {
   let request, release;
   const coordinator = createCoordinator({
     players: players(1), getView: () => ({ revision: 0 }),
     runPlayer: input => { request = input; return new Promise(resolve => { release = resolve; }); },
   });
-  coordinator.notify(0); coordinator.start();
-  await nextTurn();
-  coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
-  assert.equal(coordinator.status().active, 1);
+  coordinator.wake('p1', 0); coordinator.start(); await nextTurn();
+  noop(coordinator, request);
   assert.throws(() => coordinator.authorizeDecision('p1', request.decisionId), /already completed/);
-  release();
-  await settle(coordinator);
-  assert.throws(() => coordinator.authorizeDecision('p1', request.decisionId), /No active decision/);
+  release(); await settle(coordinator);
+  assert.equal(coordinator.status().queued, 0);
 });
 
-test('optional output-token budget can be cleared explicitly', () => {
-  const coordinator = createCoordinator({
-    players: players(1), getView: () => ({}), runPlayer: async () => {},
-    limits: { maxOutputTokens: 100 },
-  });
-  coordinator.configure({ maxOutputTokens: null });
-  assert.equal(coordinator.snapshot().limits.maxOutputTokens, undefined);
-});
-
-test('invalid limit update cannot partially mutate other settings', () => {
-  const coordinator = createCoordinator({
-    players: players(1), getView: () => ({}), runPlayer: async () => {},
-    limits: { maxConcurrent: 2, maxOutputTokens: 100 },
-  });
-  const before = coordinator.snapshot().limits;
-  assert.throws(() => coordinator.configure({ maxConcurrent: 3, maxDecisions: -1, maxOutputTokens: null }), /positive integer/);
-  assert.deepEqual(coordinator.snapshot().limits, before);
-});
-
-test('changing limits refreshes budget notices without resuming the match', async () => {
-  let coordinator;
-  let calls = 0;
-  coordinator = createCoordinator({
-    players: players(1), limits: { maxDecisions: 1, maxOutputTokens: 1 },
-    getView: () => ({ revision: 0 }),
-    runPlayer: async request => {
-      calls++;
-      request.onUsage({ output_tokens: 1 });
-      coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
-    },
-  });
-  coordinator.notify(0); coordinator.start();
-  await settle(coordinator);
-  assert.match(coordinator.status().message, /Decision limit reached/);
-  coordinator.configure({ maxConcurrent: 2 });
-  assert.match(coordinator.status().message, /Decision limit reached/);
-  coordinator.configure({ maxDecisions: 2 });
-  assert.match(coordinator.status().message, /Output-token limit reached/);
-  coordinator.configure({ maxOutputTokens: null });
-  assert.equal(coordinator.status().message, null);
-  assert.equal(coordinator.status().mode, 'paused');
-  await nextTurn();
-  assert.equal(calls, 1);
-});
-
-test('changing limits preserves player help and failure messages', async () => {
-  for (const outcome of ['help', 'error']) {
-    let coordinator;
-    coordinator = createCoordinator({
-      players: players(1), getView: () => ({ revision: 0 }),
-      runPlayer: async request => {
-        if (outcome === 'error') throw new Error('Fixture worker failure');
-        coordinator.complete('p1', { decision_id: request.decisionId, status: 'needs_help', note: 'Fixture question' });
+test('worker failure and timeout pause without automatic retry or model fallback', async () => {
+  for (const timeout of [false, true]) {
+    let count = 0;
+    const coordinator = createCoordinator({
+      players: players(1), limits: { decisionTimeoutMs: 10 }, getView: () => ({ revision: 0 }),
+      runPlayer: request => {
+        count++;
+        if (!timeout) throw new Error('Selected model unavailable');
+        return new Promise((_, reject) => request.signal.addEventListener('abort', () => reject(request.signal.reason), { once: true }));
       },
     });
-    coordinator.notify(0); coordinator.start();
-    await settle(coordinator);
-    const message = coordinator.status().message;
-    assert.match(message, outcome === 'help' ? /requested help/ : /Fixture worker failure/);
-    coordinator.configure({ maxDecisions: 3000 });
-    assert.equal(coordinator.status().message, message);
-    assert.equal(coordinator.status().mode, 'paused');
+    coordinator.wake('p1', 0); coordinator.start(); await nextTurn(); await coordinator.idle();
+    assert.equal(coordinator.status().mode, 'paused'); assert.equal(coordinator.status().queued, 1);
+    assert.match(coordinator.status().message, timeout ? /timed out/ : /Selected model unavailable/);
+    await nextTurn(); assert.equal(count, 1);
   }
 });
 
-test('explicit start retries saved help once in the same session with a new decision ID', async () => {
+test('decision and token budgets preserve the handoff and update atomically', async () => {
+  let coordinator, revision = 0, count = 0;
+  coordinator = createCoordinator({
+    players: players(1), limits: { maxDecisions: 1, maxOutputTokens: 1 }, getView: () => ({ revision }),
+    runPlayer: request => { count++; request.onUsage({ output_tokens: 1 }); coordinator.handoff('p1', 'p1', ++revision); },
+  });
+  coordinator.wake('p1', 0); coordinator.start(); await settle(coordinator);
+  assert.equal(count, 1); assert.equal(coordinator.status().queued, 1);
+  assert.match(coordinator.status().message, /Decision limit reached/);
+  coordinator.configure({ maxDecisions: 2 }); assert.match(coordinator.status().message, /Output-token limit reached/);
+  coordinator.configure({ maxOutputTokens: null }); assert.equal(coordinator.status().message, null);
+  assert.equal(coordinator.status().mode, 'paused');
+  const before = coordinator.snapshot().limits;
+  assert.throws(() => coordinator.configure({ maxConcurrent: 2, maxDecisions: 30 }), /maxConcurrent must be 1/);
+  assert.deepEqual(coordinator.snapshot().limits, before);
+  assert.throws(() => coordinator.configure({ maxDecisions: -1, maxOutputTokens: 10 }), /positive integer/);
+  assert.deepEqual(coordinator.snapshot().limits, before);
+  coordinator.finish(); coordinator.notify(2);
+  assert.equal(coordinator.status().queued, 0); assert.throws(() => coordinator.start(), /finished/);
+});
+
+test('cumulative CLI usage replaces prior reports and repairs legacy saved totals', async () => {
+  let coordinator, calls = 0;
+  const saved = { version: 1, latestRevision: 1, players: [{ id: 'p1', sessionId: 'history', lastCompleted: 1,
+    usage: { input_tokens: 300, output_tokens: 40 } }] };
+  const options = { players: players(1), limits: { maxOutputTokens: 100 }, getView: () => ({ revision: 2 }),
+    runPlayer: request => {
+      calls++; assert.equal(request.sessionId, 'history');
+      request.onUsage({ input_tokens: 175, cached_input_tokens: 90, output_tokens: 17 }, { scope: 'session', sessionId: 'history' });
+      request.onUsage({ input_tokens: 175, cached_input_tokens: 90, output_tokens: 17 }, { scope: 'session', sessionId: 'history' });
+      noop(coordinator, request);
+    } };
+  coordinator = createCoordinator({ ...options, saved });
+  assert.equal(coordinator.status().usage.output_tokens, 40);
+  coordinator.wake('p1', 2); coordinator.start(); await settle(coordinator);
+  assert.equal(coordinator.status().usage.output_tokens, 17);
+  coordinator = createCoordinator({ ...options, saved: coordinator.snapshot() });
+  coordinator.wake('p1', 2, 'resume'); coordinator.start(); await settle(coordinator);
+  assert.equal(calls, 2); assert.equal(coordinator.status().usage.output_tokens, 17);
+  assert.equal(coordinator.snapshot().players[0].usageScope, 'session');
+});
+
+test('session identity and usage cannot cross seats', async () => {
+  assert.throws(() => createCoordinator({ players: players(2), getView: () => ({}), runPlayer: async () => {},
+    saved: { players: [{ id: 'p1', sessionId: 'shared' }, { id: 'p2', sessionId: 'shared' }] } }), /cannot share/);
   let coordinator;
-  let firstRequest;
   coordinator = createCoordinator({
     players: players(1), getView: () => ({ revision: 0 }),
-    runPlayer: async request => {
-      firstRequest = request;
-      request.onSession('help-session');
-      coordinator.complete('p1', { decision_id: request.decisionId, status: 'needs_help', note: 'Fixture question' });
-    },
-  });
-  coordinator.notify(0); coordinator.start();
-  await settle(coordinator);
-  const saved = coordinator.snapshot();
-  assert.equal(saved.players[0].lastCompleted, 0);
-  assert.deepEqual(saved.players[0].pending, []);
-  const calls = [];
-  coordinator = createCoordinator({
-    players: players(1), saved, getView: () => ({ revision: 0 }),
-    runPlayer: async request => {
-      calls.push(request);
-      assert.equal(request.sessionId, 'help-session');
-      assert.notEqual(request.decisionId, firstRequest.decisionId);
-      coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
-    },
-  });
-  coordinator.start(); coordinator.start();
-  await settle(coordinator);
-  assert.deepEqual(calls.map(request => request.revision), [0]);
-  assert.equal(coordinator.status().state, 'stalled');
-  assert.equal(coordinator.snapshot().latestRevision, 0);
-  assert.equal(coordinator.snapshot().players[0].lastCompleted, 0);
-  assert.equal(coordinator.snapshot().players[0].retryRevision, null);
-  coordinator.start(); coordinator.notify(0);
-  await settle(coordinator);
-  assert.equal(calls.length, 1, 'ordinary idle completion does not trigger another retry');
-});
-
-test('step retries help only on explicit request and preserves newer queued notifications', async () => {
-  const saved = {
-    mode: 'paused', latestRevision: 0,
-    players: players(2).map(p => ({
-      id: p.id, sessionId: `session-${p.id}`, lastCompleted: 0, pending: [],
-      lastDecision: { status: 'needs_help', revision: 0 },
-    })),
-  };
-  const calls = [];
-  let coordinator;
-  coordinator = createCoordinator({
-    players: players(2), saved, getView: () => ({ revision: coordinator.snapshot().latestRevision }),
-    runPlayer: async request => {
-      calls.push({ id: request.player.id, revision: request.revision });
-      coordinator.complete(request.player.id, { decision_id: request.decisionId, status: 'needs_help' });
-    },
-  });
-  coordinator.step();
-  await settle(coordinator);
-  assert.equal(calls.length, 1);
-  assert.equal(coordinator.status().state, 'paused');
-  await nextTurn();
-  assert.equal(calls.length, 1, 'a repeated help request must not retry automatically');
-  coordinator.notify(1);
-  coordinator.step();
-  await settle(coordinator);
-  assert.deepEqual(calls, [{ id: 'p1', revision: 0 }, { id: 'p2', revision: 1 }]);
-  assert.deepEqual(coordinator.snapshot().players.map(p => p.pending), [[1], []]);
-  coordinator.step();
-  await settle(coordinator);
-  assert.deepEqual(calls.at(-1), { id: 'p1', revision: 1 });
-  assert.deepEqual(coordinator.snapshot().players[0].pending, []);
-});
-
-test('queued and interrupted explicit help retries survive snapshot restore', async () => {
-  const saved = {
-    mode: 'paused', latestRevision: 0,
-    players: [{
-      id: 'p1', sessionId: 'retry-session', lastCompleted: 0, pending: [],
-      lastDecision: { status: 'needs_help', revision: 0 },
-    }],
-  };
-  let coordinator = createCoordinator({
-    players: players(1), saved, getView: () => ({ revision: 0 }),
-    runPlayer: () => assert.fail('Paused retry should not launch'),
-  });
-  coordinator.start(); coordinator.pause();
-  const queued = coordinator.snapshot();
-  assert.deepEqual(queued.players[0].pending, [0]);
-  assert.equal(queued.players[0].retryRevision, 0);
-  assert.equal(queued.players[0].lastCompleted, 0);
-  await nextTurn();
-  let activeRequest;
-  coordinator = createCoordinator({
-    players: players(1), saved: queued, getView: () => ({ revision: 0 }),
     runPlayer: request => {
-      activeRequest = request;
-      return new Promise((_, reject) => request.signal.addEventListener('abort', () => reject(request.signal.reason), { once: true }));
+      request.onSession('own-session');
+      request.onUsage({ output_tokens: 1 }, { scope: 'session', sessionId: 'different-session' });
     },
   });
-  assert.deepEqual(coordinator.snapshot().players[0].pending, [0]);
-  coordinator.start();
-  await nextTurn();
-  const interrupted = coordinator.snapshot();
-  assert.equal(interrupted.players[0].active.revision, 0);
-  coordinator.pause();
-  await coordinator.idle();
-  let count = 0;
-  coordinator = createCoordinator({
-    players: players(1), saved: interrupted, getView: () => ({ revision: 0 }),
-    runPlayer: async request => {
-      count++;
-      assert.equal(request.sessionId, 'retry-session');
-      assert.notEqual(request.decisionId, activeRequest.decisionId);
-      coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
-    },
-  });
-  assert.deepEqual(coordinator.snapshot().players[0].pending, [0]);
-  coordinator.start();
-  await settle(coordinator);
-  assert.equal(count, 1);
-  assert.equal(coordinator.snapshot().players[0].lastCompleted, 0);
-  assert.equal(coordinator.snapshot().players[0].retryRevision, null);
+  coordinator.wake('p1', 0); coordinator.start(); await settle(coordinator);
+  assert.equal(coordinator.status().usage.output_tokens, 0);
+  assert.match(coordinator.status().message, /different player session/);
 });
 
-test('restore retains a help completion saved before the worker exited', async () => {
-  const saved = {
-    mode: 'running', latestRevision: 0,
-    players: [{
-      id: 'p1', sessionId: 'help-session', lastCompleted: -1, pending: [],
-      active: { revision: 0, completion: { status: 'needs_help', revision: 0, note: 'Question' } },
-    }],
-  };
-  let coordinator;
-  let count = 0;
-  coordinator = createCoordinator({
-    players: players(1), saved, getView: () => ({ revision: 0 }),
-    runPlayer: async request => {
-      count++;
-      coordinator.complete('p1', { decision_id: request.decisionId, status: 'no_op' });
-    },
-  });
+test('missing completion pauses and help stays visible across configuration updates and restart', async () => {
+  const incomplete = createCoordinator({ players: players(1), getView: () => ({ revision: 0 }), runPlayer: () => ({ sessionId: 'one' }) });
+  incomplete.wake('p1', 0); incomplete.start(); await settle(incomplete);
+  assert.match(incomplete.status().message, /without an explicit handoff or complete_decision/);
+  const saved = { version: 2, mode: 'running', latestRevision: 0, players: [{ id: 'p1', sessionId: 'help', lastCompleted: -1,
+    active: { revision: 0, completion: { status: 'needs_help', revision: 0, note: 'Question' } } }] };
+  const coordinator = createCoordinator({ players: players(1), saved, getView: () => ({ revision: 0 }), runPlayer: () => assert.fail('No explicit wake') });
+  assert.equal(coordinator.snapshot().players[0].lastCompleted, 0);
   assert.equal(coordinator.snapshot().players[0].lastDecision.status, 'needs_help');
-  coordinator.step();
-  await settle(coordinator);
-  assert.equal(count, 1);
+  coordinator.configure({ maxDecisions: 3000 });
+  coordinator.start(); await nextTurn(); assert.equal(coordinator.status().queued, 0);
+});
+
+test('invalid recipients and empty step do not create work', async () => {
+  const coordinator = createCoordinator({ players: players(1), getView: () => ({ revision: 0 }), runPlayer: () => assert.fail('No work') });
+  assert.throws(() => coordinator.wake('unknown', 0), /Unknown recipient/);
+  assert.throws(() => coordinator.wake('p1', -1), /Invalid table revision/);
+  coordinator.step(); await nextTurn();
+  assert.equal(coordinator.status().state, 'paused'); assert.equal(coordinator.status().message, 'No pending player decisions.');
 });

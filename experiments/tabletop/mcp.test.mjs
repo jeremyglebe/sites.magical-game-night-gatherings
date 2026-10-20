@@ -28,6 +28,8 @@ test('managed MCP uses only the supplied seat token and keeps decision acknowled
     const tools = (await client.listTools()).tools;
     const act = tools.find(tool => tool.name === 'act');
     assert.ok(act.inputSchema.properties.actions.items.properties.type.enum.includes('pass'));
+    assert.ok(act.inputSchema.properties.actions.items.properties.type.enum.includes('pass_turn'));
+    assert.ok(act.inputSchema.properties.actions.items.properties.type.enum.includes('say'));
     assert.ok(act.inputSchema.properties.actions.items.properties.next);
     const complete = tools.find(tool => tool.name === 'complete_decision');
     assert.equal(complete.inputSchema.properties.decision_id, undefined);
@@ -42,6 +44,28 @@ test('managed MCP uses only the supplied seat token and keeps decision acknowled
     assert.equal(requests[2].url, '/api/events?since=12');
     await client.callTool({ name: 'read_rules', arguments: { source: 'comprehensive', rule: '117.3' } });
     assert.equal(requests[3].url, '/api/rules?source=comprehensive&rule=117.3');
+    for (const name of ['say', 'pass_priority', 'pass_turn']) {
+      const tool = tools.find(tool => tool.name === name);
+      assert.ok(tool);
+      assert.equal(tool.inputSchema.properties.decision_id, undefined);
+      assert.ok(tool.inputSchema.required.includes('revision'));
+    }
+    await client.callTool({ name: 'say', arguments: { revision: 3, text: 'I keep my hand.' } });
+    assert.deepEqual(requests[4].body, {
+      revision: 3, actions: [{ type: 'say', text: 'I keep my hand.' }],
+      reason: 'Public table speech', decision_id: 'decision-123',
+    });
+    await client.callTool({ name: 'pass_priority', arguments: { revision: 4, next: 'other', message: 'Any response?' } });
+    assert.deepEqual(requests[5].body, {
+      revision: 4, actions: [{ type: 'pass', next: 'other', message: 'Any response?' }],
+      reason: 'Explicit player handoff', decision_id: 'decision-123',
+    });
+    await client.callTool({ name: 'pass_turn', arguments: { revision: 5, next: 'other', number: 7, phase: 'Untap', message: 'Your turn.' } });
+    assert.deepEqual(requests[6].body.actions, [{ type: 'pass_turn', next: 'other', number: 7, phase: 'Untap', message: 'Your turn.' }]);
+    assert.equal(requests[6].body.decision_id, 'decision-123');
+    assert.ok(requests.slice(4).every(request => request.url === '/api/act'));
+    await client.callTool({ name: 'pass_turn', arguments: { revision: 6, next: 'other' } });
+    assert.deepEqual(requests[7].body.actions, [{ type: 'pass_turn', next: 'other' }]);
     assert.ok(requests.every(request => request.authorization === 'Bearer one-seat-token'));
   } finally {
     await client.close();

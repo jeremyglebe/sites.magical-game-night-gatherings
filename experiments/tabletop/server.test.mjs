@@ -59,7 +59,7 @@ test('two real MCP processes share saved state with private views, conflict dete
     assert.equal((await fetch(url + '/api/observe')).status, 401);
     assert.equal((await fetch(url + '/api/act', { method: 'POST', body: '{}' })).status, 401);
     assert.deepEqual((await a.client.listTools()).tools.map(t => t.name),
-      ['observe_table', 'act', 'read_card', 'read_reference', 'read_events', 'read_rules', 'complete_decision']);
+      ['observe_table', 'act', 'say', 'pass_priority', 'pass_turn', 'read_card', 'read_reference', 'read_events', 'read_rules', 'complete_decision']);
     const initial = await a.tool('observe_table');
     const calls = await Promise.allSettled([a, b].map(p => p.tool('act', {
       revision: initial.revision, actions: [{ type: 'draw', count: 7 }], reason: 'Private reasoning about Serra Angel.',
@@ -127,6 +127,89 @@ test('the precon demonstration completes over MCP without claiming an AI result'
   }
 });
 
+test('legacy card reads use pinned rulings without rewriting history or bypassing hidden-card checks', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'game-night-rulings-fallback-'));
+  const session = join(dir, 'session.json');
+  const precons = JSON.parse(readFileSync(new URL('./precons.json', import.meta.url), 'utf8'));
+  const reference = precons.players[0].deck.find(card => card.name === 'Mentor of the Meek');
+  const legacy = { ...reference, name: 'Legacy reference', count: 1 };
+  delete legacy.rulings;
+  delete legacy.rulings_cache;
+  const pinned = { ...reference, name: 'Existing reference snapshot', count: 1, rulings: [],
+    rulings_cache: { ...reference.rulings_cache, fetched_at: '2025-01-01T00:00:00.000Z' } };
+  let table, player;
+  try {
+    table = await startTable({ session, port: 0, setup: {
+      shuffle: false, players: [
+        { id: 'one', deck: [legacy, pinned] },
+        { id: 'two', deck: [legacy] },
+      ],
+    } });
+    player = await connectPlayer({ seat: 'one', session, url: table.url });
+    const drawn = await player.tool('act', {
+      revision: 0, actions: [{ type: 'draw', count: 2 }], reason: 'Draw the test hand.',
+    });
+    const [legacyId, pinnedId] = drawn.zones['one:hand'].cards.map(card => card.id);
+    assert.deepEqual((await player.tool('read_card', { id: legacyId })).rulings_cache, { status: 'not_fetched' });
+    await player.close();
+    player = null;
+    await close(table.server);
+    const before = readFileSync(session, 'utf8');
+    const historyBefore = JSON.parse(before).state.events;
+    const cardRulings = { [reference.scryfall_id]: {
+      rulings: reference.rulings, rulings_cache: reference.rulings_cache,
+      name: 'Cache metadata must not rename a card', id: 'not-a-card-id',
+    } };
+    table = await startTable({ session, port: 0, cardRulings });
+    // A match owns its supplied snapshot even if the caller later refreshes a cache.
+    cardRulings[reference.scryfall_id].rulings = [];
+    player = await connectPlayer({ seat: 'one', session, url: table.url });
+    const details = await player.tool('read_card', { id: legacyId });
+    assert.equal(details.id, legacyId);
+    assert.equal(details.name, legacy.name);
+    assert.equal(details.oracle_text, legacy.oracle_text);
+    assert.deepEqual(details.rulings, reference.rulings);
+    assert.deepEqual(details.rulings_cache, reference.rulings_cache);
+    const existing = await player.tool('read_card', { id: pinnedId });
+    assert.deepEqual(existing.rulings, []);
+    assert.deepEqual(existing.rulings_cache, pinned.rulings_cache);
+    const ownHeaders = { Authorization: 'Bearer ' + table.getToken('one') };
+    const otherHeaders = { Authorization: 'Bearer ' + table.getToken('two') };
+    const concealedId = table.getState().zones['two:library'].cards[0];
+    for (const [id, headers, path] of [
+      [concealedId, ownHeaders, '/api/card'],
+      [legacyId, otherHeaders, '/api/card'],
+      [legacyId, {}, '/api/public-card'],
+    ]) {
+      const response = await fetch(table.url + path + '?id=' + id, { headers });
+      assert.equal(response.status, 400);
+      assert.match((await response.json()).error, /not available/);
+    }
+    const observed = await player.tool('observe_table');
+    assert.doesNotMatch(JSON.stringify(observed), /rulings/);
+    assert.doesNotMatch(JSON.stringify(await player.tool('read_events')), /rulings/);
+    assert.equal(readFileSync(session, 'utf8'), before, 'Reference reads do not save a migration or rewrite game actions');
+    assert.deepEqual(table.getState().events, historyBefore);
+    assert.equal(table.getState().cards[legacyId].definition.rulings, undefined);
+    await player.tool('act', {
+      revision: 1, actions: [{ type: 'move', card: legacyId, to: 'battlefield' }], reason: 'Expose the card.',
+    });
+    const publicCard = await (await fetch(table.url + '/api/public-card?id=' + legacyId)).json();
+    assert.deepEqual(publicCard.rulings, reference.rulings);
+    assert.doesNotMatch(await (await fetch(table.url + '/api/table')).text(), /rulings/);
+    await player.tool('act', {
+      revision: 2, actions: [{ type: 'card', card: legacyId, set: { face_down: true } }], reason: 'Conceal the identity.',
+    });
+    const concealed = await fetch(table.url + '/api/public-card?id=' + legacyId);
+    assert.equal(concealed.status, 400);
+    assert.match((await concealed.json()).error, /concealed/);
+  } finally {
+    if (player) await player.close();
+    if (table?.server.listening) await close(table.server);
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('resume repairs derived exports and serves the recorded rules reference', async () => {
   const dir = mkdtempSync(join(tmpdir(), 'game-night-export-recovery-'));
   const session = join(dir, 'session.json');
@@ -144,10 +227,14 @@ test('resume repairs derived exports and serves the recorded rules reference', a
     writeFileSync(session, JSON.stringify(saved));
     rmSync(session + '.game.json');
     rmSync(session + '.game.md');
-    table = await startTable({ session, port: 0 });
+    const basicPath = join(dir, 'BasicRules.txt');
+    writeFileSync(basicPath, '# Match-pinned basic rules\nUse this saved basic guide.');
+    table = await startTable({ session, port: 0, basicPath });
     assert.equal(existsSync(session + '.game.json'), true);
     assert.match(readFileSync(session + '.game.md', 'utf8'), /Keep this exact original procedure/);
     const headers = { Authorization: 'Bearer ' + table.getToken('one') };
+    const basic = await (await fetch(table.url + '/api/rules?source=basic', { headers })).json();
+    assert.match(basic.text, /Use this saved basic guide/);
     const reference = await (await fetch(table.url + '/api/references?' + new URLSearchParams({ path }), { headers })).json();
     assert.equal(reference.text, saved.recording.references[0].text);
     const search = await (await fetch(table.url + '/api/references?' + new URLSearchParams({ path, query: 'exact original' }), { headers })).json();
@@ -211,6 +298,90 @@ test('action authorization must complete synchronously before any mutation', asy
     assert.match((await result.json()).error, /must be synchronous/);
     assert.equal(table.getState().revision, 0);
   } finally {
+    if (table?.server.listening) await close(table.server);
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('standalone MCP speech and handoffs stay explicit, public and usable without a coordinator', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'game-night-speech-'));
+  const session = join(dir, 'session.json');
+  let table, player;
+  try {
+    table = await startTable({ session, port: 0, setup: {
+      shuffle: false, players: ['one', 'two'].map(id => ({ id, deck: [{ name: 'Hidden ' + id, count: 3 }] })),
+    } });
+    player = await connectPlayer({ seat: 'one', session, url: table.url });
+    let view = await player.tool('say', { revision: 0, text: 'Hello, table.' });
+    assert.equal(view.revision, 1);
+    assert.equal(view.turn.priority, null);
+    assert.equal(view.decision_completed, undefined);
+    view = await player.tool('pass_priority', { revision: 1, next: 'two', message: 'Your response?' });
+    assert.equal(view.turn.priority, 'two');
+    assert.equal(view.decision_completed, undefined);
+    view = await player.tool('pass_turn', { revision: 2, next: 'one', message: 'The next turn begins.' });
+    assert.deepEqual(view.turn, { number: 2, active: 'one', priority: 'one', phase: 'Untap' });
+    assert.equal(view.zones['one:hand'].count, 0);
+    assert.equal(view.zones['one:library'].count, 3);
+    assert.equal(view.decision_completed, undefined);
+    await assert.rejects(() => player.tool('act', {
+      revision: 3, reason: 'Private test',
+      actions: [{ type: 'draw' }, { type: 'pass', next: 'two' }, { type: 'pass_turn', next: 'two' }],
+    }), /only one/);
+    assert.equal(table.getState().revision, 3);
+    assert.equal(table.getState().zones['one:hand'].cards.length, 0);
+    view = await player.tool('act', {
+      revision: 3, reason: 'Keep Hidden one private',
+      actions: [{ type: 'draw' }, { type: 'pass', next: 'two', message: 'Go ahead.' }],
+    });
+    const publicView = await (await fetch(table.url + '/api/table')).json();
+    assert.equal(publicView.events[0].changes[0].text, 'Hello, table.');
+    assert.equal(publicView.events[1].changes[0].message, 'Your response?');
+    assert.equal(publicView.events[2].changes[0].type, 'pass_turn');
+    assert.equal(publicView.events[3].changes.at(-1).message, 'Go ahead.');
+    assert.doesNotMatch(JSON.stringify(publicView), /Hidden one|Keep Hidden|"reason"/);
+    assert.equal(view.zones['one:hand'].cards[0].name, 'Hidden one');
+    assert.equal(JSON.parse(readFileSync(session, 'utf8')).state.revision, 4);
+  } finally {
+    if (player) await player.close();
+    if (table?.server.listening) await close(table.server);
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('handoff response includes host completion metadata only after a durable commit', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'game-night-handoff-'));
+  const session = join(dir, 'session.json');
+  let table, player;
+  const handoffs = [];
+  try {
+    table = await startTable({ session, port: 0,
+      setup: { players: ['one', 'two'].map(id => ({ id, deck: [{ name: 'Card' }] })) },
+      onCommit(state, actor) {
+        assert.equal(JSON.parse(readFileSync(session, 'utf8')).state.revision, state.revision);
+        const action = state.events.at(-1).actions.at(-1);
+        if (!['pass', 'pass_turn'].includes(action.type)) return;
+        const handoff = { actor, next: action.next, kind: action.type, revision: state.revision };
+        handoffs.push(handoff);
+        return { decision_completed: true, handoff };
+      },
+    });
+    player = await connectPlayer({ seat: 'one', session, url: table.url });
+    const speech = await player.tool('say', { revision: 0, text: 'A public announcement.' });
+    assert.equal(speech.decision_completed, undefined);
+    assert.equal(handoffs.length, 0);
+    const priority = await player.tool('pass_priority', { revision: 1, next: 'two' });
+    assert.equal(priority.decision_completed, true);
+    assert.equal(priority.turn.priority, 'two');
+    assert.equal(priority.handoff.kind, 'pass');
+    const turn = await player.tool('pass_turn', { revision: 2, next: 'two', number: 5, phase: 'Upkeep' });
+    assert.equal(turn.decision_completed, true);
+    assert.equal(turn.turn.number, 5);
+    assert.equal(turn.turn.phase, 'Upkeep');
+    assert.equal(turn.handoff.kind, 'pass_turn');
+    assert.equal(handoffs.length, 2);
+  } finally {
+    if (player) await player.close();
     if (table?.server.listening) await close(table.server);
     rmSync(dir, { recursive: true, force: true });
   }

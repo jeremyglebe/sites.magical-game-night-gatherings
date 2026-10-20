@@ -17,6 +17,19 @@
           "count": 1,
           "name": "Benalish Marshal",
           "scryfall_id": "fc395215-a2ec-49e1-9b1b-f8fcfe73e361",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2018-04-27",
+              "comment": "Because damage remains marked on a creature until it’s removed as the turn ends, nonlethal damage dealt to a creature you control may become lethal if Benalish Marshal leaves the battlefield during that turn."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:24.986Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/fc395215-a2ec-49e1-9b1b-f8fcfe73e361/rulings"
+          },
           "type_line": "Creature — Human Knight",
           "oracle_text": "Other creatures you control get +1/+1.",
           "mana_cost": "{W}{W}{W}",
@@ -28,6 +41,29 @@
           "count": 1,
           "name": "Mentor of the Meek",
           "scryfall_id": "05b6a101-4d12-4f50-8f02-5c778e08b149",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2025-01-24",
+              "comment": "If a creature enters with +1/+1 counters or a continuous effect such as that of Wedding Festivity will apply to the creature on the battlefield, those effects apply when checking to see if Mentor of the Meek's ability will trigger."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2025-01-24",
+              "comment": "Mentor of the Meek's ability checks the power of the other creature only as it enters. If that creature's power is 2 or less, the ability will trigger. Once the ability triggers, raising that creature's power above 2 won't affect that ability. Similarly, reducing the creature's power to 2 or less after it enters won't cause the ability to trigger."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2025-01-24",
+              "comment": "While resolving the triggered ability of Mentor of the Meek, you can't pay {1} multiple times to draw more than one card."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:24.402Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/05b6a101-4d12-4f50-8f02-5c778e08b149/rulings"
+          },
           "type_line": "Creature — Human Soldier",
           "oracle_text": "Whenever another creature you control with power 2 or less enters, you may pay {1}. If you do, draw a card.",
           "mana_cost": "{2}{W}",
@@ -39,6 +75,24 @@
           "count": 1,
           "name": "Valiant Knight",
           "scryfall_id": "5a85b8d6-36f7-4bde-a5f5-12509adac68f",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2018-07-13",
+              "comment": "Multiple instances of double strike on the same creature are redundant."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2018-07-13",
+              "comment": "Because damage remains marked on a creature until it's removed as the turn ends, nonlethal damage dealt to a Knight you control may become lethal if Valiant Knight leaves the battlefield during that turn."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:24.669Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/5a85b8d6-36f7-4bde-a5f5-12509adac68f/rulings"
+          },
           "type_line": "Creature — Human Knight",
           "oracle_text": "Other Knights you control get +1/+1.\n{3}{W}{W}: Knights you control gain double strike until end of turn.",
           "mana_cost": "{3}{W}",
@@ -50,6 +104,19 @@
           "count": 2,
           "name": "Dwarven Priest",
           "scryfall_id": "7e1e0f13-35a6-4a5e-8666-47bc5c275be7",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2018-07-13",
+              "comment": "The number of creatures you control is counted only as Dwarven Priest’s ability resolves. If Dwarven Priest is still on the battlefield, it will count itself."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:25.032Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/7e1e0f13-35a6-4a5e-8666-47bc5c275be7/rulings"
+          },
           "type_line": "Creature — Dwarf Cleric",
           "oracle_text": "When this creature enters, you gain 1 life for each creature you control.",
           "mana_cost": "{3}{W}",
@@ -61,6 +128,13 @@
           "count": 2,
           "name": "Gallant Cavalry",
           "scryfall_id": "e388c433-3a37-45f6-825a-d13d2223b6f7",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:25.915Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/e388c433-3a37-45f6-825a-d13d2223b6f7/rulings"
+          },
           "type_line": "Creature — Human Knight",
           "oracle_text": "Vigilance (Attacking doesn't cause this creature to tap.)\nWhen this creature enters, create a 2/2 white Knight creature token with vigilance.",
           "mana_cost": "{3}{W}",
@@ -72,6 +146,13 @@
           "count": 3,
           "name": "Militia Bugler",
           "scryfall_id": "5fe9413b-5702-4998-aed7-d3a1102a8d7e",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:26.184Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/5fe9413b-5702-4998-aed7-d3a1102a8d7e/rulings"
+          },
           "type_line": "Creature — Human Soldier",
           "oracle_text": "Vigilance (Attacking doesn't cause this creature to tap.)\nWhen this creature enters, look at the top four cards of your library. You may reveal a creature card with power 2 or less from among them and put it into your hand. Put the rest on the bottom of your library in a random order.",
           "mana_cost": "{2}{W}",
@@ -83,6 +164,13 @@
           "count": 2,
           "name": "Pegasus Courser",
           "scryfall_id": "0c04eafe-8be0-416e-a5b9-486a3b3b5984",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:26.249Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/0c04eafe-8be0-416e-a5b9-486a3b3b5984/rulings"
+          },
           "type_line": "Creature — Pegasus",
           "oracle_text": "Flying\nWhenever this creature attacks, another target attacking creature gains flying until end of turn.",
           "mana_cost": "{2}{W}",
@@ -94,6 +182,13 @@
           "count": 1,
           "name": "Aerial Responder",
           "scryfall_id": "b94b1649-2ce7-40f3-8dff-87bf60d274df",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:26.714Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/b94b1649-2ce7-40f3-8dff-87bf60d274df/rulings"
+          },
           "type_line": "Creature — Dwarf Soldier",
           "oracle_text": "Flying, vigilance, lifelink",
           "mana_cost": "{1}{W}{W}",
@@ -105,6 +200,19 @@
           "count": 1,
           "name": "Everdawn Champion",
           "scryfall_id": "46c38e2a-3a82-402f-a436-f9ebb2ba2ea4",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2018-01-19",
+              "comment": "Combat damage can be assigned to Everdawn Champion as normal, even though that damage will be prevented. For example, if Everdawn Champion blocks a 4/4 creature with trample, the attacking player may assign 2 of that creature’s combat damage to the player or planeswalker it’s attacking."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:27.173Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/46c38e2a-3a82-402f-a436-f9ebb2ba2ea4/rulings"
+          },
           "type_line": "Creature — Human Soldier",
           "oracle_text": "Prevent all combat damage that would be dealt to this creature.",
           "mana_cost": "{1}{W}{W}",
@@ -116,6 +224,13 @@
           "count": 2,
           "name": "Fan Bearer",
           "scryfall_id": "4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:27.619Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f/rulings"
+          },
           "type_line": "Creature — Zombie",
           "oracle_text": "{2}, {T}: Tap target creature.",
           "mana_cost": "{W}",
@@ -127,6 +242,24 @@
           "count": 2,
           "name": "Inspiring Captain",
           "scryfall_id": "d1aab968-fdf2-4035-8c04-04169c113153",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2019-07-12",
+              "comment": "Inspiring Captain’s triggered ability affects only creatures you control at the time it resolves. Creatures you begin to control later in the turn won’t get +1/+1."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2016-04-08",
+              "comment": "The set of creatures affected by Inspiring Captain’s ability is determined as the ability resolves. Creatures you begin to control later in the turn won’t get +1/+1."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:27.670Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/d1aab968-fdf2-4035-8c04-04169c113153/rulings"
+          },
           "type_line": "Creature — Human Knight",
           "oracle_text": "When this creature enters, creatures you control get +1/+1 until end of turn.",
           "mana_cost": "{3}{W}",
@@ -138,6 +271,13 @@
           "count": 2,
           "name": "Mesa Unicorn",
           "scryfall_id": "fed11288-5c3d-47de-bbad-6ca5912a3bce",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:27.934Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/fed11288-5c3d-47de-bbad-6ca5912a3bce/rulings"
+          },
           "type_line": "Creature — Unicorn",
           "oracle_text": "Lifelink (Damage dealt by this creature also causes you to gain that much life.)",
           "mana_cost": "{1}{W}",
@@ -149,6 +289,13 @@
           "count": 2,
           "name": "Serra Angel",
           "scryfall_id": "88e29f9c-8ef8-4c04-a7d8-69ec52e6c4b5",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:28.817Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/88e29f9c-8ef8-4c04-a7d8-69ec52e6c4b5/rulings"
+          },
           "type_line": "Creature — Angel",
           "oracle_text": "Flying\nVigilance (Attacking doesn't cause this creature to tap.)",
           "mana_cost": "{3}{W}{W}",
@@ -160,6 +307,13 @@
           "count": 1,
           "name": "Subjugator Angel",
           "scryfall_id": "23b909f8-ad6b-43f0-b517-7d02f2a97cd4",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:29.274Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/23b909f8-ad6b-43f0-b517-7d02f2a97cd4/rulings"
+          },
           "type_line": "Creature — Angel",
           "oracle_text": "Flying\nWhen this creature enters, tap all creatures your opponents control.",
           "mana_cost": "{4}{W}{W}",
@@ -171,6 +325,13 @@
           "count": 1,
           "name": "Cleansing Nova",
           "scryfall_id": "670e4457-927e-42ed-a36f-28b60c2f7566",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:29.731Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/670e4457-927e-42ed-a36f-28b60c2f7566/rulings"
+          },
           "type_line": "Sorcery",
           "oracle_text": "Choose one —\n• Destroy all creatures.\n• Destroy all artifacts and enchantments.",
           "mana_cost": "{3}{W}{W}",
@@ -180,6 +341,13 @@
           "count": 2,
           "name": "Call the Cavalry",
           "scryfall_id": "5ffd9de5-c0b9-4d41-ab11-c77ce6f67c60",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:30.668Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/5ffd9de5-c0b9-4d41-ab11-c77ce6f67c60/rulings"
+          },
           "type_line": "Sorcery",
           "oracle_text": "Create two 2/2 white Knight creature tokens with vigilance.",
           "mana_cost": "{3}{W}",
@@ -189,6 +357,19 @@
           "count": 2,
           "name": "Bright Reprisal",
           "scryfall_id": "0f3044c9-865b-4869-a2c0-ed11a5841bf5",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2017-09-29",
+              "comment": "If the target creature is an illegal target by the time Bright Reprisal resolves, the entire spell doesn’t resolve. You won’t draw a card. If, on the other hand, the target is a legal target but isn’t destroyed (most likely because it has indestructible), you’ll draw a card."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:31.170Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/0f3044c9-865b-4869-a2c0-ed11a5841bf5/rulings"
+          },
           "type_line": "Instant",
           "oracle_text": "Destroy target attacking creature.\nDraw a card.",
           "mana_cost": "{4}{W}",
@@ -198,6 +379,13 @@
           "count": 1,
           "name": "Always Watching",
           "scryfall_id": "cf65bfa0-9c05-4e9e-b4c7-d705e1a822c1",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:32.032Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/cf65bfa0-9c05-4e9e-b4c7-d705e1a822c1/rulings"
+          },
           "type_line": "Enchantment",
           "oracle_text": "Nontoken creatures you control get +1/+1 and have vigilance.",
           "mana_cost": "{1}{W}{W}",
@@ -207,6 +395,29 @@
           "count": 1,
           "name": "Hieromancer's Cage",
           "scryfall_id": "197743cd-249c-42ba-ac8d-027c088f8418",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2018-07-13",
+              "comment": "If Hieromancer’s Cage leaves the battlefield before its triggered ability resolves, the target permanent won’t be exiled."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2018-07-13",
+              "comment": "Auras attached to the exiled permanent will be put into their owners’ graveyards. Any Equipment will become unattached and remain on the battlefield. Any counters on the exiled permanent will cease to exist."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2018-07-13",
+              "comment": "If a token is exiled this way, it will cease to exist and won’t return to the battlefield."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:32.997Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/197743cd-249c-42ba-ac8d-027c088f8418/rulings"
+          },
           "type_line": "Enchantment",
           "oracle_text": "When this enchantment enters, exile target nonland permanent an opponent controls until this enchantment leaves the battlefield.",
           "mana_cost": "{3}{W}",
@@ -216,6 +427,24 @@
           "count": 2,
           "name": "Knightly Valor",
           "scryfall_id": "c0f20ca6-1a92-4be5-a84a-e7f8f0b7f648",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2018-07-13",
+              "comment": "You need a creature for Knightly Valor to target as you cast it. There's no way to have it enter the battlefield attached to the Knight token it'll create."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2018-07-13",
+              "comment": "If the creature this Aura would enchant is an illegal target by the time Knightly Valor tries to resolve, the Aura spell doesn't resolve. It won't enter the battlefield, so its ability won't trigger."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:32.499Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/c0f20ca6-1a92-4be5-a84a-e7f8f0b7f648/rulings"
+          },
           "type_line": "Enchantment — Aura",
           "oracle_text": "Enchant creature\nWhen this Aura enters, create a 2/2 white Knight creature token with vigilance. (Attacking doesn't cause it to tap.)\nEnchanted creature gets +2/+2 and has vigilance.",
           "mana_cost": "{4}{W}",
@@ -225,6 +454,13 @@
           "count": 2,
           "name": "Luminous Bonds",
           "scryfall_id": "5d471de4-a7b2-4e13-9492-3fa94f5867ac",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:34.325Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/5d471de4-a7b2-4e13-9492-3fa94f5867ac/rulings"
+          },
           "type_line": "Enchantment — Aura",
           "oracle_text": "Enchant creature\nEnchanted creature can't attack or block.",
           "mana_cost": "{2}{W}",
@@ -234,6 +470,13 @@
           "count": 25,
           "name": "Plains",
           "scryfall_id": "feada93b-aabf-45d6-ac46-98b33caf9112",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:33.858Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/feada93b-aabf-45d6-ac46-98b33caf9112/rulings"
+          },
           "type_line": "Basic Land — Plains",
           "oracle_text": "({T}: Add {W}.)",
           "mana_cost": "",
@@ -243,6 +486,13 @@
           "count": 1,
           "name": "Militant Angel",
           "scryfall_id": "762fa38f-a760-4e84-bdd5-c14cbc21db72",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:34.577Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/762fa38f-a760-4e84-bdd5-c14cbc21db72/rulings"
+          },
           "type_line": "Creature — Angel",
           "oracle_text": "Flying, lifelink\nWhen this creature enters, create a number of 2/2 white Knight creature tokens with vigilance equal to the number of opponents you attacked this turn.",
           "mana_cost": "{3}{W}{W}",
@@ -261,6 +511,34 @@
           "count": 1,
           "name": "Ghalta, Primal Hunger",
           "scryfall_id": "b2a93747-720a-4ddf-8325-36db78e0a584",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2018-01-19",
+              "comment": "To determine Ghalta's total cost, start with the mana cost (or an alternative cost if another card's effect allows you to pay one instead), add any cost increases, then apply any cost reductions. Ghalta's mana value remains unchanged, no matter what the total cost to cast it was."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2018-01-19",
+              "comment": "The total cost to cast Ghalta is locked in before you pay that cost. For example, if you control three 2/2 creatures, including one you can sacrifice to add {C}, the total cost of Ghalta is {4}{G}{G}. Then you can sacrifice the creature when you activate mana abilities just before paying the cost."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2018-01-19",
+              "comment": "If a creature's power is somehow less than 0, it subtracts from the total power of your other creatures. If the total power of your creatures is 0 or less, Ghalta's cost remains {10}{G}{G}."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2018-01-19",
+              "comment": "Ghalta's first ability can't reduce its cost below {G}{G}."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:35.070Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/b2a93747-720a-4ddf-8325-36db78e0a584/rulings"
+          },
           "type_line": "Legendary Creature — Elder Dinosaur",
           "oracle_text": "This spell costs {X} less to cast, where X is the total power of creatures you control.\nTrample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)",
           "mana_cost": "{10}{G}{G}",
@@ -272,6 +550,13 @@
           "count": 1,
           "name": "Gigantosaurus",
           "scryfall_id": "c1db84d8-d426-4c0d-b44e-5be7b0f5f5bf",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:35.731Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/c1db84d8-d426-4c0d-b44e-5be7b0f5f5bf/rulings"
+          },
           "type_line": "Creature — Dinosaur",
           "oracle_text": "",
           "mana_cost": "{G}{G}{G}{G}{G}",
@@ -283,6 +568,29 @@
           "count": 1,
           "name": "Goreclaw, Terror of Qal Sisma",
           "scryfall_id": "ee47f23a-3ba9-4615-b170-c89d8ab99d78",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2018-07-13",
+              "comment": "If you cast a creature spell that will enter the battlefield with a number of +1/+1 counters, such as Hungering Hydra, those counters aren't considered when determining whether Goreclaw reduces that spell's cost. Similarly, effects that will raise the creature's power once it has entered the battlefield won't apply."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2018-07-13",
+              "comment": "If another creature has an ability that changes its power when it attacks, such as Brawl-Bash Ogre, you may have that ability resolve before Goreclaw's last ability."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2018-07-13",
+              "comment": "Goreclaw's last ability affects only creatures you control with the appropriate power at the time it resolves. Creatures you begin to control later in the turn won't get either bonus, and a creature you control whose power decreases later in the turn won't lose either bonus."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:36.193Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/ee47f23a-3ba9-4615-b170-c89d8ab99d78/rulings"
+          },
           "type_line": "Legendary Creature — Bear",
           "oracle_text": "Creature spells you cast with power 4 or greater cost {2} less to cast.\nWhenever Goreclaw attacks, each creature you control with power 4 or greater gets +1/+1 and gains trample until end of turn.",
           "mana_cost": "{3}{G}",
@@ -294,6 +602,13 @@
           "count": 1,
           "name": "Pelakka Wurm",
           "scryfall_id": "304c635c-de4d-46ee-8ab0-e5c4d55b61b3",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:36.664Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/304c635c-de4d-46ee-8ab0-e5c4d55b61b3/rulings"
+          },
           "type_line": "Creature — Wurm",
           "oracle_text": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nWhen this creature enters, you gain 7 life.\nWhen this creature dies, draw a card.",
           "mana_cost": "{4}{G}{G}{G}",
@@ -305,6 +620,13 @@
           "count": 2,
           "name": "Colossal Dreadmaw",
           "scryfall_id": "8059c52b-5d25-4052-b48a-e9e219a7a546",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:37.636Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/8059c52b-5d25-4052-b48a-e9e219a7a546/rulings"
+          },
           "type_line": "Creature — Dinosaur",
           "oracle_text": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)",
           "mana_cost": "{4}{G}{G}",
@@ -316,6 +638,13 @@
           "count": 2,
           "name": "Elvish Rejuvenator",
           "scryfall_id": "03ef5cff-2e2b-4096-8310-4c5aabcb0eac",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:38.461Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/03ef5cff-2e2b-4096-8310-4c5aabcb0eac/rulings"
+          },
           "type_line": "Creature — Elf Druid",
           "oracle_text": "When this creature enters, look at the top five cards of your library. You may put a land card from among them onto the battlefield tapped. Put the rest on the bottom of your library in a random order.",
           "mana_cost": "{2}{G}",
@@ -327,6 +656,13 @@
           "count": 2,
           "name": "Ghastbark Twins",
           "scryfall_id": "d470e441-3520-4669-aaa5-f0c57829352a",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:38.912Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/d470e441-3520-4669-aaa5-f0c57829352a/rulings"
+          },
           "type_line": "Creature — Treefolk",
           "oracle_text": "Trample (This creature can deal excess combat damage to the player or planeswalker it's attacking.)\nThis creature can block an additional creature each combat.",
           "mana_cost": "{5}{G}{G}",
@@ -338,6 +674,19 @@
           "count": 2,
           "name": "Giant Spider",
           "scryfall_id": "213c9202-b6f4-43ab-b57f-b97a1da5e263",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2008-04-01",
+              "comment": "This card now uses the Reach keyword ability to enable the blocking of flying creatures. This works because a creature with flying can only be blocked by creatures with flying or reach."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:39.785Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/213c9202-b6f4-43ab-b57f-b97a1da5e263/rulings"
+          },
           "type_line": "Creature — Spider",
           "oracle_text": "Reach (This creature can block creatures with flying.)",
           "mana_cost": "{3}{G}",
@@ -349,6 +698,13 @@
           "count": 1,
           "name": "Reclamation Sage",
           "scryfall_id": "1918ea65-ab7f-4d40-97fd-a656c892a2a1",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:40.236Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/1918ea65-ab7f-4d40-97fd-a656c892a2a1/rulings"
+          },
           "type_line": "Creature — Elf Shaman",
           "oracle_text": "When this creature enters, you may destroy target artifact or enchantment.",
           "mana_cost": "{2}{G}",
@@ -360,6 +716,13 @@
           "count": 1,
           "name": "Vigilant Baloth",
           "scryfall_id": "34ad8e5d-0c26-4588-8161-b22197715d63",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:41.967Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/34ad8e5d-0c26-4588-8161-b22197715d63/rulings"
+          },
           "type_line": "Creature — Beast",
           "oracle_text": "Vigilance (Attacking doesn't cause this creature to tap.)",
           "mana_cost": "{3}{G}{G}",
@@ -371,6 +734,13 @@
           "count": 1,
           "name": "Jungle Delver",
           "scryfall_id": "ae4328fc-20d2-487b-9a74-57c39b0810c0",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:41.110Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/ae4328fc-20d2-487b-9a74-57c39b0810c0/rulings"
+          },
           "type_line": "Creature — Merfolk Warrior",
           "oracle_text": "{3}{G}: Put a +1/+1 counter on this creature.",
           "mana_cost": "{G}",
@@ -382,6 +752,13 @@
           "count": 3,
           "name": "Llanowar Elves",
           "scryfall_id": "8bbcfb77-daa1-4ce5-b5f9-48d0a8edbba9",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:42.437Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/8bbcfb77-daa1-4ce5-b5f9-48d0a8edbba9/rulings"
+          },
           "type_line": "Creature — Elf Druid",
           "oracle_text": "{T}: Add {G}.",
           "mana_cost": "{G}",
@@ -393,6 +770,13 @@
           "count": 2,
           "name": "Thrashing Brontodon",
           "scryfall_id": "d3a45c57-9dc5-418b-99f3-b770a94eea47",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:43.310Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/d3a45c57-9dc5-418b-99f3-b770a94eea47/rulings"
+          },
           "type_line": "Creature — Dinosaur",
           "oracle_text": "{1}, Sacrifice this creature: Destroy target artifact or enchantment.",
           "mana_cost": "{1}{G}{G}",
@@ -404,6 +788,19 @@
           "count": 2,
           "name": "Eager Construct",
           "scryfall_id": "a4beab22-6824-4039-9266-8e6bcf1c91e5",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2020-08-07",
+              "comment": "If multiple players are instructed to scry at once, such as while resolving Eager Construct's triggered ability, those players each look at the top card of their library at the same time, then they choose in turn order whether to put those cards on the top or bottom of their library."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:43.771Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/a4beab22-6824-4039-9266-8e6bcf1c91e5/rulings"
+          },
           "type_line": "Artifact Creature — Construct",
           "oracle_text": "When this creature enters, each player may scry 1. (To scry 1, look at the top card of your library, then you may put that card on the bottom.)",
           "mana_cost": "{2}",
@@ -415,6 +812,19 @@
           "count": 2,
           "name": "Howling Golem",
           "scryfall_id": "24c4089d-8af1-490e-b12f-9d3f0918ce66",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2020-11-10",
+              "comment": "After Howling Golem's triggered ability resolves, players can cast spells and activate abilities before blockers are declared if it's attacking, or before damage is dealt if it's blocking."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:44.637Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/24c4089d-8af1-490e-b12f-9d3f0918ce66/rulings"
+          },
           "type_line": "Artifact Creature — Golem",
           "oracle_text": "Whenever this creature attacks or blocks, each player draws a card.",
           "mana_cost": "{3}",
@@ -426,6 +836,19 @@
           "count": 1,
           "name": "Nissa's Revelation",
           "scryfall_id": "a229b53f-f34b-44f5-b0b4-94239b85a15b",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2015-06-22",
+              "comment": "If the top card of your library isn’t a creature card or it’s a creature card with power 0 or less, you won’t draw any cards. Otherwise, the first card you draw will be the card you revealed."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:45.111Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/a229b53f-f34b-44f5-b0b4-94239b85a15b/rulings"
+          },
           "type_line": "Sorcery",
           "oracle_text": "Scry 5, then reveal the top card of your library. If it's a creature card, you draw cards equal to its power and you gain life equal to its toughness.",
           "mana_cost": "{5}{G}{G}",
@@ -435,6 +858,19 @@
           "count": 3,
           "name": "Rabid Bite",
           "scryfall_id": "53a73200-b798-4bfd-a431-8b94e17b70be",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2020-09-25",
+              "comment": "If either creature is an illegal target as Rabid Bite tries to resolve, the creature you control won't deal damage."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:45.984Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/53a73200-b798-4bfd-a431-8b94e17b70be/rulings"
+          },
           "type_line": "Sorcery",
           "oracle_text": "Target creature you control deals damage equal to its power to target creature you don't control.",
           "mana_cost": "{1}{G}",
@@ -444,6 +880,19 @@
           "count": 1,
           "name": "Overcome",
           "scryfall_id": "0f1e7344-390c-49b4-943d-2056b41fd3ae",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2019-07-12",
+              "comment": "Overcome affects only creatures you control at the time it resolves. Creatures you begin to control later in the turn won't get +2/+2 or gain trample."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:47.746Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/0f1e7344-390c-49b4-943d-2056b41fd3ae/rulings"
+          },
           "type_line": "Sorcery",
           "oracle_text": "Creatures you control get +2/+2 and gain trample until end of turn. (Each of those creatures can deal excess combat damage to the player or planeswalker it's attacking.)",
           "mana_cost": "{3}{G}{G}",
@@ -453,6 +902,13 @@
           "count": 2,
           "name": "Seek the Wilds",
           "scryfall_id": "4ac58ffa-a9ea-4bc3-bd43-76b0764742bb",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:47.298Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/4ac58ffa-a9ea-4bc3-bd43-76b0764742bb/rulings"
+          },
           "type_line": "Sorcery",
           "oracle_text": "Look at the top four cards of your library. You may reveal a creature or land card from among them and put it into your hand. Put the rest on the bottom of your library in any order.",
           "mana_cost": "{1}{G}",
@@ -462,6 +918,13 @@
           "count": 1,
           "name": "Manalith",
           "scryfall_id": "f0d7d904-f29b-4524-9223-27910d748bdb",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:46.845Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/f0d7d904-f29b-4524-9223-27910d748bdb/rulings"
+          },
           "type_line": "Artifact",
           "oracle_text": "{T}: Add one mana of any color.",
           "mana_cost": "{3}",
@@ -471,6 +934,39 @@
           "count": 1,
           "name": "Rhonas's Monument",
           "scryfall_id": "7d24b200-5cab-406a-a0e6-71a4d33b26fb",
+          "rulings": [
+            {
+              "source": "wotc",
+              "published_at": "2017-04-18",
+              "comment": "The triggered ability of Rhonas's Monument can't target the creature spell that caused it to trigger."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2017-04-18",
+              "comment": "Each Monument has one ability that reduces the cost of creature spells of a certain color, and a triggered ability that triggers whenever you cast any creature spell—not just a creature spell of that color."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2017-04-18",
+              "comment": "A creature spell that's multiple colors is each of those colors. For example, Ahn-Crop Champion is a white creature and a green creature, so it can benefit from either Oketra's Monument or Rhonas's Monument—or both at once."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2017-04-18",
+              "comment": "To determine the total cost of a creature spell, start with the mana cost or alternative cost you're paying, add any cost increases, then apply any cost reductions. The mana value of the creature remains unchanged, no matter what the total cost to cast it was."
+            },
+            {
+              "source": "wotc",
+              "published_at": "2017-04-18",
+              "comment": "Each Monument's triggered ability triggers as the creature spell is cast and resolves before that creature spell resolves. The ability will resolve even if that creature spell is countered."
+            }
+          ],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:48.225Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/7d24b200-5cab-406a-a0e6-71a4d33b26fb/rulings"
+          },
           "type_line": "Legendary Artifact",
           "oracle_text": "Green creature spells you cast cost {1} less to cast.\nWhenever you cast a creature spell, target creature you control gets +2/+2 and gains trample until end of turn.",
           "mana_cost": "{3}",
@@ -480,6 +976,13 @@
           "count": 1,
           "name": "Talons of Wildwood",
           "scryfall_id": "9ffa2e83-bc78-4bde-9692-e5165c4ef63b",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:49.173Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/9ffa2e83-bc78-4bde-9692-e5165c4ef63b/rulings"
+          },
           "type_line": "Enchantment — Aura",
           "oracle_text": "Enchant creature\nEnchanted creature gets +1/+1 and has trample. (It can deal excess combat damage to the player or planeswalker it's attacking.)\n{2}{G}: Return this card from your graveyard to your hand.",
           "mana_cost": "{1}{G}",
@@ -489,6 +992,13 @@
           "count": 25,
           "name": "Forest",
           "scryfall_id": "58fe058d-7796-4233-8d74-2a12f9bd0023",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:48.699Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/58fe058d-7796-4233-8d74-2a12f9bd0023/rulings"
+          },
           "type_line": "Basic Land — Forest",
           "oracle_text": "({T}: Add {G}.)",
           "mana_cost": "",
@@ -498,6 +1008,13 @@
           "count": 1,
           "name": "Avatar of Growth",
           "scryfall_id": "f524a232-7158-4f85-880e-fede2f9d35d1",
+          "rulings": [],
+          "rulings_cache": {
+            "status": "fetched",
+            "fetched_at": "2026-10-20T19:57:49.229Z",
+            "source": "Scryfall MCP get_rulings",
+            "uri": "https://api.scryfall.com/cards/f524a232-7158-4f85-880e-fede2f9d35d1/rulings"
+          },
           "type_line": "Creature — Elemental Avatar",
           "oracle_text": "This spell costs {1} less to cast for each opponent you have.\nTrample\nWhen this creature enters, each player searches their library for up to two basic land cards, puts them onto the battlefield, then shuffles.",
           "mana_cost": "{4}{G}{G}",
