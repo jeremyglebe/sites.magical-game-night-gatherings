@@ -1160,6 +1160,43 @@
         color: var(--accent);
         background: #283526;
       }
+      .postgame-banner {
+        display: flex; justify-content: space-between; align-items: center;
+        flex-wrap: wrap; gap: 14px; padding: 16px 18px; margin: 0 0 18px;
+        border: 1px solid #657457; border-radius: 8px; background: #1c2c23;
+      }
+      .postgame-banner h2 { font-size: 16px; margin-bottom: 4px; }
+      .postgame-banner p { color: var(--muted); font-size: 12px; }
+      .postgame-banner-actions { display: flex; gap: 10px; align-items: center; }
+      .postgame-banner-actions a { font-size: 12px; }
+      #survey-dialog { width: 900px; }
+      .survey-introduction { color: var(--muted); font-size: 12px; margin-bottom: 18px; }
+      .survey-introduction p + p { margin-top: 8px; }
+      .survey-seat { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; }
+      .survey-seat select { min-width: 170px; }
+      .survey-form-fields { display: grid; gap: 18px; }
+      .survey-question { border: 1px solid var(--line); border-radius: 7px; padding: 15px; min-width: 0; }
+      .survey-question > label, .survey-question > legend { display: block; font-weight: 600; color: var(--ink); font-size: 13px; margin-bottom: 7px; }
+      .survey-question p { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+      .survey-question .survey-anchors { font-size: 11px; }
+      .survey-question select { max-width: 100%; }
+      .survey-question textarea { display: block; width: 100%; min-height: 75px; resize: vertical; margin-top: 10px; }
+      .survey-question input, .survey-question textarea, .survey-question select {
+        color: var(--ink); background: var(--surface); border: 1px solid var(--line);
+        border-radius: 5px; padding: 8px 10px; font: inherit;
+      }
+      .survey-question .survey-reason-label { color: var(--muted); font-weight: 400; font-size: 11px; margin: 10px 0 0; }
+      .survey-incident { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 16px; }
+      .survey-incident-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 12px 0; }
+      .survey-incident-fields label { display: grid; gap: 5px; font-size: 11px; color: var(--muted); }
+      .survey-incident-fields input, .survey-incident-fields select { width: 100%; min-width: 0; }
+      .survey-submit-row { display: flex; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 22px; }
+      .survey-submit-row p { color: var(--muted); font-size: 11px; }
+      .survey-form-error { color: #ffc9b7; margin: 15px 0; white-space: pre-wrap; }
+      @media(max-width: 600px) {
+        .survey-incident-fields { grid-template-columns: minmax(0, 1fr); }
+        .survey-seat { align-items: stretch; flex-direction: column; }
+      }
       .loading {
         padding: 70px;
         text-align: center;
@@ -1789,6 +1826,10 @@
             ><button class="quiet danger" data-control="stop">Stop</button>
           </div>
         </div>
+        <section id="postgame-banner" class="postgame-banner" aria-label="Post-game feedback" hidden>
+          <div><h2 id="postgame-title">Post-game feedback</h2><p id="postgame-progress" role="status"></p></div>
+          <div class="postgame-banner-actions"><button id="answer-survey" class="primary" hidden>Answer questionnaire</button><a id="review-feedback" href="/games" target="_blank" rel="noopener">View player feedback ↗</a></div>
+        </section>
         <div class="workspace">
           <div class="table-shell">
             <div id="result" class="result-banner" role="status" hidden></div>
@@ -1931,6 +1972,18 @@
         <button id="close-inspector" class="quiet">Close ×</button>
       </div>
       <div id="inspector-content" class="dialog-content"></div>
+    </dialog>
+    <dialog id="survey-dialog" aria-labelledby="survey-title">
+      <div class="dialog-header"><div><div class="eyebrow">POST-GAME QUESTIONNAIRE</div><h2 id="survey-title">Your playtest feedback</h2></div><button id="close-survey" class="quiet" type="button">Close ×</button></div>
+      <div class="dialog-content">
+        <div id="survey-introduction" class="survey-introduction"></div>
+        <div class="survey-seat"><label for="survey-player">Answer as</label><select id="survey-player"></select></div>
+        <form id="survey-form">
+          <div id="survey-form-fields" class="survey-form-fields"></div>
+          <p id="survey-form-error" class="survey-form-error" role="alert" hidden></p>
+          <div class="survey-submit-row"><button id="submit-survey" class="primary" type="submit">Submit feedback</button><p>Your draft stays here while you switch players. Submit your own independent assessment.</p></div>
+        </form>
+      </div>
     </dialog>
     <script type="module">
       const $ = (selector) => document.querySelector(selector);
@@ -2515,6 +2568,10 @@
         return null;
       }
       function workerText(id) {
+        if (app?.postgame) {
+          if (app.postgame.responses?.[id]) return "Feedback submitted";
+          return workerFor(id)?.active ? "Completing feedback…" : "Awaiting feedback";
+        }
         const player = table?.players?.find((p) => p.id === id);
         const outcome = player && playerOutcome(player);
         if (outcome) return outcome.status;
@@ -2834,7 +2891,7 @@
             })
           : null;
         const indicator = $("#chat-thinking");
-        const signature = active ? `${active.id}:${active.name}` : "";
+        const signature = active ? `${active.id}:${active.name}:${app?.postgame ? "survey" : "play"}` : "";
         if (indicator.dataset.player === signature) return;
         const list = $("#recent-moves");
         const followLatest = list.scrollHeight - list.clientHeight - list.scrollTop < 32;
@@ -2847,7 +2904,7 @@
           const dots = make("span", "thinking-dots");
           dots.setAttribute("aria-hidden", "true");
           dots.append(make("span"), make("span"), make("span"));
-          bubble.append(dots, make("span", "", `${active.name || active.id} is thinking…`));
+          bubble.append(dots, make("span", "", `${active.name || active.id} ${app?.postgame ? "is completing feedback…" : "is thinking…"}`));
           indicator.append(speakerAvatar(active.id), bubble);
         }
         if (followLatest) list.scrollTop = list.scrollHeight;
@@ -3165,6 +3222,170 @@
           renderPlanUsage();
         }
       });
+      let surveyBusy = false;
+      let surveyFormIdentity = "";
+      const surveyDrafts = new Map();
+      const postgameComplete = (survey) => ["complete", "completed"].includes(survey?.status);
+      function pendingHumans() {
+        return (app?.postgame?.players || []).filter(player => player.ai === false && !app.postgame.responses?.[player.id]);
+      }
+      function surveyDraftKey(id) {
+        return `game-night-survey:${app?.match?.id || displayedMatch}:${app?.postgame?.resultRevision}:${id}`;
+      }
+      function surveyOptions(select, options, emptyLabel) {
+        if (emptyLabel) { const empty = make("option", "", emptyLabel); empty.value = ""; select.append(empty); }
+        for (const item of options || []) {
+          const value = typeof item === "string" ? item : item.value || item.id;
+          const option = make("option", "", typeof item === "string" ? humanize(item) : item.label || humanize(value));
+          option.value = value; select.append(option);
+        }
+      }
+      function surveyField(label, node) {
+        const wrapper = make("label", "", label); wrapper.append(node); return wrapper;
+      }
+      function addSurveyIncident(value = {}) {
+        const schema = app.postgame.schema;
+        if ($("#survey-incidents").children.length >= (schema.limits?.incidents || 20)) return;
+        const entry = make("div", "survey-incident");
+        const description = make("textarea"); description.dataset.incident = "description";
+        description.placeholder = "What happened, which rule was involved, and how did it affect the game?";
+        description.setAttribute("aria-label", "Rules incident description"); description.maxLength = schema.limits?.incidentDescription || 2000; description.required = true;
+        description.value = value.description || "";
+        const fields = make("div", "survey-incident-fields");
+        const revision = make("input"); revision.type = "number"; revision.min = "0";
+        revision.max = app.postgame.resultRevision; revision.step = "1"; revision.placeholder = "Optional";
+        revision.dataset.incident = "revision"; revision.value = value.revision ?? "";
+        const status = make("select"); status.dataset.incident = "status";
+        surveyOptions(status, schema.incidentStatusOptions); status.value = value.status || "uncertain";
+        const impact = make("select"); impact.dataset.incident = "impact";
+        surveyOptions(impact, schema.incidentImpactOptions); impact.value = value.impact || "uncertain";
+        fields.append(surveyField("Recorded revision", revision), surveyField("Was it corrected?", status), surveyField("Impact", impact));
+        const remove = make("button", "quiet", "Remove incident"); remove.type = "button";
+        remove.addEventListener("click", () => { entry.remove(); saveSurveyDraft(); });
+        entry.append(description, fields, remove); $("#survey-incidents").append(entry);
+      }
+      function readSurveyForm() {
+        const root = $("#survey-form-fields"), ratings = {};
+        for (const rating of app.postgame.schema.ratings || []) {
+          const row = [...root.querySelectorAll("[data-rating]")].find(node => node.dataset.rating === rating.id);
+          const value = row.querySelector("select").value;
+          ratings[rating.id] = { score: value === "unknown" || value === "" ? null : Number(value), reason: row.querySelector("textarea").value.trim() };
+        }
+        const answers = { ratings };
+        for (const node of root.querySelectorAll("[data-answer]")) answers[node.dataset.answer] = node.value.trim();
+        answers.rules_incidents = answers.rules_observation !== "reported" ? [] : [...root.querySelectorAll(".survey-incident")].map(row => {
+          const entry = {};
+          for (const node of row.querySelectorAll("[data-incident]")) entry[node.dataset.incident] = node.dataset.incident === "revision" ? (node.value === "" ? null : Number(node.value)) : node.value.trim();
+          return entry;
+        });
+        return answers;
+      }
+      function saveSurveyDraft() {
+        if (!surveyFormIdentity || !app?.postgame || !$("#survey-form-fields").children.length) return;
+        const answers = readSurveyForm();
+        answers._unansweredRatings = [...$("#survey-form-fields").querySelectorAll("[data-rating]")].filter(row => row.querySelector("select").value === "").map(row => row.dataset.rating);
+        surveyDrafts.set(surveyFormIdentity, answers);
+        try { sessionStorage.setItem(surveyFormIdentity, JSON.stringify(answers)); } catch { /* Memory draft remains available. */ }
+      }
+      function updateIncidentVisibility() {
+        const observation = $("#survey-rules-observation").value;
+        $("#survey-incidents-group").hidden = observation !== "reported";
+        for (const node of $("#survey-incidents-group").querySelectorAll("input,select,textarea")) node.disabled = $("#survey-incidents-group").hidden;
+        if (observation === "reported" && !$("#survey-incidents").children.length) addSurveyIncident();
+      }
+      function buildSurveyForm(id) {
+        const survey = app.postgame, schema = survey.schema;
+        surveyFormIdentity = surveyDraftKey(id);
+        let draft = surveyDrafts.get(surveyFormIdentity);
+        if (!draft) { try { draft = JSON.parse(sessionStorage.getItem(surveyFormIdentity)); } catch { /* Start a new draft. */ } }
+        draft ||= {};
+        const root = $("#survey-form-fields"); root.replaceChildren();
+        $("#survey-form-error").hidden = true;
+        for (const rating of schema.ratings || []) {
+          const group = make("div", "survey-question"); group.dataset.rating = rating.id;
+          const select = make("select"); select.id = `survey-score-${rating.id}`; select.required = true;
+          const label = make("label", "", rating.label || rating.id); label.htmlFor = select.id;
+          group.append(label, make("p", "", rating.question));
+          if (rating.help) group.append(make("p", "", rating.help));
+          group.append(make("p", "survey-anchors", Object.entries(rating.anchors || {}).map(([score, text]) => `${score}: ${text}`).join(" · ")));
+          surveyOptions(select, [{value:"unknown",label:"Not enough evidence"}, ...Array.from({length:10},(_,i)=>({value:String(i+1),label:`${i+1} / 10`}))], "Choose a rating");
+          const answer = draft.ratings?.[rating.id]; select.value = answer && !draft._unansweredRatings?.includes(rating.id) ? (answer.score === null ? "unknown" : String(answer.score)) : "";
+          const reason = make("textarea"); reason.id = `survey-reason-${rating.id}`; reason.maxLength = schema.limits?.ratingReason || 1200;
+          reason.value = answer?.reason || ""; reason.placeholder = "Briefly explain using this game. Note any uncertainty.";
+          const reasonLabel = make("label", "survey-reason-label", "Reason / evidence (required when not rated)"); reasonLabel.htmlFor = reason.id;
+          const updateReason = () => { reason.required = select.value === "unknown"; }; updateReason(); select.addEventListener("change", updateReason);
+          group.append(select, reasonLabel, reason); root.append(group);
+        }
+        for (const question of schema.textQuestions || []) {
+          const group = make("div", "survey-question"), input = make("textarea");
+          input.id = `survey-answer-${question.id}`; input.dataset.answer = question.id; input.maxLength = schema.limits?.textAnswer || 3000;
+          input.value = draft[question.id] || "";
+          const label = make("label", "", question.label || question.id); label.htmlFor = input.id;
+          group.append(label, make("p", "", question.question));
+          if (question.help) group.append(make("p", "", question.help));
+          group.append(input); root.append(group);
+        }
+        const rules = make("div", "survey-question");
+        const ruleSelect = make("select"); ruleSelect.id = "survey-rules-observation"; ruleSelect.dataset.answer = "rules_observation"; ruleSelect.required = true;
+        surveyOptions(ruleSelect, schema.rulesObservationOptions, "Choose an observation"); ruleSelect.value = draft.rules_observation || "";
+        const ruleLabel = make("label", "", "Rules mistakes and corrections"); ruleLabel.htmlFor = ruleSelect.id;
+        const incidentGroup = make("div"); incidentGroup.id = "survey-incidents-group";
+        const incidents = make("div"); incidents.id = "survey-incidents";
+        const add = make("button", "quiet", "+ Add a rules incident"); add.type = "button";
+        add.addEventListener("click", () => { addSurveyIncident(); saveSurveyDraft(); });
+        incidentGroup.append(incidents, add);
+        rules.append(ruleLabel, make("p", "", "Report specific observed mistakes or suspected issues. Distinguish corrected mistakes from unresolved ones; a revision link is optional."), ruleSelect, incidentGroup); root.append(rules);
+        for (const incident of draft.rules_incidents || []) addSurveyIncident(incident);
+        ruleSelect.addEventListener("change", updateIncidentVisibility); updateIncidentVisibility();
+        const confidence = make("div", "survey-question"), select = make("select");
+        select.id = "survey-confidence"; select.dataset.answer = "confidence"; select.required = true;
+        surveyOptions(select, schema.confidenceOptions, "Choose your confidence"); select.value = draft.confidence || "";
+        const label = make("label", "", "Confidence in this assessment"); label.htmlFor = select.id;
+        confidence.append(label, make("p", "", "Consider how much you observed, how representative the game was, and any rules uncertainty."), select); root.append(confidence);
+      }
+      function renderPostgame() {
+        const survey = app?.postgame;
+        $("#postgame-banner").hidden = !survey;
+        if (!survey) { if ($("#survey-dialog").open) $("#survey-dialog").close(); return; }
+        const players = survey.players || [], submitted = players.filter(player => survey.responses?.[player.id]).length;
+        const complete = postgameComplete(survey);
+        $("#postgame-title").textContent = complete ? "Playtest complete" : "Game ended · collecting player feedback";
+        $("#postgame-progress").textContent = `${submitted} of ${players.length} questionnaires submitted${complete ? ". Feedback is saved with the game." : ". Each player answers independently before the playtest is marked complete."}`;
+        $("#review-feedback").href = savedGameURL(app.match?.id) + "#feedback";
+        $("#answer-survey").hidden = !pendingHumans().length;
+        if ($("#survey-dialog").open && !pendingHumans().some(player => player.id === $("#survey-player").value)) $("#survey-dialog").close();
+      }
+      $("#answer-survey").addEventListener("click", () => {
+        const players = pendingHumans(); if (!players.length) return;
+        const select = $("#survey-player"), selected = select.value;
+        select.replaceChildren(); surveyOptions(select, players.map(player => ({value:player.id,label:player.name || player.id})));
+        select.value = players.some(player => player.id === selected) ? selected : players[0].id;
+        const intro = $("#survey-introduction"); intro.replaceChildren();
+        if (app.postgame.schema.introduction) intro.append(make("p", "", app.postgame.schema.introduction));
+        const instructions = app.postgame.schema.instructions || [];
+        for (const text of Array.isArray(instructions) ? instructions : [instructions]) intro.append(make("p", "", text));
+        buildSurveyForm(select.value); $("#survey-dialog").showModal();
+      });
+      $("#survey-player").addEventListener("change", () => { saveSurveyDraft(); buildSurveyForm($("#survey-player").value); });
+      $("#survey-form").addEventListener("input", saveSurveyDraft);
+      $("#survey-form").addEventListener("change", saveSurveyDraft);
+      $("#close-survey").addEventListener("click", () => { saveSurveyDraft(); $("#survey-dialog").close(); });
+      $("#survey-dialog").addEventListener("cancel", saveSurveyDraft);
+      $("#survey-form").addEventListener("submit", async event => {
+        event.preventDefault(); if (surveyBusy) return;
+        saveSurveyDraft(); surveyBusy = true; $("#submit-survey").disabled = true;
+        $("#survey-form-error").hidden = true;
+        try {
+          const playerId = $("#survey-player").value;
+          await request("/api/survey", { playerId, answers: readSurveyForm() });
+          surveyDrafts.delete(surveyFormIdentity);
+          try { sessionStorage.removeItem(surveyFormIdentity); } catch { /* Saved response is already durable. */ }
+          $("#survey-dialog").close(); surveyFormIdentity = "";
+          await refresh();
+        } catch (error) {
+          $("#survey-form-error").textContent = error.message; $("#survey-form-error").hidden = false;
+        } finally { surveyBusy = false; $("#submit-survey").disabled = false; }
+      });
       function renderRunner() {
         const run = coordinator();
         const phase = runPhase();
@@ -3174,7 +3395,8 @@
         $("#new-match").hidden = legacy;
         $("#run-limits").hidden = legacy || !run;
         $("#run-limits").disabled = busy;
-        $("#run-state").textContent = legacy ? "Manual table" : humanize(phase);
+        $("#run-state").textContent = legacy ? "Manual table" : app?.postgame && !postgameComplete(app.postgame)
+          ? (run?.mode === "paused" ? "Survey paused" : run?.mode === "stopped" ? "Survey stopped" : "Post-game survey") : humanize(phase);
         const error = run?.error || run?.reason || run?.message;
         $("#run-detail").textContent =
           error ||
@@ -3183,6 +3405,7 @@
             : "AI players start when you press Start.");
         const recoveryVisible =
           !legacy &&
+          !app?.postgame &&
           run &&
           !run.pendingRecipient &&
           ["paused", "stalled"].includes(phase);
@@ -3257,6 +3480,7 @@
         for (const node of document.querySelectorAll("[data-worker]"))
           node.textContent = workerText(node.dataset.worker);
         renderThinking();
+        renderPostgame();
       }
       $("#control-recipient").addEventListener("change", renderRunner);
       $("#control-recovery").addEventListener("submit", async (event) => {

@@ -9,6 +9,7 @@ import { referenceLines } from './references.mjs';
 import { readRules } from './rules.mjs';
 import { createRecording, appendRecording, recordingMarkdown } from './game-log.mjs';
 import { serveAvatar } from './avatars.mjs';
+import { createSurvey, submitSurveyResponse } from './survey.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const html = readFileSync(resolve(here, 'index.html'));
@@ -17,7 +18,8 @@ const json = (response, status, value) => {
   response.end(JSON.stringify(value));
 };
 
-export async function startTable({ session, setup, port = 5180, onCommit, onDecision, beforeAction, comprehensivePath, basicPath, cardRulings = {} }) {
+export async function startTable({ session, setup, port = 5180, onCommit, onDecision, beforeAction,
+  postgame = false, beforeSurvey, onSurvey, comprehensivePath, basicPath, cardRulings = {} }) {
   // The host supplies a validated, match-pinned reference cache. It augments
   // reads of legacy cards without editing the authoritative state or its log.
   cardRulings = structuredClone(cardRulings);
@@ -61,11 +63,13 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
       if (!setup) throw new Error('A new session needs --setup with a deck configuration');
       const config = typeof setup === 'string' ? JSON.parse(readFileSync(setup, 'utf8')) : setup;
       const state = createTable(config);
+      if (postgame) createSurvey(config.players, state.revision); // Validate participants before starting play.
       const references = (config.references || []).map(path => ({ path, text: referenceLines(path).join('\n') }));
       persist({ state, recording: createRecording(state, config, references),
         credentials: Object.fromEntries(state.players.map(p => [p.id, randomUUID()])) });
     }
     if (saved.state.version !== 1) throw new Error('Unsupported session version');
+    if (resumed && postgame && !saved.state.result) createSurvey(saved.recording?.setup?.players || saved.state.players, saved.state.revision);
     if (resumed) refreshExports();
   } catch (error) { unlinkSync(lock); throw error; }
 
@@ -78,6 +82,36 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
     const cached = cardRulings[details.scryfall_id];
     if (cached?.rulings_cache?.status !== 'fetched' || !Array.isArray(cached.rulings)) return details;
     return { ...details, rulings: structuredClone(cached.rulings), rulings_cache: structuredClone(cached.rulings_cache) };
+  }
+
+  function surveyForPlayer(actor) {
+    const survey = saved.recording?.postgame;
+    if (!survey) return { available: false, message: 'No post-game survey has started.' };
+    const player = survey.players.find(player => player.id === actor);
+    if (!player) throw new Error('Unknown survey participant');
+    // Players never receive other respondents' answers, even after completion.
+    return structuredClone({ available: true, version: survey.version, schema: survey.schema,
+      status: survey.status, resultRevision: survey.resultRevision, player,
+      players: survey.players, response: survey.responses[actor] || null });
+  }
+  function submitSurvey(actor, args) {
+    if (!saved.state.result || !saved.recording?.postgame) throw new Error('The game has not entered its post-game survey');
+    if (Object.hasOwn(saved.recording.postgame.responses, actor)) {
+      // A lost reply must not make a saved response look rejected. Validate an
+      // exact retry under the authenticated seat without advancing twice.
+      submitSurveyResponse(saved.recording.postgame, actor, args.answers);
+      return { accepted: true, decision_completed: true, status: saved.recording.postgame.status, already_submitted: true };
+    }
+    const authorization = beforeSurvey?.(actor, args);
+    if (authorization && typeof authorization.then === 'function') {
+      authorization.catch?.(() => {});
+      throw new Error('Survey authorization must be synchronous');
+    }
+    const survey = submitSurveyResponse(saved.recording.postgame, actor, args.answers);
+    persist({ ...saved, recording: { ...saved.recording, postgame: survey } });
+    const completion = onSurvey?.(actor, args);
+    return { accepted: true, decision_completed: true, status: survey.status,
+      ...(completion && typeof completion === 'object' ? completion : {}) };
   }
 
   const server = createServer(async (request, response) => {
@@ -137,13 +171,19 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
           if (!Number.isInteger(start) || !Number.isInteger(count)) throw new Error('Invalid line range');
           json(response, 200, { path, start, total_lines: lines.length, text: lines.slice(start - 1, start - 1 + count).join('\n') });
         }
-      } else if (request.method === 'POST' && ['/api/act', '/api/decision'].includes(url.pathname)) {
+      } else if (request.method === 'GET' && url.pathname === '/api/survey') {
+        json(response, 200, surveyForPlayer(actor));
+      } else if (request.method === 'POST' && ['/api/act', '/api/decision', '/api/survey'].includes(url.pathname)) {
         let body = '';
         for await (const chunk of request) {
           body += chunk;
           if (Buffer.byteLength(body) > 200000) { json(response, 413, { error: 'Request too large' }); return; }
         }
         const args = JSON.parse(body);
+        if (url.pathname === '/api/survey') {
+          json(response, 200, submitSurvey(actor, args));
+          return;
+        }
         if (url.pathname === '/api/decision') {
           if (!onDecision) throw new Error('No player coordinator is attached to this table');
           const result = await onDecision(actor, args);
@@ -155,10 +195,14 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
           authorization.catch?.(() => {});
           throw new Error('Action authorization must be synchronous');
         }
+        if (saved.recording?.postgame) throw new Error('Gameplay has ended; only post-game feedback may be submitted');
         // No asynchronous boundary between checking revision and saving the batch.
         const previous = saved.state;
         const state = applyActions(saved.state, actor, args.revision, args.actions, args.reason);
         const recording = appendRecording(saved.recording || createRecording(previous), previous, state);
+        if (postgame && state.result && !previous.result) {
+          recording.postgame = createSurvey(recording.setup?.players || state.players, state.revision);
+        }
         persist({ ...saved, state, recording });
         const completion = onCommit?.(state, actor);
         json(response, 200, {
@@ -181,6 +225,8 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
     server, url: 'http://127.0.0.1:' + server.address().port,
     getState: () => saved.state,
     getRecording: () => saved.recording,
+    getSurvey: surveyForPlayer,
+    submitSurvey,
     getExportError: () => exportError,
     getToken: seat => saved.credentials[seat],
   };

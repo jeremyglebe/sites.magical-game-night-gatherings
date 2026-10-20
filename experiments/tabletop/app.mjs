@@ -44,6 +44,7 @@ const closeServer = server => new Promise((ok, fail) => server.close(error => er
 export function normalizeSetup(input) {
   if (!input || !Array.isArray(input.players) || input.players.length < 1) throw new Error('Add at least one player');
   const players = input.players.map((p, i) => {
+    if (['__proto__', 'constructor', 'prototype'].includes(p.id)) throw new Error('Choose a different player ID');
     const choice = p.deck ?? p.deckPreset ?? (i % 2 ? 'green' : 'white');
     const preset = typeof choice === 'string' ? presets.findIndex(item => item.id === choice) : -1;
     if (!Array.isArray(choice) && preset < 0) throw new Error('Unknown deck preset');
@@ -88,13 +89,15 @@ export async function startApp({
     || resolve(here, '../../.playtest/rules/ComprehensiveRules.txt');
 
   function appState() {
+    const postgame = table?.getRecording()?.postgame || null;
     return {
       match: match ? {
         id: match.id, title: match.config.title, layout: match.config.layout,
-        phase: coordinator?.status().state || 'paused',
+        phase: postgame?.status === 'pending' ? 'survey_pending' : coordinator?.status().state || 'paused',
         session: match.session, players: match.config.players.map(({ deck, ...p }) => p),
       } : null,
       coordinator: coordinator?.status() || null, presets, defaults, avatars: avatarNames, archive: true,
+      postgame,
       planUsage: planUsageView(match?.planUsage, { error: usageError, refreshing: !!usageRequest }),
       rules: readRules({}, { comprehensivePath: activeRulesPath || configuredRulesPath, basicPath: activeBasicPath || basicRulesPath }),
     };
@@ -161,18 +164,29 @@ export async function startApp({
     let nextCoordinator;
     try {
       nextTable = await startTable({
-        session, setup: config, port: 0, comprehensivePath: rulesPath, basicPath, cardRulings,
+        session, setup: config, port: 0, comprehensivePath: rulesPath, basicPath, cardRulings, postgame: true,
         onCommit: (state, actor) => {
+          if (state.result) {
+            const survey = nextTable.getRecording()?.postgame;
+            if (survey?.status === 'pending') nextCoordinator?.beginSurvey({
+              pending: survey.players.filter(player => !survey.responses[player.id]).map(player => player.id),
+              revision: survey.resultRevision,
+            });
+            else nextCoordinator?.finish();
+            return { decision_completed: true, phase: survey ? 'survey' : 'finished' };
+          }
           const action = state.events.at(-1)?.actions?.at(-1);
           let handoff;
           if (action?.type === 'pass' || action?.type === 'pass_turn') {
             handoff = nextCoordinator?.handoff(actor, action.next, state.revision, action.type === 'pass_turn' ? 'turn' : 'priority');
           } else nextCoordinator?.notify(state.revision);
-          if (state.result) nextCoordinator?.finish();
           return handoff;
         },
         onDecision: (seat, decision) => nextCoordinator?.complete(seat, decision),
+        beforeSurvey: (seat, args) => nextCoordinator.authorizeSurvey(seat, args.decision_id),
+        onSurvey: (seat, args) => nextCoordinator.submitSurvey(seat, args.decision_id),
         beforeAction: (seat, args) => {
+          if (nextTable.getState().result) throw new Error('Gameplay has ended; submit post-game feedback instead');
           if (config.players.find(p => p.id === seat)?.ai) nextCoordinator.authorizeDecision(seat, args.decision_id);
           else nextCoordinator.authorizeManual(seat);
         },
@@ -189,6 +203,7 @@ export async function startApp({
         getView: seat => observe(nextTable.getState(), seat),
         getEvents: (seat, after, through) => eventsSince(nextTable.getState(), seat, Math.max(0, after)).events.filter(e => e.revision <= through),
         getPublicEvents: (after, through) => eventsSince(nextTable.getState(), null, Math.max(0, after)).events.filter(e => e.revision <= through),
+        getSurvey: seat => nextTable.getSurvey(seat),
         onChange: snapshot => {
           const wasActive = nextMatch.savedCoordinator?.players?.some(p => p.active);
           nextMatch.savedCoordinator = snapshot;
@@ -199,7 +214,14 @@ export async function startApp({
           }
         },
       });
-      if (nextTable.getState().result) nextCoordinator.finish();
+      if (nextTable.getState().result) {
+        const survey = nextTable.getRecording()?.postgame;
+        if (survey?.status === 'pending') nextCoordinator.beginSurvey({
+          pending: survey.players.filter(player => !survey.responses[player.id]).map(player => player.id),
+          revision: survey.resultRevision,
+        });
+        else nextCoordinator.finish();
+      }
       else {
         const state = nextTable.getState();
         nextCoordinator.notify(state.revision);
@@ -290,6 +312,10 @@ export async function startApp({
         response.end(readFileSync(join(here, 'index.html'))); return;
       }
       if (request.method === 'GET' && url.pathname === '/api/app') { json(response, 200, appState()); return; }
+      if (request.method === 'GET' && url.pathname === '/survey.mjs') {
+        response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' });
+        response.end(readFileSync(join(here, 'survey.mjs'))); return;
+      }
       if (request.method === 'POST' && url.pathname === '/api/usage/refresh') {
         json(response, 200, await refreshPlanUsage({ force: true })); return;
       }
@@ -297,6 +323,17 @@ export async function startApp({
         json(response, 201, await createMatch(await bodyJSON(request))); return;
       }
       if (!match) { json(response, 404, { error: 'Create a match first' }); return; }
+      if (request.method === 'GET' && url.pathname === '/api/survey') {
+        json(response, 200, table.getRecording()?.postgame || null); return;
+      }
+      if (request.method === 'POST' && url.pathname === '/api/survey') {
+        const args = await bodyJSON(request);
+        if (!match.config.players.some(player => player.id === args.playerId && player.ai === false)) {
+          throw new Error('Use this form for a configured human player; AI players submit through their own connection');
+        }
+        table.submitSurvey(args.playerId, { answers: args.answers });
+        json(response, 200, appState()); return;
+      }
       if (request.method === 'GET' && url.pathname === '/api/history') {
         const since = Number(url.searchParams.get('since') || 0);
         json(response, 200, eventsSince(table.getState(), null, since)); return;

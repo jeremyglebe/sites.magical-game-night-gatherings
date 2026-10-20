@@ -10,9 +10,21 @@ const localCodex = fileURLToPath(new URL('../../node_modules/.bin/codex', import
 const defaultCodex = process.env.TABLETOP_CODEX_BIN || (existsSync(localCodex) ? localCodex : 'codex');
 const allowedReasoning = ['low', 'medium', 'high', 'xhigh', 'max'];
 const tabletopTools = ['observe_table', 'act', 'say', 'pass_priority', 'pass_turn', 'read_card', 'read_reference', 'read_events', 'read_rules', 'complete_decision'];
+const surveyTools = ['observe_table', 'read_card', 'read_reference', 'read_events', 'read_rules', 'read_survey', 'submit_survey', 'complete_decision'];
 const json = value => JSON.stringify(value);
 
-export function playerPrompt({ player, sessionId, revision, fromRevision = revision, wake, view, events, turnHistory, quickstart = '', basicRules = '' }) {
+export function playerPrompt({ player, sessionId, revision, fromRevision = revision, wake, phase, survey, view, events, turnHistory, quickstart = '', basicRules = '' }) {
+  if (phase === 'survey' || wake?.kind === 'survey') return [
+    `You are ${player.name || player.id}, player ${player.id}, completing your independent post-game playtest survey in your own player conversation.`,
+    'GAMEPLAY HAS ENDED. This request replaces all earlier instructions to continue play or pass priority. Do not modify the table, announce moves, replay game actions, or hand control to another player. The coordinator will collect each participant’s feedback separately.',
+    'Use your own conversation, your player-visible final state, and recorded observations. Other players’ answers and hidden cards are not available and must not be guessed. You may use the read-only tabletop tools to check a specific event, card ruling, or uncertain rule. Do not reread the whole rulebook or analyze every move again.',
+    'Answer the pinned questionnaire below with concise, specific evidence. Cite a recorded revision for a noteworthy moment or rule mistake when you can verify it. Distinguish an observed rule mistake from a suspected one, and record whether the players corrected it. Do not treat winning as proof of a stronger deck or losing as proof of an unfair matchup. Separate deck and format effects from draws, seat order, and player decisions. One game supports observations, not a reliable balance verdict.',
+    'Use the scale anchors provided. A null score means insufficient evidence and requires a brief explanation. Do not fill uncertainty with a confident rating. As an AI, the enjoyment rating is your estimate of likely human enjoyment from the observed play; do not claim personal feelings. Keep assessments concise; provide useful evidence and conclusions, not private chain-of-thought.',
+    `Pinned survey and your submission status:\n${json(survey)}`,
+    `Unseen player-visible events through revision ${revision}:\n${json(events)}`,
+    `Final player-visible table:\n${json(view)}`,
+    'Submit your answers once using submit_survey({answers:...}). The successful submission is TERMINAL: end your response immediately, with no additional tools or complete_decision call. If validation fails, correct the cited fields and resubmit; do not alter the game. Use complete_decision status needs_help only for a genuine blocker that prevents answering, not for ordinary uncertainty that the questionnaire can represent.',
+  ].join('\n\n');
   // Repeated on every resume so an older conversation cannot retain obsolete
   // broadcast/no-op instructions or confuse hidden card lists with empty decks.
   const tableContract = [
@@ -28,7 +40,7 @@ export function playerPrompt({ player, sessionId, revision, fromRevision = revis
     'End-of-turn shortcut: when your useful play is finished, the stack is clear, and no opponent choice, pending trigger, or relevant response window remains, perform required cleanup and use pass_turn directly, describing the quiet remaining phases in its public message. Do not make a separate handoff solely to confirm every empty phase or ask permission to end your turn. The recipient can request an earlier legal response point and coordinate a correction, as with other shortcuts.',
     'When another player needs to act or respond, use pass_priority({revision,next,message?}) with that exact player ID. To finish your turn and give the next player their turn, use pass_turn({revision,next,message?}); it changes turn markers only, so perform your own required cleanup first. Neither tool resolves spells, untaps cards, draws, or applies game rules. Public say messages communicate choices but do not wake anybody; a question needing an answer must be followed by a handoff to its recipient.',
     'A successful pass_priority or pass_turn is TERMINAL for this decision: it records the handoff and completes your worker decision automatically. End your response immediately afterwards. Do not call complete_decision, observe, say, or any other tool after a successful handoff. A final pass/pass_turn in a generic act batch is terminal in the same way. If the tool rejected a stale revision, observe the current state and reconsider before trying a new action.',
-    'No action and passing are different. If you have priority and nothing useful to do, promptly pass_priority to the correct next player; do not use no_op to avoid handing off. complete_decision with no_op or acted without a handoff pauses for operator intervention and is exceptional. Use complete_decision status needs_help only when a real unresolved uncertainty prevents play, or acted after reporting an established game result. Do not add acknowledgments merely to consume a prompt.',
+    'No action and passing are different. If you have priority and nothing useful to do, promptly pass_priority to the correct next player; do not use no_op to avoid handing off. complete_decision with no_op or acted without a handoff pauses for operator intervention and is exceptional. Use complete_decision status needs_help only when a real unresolved uncertainty prevents play. Reporting an established game result is also TERMINAL: after that action succeeds, end immediately without complete_decision or further tools. The coordinator will prompt each player separately for the post-game survey. Do not add acknowledgments merely to consume a prompt.',
     'Priority discipline: track consecutive passes since the last game action. Casting a spell followed by pass_priority already records the caster\'s pass; count it. For example, p1 casts and passes, then p2 passes: both have passed and resolution is due, without another pass from p1. Do not say a spell will resolve only if its caster passes again after everyone already passed. Once ALL players have passed in succession, the top stack item resolves or the empty-stack step/phase ends. Do not start another identical pass round. In multiplayer, one opponent passing does not mean everyone passed. The active player coordinates the resulting manual resolution or advancement, respecting choices and triggers, and can propose a useful shortcut through quiet play before offering the next response. Players explicitly choose each next recipient; the coordinator never chooses it or applies Magic rules.',
   ].join('\n\n');
   const setupReminder = view?.turn?.phase?.toLowerCase() === 'setup'
@@ -61,7 +73,7 @@ export function playerPrompt({ player, sessionId, revision, fromRevision = revis
  * allowlisting, never command-line arguments, prompt text, or saved config.
  */
 export function codexInvocation({
-  player, sessionId, workspace, connection, decisionId,
+  player, sessionId, workspace, connection, decisionId, phase,
   mcpPath = defaultMcpPath, nodeBin = process.execPath, baseEnv = process.env,
 }) {
   const model = player.model || DEFAULT_PLAYER.model;
@@ -107,7 +119,7 @@ export function codexInvocation({
     'mcp_servers.tabletop.env_vars': ['TABLETOP_PLAYER_TOKEN', 'TABLETOP_DECISION_ID'],
     // These seat-scoped game tools are the player's authorized controls. Without
     // an explicit MCP policy, noninteractive Codex rejects them under "never".
-    'mcp_servers.tabletop.enabled_tools': tabletopTools,
+    'mcp_servers.tabletop.enabled_tools': phase === 'survey' ? surveyTools : tabletopTools,
     'mcp_servers.tabletop.default_tools_approval_mode': 'approve',
     'mcp_servers.tabletop.required': true,
     'mcp_servers.tabletop.startup_timeout_sec': 20,
@@ -150,9 +162,10 @@ export function createCodexRunner({
     let previousContext = null;
     try { previousContext = JSON.parse(readFileSync(contextPath, 'utf8')); }
     catch (error) { if (error.code !== 'ENOENT' && !(error instanceof SyntaxError)) throw error; }
-    const deliverBasicRules = !!basicRulesHash && (!sessionId || previousContext?.sessionId !== sessionId || previousContext?.sha256 !== basicRulesHash);
+    const deliverBasicRules = request.phase !== 'survey' && request.wake?.kind !== 'survey' && !!basicRulesHash && (!sessionId || previousContext?.sessionId !== sessionId || previousContext?.sha256 !== basicRulesHash);
     const connection = await getConnection(player.id);
-    const invocation = codexInvocation({ player, sessionId, decisionId, workspace, connection, mcpPath, nodeBin });
+    const invocation = codexInvocation({ player, sessionId, decisionId, workspace, connection, mcpPath, nodeBin,
+      phase: request.phase || (request.wake?.kind === 'survey' ? 'survey' : 'game') });
     const prompt = playerPrompt({ ...request, quickstart, basicRules: deliverBasicRules ? basicRules : '' });
     return new Promise((ok, fail) => {
       let child;

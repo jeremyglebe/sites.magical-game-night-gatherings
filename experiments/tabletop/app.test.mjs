@@ -9,6 +9,7 @@ import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { applyActions } from './table.mjs';
 import { appendRecording } from './game-log.mjs';
+import { SURVEY_SCHEMA } from './survey.mjs';
 
 const setup = (count, ai = true) => ({
   title: 'Integration match', shuffle: false,
@@ -365,6 +366,11 @@ test('a finished match stays finished and CLI --run exits while releasing its lo
       body: JSON.stringify({ revision: 0, reason: 'Fixture conclusion', actions: [{ type: 'result', winners: ['p1'], explanation: 'Fixture result' }] }),
     });
     assert.equal(response.status, 200, await response.text());
+    assert.equal(app.appState().match.phase, 'survey_pending');
+    table.submitSurvey('p1', { answers: {
+      ratings: Object.fromEntries(SURVEY_SCHEMA.ratings.map(question => [question.id, { score: null, reason: 'Fixture game has insufficient evidence.' }])),
+      highlights: '', balance_factors: '', improvements: '', rules_observation: 'uncertain', rules_incidents: [], confidence: 'low',
+    } });
     assert.equal(app.getCoordinator().status().mode, 'finished');
     await app.close();
     app = await startApp({ directory, port: 0 });

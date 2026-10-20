@@ -66,6 +66,15 @@ test('managed MCP uses only the supplied seat token and keeps decision acknowled
     assert.ok(requests.slice(4).every(request => request.url === '/api/act'));
     await client.callTool({ name: 'pass_turn', arguments: { revision: 6, next: 'other' } });
     assert.deepEqual(requests[7].body.actions, [{ type: 'pass_turn', next: 'other' }]);
+    const submit = tools.find(tool => tool.name === 'submit_survey');
+    assert.equal(submit.inputSchema.properties.playerId, undefined);
+    assert.equal(submit.inputSchema.properties.decision_id, undefined);
+    assert.ok(submit.inputSchema.properties.answers.required.includes('ratings'));
+    await client.callTool({ name: 'read_survey', arguments: {} });
+    assert.equal(requests[8].url, '/api/survey');
+    await client.callTool({ name: 'submit_survey', arguments: { answers: { fixture: true }, playerId: 'other' } });
+    assert.deepEqual(requests[9].body, { answers: { fixture: true }, decision_id: 'decision-123' });
+    assert.equal(requests[9].url, '/api/survey');
     assert.ok(requests.every(request => request.authorization === 'Bearer one-seat-token'));
   } finally {
     await client.close();

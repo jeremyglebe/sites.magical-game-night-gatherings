@@ -120,5 +120,26 @@ export function recordingMarkdown(recording) {
   }
   lines.push('## Final saved position', '', `Revision: ${state.revision}`, '',
     state.result ? `Reported outcome: ${state.result.explanation || JSON.stringify(state.result.winners)}` : 'No result has been reported.', '');
+  if (recording.postgame) {
+    const survey = recording.postgame;
+    lines.push('## Post-game player feedback', '', `Questionnaire version: ${survey.version}. Status: ${survey.status}.`, '',
+      'Independent participant assessments, not verified findings. AI enjoyment ratings estimate likely human enjoyment. One game cannot establish overall balance.', '');
+    for (const player of survey.players) {
+      lines.push(`### ${player.name}${player.ai ? ' (AI)' : ' (human)'}`, '');
+      const response = survey.responses[player.id];
+      if (!response) { lines.push('Response pending.', ''); continue; }
+      const answers = response.answers;
+      lines.push(`Submitted: ${response.submittedAt}. Confidence: ${answers.confidence}.`, '');
+      for (const question of survey.schema.ratings) {
+        const answer = answers.ratings[question.id];
+        lines.push(`- ${question.label}: ${answer.score === null ? 'Not enough evidence' : answer.score + '/10'}. ${answer.reason}`);
+      }
+      lines.push('');
+      for (const question of survey.schema.textQuestions) lines.push(`**${question.label}**`, '', answers[question.id] || 'No additional comment.', '');
+      lines.push(`Rules observations: ${answers.rules_observation}.`, '');
+      for (const incident of answers.rules_incidents) lines.push(`- ${incident.description} (${incident.status}; ${incident.impact} impact${incident.revision === null ? '' : '; revision ' + incident.revision}).`);
+      lines.push('');
+    }
+  }
   return lines.join('\n');
 }

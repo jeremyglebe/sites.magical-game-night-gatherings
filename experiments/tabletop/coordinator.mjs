@@ -48,7 +48,7 @@ function currentTurnHistory(history, turn) {
  * be filtered for the supplied seat. Restored matches always begin paused.
  */
 export function createCoordinator({
-  players, runPlayer, getView, getEvents = () => [], getPublicEvents, onChange = () => {},
+  players, runPlayer, getView, getEvents = () => [], getPublicEvents, getSurvey, onChange = () => {},
   saved = null, limits = {},
 }) {
   if (!Array.isArray(players) || !players.length) throw new Error('Supply at least one player');
@@ -85,6 +85,9 @@ export function createCoordinator({
   let stepPermits = 0;
   let scheduled = false;
   let pendingRecipient = null;
+  let phase = saved?.phase === 'survey' ? 'survey' : 'game';
+  let surveyPending = phase === 'survey' && Array.isArray(saved?.surveyPending) ? [...saved.surveyPending] : [];
+  if (surveyPending.some(id => !seats.has(id)) || new Set(surveyPending).size !== surveyPending.length) throw new Error('Invalid saved survey recipients');
 
   function recipient(id, revision, kind, from) {
     if (!seats.has(id)) throw new Error('Unknown recipient player');
@@ -110,6 +113,20 @@ export function createCoordinator({
   // must explicitly seed the current speaker after migrating an older match.
 
   const activeSeat = () => [...seats.values()].find(s => s.active);
+  function queueSurvey() {
+    const active = activeSeat();
+    const available = surveyPending.filter(id => !(active?.config.id === id && active.active.wake.kind === 'survey'));
+    // Feedback is independent. Human respondents can fill their forms while AI
+    // seats answer serially; a human never holds up the remaining AI surveys.
+    const next = available.find(id => seats.get(id).config.enabled !== false) || available[0];
+    pendingRecipient = next ? recipient(next, latestRevision, 'survey') : null;
+    if (!surveyPending.length && !activeSeat()) { mode = 'finished'; issue = null; }
+  }
+  if (phase === 'survey') {
+    // The saved recording is reconciled by beginSurvey on application load.
+    // Until then preserve the interrupted survey rather than a gameplay handoff.
+    queueSurvey();
+  }
   function recordUsage(seat, usage, metadata = {}) {
     if (metadata.scope === 'session') {
       if (!seat.sessionId || metadata.sessionId !== seat.sessionId) throw new Error('Usage belongs to a different player session');
@@ -120,7 +137,7 @@ export function createCoordinator({
   }
   function snapshot() {
     return {
-      version: 2, mode, latestRevision, decisions, limits: clone(settings), issue,
+      version: 2, mode, phase, surveyPending: [...surveyPending], latestRevision, decisions, limits: clone(settings), issue,
       pendingRecipient: clone(pendingRecipient),
       players: [...seats.values()].map(s => ({
         id: s.config.id, name: s.config.name || s.config.id,
@@ -149,7 +166,9 @@ export function createCoordinator({
       ...result, active, queued,
       state: idleRunning && waitingManual ? 'waiting_manual' : idleRunning && !queued ? 'stalled' : mode,
       message: issue || (idleRunning && waitingManual
-        ? `Waiting for ${seats.get(pendingRecipient.playerId).config.name || pendingRecipient.playerId} to act and explicitly hand off.`
+        ? phase === 'survey'
+          ? `Waiting for ${seats.get(pendingRecipient.playerId).config.name || pendingRecipient.playerId} to submit their post-game survey.`
+          : `Waiting for ${seats.get(pendingRecipient.playerId).config.name || pendingRecipient.playerId} to act and explicitly hand off.`
         : idleRunning && !queued ? 'No recipient is scheduled. Choose a player explicitly to continue.' : null),
       usage: result.players.reduce((sum, p) => { addUsage(sum, p.usage); return sum; }, emptyUsage()),
     };
@@ -201,6 +220,8 @@ export function createCoordinator({
           .filter(e => e.revision > seat.lastCompleted && e.revision <= active.revision).sort((a, b) => a.revision - b.revision);
         const turnHistory = getPublicEvents
           ? currentTurnHistory(await getPublicEvents(0, view.revision), view.turn) : undefined;
+        const survey = wake.kind === 'survey' ? await getSurvey?.(seat.config.id) : undefined;
+        if (wake.kind === 'survey' && !survey) throw new Error('Post-game survey is unavailable');
         if (controller.signal.aborted) return;
         changed();
         timeout = setTimeout(() => {
@@ -215,7 +236,7 @@ export function createCoordinator({
         const result = await runPlayer({
           player: clone(seat.config), sessionId: seat.sessionId,
           revision: active.revision, fromRevision: active.fromRevision, decisionId: active.id,
-          wake: clone(wake), view, events, turnHistory, signal: controller.signal,
+          wake: clone(wake), phase: wake.kind === 'survey' ? 'survey' : 'game', view, events, turnHistory, survey, signal: controller.signal,
           onSession: rememberSession,
           onUsage(usage, metadata) { recordUsage(seat, usage, metadata); changed(); },
         });
@@ -233,16 +254,17 @@ export function createCoordinator({
         if (active.completion) {
           seat.lastCompleted = Math.max(seat.lastCompleted, active.completion.revision);
           seat.lastDecision = active.completion;
-          if (!active.completion.handoff && mode !== 'finished' && mode !== 'stopped') {
+          if (!active.completion.handoff && !active.completion.postgame && mode !== 'finished' && mode !== 'stopped') {
             mode = 'paused';
             issue ||= active.completion.status === 'needs_help'
               ? `${seat.config.name || seat.config.id} requested help: ${active.completion.note || 'No details provided'}`
               : `${seat.config.name || seat.config.id} completed without a handoff. Choose a recipient explicitly to continue.`;
           }
-        } else if (mode !== 'finished' && !pendingRecipient) {
+        } else if (mode !== 'finished' && !pendingRecipient && phase !== 'survey') {
           pendingRecipient = { ...wake, revision: Math.max(wake.revision, latestRevision) };
         }
         seat.active = null;
+        if (phase === 'survey') queueSurvey();
         if (mode === 'stepping' && stepPermits === 0) mode = 'paused';
         changed(); schedule();
       }
@@ -257,6 +279,7 @@ export function createCoordinator({
   }
   function wake(id, revision, kind = 'setup') {
     if (mode === 'finished') throw new Error('This match has finished');
+    if (phase === 'survey') throw new Error('Gameplay has ended; complete the pending surveys');
     if (activeSeat()) throw new Error('Wait for the active worker to exit before choosing a recipient');
     const next = recipient(id, revision, kind);
     latestRevision = Math.max(latestRevision, revision);
@@ -281,6 +304,7 @@ export function createCoordinator({
   }
   function handoff(actor, next, revision, kind = 'priority') {
     if (mode === 'finished') throw new Error('This match has finished');
+    if (phase === 'survey') throw new Error('Gameplay has ended; submit the post-game survey');
     const target = recipient(next, revision, kind, actor);
     const seat = seats.get(actor);
     if (!seat) throw new Error('Unknown acting player');
@@ -302,10 +326,45 @@ export function createCoordinator({
     authorizeDecision(id, completion?.decision_id);
     const seat = seats.get(id);
     if (!['no_op', 'acted', 'needs_help'].includes(completion.status)) throw new Error('Unknown completion status');
+    if (phase === 'survey' && completion.status !== 'needs_help') throw new Error('Submit the post-game survey to finish this decision');
     if (completion.note !== undefined && (typeof completion.note !== 'string' || completion.note.length > 2000)) throw new Error('Invalid completion note');
     seat.active.completion = { status: completion.status, note: completion.note || '', revision: Math.max(seat.active.revision, latestRevision) };
     changed();
     return { accepted: true, status: completion.status, decision_completed: true };
+  }
+  function beginSurvey({ pending, revision }) {
+    validRevision(revision);
+    if (!Array.isArray(pending) || pending.some(id => !seats.has(id)) || new Set(pending).size !== pending.length) throw new Error('Invalid survey recipients');
+    const active = activeSeat()?.active;
+    if (active?.wake.kind === 'survey' && !pending.includes(activeSeat().config.id) && !active.completion) {
+      throw new Error('Finish the active survey submission before reconciling recipients');
+    }
+    phase = 'survey'; surveyPending = [...pending]; latestRevision = Math.max(latestRevision, revision);
+    if (mode === 'finished' && surveyPending.length) mode = 'paused';
+    // A successful result declaration is terminal, but let that CLI invocation
+    // receive its tool response and exit normally before starting a survey.
+    if (active && active.wake.kind !== 'survey') active.completion = { status: 'result', note: '', revision, postgame: true };
+    issue = null;
+    queueSurvey(); changed(); schedule(); return status();
+  }
+  function authorizeSurvey(id, decisionId) {
+    if (phase !== 'survey' || mode === 'finished' || !surveyPending.includes(id)) throw new Error('No pending survey for this player');
+    const seat = seats.get(id);
+    if (seat.config.enabled !== false) {
+      authorizeDecision(id, decisionId);
+      if (seat.active.wake.kind !== 'survey') throw new Error('This is not a survey decision');
+    }
+    return true;
+  }
+  function submitSurvey(id, decisionId) {
+    authorizeSurvey(id, decisionId);
+    const seat = seats.get(id);
+    const completion = { status: 'survey', note: '', revision: latestRevision, postgame: true };
+    surveyPending = surveyPending.filter(playerId => playerId !== id);
+    if (seat.active) seat.active.completion = completion;
+    else { seat.lastCompleted = Math.max(seat.lastCompleted, latestRevision); seat.lastDecision = completion; }
+    issue = null; queueSurvey(); changed(); schedule();
+    return { accepted: true, decision_completed: !!seat.active, survey_submitted: true };
   }
   function start() {
     if (mode === 'finished') throw new Error('This match has finished');
@@ -338,7 +397,7 @@ export function createCoordinator({
     changed(); return status();
   }
   return {
-    notify, wake, handoff, authorizeDecision, authorizeManual, complete,
+    notify, wake, handoff, authorizeDecision, authorizeManual, complete, beginSurvey, authorizeSurvey, submitSurvey,
     start, step, status, snapshot, configure,
     pause: () => cancel('paused'), stop: () => cancel('stopped'), finish: () => cancel('finished'),
     async idle() { await Promise.all([...seats.values()].flatMap(s => s.active?.promise ? [s.active.promise] : [])); },

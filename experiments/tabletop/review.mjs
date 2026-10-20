@@ -78,9 +78,10 @@ function appendImage(parent, definition, className = '') {
   return true;
 }
 function resultLabel(summary) {
-  if (!summary.completed) return 'Unfinished';
+  if (!summary.result) return 'Unfinished';
   const winners = summary.result?.winners || [];
-  return winners.length ? `${winners.map(id => summary.players?.find(p => p.id === id)?.name || id).join(' & ')} won` : 'Draw';
+  const outcome = winners.length ? `${winners.map(id => summary.players?.find(p => p.id === id)?.name || id).join(' & ')} won` : 'Draw';
+  return outcome + (summary.feedback?.status === 'pending' ? ' · Feedback pending' : '');
 }
 function navigate(path) {
   stopPlayback();
@@ -101,7 +102,9 @@ function renderLibrary() {
   const filter = $('game-filter').value;
   const visible = games.filter(saved => {
     const matchesText = `${saved.title} ${(saved.players || []).map(p => p.name).join(' ')}`.toLocaleLowerCase().includes(query);
-    return matchesText && (filter === 'all' || (filter === 'completed' ? saved.completed : !saved.completed));
+    const matchesStatus = filter === 'all' || (filter === 'completed' ? saved.completed
+      : filter === 'feedback' ? saved.feedback?.status === 'pending' : !saved.result);
+    return matchesText && matchesStatus;
   });
   $('game-count').textContent = `${visible.length} ${visible.length === 1 ? 'game' : 'games'}`;
   const list = $('game-list');
@@ -165,7 +168,7 @@ async function openGame(id, preserve = false) {
     $('game-review').hidden = true;
     $('loading').hidden = false;
     selectedDeckId = null;
-    selectedTab = 'replay';
+    selectedTab = location.hash === '#feedback' ? 'feedback' : 'replay';
   }
   try {
     const data = await getJSON(`/api/games/${encodeURIComponent(id)}`);
@@ -189,6 +192,7 @@ async function openGame(id, preserve = false) {
     renderConversation();
     for (const details of $('conversation-log').querySelectorAll('details')) details.open = openGroups.has(details.dataset.actionGroup);
     renderDeckTabs();
+    renderFeedback();
     selectTab(selectedTab);
     $('game-review').hidden = false;
     seek(preserve ? Math.min(previousPosition, replay.length) : replay.length);
@@ -257,7 +261,7 @@ function seek(next, scroll = false) {
 function selectTab(tab) {
   selectedTab = tab;
   if (tab !== 'replay') stopPlayback();
-  for (const name of ['replay', 'decks']) {
+  for (const name of ['replay', 'decks', 'feedback']) {
     $(`${name}-tab`).setAttribute('aria-selected', String(name === tab));
     $(`${name}-tab`).tabIndex = name === tab ? 0 : -1;
     $(`${name}-panel`).hidden = name !== tab;
@@ -530,6 +534,109 @@ function inspectZone(title, cards) {
   $('card-content').append(grid);
 }
 
+function optionLabel(options, value) {
+  const option = (options || []).find(item => (typeof item === 'string' ? item : item.value || item.id) === value);
+  return typeof option === 'string' ? option.replaceAll('_', ' ') : option?.label || String(value || 'Not supplied').replaceAll('_', ' ');
+}
+function ratingAnchors(rating) {
+  return Object.entries(rating.anchors || {}).map(([score, text]) => `${score}: ${text}`).join(' · ');
+}
+function feedbackEvidence(revision) {
+  if (!Number.isSafeInteger(revision)) return null;
+  const index = recording.frames.findIndex(frame => frame.event.revision === revision);
+  const at = revision === recording.initial.revision ? 0 : index >= 0 ? index + 1 : null;
+  if (at === null) return make('span', 'small muted', `Revision ${revision} · position not recorded`);
+  const button = make('button', 'quiet evidence-link', `View revision ${revision} ↗`);
+  button.addEventListener('click', () => {
+    stopPlayback(); selectTab('replay'); seek(at, true);
+    $('replay-panel').scrollIntoView({ block: 'start' });
+  });
+  return button;
+}
+function renderFeedback() {
+  const root = $('feedback-content');
+  root.replaceChildren();
+  const survey = recording?.postgame;
+  if (!survey) {
+    root.append(make('div', 'empty-state', 'No post-game questionnaire was recorded for this game. The conversation and replay are still available for your own review.'));
+    return;
+  }
+  const schema = survey.schema || {};
+  const players = survey.players || recording.initial.players;
+  const responses = survey.responses || {};
+  const submitted = players.filter(player => responses[player.id]);
+  const completed = ['complete', 'completed'].includes(survey.status);
+  const header = make('div', 'feedback-heading');
+  header.append(make('h2', '', schema.title || 'Post-game feedback'), make('p', 'feedback-count', `${submitted.length} of ${players.length} responses · ${completed ? 'Complete' : 'Feedback pending'}`));
+  root.append(header, make('p', 'feedback-context', 'Independent player assessments from this game. Ratings reflect each player’s perspective, not a verified rules judgment or a conclusion about every matchup. AI enjoyment ratings estimate the human play experience.'));
+  if (!completed) {
+    const missing = players.filter(player => !responses[player.id]).map(player => player.name || player.id);
+    root.append(make('p', 'notice', `Awaiting ${missing.join(', ')}. The game outcome is recorded; the playtest is complete once all feedback is submitted.`));
+  }
+  if (submitted.length) {
+    const ratings = make('div', 'feedback-ratings');
+    for (const rating of schema.ratings || []) {
+      const scores = submitted.map(player => responses[player.id].answers?.ratings?.[rating.id]?.score).filter(score => Number.isFinite(score));
+      const card = make('div', 'feedback-rating-summary');
+      card.append(make('h3', '', rating.label || rating.id));
+      if (rating.id === 'deck_strength') {
+        card.append(make('strong', 'rating-value', scores.length ? (Math.min(...scores) === Math.max(...scores) ? `${scores[0]}/10` : `${Math.min(...scores)}–${Math.max(...scores)}/10`) : 'Not rated'));
+        card.append(make('p', 'small muted', 'Range of players’ own-deck ratings'));
+      } else {
+        card.append(make('strong', 'rating-value', scores.length ? `${(scores.reduce((sum, score) => sum + score, 0) / scores.length).toFixed(1)}/10` : 'Not rated'));
+        card.append(make('p', 'small muted', rating.id === 'complexity' ? 'Average difficulty · higher means harder' : 'Average player rating'));
+      }
+      card.append(make('p', 'small muted', `${scores.length} rated · ${submitted.length - scores.length} not enough evidence`));
+      card.append(make('p', 'rating-anchors', ratingAnchors(rating)));
+      ratings.append(card);
+    }
+    root.append(ratings);
+  }
+  const list = make('div', 'feedback-responses');
+  for (const [seat, player] of players.entries()) {
+    const response = responses[player.id];
+    const card = make('section', 'feedback-response');
+    const heading = make('div', 'feedback-player');
+    const title = make('div');
+    title.append(make('h3', '', player.name || player.id), make('p', 'small muted', response ? `Submitted ${formatDate(response.submittedAt)} · ${player.ai === false ? 'Human player' : 'AI player'}` : 'Awaiting independent feedback'));
+    heading.append(avatar(playerConfig(player.id), seat), title);
+    card.append(heading);
+    if (!response) { list.append(card); continue; }
+    const answers = response.answers || {};
+    const confidence = optionLabel(schema.confidenceOptions, answers.confidence);
+    card.append(make('p', 'feedback-confidence', `Confidence in this assessment: ${confidence}`));
+    const scoreList = make('dl', 'feedback-score-list');
+    for (const rating of schema.ratings || []) {
+      const answer = answers.ratings?.[rating.id];
+      const row = make('div');
+      const term = make('dt', '', player.ai !== false && rating.aiLabel ? rating.aiLabel : rating.label || rating.id);
+      term.title = ratingAnchors(rating);
+      const value = make('dd');
+      value.append(make('strong', '', Number.isFinite(answer?.score) ? `${answer.score}/10` : 'Not enough evidence'));
+      if (answer?.reason) value.append(make('p', '', answer.reason));
+      row.append(term, value); scoreList.append(row);
+    }
+    card.append(scoreList);
+    for (const question of schema.textQuestions || []) {
+      const section = make('div', 'feedback-answer');
+      section.append(make('h4', '', question.label || question.id));
+      section.append(make('p', answers[question.id] ? '' : 'muted', answers[question.id] || 'No observation supplied.'));
+      card.append(section);
+    }
+    const incidents = make('div', 'feedback-answer');
+    incidents.append(make('h4', '', 'Rules observations'), make('p', '', optionLabel(schema.rulesObservationOptions, answers.rules_observation)));
+    for (const incident of answers.rules_incidents || []) {
+      const entry = make('div', 'feedback-incident');
+      entry.append(make('p', '', incident.description), make('p', 'small muted', `${optionLabel(schema.incidentStatusOptions, incident.status)} · ${optionLabel(schema.incidentImpactOptions, incident.impact)} impact`));
+      const evidence = feedbackEvidence(incident.revision);
+      if (evidence) entry.append(evidence);
+      incidents.append(entry);
+    }
+    card.append(incidents); list.append(card);
+  }
+  root.append(list);
+}
+
 function keyboardTabs(container, callback) {
   container.addEventListener('keydown', event => {
     if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
@@ -556,10 +663,12 @@ $('playback-speed').addEventListener('change', () => { if (playback) { stopPlayb
 $('jump-current').addEventListener('click', scrollToCurrent);
 $('replay-tab').addEventListener('click', () => selectTab('replay'));
 $('decks-tab').addEventListener('click', () => selectTab('decks'));
-keyboardTabs(document.querySelector('.review-tabs'), index => selectTab(['replay', 'decks'][index]));
+$('feedback-tab').addEventListener('click', () => selectTab('feedback'));
+keyboardTabs(document.querySelector('.review-tabs'), index => selectTab(['replay', 'decks', 'feedback'][index]));
 keyboardTabs($('deck-player-tabs'), index => selectDeck(deckData[index].id));
 $('close-card').addEventListener('click', () => $('card-dialog').close());
 $('card-dialog').addEventListener('click', event => { if (event.target === $('card-dialog')) $('card-dialog').close(); });
 document.addEventListener('visibilitychange', () => { if (document.hidden) stopPlayback(); });
 window.addEventListener('popstate', route);
+window.addEventListener('hashchange', () => { if (game && location.hash === '#feedback') selectTab('feedback'); });
 route();

@@ -266,3 +266,56 @@ test('stderr diagnostics redact credentials and cancellation kills the subproces
   await assert.rejects(hanging({ ...request, signal: abort.signal }), /Operator paused/);
   assert.equal(capture.killed, 'SIGTERM');
 });
+
+test('survey invocations retain the seat conversation and offer only reads plus feedback submission', () => {
+  const call = codexInvocation({ ...request, sessionId: 'own-history', phase: 'survey', workspace: '/tmp/seat-p1', connection });
+  assert.deepEqual(call.args.slice(0, 3), ['exec', 'resume', 'own-history']);
+  const entry = call.args.find(value => value.startsWith('mcp_servers.tabletop.enabled_tools='));
+  const enabled = JSON.parse(entry.slice(entry.indexOf('=') + 1));
+  assert(enabled.includes('read_survey'));
+  assert(enabled.includes('submit_survey'));
+  assert(enabled.includes('read_events'));
+  for (const tool of ['act', 'say', 'pass_priority', 'pass_turn']) assert(!enabled.includes(tool));
+  assert.equal(call.env.TABLETOP_PLAYER_TOKEN, connection.token);
+  assert.equal(call.env.TABLETOP_DECISION_ID, request.decisionId);
+});
+
+test('postgame prompts ask for independent evidence and uncertainty instead of further gameplay', () => {
+  const prompt = playerPrompt({ ...request, phase: 'survey', sessionId: 'own-history',
+    quickstart: 'Unneeded tabletop guide', basicRules: 'Unneeded full beginner guide',
+    survey: { schema: { version: 1, instructions: ['Anchored QA questions'] }, player: { id: 'p1' }, response: null },
+  });
+  assert.match(prompt, /GAMEPLAY HAS ENDED/);
+  assert.match(prompt, /independent post-game playtest survey/);
+  assert.match(prompt, /Other players’ answers and hidden cards are not available/);
+  assert.match(prompt, /winning as proof of a stronger deck/);
+  assert.match(prompt, /Separate deck and format effects from draws, seat order, and player decisions/);
+  assert.match(prompt, /A null score means insufficient evidence/);
+  assert.match(prompt, /estimate of likely human enjoyment/);
+  assert.match(prompt, /not private chain-of-thought/);
+  assert.match(prompt, /submit_survey\(\{answers:/);
+  assert.match(prompt, /successful submission is TERMINAL/);
+  assert.match(prompt, /Anchored QA questions/);
+  assert.match(prompt, /My own card/);
+  assert(!prompt.includes('Continue the game efficiently'));
+  assert(!prompt.includes('Unneeded tabletop guide'));
+  assert(!prompt.includes('Unneeded full beginner guide'));
+  const gameplay = playerPrompt(request);
+  assert.match(gameplay, /Reporting an established game result is also TERMINAL/);
+});
+
+test('survey runner neither injects nor marks delivery of the beginner rules', async t => {
+  const workspaceRoot = temporary(t), capture = {};
+  const runner = createCodexRunner({ workspaceRoot, getConnection: () => connection, basicRules: 'Unneeded beginner reference',
+    spawnImpl: fakeSpawn((child, prompt) => {
+      assert(!prompt.includes('Unneeded beginner reference'));
+      assert.match(prompt, /GAMEPLAY HAS ENDED/);
+      output(child, [{ type: 'thread.started', thread_id: 'own-history' }, { type: 'turn.completed' }]);
+    }, capture),
+  });
+  await runner({ ...request, sessionId: 'own-history', phase: 'survey', survey: { schema: { version: 1 } } });
+  const enabled = capture.args.find(value => value.startsWith('mcp_servers.tabletop.enabled_tools='));
+  assert(enabled.includes('submit_survey'));
+  assert(!enabled.includes('"act"'));
+  assert.equal(existsSync(join(workspaceRoot, 'p1', 'basic-rules-context.json')), false);
+});

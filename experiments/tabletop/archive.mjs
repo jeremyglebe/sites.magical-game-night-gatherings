@@ -1,6 +1,7 @@
 import { constants, openSync, closeSync, fstatSync, readFileSync, readdirSync, lstatSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { avatarIds } from './avatars.mjs';
+import { validateSurvey } from './survey.mjs';
 
 const validId = id => typeof id === 'string' && /^[A-Za-z0-9_-]{1,120}$/.test(id);
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -69,13 +70,14 @@ export function validateRecording(value) {
     }
     revision = frame.event.revision;
   }
+  if (own(value, 'postgame')) validateSurvey(value.postgame);
   return value;
 }
 
 function recordingOnly(source) {
   const recording = validateRecording(source);
   // Select the recording itself, never a session envelope or coordinator state.
-  const clean = pick(recording, ['format', 'version', 'visibility', 'started_at', 'title', 'references', 'initial', 'frames']);
+  const clean = pick(recording, ['format', 'version', 'visibility', 'started_at', 'title', 'references', 'initial', 'frames', 'postgame']);
   const setup = object(recording.setup) ? recording.setup : {};
   clean.setup = pick(setup, ['title', 'shuffle', 'layout', 'references', 'limits']);
   if (Array.isArray(setup.players)) clean.setup.players = setup.players.filter(object).map(p => pick(p,
@@ -92,13 +94,17 @@ function summarize(id, recording, config) {
     if (own(frame.delta, 'result')) finalResult = frame.delta.result;
   }
   const last = recording.frames.at(-1)?.event;
+  const survey = recording.postgame;
+  const submitted = survey?.players?.filter(player => survey.responses?.[player.id]).length || 0;
+  const feedback = survey ? { status: survey.status, submitted, total: survey.players?.length || 0 } : null;
   const configured = Array.isArray(config?.players) ? config.players : recording.setup.players || [];
   return {
     id, title: typeof recording.title === 'string' ? recording.title : 'Saved game',
     startedAt: recording.started_at || recording.initial.created_at || null,
-    updatedAt: last?.at || recording.started_at || recording.initial.created_at || null,
+    updatedAt: survey?.completedAt || Object.values(survey?.responses || {}).map(response => response.submittedAt).sort().at(-1)
+      || last?.at || recording.started_at || recording.initial.created_at || null,
     revision: last?.revision ?? recording.initial.revision, frameCount: recording.frames.length,
-    completed: !!finalResult, result: finalResult,
+    completed: !!finalResult && (!survey || survey.status === 'completed'), result: finalResult, feedback,
     layout: config?.layout === 'emperor' || recording.setup.layout === 'emperor' ? 'emperor' : 'table',
     players: finalPlayers.map(player => {
       const details = configured.find(p => p?.id === player.id) || {};
@@ -164,6 +170,7 @@ export function createArchive({ directory: rootDirectory = '.playtest', getCurre
       '/review/review.mjs': ['review.mjs', 'text/javascript; charset=utf-8'],
       '/review/review.css': ['review.css', 'text/css; charset=utf-8'],
       '/review/replay.mjs': ['replay.mjs', 'text/javascript; charset=utf-8'],
+      '/review/survey.mjs': ['survey.mjs', 'text/javascript; charset=utf-8'],
     };
     const asset = own(assets, pathname) ? assets[pathname] : null;
     if (!ui && !asset && pathname !== '/api/games' && !pathname.startsWith('/api/games/')) return false;

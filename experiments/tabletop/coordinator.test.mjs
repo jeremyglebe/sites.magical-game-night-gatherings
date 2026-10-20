@@ -377,3 +377,130 @@ test('invalid recipients and empty step do not create work', async () => {
   coordinator.step(); await nextTurn();
   assert.equal(coordinator.status().state, 'paused'); assert.equal(coordinator.status().message, 'No pending player decisions.');
 });
+
+test('a result ends gameplay, then independent same-session surveys run serially before final completion', async () => {
+  const calls = []; let coordinator, releaseGame, workers = 0, maximum = 0;
+  coordinator = createCoordinator({
+    players: [{ id: 'p1', status: 'conceded' }, { id: 'p2', status: 'eliminated' }],
+    saved: { version: 2, latestRevision: 9, players: players(2).map(p => ({ ...p, sessionId: `history-${p.id}`, lastCompleted: 9 })) },
+    getView: id => ({ revision: 10, result: { winners: ['p2'] }, privateHand: id }),
+    getSurvey: id => ({ schema: { version: 1 }, player: { id }, response: null }),
+    runPlayer: async request => {
+      workers++; maximum = Math.max(maximum, workers); calls.push(request);
+      assert.equal(request.sessionId, `history-${request.player.id}`);
+      if (request.phase === 'game') {
+        coordinator.beginSurvey({ pending: ['p1', 'p2'], revision: 10 });
+        assert.equal(request.signal.aborted, false, 'result tool response is allowed to finish');
+        assert.throws(() => coordinator.authorizeDecision('p1', request.decisionId), /already completed/);
+        await new Promise(resolve => { releaseGame = resolve; });
+      } else {
+        assert.equal(request.survey.player.id, request.player.id);
+        assert.equal(request.view.privateHand, request.player.id);
+        assert.throws(() => coordinator.authorizeSurvey(request.player.id, 'old-decision'), /no longer active/);
+        assert.throws(() => coordinator.handoff(request.player.id, 'p2', 10), /Gameplay has ended/);
+        assert.throws(() => coordinator.complete(request.player.id, { decision_id: request.decisionId, status: 'no_op' }), /Submit the post-game survey/);
+        coordinator.submitSurvey(request.player.id, request.decisionId);
+        assert.throws(() => coordinator.submitSurvey(request.player.id, request.decisionId), /No pending survey/);
+        assert.notEqual(coordinator.status().mode, 'finished', 'final worker must exit before completion');
+        const count = calls.length; await nextTurn(); assert.equal(calls.length, count);
+      }
+      workers--;
+    },
+  });
+  coordinator.wake('p1', 10); coordinator.start(); await nextTurn();
+  assert.equal(calls.length, 1);
+  assert.equal(coordinator.status().phase, 'survey');
+  assert.deepEqual(coordinator.snapshot().surveyPending, ['p1', 'p2']);
+  assert.throws(() => coordinator.wake('p2', 10), /Gameplay has ended/);
+  releaseGame(); await settle(coordinator);
+  assert.deepEqual(calls.map(call => [call.player.id, call.phase]), [['p1', 'game'], ['p1', 'survey'], ['p2', 'survey']]);
+  assert.equal(maximum, 1);
+  assert.equal(coordinator.status().mode, 'finished');
+  assert.deepEqual(coordinator.status().surveyPending, []);
+});
+
+test('human feedback is independent and never blocks remaining AI survey work', async () => {
+  let coordinator, release; const calls = [];
+  coordinator = createCoordinator({
+    players: [{ id: 'human1', enabled: false }, { id: 'p1' }, { id: 'human2', enabled: false }],
+    getView: () => ({ revision: 4 }), getSurvey: id => ({ player: { id }, schema: {} }),
+    runPlayer: request => { calls.push(request); return new Promise(resolve => { release = resolve; }); },
+  });
+  coordinator.beginSurvey({ pending: ['human1', 'p1', 'human2'], revision: 4 });
+  assert.equal(coordinator.status().pendingRecipient.playerId, 'p1');
+  coordinator.start(); await nextTurn();
+  assert.equal(calls.length, 1);
+  assert.equal(coordinator.authorizeSurvey('human2'), true);
+  coordinator.submitSurvey('human2');
+  assert.equal(coordinator.status().players.find(p => p.id === 'p1').active.decisionId, calls[0].decisionId);
+  assert.equal(coordinator.status().pendingRecipient.playerId, 'human1');
+  coordinator.submitSurvey('p1', calls[0].decisionId);
+  coordinator.submitSurvey('human1');
+  assert.notEqual(coordinator.status().mode, 'finished');
+  release(); await settle(coordinator);
+  assert.equal(calls.length, 1);
+  assert.equal(coordinator.status().mode, 'finished');
+});
+
+test('survey recovery reconciles durable responses without repeating already submitted feedback', async () => {
+  let original;
+  original = createCoordinator({
+    players: players(2), getView: () => ({ revision: 8 }), getSurvey: id => ({ player: { id }, schema: {} }),
+    runPlayer: request => {
+      request.onSession(`session-${request.player.id}`);
+      return new Promise((_, reject) => request.signal.addEventListener('abort', () => reject(request.signal.reason), { once: true }));
+    },
+  });
+  original.beginSurvey({ pending: ['p1', 'p2'], revision: 8 }); original.start(); await nextTurn();
+  const saved = original.snapshot(); original.pause(); await original.idle();
+  assert.equal(saved.players[0].active.wake.kind, 'survey');
+  const calls = []; let restored;
+  restored = createCoordinator({
+    players: players(2), saved, getView: () => ({ revision: 8 }), getSurvey: id => ({ player: { id }, schema: {} }),
+    runPlayer: request => { calls.push(request); restored.submitSurvey(request.player.id, request.decisionId); },
+  });
+  assert.equal(restored.status().mode, 'paused');
+  // The p1 response was persisted immediately before the old process stopped;
+  // the authoritative recording now says only p2 remains.
+  restored.beginSurvey({ pending: ['p2'], revision: 8 });
+  assert.equal(restored.snapshot().players[0].sessionId, 'session-p1');
+  await nextTurn(); assert.equal(calls.length, 0, 'restoration does not spend tokens until resumed');
+  restored.start(); await settle(restored);
+  assert.deepEqual(calls.map(call => call.player.id), ['p2']);
+  assert.equal(restored.status().mode, 'finished');
+});
+
+test('survey failure and budget exhaustion leave feedback pending for explicit recovery', async () => {
+  let coordinator, calls = 0;
+  coordinator = createCoordinator({
+    players: players(1), limits: { maxDecisions: 1 }, getView: () => ({ revision: 2 }),
+    getSurvey: () => ({ schema: {} }),
+    runPlayer: request => {
+      calls++;
+      if (calls === 1) coordinator.beginSurvey({ pending: ['p1'], revision: 2 });
+      else if (calls === 2) throw new Error('Survey unavailable');
+      else coordinator.submitSurvey('p1', request.decisionId);
+    },
+  });
+  coordinator.wake('p1', 2); coordinator.start(); await settle(coordinator);
+  assert.equal(calls, 1); assert.equal(coordinator.status().mode, 'paused');
+  assert.match(coordinator.status().message, /Decision limit reached/);
+  assert.deepEqual(coordinator.status().surveyPending, ['p1']);
+  coordinator.configure({ maxDecisions: 5 }); coordinator.start(); await settle(coordinator);
+  assert.equal(calls, 2); assert.equal(coordinator.status().mode, 'paused');
+  assert.match(coordinator.status().message, /Survey unavailable/);
+  assert.deepEqual(coordinator.status().surveyPending, ['p1']);
+  coordinator.start(); await settle(coordinator);
+  assert.equal(calls, 3); assert.equal(coordinator.status().mode, 'finished');
+});
+
+test('manual-only postgame stays pending until every response is submitted', () => {
+  const coordinator = createCoordinator({ players: [{ id: 'human', enabled: false }], getView: () => ({ revision: 0 }), runPlayer: () => assert.fail('Human cannot launch Codex') });
+  assert.throws(() => coordinator.beginSurvey({ pending: ['missing'], revision: 1 }), /Invalid survey recipients/);
+  assert.throws(() => coordinator.beginSurvey({ pending: ['human', 'human'], revision: 1 }), /Invalid survey recipients/);
+  coordinator.beginSurvey({ pending: ['human'], revision: 1 }); coordinator.start();
+  assert.equal(coordinator.status().state, 'waiting_manual');
+  assert.match(coordinator.status().message, /post-game survey/);
+  coordinator.submitSurvey('human');
+  assert.equal(coordinator.status().mode, 'finished');
+});

@@ -3,6 +3,7 @@ import { parseArgs } from 'node:util';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { SURVEY_ANSWERS_SCHEMA } from './survey.mjs';
 
 const { values } = parseArgs({ options: {
   seat: { type: 'string' }, session: { type: 'string', default: '.playtest/table.json' },
@@ -125,6 +126,16 @@ const tools = [
     }),
   },
   {
+    name: 'read_survey',
+    description: 'Read the pinned post-game questionnaire, rating anchors, participant identities and only your own response status. Available after a result is reported. Other players\' answers are never supplied. Assess the game independently from what you observed; no further gameplay is allowed.',
+    inputSchema: object({}),
+  },
+  {
+    name: 'submit_survey',
+    description: 'Submit your independent post-game QA response once. Read read_survey for questions and anchors. Use null ratings with a reason when evidence is insufficient. Separate observations from speculation and game outcome from deck strength; cite recorded revisions only when known. AI enjoyment means estimated human enjoyment, not personal feelings. This saves your response and is TERMINAL for the current survey decision: stop immediately after success. Never submit another player\'s answers or request their responses.',
+    inputSchema: { ...object({ answers: SURVEY_ANSWERS_SCHEMA }), required: ['answers'] },
+  },
+  {
     name: 'complete_decision',
     description: 'Finish without handing control to another player: no_op when no action is appropriate, acted for completed bookkeeping without a handoff, or needs_help for a rules dispute or blocker. This does not change the table or wake another player. Normal play continues through pass_priority/pass_turn; those already complete your managed decision, so do not call this afterward. Never send a game note merely to acknowledge an update.',
     inputSchema: {
@@ -171,6 +182,13 @@ server.setRequestHandler(CallToolRequestSchema, async ({ params }) => {
       case 'read_reference': result = await requestTable('/api/references?' + new URLSearchParams(args)); break;
       case 'read_events': result = await requestTable('/api/events?' + new URLSearchParams(args)); break;
       case 'read_rules': result = await requestTable('/api/rules?' + new URLSearchParams(args)); break;
+      case 'read_survey': result = await requestTable('/api/survey'); break;
+      case 'submit_survey':
+        result = await requestTable('/api/survey', {
+          answers: args.answers,
+          ...(process.env.TABLETOP_DECISION_ID ? { decision_id: process.env.TABLETOP_DECISION_ID } : {}),
+        });
+        break;
       case 'complete_decision':
         result = await requestTable('/api/decision', {
           status: args.status, ...(args.note !== undefined ? { note: args.note } : {}),

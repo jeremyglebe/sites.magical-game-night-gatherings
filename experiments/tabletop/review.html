@@ -17,7 +17,7 @@
       <div id="loading" class="empty-state" role="status">Opening saved games…</div>
       <section id="library" aria-labelledby="library-title" hidden>
         <div class="page-heading"><div><p class="eyebrow">YOUR PLAYTEST ARCHIVE</p><h1 id="library-title">Saved games</h1><p class="muted">Every action is saved automatically. Revisit the conversation, decks, and table.</p></div><button id="refresh-library" class="quiet">Refresh</button></div>
-        <div class="library-toolbar"><label class="search-field"><span class="sr-only">Search games and players</span><input id="game-search" type="search" placeholder="Search games or players"></label><label><span class="sr-only">Filter games</span><select id="game-filter"><option value="all">All games</option><option value="completed">Completed</option><option value="unfinished">Unfinished</option></select></label><span id="game-count" class="muted small"></span></div>
+        <div class="library-toolbar"><label class="search-field"><span class="sr-only">Search games and players</span><input id="game-search" type="search" placeholder="Search games or players"></label><label><span class="sr-only">Filter games</span><select id="game-filter"><option value="all">All games</option><option value="completed">Completed</option><option value="feedback">Feedback pending</option><option value="unfinished">Unfinished</option></select></label><span id="game-count" class="muted small"></span></div>
         <p id="archive-warning" class="notice" hidden></p>
         <div id="game-list" class="game-list"></div>
       </section>
@@ -25,7 +25,7 @@
         <a id="back-library" class="back-link" href="/games">← Saved games</a>
         <div class="page-heading review-heading"><div><p class="eyebrow" id="review-date"></p><h1 id="review-title"></h1><p id="review-description" class="muted"></p></div><div class="heading-actions"><button id="refresh-game" class="quiet">Refresh recording</button><a id="download-recording" class="button quiet" download>JSON recording ↗</a></div></div>
         <div class="owner-note"><span aria-hidden="true">◈</span> Owner review · Includes full decks and private cards. Playback uses saved actions; it never runs the players.</div>
-        <div class="review-tabs" role="tablist" aria-label="Game review sections"><button id="replay-tab" role="tab" aria-selected="true" aria-controls="replay-panel" tabindex="0">Table &amp; conversation</button><button id="decks-tab" role="tab" aria-selected="false" aria-controls="decks-panel" tabindex="-1">Player decks</button></div>
+        <div class="review-tabs" role="tablist" aria-label="Game review sections"><button id="replay-tab" role="tab" aria-selected="true" aria-controls="replay-panel" tabindex="0">Table &amp; conversation</button><button id="decks-tab" role="tab" aria-selected="false" aria-controls="decks-panel" tabindex="-1">Player decks</button><button id="feedback-tab" role="tab" aria-selected="false" aria-controls="feedback-panel" tabindex="-1">Player feedback</button></div>
         <section id="replay-panel" role="tabpanel" aria-labelledby="replay-tab">
           <div class="playback-bar">
             <div class="playback-buttons"><button id="first-position" class="quiet" aria-label="Go to initial setup" title="Initial setup">|◀</button><button id="previous-position" class="quiet" aria-label="Previous action" title="Previous action">◀</button><button id="toggle-playback" aria-label="Play recording">▶ Play</button><button id="next-position" class="quiet" aria-label="Next action" title="Next action">▶</button><button id="last-position" class="quiet" aria-label="Go to latest saved action" title="Latest saved action">▶|</button></div>
@@ -40,6 +40,9 @@
         <section id="decks-panel" role="tabpanel" aria-labelledby="decks-tab" hidden>
           <div id="deck-player-tabs" class="deck-player-tabs" role="tablist" aria-label="Player decks"></div>
           <div id="deck-content" role="tabpanel"></div>
+        </section>
+        <section id="feedback-panel" role="tabpanel" aria-labelledby="feedback-tab" hidden>
+          <div id="feedback-content"></div>
         </section>
       </section>
     </main>

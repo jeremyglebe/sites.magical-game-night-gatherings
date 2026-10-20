@@ -59,7 +59,7 @@ test('two real MCP processes share saved state with private views, conflict dete
     assert.equal((await fetch(url + '/api/observe')).status, 401);
     assert.equal((await fetch(url + '/api/act', { method: 'POST', body: '{}' })).status, 401);
     assert.deepEqual((await a.client.listTools()).tools.map(t => t.name),
-      ['observe_table', 'act', 'say', 'pass_priority', 'pass_turn', 'read_card', 'read_reference', 'read_events', 'read_rules', 'complete_decision']);
+      ['observe_table', 'act', 'say', 'pass_priority', 'pass_turn', 'read_card', 'read_reference', 'read_events', 'read_rules', 'read_survey', 'submit_survey', 'complete_decision']);
     const initial = await a.tool('observe_table');
     const calls = await Promise.allSettled([a, b].map(p => p.tool('act', {
       revision: initial.revision, actions: [{ type: 'draw', count: 7 }], reason: 'Private reasoning about Serra Angel.',
