@@ -8,6 +8,7 @@ import { applyActions, cardDetails, createTable, observe, eventsSince } from './
 import { referenceLines } from './references.mjs';
 import { readRules } from './rules.mjs';
 import { createRecording, appendRecording, recordingMarkdown } from './game-log.mjs';
+import { serveAvatar } from './avatars.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const html = readFileSync(resolve(here, 'index.html'));
@@ -82,6 +83,7 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
   const server = createServer(async (request, response) => {
     try {
       const url = new URL(request.url, 'http://localhost');
+      if (request.method === 'GET' && serveAvatar(url.pathname, response)) return;
       if (request.method === 'GET' && url.pathname === '/') {
         response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
         response.end(html);

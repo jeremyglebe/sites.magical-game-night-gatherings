@@ -476,6 +476,20 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+      .player-identity {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        min-width: 0;
+      }
+      .player-identity > div {
+        min-width: 0;
+      }
+      .player-identity .chat-avatar {
+        flex-basis: 36px;
+        width: 36px;
+        height: 36px;
+      }
       .seat-label {
         font-size: 10px;
         text-transform: uppercase;
@@ -808,8 +822,14 @@
         overflow-wrap: anywhere;
       }
       .runner-player {
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
         padding: 10px 0;
         border-bottom: 1px solid #2a3c30;
+      }
+      .runner-player > div {
+        min-width: 0;
       }
       .control-recovery {
         margin-top: 10px;
@@ -922,43 +942,138 @@
         max-height: 220px;
         overflow: auto;
       }
-      .recent-moves li {
+      .recent-moves li,
+      .moves-full li {
         font-size: 11px;
         color: var(--muted);
-        padding: 8px 0;
-        border-bottom: 1px solid #293b30;
+        padding: 0;
+        border: 0;
         overflow-wrap: anywhere;
+      }
+      li.chat-event {
+        --speaker-color: var(--green);
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        margin: 0 0 14px;
+        padding-right: 14px;
+      }
+      li.chat-event.align-end {
+        flex-direction: row-reverse;
+        padding-right: 0;
+        padding-left: 14px;
+      }
+      .chat-avatar {
+        display: grid;
+        place-items: center;
+        flex: 0 0 32px;
+        width: 32px;
+        height: 32px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: var(--surface2);
+        color: var(--speaker-color);
+        font-size: 10px;
+        font-weight: 700;
+      }
+      .chat-avatar img {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .chat-body {
+        flex: 1;
+        min-width: 0;
       }
       .activity-meta {
         font-variant-numeric: tabular-nums;
-        color: var(--accent);
+        color: var(--muted);
         font-size: 10px;
         display: flex;
+        flex-wrap: wrap;
         align-items: baseline;
         justify-content: space-between;
-        gap: 8px;
-        margin-bottom: 2px;
+        gap: 2px 8px;
+        margin-bottom: 5px;
       }
       .activity-meta strong {
-        font-size: 12px;
+        color: var(--speaker-color);
+        font-size: 11px;
         font-weight: 600;
+      }
+      .activity-bubble {
+        border: 1px solid color-mix(in srgb, var(--speaker-color) 25%, var(--line));
+        border-radius: 3px 12px 12px 12px;
+        padding: 9px 10px;
+        background: color-mix(in srgb, var(--speaker-color) 6%, var(--surface));
+      }
+      .align-end .activity-bubble {
+        border-radius: 12px 3px 12px 12px;
       }
       .activity-line {
         margin: 4px 0;
         white-space: pre-wrap;
+        font-size: 10px;
       }
       .activity-speech {
-        margin: 7px 0;
-        padding: 6px 0 6px 10px;
-        border-left: 2px solid var(--accent);
+        margin: 0;
         color: var(--ink);
         font-size: 12px;
         line-height: 1.5;
         white-space: pre-wrap;
       }
+      .activity-bubble > * + * {
+        margin-top: 8px;
+      }
+      .activity-actions summary {
+        cursor: pointer;
+        font-size: 10px;
+      }
       .activity-note {
         color: var(--muted);
         font-style: italic;
+      }
+      .chat-thinking {
+        --speaker-color: var(--green);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        padding: 8px 0 2px;
+      }
+      .thinking-bubble {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 8px 10px;
+        border: 1px solid var(--line);
+        border-radius: 3px 12px 12px 12px;
+        color: var(--muted);
+        background: var(--surface);
+        font-size: 11px;
+      }
+      .thinking-dots {
+        display: inline-flex;
+        gap: 3px;
+      }
+      .thinking-dots span {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--speaker-color);
+        animation: thinking-dot 1.2s ease-in-out infinite;
+      }
+      .thinking-dots span:nth-child(2) { animation-delay: 0.15s; }
+      .thinking-dots span:nth-child(3) { animation-delay: 0.3s; }
+      @keyframes thinking-dot {
+        0%, 60%, 100% { opacity: 0.35; transform: translateY(0); }
+        30% { opacity: 1; transform: translateY(-3px); }
       }
       .unsupported {
         padding: 65px 35px;
@@ -1102,11 +1217,6 @@
         padding: 0;
         list-style: none;
         line-height: 1.65;
-      }
-      .moves-full li {
-        padding: 8px 0;
-        border-bottom: 1px solid var(--line);
-        overflow-wrap: anywhere;
       }
       .modal-empty {
         color: var(--muted);
@@ -1455,6 +1565,9 @@
         * {
           transition: none !important;
         }
+        .thinking-dots span {
+          animation: none;
+        }
       }
     </style>
   </head>
@@ -1683,6 +1796,14 @@
                 class="recent-moves"
                 aria-label="Recent table talk and actions"
               ></ol>
+              <div
+                id="chat-thinking"
+                class="chat-thinking"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                hidden
+              ></div>
             </section>
             <section class="sidebar-run">
               <h2>Players</h2>
@@ -1865,6 +1986,7 @@
       syncSidebarWidth();
       let app = null,
         table = null,
+        tableConnected = false,
         legacy = false,
         setupReady = false,
         busy = false,
@@ -2351,16 +2473,19 @@
         node.dataset.player = player.id;
         node.setAttribute("aria-label", player.name + " battlefield");
         const head = make("div", "player-head");
-        const identity = make("div");
+        const identity = make("div", "player-identity");
+        const labels = make("div");
         const team =
           app?.match?.layout === "emperor" && table.players.length === 6;
         const label = team
           ? `${index < 3 ? "Team A" : "Team B"} · ${index % 3 === 1 ? "Emperor" : "Flank"}`
           : `Seat ${index + 1}`;
-        identity.append(
+        labels.append(
           make("div", "seat-label", label),
           make("h2", "player-name", player.name),
         );
+        styleSpeaker(identity, player.id);
+        identity.append(speakerAvatar(player.id), labels);
         const life = make("div", "life", player.life);
         life.append(make("small", "", "life"));
         head.append(identity, life);
@@ -2509,19 +2634,64 @@
         table?.players?.find((player) => player.id === id)?.name ||
         id ||
         "Table";
+      function styleSpeaker(node, id) {
+        const index = (table?.players || []).findIndex((player) => player.id === id);
+        const colors = ["#b9d8b1", "#b3cde2", "#dbd3a8", "#d2bce5", "#efa797", "#a6d9d3"];
+        node.style.setProperty("--speaker-color", colors[Math.max(0, index) % colors.length]);
+        return index;
+      }
+      function speakerAvatar(id) {
+        const index = (table?.players || []).findIndex((player) => player.id === id);
+        const avatar = make("span", "chat-avatar", index < 0 ? "•" : String(index + 1));
+        avatar.setAttribute("aria-hidden", "true");
+        const config = playerConfig(id);
+        if (/^robot-(orc|wizard|dwarf|elf-ranger|knight|rogue|cleric|bard)$/.test(config.avatar)) {
+          const image = make("img");
+          image.src = `/avatars/${config.avatar}.png`;
+          image.alt = "";
+          image.decoding = "async";
+          // Keep the seat badge if an asset is unavailable, including older servers.
+          image.addEventListener("error", () => image.remove(), { once: true });
+          avatar.append(image);
+        }
+        return avatar;
+      }
       function activityItem(event) {
-        const item = make("li");
+        const item = make("li", "chat-event");
+        item.dataset.revision = event.revision;
+        const seat = styleSpeaker(item, event.actor);
+        if (table?.players?.length === 2 && seat === 1) item.classList.add("align-end");
+        const body = make("div", "chat-body");
         const meta = make("div", "activity-meta");
         meta.append(make("strong", "", activityPlayer(event.actor)));
         const time = new Date(event.at);
         const when = Number.isFinite(time.getTime())
-          ? ` · ${new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "2-digit" }).format(time)}`
+          ? new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "2-digit" }).format(time)
           : "";
-        meta.append(make("span", "", `#${event.revision}${when}`));
-        item.append(meta);
+        const stamp = make("span", "", when);
+        stamp.title = `Update ${event.revision}`;
+        meta.append(stamp);
+        const bubble = make("div", "activity-bubble");
+        body.append(meta, bubble);
+        item.append(speakerAvatar(event.actor), body);
+        let actions = [], actionGroup = 0;
+        function flushActions() {
+          if (!actions.length) return;
+          const group = make(actions.length > 2 ? "details" : "div", "activity-actions");
+          if (actions.length > 2) {
+            group.dataset.actionGroup = `${event.revision}:${actionGroup++}`;
+            group.append(make("summary", "", `${actions.length} table actions`));
+          }
+          for (const { text, note } of actions)
+            group.append(make("p", `activity-line${note ? " activity-note" : ""}`, text));
+          bubble.append(group);
+          actions = [];
+        }
         function say(text) {
-          if (typeof text === "string" && text.trim())
-            item.append(make("blockquote", "activity-speech", `“${text}”`));
+          if (typeof text === "string" && text.trim()) {
+            flushActions();
+            bubble.append(make("p", "activity-speech", text));
+          }
         }
         const changes =
           Array.isArray(event.changes) && event.changes.length
@@ -2534,29 +2704,71 @@
             change.type === "note" &&
             typeof change.text === "string"
           ) {
-            item.append(
-              make("p", "activity-line activity-note", `Note: ${change.text}`),
-            );
+            actions.push({ text: `Note: ${change.text}`, note: true });
           } else {
-            item.append(
-              make("p", "activity-line", change.summary || "Table updated"),
-            );
+            actions.push({ text: change.summary || "Table updated" });
             if (change.type === "pass" || change.type === "pass_turn")
               say(change.message);
           }
         }
+        flushActions();
         return item;
       }
       function fillActivity(list, events) {
         const previousScroll = list.scrollTop;
         const followLatest =
           list.scrollHeight - list.clientHeight - previousScroll < 32;
+        const openGroups = new Set([...list.querySelectorAll("details[open]")].map((node) => node.dataset.actionGroup));
+        const focused = list.contains(document.activeElement)
+          ? document.activeElement.closest("details")?.dataset.actionGroup
+          : null;
+        const visibleTop = list.getBoundingClientRect().top;
+        const anchor = [...list.children].find((node) => node.dataset.revision && node.getBoundingClientRect().bottom > visibleTop);
+        const anchorRevision = anchor?.dataset.revision;
+        const anchorTop = anchor?.getBoundingClientRect().top;
         list.replaceChildren();
         if (!events.length)
           list.append(make("li", "", "No table talk or actions yet."));
         else for (const event of events) list.append(activityItem(event));
-        if (list.id === "recent-moves")
+        for (const node of list.querySelectorAll("details[data-action-group]")) {
+          node.open = openGroups.has(node.dataset.actionGroup);
+          if (focused && node.dataset.actionGroup === focused)
+            node.querySelector("summary").focus({ preventScroll: true });
+        }
+        if (list.id === "recent-moves") {
           list.scrollTop = followLatest ? list.scrollHeight : previousScroll;
+          const restored = [...list.children].find((node) => node.dataset.revision === anchorRevision);
+          if (!followLatest && restored)
+            list.scrollTop += restored.getBoundingClientRect().top - anchorTop;
+        }
+      }
+      function renderThinking() {
+        const run = coordinator();
+        const active = tableConnected && !legacy && ["running", "stepping"].includes(run?.mode)
+          ? (table?.players || []).find((player) => {
+              const worker = workerFor(player.id);
+              return playerConfig(player.id).ai !== false && worker?.enabled !== false &&
+                worker?.active && !worker.active.completion && !worker.error;
+            })
+          : null;
+        const indicator = $("#chat-thinking");
+        const signature = active ? `${active.id}:${active.name}` : "";
+        if (indicator.dataset.player === signature) return;
+        const list = $("#recent-moves");
+        const followLatest = list.scrollHeight - list.clientHeight - list.scrollTop < 32;
+        indicator.dataset.player = signature;
+        indicator.replaceChildren();
+        indicator.hidden = !active;
+        if (active) {
+          styleSpeaker(indicator, active.id);
+          const bubble = make("div", "thinking-bubble");
+          const dots = make("span", "thinking-dots");
+          dots.setAttribute("aria-hidden", "true");
+          dots.append(make("span"), make("span"), make("span"));
+          bubble.append(dots, make("span", "", `${active.name || active.id} is thinking…`));
+          indicator.append(speakerAvatar(active.id), bubble);
+        }
+        if (followLatest) list.scrollTop = list.scrollHeight;
       }
       function renderMoves() {
         fillActivity($("#recent-moves"), (table?.events || []).slice(-12));
@@ -2940,12 +3152,15 @@
         players.replaceChildren();
         for (const player of table?.players || []) {
           const item = make("div", "runner-player");
-          item.append(make("strong", "", player.name));
+          const details = make("div");
+          styleSpeaker(item, player.id);
+          details.append(make("strong", "", player.name));
+          item.append(speakerAvatar(player.id), details);
           const worker = workerFor(player.id);
-          item.append(make("p", "small", workerText(player.id)));
+          details.append(make("p", "small", workerText(player.id)));
           const conf = playerConfig(player.id);
           if (conf.model && conf.ai !== false)
-            item.append(
+            details.append(
               make(
                 "p",
                 "small",
@@ -2953,11 +3168,12 @@
               ),
             );
           if (worker?.error)
-            item.append(make("p", "small seat-error", worker.error));
+            details.append(make("p", "small seat-error", worker.error));
           players.append(item);
         }
         for (const node of document.querySelectorAll("[data-worker]"))
           node.textContent = workerText(node.dataset.worker);
+        renderThinking();
       }
       $("#control-recipient").addEventListener("change", renderRunner);
       $("#control-recovery").addEventListener("submit", async (event) => {
@@ -3037,6 +3253,7 @@
           }
           if (legacy || app?.match) {
             const state = await request("/api/table");
+            tableConnected = true;
             const matchId =
               app?.match?.session || state.created_at || state.title;
             const matchChanged = matchId !== displayedMatch;
@@ -3061,6 +3278,8 @@
             }
             renderRunner();
           } else {
+            tableConnected = false;
+            renderThinking();
             $("#match").hidden = true;
             $("#lobby").hidden = false;
             setup();
@@ -3075,6 +3294,8 @@
             ? "Connected · public view"
             : "Connected · local";
         } catch (error) {
+          tableConnected = false;
+          renderThinking();
           $("#connection").classList.add("offline");
           $("#connection").textContent = "Disconnected · retrying";
           if ($("#loading").hidden === false)

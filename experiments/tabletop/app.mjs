@@ -12,6 +12,7 @@ import { createCodexRunner } from './codex-player.mjs';
 import { readRules, defaultBasicRulesPath } from './rules.mjs';
 import { readCodexPlanUsage } from './plan-usage.mjs';
 import { recordPlanUsage, planUsageView } from './usage-tracking.mjs';
+import { assignAvatars, serveAvatar } from './avatars.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const precons = JSON.parse(readFileSync(join(here, 'precons.json'), 'utf8'));
@@ -57,7 +58,7 @@ export function normalizeSetup(input) {
     };
   });
   return {
-    ...input, title: input.title || 'Local playtest', players,
+    ...input, title: input.title || 'Local playtest', players: assignAvatars(players),
     layout: input.layout === 'emperor' ? 'emperor' : 'table',
     references: input.references || [],
   };
@@ -141,6 +142,7 @@ export async function startApp({
   }
   async function loadMatch(id, config, savedCoordinator, savedPlanUsage) {
     if (!/^[a-zA-Z0-9_-]+$/.test(id)) throw new Error('Invalid saved match');
+    config = { ...config, players: assignAvatars(config.players) };
     const folder = join(root, 'matches', id);
     const session = join(folder, 'session.json');
     const rulesPath = join(folder, 'ComprehensiveRules.txt');
@@ -277,6 +279,7 @@ export async function startApp({
         json(response, 403, { error: 'Cross-origin application requests are disabled' }); return;
       }
       const url = new URL(request.url, `http://${host}`);
+      if (request.method === 'GET' && serveAvatar(url.pathname, response)) return;
       if (request.method === 'GET' && url.pathname === '/') {
         response.writeHead(200, { 'Content-Type': 'text/html', 'Cache-Control': 'no-store',
           'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://cards.scryfall.io data:; connect-src 'self'; frame-ancestors 'none'" });

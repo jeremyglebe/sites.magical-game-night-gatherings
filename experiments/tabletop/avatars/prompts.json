@@ -1,0 +1,55 @@
+{
+  "tool": "Built-in image_gen",
+  "date": "2026-10-20",
+  "useCase": "stylized-concept",
+  "images": [
+    {
+      "id": "robot-orc",
+      "prompt": "Use case: stylized-concept\nAsset type: square avatar for an AI player in a fantasy card-game chat.\nPrimary request: a flat, somewhat cartoonish portrait of a robot version of a fantasy archetype.\nStyle/medium: clean flat 2D cartoon illustration, thick charcoal outlines, large rounded geometric shapes, restrained cel shading, no texture, no gradients, no photorealism, no 3D.\nComposition/framing: one centered head-and-shoulders character facing the viewer, oversized expressive mechanical face, silhouette contained with generous margins so a circular crop does not cut off the headgear. No full body, no scene, no border.\nMaterials: clearly robotic metal facial plates, simple glowing eyes and visible mechanical joints; no organic skin.\nConstraints: readable at 32 to 48 pixels, calm friendly personality, simple solid muted background, no text, lettering, logos or watermark. Cohesive collectible avatar-pack aesthetic.\nSubject: A broad, green-metal robot orc with pointed mechanical ears, chunky riveted jaw and two short ivory-metal tusks, ochre shoulder straps, friendly determined expression. Muted warm sage background.",
+      "source": "/Users/jeremy/.codex/generated_images/01a15b0d-66e0-71c3-a2d6-65746e050f79/exec-bcb5ae6d-2cf0-4efe-9154-4a0f2b21dc50.png",
+      "file": "robot-orc.png"
+    },
+    {
+      "id": "robot-wizard",
+      "prompt": "Use case: stylized-concept\nAsset type: square avatar for an AI player in a fantasy card-game chat.\nPrimary request: a flat, somewhat cartoonish portrait of a robot version of a fantasy archetype.\nStyle/medium: clean flat 2D cartoon illustration, thick charcoal outlines, large rounded geometric shapes, restrained cel shading, no texture, no gradients, no photorealism, no 3D.\nComposition/framing: one centered head-and-shoulders character facing the viewer, oversized expressive mechanical face, silhouette contained with generous margins so a circular crop does not cut off the headgear. No full body, no scene, no border.\nMaterials: clearly robotic metal facial plates, simple glowing eyes and visible mechanical joints; no organic skin.\nConstraints: readable at 32 to 48 pixels, calm friendly personality, simple solid muted background, no text, lettering, logos or watermark. Cohesive collectible avatar-pack aesthetic.\nSubject: A silver robot wizard with a deep indigo floppy pointed hat, small gold moon badge, blue cloak and a short segmented metal beard, curious glowing cyan eyes. Muted dusty lavender background.",
+      "source": "/Users/jeremy/.codex/generated_images/01a15b0d-66e0-71c3-a2d6-65746e050f79/exec-76360ea7-7686-48ba-99fa-79d4795a2a1d.png",
+      "file": "robot-wizard.png"
+    },
+    {
+      "id": "robot-dwarf",
+      "prompt": "Use case: stylized-concept\nAsset type: square avatar for an AI player in a fantasy card-game chat.\nPrimary request: a flat, somewhat cartoonish portrait of a robot version of a fantasy archetype.\nStyle/medium: clean flat 2D cartoon illustration, thick charcoal outlines, large rounded geometric shapes, restrained cel shading, no texture, no gradients, no photorealism, no 3D.\nComposition/framing: one centered head-and-shoulders character facing the viewer, oversized expressive mechanical face, silhouette contained with generous margins so a circular crop does not cut off the headgear. No full body, no scene, no border.\nMaterials: clearly robotic metal facial plates, simple glowing eyes and visible mechanical joints; no organic skin.\nConstraints: readable at 32 to 48 pixels, calm friendly personality, simple solid muted background, no text, lettering, logos or watermark. Cohesive collectible avatar-pack aesthetic.\nSubject: A compact copper-metal robot dwarf with a large blocky braided metal beard, a simple rounded miner's helmet, amber eyes and burgundy shoulders, cheerful stubborn expression. Muted dusty terracotta background.",
+      "source": "/Users/jeremy/.codex/generated_images/01a15b0d-66e0-71c3-a2d6-65746e050f79/exec-0315a984-5dde-4964-8755-570b266c9449.png",
+      "file": "robot-dwarf.png"
+    },
+    {
+      "id": "robot-elf-ranger",
+      "prompt": "Use case: stylized-concept\nAsset type: square avatar for an AI player in a fantasy card-game chat.\nPrimary request: a flat, somewhat cartoonish portrait of a robot version of a fantasy archetype.\nStyle/medium: clean flat 2D cartoon illustration, thick charcoal outlines, large rounded geometric shapes, restrained cel shading, no texture, no gradients, no photorealism, no 3D.\nComposition/framing: one centered head-and-shoulders character facing the viewer, oversized expressive mechanical face, silhouette contained with generous margins so a circular crop does not cut off the headgear. No full body, no scene, no border.\nMaterials: clearly robotic metal facial plates, simple glowing eyes and visible mechanical joints; no organic skin.\nConstraints: readable at 32 to 48 pixels, calm friendly personality, simple solid muted background, no text, lettering, logos or watermark. Cohesive collectible avatar-pack aesthetic.\nSubject: A slender teal-metal robot elf ranger with long pointed mechanical ears, a forest-green hood and cape, bright amber eyes, calm alert expression; a tiny arrow fletching visible behind one shoulder. Muted pale moss background.",
+      "source": "/Users/jeremy/.codex/generated_images/01a15b0d-66e0-71c3-a2d6-65746e050f79/exec-5918be92-914b-42e8-b5c7-7f246cecea8d.png",
+      "file": "robot-elf-ranger.png"
+    },
+    {
+      "id": "robot-knight",
+      "prompt": "Use case: stylized-concept\nAsset type: square avatar for an AI player in a fantasy card-game chat.\nPrimary request: a flat, somewhat cartoonish portrait of a robot version of a fantasy archetype.\nStyle/medium: clean flat 2D cartoon illustration, thick charcoal outlines, large rounded geometric shapes, restrained cel shading, no texture, no gradients, no photorealism, no 3D.\nComposition/framing: one centered head-and-shoulders character facing the viewer, oversized expressive mechanical face, silhouette contained with generous margins so a circular crop does not cut off the headgear. No full body, no scene, no border.\nMaterials: clearly robotic metal facial plates, simple glowing eyes and visible mechanical joints; no organic skin.\nConstraints: readable at 32 to 48 pixels, calm friendly personality, simple solid muted background, no text, lettering, logos or watermark. Cohesive collectible avatar-pack aesthetic.\nSubject: A noble silver robot knight with a rounded open-faced steel helmet, one small red plume, blue shoulder armor and golden trim, warm glowing eyes and a confident expression. Muted slate blue background.",
+      "source": "/Users/jeremy/.codex/generated_images/01a15b0d-66e0-71c3-a2d6-65746e050f79/exec-4d5558de-fc87-4c15-a311-e315214a5cad.png",
+      "file": "robot-knight.png"
+    },
+    {
+      "id": "robot-rogue",
+      "prompt": "Use case: stylized-concept\nAsset type: square avatar for an AI player in a fantasy card-game chat.\nPrimary request: a flat, somewhat cartoonish portrait of a robot version of a fantasy archetype.\nStyle/medium: clean flat 2D cartoon illustration, thick charcoal outlines, large rounded geometric shapes, restrained cel shading, no texture, no gradients, no photorealism, no 3D.\nComposition/framing: one centered head-and-shoulders character facing the viewer, oversized expressive mechanical face, silhouette contained with generous margins so a circular crop does not cut off the headgear. No full body, no scene, no border.\nMaterials: clearly robotic metal facial plates, simple glowing eyes and visible mechanical joints; no organic skin.\nConstraints: readable at 32 to 48 pixels, calm friendly personality, simple solid muted background, no text, lettering, logos or watermark. Cohesive collectible avatar-pack aesthetic.\nSubject: A charcoal-metal robot rogue with a plum hood and dark scarf, angular faceplate and playful mint-green eyes, a small brass clasp on the cloak; head and shoulders only, no weapon. Muted dusty mauve background.",
+      "source": "/Users/jeremy/.codex/generated_images/01a15b0d-66e0-71c3-a2d6-65746e050f79/exec-a3f6641f-f7e7-44d5-9be9-9688240d6649.png",
+      "file": "robot-rogue.png"
+    },
+    {
+      "id": "robot-cleric",
+      "prompt": "Use case: stylized-concept\nAsset type: square avatar for an AI player in a fantasy card-game chat.\nPrimary request: a flat, somewhat cartoonish portrait of a robot version of a fantasy archetype.\nStyle/medium: clean flat 2D cartoon illustration, thick charcoal outlines, large rounded geometric shapes, restrained cel shading, no texture, no gradients, no photorealism, no 3D.\nComposition/framing: one centered head-and-shoulders character facing the viewer, oversized expressive mechanical face, silhouette contained with generous margins so a circular crop does not cut off the headgear. No full body, no scene, no border.\nMaterials: clearly robotic metal facial plates, simple glowing eyes and visible mechanical joints; no organic skin.\nConstraints: readable at 32 to 48 pixels, calm friendly personality, simple solid muted background, no text, lettering, logos or watermark. Cohesive collectible avatar-pack aesthetic.\nSubject: An ivory-and-gold robot cleric with a simple white hood, gold shoulder mantle and small sun medallion, kind glowing blue eyes, serene rounded mechanical face. Muted warm sand background.",
+      "source": "/Users/jeremy/.codex/generated_images/01a15b0d-66e0-71c3-a2d6-65746e050f79/exec-e4523297-de65-4e5a-8071-782b96712ec0.png",
+      "file": "robot-cleric.png"
+    },
+    {
+      "id": "robot-bard",
+      "prompt": "Use case: stylized-concept\nAsset type: square avatar for an AI player in a fantasy card-game chat.\nPrimary request: a flat, somewhat cartoonish portrait of a robot version of a fantasy archetype.\nStyle/medium: clean flat 2D cartoon illustration, thick charcoal outlines, large rounded geometric shapes, restrained cel shading, no texture, no gradients, no photorealism, no 3D.\nComposition/framing: one centered head-and-shoulders character facing the viewer, oversized expressive mechanical face, silhouette contained with generous margins so a circular crop does not cut off the headgear. No full body, no scene, no border.\nMaterials: clearly robotic metal facial plates, simple glowing eyes and visible mechanical joints; no organic skin.\nConstraints: readable at 32 to 48 pixels, calm friendly personality, simple solid muted background, no text, lettering, logos or watermark. Cohesive collectible avatar-pack aesthetic.\nSubject: A brass robot bard wearing a teal jaunty feathered cap and coral vest, expressive glowing eyes and a friendly smiling segmented mouth; a tiny hint of lute neck beside the shoulder. Muted dusty turquoise background.",
+      "source": "/Users/jeremy/.codex/generated_images/01a15b0d-66e0-71c3-a2d6-65746e050f79/exec-03643794-0ec3-4fc7-b874-c8f828110c04.png",
+      "file": "robot-bard.png"
+    }
+  ]
+}

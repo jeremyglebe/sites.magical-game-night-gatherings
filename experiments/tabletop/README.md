@@ -51,6 +51,8 @@ Players group physical actions that need no intervening response, explain their 
 
 Ten MCP tools are available: `observe_table`, `act`, `say`, `pass_priority`, `pass_turn`, `read_card`, `read_reference`, `read_events`, `read_rules`, and `complete_decision`. The viewer shows chronological public actions and attributed player speech, with an expandable full history. Human board editing and an automated game reviewer are not included.
 
+The right-hand log uses chat bubbles, collapsible groups of table actions, and a live thinking indicator while an AI player is making a decision. Drag its divider to change the width; plan usage sits below the table and chat. Eight generated robot fantasy portraits identify players consistently on the boards and in chat. AI seats receive random portraits without repeats, saved with the match and retained after reopening it. Existing matches receive portraits on their next load. Manual seats and seats beyond the eight-image pack use numbered badges; this does not limit headless player counts. The image files and generation prompts are in [`avatars/`](avatars/).
+
 ## Saved logs
 
 Each match folder contains `session.json`, coordinator/configuration in `match.json`, a pinned `BasicRules.txt`, pinned Comprehensive Rules when available, a `CardRulings.json` cache for older imported definitions, and per-player workspaces. Beside the session are:
