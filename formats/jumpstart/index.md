@@ -10,7 +10,10 @@ Jumpstart combines two prepared, themed twenty-card packets into one forty-card 
 
 ## Build a reusable box
 
+- [Useful Products & Tools](../../research/useful-products-and-tools.md), with saved box purchase links, size variants, and identifiers for reordering.
+- [Card storage calculator](../../research/card-storage-calculator.md), for stack depth, box capacity, measured sleeve thickness, and storage comparisons.
 - [Building and labeling custom packets](building-packets.md), covering card selection, lands, the catalogue's preference for variety, packet identifiers, double sleeves with protected thematic stickers, and quick cleanup.
+- [Custom Jumpstart storage system](../../research/jumpstart-storage.md), saving the twenty-four-packet storage plan, clear-box candidate, presentation ideas, and measurements still needed to confirm fit.
 
 Official Jumpstart packets and custom packets can both supply this play structure. Custom boxes should state their card pool, packet-selection method, supported combinations, and any changes to the play rules. A packet's theme does not itself change how its cards work.
 

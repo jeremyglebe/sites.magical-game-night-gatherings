@@ -56,6 +56,8 @@ That default is flexible. Smaller groups might draft more packs, use sealed pool
 
 ## Boxed-Set Notes
 
+For reusable draft-pack containers, see [Dragon Shield Cube Shells](../../research/useful-products-and-tools.md#dragon-shield-cube-shells) and [decorative Cubeamajigs](../../research/useful-products-and-tools.md#cubeamajigs-decorative-booster-packs) in Useful Products & Tools, including purchase links, capacity, and quantities for an eight-player draft.
+
 A cube box should probably include:
 
 - The cube card pool.

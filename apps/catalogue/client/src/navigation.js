@@ -14,6 +14,10 @@ export const navigation = [
         text: "Using the Rules",
         link: "/rules/",
       },
+      {
+        text: "Useful Products & Tools",
+        link: "/research/useful-products-and-tools",
+      },
     ],
   },
   {
@@ -182,6 +186,10 @@ export const navigation = [
         text: "Build and Label Packets",
         link: "/formats/jumpstart/building-packets",
       },
+      {
+        text: "Card Storage Calculator",
+        link: "/research/card-storage-calculator",
+      },
     ],
   },
   {
@@ -205,6 +213,10 @@ export const navigation = [
       {
         text: "Research Index",
         link: "/research/",
+      },
+      {
+        text: "Card Storage Calculator",
+        link: "/research/card-storage-calculator",
       },
       {
         text: "Marvel Sets and Supporting Pools",

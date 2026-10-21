@@ -1,0 +1,79 @@
+
+📦 PROJECT HANDOVER: Custom Jumpstart Storage System
+
+
+1. Project Objective & Core Constraints
+
+• Goal: Build a custom, highly organized 24-pack MTG Jumpstart Environment (designed for up to 12 players, 2 packs each).
+• Card Count: Exactly 20 cards per theme pack, expandable to 25 cards max to accommodate dedicated tokens, art cards, and rule references.
+• Sleeve Setup: Cards are strictly double-sleeved. To solve sorting and cleanup, a tracking sticker is placed on each inner sleeve to quickly identify which card belongs to which theme pack.
+• Conditioning: Cards are meticulously compressed using a flattening tool to force out all trapped air pockets.
+
+2. Card Stack Blueprint & Physics
+
+A standard Magic card is 63 × 88 mm (2.5 × 3.5 in). Double-sleeved, its face expands to a safe clearance of roughly 68 × 94 mm (2.68 × 3.70 in).
+Depending on air compression, individual thickness behaves as follows:
+• Fully Compressed: ~0.50 mm to 0.53 mm per card.
+• Uncompressed / Freshly Played: ~0.55 mm to 0.70 mm per card.
+
+Thickness Comparison Matrix
+
+
+Setup Configuration	Metric Thickness Range	Imperial Thickness Range
+20 Cards (Fully Compressed)	10.00 mm – 10.60 mm	0.39 in – 0.42 in
+20 Cards (Uncompressed)	11.00 mm – 14.00 mm	0.43 in – 0.55 in
+25 Cards (Fully Compressed)	12.50 mm – 13.25 mm	0.49 in – 0.52 in
+25 Cards (Uncompressed)	13.75 mm – 17.50 mm	0.54 in – 0.69 in
+
+
+3. Product Evaluation History
+
+During research, multiple single-pack and bulk options were evaluated. The core constraint prioritized finding a solution that was slightly too large rather than any amount too small to avoid corner damage or split seams.
+
+❌ Rejected or Alternative Options Considered
+
+• Dragon Shield Cube Shells & Gamegenic Cube Pockets 15+:
+	• Sizing: Designed to max out at 15 double-sleeved cards (or 20 single-sleeved cards). Pushing 20 double-sleeved cards into these causes bending, sleeve warping, and severe friction.
+• Burger Tokens (Size 30S):
+	• Sizing: Highly recommended by the r/MTGJumpStart community as the definitive choice for 20 double-sleeved cards.
+	• The Catch: The manufacturer operates on a small scale and is frequently out of stock, making them unreliable for immediate bulk project building.
+• Burger Tokens (Size 37S):
+	• Sizing: Jumped up to a 22.5 mm depth. A great oversized alternative, but suffers from the same consistent inventory/out-of-stock shortages.
+• ClearBags Soft-Fold Boxes (Model FB12 / FB92):
+	• Sizing: ~2" x 5/8" x 3 3/4" clear plastic fold-flat boxes. An excellent, low-cost budget alternative if hard-plastic shells aren't desired.
+• Cubamajigs:
+	• Sizing: Designed for 15 cards, but flexible plastic allows them to stretch to 20 double-sleeved cards. Stretches the seams slightly tighter than preferred.
+• Ultra PRO Resealable Comic/Team Bags:
+	• Sizing: A soft, clear plastic sleeve option that completely replicates the thin profile of a retail booster pack. Zero bulk, but offers no physical crush protection.
+• Ultra PRO 25-Count 2-Piece Hard Cases / Generic 0.94-inch Boxes:
+	• Sizing: 3.8 x 2.7 x 0.94 inches (~23.8 mm depth). Capable of storing up to 45–47 compressed cards. Deemed a bit too oversized for single packs, leaving over 0.5 inches of completely dead workspace for a standard 20-card setup.
+
+Selected Hardware Solution
+
+• Product: APACALI 24-Pack Clear Plastic Card Deck Boxes.
+• Material: 1.2 mm thick, heavy-duty semi-rigid transparent polypropylene with snap-tight hinged lids.
+• Internal Dimensions: 3.8 × 2.7 × 0.82 inches (Depth converts to ~20.83 mm).
+• Sizing Fit: Hits the ultimate "never too small" sweet spot. Even at the maximum uncompressed limit (25 cards filled with air), the stack takes up ~17.5 mm (0.69 in), ensuring zero friction, zero corner bending, and no seam splitting.
+
+4. Visual Presentation & "Aesthetic Padding" Strategy
+
+Because 20 compressed cards take up exactly half of the 0.82 in box depth, the cards will slide if unpadded. The user opted for an immersive, retail "unboxing" feel rather than foam inserts, structuring each box as a self-contained booster pack experience:
+[ FRONT OF CLEAR SHELL ]
+  │
+  ├── 1. Theme Title Card (Front-facing, visible through plastic; e.g., "GOBLINS")
+  ├── 2. Player Reference Card ("What do I do on my turn?" guide)
+  ├── 3. The Core 20-Card Compressed Jumpstart Pack
+  ├── 4. Thematic Tokens & Full-Art Aesthetic Cards (Back-facing)
+  │
+[ BACK OF CLEAR SHELL ]
+
+Total Stacking Optimization
+
+• Core Pack (20 Cards): ~10.3 mm
+• Title + Turn Guide (2 Cards): ~1.1 mm
+• Thematic Tokens/Art (4–5 Cards): ~2.6 mm
+• Total Content Thickness: ~14.0 mm (0.55 in)
+This design path utilizes roughly 68% of the box depth, arresting internal card slide while leaving a safe ~6.8 mm top gap for players to cleanly pinch out their cards.
+Now that the full product history and project parameters are archived for your Codex app, would you like to:
+• Generate a layout template text for the theme title cards?
+• Map out the overall dimension and row length required for a master carrying case to house all 24 of these plastic boxes?

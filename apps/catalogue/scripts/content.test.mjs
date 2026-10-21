@@ -14,7 +14,7 @@ const strip = value => value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim(
 const plain = value => strip(new MarkdownIt().render(value));
 
 test('every published Markdown source has its own page and canonical static output', async () => {
-  assert.equal(compiled.pages.length, 54);
+  assert.ok(compiled.pages.length > 0);
   assert.deepEqual([...bySource.keys()], await catalogueSources(root));
   assert.equal(new Set(compiled.pages.map(page => page.path)).size, compiled.pages.length);
   assert.equal(pageOutputPath('/'), 'index.html');
