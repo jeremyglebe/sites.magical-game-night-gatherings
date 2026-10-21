@@ -8,7 +8,7 @@ Pile o' Magic is the owner's formalization of Big Deck Magic. The complete recor
 
 Prepare a Messy or Themed Pile using the construction rules below, plus the agreed Heap Lands or land-area markers. Use normal multiplayer setup, starting at 20 life and drawing seven cards unless the table chooses another underlying format. Draw from the shared Pile. Normal individual turns and normal Magic victory conditions apply unless changed below.
 
-<!--@include:../../../.vitepress/partials/pile-shared.md-->
+<!--@include:../../../apps/catalogue/content/partials/pile-shared.md-->
 
 ## Copy limits: Singlesome
 

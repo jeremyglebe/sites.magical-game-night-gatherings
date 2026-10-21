@@ -9,7 +9,7 @@ The boxed sets described here are personal play kits and catalogue entries, not 
 | Section | Source | Development |
 | --- | --- | --- |
 | **Tabletop App** | [`apps/tabletop/`](apps/tabletop/README.md) — local Vue + daisyUI client, Node server, MCP tools, players and saved games | `npm run playtest` builds and starts the app. For UI development, use `npm run tabletop:dev` alongside the server. |
-| **Catalogue Site** | Root Markdown folders and `.vitepress/` — published rules, formats and box sets | `npm run catalogue:dev` (or `npm run dev`) |
+| **Catalogue Site** | [`apps/catalogue/`](apps/catalogue/README.md) — Vue + daisyUI site, with rules kept in root Markdown folders | `npm run catalogue:dev` (or `npm run dev`) |
 
 The Tabletop App launches independent Codex CLI players, coordinates explicit handoffs, and saves game recordings. Its optional browser table shows up to six players; `npm run playtest:headless` runs without a viewer. `npm run playtest:review` opens the saved-game library, and `npm run playtest:demo` is a scripted demonstration without model calls. Private game data stays in the ignored root `.playtest/` directory. See the [Tabletop App architecture and commands](apps/tabletop/README.md).
 
@@ -19,7 +19,7 @@ The site is authored in Markdown. Format parent pages link to separate, complete
 
 ## Running The Site
 
-This site is built with VitePress. Do not open the Markdown files, or a loose `index.html`, directly with a generic Live Preview extension. VitePress has to process the Markdown first so the theme, navigation, routing, search, and asset paths work correctly.
+This site uses Vue and daisyUI, built with Vite. Its content compiler renders the existing Markdown into complete HTML pages, preserves heading anchors, expands shared rules, and builds local full-text search. Use the development command below rather than opening source files directly. Node 22.12 or newer is required.
 
 Install dependencies once:
 
@@ -50,10 +50,10 @@ npm run build
 The publishable website will be generated in:
 
 ```text
-.vitepress/dist/
+apps/catalogue/dist/
 ```
 
-Upload the contents of `.vitepress/dist/` to a static host such as GitHub Pages, Netlify, Cloudflare Pages, or any ordinary web host. Do not upload the source Markdown files as the finished site unless the host is configured to run `npm run build` for you.
+Upload the contents of `apps/catalogue/dist/` to a static host such as GitHub Pages, Netlify, Cloudflare Pages, or any ordinary web host. Do not upload the source Markdown files as the finished site unless the host is configured to run `npm run build` for you.
 
 If you want a git-visible copy of the built site for local/root hosting, run:
 
@@ -69,12 +69,12 @@ docs/
 
 The `docs/` folder is safe to track in git and can be used directly by GitHub Pages.
 
-For local static testing, the server's document root must be `.vitepress/dist/`.
+For local static testing, the server's document root must be `apps/catalogue/dist/`.
 
 For example:
 
 ```bash
-python -m http.server 5174 --directory .vitepress/dist
+python -m http.server 5174 --directory apps/catalogue/dist
 ```
 
 Or use the shortcut:
@@ -89,7 +89,7 @@ Then open:
 http://127.0.0.1:5174/
 ```
 
-If you use a Live Server extension from the repo root and open `.vitepress/dist/index.html` as a nested path, the site may look unstyled because the generated HTML expects `/assets/...` to be served from the web root. Either open `.vitepress/dist/` as the served folder, or use `npm run preview`.
+If you use a Live Server extension from the repo root and open `apps/catalogue/dist/index.html` as a nested path, the site may look unstyled because the generated HTML expects `/assets/...` to be served from the web root. Either open `apps/catalogue/dist/` as the served folder, or use `npm run preview`.
 
 To test the tracked `docs/` copy:
 
@@ -130,7 +130,7 @@ build the docs folder with:
 npm run publish:github
 ```
 
-That sets the VitePress base path to `/sites.magical-game-night-gatherings/`, copies the build into `docs/`, and makes GitHub Pages asset paths resolve correctly. This path follows the GitHub repository name, not the npm package name. The current published site is [jeremyglebe.com/sites.magical-game-night-gatherings/](https://jeremyglebe.com/sites.magical-game-night-gatherings/).
+That sets the catalogue base path to `/sites.magical-game-night-gatherings/`, copies the build into `docs/`, and makes GitHub Pages asset paths resolve correctly. This path follows the GitHub repository name, not the npm package name. The current published site is [jeremyglebe.com/sites.magical-game-night-gatherings/](https://jeremyglebe.com/sites.magical-game-night-gatherings/).
 
 Commit and push the updated `docs/` folder after running that command.
 
@@ -175,10 +175,10 @@ Use Scryfall to verify official card names, Oracle text, and card rulings. Fan-f
 - Rules pages contain materials, deck construction, setup, play procedure, victory conditions, and explicit exceptions. Do not replace these with a synopsis or a link to an external source.
 - `boxed-sets/<name>.md` names the exact base version and writes out additional, replacement, and optional rules. Unchosen mechanics stay visibly marked as draft decisions.
 - `sources/` is the reference index. Existing source notes remain available at their original URLs and link to the corresponding rules page.
-- Shared Markdown includes live in `.vitepress/partials/`. VitePress expands them into the full rendered page; readers do not have to open a partial to get the rules.
+- Shared Markdown includes live in `apps/catalogue/content/partials/`. The content compiler expands them into the full rendered page; readers do not have to open a partial to get the rules.
 - Section READMEs link to the maintained Markdown pages instead of duplicating their contents.
 
-The Treachery oracle JSON and research CSV/JSON downloads are copied into the built site by the VitePress build hook because an ordinary Markdown download link does not emit those files automatically.
+The Treachery oracle JSON and research CSV/JSON downloads are copied into the built site by the catalogue build. Local downloads are collected from Markdown links and checked before rendering.
 
 ## Maintaining the research catalogue
 

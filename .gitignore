@@ -6,3 +6,5 @@ node_modules/
 .playtest/
 
 apps/tabletop/dist/
+apps/catalogue/dist/
+apps/catalogue/.generated/

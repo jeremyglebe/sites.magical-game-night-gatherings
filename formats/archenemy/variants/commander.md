@@ -19,7 +19,7 @@ The archenemy needs a scheme deck of **at least ten cards with different English
 
 Commander tax, commander-zone movement, and commander damage remain in effect.
 
-<!--@include:../../../.vitepress/partials/archenemy-team-turns.md-->
+<!--@include:../../../apps/catalogue/content/partials/archenemy-team-turns.md-->
 
 ## Shared hero life and individual resources
 
@@ -33,7 +33,7 @@ An effect preventing a hero from gaining life prevents the team's members from g
 
 Poison counters are **individual**, with a threshold of **ten**, rather than the shared fifteen-poison rule from Two-Headed Giant. Record commander damage separately for each commander and each damaged player; do not pool damage from different commanders or different heroes.
 
-<!--@include:../../../.vitepress/partials/schemes.md-->
+<!--@include:../../../apps/catalogue/content/partials/schemes.md-->
 
 ## Winning and losing
 

@@ -29,7 +29,7 @@ Survivors take their phases and steps together. Each player draws from their own
 
 Damage, life loss, and life gain affecting the survivors change their shared life total. The source's special shared-life setup replaces the usual individual Commander starting life.
 
-<!--@include:../../../.vitepress/partials/classic-horde-turn.md-->
+<!--@include:../../../apps/catalogue/content/partials/classic-horde-turn.md-->
 
 ## Damaging and defeating the Horde
 

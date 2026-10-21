@@ -1,6 +1,6 @@
 # Tabletop App
 
-The local Magic playtesting application: a Vue interface, a Node service, independent Codex players, and saved games. It shares this repository with the **Catalogue Site**, but it has its own client build and runtime. The catalogue remains the VitePress site sourced from the repository's `.vitepress/`, `formats/`, `boxed-sets/`, `rules/`, and other Markdown content. The tabletop reads selected catalogue rules as references; it does not build or publish the catalogue.
+The local Magic playtesting application: a Vue interface, a Node service, independent Codex players, and saved games. It shares this repository with the **Catalogue Site**, but it has its own client build and runtime. The catalogue has its own Vue + daisyUI workspace in `apps/catalogue/`, sourced from the repository's `formats/`, `boxed-sets/`, `rules/`, and other Markdown content. The tabletop reads selected catalogue rules as references; it does not build or publish the catalogue.
 
 The app records and displays physical game actions. Players interpret the rules themselves. The coordinator delivers explicit handoffs without making game decisions. The browser is optional: the same Node service supports watched games, human participation, and headless AI playtests.
 
@@ -79,7 +79,7 @@ Standard controls use daisyUI classes: buttons, inputs, selects, chat bubbles, b
 - **Coordination is ordinary code.** `server/coordinator.mjs` schedules one independent player conversation at a time. Only explicit priority/turn handoffs wake the next player. It does not interpret Magic rules or invent actions.
 - **Shared modules stay portable.** `shared/` contains pure preview/move helpers, replay reconstruction, reveal snapshot handling, the survey schema, and the browser pointer helper. Avoid Node-only imports in modules consumed by the client. Backend wrappers may re-export a shared implementation to preserve internal imports.
 - **Saved data does not move with the source.** Root commands keep `.playtest/` at the repository root. It contains private sessions, player workspaces, rules copies, and automatic recordings. It is ignored by Git and excluded from catalogue publishing. Do not migrate, reset, or seed an existing game as part of a UI change.
-- **The catalogue has its own build.** `tabletop:build` writes only `apps/tabletop/dist/`. VitePress and GitHub Pages commands retain the catalogue workflow. Do not publish tabletop assets or private game recordings through the catalogue.
+- **The catalogue has its own build.** `tabletop:build` writes only `apps/tabletop/dist/`. The Vue catalogue and GitHub Pages commands retain their separate workflow. Do not publish tabletop assets or private game recordings through the catalogue.
 
 ## Verify a change
 

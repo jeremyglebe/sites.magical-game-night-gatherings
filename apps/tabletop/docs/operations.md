@@ -234,7 +234,7 @@ Format and box references are optional. Leaving them blank selects ordinary casu
 "references": ["formats/horde/variants/classic.md"]
 ```
 
-`read_reference` lists configured paths, searches one with `query`, or returns exact text with `start`/`count` (up to 120 lines at a time). VitePress's shared Markdown includes are expanded first so turn procedures are present. Line numbers refer to this expanded reference. Large rulesets remain available in full through successive reads; they are not replaced by summaries.
+`read_reference` lists configured paths, searches one with `query`, or returns exact text with `start`/`count` (up to 120 lines at a time). The catalogue’s shared Markdown includes are expanded first so turn procedures are present. Line numbers refer to this expanded reference. Large rulesets remain available in full through successive reads; they are not replaced by summaries.
 
 The reference reader covers configured catalogue rules under `formats/`, `rules/` and `boxed-sets/`. Their expanded text is saved with the match so later source edits do not change its rules. The starting precon fixture has no custom format reference configured.
 

@@ -26,7 +26,7 @@ At the beginning of each player's precombat main phase, that player sets a schem
 
 Attack any legal opponent or attackable object, assigning each attacker separately. Players may attack several opponents in one combat, but cannot block for another opponent. Commander tax, command-zone movement, and the 21-combat-damage loss condition from a single commander apply normally.
 
-<!--@include:../../../.vitepress/partials/schemes.md-->
+<!--@include:../../../apps/catalogue/content/partials/schemes.md-->
 
 ## Winning, losing, and leaving
 

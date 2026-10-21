@@ -2,7 +2,7 @@ import { cp, mkdir, rm, stat, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
 const root = resolve(import.meta.dirname, '..')
-const distDir = resolve(root, '.vitepress/dist')
+const distDir = resolve(root, 'apps/catalogue/dist')
 const docsDir = resolve(root, 'docs')
 
 try {

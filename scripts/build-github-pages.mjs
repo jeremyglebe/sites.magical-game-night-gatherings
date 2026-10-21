@@ -1,25 +1,21 @@
-import { spawn } from 'node:child_process'
-import { resolve } from 'node:path'
-
-const root = resolve(import.meta.dirname, '..')
+import { spawn } from "node:child_process";
+import { resolve } from "node:path";
+const root = resolve(import.meta.dirname, "..");
 // GitHub Pages uses the repository name, which differs from the npm package name.
-const githubPagesBase = '/sites.magical-game-night-gatherings/'
-
-const command = process.platform === 'win32' ? 'npm.cmd' : 'npm'
-const env = Object.fromEntries(
-  Object.entries(process.env).filter(([, value]) => typeof value === 'string')
-)
-
-const child = spawn(command, ['run', 'build'], {
-  cwd: root,
-  env: {
-    ...env,
-    VITEPRESS_BASE: githubPagesBase
+const githubPagesBase = "/sites.magical-game-night-gatherings/";
+const child = spawn(
+  process.execPath,
+  [resolve(root, "apps/catalogue/scripts/build.mjs")],
+  {
+    cwd: root,
+    env: { ...process.env, CATALOGUE_BASE: githubPagesBase },
+    stdio: "inherit",
   },
-  shell: true,
-  stdio: 'inherit'
-})
-
-child.on('exit', (code) => {
-  process.exit(code ?? 1)
-})
+);
+child.once("error", (error) => {
+  console.error(error.message);
+  process.exitCode = 1;
+});
+child.once("exit", (code) => {
+  process.exitCode = code ?? 1;
+});

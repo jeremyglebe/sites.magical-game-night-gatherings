@@ -17,9 +17,9 @@ Each player supplies an ordinary constructed deck of at least 60 cards, using th
 5. Put the face-down scheme deck in the command zone. No scheme starts in motion unless another effect says so.
 6. The archenemy takes the first turn.
 
-<!--@include:../../../.vitepress/partials/archenemy-team-turns.md-->
+<!--@include:../../../apps/catalogue/content/partials/archenemy-team-turns.md-->
 
-<!--@include:../../../.vitepress/partials/schemes.md-->
+<!--@include:../../../apps/catalogue/content/partials/schemes.md-->
 
 ## Winning, losing, and leaving
 

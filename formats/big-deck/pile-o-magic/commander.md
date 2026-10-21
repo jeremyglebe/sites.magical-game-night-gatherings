@@ -14,7 +14,7 @@ This page includes the shared-Pile rules and the Commander changes together. The
 - Once selected, commanders otherwise behave normally: command-zone movement, commander tax, and 21 combat damage from a single commander still apply.
 - Draw seven-card opening hands from the shared Pile, use normal multiplayer setup, and take individual turns.
 
-<!--@include:../../../.vitepress/partials/pile-shared.md-->
+<!--@include:../../../apps/catalogue/content/partials/pile-shared.md-->
 
 ## Commander selection
 

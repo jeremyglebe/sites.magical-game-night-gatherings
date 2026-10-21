@@ -260,7 +260,7 @@ test('physical tokens can be imported into a Horde library, drawn and moved expl
 test('format references contain their expanded procedures and cannot access other files', () => {
   const lines = referenceLines('formats/horde/variants/classic.md');
   assert.ok(!lines.some(line => line.includes('<!--@include')));
-  const partial = readFileSync(new URL('../../../.vitepress/partials/classic-horde-turn.md', import.meta.url), 'utf8').trim();
+  const partial = readFileSync(new URL('../../../apps/catalogue/content/partials/classic-horde-turn.md', import.meta.url), 'utf8').trim();
   assert.ok(lines.join('\n').includes(partial));
   assert.throws(() => referenceLines('package.json'), /Invalid reference path/);
 });

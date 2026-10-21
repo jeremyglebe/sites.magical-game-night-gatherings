@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth motion-reduce:scroll-auto">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>MTG Game Night</title>
+    <!--page-head-->
+    <script>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem("catalogue-theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches
+            ? "catalogue-dark"
+            : "catalogue");
+      } catch {}
+    </script>
+  </head>
+  <body
+    class="min-h-screen bg-base-100 font-sans text-base-content antialiased"
+  >
+    <div id="app"><!--app-html--></div>
+    <!--page-data-->
+    <script type="module" src="/src/entry-client.js"></script>
+  </body>
+</html>

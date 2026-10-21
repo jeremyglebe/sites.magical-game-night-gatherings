@@ -26,7 +26,7 @@ Each player sets a scheme in motion at the beginning of their own precombat main
 
 Players may attack multiple opponents in the same combat, choosing the defending player or other legal attack destination for each creature. You cannot block for another opponent. Apply ordinary free-for-all rules.
 
-<!--@include:../../../.vitepress/partials/schemes.md-->
+<!--@include:../../../apps/catalogue/content/partials/schemes.md-->
 
 ## Winning, losing, and leaving
 

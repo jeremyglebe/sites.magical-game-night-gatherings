@@ -11,29 +11,30 @@
     "playtest:mcp": "node apps/tabletop/server/mcp.mjs",
     "playtest:demo": "node apps/tabletop/server/demo.mjs",
     "playtest:test": "npm run tabletop:test",
-    "dev": "vitepress --host 127.0.0.1",
+    "dev": "npm run dev --workspace @game-night/catalogue",
     "research:render": "node scripts/render-everyday-research.mjs",
-    "build": "vitepress build",
+    "build": "npm run build --workspace @game-night/catalogue",
     "build:github": "node scripts/build-github-pages.mjs",
     "copy:docs": "node scripts/copy-dist-to-docs.mjs",
     "publish": "npm run build && npm run copy:docs",
     "publish:github": "npm run build:github && npm run copy:docs",
-    "preview": "vitepress preview --host 127.0.0.1",
-    "serve:static": "python -m http.server 5174 --directory .vitepress/dist",
+    "preview": "npm run preview --workspace @game-night/catalogue",
+    "serve:static": "npm run preview --workspace @game-night/catalogue",
     "serve:docs": "python -m http.server 5175 --directory docs",
     "tabletop:build": "npm run build --workspace @game-night/tabletop",
     "tabletop:dev": "npm run dev --workspace @game-night/tabletop",
     "tabletop:start": "node apps/tabletop/server/app.mjs",
     "tabletop:review": "node apps/tabletop/server/review-server.mjs",
     "tabletop:test": "node --test \"apps/tabletop/server/*.test.mjs\" \"apps/tabletop/client/src/**/*.test.mjs\"",
-    "catalogue:dev": "vitepress --host 127.0.0.1",
-    "catalogue:build": "vitepress build"
+    "catalogue:dev": "npm run dev --workspace @game-night/catalogue",
+    "catalogue:build": "npm run build --workspace @game-night/catalogue",
+    "catalogue:test": "npm run test --workspace @game-night/catalogue"
   },
   "devDependencies": {
-    "scryfall-mcp-server": "0.1.1",
-    "vitepress": "^1.6.4"
+    "scryfall-mcp-server": "0.1.1"
   },
   "workspaces": [
-    "apps/tabletop"
+    "apps/tabletop",
+    "apps/catalogue"
   ]
 }

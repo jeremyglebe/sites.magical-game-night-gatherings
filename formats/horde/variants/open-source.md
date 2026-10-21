@@ -25,7 +25,7 @@ The reduction to two setup turns for three or four survivors is the author's pro
 
 Survivors share phases and steps, taking their draws and land plays individually and coordinating combat. They share life, but keep separate libraries, hands, permanents, and mana. Damage, life loss, and life gain change the shared total.
 
-<!--@include:../../../.vitepress/partials/classic-horde-turn.md-->
+<!--@include:../../../apps/catalogue/content/partials/classic-horde-turn.md-->
 
 ## Attacking planeswalkers
 
