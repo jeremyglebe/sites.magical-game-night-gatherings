@@ -4,11 +4,12 @@ defineProps({
   player: { type: Object, required: true },
   index: Number,
   layout: String,
-  presets: Array,
   removable: Boolean,
   disabled: Boolean,
+  jumpstart: Boolean,
+  sideboarding: Boolean,
 });
-defineEmits(["remove"]);
+defineEmits(["remove", "faction"]);
 </script>
 
 <template>
@@ -39,15 +40,13 @@ defineEmits(["remove"]);
           <option :value="false">Human · this browser</option>
         </select></label
       >
-      <label class="grid gap-1"
-        ><span class="label">Deck</span
-        ><select v-model="player.deckChoice" class="select select-sm w-full">
-          <option v-for="preset in presets" :key="preset.id" :value="preset.id">
-            {{ preset.name }}
-          </option>
-          <option value="custom">Custom deck JSON</option>
-        </select></label
-      >
+      <label v-if="jumpstart" class="grid gap-1">
+        <span class="label">Faction</span>
+        <select :value="player.faction" class="select select-sm w-full" @change="$emit('faction', $event.target.value)">
+          <option value="plants">Plants</option>
+          <option value="zombies">Zombies</option>
+        </select>
+      </label>
       <label class="grid gap-1"
         ><span class="label">Starting life</span
         ><input
@@ -58,9 +57,10 @@ defineEmits(["remove"]);
           max="100000"
           class="input input-sm w-full"
           required
+          :disabled="jumpstart"
       /></label>
     </div>
-    <label v-if="player.deckChoice === 'custom'" class="grid gap-1"
+    <label v-if="!jumpstart" class="grid gap-1"
       ><span class="label">Card list JSON</span
       ><textarea
         v-model="player.deckJSON"
@@ -74,6 +74,11 @@ defineEmits(["remove"]);
         text.</span
       ></label
     >
+    <label v-if="!jumpstart && sideboarding" class="grid gap-1">
+      <span class="label">Sideboard JSON (optional)</span>
+      <textarea v-model="player.sideboardJSON" rows="4" spellcheck="false" class="textarea textarea-sm w-full font-mono" placeholder='[{"name":"Naturalize","count":2}, …]' />
+      <span class="text-xs text-base-content/60">Extra cards available between games. Leave empty for no sideboard.</span>
+    </label>
     <details v-if="player.ai" class="collapse collapse-arrow rounded-none">
       <summary class="collapse-title min-h-0 py-2 pl-0 pr-6 text-xs">
         Model and reasoning
@@ -106,6 +111,7 @@ defineEmits(["remove"]);
       </div>
     </details>
     <button
+      v-if="!jumpstart"
       type="button"
       class="btn btn-sm btn-ghost justify-self-end"
       :disabled="!removable || disabled"

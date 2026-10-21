@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from "vue";
 import { ArrowDown } from "@lucide/vue";
-import { revealedCardSnapshots } from "../../../../shared/revealed-cards.mjs";
+import { activityParts } from "../chat/activity.mjs";
+import { playerLabel } from "../../../../shared/table-language.mjs";
 import ReviewAvatar from "./ReviewAvatar.vue";
 import ReviewCard from "./ReviewCard.vue";
 import { formatDate } from "./review-format.js";
@@ -13,43 +14,14 @@ const props = defineProps({
 const emit = defineEmits(["seek", "inspect"]);
 const list = ref(null);
 const player = (id) =>
-  props.players.find((p) => p.id === id) || { id, name: id || "Table" };
+  props.players.find((p) => p.id === id) || { id, name: playerLabel(id, props.players) };
 const seat = (id) => props.players.findIndex((p) => p.id === id);
 function groups(event) {
-  const result = [];
-  let actions = [];
-  const flush = () => {
-    if (actions.length) {
-      result.push({ type: "actions", actions });
-      actions = [];
-    }
-  };
-  const say = (text) => {
-    if (typeof text === "string" && text.trim()) {
-      flush();
-      result.push({ type: "speech", text });
-    }
-  };
-  for (const change of event.changes?.length ? event.changes : [event]) {
-    if (change.type === "say") say(change.text);
-    else if (revealedCardSnapshots(change).length) {
-      flush();
-      result.push({
-        type: "reveal",
-        text: change.summary || "Revealed cards",
-        cards: revealedCardSnapshots(change),
-      });
-    } else {
-      actions.push(
-        change.type === "note"
-          ? `Note: ${change.text}`
-          : change.summary || "Table updated",
-      );
-      if (["pass", "pass_turn"].includes(change.type)) say(change.message);
-    }
-  }
-  flush();
-  return result;
+  return activityParts(event, props.players).map(({ kind, lines, ...part }) => ({
+    type: kind,
+    actions: lines,
+    ...part,
+  }));
 }
 function scrollToCurrent() {
   const item = list.value?.querySelector(`[data-position="${props.position}"]`);

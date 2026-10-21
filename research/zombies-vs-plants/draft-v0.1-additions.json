@@ -1,0 +1,2460 @@
+{
+  "researchedAt": "2026-10-21",
+  "queries": [
+    {
+      "query": "t:fungus c=b game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 13,
+      "hasMore": false
+    },
+    {
+      "name": "Thriving Moor",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Ash Barrens",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Nissa's Zendikon",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Leafkin Druid",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Dawntreader Elk",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Rampaging Growth",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Cultivate",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Ram Through",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Return to Nature",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Fungal Fortitude",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Feed the Swarm",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Recover",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "query": "c=u t:zombie mv<=3 game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 28,
+      "hasMore": false,
+      "method": "Scryfall MCP search_cards; selected records only are retained here."
+    },
+    {
+      "name": "Walking Corpse",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "name": "Zombie Goliath",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "name": "Murder",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "name": "Butcher Ghoul",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "name": "Headless Skaab",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "name": "Falcon Abomination",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "name": "Rooftop Nuisance",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "name": "Think Twice",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "name": "Sultai Devotee",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Sludge Titan",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Mulch",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Grapple with the Past",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Regrowth",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Ram Through",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Rancor",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Return to Nature",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Sacred Cat",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Cast Out",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Thriving Heath",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Thriving Grove",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Sun-Dappled Celebrant",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "name": "Nature's Way",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "name": "Eviscerate",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "name": "Sleep Paralysis",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "name": "Essence Scatter",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "name": "Pulse of Murasa",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "name": "Fertilid",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "name": "Pacifism",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    }
+  ],
+  "cards": [
+    {
+      "id": "5d5eea5f-b9e8-4a10-8e7f-c42493a728cd",
+      "oracle_id": "bff416bb-d193-4c45-b2c1-7c297dbfad08",
+      "name": "Thriving Moor",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped. As it enters, choose a color other than black.\n{T}: Add {B} or one mana of the chosen color.",
+      "scryfall_uri": "https://scryfall.com/card/msc/582/thriving-moor?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088",
+        "normal": "https://cards.scryfall.io/normal/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088",
+        "large": "https://cards.scryfall.io/large/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088",
+        "png": "https://cards.scryfall.io/png/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.png?1783903088",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088",
+        "thumb": "https://cards.scryfall.io/thumb/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.webp?1783903088",
+        "grid": "https://cards.scryfall.io/grid/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.webp?1783903088",
+        "display": "https://cards.scryfall.io/display/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.webp?1783903088",
+        "art": "https://cards.scryfall.io/art/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.webp?1783903088",
+        "crop": "https://cards.scryfall.io/crop/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.webp?1783903088",
+        "jpeg": "https://cards.scryfall.io/normal/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088"
+      },
+      "set": "msc",
+      "collector_number": "582",
+      "released_at": "2026-06-26",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "Selected for v0.1 Spore Swarm and Restless Dead: Black source with the paired packet's second color; Enters-tapped fixing; choose the partner's color..",
+        "caution": "Enters tapped; the chosen second color is fixed for that battlefield stay.",
+        "manaNote": "Produces black or one other color chosen as it enters.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "e8510205-4baa-4f1c-bf64-5d931e2ddf48",
+      "oracle_id": "58257464-278e-45fa-8e0b-bcd9a7500bc1",
+      "name": "Ash Barrens",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Land",
+      "oracle_text": "{T}: Add {C}.\nBasic landcycling {1} ({1}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle.)",
+      "scryfall_uri": "https://scryfall.com/card/tmc/60/ash-barrens?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155",
+        "normal": "https://cards.scryfall.io/normal/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155",
+        "large": "https://cards.scryfall.io/large/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155",
+        "png": "https://cards.scryfall.io/png/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.png?1783904155",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.webp?1783904155",
+        "grid": "https://cards.scryfall.io/grid/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.webp?1783904155",
+        "display": "https://cards.scryfall.io/display/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.webp?1783904155",
+        "art": "https://cards.scryfall.io/art/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.webp?1783904155",
+        "crop": "https://cards.scryfall.io/crop/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.webp?1783904155",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155"
+      },
+      "set": "tmc",
+      "collector_number": "60",
+      "released_at": "2026-03-06",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "Selected for v0.1 Wild Awakening: Colorless source or basic landcycling for either packet's mana.",
+        "caution": "Cycling costs one mana and puts the basic into hand; it is not an additional land play.",
+        "manaNote": "Colorless land unless cycled for a colored basic.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "fd37ea0e-ff72-4522-aa5b-d46bff832a34",
+      "oracle_id": "1b8c4cbe-b2fc-4d52-9382-1e03c40003be",
+      "name": "Nissa's Zendikon",
+      "mana_cost": "{3}{G}",
+      "cmc": 4,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Enchantment — Aura",
+      "oracle_text": "Enchant land\nEnchanted land is a 4/4 Elemental creature with reach and haste. It's still a land.\nWhen enchanted land dies, return that card to its owner's hand.",
+      "keywords": [
+        "Enchant"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/znr/197/nissas-zendikon?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.jpg?1783929336",
+        "normal": "https://cards.scryfall.io/normal/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.jpg?1783929336",
+        "large": "https://cards.scryfall.io/large/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.jpg?1783929336",
+        "png": "https://cards.scryfall.io/png/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.png?1783929336",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.jpg?1783929336",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.jpg?1783929336",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.webp?1783929336",
+        "grid": "https://cards.scryfall.io/grid/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.webp?1783929336",
+        "display": "https://cards.scryfall.io/display/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.webp?1783929336",
+        "art": "https://cards.scryfall.io/art/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.webp?1783929336",
+        "crop": "https://cards.scryfall.io/crop/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.webp?1783929336",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/d/fd37ea0e-ff72-4522-aa5b-d46bff832a34.jpg?1783929336"
+      },
+      "set": "znr",
+      "set_name": "Zendikar Rising",
+      "collector_number": "197",
+      "released_at": "2020-09-25",
+      "rulings_uri": "https://api.scryfall.com/cards/fd37ea0e-ff72-4522-aa5b-d46bff832a34/rulings",
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Wild Awakening: Persistent 4/4 land creature with reach and haste; recovers its land on death.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "9dc9111f-1ca6-4953-9f1e-cca55fa8c569",
+      "oracle_id": "55eb9310-f24b-410b-850b-a7d0d5117946",
+      "name": "Leafkin Druid",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental Druid",
+      "oracle_text": "{T}: Add {G}. If you control four or more creatures, add {G}{G} instead.",
+      "power": "0",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/ncc/299/leafkin-druid?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245",
+        "normal": "https://cards.scryfall.io/normal/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245",
+        "large": "https://cards.scryfall.io/large/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245",
+        "png": "https://cards.scryfall.io/png/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.png?1783923245",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.webp?1783923245",
+        "grid": "https://cards.scryfall.io/grid/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.webp?1783923245",
+        "display": "https://cards.scryfall.io/display/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.webp?1783923245",
+        "art": "https://cards.scryfall.io/art/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.webp?1783923245",
+        "crop": "https://cards.scryfall.io/crop/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.webp?1783923245",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245"
+      },
+      "set": "ncc",
+      "collector_number": "299",
+      "released_at": "2022-04-29",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "mana support"
+        ],
+        "note": "Selected for v0.1 Wild Awakening: Early botanical blocker and green mana acceleration.",
+        "caution": "Its mana is only green, so it accelerates but does not directly fix another packet's color. It is neither a Plant nor a Treefolk.",
+        "manaNote": "Costs 1G; its tap ability produces G or GG, depending on your creature count.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "524fab2b-ff28-4e02-9f25-e038c754b2cf",
+      "oracle_id": "de6d0248-79f6-48df-bdca-8ce207b2ec08",
+      "name": "Dawntreader Elk",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elk",
+      "oracle_text": "{G}, Sacrifice this creature: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.",
+      "power": "2",
+      "toughness": "2",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/jmp/387/dawntreader-elk?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.jpg?1783930367",
+        "normal": "https://cards.scryfall.io/normal/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.jpg?1783930367",
+        "large": "https://cards.scryfall.io/large/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.jpg?1783930367",
+        "png": "https://cards.scryfall.io/png/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.png?1783930367",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.jpg?1783930367",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.jpg?1783930367",
+        "thumb": "https://cards.scryfall.io/thumb/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.webp?1783930367",
+        "grid": "https://cards.scryfall.io/grid/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.webp?1783930367",
+        "display": "https://cards.scryfall.io/display/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.webp?1783930367",
+        "art": "https://cards.scryfall.io/art/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.webp?1783930367",
+        "crop": "https://cards.scryfall.io/crop/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.webp?1783930367",
+        "jpeg": "https://cards.scryfall.io/normal/front/5/2/524fab2b-ff28-4e02-9f25-e038c754b2cf.jpg?1783930367"
+      },
+      "set": "jmp",
+      "set_name": "Jumpstart",
+      "collector_number": "387",
+      "released_at": "2020-07-17",
+      "rulings_uri": "https://api.scryfall.com/cards/524fab2b-ff28-4e02-9f25-e038c754b2cf/rulings",
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Wild Awakening: Early woodland body; trades itself for a basic land.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "57218779-7e18-4fa2-a0bb-c07052951a78",
+      "oracle_id": "acd81d2c-e438-44db-86eb-32fc9cb3fd8f",
+      "name": "Rampaging Growth",
+      "mana_cost": "{3}{G}",
+      "cmc": 4,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Search your library for a basic land card, put it onto the battlefield, then shuffle. Until end of turn, that land becomes a 4/3 Insect creature with reach and haste. It's still a land.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/j22/43/rampaging-growth?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.jpg?1783919179",
+        "normal": "https://cards.scryfall.io/normal/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.jpg?1783919179",
+        "large": "https://cards.scryfall.io/large/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.jpg?1783919179",
+        "png": "https://cards.scryfall.io/png/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.png?1783919179",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.jpg?1783919179",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.jpg?1783919179",
+        "thumb": "https://cards.scryfall.io/thumb/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.webp?1783919179",
+        "grid": "https://cards.scryfall.io/grid/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.webp?1783919179",
+        "display": "https://cards.scryfall.io/display/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.webp?1783919179",
+        "art": "https://cards.scryfall.io/art/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.webp?1783919179",
+        "crop": "https://cards.scryfall.io/crop/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.webp?1783919179",
+        "jpeg": "https://cards.scryfall.io/normal/front/5/7/57218779-7e18-4fa2-a0bb-c07052951a78.jpg?1783919179"
+      },
+      "set": "j22",
+      "set_name": "Jumpstart 2022",
+      "collector_number": "43",
+      "released_at": "2022-12-02",
+      "rulings_uri": "https://api.scryfall.com/cards/57218779-7e18-4fa2-a0bb-c07052951a78/rulings",
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Wild Awakening: Instant basic-land ramp with a temporary 4/3 blocker or attacker.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "e60deb92-f7dd-4f4e-9036-e47dd586f985",
+      "oracle_id": "8b755881-a72d-4e21-a369-d2924eb4585a",
+      "name": "Cultivate",
+      "mana_cost": "{2}{G}",
+      "cmc": 3,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Search your library for up to two basic land cards, reveal those cards, put one onto the battlefield tapped and the other into your hand, then shuffle.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/msc/172/cultivate?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.jpg?1783903229",
+        "normal": "https://cards.scryfall.io/normal/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.jpg?1783903229",
+        "large": "https://cards.scryfall.io/large/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.jpg?1783903229",
+        "png": "https://cards.scryfall.io/png/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.png?1783903229",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.jpg?1783903229",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.jpg?1783903229",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.webp?1783903229",
+        "grid": "https://cards.scryfall.io/grid/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.webp?1783903229",
+        "display": "https://cards.scryfall.io/display/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.webp?1783903229",
+        "art": "https://cards.scryfall.io/art/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.webp?1783903229",
+        "crop": "https://cards.scryfall.io/crop/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.webp?1783903229",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/6/e60deb92-f7dd-4f4e-9036-e47dd586f985.jpg?1783903229"
+      },
+      "set": "msc",
+      "set_name": "Marvel Super Heroes Commander",
+      "collector_number": "172",
+      "released_at": "2026-06-26",
+      "rulings_uri": "https://api.scryfall.com/cards/e60deb92-f7dd-4f4e-9036-e47dd586f985/rulings",
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Wild Awakening: Land development and partner-color access.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "44063a90-e4cf-4bcd-a128-792de15371a7",
+      "oracle_id": "4b1befff-48fa-47a3-832e-bdaf43495c02",
+      "name": "Ram Through",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Target creature you control deals damage equal to its power to target creature you don't control. If the creature you control has trample, excess damage is dealt to that creature's controller instead.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/cmm/314/ram-through?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.jpg?1783915623",
+        "normal": "https://cards.scryfall.io/normal/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.jpg?1783915623",
+        "large": "https://cards.scryfall.io/large/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.jpg?1783915623",
+        "png": "https://cards.scryfall.io/png/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.png?1783915623",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.jpg?1783915623",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.jpg?1783915623",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.webp?1783915623",
+        "grid": "https://cards.scryfall.io/grid/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.webp?1783915623",
+        "display": "https://cards.scryfall.io/display/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.webp?1783915623",
+        "art": "https://cards.scryfall.io/art/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.webp?1783915623",
+        "crop": "https://cards.scryfall.io/crop/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.webp?1783915623",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/4/44063a90-e4cf-4bcd-a128-792de15371a7.jpg?1783915623"
+      },
+      "set": "cmm",
+      "set_name": "Commander Masters",
+      "collector_number": "314",
+      "released_at": "2023-08-04",
+      "rulings_uri": "https://api.scryfall.com/cards/44063a90-e4cf-4bcd-a128-792de15371a7/rulings",
+      "research": {
+        "groups": [
+          "living-lands",
+          "zombies-green"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Wild Awakening and The Turned: Creature-powered removal using a body or an animated land; Creature-based removal; especially relevant with deathtouch or a large trampler..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "7e99f99a-68a1-4f35-853c-794630d313fc",
+      "oracle_id": "777b8ec4-a783-4297-96b7-4f200d0eb734",
+      "name": "Return to Nature",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Choose one —\n• Destroy target artifact.\n• Destroy target enchantment.\n• Exile target card from a graveyard.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/moc/309/return-to-nature?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.jpg?1783917138",
+        "normal": "https://cards.scryfall.io/normal/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.jpg?1783917138",
+        "large": "https://cards.scryfall.io/large/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.jpg?1783917138",
+        "png": "https://cards.scryfall.io/png/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.png?1783917138",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.jpg?1783917138",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.jpg?1783917138",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.webp?1783917138",
+        "grid": "https://cards.scryfall.io/grid/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.webp?1783917138",
+        "display": "https://cards.scryfall.io/display/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.webp?1783917138",
+        "art": "https://cards.scryfall.io/art/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.webp?1783917138",
+        "crop": "https://cards.scryfall.io/crop/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.webp?1783917138",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/e/7e99f99a-68a1-4f35-853c-794630d313fc.jpg?1783917138"
+      },
+      "set": "moc",
+      "set_name": "March of the Machine Commander",
+      "collector_number": "309",
+      "released_at": "2023-04-21",
+      "rulings_uri": "https://api.scryfall.com/cards/7e99f99a-68a1-4f35-853c-794630d313fc/rulings",
+      "research": {
+        "groups": [
+          "living-lands",
+          "zombies-green"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Wild Awakening and The Turned: Artifact/enchantment interaction or selective graveyard interaction; Answer to artifacts, enchantments, or a key graveyard card..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "9d2bd0ca-521c-45d9-85ed-2f36f583408e",
+      "oracle_id": "cf73d2e7-584f-41d0-8fc7-50d886dcf9fe",
+      "name": "Fungal Fortitude",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Enchantment — Aura",
+      "oracle_text": "Flash\nEnchant creature\nEnchanted creature gets +2/+0.\nWhen enchanted creature dies, return it to the battlefield tapped under its owner's control.",
+      "keywords": [
+        "Enchant",
+        "Flash"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/lci/106/fungal-fortitude?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.jpg?1783913777",
+        "normal": "https://cards.scryfall.io/normal/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.jpg?1783913777",
+        "large": "https://cards.scryfall.io/large/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.jpg?1783913777",
+        "png": "https://cards.scryfall.io/png/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.png?1783913777",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.jpg?1783913777",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.jpg?1783913777",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.webp?1783913777",
+        "grid": "https://cards.scryfall.io/grid/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.webp?1783913777",
+        "display": "https://cards.scryfall.io/display/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.webp?1783913777",
+        "art": "https://cards.scryfall.io/art/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.webp?1783913777",
+        "crop": "https://cards.scryfall.io/crop/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.webp?1783913777",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/d/9d2bd0ca-521c-45d9-85ed-2f36f583408e.jpg?1783913777"
+      },
+      "set": "lci",
+      "set_name": "The Lost Caverns of Ixalan",
+      "collector_number": "106",
+      "released_at": "2023-11-17",
+      "rulings_uri": "https://api.scryfall.com/cards/9d2bd0ca-521c-45d9-85ed-2f36f583408e/rulings",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Spore Swarm: Flash power boost and one-shot death recovery.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2246c098-1071-4cc3-a60a-802406e2827b",
+      "oracle_id": "5825997b-10d7-4a36-972c-a80ddd90b8ed",
+      "name": "Feed the Swarm",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Destroy target creature or enchantment an opponent controls. You lose life equal to that permanent's mana value.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/tle/257/feed-the-swarm?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.jpg?1783904770",
+        "normal": "https://cards.scryfall.io/normal/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.jpg?1783904770",
+        "large": "https://cards.scryfall.io/large/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.jpg?1783904770",
+        "png": "https://cards.scryfall.io/png/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.png?1783904770",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.jpg?1783904770",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.jpg?1783904770",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.webp?1783904770",
+        "grid": "https://cards.scryfall.io/grid/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.webp?1783904770",
+        "display": "https://cards.scryfall.io/display/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.webp?1783904770",
+        "art": "https://cards.scryfall.io/art/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.webp?1783904770",
+        "crop": "https://cards.scryfall.io/crop/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.webp?1783904770",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/2/2246c098-1071-4cc3-a60a-802406e2827b.jpg?1783904770"
+      },
+      "set": "tle",
+      "set_name": "Avatar: The Last Airbender Eternal",
+      "collector_number": "257",
+      "released_at": "2025-11-21",
+      "rulings_uri": "https://api.scryfall.com/cards/2246c098-1071-4cc3-a60a-802406e2827b/rulings",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Spore Swarm: Creature or enchantment removal at a life cost.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "f2f4e0a8-7af7-4422-a964-c19503692ba6",
+      "oracle_id": "f4361602-63da-430b-adbb-36d74e987aa6",
+      "name": "Recover",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Return target creature card from your graveyard to your hand.\nDraw a card.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/rix/84/recover?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.jpg?1783935306",
+        "normal": "https://cards.scryfall.io/normal/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.jpg?1783935306",
+        "large": "https://cards.scryfall.io/large/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.jpg?1783935306",
+        "png": "https://cards.scryfall.io/png/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.png?1783935306",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.jpg?1783935306",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.jpg?1783935306",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.webp?1783935306",
+        "grid": "https://cards.scryfall.io/grid/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.webp?1783935306",
+        "display": "https://cards.scryfall.io/display/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.webp?1783935306",
+        "art": "https://cards.scryfall.io/art/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.webp?1783935306",
+        "crop": "https://cards.scryfall.io/crop/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.webp?1783935306",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/2/f2f4e0a8-7af7-4422-a964-c19503692ba6.jpg?1783935306"
+      },
+      "set": "rix",
+      "set_name": "Rivals of Ixalan",
+      "collector_number": "84",
+      "released_at": "2018-01-19",
+      "rulings_uri": "https://api.scryfall.com/cards/f2f4e0a8-7af7-4422-a964-c19503692ba6/rulings",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Spore Swarm: Creature recovery plus a card.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ccc9d22c-dfce-4136-aed8-a5fe9bb852f2",
+      "oracle_id": "6c4247d0-6dc8-4139-bbf5-c83dfdc7be1f",
+      "name": "Deathcap Marionette",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Fungus",
+      "oracle_text": "Deathtouch\nWhen this creature enters, you may mill two cards. (You may put the top two cards of your library into your graveyard.)",
+      "power": "1",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/lci/100/deathcap-marionette?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.jpg?1783913779",
+        "normal": "https://cards.scryfall.io/normal/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.jpg?1783913779",
+        "large": "https://cards.scryfall.io/large/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.jpg?1783913779",
+        "png": "https://cards.scryfall.io/png/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.png?1783913779",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.jpg?1783913779",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.jpg?1783913779",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.webp?1783913779",
+        "grid": "https://cards.scryfall.io/grid/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.webp?1783913779",
+        "display": "https://cards.scryfall.io/display/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.webp?1783913779",
+        "art": "https://cards.scryfall.io/art/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.webp?1783913779",
+        "crop": "https://cards.scryfall.io/crop/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.webp?1783913779",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/c/ccc9d22c-dfce-4136-aed8-a5fe9bb852f2.jpg?1783913779"
+      },
+      "set": "lci",
+      "collector_number": "100",
+      "released_at": "2023-11-17",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "early defense",
+          "graveyard setup"
+        ],
+        "note": "Selected for v0.1 Spore Swarm: Early deathtouch blocker; optional graveyard setup.",
+        "caution": "Milling is optional and can run a small deck low over a long game.",
+        "crossover": false,
+        "manaNote": "Two mana with one black pip."
+      }
+    },
+    {
+      "id": "8c5da403-d791-4ad4-a949-e8a56459cac1",
+      "oracle_id": "d0ec32d9-1d4e-4b6f-bc95-addbb484b0d3",
+      "name": "Mold Folk",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Fungus Warrior",
+      "oracle_text": "Lifelink\nMold Harvest — {1}, Sacrifice another creature or an artifact: Put a +1/+1 counter on this creature.",
+      "power": "1",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/clb/133/mold-folk?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.jpg?1783922759",
+        "normal": "https://cards.scryfall.io/normal/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.jpg?1783922759",
+        "large": "https://cards.scryfall.io/large/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.jpg?1783922759",
+        "png": "https://cards.scryfall.io/png/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.png?1783922759",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.jpg?1783922759",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.jpg?1783922759",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.webp?1783922759",
+        "grid": "https://cards.scryfall.io/grid/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.webp?1783922759",
+        "display": "https://cards.scryfall.io/display/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.webp?1783922759",
+        "art": "https://cards.scryfall.io/art/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.webp?1783922759",
+        "crop": "https://cards.scryfall.io/crop/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.webp?1783922759",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/c/8c5da403-d791-4ad4-a949-e8a56459cac1.jpg?1783922759"
+      },
+      "set": "clb",
+      "collector_number": "133",
+      "released_at": "2022-06-10",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "early creature",
+          "sacrifice outlet",
+          "counter growth",
+          "life gain"
+        ],
+        "note": "Selected for v0.1 Spore Swarm: Lifelink threat; paid sacrifice outlet converts spare bodies into permanent growth.",
+        "caution": "Needs another creature or artifact to sacrifice; repeated sacrifices can leave too few bodies.",
+        "crossover": false,
+        "manaNote": "Two mana with one black pip; subsequent sacrifices cost generic mana."
+      }
+    },
+    {
+      "id": "0d96d019-5d80-468a-b891-e3e99346372a",
+      "oracle_id": "6420e8a0-3ef4-4f95-bb6a-12409eef4d48",
+      "name": "Skullcap Snail",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Fungus Snail",
+      "oracle_text": "When this creature enters, target opponent exiles a card from their hand.",
+      "power": "1",
+      "toughness": "1",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/lci/119/skullcap-snail?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.jpg?1783913773",
+        "normal": "https://cards.scryfall.io/normal/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.jpg?1783913773",
+        "large": "https://cards.scryfall.io/large/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.jpg?1783913773",
+        "png": "https://cards.scryfall.io/png/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.png?1783913773",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.jpg?1783913773",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.jpg?1783913773",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.webp?1783913773",
+        "grid": "https://cards.scryfall.io/grid/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.webp?1783913773",
+        "display": "https://cards.scryfall.io/display/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.webp?1783913773",
+        "art": "https://cards.scryfall.io/art/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.webp?1783913773",
+        "crop": "https://cards.scryfall.io/crop/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.webp?1783913773",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/d/0d96d019-5d80-468a-b891-e3e99346372a.jpg?1783913773"
+      },
+      "set": "lci",
+      "set_name": "The Lost Caverns of Ixalan",
+      "collector_number": "119",
+      "released_at": "2023-11-17",
+      "rulings_uri": "https://api.scryfall.com/cards/0d96d019-5d80-468a-b891-e3e99346372a/rulings",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Spore Swarm: Early Fungus body and one-shot hand disruption.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e",
+      "oracle_id": "ce873790-de4d-4ba3-8023-c44306ba3ff8",
+      "name": "Deathbloom Thallid",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Fungus",
+      "oracle_text": "When this creature dies, create a 1/1 green Saproling creature token.",
+      "power": "3",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/m21/94/deathbloom-thallid?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.jpg?1783930712",
+        "normal": "https://cards.scryfall.io/normal/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.jpg?1783930712",
+        "large": "https://cards.scryfall.io/large/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.jpg?1783930712",
+        "png": "https://cards.scryfall.io/png/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.png?1783930712",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.jpg?1783930712",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.jpg?1783930712",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.webp?1783930712",
+        "grid": "https://cards.scryfall.io/grid/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.webp?1783930712",
+        "display": "https://cards.scryfall.io/display/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.webp?1783930712",
+        "art": "https://cards.scryfall.io/art/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.webp?1783930712",
+        "crop": "https://cards.scryfall.io/crop/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.webp?1783930712",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/c/dc4513e1-9978-44ce-b7a5-4e2b5b63ad9e.jpg?1783930712"
+      },
+      "set": "m21",
+      "collector_number": "94",
+      "released_at": "2020-07-03",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "early creature",
+          "token production"
+        ],
+        "note": "Selected for v0.1 Spore Swarm: Trading body that leaves a Saproling.",
+        "caution": "A token appears only when it dies, not when bounced or exiled.",
+        "crossover": false,
+        "manaNote": "Three mana with one black pip."
+      }
+    },
+    {
+      "id": "efeb22a4-37bf-487a-9cf4-74de4cbbc0a3",
+      "oracle_id": "f5eace41-0f53-4084-8bec-1e079c04287b",
+      "name": "Synapse Necromage",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Fungus Wizard",
+      "oracle_text": "When this creature dies, create two 1/1 black Fungus creature tokens with \"This token can't block.\"",
+      "power": "3",
+      "toughness": "1",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/lci/125/synapse-necromage?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.jpg?1783913769",
+        "normal": "https://cards.scryfall.io/normal/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.jpg?1783913769",
+        "large": "https://cards.scryfall.io/large/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.jpg?1783913769",
+        "png": "https://cards.scryfall.io/png/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.png?1783913769",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.jpg?1783913769",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.jpg?1783913769",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.webp?1783913769",
+        "grid": "https://cards.scryfall.io/grid/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.webp?1783913769",
+        "display": "https://cards.scryfall.io/display/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.webp?1783913769",
+        "art": "https://cards.scryfall.io/art/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.webp?1783913769",
+        "crop": "https://cards.scryfall.io/crop/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.webp?1783913769",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/f/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3.jpg?1783913769"
+      },
+      "set": "lci",
+      "set_name": "The Lost Caverns of Ixalan",
+      "collector_number": "125",
+      "released_at": "2023-11-17",
+      "rulings_uri": "https://api.scryfall.com/cards/efeb22a4-37bf-487a-9cf4-74de4cbbc0a3/rulings",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Spore Swarm: Trading body that leaves two attacking/sacrifice Fungus tokens.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "90ba37ee-159f-421f-8d37-a7b5f1b562f0",
+      "oracle_id": "c775d3ef-2184-4425-8c8e-2bbc49687f76",
+      "name": "Brackish Trudge",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Fungus Beast",
+      "oracle_text": "This creature enters tapped.\n{1}{B}: Return this card from your graveyard to your hand. Activate only if you gained life this turn.",
+      "power": "4",
+      "toughness": "2",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/stx/65/brackish-trudge?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.jpg?1783927369",
+        "normal": "https://cards.scryfall.io/normal/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.jpg?1783927369",
+        "large": "https://cards.scryfall.io/large/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.jpg?1783927369",
+        "png": "https://cards.scryfall.io/png/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.png?1783927369",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.jpg?1783927369",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.jpg?1783927369",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.webp?1783927369",
+        "grid": "https://cards.scryfall.io/grid/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.webp?1783927369",
+        "display": "https://cards.scryfall.io/display/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.webp?1783927369",
+        "art": "https://cards.scryfall.io/art/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.webp?1783927369",
+        "crop": "https://cards.scryfall.io/crop/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.webp?1783927369",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/0/90ba37ee-159f-421f-8d37-a7b5f1b562f0.jpg?1783927369"
+      },
+      "set": "stx",
+      "set_name": "Strixhaven: School of Mages",
+      "collector_number": "65",
+      "released_at": "2021-04-23",
+      "rulings_uri": "https://api.scryfall.com/cards/90ba37ee-159f-421f-8d37-a7b5f1b562f0/rulings",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Spore Swarm: Efficient attacker; later recovery after life gain.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ff6c08d7-9b2d-475f-9acb-f8a995e7e804",
+      "oracle_id": "eee801ea-e2dc-4b03-a9f9-e87566cb2ae8",
+      "name": "Thallid Soothsayer",
+      "mana_cost": "{3}{B}",
+      "cmc": 4,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Fungus",
+      "oracle_text": "{2}, Sacrifice a creature: Draw a card.",
+      "power": "2",
+      "toughness": "3",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/gnt/35/thallid-soothsayer?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.jpg?1783933977",
+        "normal": "https://cards.scryfall.io/normal/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.jpg?1783933977",
+        "large": "https://cards.scryfall.io/large/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.jpg?1783933977",
+        "png": "https://cards.scryfall.io/png/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.png?1783933977",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.jpg?1783933977",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.jpg?1783933977",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.webp?1783933977",
+        "grid": "https://cards.scryfall.io/grid/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.webp?1783933977",
+        "display": "https://cards.scryfall.io/display/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.webp?1783933977",
+        "art": "https://cards.scryfall.io/art/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.webp?1783933977",
+        "crop": "https://cards.scryfall.io/crop/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.webp?1783933977",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/f/ff6c08d7-9b2d-475f-9acb-f8a995e7e804.jpg?1783933977"
+      },
+      "set": "gnt",
+      "set_name": "Game Night",
+      "collector_number": "35",
+      "released_at": "2018-11-16",
+      "rulings_uri": "https://api.scryfall.com/cards/ff6c08d7-9b2d-475f-9acb-f8a995e7e804/rulings",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Spore Swarm: Paid sacrifice outlet for sustained card draw.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "99b35391-f1dc-434b-b581-ca6cb6f3439f",
+      "oracle_id": "b9bb1b0e-38ce-40f1-882b-85f6c95610ff",
+      "name": "Thallid Omnivore",
+      "mana_cost": "{3}{B}",
+      "cmc": 4,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Fungus",
+      "oracle_text": "{1}, Sacrifice another creature: This creature gets +2/+2 until end of turn. If a Saproling was sacrificed this way, you gain 2 life.",
+      "power": "3",
+      "toughness": "3",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/dom/106/thallid-omnivore?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.jpg?1783935002",
+        "normal": "https://cards.scryfall.io/normal/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.jpg?1783935002",
+        "large": "https://cards.scryfall.io/large/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.jpg?1783935002",
+        "png": "https://cards.scryfall.io/png/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.png?1783935002",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.jpg?1783935002",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.jpg?1783935002",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.webp?1783935002",
+        "grid": "https://cards.scryfall.io/grid/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.webp?1783935002",
+        "display": "https://cards.scryfall.io/display/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.webp?1783935002",
+        "art": "https://cards.scryfall.io/art/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.webp?1783935002",
+        "crop": "https://cards.scryfall.io/crop/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.webp?1783935002",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/9/99b35391-f1dc-434b-b581-ca6cb6f3439f.jpg?1783935002"
+      },
+      "set": "dom",
+      "set_name": "Dominaria",
+      "collector_number": "106",
+      "released_at": "2018-04-27",
+      "rulings_uri": "https://api.scryfall.com/cards/99b35391-f1dc-434b-b581-ca6cb6f3439f/rulings",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Spore Swarm: Combat finisher using spare creatures; Saprolings add life gain.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "053b59b4-a22c-4228-aadc-ae9da6bb465e",
+      "oracle_id": "fea95888-e16a-4209-9cd4-623f7f4d2f67",
+      "name": "Walking Corpse",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "",
+      "power": "2",
+      "toughness": "2",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/m21/128/walking-corpse?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.jpg?1783930696",
+        "normal": "https://cards.scryfall.io/normal/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.jpg?1783930696",
+        "large": "https://cards.scryfall.io/large/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.jpg?1783930696",
+        "png": "https://cards.scryfall.io/png/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.png?1783930696",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.jpg?1783930696",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.jpg?1783930696",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.webp?1783930696",
+        "grid": "https://cards.scryfall.io/grid/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.webp?1783930696",
+        "display": "https://cards.scryfall.io/display/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.webp?1783930696",
+        "art": "https://cards.scryfall.io/art/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.webp?1783930696",
+        "crop": "https://cards.scryfall.io/crop/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.webp?1783930696",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/5/053b59b4-a22c-4228-aadc-ae9da6bb465e.jpg?1783930696"
+      },
+      "set": "m21",
+      "set_name": "Core Set 2021",
+      "collector_number": "128",
+      "released_at": "2020-07-03",
+      "rulings_uri": "https://api.scryfall.com/cards/053b59b4-a22c-4228-aadc-ae9da6bb465e/rulings",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "v0.1 draft candidate"
+        ],
+        "note": "Selected for v0.1 Restless Dead: Simple two-mana Zombie body..",
+        "caution": "Provisional selection; evaluate in the combined forty-card pairings.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "a4897302-7726-4827-9fa7-66ac0c264bd4",
+      "oracle_id": "eadd88b6-e75a-4482-8382-561718121772",
+      "name": "Zombie Goliath",
+      "mana_cost": "{4}{B}",
+      "cmc": 5,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie Giant",
+      "oracle_text": "",
+      "power": "4",
+      "toughness": "3",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/cns/135/zombie-goliath?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.jpg?1783939352",
+        "normal": "https://cards.scryfall.io/normal/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.jpg?1783939352",
+        "large": "https://cards.scryfall.io/large/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.jpg?1783939352",
+        "png": "https://cards.scryfall.io/png/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.png?1783939352",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.jpg?1783939352",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.jpg?1783939352",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.webp?1783939352",
+        "grid": "https://cards.scryfall.io/grid/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.webp?1783939352",
+        "display": "https://cards.scryfall.io/display/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.webp?1783939352",
+        "art": "https://cards.scryfall.io/art/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.webp?1783939352",
+        "crop": "https://cards.scryfall.io/crop/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.webp?1783939352",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/4/a4897302-7726-4827-9fa7-66ac0c264bd4.jpg?1783939352"
+      },
+      "set": "cns",
+      "set_name": "Conspiracy",
+      "collector_number": "135",
+      "released_at": "2014-06-06",
+      "rulings_uri": "https://api.scryfall.com/cards/a4897302-7726-4827-9fa7-66ac0c264bd4/rulings",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "v0.1 draft candidate"
+        ],
+        "note": "Selected for v0.1 Restless Dead: Simple larger Zombie finisher..",
+        "caution": "Provisional selection; evaluate in the combined forty-card pairings.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2c249609-9cf7-46f1-b94c-9329add966bb",
+      "oracle_id": "938b4e2c-88d9-4637-bc00-e228920c9a78",
+      "name": "Murder",
+      "mana_cost": "{1}{B}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Destroy target creature.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/dsk/110/murder?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.jpg?1783909477",
+        "normal": "https://cards.scryfall.io/normal/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.jpg?1783909477",
+        "large": "https://cards.scryfall.io/large/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.jpg?1783909477",
+        "png": "https://cards.scryfall.io/png/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.png?1783909477",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.jpg?1783909477",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.jpg?1783909477",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.webp?1783909477",
+        "grid": "https://cards.scryfall.io/grid/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.webp?1783909477",
+        "display": "https://cards.scryfall.io/display/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.webp?1783909477",
+        "art": "https://cards.scryfall.io/art/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.webp?1783909477",
+        "crop": "https://cards.scryfall.io/crop/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.webp?1783909477",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/c/2c249609-9cf7-46f1-b94c-9329add966bb.jpg?1783909477"
+      },
+      "set": "dsk",
+      "set_name": "Duskmourn: House of Horror",
+      "collector_number": "110",
+      "released_at": "2024-09-27",
+      "rulings_uri": "https://api.scryfall.com/cards/2c249609-9cf7-46f1-b94c-9329add966bb/rulings",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "retained alternative"
+        ],
+        "note": "Researched alternative retained for rebalancing. Prefer Eviscerate's single black mana requirement for easy partner casting, accepting sorcery speed and an extra mana.",
+        "caution": "Prefer Eviscerate's single black mana requirement for easy partner casting, accepting sorcery speed and an extra mana.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "c4ef03c8-2047-4170-9ac4-f26cc14ebf96",
+      "oracle_id": "28caeed4-c175-469f-8d8e-f45bc0a51a1c",
+      "name": "Butcher Ghoul",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "Undying (When this creature dies, if it had no +1/+1 counters on it, return it to the battlefield under its owner's control with a +1/+1 counter on it.)",
+      "power": "1",
+      "toughness": "1",
+      "keywords": [
+        "Undying"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/inr/99/butcher-ghoul?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.jpg?1783908147",
+        "normal": "https://cards.scryfall.io/normal/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.jpg?1783908147",
+        "large": "https://cards.scryfall.io/large/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.jpg?1783908147",
+        "png": "https://cards.scryfall.io/png/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.png?1783908147",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.jpg?1783908147",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.jpg?1783908147",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.webp?1783908147",
+        "grid": "https://cards.scryfall.io/grid/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.webp?1783908147",
+        "display": "https://cards.scryfall.io/display/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.webp?1783908147",
+        "art": "https://cards.scryfall.io/art/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.webp?1783908147",
+        "crop": "https://cards.scryfall.io/crop/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.webp?1783908147",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/4/c4ef03c8-2047-4170-9ac4-f26cc14ebf96.jpg?1783908147"
+      },
+      "set": "inr",
+      "set_name": "Innistrad Remastered",
+      "collector_number": "99",
+      "released_at": "2025-01-24",
+      "rulings_uri": "https://api.scryfall.com/cards/c4ef03c8-2047-4170-9ac4-f26cc14ebf96/rulings",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "retained alternative"
+        ],
+        "note": "Researched alternative retained for rebalancing. Undying and +1/+1-counter tracking remain a useful later alternative, but Walking Corpse is simpler.",
+        "caution": "Undying and +1/+1-counter tracking remain a useful later alternative, but Walking Corpse is simpler.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ca63f9a2-381e-4c84-b0bb-3acd9445b4db",
+      "oracle_id": "203365d4-4793-47af-840e-418bd5569d50",
+      "name": "Headless Skaab",
+      "mana_cost": "{2}{U}",
+      "cmc": 3,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie Warrior",
+      "oracle_text": "As an additional cost to cast this spell, exile a creature card from your graveyard.\nThis creature enters tapped.",
+      "power": "3",
+      "toughness": "6",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/dka/40/headless-skaab?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.jpg?1783940839",
+        "normal": "https://cards.scryfall.io/normal/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.jpg?1783940839",
+        "large": "https://cards.scryfall.io/large/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.jpg?1783940839",
+        "png": "https://cards.scryfall.io/png/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.png?1783940839",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.jpg?1783940839",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.jpg?1783940839",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.webp?1783940839",
+        "grid": "https://cards.scryfall.io/grid/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.webp?1783940839",
+        "display": "https://cards.scryfall.io/display/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.webp?1783940839",
+        "art": "https://cards.scryfall.io/art/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.webp?1783940839",
+        "crop": "https://cards.scryfall.io/crop/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.webp?1783940839",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/a/ca63f9a2-381e-4c84-b0bb-3acd9445b4db.jpg?1783940839"
+      },
+      "set": "dka",
+      "set_name": "Dark Ascension",
+      "collector_number": "40",
+      "released_at": "2012-02-03",
+      "rulings_uri": "https://api.scryfall.com/cards/ca63f9a2-381e-4c84-b0bb-3acd9445b4db/rulings",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "v0.1 draft candidate"
+        ],
+        "note": "Selected for v0.1 Stitched Together: Large stitched blocker; assembling it consumes one creature card from the graveyard..",
+        "caution": "Provisional selection; evaluate in the combined forty-card pairings.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "f0668413-859d-4ec4-a4d8-17ec7f5b1b8b",
+      "oracle_id": "21eea63f-72b2-4155-bfad-f9937a8f8614",
+      "name": "Falcon Abomination",
+      "mana_cost": "{2}{U}",
+      "cmc": 3,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie Bird",
+      "oracle_text": "Flying\nWhen this creature enters, create a 2/2 black Zombie creature token with decayed. (It can't block. When it attacks, sacrifice it at end of combat.)",
+      "power": "2",
+      "toughness": "2",
+      "keywords": [
+        "Flying"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/mid/52/falcon-abomination?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.jpg?1783925641",
+        "normal": "https://cards.scryfall.io/normal/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.jpg?1783925641",
+        "large": "https://cards.scryfall.io/large/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.jpg?1783925641",
+        "png": "https://cards.scryfall.io/png/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.png?1783925641",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.jpg?1783925641",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.jpg?1783925641",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.webp?1783925641",
+        "grid": "https://cards.scryfall.io/grid/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.webp?1783925641",
+        "display": "https://cards.scryfall.io/display/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.webp?1783925641",
+        "art": "https://cards.scryfall.io/art/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.webp?1783925641",
+        "crop": "https://cards.scryfall.io/crop/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.webp?1783925641",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/0/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b.jpg?1783925641"
+      },
+      "set": "mid",
+      "set_name": "Innistrad: Midnight Hunt",
+      "collector_number": "52",
+      "released_at": "2021-09-24",
+      "rulings_uri": "https://api.scryfall.com/cards/f0668413-859d-4ec4-a4d8-17ec7f5b1b8b/rulings",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "retained alternative"
+        ],
+        "note": "Researched alternative retained for rebalancing. Useful flyer, but decayed introduces another token rule; Stitchwing supplies evasive pressure without that subsystem.",
+        "caution": "Useful flyer, but decayed introduces another token rule; Stitchwing supplies evasive pressure without that subsystem.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "d7a84781-b40c-41e0-a0b9-86e466c9b12d",
+      "oracle_id": "8843faa9-0cd5-4ef3-8e7b-b8833db9dc84",
+      "name": "Rooftop Nuisance",
+      "mana_cost": "{2}{U}",
+      "cmc": 3,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Casualty 1 (As you cast this spell, you may sacrifice a creature with power 1 or greater. When you do, copy this spell and you may choose a new target for the copy.)\nTap target creature. It doesn't untap during its controller's next untap step.\nDraw a card.",
+      "keywords": [
+        "Casualty"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/snc/57/rooftop-nuisance?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.jpg?1783923139",
+        "normal": "https://cards.scryfall.io/normal/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.jpg?1783923139",
+        "large": "https://cards.scryfall.io/large/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.jpg?1783923139",
+        "png": "https://cards.scryfall.io/png/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.png?1783923139",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.jpg?1783923139",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.jpg?1783923139",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.webp?1783923139",
+        "grid": "https://cards.scryfall.io/grid/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.webp?1783923139",
+        "display": "https://cards.scryfall.io/display/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.webp?1783923139",
+        "art": "https://cards.scryfall.io/art/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.webp?1783923139",
+        "crop": "https://cards.scryfall.io/crop/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.webp?1783923139",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/7/d7a84781-b40c-41e0-a0b9-86e466c9b12d.jpg?1783923139"
+      },
+      "set": "snc",
+      "set_name": "Streets of New Capenna",
+      "collector_number": "57",
+      "released_at": "2022-04-29",
+      "rulings_uri": "https://api.scryfall.com/cards/d7a84781-b40c-41e0-a0b9-86e466c9b12d/rulings",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "retained alternative"
+        ],
+        "note": "Researched alternative retained for rebalancing. Casualty creates spell copies and sacrifice sequencing; Sleep Paralysis is simpler sustained interaction.",
+        "caution": "Casualty creates spell copies and sacrifice sequencing; Sleep Paralysis is simpler sustained interaction.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "85835de4-66ea-4ba1-87ca-6bcec2a8660a",
+      "oracle_id": "fa85c5a2-8e83-4624-a35a-a0bbf17ecbb4",
+      "name": "Think Twice",
+      "mana_cost": "{1}{U}",
+      "cmc": 2,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Draw a card.\nFlashback {2}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+      "keywords": [
+        "Flashback"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/msc/787/think-twice?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.jpg?1783903015",
+        "normal": "https://cards.scryfall.io/normal/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.jpg?1783903015",
+        "large": "https://cards.scryfall.io/large/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.jpg?1783903015",
+        "png": "https://cards.scryfall.io/png/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.png?1783903015",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.jpg?1783903015",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.jpg?1783903015",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.webp?1783903015",
+        "grid": "https://cards.scryfall.io/grid/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.webp?1783903015",
+        "display": "https://cards.scryfall.io/display/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.webp?1783903015",
+        "art": "https://cards.scryfall.io/art/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.webp?1783903015",
+        "crop": "https://cards.scryfall.io/crop/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.webp?1783903015",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/5/85835de4-66ea-4ba1-87ca-6bcec2a8660a.jpg?1783903015"
+      },
+      "set": "msc",
+      "set_name": "Marvel Super Heroes Commander",
+      "collector_number": "787",
+      "released_at": "2026-06-26",
+      "rulings_uri": "https://api.scryfall.com/cards/85835de4-66ea-4ba1-87ca-6bcec2a8660a/rulings",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "v0.1 draft candidate"
+        ],
+        "note": "Selected for v0.1 Stitched Together: Modest draw, usable again through flashback..",
+        "caution": "Provisional selection; evaluate in the combined forty-card pairings.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "065d497d-5cfd-43c9-8c86-9a1da3d7e17e",
+      "oracle_id": "1c7dd66f-a062-49ac-aa7c-1bf5ec069d73",
+      "name": "Seagraf Skaab",
+      "mana_cost": "{1}{U}",
+      "cmc": 2,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "",
+      "power": "1",
+      "toughness": "3",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/soi/84/seagraf-skaab?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.jpg?1783937788",
+        "normal": "https://cards.scryfall.io/normal/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.jpg?1783937788",
+        "large": "https://cards.scryfall.io/large/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.jpg?1783937788",
+        "png": "https://cards.scryfall.io/png/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.png?1783937788",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.jpg?1783937788",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.jpg?1783937788",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.webp?1783937788",
+        "grid": "https://cards.scryfall.io/grid/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.webp?1783937788",
+        "display": "https://cards.scryfall.io/display/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.webp?1783937788",
+        "art": "https://cards.scryfall.io/art/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.webp?1783937788",
+        "crop": "https://cards.scryfall.io/crop/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.webp?1783937788",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/6/065d497d-5cfd-43c9-8c86-9a1da3d7e17e.jpg?1783937788"
+      },
+      "set": "soi",
+      "set_name": "Shadows over Innistrad",
+      "collector_number": "84",
+      "released_at": "2016-04-08",
+      "rulings_uri": "https://api.scryfall.com/cards/065d497d-5cfd-43c9-8c86-9a1da3d7e17e/rulings",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "v0.1 draft candidate"
+        ],
+        "note": "Selected for v0.1 Stitched Together: Simple two-mana defensive stitched body..",
+        "caution": "Provisional selection; evaluate in the combined forty-card pairings.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "c32487e9-f3ac-472e-b6ea-81bd9254770c",
+      "oracle_id": "ee7b3fc0-6128-4bf6-b3e7-7371e6f93c4b",
+      "name": "Sultai Devotee",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "B",
+        "G",
+        "U"
+      ],
+      "type_line": "Creature — Zombie Snake Druid",
+      "oracle_text": "Deathtouch\n{1}: Add {B}, {G}, or {U}. Activate only once each turn.",
+      "power": "2",
+      "toughness": "1",
+      "keywords": [
+        "Deathtouch"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tdm/160/sultai-devotee?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.jpg?1783907331",
+        "normal": "https://cards.scryfall.io/normal/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.jpg?1783907331",
+        "large": "https://cards.scryfall.io/large/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.jpg?1783907331",
+        "png": "https://cards.scryfall.io/png/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.png?1783907331",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.jpg?1783907331",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.jpg?1783907331",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.webp?1783907331",
+        "grid": "https://cards.scryfall.io/grid/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.webp?1783907331",
+        "display": "https://cards.scryfall.io/display/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.webp?1783907331",
+        "art": "https://cards.scryfall.io/art/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.webp?1783907331",
+        "crop": "https://cards.scryfall.io/crop/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.webp?1783907331",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/3/c32487e9-f3ac-472e-b6ea-81bd9254770c.jpg?1783907331"
+      },
+      "set": "tdm",
+      "set_name": "Tarkir: Dragonstorm",
+      "collector_number": "160",
+      "released_at": "2025-04-11",
+      "rulings_uri": "https://api.scryfall.com/cards/c32487e9-f3ac-472e-b6ea-81bd9254770c/rulings",
+      "research": {
+        "groups": [
+          "zombies-green"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 The Turned: Two-mana deathtouch Zombies; optional mana filtering helps either partner..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "f429617d-7134-4749-af8c-398eee68565d",
+      "oracle_id": "94dd397e-0127-4c79-b9d9-22ce62ccdfe7",
+      "name": "Sludge Titan",
+      "mana_cost": "{4}{B/G}{B/G}",
+      "cmc": 6,
+      "colors": [
+        "B",
+        "G"
+      ],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "type_line": "Creature — Zombie Giant",
+      "oracle_text": "Trample\nWhenever this creature enters or attacks, mill five cards. You may put a creature card and/or a land card from among them into your hand.",
+      "power": "6",
+      "toughness": "6",
+      "keywords": [
+        "Trample",
+        "Mill"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/clu/43/sludge-titan?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/4/f429617d-7134-4749-af8c-398eee68565d.jpg?1783912572",
+        "normal": "https://cards.scryfall.io/normal/front/f/4/f429617d-7134-4749-af8c-398eee68565d.jpg?1783912572",
+        "large": "https://cards.scryfall.io/large/front/f/4/f429617d-7134-4749-af8c-398eee68565d.jpg?1783912572",
+        "png": "https://cards.scryfall.io/png/front/f/4/f429617d-7134-4749-af8c-398eee68565d.png?1783912572",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/4/f429617d-7134-4749-af8c-398eee68565d.jpg?1783912572",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/4/f429617d-7134-4749-af8c-398eee68565d.jpg?1783912572",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/4/f429617d-7134-4749-af8c-398eee68565d.webp?1783912572",
+        "grid": "https://cards.scryfall.io/grid/front/f/4/f429617d-7134-4749-af8c-398eee68565d.webp?1783912572",
+        "display": "https://cards.scryfall.io/display/front/f/4/f429617d-7134-4749-af8c-398eee68565d.webp?1783912572",
+        "art": "https://cards.scryfall.io/art/front/f/4/f429617d-7134-4749-af8c-398eee68565d.webp?1783912572",
+        "crop": "https://cards.scryfall.io/crop/front/f/4/f429617d-7134-4749-af8c-398eee68565d.webp?1783912572",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/4/f429617d-7134-4749-af8c-398eee68565d.jpg?1783912572"
+      },
+      "set": "clu",
+      "set_name": "Ravnica: Clue Edition",
+      "collector_number": "43",
+      "released_at": "2024-02-23",
+      "rulings_uri": "https://api.scryfall.com/cards/f429617d-7134-4749-af8c-398eee68565d/rulings",
+      "research": {
+        "groups": [
+          "zombies-green"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 The Turned: Large trampling Zombie; fills the graveyard and can recover a milled creature/land..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "9f6afdab-b41f-4713-b74a-e90e8bbbaf0a",
+      "oracle_id": "12c03a03-36bf-487e-b8be-e55399525da5",
+      "name": "Mulch",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Reveal the top four cards of your library. Put all land cards revealed this way into your hand and the rest into your graveyard.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/dsc/189/mulch?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.jpg?1783909603",
+        "normal": "https://cards.scryfall.io/normal/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.jpg?1783909603",
+        "large": "https://cards.scryfall.io/large/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.jpg?1783909603",
+        "png": "https://cards.scryfall.io/png/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.png?1783909603",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.jpg?1783909603",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.jpg?1783909603",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.webp?1783909603",
+        "grid": "https://cards.scryfall.io/grid/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.webp?1783909603",
+        "display": "https://cards.scryfall.io/display/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.webp?1783909603",
+        "art": "https://cards.scryfall.io/art/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.webp?1783909603",
+        "crop": "https://cards.scryfall.io/crop/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.webp?1783909603",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/f/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a.jpg?1783909603"
+      },
+      "set": "dsc",
+      "set_name": "Duskmourn: House of Horror Commander",
+      "collector_number": "189",
+      "released_at": "2024-09-27",
+      "rulings_uri": "https://api.scryfall.com/cards/9f6afdab-b41f-4713-b74a-e90e8bbbaf0a/rulings",
+      "research": {
+        "groups": [
+          "zombies-green"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 The Turned: Finds lands while putting nonlands in the graveyard..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "76c25c9a-245b-41c7-a75d-8061eb231389",
+      "oracle_id": "d14c633d-977a-4f78-85c2-88582b3c3670",
+      "name": "Grapple with the Past",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Mill three cards, then you may return a creature or land card from your graveyard to your hand. (To mill three cards, put the top three cards of your library into your graveyard.)",
+      "keywords": [
+        "Mill"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tdc/257/grapple-with-the-past?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.jpg?1783907045",
+        "normal": "https://cards.scryfall.io/normal/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.jpg?1783907045",
+        "large": "https://cards.scryfall.io/large/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.jpg?1783907045",
+        "png": "https://cards.scryfall.io/png/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.png?1783907045",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.jpg?1783907045",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.jpg?1783907045",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.webp?1783907045",
+        "grid": "https://cards.scryfall.io/grid/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.webp?1783907045",
+        "display": "https://cards.scryfall.io/display/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.webp?1783907045",
+        "art": "https://cards.scryfall.io/art/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.webp?1783907045",
+        "crop": "https://cards.scryfall.io/crop/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.webp?1783907045",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/6/76c25c9a-245b-41c7-a75d-8061eb231389.jpg?1783907045"
+      },
+      "set": "tdc",
+      "set_name": "Tarkir: Dragonstorm Commander",
+      "collector_number": "257",
+      "released_at": "2025-04-11",
+      "rulings_uri": "https://api.scryfall.com/cards/76c25c9a-245b-41c7-a75d-8061eb231389/rulings",
+      "research": {
+        "groups": [
+          "zombies-green"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 The Turned: Limited self-mill and optional creature/land recovery..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "d771fc5d-b9a1-4637-8241-3f54616b64af",
+      "oracle_id": "e6e4a8bd-5c40-4654-8de1-0da9afed90fd",
+      "name": "Regrowth",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Return target card from your graveyard to your hand.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/mh1/175/regrowth?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.jpg?1783933093",
+        "normal": "https://cards.scryfall.io/normal/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.jpg?1783933093",
+        "large": "https://cards.scryfall.io/large/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.jpg?1783933093",
+        "png": "https://cards.scryfall.io/png/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.png?1783933093",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.jpg?1783933093",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.jpg?1783933093",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.webp?1783933093",
+        "grid": "https://cards.scryfall.io/grid/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.webp?1783933093",
+        "display": "https://cards.scryfall.io/display/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.webp?1783933093",
+        "art": "https://cards.scryfall.io/art/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.webp?1783933093",
+        "crop": "https://cards.scryfall.io/crop/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.webp?1783933093",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/7/d771fc5d-b9a1-4637-8241-3f54616b64af.jpg?1783933093"
+      },
+      "set": "mh1",
+      "set_name": "Modern Horizons",
+      "collector_number": "175",
+      "released_at": "2019-06-14",
+      "rulings_uri": "https://api.scryfall.com/cards/d771fc5d-b9a1-4637-8241-3f54616b64af/rulings",
+      "research": {
+        "groups": [
+          "zombies-green"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 The Turned: Recovers any card that was milled or used..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "86d6b411-4a31-4bfc-8dd6-e19f553bb29b",
+      "oracle_id": "9d2d6479-531c-4ce1-b52b-00e36fa63b64",
+      "name": "Rancor",
+      "mana_cost": "{G}",
+      "cmc": 1,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Enchantment — Aura",
+      "oracle_text": "Enchant creature\nEnchanted creature gets +2/+0 and has trample.\nWhen this Aura is put into a graveyard from the battlefield, return it to its owner's hand.",
+      "keywords": [
+        "Enchant"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/2x2/156/rancor?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.jpg?1783921864",
+        "normal": "https://cards.scryfall.io/normal/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.jpg?1783921864",
+        "large": "https://cards.scryfall.io/large/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.jpg?1783921864",
+        "png": "https://cards.scryfall.io/png/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.png?1783921864",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.jpg?1783921864",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.jpg?1783921864",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.webp?1783921864",
+        "grid": "https://cards.scryfall.io/grid/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.webp?1783921864",
+        "display": "https://cards.scryfall.io/display/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.webp?1783921864",
+        "art": "https://cards.scryfall.io/art/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.webp?1783921864",
+        "crop": "https://cards.scryfall.io/crop/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.webp?1783921864",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/6/86d6b411-4a31-4bfc-8dd6-e19f553bb29b.jpg?1783921864"
+      },
+      "set": "2x2",
+      "set_name": "Double Masters 2022",
+      "collector_number": "156",
+      "released_at": "2022-07-08",
+      "rulings_uri": "https://api.scryfall.com/cards/86d6b411-4a31-4bfc-8dd6-e19f553bb29b/rulings",
+      "research": {
+        "groups": [
+          "zombies-green"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 The Turned: Repeatable trample and power boost, letting Ghoultree or small Zombies attack through blockers..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "08891c78-13c1-4d84-aa9c-78346b3b7d18",
+      "oracle_id": "d85ea576-a794-44bf-b405-1f1c49477409",
+      "name": "Sacred Cat",
+      "mana_cost": "{W}",
+      "cmc": 1,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Cat",
+      "oracle_text": "Lifelink\nEmbalm {W} ({W}, Exile this card from your graveyard: Create a token that's a copy of it, except it's a white Zombie Cat with no mana cost. Embalm only as a sorcery.)",
+      "power": "1",
+      "toughness": "1",
+      "keywords": [
+        "Lifelink",
+        "Embalm"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/akh/27/sacred-cat?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.jpg?1783936533",
+        "normal": "https://cards.scryfall.io/normal/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.jpg?1783936533",
+        "large": "https://cards.scryfall.io/large/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.jpg?1783936533",
+        "png": "https://cards.scryfall.io/png/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.png?1783936533",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.jpg?1783936533",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.jpg?1783936533",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.webp?1783936533",
+        "grid": "https://cards.scryfall.io/grid/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.webp?1783936533",
+        "display": "https://cards.scryfall.io/display/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.webp?1783936533",
+        "art": "https://cards.scryfall.io/art/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.webp?1783936533",
+        "crop": "https://cards.scryfall.io/crop/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.webp?1783936533",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/8/08891c78-13c1-4d84-aa9c-78346b3b7d18.jpg?1783936533"
+      },
+      "set": "akh",
+      "set_name": "Amonkhet",
+      "collector_number": "27",
+      "released_at": "2017-04-28",
+      "rulings_uri": "https://api.scryfall.com/cards/08891c78-13c1-4d84-aa9c-78346b3b7d18/rulings",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Tomb Guard: One-mana lifelink body; later embalm returns it as a Zombie Cat token..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "4b491874-4be1-496a-bf04-abe1f5af4482",
+      "oracle_id": "f90b00f6-36e0-4988-9409-57297483a952",
+      "name": "Cast Out",
+      "mana_cost": "{3}{W}",
+      "cmc": 4,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "Flash\nWhen this enchantment enters, exile target nonland permanent an opponent controls until this enchantment leaves the battlefield.\nCycling {W} ({W}, Discard this card: Draw a card.)",
+      "keywords": [
+        "Flash",
+        "Cycling"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/dsc/98/cast-out?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.jpg?1783909633",
+        "normal": "https://cards.scryfall.io/normal/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.jpg?1783909633",
+        "large": "https://cards.scryfall.io/large/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.jpg?1783909633",
+        "png": "https://cards.scryfall.io/png/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.png?1783909633",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.jpg?1783909633",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.jpg?1783909633",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.webp?1783909633",
+        "grid": "https://cards.scryfall.io/grid/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.webp?1783909633",
+        "display": "https://cards.scryfall.io/display/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.webp?1783909633",
+        "art": "https://cards.scryfall.io/art/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.webp?1783909633",
+        "crop": "https://cards.scryfall.io/crop/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.webp?1783909633",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/b/4b491874-4be1-496a-bf04-abe1f5af4482.jpg?1783909633"
+      },
+      "set": "dsc",
+      "set_name": "Duskmourn: House of Horror Commander",
+      "collector_number": "98",
+      "released_at": "2024-09-27",
+      "rulings_uri": "https://api.scryfall.com/cards/4b491874-4be1-496a-bf04-abe1f5af4482/rulings",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Tomb Guard: Broad answer to a nonland permanent; cycling is available when needed..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "bb089097-1eed-4e72-a715-579ddd8307a0",
+      "oracle_id": "d1946630-e224-40db-8f0d-388b09622288",
+      "name": "Thriving Heath",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped. As it enters, choose a color other than white.\n{T}: Add {W} or one mana of the chosen color.",
+      "scryfall_uri": "https://scryfall.com/card/msc/580/thriving-heath?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089",
+        "normal": "https://cards.scryfall.io/normal/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089",
+        "large": "https://cards.scryfall.io/large/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089",
+        "png": "https://cards.scryfall.io/png/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.png?1783903089",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.webp?1783903089",
+        "grid": "https://cards.scryfall.io/grid/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.webp?1783903089",
+        "display": "https://cards.scryfall.io/display/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.webp?1783903089",
+        "art": "https://cards.scryfall.io/art/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.webp?1783903089",
+        "crop": "https://cards.scryfall.io/crop/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.webp?1783903089",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089"
+      },
+      "set": "msc",
+      "collector_number": "580",
+      "released_at": "2026-06-26",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "Selected for v0.1 Ancient Grove and Tomb Guard: White source; choose the paired packet’s color; Enters tapped; choose the other packet's color for optional fixing..",
+        "caution": "Enters tapped; the chosen second color is fixed for that battlefield stay.",
+        "manaNote": "Produces white or one other color chosen as it enters.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "eef65ebc-12d6-4438-a908-2a0c28329124",
+      "oracle_id": "a8052556-8962-4130-86a8-6fb7b6a324f7",
+      "name": "Thriving Grove",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped. As it enters, choose a color other than green.\n{T}: Add {G} or one mana of the chosen color.",
+      "scryfall_uri": "https://scryfall.com/card/msc/579/thriving-grove?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090",
+        "normal": "https://cards.scryfall.io/normal/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090",
+        "large": "https://cards.scryfall.io/large/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090",
+        "png": "https://cards.scryfall.io/png/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.png?1783903090",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.webp?1783903090",
+        "grid": "https://cards.scryfall.io/grid/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.webp?1783903090",
+        "display": "https://cards.scryfall.io/display/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.webp?1783903090",
+        "art": "https://cards.scryfall.io/art/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.webp?1783903090",
+        "crop": "https://cards.scryfall.io/crop/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.webp?1783903090",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090"
+      },
+      "set": "msc",
+      "collector_number": "579",
+      "released_at": "2026-06-26",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "Selected for v0.1 Overgrowth and The Turned: Green source; choose a second color as it enters; Enters tapped; choose the other packet's color for optional fixing..",
+        "caution": "Enters tapped; the chosen second color is fixed for that battlefield stay.",
+        "manaNote": "Produces green or one other color chosen as it enters.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "91c715a5-6643-4064-a8a8-3e05dce15979",
+      "oracle_id": "27c87371-697e-4ca6-a7f4-d99215d908bc",
+      "name": "Sun-Dappled Celebrant",
+      "mana_cost": "{4}{W}{W}",
+      "cmc": 6,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Treefolk Cleric",
+      "oracle_text": "Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.)\nVigilance",
+      "power": "5",
+      "toughness": "6",
+      "keywords": [
+        "Vigilance",
+        "Convoke"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/ecl/37/sun-dappled-celebrant?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.jpg?1783904496",
+        "normal": "https://cards.scryfall.io/normal/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.jpg?1783904496",
+        "large": "https://cards.scryfall.io/large/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.jpg?1783904496",
+        "png": "https://cards.scryfall.io/png/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.png?1783904496",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.jpg?1783904496",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.jpg?1783904496",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.webp?1783904496",
+        "grid": "https://cards.scryfall.io/grid/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.webp?1783904496",
+        "display": "https://cards.scryfall.io/display/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.webp?1783904496",
+        "art": "https://cards.scryfall.io/art/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.webp?1783904496",
+        "crop": "https://cards.scryfall.io/crop/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.webp?1783904496",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/1/91c715a5-6643-4064-a8a8-3e05dce15979.jpg?1783904496"
+      },
+      "set": "ecl",
+      "set_name": "Lorwyn Eclipsed",
+      "collector_number": "37",
+      "released_at": "2026-01-23",
+      "rulings_uri": "https://api.scryfall.com/cards/91c715a5-6643-4064-a8a8-3e05dce15979/rulings",
+      "research": {
+        "groups": [
+          "treefolk"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Ancient Grove: Convoke Treefolk finisher with vigilance.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "77cf9d11-936f-4e02-8595-0cbcabaafb1e",
+      "oracle_id": "8c04663a-1023-49a5-a0b9-78f24a72fb1e",
+      "name": "Nature's Way",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Target creature you control gains vigilance and trample until end of turn. It deals damage equal to its power to target creature you don't control.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/jmp/412/natures-way?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.jpg?1783930359",
+        "normal": "https://cards.scryfall.io/normal/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.jpg?1783930359",
+        "large": "https://cards.scryfall.io/large/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.jpg?1783930359",
+        "png": "https://cards.scryfall.io/png/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.png?1783930359",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.jpg?1783930359",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.jpg?1783930359",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.webp?1783930359",
+        "grid": "https://cards.scryfall.io/grid/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.webp?1783930359",
+        "display": "https://cards.scryfall.io/display/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.webp?1783930359",
+        "art": "https://cards.scryfall.io/art/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.webp?1783930359",
+        "crop": "https://cards.scryfall.io/crop/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.webp?1783930359",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/7/77cf9d11-936f-4e02-8595-0cbcabaafb1e.jpg?1783930359"
+      },
+      "set": "jmp",
+      "set_name": "Jumpstart",
+      "collector_number": "412",
+      "released_at": "2020-07-17",
+      "rulings_uri": "https://api.scryfall.com/cards/77cf9d11-936f-4e02-8595-0cbcabaafb1e/rulings",
+      "research": {
+        "groups": [
+          "plants"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Overgrowth: Creature-powered removal; vigilance and trample.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "62ba90b8-3a30-4058-b8d3-72900b1f4fe0",
+      "oracle_id": "c3a89c67-1931-4d42-98c8-94a40cfd046e",
+      "name": "Eviscerate",
+      "mana_cost": "{3}{B}",
+      "cmc": 4,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Destroy target creature.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/dom/91/eviscerate?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.jpg?1783935009",
+        "normal": "https://cards.scryfall.io/normal/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.jpg?1783935009",
+        "large": "https://cards.scryfall.io/large/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.jpg?1783935009",
+        "png": "https://cards.scryfall.io/png/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.png?1783935009",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.jpg?1783935009",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.jpg?1783935009",
+        "thumb": "https://cards.scryfall.io/thumb/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.webp?1783935009",
+        "grid": "https://cards.scryfall.io/grid/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.webp?1783935009",
+        "display": "https://cards.scryfall.io/display/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.webp?1783935009",
+        "art": "https://cards.scryfall.io/art/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.webp?1783935009",
+        "crop": "https://cards.scryfall.io/crop/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.webp?1783935009",
+        "jpeg": "https://cards.scryfall.io/normal/front/6/2/62ba90b8-3a30-4058-b8d3-72900b1f4fe0.jpg?1783935009"
+      },
+      "set": "dom",
+      "set_name": "Dominaria",
+      "collector_number": "91",
+      "released_at": "2018-04-27",
+      "rulings_uri": "https://api.scryfall.com/cards/62ba90b8-3a30-4058-b8d3-72900b1f4fe0/rulings",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Restless Dead: Simple unconditional creature removal at sorcery speed..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2babef35-27ab-45aa-88cd-f21dccae5125",
+      "oracle_id": "5a8bd4a4-8b10-4eef-8341-28be2afa2c00",
+      "name": "Sleep Paralysis",
+      "mana_cost": "{3}{U}",
+      "cmc": 4,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Enchantment — Aura",
+      "oracle_text": "Enchant creature\nWhen this Aura enters, tap enchanted creature.\nEnchanted creature doesn't untap during its controller's untap step.",
+      "keywords": [
+        "Enchant"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/m20/75/sleep-paralysis?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.jpg?1783933005",
+        "normal": "https://cards.scryfall.io/normal/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.jpg?1783933005",
+        "large": "https://cards.scryfall.io/large/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.jpg?1783933005",
+        "png": "https://cards.scryfall.io/png/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.png?1783933005",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.jpg?1783933005",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.jpg?1783933005",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.webp?1783933005",
+        "grid": "https://cards.scryfall.io/grid/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.webp?1783933005",
+        "display": "https://cards.scryfall.io/display/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.webp?1783933005",
+        "art": "https://cards.scryfall.io/art/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.webp?1783933005",
+        "crop": "https://cards.scryfall.io/crop/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.webp?1783933005",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/b/2babef35-27ab-45aa-88cd-f21dccae5125.jpg?1783933005"
+      },
+      "set": "m20",
+      "set_name": "Core Set 2020",
+      "collector_number": "75",
+      "released_at": "2019-07-12",
+      "rulings_uri": "https://api.scryfall.com/cards/2babef35-27ab-45aa-88cd-f21dccae5125/rulings",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Stitched Together: Single-blue sustained creature lockdown..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "32840097-0531-4c43-b6a8-e76c17420b04",
+      "oracle_id": "46665089-aa3d-44c3-964d-6638dfbb5782",
+      "name": "Essence Scatter",
+      "mana_cost": "{1}{U}",
+      "cmc": 2,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Counter target creature spell.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/sos/47/essence-scatter?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.jpg?1783903696",
+        "normal": "https://cards.scryfall.io/normal/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.jpg?1783903696",
+        "large": "https://cards.scryfall.io/large/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.jpg?1783903696",
+        "png": "https://cards.scryfall.io/png/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.png?1783903696",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.jpg?1783903696",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.jpg?1783903696",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.webp?1783903696",
+        "grid": "https://cards.scryfall.io/grid/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.webp?1783903696",
+        "display": "https://cards.scryfall.io/display/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.webp?1783903696",
+        "art": "https://cards.scryfall.io/art/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.webp?1783903696",
+        "crop": "https://cards.scryfall.io/crop/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.webp?1783903696",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/2/32840097-0531-4c43-b6a8-e76c17420b04.jpg?1783903696"
+      },
+      "set": "sos",
+      "set_name": "Secrets of Strixhaven",
+      "collector_number": "47",
+      "released_at": "2026-04-24",
+      "rulings_uri": "https://api.scryfall.com/cards/32840097-0531-4c43-b6a8-e76c17420b04/rulings",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Stitched Together: Simple answer to a creature spell before it resolves..",
+        "crossover": false
+      }
+    },
+    {
+      "id": "a4b9f8f4-d704-4f16-8495-cf8185285859",
+      "oracle_id": "d5b446a4-a761-42f0-acf0-ea0a1a9538d6",
+      "name": "Pulse of Murasa",
+      "mana_cost": "{2}{G}",
+      "cmc": 3,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Return target creature or land card from a graveyard to its owner's hand. You gain 6 life.",
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/c21/202/pulse-of-murasa?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.jpg?1783927531",
+        "normal": "https://cards.scryfall.io/normal/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.jpg?1783927531",
+        "large": "https://cards.scryfall.io/large/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.jpg?1783927531",
+        "png": "https://cards.scryfall.io/png/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.png?1783927531",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.jpg?1783927531",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.jpg?1783927531",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.webp?1783927531",
+        "grid": "https://cards.scryfall.io/grid/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.webp?1783927531",
+        "display": "https://cards.scryfall.io/display/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.webp?1783927531",
+        "art": "https://cards.scryfall.io/art/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.webp?1783927531",
+        "crop": "https://cards.scryfall.io/crop/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.webp?1783927531",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/4/a4b9f8f4-d704-4f16-8495-cf8185285859.jpg?1783927531"
+      },
+      "set": "c21",
+      "set_name": "Commander 2021",
+      "collector_number": "202",
+      "released_at": "2021-04-23",
+      "rulings_uri": "https://api.scryfall.com/cards/a4b9f8f4-d704-4f16-8495-cf8185285859/rulings",
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Wild Awakening: Recover a spent creature or destroyed land, plus life.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2d73ea23-52ab-4b92-b263-dc8b9e5a1010",
+      "oracle_id": "21f1c6d7-8289-44b2-b88f-c09e202be200",
+      "name": "Fertilid",
+      "mana_cost": "{2}{G}",
+      "cmc": 3,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental",
+      "oracle_text": "This creature enters with two +1/+1 counters on it.\n{1}{G}, Remove a +1/+1 counter from this creature: Target player searches their library for a basic land card, puts it onto the battlefield tapped, then shuffles.",
+      "power": "0",
+      "toughness": "0",
+      "scryfall_uri": "https://scryfall.com/card/moc/296/fertilid?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141",
+        "normal": "https://cards.scryfall.io/normal/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141",
+        "large": "https://cards.scryfall.io/large/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141",
+        "png": "https://cards.scryfall.io/png/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.png?1783917141",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.webp?1783917141",
+        "grid": "https://cards.scryfall.io/grid/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.webp?1783917141",
+        "display": "https://cards.scryfall.io/display/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.webp?1783917141",
+        "art": "https://cards.scryfall.io/art/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.webp?1783917141",
+        "crop": "https://cards.scryfall.io/crop/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.webp?1783917141",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141"
+      },
+      "set": "moc",
+      "collector_number": "296",
+      "released_at": "2023-04-21",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "mana support",
+          "counter support"
+        ],
+        "note": "Selected for v0.1 Wild Awakening: Elemental body whose counters can become basic lands and color fixing.",
+        "caution": "Each activation removes a counter; without additional toughness or counters, using the last counter leaves it with zero toughness. Lands enter tapped. It is not a Plant.",
+        "manaNote": "Costs 2G and each land-search activation costs 1G.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "31279d7c-5246-40b2-a8c7-0be4a5f24a29",
+      "oracle_id": "5f5e0b10-c8cf-450c-bfd3-bcb0528ec330",
+      "name": "Pacifism",
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Enchantment — Aura",
+      "oracle_text": "Enchant creature\nEnchanted creature can't attack or block.",
+      "keywords": [
+        "Enchant"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/m20/32/pacifism?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.jpg?1783933022",
+        "normal": "https://cards.scryfall.io/normal/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.jpg?1783933022",
+        "large": "https://cards.scryfall.io/large/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.jpg?1783933022",
+        "png": "https://cards.scryfall.io/png/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.png?1783933022",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.jpg?1783933022",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.jpg?1783933022",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.webp?1783933022",
+        "grid": "https://cards.scryfall.io/grid/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.webp?1783933022",
+        "display": "https://cards.scryfall.io/display/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.webp?1783933022",
+        "art": "https://cards.scryfall.io/art/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.webp?1783933022",
+        "crop": "https://cards.scryfall.io/crop/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.webp?1783933022",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/1/31279d7c-5246-40b2-a8c7-0be4a5f24a29.jpg?1783933022"
+      },
+      "set": "m20",
+      "set_name": "Core Set 2020",
+      "collector_number": "32",
+      "released_at": "2019-07-12",
+      "rulings_uri": "https://api.scryfall.com/cards/31279d7c-5246-40b2-a8c7-0be4a5f24a29/rulings",
+      "research": {
+        "groups": [
+          "treefolk"
+        ],
+        "roles": [
+          "v0.1 packet candidate"
+        ],
+        "note": "Selected for v0.1 Ancient Grove: Stops a creature attacking or blocking.",
+        "crossover": false
+      }
+    }
+  ]
+}

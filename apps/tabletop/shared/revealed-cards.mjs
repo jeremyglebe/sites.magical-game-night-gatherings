@@ -1,4 +1,4 @@
-const textFields = ['name', 'image_url', 'type_line', 'mana_cost', 'oracle_text', 'power', 'toughness', 'loyalty', 'scryfall_id', 'kind'];
+const textFields = ['name', 'image_url', 'type_line', 'mana_cost', 'oracle_text', 'short_description', 'long_description', 'power', 'toughness', 'loyalty', 'scryfall_id', 'kind'];
 
 // A historical reveal is a saved reference, never a handle to today's card.
 // Keep only display fields, including when reading older or imported logs.

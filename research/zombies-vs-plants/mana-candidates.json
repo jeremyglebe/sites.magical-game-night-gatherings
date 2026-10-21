@@ -1,0 +1,527 @@
+{
+  "researchedAt": "2026-10-21",
+  "queries": [
+    {
+      "query": "(!\"Thriving Grove\" or !\"Thriving Moor\" or !\"Thriving Isle\" or !\"Thriving Heath\" or !\"Shimmerdrift Vale\" or !\"Uncharted Haven\" or !\"Evolving Wilds\" or !\"Ash Barrens\" or !\"Secluded Courtyard\" or !\"Abundant Growth\" or !\"Unbridled Growth\" or !\"Springleaf Drum\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 12,
+      "hasMore": false
+    }
+  ],
+  "cards": [
+    {
+      "id": "88b8b051-3f05-4cc1-9506-732faa25553a",
+      "oracle_id": "947a2665-2f4d-4193-8768-118f85334549",
+      "name": "Abundant Growth",
+      "mana_cost": "{G}",
+      "cmc": 1,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Enchantment — Aura",
+      "oracle_text": "Enchant land\nWhen this Aura enters, draw a card.\nEnchanted land has \"{T}: Add one mana of any color.\"",
+      "scryfall_uri": "https://scryfall.com/card/ecc/97/abundant-growth?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.jpg?1783904552",
+        "normal": "https://cards.scryfall.io/normal/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.jpg?1783904552",
+        "large": "https://cards.scryfall.io/large/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.jpg?1783904552",
+        "png": "https://cards.scryfall.io/png/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.png?1783904552",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.jpg?1783904552",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.jpg?1783904552",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.webp?1783904552",
+        "grid": "https://cards.scryfall.io/grid/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.webp?1783904552",
+        "display": "https://cards.scryfall.io/display/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.webp?1783904552",
+        "art": "https://cards.scryfall.io/art/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.webp?1783904552",
+        "crop": "https://cards.scryfall.io/crop/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.webp?1783904552",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/8/88b8b051-3f05-4cc1-9506-732faa25553a.jpg?1783904552"
+      },
+      "set": "ecc",
+      "collector_number": "97",
+      "released_at": "2026-01-23",
+      "research": {
+        "groups": [
+          "mana-support",
+          "plants",
+          "treefolk",
+          "fungi"
+        ],
+        "roles": [
+          "mana fixing",
+          "card draw"
+        ],
+        "note": "Botanical fixing that replaces itself and lets a land produce any color for either paired packet.",
+        "caution": "Needs green before it can fix other colors. It changes the land's ability, not its basic land types.",
+        "manaNote": "Costs green; fixes any color afterward.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "e8510205-4baa-4f1c-bf64-5d931e2ddf48",
+      "oracle_id": "58257464-278e-45fa-8e0b-bcd9a7500bc1",
+      "name": "Ash Barrens",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Land",
+      "oracle_text": "{T}: Add {C}.\nBasic landcycling {1} ({1}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle.)",
+      "scryfall_uri": "https://scryfall.com/card/tmc/60/ash-barrens?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155",
+        "normal": "https://cards.scryfall.io/normal/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155",
+        "large": "https://cards.scryfall.io/large/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155",
+        "png": "https://cards.scryfall.io/png/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.png?1783904155",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.webp?1783904155",
+        "grid": "https://cards.scryfall.io/grid/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.webp?1783904155",
+        "display": "https://cards.scryfall.io/display/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.webp?1783904155",
+        "art": "https://cards.scryfall.io/art/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.webp?1783904155",
+        "crop": "https://cards.scryfall.io/crop/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.webp?1783904155",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/8/e8510205-4baa-4f1c-bf64-5d931e2ddf48.jpg?1783904155"
+      },
+      "set": "tmc",
+      "collector_number": "60",
+      "released_at": "2026-03-06",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "Finds whichever basic land the combined deck is missing, or serves as a colorless land.",
+        "caution": "Cycling costs one mana and puts the basic into hand; it is not an additional land play.",
+        "manaNote": "Colorless land unless cycled for a colored basic.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "c0318a48-30e4-4ef7-be3d-5e561c5ce428",
+      "oracle_id": "a75445d3-1303-4bb5-89ad-26ea93fecd48",
+      "name": "Evolving Wilds",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Land",
+      "oracle_text": "{T}, Sacrifice this land: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.",
+      "scryfall_uri": "https://scryfall.com/card/msc/240/evolving-wilds?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.jpg?1783903203",
+        "normal": "https://cards.scryfall.io/normal/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.jpg?1783903203",
+        "large": "https://cards.scryfall.io/large/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.jpg?1783903203",
+        "png": "https://cards.scryfall.io/png/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.png?1783903203",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.jpg?1783903203",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.jpg?1783903203",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.webp?1783903203",
+        "grid": "https://cards.scryfall.io/grid/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.webp?1783903203",
+        "display": "https://cards.scryfall.io/display/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.webp?1783903203",
+        "art": "https://cards.scryfall.io/art/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.webp?1783903203",
+        "crop": "https://cards.scryfall.io/crop/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.webp?1783903203",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.jpg?1783903203"
+      },
+      "set": "msc",
+      "collector_number": "240",
+      "released_at": "2026-06-26",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "Finds a basic land of the color the current pairing needs.",
+        "caution": "The fetched land enters tapped; repeated tapped lands can delay early plays.",
+        "manaNote": "No colored mana needed to search, but the required basic must be in the deck.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "c0d17d04-cf0b-4918-bfec-b34b0d98a602",
+      "oracle_id": "79ba18fd-f184-43c1-86df-56ee18ce806c",
+      "name": "Secluded Courtyard",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Land",
+      "oracle_text": "As this land enters, choose a creature type.\n{T}: Add {C}.\n{T}: Add one mana of any color. Spend this mana only to cast a creature spell of the chosen type or activate an ability of a creature source of the chosen type.",
+      "scryfall_uri": "https://scryfall.com/card/msc/265/secluded-courtyard?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.jpg?1783903197",
+        "normal": "https://cards.scryfall.io/normal/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.jpg?1783903197",
+        "large": "https://cards.scryfall.io/large/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.jpg?1783903197",
+        "png": "https://cards.scryfall.io/png/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.png?1783903197",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.jpg?1783903197",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.jpg?1783903197",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.webp?1783903197",
+        "grid": "https://cards.scryfall.io/grid/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.webp?1783903197",
+        "display": "https://cards.scryfall.io/display/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.webp?1783903197",
+        "art": "https://cards.scryfall.io/art/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.webp?1783903197",
+        "crop": "https://cards.scryfall.io/crop/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.webp?1783903197",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/0/c0d17d04-cf0b-4918-bfec-b34b0d98a602.jpg?1783903197"
+      },
+      "set": "msc",
+      "collector_number": "265",
+      "released_at": "2026-06-26",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "Can support a packet's named creature type in several colors.",
+        "caution": "Its colored mana cannot cast unrelated creature types or noncreature support spells; naming Plant does not cover Treefolk or Fungus.",
+        "manaNote": "Choose one creature type on entry; colored mana is restricted to that type's creature spells and creature-source abilities.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "f09d98db-0176-41a7-b99b-ead29876cdab",
+      "oracle_id": "2ac34f3e-822d-4fde-99ca-a31c4d9503fd",
+      "name": "Shimmerdrift Vale",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Snow Land",
+      "oracle_text": "This land enters tapped.\nAs this land enters, choose a color.\n{T}: Add one mana of the chosen color.",
+      "scryfall_uri": "https://scryfall.com/card/khm/267/shimmerdrift-vale?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.jpg?1783928172",
+        "normal": "https://cards.scryfall.io/normal/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.jpg?1783928172",
+        "large": "https://cards.scryfall.io/large/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.jpg?1783928172",
+        "png": "https://cards.scryfall.io/png/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.png?1783928172",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.jpg?1783928172",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.jpg?1783928172",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.webp?1783928172",
+        "grid": "https://cards.scryfall.io/grid/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.webp?1783928172",
+        "display": "https://cards.scryfall.io/display/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.webp?1783928172",
+        "art": "https://cards.scryfall.io/art/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.webp?1783928172",
+        "crop": "https://cards.scryfall.io/crop/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.webp?1783928172",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/0/f09d98db-0176-41a7-b99b-ead29876cdab.jpg?1783928172"
+      },
+      "set": "khm",
+      "collector_number": "267",
+      "released_at": "2021-02-05",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "Chooses a needed color when played, useful when packet partners vary.",
+        "caution": "Enters tapped and remains locked to the chosen color; it does not produce any color on each activation.",
+        "manaNote": "One chosen color, not two or all colors.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "e15ab0aa-4059-4923-9816-6f7a9e5b5a18",
+      "oracle_id": "bdeb440d-a714-40e8-9038-f651e6ae45fb",
+      "name": "Springleaf Drum",
+      "mana_cost": "{1}",
+      "cmc": 1,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Artifact",
+      "oracle_text": "{T}, Tap an untapped creature you control: Add one mana of any color.",
+      "scryfall_uri": "https://scryfall.com/card/ecl/260/springleaf-drum?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.jpg?1783904399",
+        "normal": "https://cards.scryfall.io/normal/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.jpg?1783904399",
+        "large": "https://cards.scryfall.io/large/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.jpg?1783904399",
+        "png": "https://cards.scryfall.io/png/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.png?1783904399",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.jpg?1783904399",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.jpg?1783904399",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.webp?1783904399",
+        "grid": "https://cards.scryfall.io/grid/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.webp?1783904399",
+        "display": "https://cards.scryfall.io/display/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.webp?1783904399",
+        "art": "https://cards.scryfall.io/art/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.webp?1783904399",
+        "crop": "https://cards.scryfall.io/crop/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.webp?1783904399",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/1/e15ab0aa-4059-4923-9816-6f7a9e5b5a18.jpg?1783904399"
+      },
+      "set": "ecl",
+      "collector_number": "260",
+      "released_at": "2026-01-23",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "Turns a spare creature or token into flexible mana without requiring green.",
+        "caution": "Needs an untapped creature and uses a creature's tap that could otherwise attack or block.",
+        "manaNote": "One generic to cast; activates for any color without a mana payment.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "eef65ebc-12d6-4438-a908-2a0c28329124",
+      "oracle_id": "a8052556-8962-4130-86a8-6fb7b6a324f7",
+      "name": "Thriving Grove",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped. As it enters, choose a color other than green.\n{T}: Add {G} or one mana of the chosen color.",
+      "scryfall_uri": "https://scryfall.com/card/msc/579/thriving-grove?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090",
+        "normal": "https://cards.scryfall.io/normal/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090",
+        "large": "https://cards.scryfall.io/large/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090",
+        "png": "https://cards.scryfall.io/png/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.png?1783903090",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.webp?1783903090",
+        "grid": "https://cards.scryfall.io/grid/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.webp?1783903090",
+        "display": "https://cards.scryfall.io/display/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.webp?1783903090",
+        "art": "https://cards.scryfall.io/art/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.webp?1783903090",
+        "crop": "https://cards.scryfall.io/crop/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.webp?1783903090",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/e/eef65ebc-12d6-4438-a908-2a0c28329124.jpg?1783903090"
+      },
+      "set": "msc",
+      "collector_number": "579",
+      "released_at": "2026-06-26",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "A green base land that can add a color chosen for its current packet partner.",
+        "caution": "Enters tapped; the chosen second color is fixed for that battlefield stay.",
+        "manaNote": "Produces green or one other color chosen as it enters.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "bb089097-1eed-4e72-a715-579ddd8307a0",
+      "oracle_id": "d1946630-e224-40db-8f0d-388b09622288",
+      "name": "Thriving Heath",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped. As it enters, choose a color other than white.\n{T}: Add {W} or one mana of the chosen color.",
+      "scryfall_uri": "https://scryfall.com/card/msc/580/thriving-heath?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089",
+        "normal": "https://cards.scryfall.io/normal/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089",
+        "large": "https://cards.scryfall.io/large/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089",
+        "png": "https://cards.scryfall.io/png/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.png?1783903089",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.webp?1783903089",
+        "grid": "https://cards.scryfall.io/grid/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.webp?1783903089",
+        "display": "https://cards.scryfall.io/display/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.webp?1783903089",
+        "art": "https://cards.scryfall.io/art/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.webp?1783903089",
+        "crop": "https://cards.scryfall.io/crop/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.webp?1783903089",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/b/bb089097-1eed-4e72-a715-579ddd8307a0.jpg?1783903089"
+      },
+      "set": "msc",
+      "collector_number": "580",
+      "released_at": "2026-06-26",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "A white base land that can add a color chosen for its current packet partner.",
+        "caution": "Enters tapped; the chosen second color is fixed for that battlefield stay.",
+        "manaNote": "Produces white or one other color chosen as it enters.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8",
+      "oracle_id": "69fc70b8-b143-4662-ac95-e2743037239d",
+      "name": "Thriving Isle",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped. As it enters, choose a color other than blue.\n{T}: Add {U} or one mana of the chosen color.",
+      "scryfall_uri": "https://scryfall.com/card/msc/581/thriving-isle?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.jpg?1783903089",
+        "normal": "https://cards.scryfall.io/normal/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.jpg?1783903089",
+        "large": "https://cards.scryfall.io/large/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.jpg?1783903089",
+        "png": "https://cards.scryfall.io/png/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.png?1783903089",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.jpg?1783903089",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.jpg?1783903089",
+        "thumb": "https://cards.scryfall.io/thumb/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.webp?1783903089",
+        "grid": "https://cards.scryfall.io/grid/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.webp?1783903089",
+        "display": "https://cards.scryfall.io/display/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.webp?1783903089",
+        "art": "https://cards.scryfall.io/art/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.webp?1783903089",
+        "crop": "https://cards.scryfall.io/crop/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.webp?1783903089",
+        "jpeg": "https://cards.scryfall.io/normal/front/5/8/58a3b5a5-eba0-4b4e-869a-5387ec7dd2b8.jpg?1783903089"
+      },
+      "set": "msc",
+      "collector_number": "581",
+      "released_at": "2026-06-26",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "A blue base land that can add a color chosen for its current packet partner.",
+        "caution": "Enters tapped; the chosen second color is fixed for that battlefield stay.",
+        "manaNote": "Produces blue or one other color chosen as it enters.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "5d5eea5f-b9e8-4a10-8e7f-c42493a728cd",
+      "oracle_id": "bff416bb-d193-4c45-b2c1-7c297dbfad08",
+      "name": "Thriving Moor",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped. As it enters, choose a color other than black.\n{T}: Add {B} or one mana of the chosen color.",
+      "scryfall_uri": "https://scryfall.com/card/msc/582/thriving-moor?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088",
+        "normal": "https://cards.scryfall.io/normal/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088",
+        "large": "https://cards.scryfall.io/large/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088",
+        "png": "https://cards.scryfall.io/png/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.png?1783903088",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088",
+        "thumb": "https://cards.scryfall.io/thumb/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.webp?1783903088",
+        "grid": "https://cards.scryfall.io/grid/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.webp?1783903088",
+        "display": "https://cards.scryfall.io/display/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.webp?1783903088",
+        "art": "https://cards.scryfall.io/art/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.webp?1783903088",
+        "crop": "https://cards.scryfall.io/crop/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.webp?1783903088",
+        "jpeg": "https://cards.scryfall.io/normal/front/5/d/5d5eea5f-b9e8-4a10-8e7f-c42493a728cd.jpg?1783903088"
+      },
+      "set": "msc",
+      "collector_number": "582",
+      "released_at": "2026-06-26",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "A black base land that can add a color chosen for its current packet partner.",
+        "caution": "Enters tapped; the chosen second color is fixed for that battlefield stay.",
+        "manaNote": "Produces black or one other color chosen as it enters.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "393fc419-a6ce-447d-9994-744cf41f9a27",
+      "oracle_id": "d749d075-6135-486a-a94a-36c3142960d7",
+      "name": "Unbridled Growth",
+      "mana_cost": "{G}",
+      "cmc": 1,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Enchantment — Aura",
+      "oracle_text": "Enchant land\nEnchanted land has \"{T}: Add one mana of any color.\"\nSacrifice this Aura: Draw a card.",
+      "scryfall_uri": "https://scryfall.com/card/aer/126/unbridled-growth?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.jpg?1783936737",
+        "normal": "https://cards.scryfall.io/normal/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.jpg?1783936737",
+        "large": "https://cards.scryfall.io/large/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.jpg?1783936737",
+        "png": "https://cards.scryfall.io/png/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.png?1783936737",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.jpg?1783936737",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.jpg?1783936737",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.webp?1783936737",
+        "grid": "https://cards.scryfall.io/grid/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.webp?1783936737",
+        "display": "https://cards.scryfall.io/display/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.webp?1783936737",
+        "art": "https://cards.scryfall.io/art/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.webp?1783936737",
+        "crop": "https://cards.scryfall.io/crop/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.webp?1783936737",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/9/393fc419-a6ce-447d-9994-744cf41f9a27.jpg?1783936737"
+      },
+      "set": "aer",
+      "collector_number": "126",
+      "released_at": "2017-01-20",
+      "research": {
+        "groups": [
+          "mana-support",
+          "plants",
+          "treefolk",
+          "fungi"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "Botanical fixing that can later be sacrificed to draw, with potential sacrifice synergy.",
+        "caution": "Sacrificing it removes the fixing; it needs green to be cast initially.",
+        "manaNote": "Costs green; fixes any color while attached.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "68b90f54-d629-4126-82cc-13b51d6c1c3e",
+      "oracle_id": "d23c3613-bc5e-4fc5-939c-62a090c53a79",
+      "name": "Uncharted Haven",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped. As it enters, choose a color.\n{T}: Add one mana of the chosen color.",
+      "scryfall_uri": "https://scryfall.com/card/blb/261/uncharted-haven?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.jpg?1783910781",
+        "normal": "https://cards.scryfall.io/normal/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.jpg?1783910781",
+        "large": "https://cards.scryfall.io/large/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.jpg?1783910781",
+        "png": "https://cards.scryfall.io/png/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.png?1783910781",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.jpg?1783910781",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.jpg?1783910781",
+        "thumb": "https://cards.scryfall.io/thumb/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.webp?1783910781",
+        "grid": "https://cards.scryfall.io/grid/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.webp?1783910781",
+        "display": "https://cards.scryfall.io/display/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.webp?1783910781",
+        "art": "https://cards.scryfall.io/art/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.webp?1783910781",
+        "crop": "https://cards.scryfall.io/crop/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.webp?1783910781",
+        "jpeg": "https://cards.scryfall.io/normal/front/6/8/68b90f54-d629-4126-82cc-13b51d6c1c3e.jpg?1783910781"
+      },
+      "set": "blb",
+      "collector_number": "261",
+      "released_at": "2024-08-02",
+      "research": {
+        "groups": [
+          "mana-support"
+        ],
+        "roles": [
+          "mana fixing"
+        ],
+        "note": "Chooses whichever color is missing when it enters, independent of the packet's original colors.",
+        "caution": "Enters tapped and is fixed to one chosen color afterward.",
+        "manaNote": "One chosen color, not unrestricted rainbow mana.",
+        "crossover": false
+      }
+    }
+  ]
+}

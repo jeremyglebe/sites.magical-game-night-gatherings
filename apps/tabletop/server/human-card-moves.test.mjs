@@ -50,3 +50,64 @@ test('pending identities and abilities cannot be dragged as ordinary physical ca
   assert.throws(()=>cardDropActions(state, 'p1', { cardId: 'a' }, { zoneId: 'p1:graveyard' }), /Remove stack ability/);
   assert.equal(cardDropActions(state, 'p1', { cardId: 'a' }, { zoneId: 'stack', position: 'top' })[0].op.type, 'move');
 });
+
+function attachmentTable() {
+  const state = table();
+  state.zones['p1:hand'].cards = [];
+  state.zones.battlefield.cards = [
+    { ...card, name: 'Equipment', attached_to: null },
+    { id: 'b', name: 'Opponent creature', owner: 'p2', controller: 'p2', attached_to: null },
+    { id: 'c', name: 'Aura', owner: 'p1', controller: 'p1', attached_to: null },
+  ];
+  return state;
+}
+test('attaching to an opponent card queues only the relationship and preserves control', () => {
+  const state = attachmentTable(), before = structuredClone(state);
+  const actions = cardDropActions(state, 'p1', { cardId: 'a' }, { zoneId: 'battlefield', attachTo: 'b', controller: 'p2' });
+  assert.deepEqual(actions.map(item => item.op), [{ type: 'card', card: 'a', set: { attached_to: 'b' } }]);
+  assert.match(actions[0].label, /Attach Equipment to Opponent creature/);
+  assert.deepEqual(state, before);
+  state.zones.battlefield.cards[0].attached_to = 'b';
+  assert.deepEqual(cardDropActions(state, 'p1', { cardId: 'a' }, { zoneId: 'battlefield', attachTo: 'b', controller: 'p2' }), []);
+});
+test('hand and stack cards can enter the battlefield and attach in a single reversible drop', () => {
+  for (const zoneId of ['p1:hand', 'stack', 'p1:graveyard']) {
+    const state = attachmentTable();
+    state.zones[zoneId].cards.push(state.zones.battlefield.cards.shift());
+    const actions = cardDropActions(state, 'p1', { cardId: 'a' }, { zoneId: 'battlefield', attachTo: 'b', controller: 'p2' });
+    assert.deepEqual(actions.map(item => item.op), [
+      { type: 'move', card: 'a', to: 'battlefield', position: 'bottom' },
+      { type: 'card', card: 'a', set: { attached_to: 'b' } },
+    ]);
+  }
+});
+test('attachment drops reject self, descendants, invalid targets, and non-card identities', () => {
+  const state = attachmentTable();
+  const drop = (attachTo, zoneId = 'battlefield') => cardDropActions(state, 'p1', { cardId: 'a' }, { zoneId, attachTo });
+  assert.throws(() => drop('a'), /itself/);
+  state.zones.battlefield.cards[1].attached_to = 'c';
+  state.zones.battlefield.cards[2].attached_to = 'a';
+  assert.throws(() => drop('b'), /cycle/);
+  assert.throws(() => drop('concealed'), /no longer on the battlefield/);
+  assert.throws(() => drop('b', 'stack'), /battlefield card/);
+  assert.throws(() => drop(''), /battlefield card/);
+  state.zones.battlefield.cards[1].attached_to = null;
+  for (const changes of [{ draft: true }, { editable: false }, { preview_unknown: true }]) {
+    const original = state.zones.battlefield.cards[1];
+    state.zones.battlefield.cards[1] = { ...original, ...changes };
+    assert.throws(() => drop('b'), /pending/);
+    state.zones.battlefield.cards[1] = original;
+  }
+  state.zones.battlefield.cards[0].kind = 'ability';
+  assert.throws(() => drop('b'), /Only cards/);
+});
+test('dropping an attachment on bare battlefield detaches and ordinary zone moves stay ordinary', () => {
+  const state = attachmentTable();
+  state.zones.battlefield.cards[0].attached_to = 'b';
+  assert.deepEqual(cardDropActions(state, 'p1', { cardId: 'a' }, { zoneId: 'battlefield', controller: 'p1' }).map(item => item.op), [
+    { type: 'card', card: 'a', set: { attached_to: null } },
+  ]);
+  assert.deepEqual(cardDropActions(state, 'p1', { cardId: 'a' }, { zoneId: 'p1:graveyard' }).map(item => item.op), [
+    { type: 'move', card: 'a', to: 'p1:graveyard', position: 'bottom' },
+  ]);
+});

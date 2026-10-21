@@ -40,12 +40,42 @@ export async function requestTable(path, body) {
 const object = properties => ({ type: 'object', properties, additionalProperties: false });
 const string = { type: 'string' };
 const revision = { type: 'integer', minimum: 0 };
-const speech = { type: 'string', minLength: 1, maxLength: 2000, description: 'Public words spoken to the table, never private reasoning or hidden strategy.' };
+const speech = { type: 'string', minLength: 1, maxLength: 2000, description: 'Public words spoken to the table, never private reasoning or hidden strategy. Refer to players by their configured names, not p1/p2; exact player IDs belong in structured tool arguments.' };
+const mainAllocation = { type: 'array', items: {
+  ...object({ id: string, count: { type: 'integer', minimum: 0 } }), required: ['id', 'count'],
+}, description: 'Complete desired main-deck allocation using pool IDs from read_sideboard. Omitted pool IDs have zero copies in the main deck. Preserve the original main-deck size; the remainder stays in your sideboard.' };
 const tools = [
   {
     name: 'observe_table',
     description: 'Read the latest table, public zones, your private hand, counts, turn markers, and recent events. Each zone count is its actual number of cards; cards lists only objects visible to you, and hidden_count counts the omitted objects. A library with count:60, hidden_count:60, cards:[] is a loaded hidden deck, NOT an empty or missing deck. Draw from it through act without knowing card IDs. Your seat is fixed. Use read_events for complete unseen history. Read the latest state before acting on a queued notification. Card rules text is fetched separately with read_card. Library/stack top is index 0. Game rules and legal timing are the players’ responsibility.',
     inputSchema: object({}),
+  },
+  {
+    name: 'read_preparation',
+    description: 'Read the local Jumpstart selection state, assigned factions, public candidate packets and their complete cached card definitions. This is public packet inventory, not a library or hidden hand. During selecting, inspect these cards, choose two distinct packets from your assigned faction, then use select_packets. No web request is made. No selection is pending when preparation is null or complete.',
+    inputSchema: object({}),
+  },
+  {
+    name: 'select_packets',
+    description: 'Lock two distinct Jumpstart packet IDs from your assigned faction during your selection turn. Uses the current revision and completes this managed decision automatically. Optional message is a brief public explanation of your choice, not private reasoning. The application constructs and shuffles all forty-card libraries once everyone has selected. After success stop immediately: do not draw, pass priority, pass turn, or call complete_decision. Opening hands begin on a separate setup handoff.',
+    inputSchema: { ...object({ revision,
+      packetIds: { type: 'array', minItems: 2, maxItems: 2, uniqueItems: true, items: string }, message: speech,
+    }), required: ['revision', 'packetIds'] },
+  },
+  {
+    name: 'read_sideboard',
+    description: 'Read only your own pinned card pool and main/sideboard allocation between games, with revision, match score, readiness and next starting player. Pool IDs are not live card handles. No other player’s pool is returned. Unselected Jumpstart packets never enter this pool. Sideboard edits require a configured sideboarding match and your between-game handoff.',
+    inputSchema: object({}),
+  },
+  {
+    name: 'sideboard',
+    description: 'Between games, replace your main-deck allocation from your original main deck plus explicitly supplied sideboard. Supply pool IDs and quantities from read_sideboard; original main-deck size and total card inventory are preserved. This does not finish the decision: inspect the returned allocation, then ready_next_game. No card imports, tokens, opponent cards or unused Jumpstart packets are allowed.',
+    inputSchema: { ...object({ revision, main: mainAllocation }), required: ['revision', 'main'] },
+  },
+  {
+    name: 'ready_next_game',
+    description: 'Lock your deck between games and complete your managed decision. Only the first seat to ready may optionally choose starting_player, following the agreed format; otherwise the app rotates the starting seat. Optional message is public, so do not disclose sideboard identities or private strategy. Once everyone is ready, the app clears the old board. resetTo game rebuilds and shuffles the retained decks for new opening-hand setup; resetTo preparation reopens packet selection for the next game. Wait for that separate prompt. After success stop immediately, with no draw, pass, complete_decision or other tool.',
+    inputSchema: { ...object({ revision, starting_player: string, message: speech }), required: ['revision'] },
   },
   {
     name: 'act',
@@ -58,27 +88,45 @@ const tools = [
           type: 'array', minItems: 1, maxItems: 30, items: {
             type: 'object',
             properties: {
-              type: { type: 'string', enum: ['draw', 'move', 'shuffle', 'peek', 'reveal', 'card', 'player', 'turn', 'pass', 'pass_turn', 'say', 'token', 'remove_token', 'stack_item', 'remove_stack_item', 'zone', 'note', 'result'] },
+              type: { type: 'string', enum: ['draw', 'move', 'shuffle', 'peek', 'reveal', 'card', 'player', 'turn', 'pass', 'pass_turn', 'select_packets', 'sideboard', 'ready_next_game', 'say', 'token', 'remove_token', 'stack_item', 'remove_stack_item', 'zone', 'note', 'result'] },
+              packetIds: { type: 'array', minItems: 2, maxItems: 2, uniqueItems: true, items: string, description: 'select_packets only: two distinct packet IDs from your assigned faction. Selection is terminal and must end the batch.' },
+              main: mainAllocation,
+              starting_player: { ...string, description: 'ready_next_game only: optional next starting player, allowed for the first seat to ready.' },
               card: { ...string, description: 'Visible card ID for move, card, reveal, remove_token, remove_stack_item.' },
               count: { type: 'integer', description: 'draw/peek/token quantity.' },
               from: { ...string, description: 'draw source zone; defaults to your library.' },
               to: { description: 'move/draw/token destination zone, or reveal recipient player IDs. Omit for a public reveal including spectators.', anyOf: [string, { type: 'array', items: string }] },
               position: { type: 'string', enum: ['top', 'bottom'], description: 'move insertion position; default bottom.' },
               zone: { ...string, description: 'shuffle or peek zone.' },
-              player: { ...string, description: 'player action target; defaults to your seat.' },
-              next: { ...string, description: 'Required for pass/pass_turn: next player, chosen according to the rules. Exactly one handoff may end a batch, and it completes a managed decision even if the board is unchanged.' },
+              player: { ...string, description: 'player action target ID, not display name; defaults to your seat.' },
+              next: { ...string, description: 'Required for pass/pass_turn: exact next player ID, not display name, chosen according to the rules. Exactly one handoff may end a batch, and it completes a managed decision even if the board is unchanged.' },
               message: speech,
               number: { type: 'integer', minimum: 1, description: 'pass_turn turn number; defaults to current number + 1.' },
               phase: { type: 'string', maxLength: 100, description: 'pass_turn phase marker; defaults to Untap. Does not untap cards or carry out the phase.' },
               set: {
                 type: 'object',
                 description: 'card fields: tapped, face_down, face, damage, counters, controller, attached_to, note. player: life, counters, mana, note, status (active, eliminated, or conceded). Report player status explicitly when established under the rules; it does not end the match or infer a winner. Use active to correct a mistaken status. turn: number, active, priority (player ID or null), phase. No fields change automatically.',
+                properties: {
+                  attached_to: {
+                    anyOf: [string, { type: 'null' }],
+                    description: 'card only: persist a real attachment to this visible battlefield card ID, or null to detach. Source and target must both be battlefield cards; cross-player attachments are allowed, self-attachments and cycles are rejected. Use this for Auras/Equipment instead of recording the relationship only in notes. Leaving the battlefield unlinks attachments without moving or destroying the remaining cards; players handle resulting Magic rules.',
+                  },
+                },
               },
-              definition: { type: 'object', description: 'token or stack_item: name, type_line, oracle_text, optional mana_cost, power, toughness, Scryfall image_url. stack_item creates a triggered/activated ability at the top; remove_stack_item removes it after manual resolution.' },
+              definition: {
+                type: 'object',
+                description: 'token or stack_item: name, type_line, oracle_text, optional mana_cost, power, toughness, Scryfall image_url. stack_item creates a triggered/activated ability at the top; remove_stack_item removes it after manual resolution. For abilities, name is the title; optional short_description appears on hover (otherwise the name), and long_description supplies expanded inspection text. oracle_text remains available as rules text and the legacy full-description fallback. All ability descriptions are public: include targets and choices, never private strategy.',
+                properties: {
+                  name: { type: 'string', minLength: 1, maxLength: 200 },
+                  short_description: { type: 'string', maxLength: 500, description: 'Optional concise ability summary shown on hover. Falls back to name.' },
+                  long_description: { type: 'string', maxLength: 12000, description: 'Optional full ability explanation shown when inspected, including targets and declared choices.' },
+                  oracle_text: { type: 'string', maxLength: 12000, description: 'Rules text; also the full-description fallback for existing stack abilities.' },
+                },
+              },
               owner: { ...string, description: 'Token/custom zone owner.' },
               id: { ...string, description: 'New zone ID.' },
               visibility: { type: 'string', enum: ['public', 'owner', 'hidden'], description: 'New zone visibility.' },
-              text: { ...string, description: 'say: public table speech, never private reasoning. note: an agreed rule or temporary effect.' },
+              text: { ...string, description: 'say: public table speech using configured player names, never private reasoning. Follow the current decision\'s table-talk instructions. Useful narration and permitted friendly asides can be separate say actions before the final handoff. note: an agreed rule or temporary effect.' },
               winners: { type: 'array', items: string, description: 'result winner IDs, [] for draw.' },
               explanation: { ...string, description: 'result explanation.' },
             },
@@ -91,7 +139,7 @@ const tools = [
   },
   {
     name: 'say',
-    description: 'Speak in plain language to the table. This is public dialogue attributed to your player, not private chain-of-thought. It records speech without changing priority or waking another player. You still hold control; continue your actions or end with an explicit pass_priority/pass_turn handoff.',
+    description: 'Speak in plain language to the table using configured player names. This is public dialogue attributed to your player, not private chain-of-thought. Keep mechanical information clear and follow the current decision\'s table-talk instructions over older history. Useful narration and permitted friendly asides can be separate messages; multiple say actions can be batched in act before its final handoff. Asides must use public information, need no reply, and do not justify an extra handoff. Speech does not change priority or wake another player. You still hold control; continue your actions or end with an explicit pass_priority/pass_turn handoff. Send all desired speech before that terminal handoff and stop after it succeeds.',
     inputSchema: { ...object({ revision, text: speech }), required: ['revision', 'text'] },
   },
   {
@@ -133,7 +181,7 @@ const tools = [
   },
   {
     name: 'read_survey',
-    description: 'Read the pinned post-game questionnaire, rating anchors, participant identities and only your own response status. Available after a result is reported. Other players\' answers are never supplied. Assess the game independently from what you observed; no further gameplay is allowed.',
+    description: 'Read the pinned post-game questionnaire, rating anchors, participant identities and only your own response status. Available only when the configured single game or whole multi-game match has finished. Other players\' answers are never supplied. Assess the survey’s stated scope independently from what you observed; no further gameplay is allowed.',
     inputSchema: object({}),
   },
   {
@@ -162,6 +210,29 @@ server.setRequestHandler(CallToolRequestSchema, async ({ params }) => {
     let result;
     switch (params.name) {
       case 'observe_table': result = await requestTable('/api/observe'); break;
+      case 'read_preparation': result = await requestTable('/api/preparation'); break;
+      case 'read_sideboard': result = await requestTable('/api/sideboard'); break;
+      case 'sideboard':
+      case 'ready_next_game':
+        result = await requestTable('/api/act', {
+          revision: args.revision,
+          actions: [params.name === 'sideboard' ? { type: 'sideboard', main: args.main }
+            : { type: 'ready_next_game',
+              ...(args.starting_player !== undefined ? { starting_player: args.starting_player } : {}),
+              ...(args.message !== undefined ? { message: args.message } : {}) }],
+          reason: params.name === 'sideboard' ? 'Adjust between-game deck allocation' : 'Ready for the next game',
+          ...(process.env.TABLETOP_DECISION_ID ? { decision_id: process.env.TABLETOP_DECISION_ID } : {}),
+        });
+        break;
+      case 'select_packets':
+        result = await requestTable('/api/act', {
+          revision: args.revision,
+          actions: [{ type: 'select_packets', packetIds: args.packetIds,
+            ...(args.message !== undefined ? { message: args.message } : {}) }],
+          reason: 'Choose Jumpstart packets',
+          ...(process.env.TABLETOP_DECISION_ID ? { decision_id: process.env.TABLETOP_DECISION_ID } : {}),
+        });
+        break;
       case 'act':
         result = await requestTable('/api/act', {
           ...args,

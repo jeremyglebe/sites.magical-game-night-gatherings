@@ -24,17 +24,46 @@ export function cardDropActions(table, actor, source, target) {
   }
   if (!card) throw Error('That card is no longer available in your view.');
   if (card.draft || card.editable === false || card.preview_unknown) throw Error('Send the pending play before moving that card.');
+  if (target.attachTo !== undefined) {
+    if (target.zoneId !== 'battlefield' || typeof target.attachTo !== 'string' || !target.attachTo)
+      throw Error('Choose a battlefield card to attach to.');
+    const battlefield = new Map((zones.battlefield?.cards || []).map(item => [item.id, item]));
+    const attachedTo = battlefield.get(target.attachTo);
+    if (!attachedTo) throw Error('That attachment target is no longer on the battlefield.');
+    if (attachedTo.draft || attachedTo.editable === false || attachedTo.preview_unknown)
+      throw Error('Send the pending play before attaching to that card.');
+    if (card.kind === 'ability' || attachedTo.kind === 'ability') throw Error('Only cards can be attached.');
+    if (card.id === attachedTo.id) throw Error('Cannot attach a card to itself.');
+    const seen = new Set([card.id]);
+    for (let id = attachedTo.id; id; id = battlefield.get(id)?.attached_to) {
+      if (seen.has(id)) throw Error('Attachments cannot form a cycle.');
+      seen.add(id);
+    }
+    if (from.id === 'battlefield' && card.attached_to === attachedTo.id) return [];
+    // Attaching to an opponent's card does not transfer control. A card from
+    // another visible zone first enters the battlefield in the same draft.
+    return [
+      ...(from.id === 'battlefield' ? [] : [{
+        op: { type: 'move', card: card.id, to: 'battlefield', position: 'bottom' },
+        label: `Move ${card.name || 'face-down card'} to the battlefield`,
+      }]),
+      { op: { type: 'card', card: card.id, set: { attached_to: attachedTo.id } },
+        label: `Attach ${card.name || 'face-down card'} to ${attachedTo.name || 'face-down card'}` },
+    ];
+  }
   if (target.controller && !table.players.some(player => player.id === target.controller)) throw Error('Unknown battlefield controller.');
   if (target.controller && target.zoneId !== 'battlefield') throw Error('Only a battlefield destination can change control.');
   const changeControl = target.controller && card.controller !== target.controller;
+  const detach = from.id === 'battlefield' && target.zoneId === 'battlefield' && card.attached_to;
   const reordering = from.id === target.zoneId && (target.zoneId === 'stack' || target.zoneId.endsWith(':library'));
-  if (from.id === target.zoneId && !changeControl && !reordering) return [];
+  if (from.id === target.zoneId && !changeControl && !reordering && !detach) return [];
   if (card.kind === 'ability' && target.zoneId !== 'stack') throw Error('Use “Remove stack ability” after resolving or countering this ability.');
   const actions = [];
   if (from.id !== target.zoneId || reordering) {
     const order = target.zoneId === 'stack' || target.zoneId.endsWith(':library') ? ` · ${position}` : '';
     actions.push({ op: { type: 'move', card: card.id, to: target.zoneId, position }, label: `Move ${card.name || 'face-down card'} to ${name}${order}` });
   }
+  if (detach) actions.push({ op: { type: 'card', card: card.id, set: { attached_to: null } }, label: `Detach ${card.name || 'face-down card'}` });
   if (changeControl) actions.push({ op: { type: 'card', card: card.id, set: { controller: target.controller } }, label: `${ownerName(target.controller)} controls ${card.name || 'face-down card'}` });
   return actions;
 }

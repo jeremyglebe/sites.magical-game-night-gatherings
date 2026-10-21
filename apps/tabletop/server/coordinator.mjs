@@ -28,6 +28,10 @@ function currentTurnHistory(history, turn) {
   const marker = {};
   for (let index = 0; index < events.length; index++) {
     for (const change of events[index].changes || []) {
+      if (change.type === 'ready_next_game' && change.game_started) {
+        start = index;
+        for (const key of Object.keys(marker)) delete marker[key];
+      }
       if (change.type !== 'turn' && change.type !== 'pass_turn') continue;
       const updated = { ...marker };
       for (const key of ['number', 'active']) if (change.set?.[key] !== undefined) updated[key] = change.set[key];
@@ -168,7 +172,11 @@ export function createCoordinator({
       message: issue || (idleRunning && waitingManual
         ? phase === 'survey'
           ? `Waiting for ${seats.get(pendingRecipient.playerId).config.name || pendingRecipient.playerId} to submit their post-game survey.`
-          : `Waiting for ${seats.get(pendingRecipient.playerId).config.name || pendingRecipient.playerId} to act and explicitly hand off.`
+          : pendingRecipient.kind === 'preparation'
+            ? `Waiting for ${seats.get(pendingRecipient.playerId).config.name || pendingRecipient.playerId} to select their Jumpstart packets.`
+            : pendingRecipient.kind === 'between_games'
+              ? `Waiting for ${seats.get(pendingRecipient.playerId).config.name || pendingRecipient.playerId} to prepare for the next game.`
+            : `Waiting for ${seats.get(pendingRecipient.playerId).config.name || pendingRecipient.playerId} to act and explicitly hand off.`
         : idleRunning && !queued ? 'No recipient is scheduled. Choose a player explicitly to continue.' : null),
       usage: result.players.reduce((sum, p) => { addUsage(sum, p.usage); return sum; }, emptyUsage()),
     };
@@ -237,7 +245,10 @@ export function createCoordinator({
         const result = await runPlayer({
           player: clone(seat.config), sessionId: seat.sessionId,
           revision: active.revision, fromRevision: active.fromRevision, decisionId: active.id,
-          wake: clone(wake), phase: wake.kind === 'survey' ? 'survey' : 'game', view, events, turnHistory, survey, signal: controller.signal,
+          wake: clone(wake), phase: wake.kind === 'survey' ? 'survey'
+            : view.series?.status === 'between_games' ? 'between_games'
+            : view.preparation?.status === 'selecting' ? 'preparation' : 'game',
+          view, events, turnHistory, survey, signal: controller.signal,
           onSession: rememberSession,
           onUsage(usage, metadata) { recordUsage(seat, usage, metadata); changed(); },
         });

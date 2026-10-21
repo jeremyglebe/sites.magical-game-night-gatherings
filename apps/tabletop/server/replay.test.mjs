@@ -199,6 +199,67 @@ test('legacy conversation uses captured outcomes when present and avoids inventi
   assert.equal(conversationEvents(summaryOnly)[0].event.summary, 'A legacy table update');
 });
 
+test('conversation retains public display facts for names, phases and card updates without private metadata', () => {
+  const game = fixture();
+  game.act('one', [{ type: 'draw' }]);
+  game.act('one', [{ type: 'move', card: game.state.zones['one:hand'].cards[0], to: 'battlefield' }]);
+  const card = game.state.zones.battlefield.cards[0];
+  game.act('one', [
+    { type: 'card', card, set: { tapped: true, counters: { charge: 2 }, controller: 'two', note: 'Public table note.' } },
+    { type: 'player', player: 'two', set: { life: 17, mana: { G: 1 } } },
+    { type: 'turn', set: { phase: 'End of combat', priority: 'two' } },
+    { type: 'stack_item', definition: { name: 'A public trigger' } },
+  ]);
+  game.act('two', [{ type: 'zone', id: 'two:reserve', owner: 'two', visibility: 'owner' }]);
+  game.act('two', [{ type: 'result', winners: ['two'], explanation: 'Alice conceded.' }]);
+  const saved = structuredClone(game.recording);
+  const edits = saved.frames[2].event.public.changes;
+  edits[0].set.private_reason = 'Private nested annotation';
+  edits[0].set.counters.credentials = { token: 'Secret counter object' };
+  edits[0].cards.push({ name: 'Private object masquerading as a name' });
+  saved.frames[3].event.public.changes[0].zone.cards = ['private-live-handle'];
+  saved.frames[4].event.public.changes[0].result.credentials = 'Private result metadata';
+  const before = structuredClone(saved);
+  const events = conversationEvents(saved);
+  const display = events[2].event.changes;
+  assert.deepEqual(display[0].set, { tapped: true, counters: { charge: 2 }, controller: 'two', note: 'Public table note.' });
+  assert.deepEqual(display[1].set, { life: 17, mana: { G: 1 } });
+  assert.deepEqual(display[2].set, { phase: 'End of combat', priority: 'two', counts: { one: 1, two: 0 }, totalTurns: 1, countsComplete: true });
+  assert.deepEqual(display[3].cards, ['A public trigger']);
+  assert.deepEqual(events[3].event.changes[0].zone, { id: 'two:reserve', owner: 'two', visibility: 'owner' });
+  assert.deepEqual(events[4].event.changes[0].result, { winners: ['two'], explanation: 'Alice conceded.', reported_by: 'two' });
+  assert.equal(events[0].event.changes[0].cards, undefined, 'private draw identities stay omitted');
+  assert.equal(events[0].event.changes[0].count, 1);
+  assert.equal(events[0].event.changes[0].from, 'one:library');
+  assert.equal(events[0].event.changes[0].to, 'one:hand');
+  assert.doesNotMatch(JSON.stringify(events), /Private nested|Secret counter|Private object|private-live-handle|Private result|Private decision reasoning/);
+  display[0].set.counters.charge = 100;
+  events[4].event.changes[0].result.winners.push('one');
+  assert.deepEqual(saved, before);
+});
+
+test('legacy public markers remain structured without reconstructing private card edits or draw identities', () => {
+  const game = fixture();
+  game.act('one', [{ type: 'draw' }]);
+  game.act('one', [
+    { type: 'card', card: game.state.zones['one:hand'].cards[0], set: { note: 'Private card note' } },
+    { type: 'turn', set: { phase: 'Main 1', active: 'two', priority: 'two' } },
+    { type: 'say', text: 'Keeping p1:graveyard literally in my speech.' },
+  ]);
+  const saved = structuredClone(game.recording);
+  for (const frame of saved.frames) {
+    delete frame.event.public;
+    delete frame.event.outcomes;
+  }
+  const changes = conversationEvents(saved)[1].event.changes;
+  assert.equal(changes[0].set, undefined);
+  assert.equal(changes[0].cards, undefined);
+  assert.deepEqual(changes[1].set, { phase: 'Main 1', active: 'two', priority: 'two' });
+  assert.equal(changes[2].text, 'Keeping p1:graveyard literally in my speech.');
+  assert.equal(conversationEvents(saved)[0].event.changes[0].cards, undefined);
+  assert.equal(conversationEvents(saved)[0].event.changes[0].count, undefined, 'requested draw count is not an observed outcome');
+});
+
 test('conversation keeps public reveal references after cards are hidden again, without live handles or private reveals', () => {
   const config = setup();
   config.players.push({ id: 'three', name: 'Carol', deck: [{ name: 'Forest' }] });

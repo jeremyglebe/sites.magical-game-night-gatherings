@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { defineAsyncComponent, onMounted, ref } from "vue";
 import {
   BookOpen,
   Search,
@@ -16,6 +16,7 @@ import {
 import HomePage from "./pages/HomePage.vue";
 import ArticlePage from "./pages/ArticlePage.vue";
 import CardStoragePage from "./pages/CardStoragePage.vue";
+const CardResearchPage = defineAsyncComponent(() => import("./pages/CardResearchPage.vue"));
 import CatalogueNavigation from "./components/CatalogueNavigation.vue";
 import CatalogueSearch from "./components/CatalogueSearch.vue";
 const props = defineProps({ page: Object, pages: Array, base: String });
@@ -131,6 +132,7 @@ function toggleTheme() {
       </aside>
       <div class="min-w-0 px-5 py-7 sm:px-8 lg:px-10 lg:py-9">
         <CardStoragePage v-if="page?.frontmatter?.calculator === 'card-storage'" :page="page" :base="base" />
+        <CardResearchPage v-else-if="page?.frontmatter?.researchBrowser === 'zombies-vs-plants'" :page="page" :base="base" />
         <ArticlePage v-else-if="page" :page="page" :pages="pages" :base="base" />
         <section v-else class="max-w-xl py-10">
           <h1 class="text-3xl font-semibold">Page not found</h1>

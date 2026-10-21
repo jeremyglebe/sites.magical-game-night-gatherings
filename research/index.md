@@ -4,6 +4,7 @@ Saved references for building reusable Magic game-night boxes. These pages colle
 
 | Reference | What it contains |
 | --- | --- |
+| [Zombies vs Plants card browser](zombies-vs-plants.md) | Shared card research for eight proposed Jumpstart themes and a future cube: Oracle text, botanical undead, support spells, mana fixing, and retained construction notes. |
 | [Useful Products & Tools](useful-products-and-tools.md) | Saved purchase links, exact product variants, seller fallbacks, fit notes, and the storage calculator. |
 | [Card storage calculator](card-storage-calculator.md) | Interactive stack sizing, box capacity, single and double sleeves, measured compression states, and product comparisons. |
 | [Custom Jumpstart storage system](jumpstart-storage.md) | Twenty-four-packet storage requirements, preferred Burger Tokens boxes and larger fallback, insert presentation, earlier product comparisons, and physical-fit measurements. |

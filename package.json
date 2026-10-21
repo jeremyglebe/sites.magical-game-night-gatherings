@@ -9,7 +9,6 @@
     "playtest:headless": "node apps/tabletop/server/app.mjs --headless",
     "playtest:serve": "node apps/tabletop/server/server.mjs",
     "playtest:mcp": "node apps/tabletop/server/mcp.mjs",
-    "playtest:demo": "node apps/tabletop/server/demo.mjs",
     "playtest:test": "npm run tabletop:test",
     "dev": "npm run dev --workspace @game-night/catalogue",
     "research:render": "node scripts/render-everyday-research.mjs",

@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref, watch } from "vue";
 import { imageURL } from "./review-format.js";
+import CardBack from "../table/CardBack.vue";
 const props = defineProps({
   definition: { type: Object, default: () => ({}) },
   card: Object,
@@ -10,8 +11,9 @@ const props = defineProps({
 const emit = defineEmits(["inspect"]);
 const failed = ref(false),
   concealed = computed(() => props.card?.face_down && !props.reveal);
+const ability = computed(() => (props.card?.kind || props.definition.kind) === "ability");
 const source = computed(() =>
-  concealed.value ? null : imageURL(props.definition),
+  concealed.value || ability.value ? null : imageURL(props.definition),
 );
 const name = computed(() =>
   concealed.value ? "Face-down card" : props.definition.name || "Unnamed card",
@@ -34,7 +36,8 @@ watch(source, () => {
     class="relative flex w-[68px] shrink-0 flex-col gap-1 rounded border border-base-content/20 bg-base-300 p-1 text-left text-base-content focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     :aria-label="`Inspect ${name}${card?.tapped ? ', tapped' : ''}`"
     :title="
-      [name, card?.tapped && 'Tapped', markers].filter(Boolean).join(' · ')
+      ability && !concealed ? definition.short_description?.trim() || name
+        : [name, card?.tapped && 'Tapped', markers].filter(Boolean).join(' · ')
     "
     @click="emit('inspect', definition, card)"
   >
@@ -52,6 +55,7 @@ watch(source, () => {
         loading="lazy"
         @error="failed = true"
       />
+      <CardBack v-else-if="ability && !concealed" class="h-full w-full" aria-hidden="true" />
       <span v-else class="p-1 text-center text-xs">{{ name }}</span>
     </span>
     <span v-if="caption" class="w-full break-words text-xs leading-tight">{{

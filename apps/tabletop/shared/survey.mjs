@@ -170,10 +170,49 @@ function onlyKeys(value, keys, label) {
   requireThat(Object.keys(value).every(key => keys.includes(key)), `${label} contains an unknown field`);
 }
 
-export function createSurvey(players, resultRevision, { at } = {}) {
+function matchContext(series, players) {
+  const ids = new Set(players.map(player => player.id));
+  requireThat(object(series) && ['best_of', 'first_to'].includes(series.mode)
+    && object(series.scores) && Array.isArray(series.games), 'Invalid match survey context');
+  const outcome = value => {
+    requireThat(object(value) && Array.isArray(value.winners) && value.winners.every(id => ids.has(id)), 'Invalid match result');
+    return { winners: [...value.winners], explanation: typeof value.explanation === 'string' ? value.explanation : '' };
+  };
+  const scores = Object.fromEntries(players.map(player => {
+    const score = series.scores[player.id];
+    requireThat(Number.isSafeInteger(score) && score >= 0, 'Invalid match score');
+    return [player.id, score];
+  }));
+  requireThat(Number.isSafeInteger(series.winsRequired) && series.winsRequired >= 1, 'Invalid match win target');
+  if (series.mode === 'best_of') requireThat(Number.isSafeInteger(series.maxGames) && series.maxGames >= series.winsRequired, 'Invalid match game limit');
   return {
-    version: 1, schema: clone(SURVEY_SCHEMA), status: 'pending',
-    resultRevision: revision(resultRevision), players: participantList(players),
+    mode: series.mode, winsRequired: series.winsRequired, resetTo: series.resetTo === 'preparation' ? 'preparation' : 'game',
+    ...(series.mode === 'best_of' ? { maxGames: series.maxGames } : {}), scores,
+    games: series.games.map(game => {
+      requireThat(Number.isSafeInteger(game.number) && game.number >= 1, 'Invalid match game number');
+      return { number: game.number, result: outcome(game.result), endedRevision: revision(game.endedRevision) };
+    }), result: series.result ? outcome(series.result) : null,
+  };
+}
+
+export function createSurvey(players, resultRevision, { at, series } = {}) {
+  const participants = participantList(players);
+  const schema = clone(SURVEY_SCHEMA);
+  const match = series && series.mode !== 'single' ? matchContext(series, participants) : null;
+  if (match) {
+    schema.title = 'Post-match playtest survey';
+    schema.introduction = `Assess all ${match.games.length} games of this match from your own seat, including changes to decks between games. Specific observations and uncertainty are more useful than a confident score alone.`;
+    schema.instructions[2] = 'Rate the experience across the whole match, not only the final game or the idea of the format. Choose Not enough evidence when appropriate. Repeated games with the same players and decks are useful observations, not independent samples or a definitive balance verdict.';
+    schema.instructions[3] += ' Identify the game number for an example when known; recorded revisions remain unique across the match.';
+    for (const question of [...schema.ratings, ...schema.textQuestions]) {
+      question.question = question.question.replace(/this game/g, 'this match').replace(/in this match/g, 'across this match');
+    }
+    schema.textQuestions.find(question => question.id === 'balance_factors').help += ' Compare recurring strengths or weaknesses with one-off draws, and explain any observed effects of sideboarding or new packet choices, starting seat, or learning between games.';
+  }
+  return {
+    version: 1, schema, status: 'pending',
+    resultRevision: revision(resultRevision), players: participants,
+    ...(match ? { scope: 'match', series: match } : {}),
     responses: {}, startedAt: timestamp(at), completedAt: null,
   };
 }
@@ -222,6 +261,7 @@ export function validateSurvey(survey) {
   requireThat(object(survey) && survey.version === 1 && survey.schema?.version === 1, 'Unsupported post-game survey version');
   const players = participantList(survey.players);
   revision(survey.resultRevision);
+  if (survey.series !== undefined) matchContext(survey.series, players);
   requireThat(typeof survey.startedAt === 'string', 'Survey start time is missing');
   timestamp(survey.startedAt);
   requireThat(['pending', 'completed'].includes(survey.status) && object(survey.responses), 'Invalid post-game survey state');
@@ -268,6 +308,7 @@ export function surveyForPlayer(survey, playerId) {
   return {
     version: survey.version, schema: clone(survey.schema), status: survey.status,
     resultRevision: survey.resultRevision, player: clone(player),
+    ...(survey.series ? { scope: 'match', series: matchContext(survey.series, survey.players) } : {}),
     submitted: Object.keys(survey.responses).length, total: survey.players.length,
     response: Object.hasOwn(survey.responses, playerId) ? clone(survey.responses[playerId]) : null,
   };

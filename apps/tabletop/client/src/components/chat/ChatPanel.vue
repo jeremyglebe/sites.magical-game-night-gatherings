@@ -18,8 +18,9 @@ const props = defineProps({
   human: Object,
   request: Function,
   connected: { type: Boolean, default: true },
+  playerDetails: Boolean,
 });
-const emit = defineEmits(["inspect"]);
+const emit = defineEmits(["inspect", "player-details"]);
 const log = ref(null);
 const historyDialog = ref(null);
 const history = ref([]);
@@ -141,10 +142,10 @@ async function loadHistory() {
 
 <template>
   <section
-    class="flex min-w-0 flex-col gap-3"
+    class="flex min-h-0 min-w-0 flex-1 flex-col gap-2 overflow-hidden"
     aria-label="Table talk and actions"
   >
-    <div class="flex items-center justify-between gap-2">
+    <div class="flex shrink-0 items-center justify-between gap-2">
       <h2 class="flex items-center gap-2 text-sm font-semibold">
         <MessageSquare class="size-4" /> Chat
       </h2>
@@ -154,7 +155,7 @@ async function loadHistory() {
     </div>
     <ol
       ref="log"
-      class="max-h-[calc(100dvh-24rem)] min-h-48 space-y-1 overflow-y-auto overscroll-contain pr-1"
+      class="min-h-12 flex-1 space-y-1 overflow-y-auto overscroll-contain pr-1"
       aria-label="Recent table talk and actions"
       @scroll="onScroll"
     >
@@ -164,6 +165,8 @@ async function loadHistory() {
         :event="event"
         :players="table?.players"
         :configs="configs"
+        :player-details="playerDetails"
+        @player-details="emit('player-details', $event)"
         @inspect="(card, options) => emit('inspect', card, options)"
       />
       <li v-if="!events.length" class="py-6 text-sm text-base-content/60">
@@ -174,7 +177,17 @@ async function loadHistory() {
         class="flex items-center gap-2 py-2 text-xs text-base-content/70"
         role="status"
       >
-        <div v-if="thinkingAvatar" class="avatar">
+        <component
+          v-if="thinkingAvatar"
+          :is="playerDetails ? 'button' : 'div'"
+          class="avatar shrink-0"
+          :class="playerDetails ? 'btn btn-sm btn-circle btn-ghost border-0 p-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary' : ''"
+          :type="playerDetails ? 'button' : undefined"
+          :aria-label="playerDetails ? `View ${thinking.name || thinking.id} details` : undefined"
+          :aria-haspopup="playerDetails ? 'dialog' : undefined"
+          :title="thinking.name || thinking.id"
+          @click="playerDetails && emit('player-details', thinking.id)"
+        >
           <div class="w-8 rounded-full">
             <img
               :src="thinkingAvatar"
@@ -184,7 +197,7 @@ async function loadHistory() {
               class="object-cover"
             />
           </div>
-        </div>
+        </component>
         <span
           class="loading loading-dots loading-sm motion-reduce:animate-none"
           aria-hidden="true"
@@ -197,7 +210,7 @@ async function loadHistory() {
     <button
       v-if="unread"
       type="button"
-      class="btn btn-sm self-center"
+      class="btn btn-sm shrink-0 self-center"
       @click="scrollLatest"
     >
       <ArrowDown class="size-4" /> New activity
@@ -242,6 +255,8 @@ async function loadHistory() {
             :event="event"
             :players="table?.players"
             :configs="configs"
+            :player-details="playerDetails"
+            @player-details="emit('player-details', $event)"
             @inspect="(card, options) => emit('inspect', card, options)"
           />
         </ol>

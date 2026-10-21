@@ -11,7 +11,7 @@ The boxed sets described here are personal play kits and catalogue entries, not 
 | **Tabletop App** | [`apps/tabletop/`](apps/tabletop/README.md) — local Vue + daisyUI client, Node server, MCP tools, players and saved games | `npm run playtest` builds and starts the app. For UI development, use `npm run tabletop:dev` alongside the server. |
 | **Catalogue Site** | [`apps/catalogue/`](apps/catalogue/README.md) — Vue + daisyUI site, with rules kept in root Markdown folders | `npm run catalogue:dev` (or `npm run dev`) |
 
-The Tabletop App launches independent Codex CLI players, coordinates explicit handoffs, and saves game recordings. Its optional browser table shows up to six players; `npm run playtest:headless` runs without a viewer. `npm run playtest:review` opens the saved-game library, and `npm run playtest:demo` is a scripted demonstration without model calls. Private game data stays in the ignored root `.playtest/` directory. See the [Tabletop App architecture and commands](apps/tabletop/README.md).
+The Tabletop App launches independent Codex CLI players, coordinates explicit handoffs, and saves game recordings. Its optional browser table shows up to six players; `npm run playtest:headless` runs without a viewer. `npm run playtest:review` opens the saved-game library. New tests use the Zombies vs Plants Jumpstart boxed set, with each player choosing two faction packs. Private game data stays in the ignored root `.playtest/` directory. See the [Tabletop App architecture and commands](apps/tabletop/README.md).
 
 The Catalogue Site keeps its existing source paths and published URLs. Its build does not include the local Tabletop App or private game data.
 

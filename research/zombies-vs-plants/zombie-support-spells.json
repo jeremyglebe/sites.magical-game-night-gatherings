@@ -1,0 +1,1313 @@
+{
+  "researchedAt": "2026-10-21",
+  "queries": [
+    {
+      "query": "(!\"Zombie Infestation\" or !\"Dread Summons\" or !\"Moan of the Unhallowed\" or !\"Gisa's Bidding\" or !\"Open the Graves\" or !\"Dreadhorde Invasion\" or !\"Rise of the Dread Marn\" or !\"Dread Return\" or !\"Victimize\" or !\"Return from Extinction\" or !\"Patriarch's Bidding\" or !\"Crippling Fear\" or !\"Stitch Together\" or !\"Curse of the Restless Dead\" or !\"Graf Harvest\" or !\"Necromancer's Stockpile\" or !\"Secrets of the Dead\" or !\"Hour of Eternity\" or !\"Forbidden Alchemy\" or !\"Corpse Churn\" or !\"Anointed Procession\" or !\"Embalmer's Tools\" or !\"Door of Destinies\" or !\"Liliana, Death's Majesty\" or !\"Liliana, Untouched by Death\" or !\"Vivisection\" or !\"Corpse Cobble\" or !\"From Under the Floorboards\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 28,
+      "hasMore": false
+    }
+  ],
+  "cards": [
+    {
+      "id": "9a52c265-6920-4929-ba0a-70da08df01f1",
+      "oracle_id": "7246d45b-2185-4cdd-981b-5419b7d52bce",
+      "name": "Anointed Procession",
+      "mana_cost": "{3}{W}",
+      "cmc": 4,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "If an effect would create one or more tokens under your control, it creates twice that many of those tokens instead.",
+      "scryfall_uri": "https://scryfall.com/card/akh/2/anointed-procession?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.jpg?1783936544",
+        "normal": "https://cards.scryfall.io/normal/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.jpg?1783936544",
+        "large": "https://cards.scryfall.io/large/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.jpg?1783936544",
+        "png": "https://cards.scryfall.io/png/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.png?1783936544",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.jpg?1783936544",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.jpg?1783936544",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.webp?1783936544",
+        "grid": "https://cards.scryfall.io/grid/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.webp?1783936544",
+        "display": "https://cards.scryfall.io/display/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.webp?1783936544",
+        "art": "https://cards.scryfall.io/art/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.webp?1783936544",
+        "crop": "https://cards.scryfall.io/crop/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.webp?1783936544",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/a/9a52c265-6920-4929-ba0a-70da08df01f1.jpg?1783936544"
+      },
+      "set": "akh",
+      "collector_number": "2",
+      "released_at": "2017-04-28",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "token support"
+        ],
+        "note": "Doubles Zombie tokens made by mummy and other undead token effects, giving white a noncreature route to amplify either partner's production.",
+        "caution": "Does not make a token by itself. It doubles other tokens too, but that generic utility is not a claim that it is specifically botanical. Can become very strong with repeated production.",
+        "manaNote": "Costs 3W.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "c151c2e9-a7d1-42ee-a68c-885df78db53e",
+      "oracle_id": "e2aeac0b-af74-4c47-9ac1-51fbf869c95f",
+      "name": "Corpse Churn",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Mill three cards, then you may return a creature card from your graveyard to your hand. (To mill three cards, put the top three cards of your library into your graveyard.)",
+      "scryfall_uri": "https://scryfall.com/card/clu/107/corpse-churn?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.jpg?1783912551",
+        "normal": "https://cards.scryfall.io/normal/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.jpg?1783912551",
+        "large": "https://cards.scryfall.io/large/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.jpg?1783912551",
+        "png": "https://cards.scryfall.io/png/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.png?1783912551",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.jpg?1783912551",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.jpg?1783912551",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.webp?1783912551",
+        "grid": "https://cards.scryfall.io/grid/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.webp?1783912551",
+        "display": "https://cards.scryfall.io/display/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.webp?1783912551",
+        "art": "https://cards.scryfall.io/art/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.webp?1783912551",
+        "crop": "https://cards.scryfall.io/crop/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.webp?1783912551",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/1/c151c2e9-a7d1-42ee-a68c-885df78db53e.jpg?1783912551"
+      },
+      "set": "clu",
+      "collector_number": "107",
+      "released_at": "2024-02-23",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "graveyard setup",
+          "recursion"
+        ],
+        "note": "Puts three cards into the graveyard, then can recover a creature from either packet, including a creature just milled.",
+        "caution": "Returns the card to hand, not the battlefield; repeated milling can exhaust a forty-card deck.",
+        "manaNote": "Costs 1B.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "dfe4f48d-179a-47d7-aed6-9751dd2f7d8c",
+      "oracle_id": "5b0b6c8f-472a-4ee2-8368-3b17a2df498d",
+      "name": "Corpse Cobble",
+      "mana_cost": "{U}{B}",
+      "cmc": 2,
+      "colors": [
+        "B",
+        "U"
+      ],
+      "color_identity": [
+        "B",
+        "U"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "As an additional cost to cast this spell, sacrifice any number of creatures.\nCreate an X/X blue and black Zombie creature token with menace, where X is the total power of the sacrificed creatures.\nFlashback {3}{U}{B} (You may cast this card from your graveyard for its flashback cost and any additional costs. Then exile it.)",
+      "scryfall_uri": "https://scryfall.com/card/mid/214/corpse-cobble?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.jpg?1783925566",
+        "normal": "https://cards.scryfall.io/normal/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.jpg?1783925566",
+        "large": "https://cards.scryfall.io/large/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.jpg?1783925566",
+        "png": "https://cards.scryfall.io/png/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.png?1783925566",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.jpg?1783925566",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.jpg?1783925566",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.webp?1783925566",
+        "grid": "https://cards.scryfall.io/grid/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.webp?1783925566",
+        "display": "https://cards.scryfall.io/display/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.webp?1783925566",
+        "art": "https://cards.scryfall.io/art/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.webp?1783925566",
+        "crop": "https://cards.scryfall.io/crop/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.webp?1783925566",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/f/dfe4f48d-179a-47d7-aed6-9751dd2f7d8c.jpg?1783925566"
+      },
+      "set": "mid",
+      "collector_number": "214",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-black",
+          "zombies-blue"
+        ],
+        "roles": [
+          "token production",
+          "sacrifice outlet",
+          "graveyard casting"
+        ],
+        "note": "A literal stitched-corpse spell that merges sacrificed creatures into one Zombie with menace; flashback lets graveyard setup recover access to it.",
+        "caution": "Sacrifices are paid as an additional cost, so losing the spell can still lose those creatures. A single large token concentrates resources into one removable threat.",
+        "manaNote": "Costs UB; flashback costs 3UB, so both blue and black are required.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "713a28c0-0d12-4c62-bc91-59c2ddfc9ef8",
+      "oracle_id": "e7a7ba65-ad14-41d5-889b-9bbeae9ab3f7",
+      "name": "Crippling Fear",
+      "mana_cost": "{2}{B}{B}",
+      "cmc": 4,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Choose a creature type. Creatures that aren't of the chosen type get -3/-3 until end of turn.",
+      "scryfall_uri": "https://scryfall.com/card/cmm/862/crippling-fear?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.jpg?1783915437",
+        "normal": "https://cards.scryfall.io/normal/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.jpg?1783915437",
+        "large": "https://cards.scryfall.io/large/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.jpg?1783915437",
+        "png": "https://cards.scryfall.io/png/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.png?1783915437",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.jpg?1783915437",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.jpg?1783915437",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.webp?1783915437",
+        "grid": "https://cards.scryfall.io/grid/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.webp?1783915437",
+        "display": "https://cards.scryfall.io/display/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.webp?1783915437",
+        "art": "https://cards.scryfall.io/art/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.webp?1783915437",
+        "crop": "https://cards.scryfall.io/crop/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.webp?1783915437",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/1/713a28c0-0d12-4c62-bc91-59c2ddfc9ef8.jpg?1783915437"
+      },
+      "set": "cmm",
+      "collector_number": "862",
+      "released_at": "2023-08-04",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "interaction",
+          "tribal support"
+        ],
+        "note": "Can spare the shared Zombie type while weakening other creatures, rewarding actual Zombies from either partner.",
+        "caution": "Choosing Zombie also spares opposing Zombies, while friendly non-Zombie support creatures receive -3/-3. It is not a one-sided effect solely because your deck is themed.",
+        "manaNote": "Costs 2BB.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "cdde244a-d2f4-44b3-badd-d6142785e25c",
+      "oracle_id": "0b5f7a1b-fbb9-4659-8fcb-7822dc0263bc",
+      "name": "Curse of the Restless Dead",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Enchantment — Aura Curse",
+      "oracle_text": "Enchant player\nWhenever a land enchanted player controls enters, you create a 2/2 black Zombie creature token with decayed. (It can't block. When it attacks, sacrifice it at end of combat.)",
+      "scryfall_uri": "https://scryfall.com/card/mic/18/curse-of-the-restless-dead?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.jpg?1783925377",
+        "normal": "https://cards.scryfall.io/normal/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.jpg?1783925377",
+        "large": "https://cards.scryfall.io/large/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.jpg?1783925377",
+        "png": "https://cards.scryfall.io/png/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.png?1783925377",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.jpg?1783925377",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.jpg?1783925377",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.webp?1783925377",
+        "grid": "https://cards.scryfall.io/grid/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.webp?1783925377",
+        "display": "https://cards.scryfall.io/display/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.webp?1783925377",
+        "art": "https://cards.scryfall.io/art/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.webp?1783925377",
+        "crop": "https://cards.scryfall.io/crop/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.webp?1783925377",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/d/cdde244a-d2f4-44b3-badd-d6142785e25c.jpg?1783925377"
+      },
+      "set": "mic",
+      "collector_number": "18",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "landfall support"
+        ],
+        "note": "Turns the enchanted player's land entries into decayed Zombies under your control, providing attacks or sacrifice material.",
+        "caution": "Can enchant any player; choosing one determines whose lands trigger it. Decayed tokens cannot block and are sacrificed at end of combat after attacking.",
+        "manaNote": "Costs 2B.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "1d0d80c7-87b5-47cc-b2fd-7defd281e1a2",
+      "oracle_id": "9b6d3dcf-aa5a-4516-bd48-a0723e86bfd1",
+      "name": "Door of Destinies",
+      "mana_cost": "{4}",
+      "cmc": 4,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Artifact",
+      "oracle_text": "As this artifact enters, choose a creature type.\nWhenever you cast a spell of the chosen type, put a charge counter on this artifact.\nCreatures you control of the chosen type get +1/+1 for each charge counter on this artifact.",
+      "scryfall_uri": "https://scryfall.com/card/msc/198/door-of-destinies?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.jpg?1783903221",
+        "normal": "https://cards.scryfall.io/normal/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.jpg?1783903221",
+        "large": "https://cards.scryfall.io/large/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.jpg?1783903221",
+        "png": "https://cards.scryfall.io/png/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.png?1783903221",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.jpg?1783903221",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.jpg?1783903221",
+        "thumb": "https://cards.scryfall.io/thumb/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.webp?1783903221",
+        "grid": "https://cards.scryfall.io/grid/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.webp?1783903221",
+        "display": "https://cards.scryfall.io/display/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.webp?1783903221",
+        "art": "https://cards.scryfall.io/art/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.webp?1783903221",
+        "crop": "https://cards.scryfall.io/crop/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.webp?1783903221",
+        "jpeg": "https://cards.scryfall.io/normal/front/1/d/1d0d80c7-87b5-47cc-b2fd-7defd281e1a2.jpg?1783903221"
+      },
+      "set": "msc",
+      "collector_number": "198",
+      "released_at": "2026-06-26",
+      "research": {
+        "groups": [
+          "zombies-black",
+          "zombies-blue",
+          "zombies-white"
+        ],
+        "roles": [
+          "tribal support",
+          "finisher"
+        ],
+        "note": "An optional shared tribal support artifact: choosing Zombie lets casts from any Zombie packet build a larger army.",
+        "caution": "Counts spells cast, not tokens created or creatures simply returned to the battlefield. Needs subsequent casts after a four-mana setup and can snowball; it is generic tribal support rather than a thematic crossover card.",
+        "manaNote": "Costs 4; requires no colored mana.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "9bbfad2d-a3b5-4119-aea4-0793b7a9da88",
+      "oracle_id": "01deabbb-af6a-4998-99a7-35b7cfa9ef77",
+      "name": "Dreadhorde Invasion",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "At the beginning of your upkeep, you lose 1 life and amass Zombies 1. (Put a +1/+1 counter on an Army you control. It's also a Zombie. If you don't control an Army, create a 0/0 black Zombie Army creature token first.)\nWhenever a Zombie token you control with power 6 or greater attacks, it gains lifelink until end of turn.",
+      "scryfall_uri": "https://scryfall.com/card/frc/48/dreadhorde-invasion?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.jpg?1789599825",
+        "normal": "https://cards.scryfall.io/normal/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.jpg?1789599825",
+        "large": "https://cards.scryfall.io/large/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.jpg?1789599825",
+        "png": "https://cards.scryfall.io/png/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.png?1789599825",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.jpg?1789599825",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.jpg?1789599825",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.webp?1789599825",
+        "grid": "https://cards.scryfall.io/grid/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.webp?1789599825",
+        "display": "https://cards.scryfall.io/display/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.webp?1789599825",
+        "art": "https://cards.scryfall.io/art/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.webp?1789599825",
+        "crop": "https://cards.scryfall.io/crop/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.webp?1789599825",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/b/9bbfad2d-a3b5-4119-aea4-0793b7a9da88.jpg?1789599825"
+      },
+      "set": "frc",
+      "collector_number": "48",
+      "released_at": "2026-10-02",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "army growth"
+        ],
+        "note": "Repeated amass grows a Zombie Army and can give a large attacking Zombie token lifelink.",
+        "caution": "Loses life every upkeep. Amass usually grows one existing Army instead of creating a fresh body; the lifelink trigger requires an attacking Zombie token with power at least six.",
+        "manaNote": "Costs 1B.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "34a87901-98bb-41dd-b566-bcb510c20022",
+      "oracle_id": "352b64d2-2ae5-44ee-a64f-94932ef545d3",
+      "name": "Dread Return",
+      "mana_cost": "{2}{B}{B}",
+      "cmc": 4,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Return target creature card from your graveyard to the battlefield.\nFlashback—Sacrifice three creatures. (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+      "scryfall_uri": "https://scryfall.com/card/cmm/153/dread-return?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.jpg?1783915677",
+        "normal": "https://cards.scryfall.io/normal/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.jpg?1783915677",
+        "large": "https://cards.scryfall.io/large/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.jpg?1783915677",
+        "png": "https://cards.scryfall.io/png/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.png?1783915677",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.jpg?1783915677",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.jpg?1783915677",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.webp?1783915677",
+        "grid": "https://cards.scryfall.io/grid/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.webp?1783915677",
+        "display": "https://cards.scryfall.io/display/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.webp?1783915677",
+        "art": "https://cards.scryfall.io/art/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.webp?1783915677",
+        "crop": "https://cards.scryfall.io/crop/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.webp?1783915677",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/4/34a87901-98bb-41dd-b566-bcb510c20022.jpg?1783915677"
+      },
+      "set": "cmm",
+      "collector_number": "153",
+      "released_at": "2023-08-04",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "recursion",
+          "sacrifice outlet",
+          "graveyard casting"
+        ],
+        "note": "Reanimates a creature from either packet; expendable Zombie tokens can pay its flashback cost later.",
+        "caution": "Flashback consumes three creatures and exiles the spell after use. Sacrificing three real bodies for one target is a substantial commitment.",
+        "manaNote": "Costs 2BB normally; the flashback cost is sacrificing three creatures.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "dfb5dd33-6e5b-4d78-92fa-678c9f01c606",
+      "oracle_id": "642fa01d-025e-44dd-8360-5325e5a28282",
+      "name": "Dread Summons",
+      "mana_cost": "{X}{B}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Each player mills X cards. For each creature card put into a graveyard this way, you create a tapped 2/2 black Zombie creature token. (To mill a card, a player puts the top card of their library into their graveyard.)",
+      "scryfall_uri": "https://scryfall.com/card/fdn/604/dread-summons?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.jpg?1783908931",
+        "normal": "https://cards.scryfall.io/normal/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.jpg?1783908931",
+        "large": "https://cards.scryfall.io/large/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.jpg?1783908931",
+        "png": "https://cards.scryfall.io/png/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.png?1783908931",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.jpg?1783908931",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.jpg?1783908931",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.webp?1783908931",
+        "grid": "https://cards.scryfall.io/grid/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.webp?1783908931",
+        "display": "https://cards.scryfall.io/display/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.webp?1783908931",
+        "art": "https://cards.scryfall.io/art/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.webp?1783908931",
+        "crop": "https://cards.scryfall.io/crop/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.webp?1783908931",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/f/dfb5dd33-6e5b-4d78-92fa-678c9f01c606.jpg?1783908931"
+      },
+      "set": "fdn",
+      "collector_number": "604",
+      "released_at": "2024-11-15",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "graveyard setup",
+          "token production"
+        ],
+        "note": "Mills every player and turns the creature cards milled this way into tapped Zombies for you.",
+        "caution": "Also fills the opponent's graveyard and may help their recursion. Only creature cards from this particular milling create tokens, and the tokens enter tapped.",
+        "manaNote": "Costs XBB; unlike some other X spells, it has only one X in its mana cost.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "7c044f47-7435-4cb4-b4ad-48bb146daa9f",
+      "oracle_id": "5bb4ee32-11c6-4ed4-a071-c3cf48070fff",
+      "name": "Embalmer's Tools",
+      "mana_cost": "{2}",
+      "cmc": 2,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Artifact",
+      "oracle_text": "Activated abilities of creature cards in your graveyard cost {1} less to activate.\nTap an untapped Zombie you control: Target player mills a card.",
+      "scryfall_uri": "https://scryfall.com/card/akh/227/embalmers-tools?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.jpg?1783936452",
+        "normal": "https://cards.scryfall.io/normal/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.jpg?1783936452",
+        "large": "https://cards.scryfall.io/large/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.jpg?1783936452",
+        "png": "https://cards.scryfall.io/png/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.png?1783936452",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.jpg?1783936452",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.jpg?1783936452",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.webp?1783936452",
+        "grid": "https://cards.scryfall.io/grid/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.webp?1783936452",
+        "display": "https://cards.scryfall.io/display/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.webp?1783936452",
+        "art": "https://cards.scryfall.io/art/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.webp?1783936452",
+        "crop": "https://cards.scryfall.io/crop/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.webp?1783936452",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/c/7c044f47-7435-4cb4-b4ad-48bb146daa9f.jpg?1783936452"
+      },
+      "set": "akh",
+      "collector_number": "227",
+      "released_at": "2017-04-28",
+      "research": {
+        "groups": [
+          "zombies-black",
+          "zombies-blue",
+          "zombies-white"
+        ],
+        "roles": [
+          "graveyard setup",
+          "ability support"
+        ],
+        "note": "Mummy-themed laboratory tools: reduces generic costs of creature-card abilities in your graveyard and lets untapped Zombies mill a player.",
+        "caution": "This is an artifact, not Equipment. The discount does not reduce spell costs or colored costs. Milling uses Zombies as a resource; it can be self-mill or target an opponent.",
+        "manaNote": "Costs 2. The graveyard-ability discount is exactly one generic mana.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "04def7e3-10e4-4733-8c19-8fa6e4469086",
+      "oracle_id": "66d65cda-e3d1-4a00-8ff3-c6d5ef0ab0c1",
+      "name": "Forbidden Alchemy",
+      "mana_cost": "{2}{U}",
+      "cmc": 3,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "B",
+        "U"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Look at the top four cards of your library. Put one of them into your hand and the rest into your graveyard.\nFlashback {6}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+      "scryfall_uri": "https://scryfall.com/card/tdc/152/forbidden-alchemy?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.jpg?1783907107",
+        "normal": "https://cards.scryfall.io/normal/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.jpg?1783907107",
+        "large": "https://cards.scryfall.io/large/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.jpg?1783907107",
+        "png": "https://cards.scryfall.io/png/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.png?1783907107",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.jpg?1783907107",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.jpg?1783907107",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.webp?1783907107",
+        "grid": "https://cards.scryfall.io/grid/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.webp?1783907107",
+        "display": "https://cards.scryfall.io/display/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.webp?1783907107",
+        "art": "https://cards.scryfall.io/art/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.webp?1783907107",
+        "crop": "https://cards.scryfall.io/crop/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.webp?1783907107",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/4/04def7e3-10e4-4733-8c19-8fa6e4469086.jpg?1783907107"
+      },
+      "set": "tdc",
+      "collector_number": "152",
+      "released_at": "2025-04-11",
+      "research": {
+        "groups": [
+          "zombies-blue",
+          "zombies-black"
+        ],
+        "roles": [
+          "card selection",
+          "graveyard setup",
+          "graveyard casting"
+        ],
+        "note": "A laboratory-flavored selection spell that keeps one card and stocks the graveyard with the rest, linking blue setup to black recovery.",
+        "caution": "Its flashback needs black mana; a blue-white pairing can use the front half but should not assume the second casting is available.",
+        "manaNote": "Costs 2U initially; flashback costs 6B.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "cf31fec2-40d6-4810-8575-c7814bb4b6b4",
+      "oracle_id": "a1fc4269-f3e4-4a59-849d-aa1727eef23a",
+      "name": "From Under the Floorboards",
+      "mana_cost": "{3}{B}{B}",
+      "cmc": 5,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Madness {X}{B}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)\nCreate three tapped 2/2 black Zombie creature tokens and you gain 3 life. If this spell's madness cost was paid, instead create X of those tokens and you gain X life.",
+      "scryfall_uri": "https://scryfall.com/card/c19/113/from-under-the-floorboards?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.jpg?1783932769",
+        "normal": "https://cards.scryfall.io/normal/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.jpg?1783932769",
+        "large": "https://cards.scryfall.io/large/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.jpg?1783932769",
+        "png": "https://cards.scryfall.io/png/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.png?1783932769",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.jpg?1783932769",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.jpg?1783932769",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.webp?1783932769",
+        "grid": "https://cards.scryfall.io/grid/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.webp?1783932769",
+        "display": "https://cards.scryfall.io/display/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.webp?1783932769",
+        "art": "https://cards.scryfall.io/art/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.webp?1783932769",
+        "crop": "https://cards.scryfall.io/crop/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.webp?1783932769",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/f/cf31fec2-40d6-4810-8575-c7814bb4b6b4.jpg?1783932769"
+      },
+      "set": "c19",
+      "collector_number": "113",
+      "released_at": "2019-08-23",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "life gain",
+          "discard payoff"
+        ],
+        "note": "Makes Zombies and restores life; madness allows a discard outlet from the blue packet or black engines to turn it into a larger effect.",
+        "caution": "Ordinary casting creates three tapped Zombies and gains three life. Only the madness casting uses X, and the tokens still enter tapped.",
+        "manaNote": "Normal cost 3BB; madness cost XBB.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8",
+      "oracle_id": "0abc993b-18c7-4bb8-aa58-0d06a41cb48f",
+      "name": "Gisa's Bidding",
+      "mana_cost": "{2}{B}{B}",
+      "cmc": 4,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Create two 2/2 black Zombie creature tokens.\nMadness {2}{B} (If you discard this card, discard it into exile. When you do, cast it for its madness cost or put it into your graveyard.)",
+      "scryfall_uri": "https://scryfall.com/card/inr/111/gisas-bidding?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.jpg?1783908142",
+        "normal": "https://cards.scryfall.io/normal/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.jpg?1783908142",
+        "large": "https://cards.scryfall.io/large/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.jpg?1783908142",
+        "png": "https://cards.scryfall.io/png/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.png?1783908142",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.jpg?1783908142",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.jpg?1783908142",
+        "thumb": "https://cards.scryfall.io/thumb/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.webp?1783908142",
+        "grid": "https://cards.scryfall.io/grid/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.webp?1783908142",
+        "display": "https://cards.scryfall.io/display/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.webp?1783908142",
+        "art": "https://cards.scryfall.io/art/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.webp?1783908142",
+        "crop": "https://cards.scryfall.io/crop/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.webp?1783908142",
+        "jpeg": "https://cards.scryfall.io/normal/front/5/a/5ad2fdbf-4a68-42e8-9c4f-7a075261ddf8.jpg?1783908142"
+      },
+      "set": "inr",
+      "collector_number": "111",
+      "released_at": "2025-01-24",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "discard payoff"
+        ],
+        "note": "A straightforward pair of Zombies with a madness option that rewards blue looting or black discard outlets.",
+        "caution": "Madness introduces an exile-and-cast decision when discarded; without an outlet it is simply a four-mana token spell.",
+        "manaNote": "Costs 2BB normally or 2B for madness.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "fbc17697-9db9-41d4-aacf-b2f2e6ff80cf",
+      "oracle_id": "d3ba6922-c2f7-45ab-87a3-d4bbd770d1ba",
+      "name": "Graf Harvest",
+      "mana_cost": "{B}",
+      "cmc": 1,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "Zombies you control have menace. (They can't be blocked except by two or more creatures.)\n{3}{B}, Exile a creature card from your graveyard: Create a 2/2 black Zombie creature token.",
+      "scryfall_uri": "https://scryfall.com/card/emn/90/graf-harvest?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.jpg?1783937482",
+        "normal": "https://cards.scryfall.io/normal/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.jpg?1783937482",
+        "large": "https://cards.scryfall.io/large/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.jpg?1783937482",
+        "png": "https://cards.scryfall.io/png/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.png?1783937482",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.jpg?1783937482",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.jpg?1783937482",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.webp?1783937482",
+        "grid": "https://cards.scryfall.io/grid/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.webp?1783937482",
+        "display": "https://cards.scryfall.io/display/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.webp?1783937482",
+        "art": "https://cards.scryfall.io/art/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.webp?1783937482",
+        "crop": "https://cards.scryfall.io/crop/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.webp?1783937482",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/b/fbc17697-9db9-41d4-aacf-b2f2e6ff80cf.jpg?1783937482"
+      },
+      "set": "emn",
+      "collector_number": "90",
+      "released_at": "2016-07-22",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "tribal support",
+          "token production",
+          "graveyard outlet"
+        ],
+        "note": "Gives all your Zombies menace and can turn spare creature cards in the graveyard into additional Zombies.",
+        "caution": "The activation exiles a creature card, competing with reanimation and other graveyard plans. The menace bonus affects only Zombies you control.",
+        "manaNote": "Costs B; each token activation costs 3B plus exiling a creature card.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ca15361f-6bf7-46e7-b83c-308c55fc393f",
+      "oracle_id": "6fbaac3b-37ec-4815-a4ea-544c547e90b1",
+      "name": "Hour of Eternity",
+      "mana_cost": "{X}{X}{U}{U}{U}",
+      "cmc": 3,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Exile X target creature cards from your graveyard. For each card exiled this way, create a token that's a copy of that card, except it's a 4/4 black Zombie.",
+      "scryfall_uri": "https://scryfall.com/card/mic/102/hour-of-eternity?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.jpg?1783925343",
+        "normal": "https://cards.scryfall.io/normal/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.jpg?1783925343",
+        "large": "https://cards.scryfall.io/large/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.jpg?1783925343",
+        "png": "https://cards.scryfall.io/png/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.png?1783925343",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.jpg?1783925343",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.jpg?1783925343",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.webp?1783925343",
+        "grid": "https://cards.scryfall.io/grid/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.webp?1783925343",
+        "display": "https://cards.scryfall.io/display/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.webp?1783925343",
+        "art": "https://cards.scryfall.io/art/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.webp?1783925343",
+        "crop": "https://cards.scryfall.io/crop/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.webp?1783925343",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/a/ca15361f-6bf7-46e7-b83c-308c55fc393f.jpg?1783925343"
+      },
+      "set": "mic",
+      "collector_number": "102",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "token production",
+          "graveyard payoff",
+          "finisher"
+        ],
+        "note": "Blue necromancy that exiles creature cards from your graveyard and makes 4/4 black Zombie copies, preserving their useful copied abilities.",
+        "caution": "Exiles the source cards, so they cannot subsequently be reanimated. Copy exceptions and multiple entry abilities add complexity; the spell is expensive even for one target.",
+        "manaNote": "Costs XXUUU: two generic mana per target plus three blue mana.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "b63ae119-f91e-4d0d-8bbd-65350a4d47c4",
+      "oracle_id": "7fca595e-1902-40fd-a359-622caa612b6a",
+      "name": "Liliana, Death's Majesty",
+      "mana_cost": "{3}{B}{B}",
+      "cmc": 5,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Legendary Planeswalker — Liliana",
+      "oracle_text": "+1: Create a 2/2 black Zombie creature token. Mill two cards.\n−3: Return target creature card from your graveyard to the battlefield. That creature is a black Zombie in addition to its other colors and types.\n−7: Destroy all non-Zombie creatures.",
+      "loyalty": "5",
+      "scryfall_uri": "https://scryfall.com/card/mic/121/liliana-deaths-majesty?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.jpg?1783925336",
+        "normal": "https://cards.scryfall.io/normal/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.jpg?1783925336",
+        "large": "https://cards.scryfall.io/large/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.jpg?1783925336",
+        "png": "https://cards.scryfall.io/png/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.png?1783925336",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.jpg?1783925336",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.jpg?1783925336",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.webp?1783925336",
+        "grid": "https://cards.scryfall.io/grid/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.webp?1783925336",
+        "display": "https://cards.scryfall.io/display/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.webp?1783925336",
+        "art": "https://cards.scryfall.io/art/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.webp?1783925336",
+        "crop": "https://cards.scryfall.io/crop/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.webp?1783925336",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.jpg?1783925336"
+      },
+      "set": "mic",
+      "collector_number": "121",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "graveyard setup",
+          "recursion",
+          "interaction"
+        ],
+        "note": "A necromantic planeswalker that makes Zombies, mills, and can return a creature as an additional black Zombie.",
+        "caution": "Adds planeswalker targeting and loyalty management. Its ultimate destroys all non-Zombies, including friendly support creatures, and may be too powerful for the first casual prototype.",
+        "manaNote": "Costs 3BB.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "a7939170-f84e-44c6-b8bc-a180cf7f85d9",
+      "oracle_id": "4f66489c-5a19-40ad-9126-461fa8231f1b",
+      "name": "Liliana, Untouched by Death",
+      "mana_cost": "{2}{B}{B}",
+      "cmc": 4,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Legendary Planeswalker — Liliana",
+      "oracle_text": "+1: Mill three cards. If at least one Zombie card is milled this way, each opponent loses 2 life and you gain 2 life.\n−2: Target creature gets -X/-X until end of turn, where X is the number of Zombies you control.\n−3: You may cast Zombie spells from your graveyard this turn.",
+      "loyalty": "4",
+      "scryfall_uri": "https://scryfall.com/card/m19/106/liliana-untouched-by-death?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.jpg?1783934566",
+        "normal": "https://cards.scryfall.io/normal/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.jpg?1783934566",
+        "large": "https://cards.scryfall.io/large/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.jpg?1783934566",
+        "png": "https://cards.scryfall.io/png/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.png?1783934566",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.jpg?1783934566",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.jpg?1783934566",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.webp?1783934566",
+        "grid": "https://cards.scryfall.io/grid/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.webp?1783934566",
+        "display": "https://cards.scryfall.io/display/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.webp?1783934566",
+        "art": "https://cards.scryfall.io/art/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.webp?1783934566",
+        "crop": "https://cards.scryfall.io/crop/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.webp?1783934566",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/7/a7939170-f84e-44c6-b8bc-a180cf7f85d9.jpg?1783934566"
+      },
+      "set": "m19",
+      "collector_number": "106",
+      "released_at": "2018-07-13",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "graveyard setup",
+          "interaction",
+          "tribal support"
+        ],
+        "note": "A Zombie-focused planeswalker that mills, scales removal with your Zombie count, and temporarily permits casting Zombie spells from your graveyard.",
+        "caution": "The graveyard permission does not waive mana costs or normal timing. It is temporary, and planeswalker loyalty adds another resource to track.",
+        "manaNote": "Costs 2BB; Zombie spells cast from the graveyard still require their normal costs unless another effect changes them.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2a1f42ee-7f4e-4b2a-b60b-750662878a5c",
+      "oracle_id": "ce87e5ed-2562-4563-9a5b-bd53c04ec4a5",
+      "name": "Moan of the Unhallowed",
+      "mana_cost": "{2}{B}{B}",
+      "cmc": 4,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Create two 2/2 black Zombie creature tokens.\nFlashback {5}{B}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+      "scryfall_uri": "https://scryfall.com/card/uma/107/moan-of-the-unhallowed?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.jpg?1783933817",
+        "normal": "https://cards.scryfall.io/normal/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.jpg?1783933817",
+        "large": "https://cards.scryfall.io/large/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.jpg?1783933817",
+        "png": "https://cards.scryfall.io/png/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.png?1783933817",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.jpg?1783933817",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.jpg?1783933817",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.webp?1783933817",
+        "grid": "https://cards.scryfall.io/grid/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.webp?1783933817",
+        "display": "https://cards.scryfall.io/display/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.webp?1783933817",
+        "art": "https://cards.scryfall.io/art/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.webp?1783933817",
+        "crop": "https://cards.scryfall.io/crop/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.webp?1783933817",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/a/2a1f42ee-7f4e-4b2a-b60b-750662878a5c.jpg?1783933817"
+      },
+      "set": "uma",
+      "collector_number": "107",
+      "released_at": "2018-12-07",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "graveyard casting"
+        ],
+        "note": "Makes two ordinary Zombie tokens and can be cast again from the graveyard, supporting both milling and a creature-heavy board.",
+        "caution": "The second casting is expensive; flashback exiles the spell afterward.",
+        "manaNote": "Costs 2BB initially and 5BB for flashback.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2ba07e86-fdef-4f51-808e-7780883eefe3",
+      "oracle_id": "dc47a97b-f511-4b97-97b2-e0309055544b",
+      "name": "Necromancer's Stockpile",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "{1}{B}, Discard a creature card: Draw a card. If the discarded card was a Zombie card, create a tapped 2/2 black Zombie creature token.",
+      "scryfall_uri": "https://scryfall.com/card/m15/108/necromancers-stockpile?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.jpg?1783939181",
+        "normal": "https://cards.scryfall.io/normal/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.jpg?1783939181",
+        "large": "https://cards.scryfall.io/large/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.jpg?1783939181",
+        "png": "https://cards.scryfall.io/png/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.png?1783939181",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.jpg?1783939181",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.jpg?1783939181",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.webp?1783939181",
+        "grid": "https://cards.scryfall.io/grid/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.webp?1783939181",
+        "display": "https://cards.scryfall.io/display/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.webp?1783939181",
+        "art": "https://cards.scryfall.io/art/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.webp?1783939181",
+        "crop": "https://cards.scryfall.io/crop/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.webp?1783939181",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/b/2ba07e86-fdef-4f51-808e-7780883eefe3.jpg?1783939181"
+      },
+      "set": "m15",
+      "collector_number": "108",
+      "released_at": "2014-07-18",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "card selection",
+          "token production",
+          "discard outlet"
+        ],
+        "note": "Trades creature cards for draws and turns discarded Zombie cards of any color into tapped Zombie tokens, while feeding later recursion.",
+        "caution": "Requires a creature card to discard, and the token bonus specifically requires a Zombie card. Repeated activations cost mana and hand resources.",
+        "manaNote": "Costs 1B; each activation costs 1B and discarding a creature card.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "130978d1-0b20-4dfa-85f5-3ff2bc2cfda3",
+      "oracle_id": "28778958-a1f9-4fea-b551-c193d1257f18",
+      "name": "Open the Graves",
+      "mana_cost": "{3}{B}{B}",
+      "cmc": 5,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "Whenever a nontoken creature you control dies, create a 2/2 black Zombie creature token.",
+      "scryfall_uri": "https://scryfall.com/card/mic/126/open-the-graves?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.jpg?1783925336",
+        "normal": "https://cards.scryfall.io/normal/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.jpg?1783925336",
+        "large": "https://cards.scryfall.io/large/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.jpg?1783925336",
+        "png": "https://cards.scryfall.io/png/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.png?1783925336",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.jpg?1783925336",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.jpg?1783925336",
+        "thumb": "https://cards.scryfall.io/thumb/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.webp?1783925336",
+        "grid": "https://cards.scryfall.io/grid/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.webp?1783925336",
+        "display": "https://cards.scryfall.io/display/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.webp?1783925336",
+        "art": "https://cards.scryfall.io/art/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.webp?1783925336",
+        "crop": "https://cards.scryfall.io/crop/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.webp?1783925336",
+        "jpeg": "https://cards.scryfall.io/normal/front/1/3/130978d1-0b20-4dfa-85f5-3ff2bc2cfda3.jpg?1783925336"
+      },
+      "set": "mic",
+      "collector_number": "126",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "death payoff"
+        ],
+        "note": "Replaces nontoken creatures that die under your control with Zombies, allowing creatures from either packet to leave an undead body.",
+        "caution": "Does not trigger for token deaths and gives no immediate body when first cast. It can substantially amplify repeated sacrifice or recursion.",
+        "manaNote": "Costs 3BB.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "317686d8-b762-4598-b74a-8b1fa6b899ba",
+      "oracle_id": "25fc3bc2-d852-4f52-9adb-c7e35c06f3af",
+      "name": "Patriarch's Bidding",
+      "mana_cost": "{3}{B}{B}",
+      "cmc": 5,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Each player chooses a creature type. Each player returns all creature cards of a type chosen this way from their graveyard to the battlefield.",
+      "scryfall_uri": "https://scryfall.com/card/mh2/275/patriarchs-bidding?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.jpg?1783926786",
+        "normal": "https://cards.scryfall.io/normal/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.jpg?1783926786",
+        "large": "https://cards.scryfall.io/large/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.jpg?1783926786",
+        "png": "https://cards.scryfall.io/png/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.png?1783926786",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.jpg?1783926786",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.jpg?1783926786",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.webp?1783926786",
+        "grid": "https://cards.scryfall.io/grid/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.webp?1783926786",
+        "display": "https://cards.scryfall.io/display/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.webp?1783926786",
+        "art": "https://cards.scryfall.io/art/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.webp?1783926786",
+        "crop": "https://cards.scryfall.io/crop/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.webp?1783926786",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/1/317686d8-b762-4598-b74a-8b1fa6b899ba.jpg?1783926786"
+      },
+      "set": "mh2",
+      "collector_number": "275",
+      "released_at": "2021-06-18",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "tribal recursion",
+          "finisher"
+        ],
+        "note": "A dramatic mass-return spell that can bring back the Zombie creatures accumulated across both packets.",
+        "caution": "Every player chooses a type, and every player returns creatures of any type chosen this way from their own graveyard. Opposing Plants, Treefolk, or Fungi can benefit just as much; it is not one-sided.",
+        "manaNote": "Costs 3BB.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "c6db664e-f0c4-4e60-add7-89b9f210cbc7",
+      "oracle_id": "3937a96c-3be1-465d-98b6-1db67d2215e6",
+      "name": "Return from Extinction",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Choose one —\n• Return target creature card from your graveyard to your hand.\n• Return two target creature cards that share a creature type from your graveyard to your hand.",
+      "scryfall_uri": "https://scryfall.com/card/mh1/104/return-from-extinction?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.jpg?1783933123",
+        "normal": "https://cards.scryfall.io/normal/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.jpg?1783933123",
+        "large": "https://cards.scryfall.io/large/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.jpg?1783933123",
+        "png": "https://cards.scryfall.io/png/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.png?1783933123",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.jpg?1783933123",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.jpg?1783933123",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.webp?1783933123",
+        "grid": "https://cards.scryfall.io/grid/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.webp?1783933123",
+        "display": "https://cards.scryfall.io/display/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.webp?1783933123",
+        "art": "https://cards.scryfall.io/art/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.webp?1783933123",
+        "crop": "https://cards.scryfall.io/crop/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.webp?1783933123",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/6/c6db664e-f0c4-4e60-add7-89b9f210cbc7.jpg?1783933123"
+      },
+      "set": "mh1",
+      "collector_number": "104",
+      "released_at": "2019-06-14",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "recursion",
+          "tribal support"
+        ],
+        "note": "Can recover one creature or two creatures that share a type; Zombies from different packet colors naturally share the required type.",
+        "caution": "Returns cards to hand. The two-card mode requires an actual shared creature type, not merely a shared thematic alignment.",
+        "manaNote": "Costs 1B.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "9d3a1ec1-f362-494d-a23b-6a963ce44fdd",
+      "oracle_id": "0998768a-1632-4da1-8310-352582501c4b",
+      "name": "Rise of the Dread Marn",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Create X 2/2 black Zombie Berserker creature tokens, where X is the number of nontoken creatures that died this turn.\nForetell {B} (During your turn, you may pay {2} and exile this card from your hand face down. Cast it on a later turn for its foretell cost.)",
+      "scryfall_uri": "https://scryfall.com/card/khm/107/rise-of-the-dread-marn?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.jpg?1783928240",
+        "normal": "https://cards.scryfall.io/normal/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.jpg?1783928240",
+        "large": "https://cards.scryfall.io/large/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.jpg?1783928240",
+        "png": "https://cards.scryfall.io/png/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.png?1783928240",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.jpg?1783928240",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.jpg?1783928240",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.webp?1783928240",
+        "grid": "https://cards.scryfall.io/grid/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.webp?1783928240",
+        "display": "https://cards.scryfall.io/display/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.webp?1783928240",
+        "art": "https://cards.scryfall.io/art/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.webp?1783928240",
+        "crop": "https://cards.scryfall.io/crop/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.webp?1783928240",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/d/9d3a1ec1-f362-494d-a23b-6a963ce44fdd.jpg?1783928240"
+      },
+      "set": "khm",
+      "collector_number": "107",
+      "released_at": "2021-02-05",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "death payoff"
+        ],
+        "note": "Turns a turn's nontoken creature deaths into Zombie Berserkers, including deaths on either side of the table.",
+        "caution": "Token deaths do not count. Foretell requires an earlier setup payment and face-down exile tracking; this can produce a very large swing after a mass death event.",
+        "manaNote": "Costs 2B normally, or foretell for 2 and cast on a later turn for B.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "066311f5-51fc-4da9-a5fa-fa5059a88e5b",
+      "oracle_id": "b9720c63-5aa7-4fb8-8d71-8f55d8b1337b",
+      "name": "Secrets of the Dead",
+      "mana_cost": "{2}{U}",
+      "cmc": 3,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "Whenever you cast a spell from your graveyard, draw a card.",
+      "scryfall_uri": "https://scryfall.com/card/c19/95/secrets-of-the-dead?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.jpg?1783932776",
+        "normal": "https://cards.scryfall.io/normal/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.jpg?1783932776",
+        "large": "https://cards.scryfall.io/large/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.jpg?1783932776",
+        "png": "https://cards.scryfall.io/png/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.png?1783932776",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.jpg?1783932776",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.jpg?1783932776",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.webp?1783932776",
+        "grid": "https://cards.scryfall.io/grid/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.webp?1783932776",
+        "display": "https://cards.scryfall.io/display/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.webp?1783932776",
+        "art": "https://cards.scryfall.io/art/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.webp?1783932776",
+        "crop": "https://cards.scryfall.io/crop/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.webp?1783932776",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/6/066311f5-51fc-4da9-a5fa-fa5059a88e5b.jpg?1783932776"
+      },
+      "set": "c19",
+      "collector_number": "95",
+      "released_at": "2019-08-23",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "card draw",
+          "graveyard casting payoff"
+        ],
+        "note": "Rewards a carefully supported flashback or graveyard-casting plan with extra cards, linking blue experiments to black spells.",
+        "caution": "Only casting a spell from the graveyard triggers it. Reanimation and activating a creature's graveyard-return ability do not; it needs deliberate support.",
+        "manaNote": "Costs 2U.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "8423c98d-4cb6-4a70-8bf2-3ac24c025c4e",
+      "oracle_id": "bc3d5911-3580-4132-9daf-2826495b5739",
+      "name": "Stitch Together",
+      "mana_cost": "{B}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Return target creature card from your graveyard to your hand.\nThreshold — Return that card from your graveyard to the battlefield instead if there are seven or more cards in your graveyard.",
+      "scryfall_uri": "https://scryfall.com/card/c18/119/stitch-together?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.jpg?1783934297",
+        "normal": "https://cards.scryfall.io/normal/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.jpg?1783934297",
+        "large": "https://cards.scryfall.io/large/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.jpg?1783934297",
+        "png": "https://cards.scryfall.io/png/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.png?1783934297",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.jpg?1783934297",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.jpg?1783934297",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.webp?1783934297",
+        "grid": "https://cards.scryfall.io/grid/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.webp?1783934297",
+        "display": "https://cards.scryfall.io/display/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.webp?1783934297",
+        "art": "https://cards.scryfall.io/art/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.webp?1783934297",
+        "crop": "https://cards.scryfall.io/crop/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.webp?1783934297",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/4/8423c98d-4cb6-4a70-8bf2-3ac24c025c4e.jpg?1783934297"
+      },
+      "set": "c18",
+      "collector_number": "119",
+      "released_at": "2018-08-10",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "recursion",
+          "graveyard payoff"
+        ],
+        "note": "A stitched-corpse recovery spell that improves from returning a creature to hand to reanimating it once the graveyard is stocked.",
+        "caution": "Threshold checks for seven or more cards in your graveyard. Removing cards for other effects can turn off the stronger mode.",
+        "manaNote": "Costs BB, which is demanding for an early play in a two-color deck.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ee008d81-df28-49a8-917d-44f66527e469",
+      "oracle_id": "240e85d3-e495-4877-8609-4b4056c402f7",
+      "name": "Victimize",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Choose two target creature cards in your graveyard. Sacrifice a creature. If you do, return the chosen cards to the battlefield tapped.",
+      "scryfall_uri": "https://scryfall.com/card/tdc/198/victimize?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.jpg?1783907079",
+        "normal": "https://cards.scryfall.io/normal/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.jpg?1783907079",
+        "large": "https://cards.scryfall.io/large/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.jpg?1783907079",
+        "png": "https://cards.scryfall.io/png/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.png?1783907079",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.jpg?1783907079",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.jpg?1783907079",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.webp?1783907079",
+        "grid": "https://cards.scryfall.io/grid/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.webp?1783907079",
+        "display": "https://cards.scryfall.io/display/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.webp?1783907079",
+        "art": "https://cards.scryfall.io/art/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.webp?1783907079",
+        "crop": "https://cards.scryfall.io/crop/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.webp?1783907079",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/e/ee008d81-df28-49a8-917d-44f66527e469.jpg?1783907079"
+      },
+      "set": "tdc",
+      "collector_number": "198",
+      "released_at": "2025-04-11",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "recursion",
+          "sacrifice outlet"
+        ],
+        "note": "Can trade an expendable creature for two creatures from your graveyard, recycling partner-color bodies and entry effects.",
+        "caution": "Requires two creature-card targets before resolution, then a creature to sacrifice. The returned creatures enter tapped; the sacrificed creature cannot be one of the initially chosen targets.",
+        "manaNote": "Costs 2B.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "91be6a06-9c36-45a3-a591-183cb5c0f800",
+      "oracle_id": "46f78c42-85d1-4cd4-9fc3-d5fdec04a4c8",
+      "name": "Vivisection",
+      "mana_cost": "{3}{U}",
+      "cmc": 4,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "As an additional cost to cast this spell, sacrifice a creature.\nDraw three cards.",
+      "scryfall_uri": "https://scryfall.com/card/mid/83/vivisection?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.jpg?1783925628",
+        "normal": "https://cards.scryfall.io/normal/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.jpg?1783925628",
+        "large": "https://cards.scryfall.io/large/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.jpg?1783925628",
+        "png": "https://cards.scryfall.io/png/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.png?1783925628",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.jpg?1783925628",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.jpg?1783925628",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.webp?1783925628",
+        "grid": "https://cards.scryfall.io/grid/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.webp?1783925628",
+        "display": "https://cards.scryfall.io/display/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.webp?1783925628",
+        "art": "https://cards.scryfall.io/art/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.webp?1783925628",
+        "crop": "https://cards.scryfall.io/crop/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.webp?1783925628",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/1/91be6a06-9c36-45a3-a591-183cb5c0f800.jpg?1783925628"
+      },
+      "set": "mid",
+      "collector_number": "83",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "card draw",
+          "sacrifice outlet"
+        ],
+        "note": "A grisly laboratory experiment that turns an expendable creature into three cards, fitting the stitched-creature theme and black death payoffs.",
+        "caution": "Sacrificing a creature is an additional casting cost, so the creature is lost even if the spell is countered.",
+        "manaNote": "Costs 3U plus sacrificing a creature.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ef2c8aca-3ade-46b0-8366-ab3b244eca01",
+      "oracle_id": "bdce1af0-3643-4e77-88f9-320206a191d4",
+      "name": "Zombie Infestation",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "Discard two cards: Create a 2/2 black Zombie creature token.",
+      "scryfall_uri": "https://scryfall.com/card/dmr/111/zombie-infestation?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.jpg?1783918465",
+        "normal": "https://cards.scryfall.io/normal/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.jpg?1783918465",
+        "large": "https://cards.scryfall.io/large/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.jpg?1783918465",
+        "png": "https://cards.scryfall.io/png/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.png?1783918465",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.jpg?1783918465",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.jpg?1783918465",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.webp?1783918465",
+        "grid": "https://cards.scryfall.io/grid/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.webp?1783918465",
+        "display": "https://cards.scryfall.io/display/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.webp?1783918465",
+        "art": "https://cards.scryfall.io/art/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.webp?1783918465",
+        "crop": "https://cards.scryfall.io/crop/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.webp?1783918465",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/f/ef2c8aca-3ade-46b0-8366-ab3b244eca01.jpg?1783918465"
+      },
+      "set": "dmr",
+      "collector_number": "111",
+      "released_at": "2023-01-13",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "discard outlet",
+          "graveyard setup"
+        ],
+        "note": "Turns spare cards into Zombies while placing useful creatures or flashback spells in the graveyard for later recovery.",
+        "caution": "Each 2/2 costs two discarded cards; without sufficient card supply or graveyard value it empties the hand quickly.",
+        "manaNote": "Costs 1B; its token-making ability has no mana cost but requires discarding two cards.",
+        "crossover": false
+      }
+    }
+  ]
+}

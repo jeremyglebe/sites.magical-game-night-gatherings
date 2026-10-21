@@ -40,15 +40,17 @@ const currentName = computed(
     props.human.seatId,
 );
 const locked = computed(() => sending.value || props.human.busy);
+const preparing = computed(() => props.table?.preparation?.status === "selecting");
+const betweenGames = computed(() => props.table?.series?.status === "between_games");
 const canChat = computed(
   () =>
     props.human.canChat !== false &&
     !!props.human.seatId &&
     !props.app?.postgame &&
-    !props.table?.result,
+    (!props.table?.result || betweenGames.value),
 );
 const canCommit = computed(
-  () => props.human.canCommit ?? (props.human.canAct && !props.human.stale),
+  () => !preparing.value && !betweenGames.value && (props.human.canCommit ?? (props.human.canAct && !props.human.stale)),
 );
 const canSend = computed(
   () =>
@@ -96,30 +98,30 @@ function keydown(event) {
 <template>
   <section
     v-if="human.seatId"
-    class="space-y-3 border-t border-base-300 pt-4"
+    class="flex max-h-[60%] min-h-0 shrink-0 flex-col gap-1.5 border-t border-base-300 pt-2"
     aria-label="Chat and pending actions"
   >
-    <div class="flex flex-wrap items-center justify-between gap-2 text-sm">
-      <strong>{{ currentName }}</strong
-      ><a href="#human-controls" class="link text-xs">Your hand</a>
+    <div class="flex shrink-0 items-center justify-between gap-2 text-sm">
+      <strong class="truncate">{{ currentName }}</strong
+      ><a v-if="!preparing && !betweenGames" href="#human-controls" class="link shrink-0 text-xs">Your hand</a>
     </div>
     <div
       v-if="human.pending?.length"
-      class="rounded-box border border-base-300 bg-base-200 p-3"
+      class="flex min-h-10 shrink flex-col rounded-box border border-base-300 bg-base-200 p-1.5"
     >
-      <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
+      <div class="mb-1 flex shrink-0 items-center justify-between gap-1">
         <span class="badge badge-sm">{{ human.pending.length }} pending</span>
         <div class="flex gap-1">
           <button
             type="button"
-            class="btn btn-sm btn-ghost"
+            class="btn btn-xs btn-ghost"
             :disabled="locked"
             @click="human.undo()"
           >
             <Undo2 class="size-3.5" /> Undo last</button
           ><button
             type="button"
-            class="btn btn-sm btn-ghost"
+            class="btn btn-xs btn-ghost"
             :disabled="locked"
             @click="human.clear()"
           >
@@ -127,7 +129,7 @@ function keydown(event) {
           </button>
         </div>
       </div>
-      <ol class="max-h-44 space-y-2 overflow-y-auto text-xs">
+      <ol class="max-h-16 min-h-0 space-y-1 overflow-y-auto overscroll-contain text-xs">
         <li
           v-for="(item, index) in human.pending"
           :key="index"
@@ -145,26 +147,28 @@ function keydown(event) {
           </button>
         </li>
       </ol>
-      <p v-if="human.stale" class="mt-2 text-xs text-warning">
+      <p v-if="human.stale" class="mt-1 shrink-0 text-xs text-warning">
         The table changed. Clear these actions and rebuild your play.
       </p>
     </div>
-    <p v-if="error || human.error" class="text-sm text-error" role="alert">
+    <p v-if="error || human.error" class="max-h-10 shrink-0 overflow-y-auto text-xs text-error" role="alert">
       {{ error || human.error }}
     </p>
-    <label class="fieldset gap-1"
-      ><span class="label">Message the table</span
+    <label class="block shrink-0"
+      ><span class="sr-only">Message the table</span
       ><textarea
         v-model="message"
-        class="textarea textarea-sm min-h-20 w-full resize-y"
+        class="textarea textarea-sm block h-12 min-h-12 w-full resize-none"
         rows="2"
         maxlength="2000"
         :disabled="locked || !canChat"
         placeholder="Message the table…"
+        title="Enter to send; Shift + Enter for a new line"
+        aria-description="Enter to send; Shift + Enter for a new line"
         @keydown="keydown"
       />
     </label>
-    <label class="flex items-center gap-2 text-xs"
+    <label v-if="!preparing && !betweenGames" class="flex shrink-0 items-center gap-2 text-xs"
       >Pass to
       <select
         aria-label="Pass to"
@@ -181,10 +185,10 @@ function keydown(event) {
         </option>
       </select></label
     >
-    <div class="flex flex-wrap gap-2">
+    <div class="grid shrink-0 gap-1" :class="!preparing && !betweenGames ? 'grid-cols-3' : 'grid-cols-1'">
       <button
         type="button"
-        class="btn btn-sm btn-primary grow"
+        class="btn btn-sm btn-primary min-w-0 gap-1 px-2"
         :disabled="!canSend"
         @click="send()"
       >
@@ -198,28 +202,30 @@ function keydown(event) {
         }}
       </button>
       <button
+        v-if="!preparing && !betweenGames"
         type="button"
-        class="btn btn-sm grow"
+        class="btn btn-sm min-w-0 gap-1 px-2"
+        aria-label="Pass priority"
+        title="Pass priority"
         :disabled="locked || !canCommit || !recipient"
         @click="send('priority')"
       >
-        <ArrowRight class="size-3.5" /> Pass priority
+        <ArrowRight class="size-3.5 shrink-0" /> Priority
       </button>
       <button
+        v-if="!preparing && !betweenGames"
         type="button"
-        class="btn btn-sm grow"
+        class="btn btn-sm min-w-0 gap-1 px-2"
+        aria-label="Pass turn"
+        title="Pass turn"
         :disabled="locked || !canCommit || !recipient"
         @click="send('turn')"
       >
-        <SkipForward class="size-3.5" /> Pass turn
+        <SkipForward class="size-3.5 shrink-0" /> Turn
       </button>
     </div>
-    <p v-if="!human.canAct && canChat" class="text-xs text-base-content/70">
+    <p v-if="!human.canAct && canChat" class="shrink-0 text-xs text-base-content/70">
       You can still speak. Your message will reach the player currently acting.
-    </p>
-    <p class="text-xs text-base-content/60">
-      <kbd class="kbd kbd-xs">Enter</kbd> to send ·
-      <kbd class="kbd kbd-xs">Shift + Enter</kbd> for a new line
     </p>
   </section>
   <p

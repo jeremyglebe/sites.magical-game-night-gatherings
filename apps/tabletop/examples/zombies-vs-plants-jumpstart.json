@@ -1,0 +1,25 @@
+{
+  "title": "Zombies vs Plants \u00b7 Jumpstart v0.1",
+  "preparation": {
+    "kind": "jumpstart",
+    "source": "zombies-vs-plants-v0.1"
+  },
+  "players": [
+    {
+      "id": "p1",
+      "name": "Plants",
+      "faction": "plants",
+      "ai": true
+    },
+    {
+      "id": "p2",
+      "name": "Zombies",
+      "faction": "zombies",
+      "ai": true
+    }
+  ],
+  "references": [
+    "boxed-sets/zombies-vs-plants-jumpstart.md",
+    "formats/jumpstart/variants/two-packet.md"
+  ]
+}

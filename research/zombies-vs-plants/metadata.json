@@ -1,0 +1,71 @@
+{
+  "title": "Zombies vs Plants — Card Research",
+  "researchedAt": "2026-10-21",
+  "groups": [
+    {
+      "id": "plants",
+      "label": "Plants",
+      "faction": "plants",
+      "description": "Broad Plant research for the shared pool. Overgrowth is confirmed green for the first Jumpstart box, with early plays to support its partners."
+    },
+    {
+      "id": "treefolk",
+      "label": "Treefolk",
+      "faction": "plants",
+      "description": "Ancient Grove is confirmed white: stompy Treefolk, nature spirits, and actual bird allies. Preferred early birds are Healer's Hawk, Rustwing Falcon, and Suntail Hawk, preserving singleton variety. Test the combined curve with each Plant partner; retain other colors for the cube."
+    },
+    {
+      "id": "fungi",
+      "label": "Fungi",
+      "faction": "plants",
+      "description": "Spore Swarm is confirmed black: early Fungi, death value, and token support that work without green mana. Retain other colors and more elaborate engines for the shared cube research."
+    },
+    {
+      "id": "botanical-allies",
+      "label": "Botanical allies",
+      "faction": "plants",
+      "description": "Botanical Elementals and other discoveries to investigate across the shortlist. Group tags describe themes; explicit faction alignment takes precedence."
+    },
+    {
+      "id": "living-lands",
+      "label": "Living lands",
+      "faction": "plants",
+      "description": "Animated forests and swamps and their support. Wild Awakening is confirmed green, with simple land-animation effects and early plays; complex and off-color discoveries remain for the cube."
+    },
+    {
+      "id": "zombies-black",
+      "label": "Black · Necromancy",
+      "faction": "zombies",
+      "description": "Black necromancy, sacrifice, and recurring Zombies for the proposed Restless Dead packet."
+    },
+    {
+      "id": "zombies-blue",
+      "label": "Blue · Stitched creations",
+      "faction": "zombies",
+      "description": "Blue stitched Zombies, graveyard setup, and strange experiments for the proposed Stitched Together packet."
+    },
+    {
+      "id": "zombies-white",
+      "label": "White · Mummies",
+      "faction": "zombies",
+      "description": "White mummies, coordinated creatures, embalming, and protection for the proposed Tomb Guard packet."
+    },
+    {
+      "id": "zombies-green",
+      "label": "Green · The Turned",
+      "faction": "zombies",
+      "description": "The Turned targets simple green-paid Zombies, prioritizing turned plant life where practical. Black-green and three-color candidates remain visible as shared research for the cube."
+    },
+    {
+      "id": "mana-support",
+      "label": "Mana support",
+      "faction": "shared",
+      "description": "Flexible lands and fixing for combined Jumpstart decks and the wider multicolor cube research."
+    }
+  ],
+  "intendedUses": [
+    "Jumpstart box",
+    "Future Zombies vs Plants cube"
+  ],
+  "retentionPolicy": "Retain every candidate and its source notes for Jumpstart rebalancing and a future cube, including cards omitted from any draft. Versioned packet selections and replacement reasons must not delete unused research."
+}

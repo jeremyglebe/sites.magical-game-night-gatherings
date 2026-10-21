@@ -36,6 +36,30 @@ TABLETOP_API_URL=http://127.0.0.1:5190 npm run tabletop:dev
 
 The Vite proxy handles the local API's origin checks. It does not create a second game coordinator. Run an independent Node host with a different `--directory` and `--port` when testing changes that should not affect an existing game.
 
+## Jumpstart packet selection
+
+New tables default to **Zombies vs Plants: Jumpstart v0.1**. The original white/green test-deck presets have been retired; full custom deck JSON imports remain available. Assign one seat to Plants and the other to Zombies; either seat can be human or AI. Each player chooses two of their faction’s four packets, inspects the combined forty-card list, and confirms. Human players use the packet screen; AI players use `read_preparation` and `select_packets`. Start or Step runs the AI choices just like other decisions.
+
+Selections happen in seat order and are saved immediately. The server rejects repeated packets, another faction’s packets, stale choices, and gameplay before both players have chosen. Once both confirm, it constructs and shuffles the two forty-card libraries, then hands control to the first seat for ordinary opening-hand setup. It does not draw hands or resolve Magic rules automatically. Closing the viewer or restarting the host preserves the selection stage; restored matches begin paused.
+
+The packet inventory and local card definitions come from the versioned catalogue files under `boxed-sets/zombies-vs-plants/v0.1/`. They are pinned in the session when it is created. There are no web lookups during selection. Packet contents and announced selections are public; shuffled library order stays private. Completed-game observations omit the large packet inventory, and saved reviews include the constructed decks and selection history.
+
+[An example setup](examples/zombies-vs-plants-jumpstart.json) uses two AI seats and the normal model defaults. To load it in a paused table:
+
+```bash
+npm run tabletop:start -- --setup apps/tabletop/examples/zombies-vs-plants-jumpstart.json
+```
+
+The first version supports choosing complete Jumpstart packets. Card-by-card booster drafting, passing packs, sealed pools, and editing a constructed deck are future extensions to this preparation stage.
+
+## Multi-game matches
+
+New-table setup can run a single game, **Best X out of Y**, or **First to Z wins**. Scores, every game's replay, and the same independent AI conversations persist until the final match questionnaire. Draws award no wins; best-of counts them toward its game cap. A tie at the cap is a match draw. Existing single-game sessions keep their original behavior.
+
+Between games, each player readies in sequence. Formats with explicit sideboard inventories can allow allocation changes through the human panel or `read_sideboard`, `sideboard`, and `ready_next_game` MCP tools. The app preserves the original card pool and main-deck size; unused Jumpstart packets are not a sideboard. After everyone readies, it resets and shuffles the retained decks for fresh opening setup, or—if configured—reopens Jumpstart packet selection. Sideboarding and fresh packet selection are separate choices. No Magic effects or opening-hand procedures are automated.
+
+See [multi-game match configuration](docs/operations.md#multi-game-matches) for JSON fields, reset behavior, scoring and tool contracts. Saved reviews retain the main deck and sideboard for each game, plus the complete conversation and board history.
+
 ## Where code belongs
 
 ```text
@@ -51,6 +75,7 @@ apps/tabletop/
 │       │   ├── table/             # Boards, hands, zones, card inspector, actions
 │       │   ├── chat/              # Conversation, thinking state, draft composer
 │       │   ├── setup/             # Match and player setup
+│       │   ├── preparation/       # Jumpstart choices, card preview, readiness
 │       │   └── review/            # Saved decks, conversation, feedback, inspection
 │       ├── composables/           # Reactive client state and request lifecycle
 │       └── lib/                   # Client API and small shared helpers
@@ -76,7 +101,7 @@ Standard controls use daisyUI classes: buttons, inputs, selects, chat bubbles, b
 
 - **Node owns the game.** `server/table.mjs` validates and applies atomic action batches. Client previews are drafts, never the authoritative state. Submitting uses the observed revision and the existing stale-write checks.
 - **Private views stay private.** Human clients use the entered seat's filtered view; spectator clients use public state. Closing or switching a seat clears its private data and inspectors. The owner recording viewer is deliberately separate and includes private cards.
-- **Coordination is ordinary code.** `server/coordinator.mjs` schedules one independent player conversation at a time. Only explicit priority/turn handoffs wake the next player. It does not interpret Magic rules or invent actions.
+- **Coordination is ordinary code.** `server/coordinator.mjs` schedules one independent player conversation at a time. Explicit packet selections and priority/turn handoffs wake the next player; the scheduler never polls players for unrelated table changes. It does not interpret Magic rules or invent actions.
 - **Shared modules stay portable.** `shared/` contains pure preview/move helpers, replay reconstruction, reveal snapshot handling, the survey schema, and the browser pointer helper. Avoid Node-only imports in modules consumed by the client. Backend wrappers may re-export a shared implementation to preserve internal imports.
 - **Saved data does not move with the source.** Root commands keep `.playtest/` at the repository root. It contains private sessions, player workspaces, rules copies, and automatic recordings. It is ignored by Git and excluded from catalogue publishing. Do not migrate, reset, or seed an existing game as part of a UI change.
 - **The catalogue has its own build.** `tabletop:build` writes only `apps/tabletop/dist/`. The Vue catalogue and GitHub Pages commands retain their separate workflow. Do not publish tabletop assets or private game recordings through the catalogue.

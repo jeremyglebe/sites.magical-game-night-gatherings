@@ -99,3 +99,33 @@ test('dragging the concealed library pile to hand queues a draw and reveals noth
   assert.deepEqual(observe(committed, 'p2').zones['p1:hand'].cards, []);
   assert.deepEqual(observe(committed).zones['p1:hand'].cards, []);
 });
+
+test('an Aura can resolve from stack onto an opposing creature with matching preview and server state', () => {
+  let state = act(fixture(), { type: 'draw', count: 2 });
+  const [aura, creature] = observe(state, 'p1').zones['p1:hand'].cards;
+  state = act(state,
+    { type: 'move', card: aura.id, to: 'stack' },
+    { type: 'move', card: creature.id, to: 'battlefield' },
+    { type: 'card', card: creature.id, set: { controller: 'p2' } },
+  );
+  const base = observe(state, 'p1');
+  const actions = dropped(base, { cardId: aura.id }, { zoneId: 'battlefield', attachTo: creature.id, controller: 'p2' });
+  const preview = previewHumanActions(base, 'p1', actions);
+  assert.equal(preview.valid, true);
+  const attached = preview.table.zones.battlefield.cards.find(card => card.id === aura.id);
+  assert.equal(attached.attached_to, creature.id);
+  assert.equal(attached.controller, 'p1');
+  assert.deepEqual(previewHumanActions(base, 'p1', []).table.zones, base.zones, 'undo restores the stack');
+  state = act(state, ...actions);
+  assert.deepEqual(observe(state, 'p1').zones, preview.table.zones);
+  const detach = dropped(observe(state, 'p1'), { cardId: aura.id }, { zoneId: 'battlefield', controller: 'p1' });
+  const detachedPreview = previewHumanActions(observe(state, 'p1'), 'p1', detach);
+  assert.deepEqual(observe(act(state, ...detach), 'p1').zones, detachedPreview.table.zones);
+  for (const leaving of [aura, creature]) {
+    const move = dropped(observe(state, 'p1'), { cardId: leaving.id }, { zoneId: 'p1:graveyard' });
+    const movedPreview = previewHumanActions(observe(state, 'p1'), 'p1', move);
+    const moved = act(state, ...move);
+    assert.equal(moved.cards[aura.id].attached_to, null, 'moving either endpoint away unlinks the attachment');
+    assert.deepEqual(observe(moved, 'p1').zones, movedPreview.table.zones);
+  }
+});

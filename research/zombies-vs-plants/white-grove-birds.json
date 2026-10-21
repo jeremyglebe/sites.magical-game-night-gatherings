@@ -1,0 +1,1758 @@
+{
+  "researchedAt": "2026-10-21",
+  "queries": [
+    {
+      "query": "c:w -c:u -c:b -c:r -c:g t:bird mv<=2 game:paper -is:funny date<=2026-10-21 unique:cards",
+      "method": "Scryfall MCP search_cards",
+      "total": 40,
+      "hasMore": false,
+      "note": "Owner's low-cost white Bird query, bounded to paper/non-funny cards by research cutoff. Results include Bird people; selected candidates were curated to literal birds."
+    },
+    {
+      "query": "c=w t:bird mv=3 game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 40,
+      "hasMore": false,
+      "method": "Scryfall MCP search_cards; selected three actual Bird support candidates from 40 results."
+    },
+    {
+      "name": "Eagle of the Watch",
+      "method": "Scryfall MCP exact-name lookup and rulings",
+      "total": 1
+    }
+  ],
+  "discoverySources": [
+    {
+      "url": "https://scryfall.com/search?q=c%3Aw+-c%3Au+-c%3Ab+-c%3Ar+-c%3Ag+t%3Abird+mv%3C%3D2&unique=cards&as=grid&order=name",
+      "note": "Owner-supplied cheap white Bird search; owner explicitly wants actual birds rather than Bird people, warriors, or similar humanoids."
+    },
+    {
+      "url": "https://scryfall.com/search?q=c%3Dw%20t%3Abird%20mv%3D3%20game%3Apaper%20-is%3Afunny%20date%3C%3D2026-10-21%20unique%3Acards",
+      "note": "White Birds with mana value three, paper/nonfunny/research cutoff; selection favors actual birds over humanoid bird people."
+    }
+  ],
+  "resolvedLeads": [
+    {
+      "name": "Squadron Hawk",
+      "decision": "Not shortlisted for the first singleton-focused investigation: its entry ability needs additional copies. A future intentional-repeat version could revisit it."
+    },
+    {
+      "name": "Glint Hawk",
+      "decision": "Not shortlisted as generic grove support: requires returning an artifact or sacrificing itself."
+    },
+    {
+      "name": "War Falcon",
+      "decision": "Not shortlisted as generic grove support: cannot attack without a Knight or Soldier."
+    },
+    {
+      "name": "Ranger's Hawk",
+      "decision": "Not shortlisted for the simple prototype: its dungeon ability introduces a separate subsystem."
+    },
+    {
+      "name": "Duskrider Falcon",
+      "decision": "Not shortlisted as a simple baseline: protection from black is especially targeted in this Zombie matchup."
+    }
+  ],
+  "cards": [
+    {
+      "object": "card",
+      "id": "069cfaa5-bba4-4503-b54e-b98fa9f0a0fc",
+      "oracle_id": "28a52ba1-95da-44e1-8ac5-0dc23c902394",
+      "multiverse_ids": [],
+      "resource_id": "D3BF5FBD68E9040AFDE0B98F3D5F444A2432E3CD3F6DDD9948CADE1270F2E33E",
+      "tcgplayer_id": 695518,
+      "cardmarket_id": 904186,
+      "name": "Healer's Hawk",
+      "lang": "en",
+      "released_at": "2026-04-24",
+      "uri": "https://api.scryfall.com/cards/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc",
+      "scryfall_uri": "https://scryfall.com/card/fdn/734/healers-hawk?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-08-24T09:18:53Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.jpg?1787563133",
+        "normal": "https://cards.scryfall.io/normal/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.jpg?1787563133",
+        "large": "https://cards.scryfall.io/large/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.jpg?1787563133",
+        "png": "https://cards.scryfall.io/png/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.png?1787563133",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.jpg?1787563133",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.jpg?1787563133",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.webp?1787563133",
+        "grid": "https://cards.scryfall.io/grid/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.webp?1787563133",
+        "display": "https://cards.scryfall.io/display/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.webp?1787563133",
+        "art": "https://cards.scryfall.io/art/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.webp?1787563133",
+        "crop": "https://cards.scryfall.io/crop/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.webp?1787563133",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/6/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc.jpg?1787563133"
+      },
+      "mana_cost": "{W}",
+      "cmc": 1,
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying\nLifelink (Damage dealt by this creature also causes you to gain that much life.)",
+      "power": "1",
+      "toughness": "1",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying",
+        "Lifelink"
+      ],
+      "legalities": {
+        "standard": "legal",
+        "future": "legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "arena",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "a7ecb771-d1b6-4dec-8cf5-8d45179f21e0",
+      "set": "fdn",
+      "set_name": "Foundations",
+      "set_type": "core",
+      "set_uri": "https://api.scryfall.com/sets/a7ecb771-d1b6-4dec-8cf5-8d45179f21e0",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afdn&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/fdn?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/069cfaa5-bba4-4503-b54e-b98fa9f0a0fc/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A28a52ba1-95da-44e1-8ac5-0dc23c902394&unique=prints",
+      "collector_number": "734",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "The wounded see the glow of its vials long before they see its wings diving out of the clouds.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Milivoj Ćeran",
+      "artist_ids": [
+        "1eced451-4da5-42bc-b49d-70c41246581f"
+      ],
+      "illustration_id": "faf1d895-1cbc-4702-8dbf-be5fff8e8151",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "promo_types": [
+        "setextension"
+      ],
+      "edhrec_rank": 3834,
+      "penny_rank": 2166,
+      "prices": {
+        "usd": "0.29",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.17",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DHealer%2527s%2BHawk",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DHealer%2527s%2BHawk",
+        "edhrec": "https://edhrec.com/route/?cc=Healer%27s+Hawk"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F695518%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=904186&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Healer%27s+Hawk&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "flying",
+          "lifelink"
+        ],
+        "note": "Preferred bird candidate for Ancient Grove, endorsed by the owner alongside Rustwing Falcon and Suntail Hawk. A one-mana flyer that gains life when it deals damage gives every pairing early participation and benefits from general buffs such as Flowering of the White Tree.",
+        "caution": "Only a 1/1 without help. Compare repeated flying lifelink pressure against the Zombie pairs rather than assuming a cheap creature is low impact.",
+        "manaNote": "Costs W; no partner color or support requirement.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "c6691e62-8887-41e8-8e74-76ee2353d45e",
+      "oracle_id": "438ee544-78a2-4e32-9343-70838b60ac16",
+      "multiverse_ids": [
+        447172
+      ],
+      "mtgo_id": 68233,
+      "arena_id": 67752,
+      "tcgplayer_id": 168445,
+      "cardmarket_id": 359593,
+      "name": "Rustwing Falcon",
+      "lang": "en",
+      "released_at": "2018-07-13",
+      "uri": "https://api.scryfall.com/cards/c6691e62-8887-41e8-8e74-76ee2353d45e",
+      "scryfall_uri": "https://scryfall.com/card/m19/36/rustwing-falcon?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T09:23:16Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.jpg?1783934596",
+        "normal": "https://cards.scryfall.io/normal/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.jpg?1783934596",
+        "large": "https://cards.scryfall.io/large/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.jpg?1783934596",
+        "png": "https://cards.scryfall.io/png/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.png?1783934596",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.jpg?1783934596",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.jpg?1783934596",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.webp?1783934596",
+        "grid": "https://cards.scryfall.io/grid/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.webp?1783934596",
+        "display": "https://cards.scryfall.io/display/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.webp?1783934596",
+        "art": "https://cards.scryfall.io/art/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.webp?1783934596",
+        "crop": "https://cards.scryfall.io/crop/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.webp?1783934596",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/6/c6691e62-8887-41e8-8e74-76ee2353d45e.jpg?1783934596"
+      },
+      "mana_cost": "{W}",
+      "cmc": 1,
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying",
+      "power": "1",
+      "toughness": "2",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "arena",
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "2f5f2509-56db-414d-9a7e-6e312ec3760c",
+      "set": "m19",
+      "set_name": "Core Set 2019",
+      "set_type": "core",
+      "set_uri": "https://api.scryfall.com/sets/2f5f2509-56db-414d-9a7e-6e312ec3760c",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Am19&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/m19?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/c6691e62-8887-41e8-8e74-76ee2353d45e/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A438ee544-78a2-4e32-9343-70838b60ac16&unique=prints",
+      "collector_number": "36",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "Native to wide prairies and scrublands, falcons occasionally roost in dragon skeletons.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Paul Scott Canavan",
+      "artist_ids": [
+        "c19bfb77-5099-4f7c-8585-6eaf367712c9"
+      ],
+      "illustration_id": "83272f09-014d-421b-aa74-e0ca9d419570",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 19338,
+      "penny_rank": 7110,
+      "prices": {
+        "usd": "0.27",
+        "usd_foil": "0.56",
+        "usd_etched": null,
+        "eur": "0.10",
+        "eur_foil": "0.30",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=447172&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRustwing%2BFalcon",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRustwing%2BFalcon",
+        "edhrec": "https://edhrec.com/route/?cc=Rustwing+Falcon"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F168445%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=359593&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/68233?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "flying",
+          "simple blocker"
+        ],
+        "note": "Preferred bird candidate for Ancient Grove, endorsed by the owner alongside Healer's Hawk and Suntail Hawk. Its simple one-mana 1/2 flying body gives the grove an inexpensive blocker while larger Treefolk develop.",
+        "caution": "One power is modest pressure; whether to attack or preserve an aerial blocker remains a normal combat decision.",
+        "manaNote": "Costs W; flying is its only ability.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "389f0045-218d-41cd-bdca-8a9a0ab1b31b",
+      "oracle_id": "68a99e50-0e98-480b-ad25-aa2c226d24ca",
+      "multiverse_ids": [
+        503607
+      ],
+      "mtgo_id": 87325,
+      "arena_id": 75038,
+      "tcgplayer_id": 230904,
+      "cardmarket_id": 532267,
+      "name": "Battlefield Raptor",
+      "lang": "en",
+      "released_at": "2021-02-05",
+      "uri": "https://api.scryfall.com/cards/389f0045-218d-41cd-bdca-8a9a0ab1b31b",
+      "scryfall_uri": "https://scryfall.com/card/khm/3/battlefield-raptor?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T07:38:10Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.jpg?1783928290",
+        "normal": "https://cards.scryfall.io/normal/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.jpg?1783928290",
+        "large": "https://cards.scryfall.io/large/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.jpg?1783928290",
+        "png": "https://cards.scryfall.io/png/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.png?1783928290",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.jpg?1783928290",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.jpg?1783928290",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.webp?1783928290",
+        "grid": "https://cards.scryfall.io/grid/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.webp?1783928290",
+        "display": "https://cards.scryfall.io/display/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.webp?1783928290",
+        "art": "https://cards.scryfall.io/art/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.webp?1783928290",
+        "crop": "https://cards.scryfall.io/crop/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.webp?1783928290",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/8/389f0045-218d-41cd-bdca-8a9a0ab1b31b.jpg?1783928290"
+      },
+      "mana_cost": "{W}",
+      "cmc": 1,
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying, first strike",
+      "power": "1",
+      "toughness": "2",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying",
+        "First strike"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "arena",
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "43057fad-b1c1-437f-bc48-0045bce6d8c9",
+      "set": "khm",
+      "set_name": "Kaldheim",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/43057fad-b1c1-437f-bc48-0045bce6d8c9",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Akhm&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/khm?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/389f0045-218d-41cd-bdca-8a9a0ab1b31b/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A68a99e50-0e98-480b-ad25-aa2c226d24ca&unique=prints",
+      "collector_number": "3",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "It wheeled upward, away from the shrieks and thunder. It reached the point where sky met smoke, and, with but a glance at the horizon, aimed itself and dove.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Mike Bierek",
+      "artist_ids": [
+        "e5f52ef5-1a2e-4128-90b0-ccc71cd47ea7"
+      ],
+      "illustration_id": "c3f36b64-1016-4227-b896-6ea3bb1317cc",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 7973,
+      "penny_rank": 5354,
+      "preview": {
+        "source": "Kitboga",
+        "source_uri": "https://www.twitch.tv/videos/874607974?t=05h55m19s",
+        "previewed_at": "2021-01-15"
+      },
+      "prices": {
+        "usd": "0.28",
+        "usd_foil": "0.26",
+        "usd_etched": null,
+        "eur": "0.08",
+        "eur_foil": "0.20",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=503607&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBattlefield%2BRaptor",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBattlefield%2BRaptor",
+        "edhrec": "https://edhrec.com/route/?cc=Battlefield+Raptor"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F230904%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=532267&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/87325?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "flying",
+          "first strike"
+        ],
+        "note": "A literal bird: one mana buys a 1/2 with flying and first strike. It offers cheap combat participation and can make good use of general power boosts from either packet.",
+        "caution": "First strike adds a damage-step rule. Buffed flying first strike may be strong in this small casual box, so compare its power level with the simpler birds.",
+        "manaNote": "Costs W; no partner dependency.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "9395663f-c7af-4d51-ba2a-3b76db8c25ec",
+      "oracle_id": "7fc904aa-377b-4671-8308-275205f56d81",
+      "multiverse_ids": [
+        382240
+      ],
+      "tcgplayer_id": 83171,
+      "cardmarket_id": 267058,
+      "name": "Courier Hawk",
+      "lang": "en",
+      "released_at": "2014-06-06",
+      "uri": "https://api.scryfall.com/cards/9395663f-c7af-4d51-ba2a-3b76db8c25ec",
+      "scryfall_uri": "https://scryfall.com/card/cns/68/courier-hawk?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:42:46Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.jpg?1783939366",
+        "normal": "https://cards.scryfall.io/normal/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.jpg?1783939366",
+        "large": "https://cards.scryfall.io/large/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.jpg?1783939366",
+        "png": "https://cards.scryfall.io/png/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.png?1783939366",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.jpg?1783939366",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.jpg?1783939366",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.webp?1783939366",
+        "grid": "https://cards.scryfall.io/grid/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.webp?1783939366",
+        "display": "https://cards.scryfall.io/display/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.webp?1783939366",
+        "art": "https://cards.scryfall.io/art/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.webp?1783939366",
+        "crop": "https://cards.scryfall.io/crop/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.webp?1783939366",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/3/9395663f-c7af-4d51-ba2a-3b76db8c25ec.jpg?1783939366"
+      },
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying, vigilance",
+      "power": "1",
+      "toughness": "2",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying",
+        "Vigilance"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "7d4ebb59-a50b-45b8-8fff-ab70767819a5",
+      "set": "cns",
+      "set_name": "Conspiracy",
+      "set_type": "draft_innovation",
+      "set_uri": "https://api.scryfall.com/sets/7d4ebb59-a50b-45b8-8fff-ab70767819a5",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Acns&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/cns?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/9395663f-c7af-4d51-ba2a-3b76db8c25ec/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A7fc904aa-377b-4671-8308-275205f56d81&unique=prints",
+      "collector_number": "68",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "The Orzhov started using hawks as messengers in order to bypass the many toll roads and bridges that dot Ravnica. Soon the service became one of their most profitable businesses.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Mark Poole",
+      "artist_ids": [
+        "bfdeaf09-f915-4058-8e8b-bcac3bc43c33"
+      ],
+      "illustration_id": "170a9ce4-3e09-4fdd-992e-118f6e553372",
+      "border_color": "black",
+      "frame": "2003",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 23428,
+      "penny_rank": 14814,
+      "prices": {
+        "usd": "0.14",
+        "usd_foil": "0.40",
+        "usd_etched": null,
+        "eur": "0.10",
+        "eur_foil": "0.19",
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=382240&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DCourier%2BHawk",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DCourier%2BHawk",
+        "edhrec": "https://edhrec.com/route/?cc=Courier+Hawk"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F83171%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=267058&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Courier+Hawk&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "flying",
+          "vigilance"
+        ],
+        "note": "A literal hawk with a 1/2 flying, vigilant body for two mana. Can contribute attacks while staying available to block, complementing slower ground creatures without needing a specific partner.",
+        "caution": "Small combat stats; vigilance does not let it survive larger attackers on its own.",
+        "manaNote": "Costs 1W; two familiar keywords and no triggered or activated abilities.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "28a1f83c-a9ef-463e-97b5-2ca3b7232f82",
+      "oracle_id": "a8d31e2f-7b2e-4135-8074-9e6ef778bd80",
+      "multiverse_ids": [
+        370720
+      ],
+      "mtgo_id": 49115,
+      "mtgo_foil_id": 49116,
+      "tcgplayer_id": 69955,
+      "cardmarket_id": 262935,
+      "name": "Suntail Hawk",
+      "lang": "en",
+      "released_at": "2013-07-19",
+      "uri": "https://api.scryfall.com/cards/28a1f83c-a9ef-463e-97b5-2ca3b7232f82",
+      "scryfall_uri": "https://scryfall.com/card/m14/40/suntail-hawk?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:52:18Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.jpg?1783939938",
+        "normal": "https://cards.scryfall.io/normal/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.jpg?1783939938",
+        "large": "https://cards.scryfall.io/large/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.jpg?1783939938",
+        "png": "https://cards.scryfall.io/png/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.png?1783939938",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.jpg?1783939938",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.jpg?1783939938",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.webp?1783939938",
+        "grid": "https://cards.scryfall.io/grid/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.webp?1783939938",
+        "display": "https://cards.scryfall.io/display/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.webp?1783939938",
+        "art": "https://cards.scryfall.io/art/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.webp?1783939938",
+        "crop": "https://cards.scryfall.io/crop/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.webp?1783939938",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/8/28a1f83c-a9ef-463e-97b5-2ca3b7232f82.jpg?1783939938"
+      },
+      "mana_cost": "{W}",
+      "cmc": 1,
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying",
+      "power": "1",
+      "toughness": "1",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying"
+      ],
+      "all_parts": [
+        {
+          "object": "related_card",
+          "id": "97370a09-8bf8-4be6-a5f3-a38b67a570f4",
+          "component": "combo_piece",
+          "name": "Suntail Squadron",
+          "type_line": "Instant",
+          "uri": "https://api.scryfall.com/cards/97370a09-8bf8-4be6-a5f3-a38b67a570f4"
+        },
+        {
+          "object": "related_card",
+          "id": "28a1f83c-a9ef-463e-97b5-2ca3b7232f82",
+          "component": "combo_piece",
+          "name": "Suntail Hawk",
+          "type_line": "Creature — Bird",
+          "uri": "https://api.scryfall.com/cards/28a1f83c-a9ef-463e-97b5-2ca3b7232f82"
+        }
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "e03ee1c0-ecd2-4fcc-ac3c-e8fdb103a847",
+      "set": "m14",
+      "set_name": "Magic 2014",
+      "set_type": "core",
+      "set_uri": "https://api.scryfall.com/sets/e03ee1c0-ecd2-4fcc-ac3c-e8fdb103a847",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Am14&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/m14?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/28a1f83c-a9ef-463e-97b5-2ca3b7232f82/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa8d31e2f-7b2e-4135-8074-9e6ef778bd80&unique=prints",
+      "collector_number": "40",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "\"They are the finest companions in the realm. Swift, clever, and easily trained to hunt intruders.\"\n—Almira, falconer",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Heather Hudson",
+      "artist_ids": [
+        "4441fe52-9e41-40c1-9b74-8510426279ab"
+      ],
+      "illustration_id": "3b1d0352-cbfc-4b87-8b66-172069391d02",
+      "border_color": "black",
+      "frame": "2003",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 20063,
+      "penny_rank": 11991,
+      "prices": {
+        "usd": "0.18",
+        "usd_foil": "0.19",
+        "usd_etched": null,
+        "eur": "0.07",
+        "eur_foil": "0.23",
+        "tix": "0.04"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=370720&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSuntail%2BHawk",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSuntail%2BHawk",
+        "edhrec": "https://edhrec.com/route/?cc=Suntail+Hawk"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F69955%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=262935&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/49115?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "flying",
+          "simple baseline"
+        ],
+        "note": "Preferred bird candidate for Ancient Grove, endorsed by the owner alongside Healer's Hawk and Rustwing Falcon. Its classic one-mana 1/1 flying body supplies another distinct inexpensive bird, preserving singleton variety instead of requiring duplicate Falcons or Hawks.",
+        "caution": "Rustwing Falcon has one more toughness at the same cost, and Healer's Hawk adds lifelink. Suntail's lower raw rate is an accepted tradeoff for familiar, simple play and fewer duplicates; test the resulting combined deck's early game.",
+        "manaNote": "Costs W; flying is its only ability.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "0c83aa5e-b607-4c4f-a5f6-db61c93a1152",
+      "oracle_id": "adb5883d-44cc-455e-94dc-20e1c1f97d68",
+      "multiverse_ids": [
+        394729
+      ],
+      "mtgo_id": 56144,
+      "mtgo_foil_id": 56145,
+      "tcgplayer_id": 96633,
+      "cardmarket_id": 273301,
+      "name": "Territorial Roc",
+      "lang": "en",
+      "released_at": "2015-03-27",
+      "uri": "https://api.scryfall.com/cards/0c83aa5e-b607-4c4f-a5f6-db61c93a1152",
+      "scryfall_uri": "https://scryfall.com/card/dtk/43/territorial-roc?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:30:11Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.jpg?1783938611",
+        "normal": "https://cards.scryfall.io/normal/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.jpg?1783938611",
+        "large": "https://cards.scryfall.io/large/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.jpg?1783938611",
+        "png": "https://cards.scryfall.io/png/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.png?1783938611",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.jpg?1783938611",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.jpg?1783938611",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.webp?1783938611",
+        "grid": "https://cards.scryfall.io/grid/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.webp?1783938611",
+        "display": "https://cards.scryfall.io/display/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.webp?1783938611",
+        "art": "https://cards.scryfall.io/art/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.webp?1783938611",
+        "crop": "https://cards.scryfall.io/crop/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.webp?1783938611",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/c/0c83aa5e-b607-4c4f-a5f6-db61c93a1152.jpg?1783938611"
+      },
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying",
+      "power": "1",
+      "toughness": "3",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "7e72625f-f320-4552-a719-d11e2f1853bd",
+      "set": "dtk",
+      "set_name": "Dragons of Tarkir",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/7e72625f-f320-4552-a719-d11e2f1853bd",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Adtk&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/dtk?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/0c83aa5e-b607-4c4f-a5f6-db61c93a1152/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aadb5883d-44cc-455e-94dc-20e1c1f97d68&unique=prints",
+      "collector_number": "43",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "\"Such lesser creatures must be purged from the sky. What use do they have but to help channel the lightning of our mighty dragonlord?\"\n—Gvar Barzeel, Kolaghan warrior",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "YW Tang",
+      "artist_ids": [
+        "63b2909b-7102-49c5-8f9d-6116a1913308"
+      ],
+      "illustration_id": "5ad520d6-00d7-4ddb-918e-dccc31414595",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 28684,
+      "prices": {
+        "usd": "0.02",
+        "usd_foil": "0.28",
+        "usd_etched": null,
+        "eur": "0.09",
+        "eur_foil": "0.22",
+        "tix": "0.10"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=394729&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTerritorial%2BRoc",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTerritorial%2BRoc",
+        "edhrec": "https://edhrec.com/route/?cc=Territorial+Roc"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F96633%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=273301&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/56144?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "flying",
+          "early blocker"
+        ],
+        "note": "A literal roc with a two-mana 1/3 flying body. A simple defensive bird that can buy time for Treefolk or Hoofprints and works with every Plant partner.",
+        "caution": "Only one power; adding many defensive creatures can stall the ground game unless the combined deck has effective finishers.",
+        "manaNote": "Costs 1W; flying is its only ability.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "be04ea4a-087e-4a6d-9973-0778a1ed2b7e",
+      "oracle_id": "edf7c98a-c2ed-4ba2-ac08-e83db0d968cb",
+      "multiverse_ids": [
+        111225
+      ],
+      "mtgo_id": 24331,
+      "mtgo_foil_id": 24332,
+      "tcgplayer_id": 13828,
+      "cardmarket_id": 12964,
+      "name": "Beacon Hawk",
+      "lang": "en",
+      "released_at": "2006-05-05",
+      "uri": "https://api.scryfall.com/cards/be04ea4a-087e-4a6d-9973-0778a1ed2b7e",
+      "scryfall_uri": "https://scryfall.com/card/dis/3/beacon-hawk?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T11:50:49Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.jpg?1783943449",
+        "normal": "https://cards.scryfall.io/normal/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.jpg?1783943449",
+        "large": "https://cards.scryfall.io/large/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.jpg?1783943449",
+        "png": "https://cards.scryfall.io/png/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.png?1783943449",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.jpg?1783943449",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.jpg?1783943449",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.webp?1783943449",
+        "grid": "https://cards.scryfall.io/grid/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.webp?1783943449",
+        "display": "https://cards.scryfall.io/display/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.webp?1783943449",
+        "art": "https://cards.scryfall.io/art/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.webp?1783943449",
+        "crop": "https://cards.scryfall.io/crop/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.webp?1783943449",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/e/be04ea4a-087e-4a6d-9973-0778a1ed2b7e.jpg?1783943449"
+      },
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying\nWhenever this creature deals combat damage to a player, you may untap target creature.\n{W}: This creature gets +0/+1 until end of turn.",
+      "power": "1",
+      "toughness": "1",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "fdebeda1-b95f-4343-8a94-d125821e6b5c",
+      "set": "dis",
+      "set_name": "Dissension",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/fdebeda1-b95f-4343-8a94-d125821e6b5c",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Adis&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/dis?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/be04ea4a-087e-4a6d-9973-0778a1ed2b7e/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aedf7c98a-c2ed-4ba2-ac08-e83db0d968cb&unique=prints",
+      "collector_number": "3",
+      "digital": false,
+      "rarity": "common",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "William Simpson",
+      "artist_ids": [
+        "36636b9a-4dcb-4d69-9a43-c54c824911d5"
+      ],
+      "illustration_id": "4a1c7eef-382a-465f-9e73-40f06c6f8e80",
+      "border_color": "black",
+      "frame": "2003",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 20912,
+      "penny_rank": 15566,
+      "prices": {
+        "usd": "0.12",
+        "usd_foil": "0.39",
+        "usd_etched": null,
+        "eur": "0.09",
+        "eur_foil": "0.31",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=111225&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBeacon%2BHawk",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBeacon%2BHawk",
+        "edhrec": "https://edhrec.com/route/?cc=Beacon+Hawk"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F13828%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=12964&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/24331?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "flying",
+          "untap support"
+        ],
+        "note": "A literal hawk whose combat damage to a player can untap a creature, allowing an attacking Treefolk to be ready for the opponent's turn. Its white-mana toughness ability is also available independently of the partner packet.",
+        "caution": "The untap requires connecting with a player and happens after combat damage; it is not unconditional vigilance or protection during combat. More text than the simplest bird choices.",
+        "manaNote": "Costs 1W for a 1/1; W grants +0/+1 until end of turn.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "fda99319-9312-42c4-adc0-77b49768d014",
+      "oracle_id": "e42450c7-a9de-412f-b439-76f2f9b6031b",
+      "multiverse_ids": [
+        668404
+      ],
+      "mtgo_id": 127588,
+      "tcgplayer_id": 555996,
+      "cardmarket_id": 775509,
+      "name": "Keen-Eyed Raven",
+      "lang": "en",
+      "released_at": "2024-07-05",
+      "uri": "https://api.scryfall.com/cards/fda99319-9312-42c4-adc0-77b49768d014",
+      "scryfall_uri": "https://scryfall.com/card/acr/279/keen-eyed-raven?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T02:48:16Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.jpg?1783910896",
+        "normal": "https://cards.scryfall.io/normal/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.jpg?1783910896",
+        "large": "https://cards.scryfall.io/large/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.jpg?1783910896",
+        "png": "https://cards.scryfall.io/png/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.png?1783910896",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.jpg?1783910896",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.jpg?1783910896",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.webp?1783910896",
+        "grid": "https://cards.scryfall.io/grid/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.webp?1783910896",
+        "display": "https://cards.scryfall.io/display/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.webp?1783910896",
+        "art": "https://cards.scryfall.io/art/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.webp?1783910896",
+        "crop": "https://cards.scryfall.io/crop/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.webp?1783910896",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/d/fda99319-9312-42c4-adc0-77b49768d014.jpg?1783910896"
+      },
+      "mana_cost": "{2}{W}",
+      "cmc": 3,
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying (This creature can't be blocked except by creatures with flying or reach.)\nWhen this creature enters, put a +1/+1 counter on another target creature you control.",
+      "power": "2",
+      "toughness": "2",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "54b67b0b-cd3f-4e0d-ac25-fef5d966409b",
+      "set": "acr",
+      "set_name": "Assassin's Creed",
+      "set_type": "draft_innovation",
+      "set_uri": "https://api.scryfall.com/sets/54b67b0b-cd3f-4e0d-ac25-fef5d966409b",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aacr&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/acr?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/fda99319-9312-42c4-adc0-77b49768d014/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae42450c7-a9de-412f-b439-76f2f9b6031b&unique=prints",
+      "collector_number": "279",
+      "digital": false,
+      "rarity": "uncommon",
+      "flavor_text": "\"What do you see, Sýnin?\"\n—Eivor",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Alexandre Honoré",
+      "artist_ids": [
+        "82ae431c-d7fa-438b-9611-01f704c3a958"
+      ],
+      "illustration_id": "d5944ebd-3c43-4069-96a8-af4a7aebd2f0",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "triangle",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "promo_types": [
+        "universesbeyond"
+      ],
+      "edhrec_rank": 21762,
+      "prices": {
+        "usd": "0.12",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.19",
+        "eur_foil": null,
+        "tix": "0.04"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=668404&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DKeen-Eyed%2BRaven",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DKeen-Eyed%2BRaven",
+        "edhrec": "https://edhrec.com/route/?cc=Keen-Eyed+Raven"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F555996%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=775509&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/127588?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "flying",
+          "growth support"
+        ],
+        "note": "A literal raven with a 2/2 flying body and an entry counter for another creature you control. A straightforward way for the bird to help a Treefolk or a creature from any partner.",
+        "caution": "Three mana sits above the main one- and two-drop gap. It cannot put its entry counter on itself and needs another creature for the bonus.",
+        "manaNote": "Costs 2W; no partner color or extra mana required for the counter.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "ec497930-0104-4fc7-a1c1-9376b9990444",
+      "oracle_id": "67789c0c-3f05-4b0b-a56d-0757ac801d22",
+      "multiverse_ids": [
+        651805
+      ],
+      "mtgo_id": 122924,
+      "tcgplayer_id": 535141,
+      "cardmarket_id": 753132,
+      "name": "Roc Charger",
+      "lang": "en",
+      "released_at": "2024-02-23",
+      "uri": "https://api.scryfall.com/cards/ec497930-0104-4fc7-a1c1-9376b9990444",
+      "scryfall_uri": "https://scryfall.com/card/clu/70/roc-charger?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T03:16:02Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.jpg?1783912562",
+        "normal": "https://cards.scryfall.io/normal/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.jpg?1783912562",
+        "large": "https://cards.scryfall.io/large/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.jpg?1783912562",
+        "png": "https://cards.scryfall.io/png/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.png?1783912562",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.jpg?1783912562",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.jpg?1783912562",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.webp?1783912562",
+        "grid": "https://cards.scryfall.io/grid/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.webp?1783912562",
+        "display": "https://cards.scryfall.io/display/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.webp?1783912562",
+        "art": "https://cards.scryfall.io/art/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.webp?1783912562",
+        "crop": "https://cards.scryfall.io/crop/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.webp?1783912562",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/c/ec497930-0104-4fc7-a1c1-9376b9990444.jpg?1783912562"
+      },
+      "mana_cost": "{2}{W}",
+      "cmc": 3,
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying\nWhenever this creature attacks, target attacking creature without flying gains flying until end of turn.",
+      "power": "1",
+      "toughness": "3",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "d4bfabcf-a859-43a4-9d8a-665533c8b174",
+      "set": "clu",
+      "set_name": "Ravnica: Clue Edition",
+      "set_type": "draft_innovation",
+      "set_uri": "https://api.scryfall.com/sets/d4bfabcf-a859-43a4-9d8a-665533c8b174",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aclu&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/clu?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/ec497930-0104-4fc7-a1c1-9376b9990444/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A67789c0c-3f05-4b0b-a56d-0757ac801d22&unique=prints",
+      "collector_number": "70",
+      "digital": false,
+      "rarity": "uncommon",
+      "flavor_text": "Rocs' innate fearlessness makes them ideal mounts for emergency response.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Titus Lunter",
+      "artist_ids": [
+        "b11e6b3a-f4ca-4cf1-8fd7-475696de5f5c"
+      ],
+      "illustration_id": "fa70a4d6-7bdf-4e56-a037-5cbc8c527dba",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "edhrec_rank": 26873,
+      "prices": {
+        "usd": "0.15",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.17",
+        "eur_foil": null,
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=651805&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRoc%2BCharger",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRoc%2BCharger",
+        "edhrec": "https://edhrec.com/route/?cc=Roc+Charger"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F535141%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=753132&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/122924?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "flying",
+          "evasion support",
+          "Treefolk attack support"
+        ],
+        "note": "A literal roc that can give another attacking creature without flying flying for the turn when it attacks. It offers an attacking Treefolk, or a ground creature from any partner, temporary evasion.",
+        "caution": "Both creatures must attack, so it cannot launch a defender that cannot attack. The granted flying lasts only that turn; the roc is a three-mana 1/3.",
+        "manaNote": "Costs 2W; its attack trigger requires no additional mana.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "bce2209e-7a5c-4394-876c-e0f68cfba9ca",
+      "oracle_id": "0f96c48f-aceb-4554-8b06-cca162151a64",
+      "multiverse_ids": [
+        562924
+      ],
+      "mtgo_id": 100080,
+      "tcgplayer_id": 273329,
+      "cardmarket_id": 660850,
+      "name": "Scouting Hawk",
+      "lang": "en",
+      "released_at": "2022-06-10",
+      "uri": "https://api.scryfall.com/cards/bce2209e-7a5c-4394-876c-e0f68cfba9ca",
+      "scryfall_uri": "https://scryfall.com/card/clb/41/scouting-hawk?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T06:06:43Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.jpg?1783922803",
+        "normal": "https://cards.scryfall.io/normal/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.jpg?1783922803",
+        "large": "https://cards.scryfall.io/large/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.jpg?1783922803",
+        "png": "https://cards.scryfall.io/png/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.png?1783922803",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.jpg?1783922803",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.jpg?1783922803",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.webp?1783922803",
+        "grid": "https://cards.scryfall.io/grid/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.webp?1783922803",
+        "display": "https://cards.scryfall.io/display/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.webp?1783922803",
+        "art": "https://cards.scryfall.io/art/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.webp?1783922803",
+        "crop": "https://cards.scryfall.io/crop/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.webp?1783922803",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/c/bce2209e-7a5c-4394-876c-e0f68cfba9ca.jpg?1783922803"
+      },
+      "mana_cost": "{2}{W}",
+      "cmc": 3,
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying\nKeen Sight — When this creature enters, if an opponent controls more lands than you, search your library for a basic Plains card, put it onto the battlefield tapped, then shuffle.",
+      "power": "1",
+      "toughness": "1",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying",
+        "Keen Sight"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "not_legal",
+        "modern": "not_legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+      "set": "clb",
+      "set_name": "Commander Legends: Battle for Baldur's Gate",
+      "set_type": "draft_innovation",
+      "set_uri": "https://api.scryfall.com/sets/5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aclb&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/clb?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/bce2209e-7a5c-4394-876c-e0f68cfba9ca/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A0f96c48f-aceb-4554-8b06-cca162151a64&unique=prints",
+      "collector_number": "41",
+      "digital": false,
+      "rarity": "common",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Ilse Gort",
+      "artist_ids": [
+        "12070c2e-4de6-46bc-b379-8a580dfb34c5"
+      ],
+      "illustration_id": "cc78d492-034a-4f1f-a000-c89a29290392",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 9661,
+      "prices": {
+        "usd": "0.34",
+        "usd_foil": "0.23",
+        "usd_etched": null,
+        "eur": "0.19",
+        "eur_foil": "0.23",
+        "tix": "4.42"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=562924&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DScouting%2BHawk",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DScouting%2BHawk",
+        "edhrec": "https://edhrec.com/route/?cc=Scouting+Hawk"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F273329%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=660850&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/100080?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "flying",
+          "catch-up ramp"
+        ],
+        "note": "A literal hawk that can find a basic Plains and put it onto the battlefield tapped on entry if an opponent controls more lands. Conditional ramp may help reach the grove's larger threats.",
+        "caution": "Only a three-mana 1/1 if the condition fails. The search finds a basic Plains, not the partner's Forest or Swamp, and adds searching and shuffling.",
+        "manaNote": "Costs 2W; the entry condition checks relative land counts.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "8af7956d-f811-49d3-bef7-07f294dcea3c",
+      "oracle_id": "954836f8-c225-450a-bb51-f2adb6923ef5",
+      "multiverse_ids": [
+        401454
+      ],
+      "mtgo_id": 58203,
+      "mtgo_foil_id": 58204,
+      "tcgplayer_id": 100428,
+      "cardmarket_id": 283822,
+      "name": "Eagle of the Watch",
+      "lang": "en",
+      "released_at": "2015-07-17",
+      "uri": "https://api.scryfall.com/cards/8af7956d-f811-49d3-bef7-07f294dcea3c",
+      "scryfall_uri": "https://scryfall.com/card/ori/275/eagle-of-the-watch?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:24:59Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.jpg?1783938299",
+        "normal": "https://cards.scryfall.io/normal/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.jpg?1783938299",
+        "large": "https://cards.scryfall.io/large/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.jpg?1783938299",
+        "png": "https://cards.scryfall.io/png/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.png?1783938299",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.jpg?1783938299",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.jpg?1783938299",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.webp?1783938299",
+        "grid": "https://cards.scryfall.io/grid/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.webp?1783938299",
+        "display": "https://cards.scryfall.io/display/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.webp?1783938299",
+        "art": "https://cards.scryfall.io/art/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.webp?1783938299",
+        "crop": "https://cards.scryfall.io/crop/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.webp?1783938299",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/a/8af7956d-f811-49d3-bef7-07f294dcea3c.jpg?1783938299"
+      },
+      "mana_cost": "{2}{W}",
+      "cmc": 3,
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying, vigilance",
+      "power": "2",
+      "toughness": "1",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying",
+        "Vigilance"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "0eeb9a9a-20ac-404d-b55f-aeb7a43a7f62",
+      "set": "ori",
+      "set_name": "Magic Origins",
+      "set_type": "core",
+      "set_uri": "https://api.scryfall.com/sets/0eeb9a9a-20ac-404d-b55f-aeb7a43a7f62",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aori&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/ori?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/8af7956d-f811-49d3-bef7-07f294dcea3c/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A954836f8-c225-450a-bb51-f2adb6923ef5&unique=prints",
+      "collector_number": "275",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "\"Even from miles away, I could see our eagles circling. That's when I knew we were needed at home.\"\n—Kanlos, Akroan captain",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Scott Murphy",
+      "artist_ids": [
+        "07c7ac65-dfa6-4273-9c66-ec9d8f3e2226"
+      ],
+      "illustration_id": "8c99c0f0-215c-4719-8f8a-bac2eb6c7f96",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "promo_types": [
+        "starterdeck"
+      ],
+      "edhrec_rank": 26748,
+      "prices": {
+        "usd": "0.06",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.07",
+        "eur_foil": null,
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=401454&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DEagle%2Bof%2Bthe%2BWatch",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DEagle%2Bof%2Bthe%2BWatch",
+        "edhrec": "https://edhrec.com/route/?cc=Eagle+of+the+Watch"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F100428%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=283822&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/58203?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "flying",
+          "vigilance",
+          "eagle ally"
+        ],
+        "note": "A literal eagle with a 2/1 flying, vigilant body, matching the owner's great-eagle ally direction without humanoid Bird people. A simple three-mana comparison to the more involved support birds.",
+        "caution": "Three mana does not solve the first two turns, and one toughness makes it fragile.",
+        "manaNote": "Costs 2W; no partner dependency.",
+        "crossover": false
+      }
+    }
+  ]
+}

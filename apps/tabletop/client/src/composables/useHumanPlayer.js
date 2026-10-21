@@ -1,6 +1,7 @@
 import { computed, ref, shallowRef, watch } from "vue";
 import { previewHumanActions } from "../../../shared/human-preview.mjs";
 import { cardDropActions } from "../../../shared/human-card-moves.mjs";
+import { packetSelectionError } from "../components/preparation/packet-selection.mjs";
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 const readStorage = (key) => {
@@ -66,11 +67,13 @@ export function useHumanPlayer({
   const displayTable = computed(
     () => preview.value || view.value || publicTable.value,
   );
+  const preparing = computed(() => displayTable.value?.preparation?.status === "selecting");
+  const betweenGames = computed(() => displayTable.value?.series?.status === "between_games");
   const canAct = computed(
     () =>
       fresh.value &&
       !!snapshot.value?.canAct &&
-      !snapshot.value.table.result &&
+      (!snapshot.value.table.result || betweenGames.value) &&
       !app.value?.postgame &&
       app.value?.coordinator?.pendingRecipient?.playerId === seatId.value &&
       !(app.value?.coordinator?.players || []).some((p) => p.active) &&
@@ -82,13 +85,15 @@ export function useHumanPlayer({
       !!seatId.value &&
       !!snapshot.value &&
       snapshot.value.canChat !== false &&
-      !snapshot.value.table.result &&
+      (!snapshot.value.table.result || betweenGames.value) &&
       !app.value?.postgame &&
       !busy.value,
   );
   const canCommit = computed(
     () =>
       canAct.value &&
+      !preparing.value &&
+      !betweenGames.value &&
       !stale.value &&
       !failedDraft.value &&
       previewResult.value?.valid !== false,
@@ -100,8 +105,12 @@ export function useHumanPlayer({
         ? "Enter a human seat to see your hand."
         : !snapshot.value
           ? "Loading your seat…"
+          : betweenGames.value
+            ? (canAct.value ? "Prepare your deck and confirm you are ready for the next game." : "Waiting for players to prepare the next game. You can still chat.")
           : snapshot.value.table.result
-            ? "The game has ended."
+            ? "The match has ended."
+            : preparing.value
+              ? (canAct.value ? "Choose and confirm two packets." : "Waiting for packet selection. You can still chat.")
             : canAct.value
               ? "Your response · moves stay queued until you send."
               : snapshot.value.message ||
@@ -257,6 +266,8 @@ export function useHumanPlayer({
   }
   function queue(action, label) {
     ensureWritable();
+    if (preparing.value) throw Error("Choose packets before taking game actions.");
+    if (betweenGames.value) throw Error("Prepare the next game before taking game actions.");
     const entries = Array.isArray(action)
       ? action.map((item) => ({
           action: item.action || item.op,
@@ -327,7 +338,10 @@ export function useHumanPlayer({
       source,
       target,
     );
-    if (actions.length) queue(actions);
+    if (!actions.length) return false;
+    // A drop may contain a move followed by attachment. Add the complete
+    // validated set together so no intermediate preview reaches the server.
+    queue(actions);
     selectedSource.value = null;
     return true;
   }
@@ -386,6 +400,67 @@ export function useHumanPlayer({
       `/api/human/card?${new URLSearchParams({ matchId: matchId.value, playerId: seatId.value, id: card.id })}`,
     );
   }
+  async function readSideboard() {
+    if (!seatId.value || !betweenGames.value) return null;
+    return request(`/api/human/sideboard?${new URLSearchParams({ matchId: matchId.value, playerId: seatId.value })}`);
+  }
+  async function prepareNextGame({ main, startingPlayer, message: readinessMessage } = {}) {
+    const serial = generation;
+    try {
+      error.value = "";
+      ensureWritable();
+      if (!betweenGames.value) throw Error("The table is not between games.");
+      if (pending.value.length) throw Error("Clear queued game actions first.");
+      const actions = [];
+      if (main) actions.push({ type: "sideboard", main: clone(main) });
+      actions.push({ type: "ready_next_game", ...(startingPlayer ? { starting_player: startingPlayer } : {}), ...(readinessMessage?.trim() ? { message: readinessMessage.trim() } : {}) });
+      busy.value = true;
+      const result = await request("/api/human/act", {
+        matchId: matchId.value, playerId: seatId.value,
+        revision: snapshot.value.table.revision, actions,
+        reason: "Prepare the next game",
+      });
+      if (serial !== generation) return false;
+      resetDraft();
+      accept(result);
+      await refresh();
+      return true;
+    } catch (err) {
+      if (serial === generation) error.value = `${err.message} Your changes were not automatically retried.`;
+      return false;
+    } finally {
+      busy.value = false;
+      void refreshView();
+    }
+  }
+  async function selectPackets(packetIds) {
+    const serial = generation;
+    try {
+      error.value = "";
+      ensureWritable();
+      const invalid = packetSelectionError(snapshot.value.table.preparation, seatId.value, packetIds);
+      if (invalid) throw Error(invalid);
+      if (pending.value.length) throw Error("Clear queued game actions before choosing packets.");
+      busy.value = true;
+      const result = await request("/api/human/act", {
+        matchId: matchId.value,
+        playerId: seatId.value,
+        revision: snapshot.value.table.revision,
+        actions: [{ type: "select_packets", packetIds: [...packetIds] }],
+        reason: "Select Jumpstart packets",
+      });
+      if (serial !== generation) return false;
+      accept(result);
+      await refresh();
+      return true;
+    } catch (err) {
+      if (serial === generation) error.value = `${err.message} Your selection was not automatically retried.`;
+      return false;
+    } finally {
+      busy.value = false;
+      void refreshView();
+    }
+  }
   async function send(options = {}) {
     const text = String(options.message ?? message.value).trim();
     let terminal = options.handoff;
@@ -405,6 +480,8 @@ export function useHumanPlayer({
       let path, body;
       if (commit) {
         ensureWritable();
+        if (preparing.value) throw Error("Confirm packet selection before passing priority or taking game actions.");
+        if (betweenGames.value) throw Error("Prepare the next game before passing priority or taking game actions.");
         const actions = clone(pending.value.map((item) => item.action));
         if (terminal && ["pass", "pass_turn"].includes(terminal.type)) {
           actions.push({ ...terminal, ...(text ? { message: text } : {}) });
@@ -494,6 +571,8 @@ export function useHumanPlayer({
     canAct,
     canCommit,
     canChat,
+    preparing,
+    betweenGames,
     stale,
     failedDraft,
     previewResult,
@@ -510,6 +589,9 @@ export function useHumanPlayer({
     remove,
     clear,
     send,
+    selectPackets,
+    readSideboard,
+    prepareNextGame,
     refreshView,
     canDrag,
     canDrop,

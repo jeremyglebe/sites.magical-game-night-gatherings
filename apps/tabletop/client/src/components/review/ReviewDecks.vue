@@ -20,6 +20,10 @@ watch(
 const deck = computed(() =>
   props.decks.find((deck) => deck.id === selected.value),
 );
+const groups = computed(() => deck.value ? [
+  { title: "Main deck", cards: deck.value.cards, total: deck.value.total },
+  ...(deck.value.sideboard?.length ? [{ title: "Sideboard", cards: deck.value.sideboard, total: deck.value.sideboardTotal ?? deck.value.sideboard.reduce((sum, card) => sum + card.count, 0) }] : []),
+] : []);
 const player = (id) => props.players.find((player) => player.id === id) || {};
 </script>
 <template>
@@ -73,15 +77,19 @@ const player = (id) => props.players.find((player) => player.id === id) || {};
         {{
           deck.source === "setup"
             ? "Full starting deck saved with this game. Select a card for its cached Oracle text and rulings."
-            : deck.note
+            : deck.source === "game-start"
+              ? "Deck and sideboard saved at the start of this game. Select a card for its cached Oracle text and rulings."
+              : deck.note
         }}
       </p>
       <p v-if="!deck.cards.length" class="py-5 text-sm">
         No card definitions were saved for this player.
       </p>
+      <section v-for="group in groups" :key="group.title" class="mt-5" :aria-label="group.title">
+      <h3 v-if="groups.length > 1" class="mb-3 font-semibold">{{ group.title }} · {{ group.total }} cards</h3>
       <ul class="grid gap-x-6 gap-y-3 sm:grid-cols-2 xl:grid-cols-3">
         <li
-          v-for="(item, index) in deck.cards"
+          v-for="(item, index) in group.cards"
           :key="index"
           class="flex min-w-0 items-center gap-3 border-b border-base-300 pb-3"
         >
@@ -108,6 +116,7 @@ const player = (id) => props.players.find((player) => player.id === id) || {};
           </button>
         </li>
       </ul>
+      </section>
     </div>
   </section>
 </template>

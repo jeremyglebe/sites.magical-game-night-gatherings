@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { parseArgs } from 'node:util';
 import { startTable } from './server.mjs';
-import { observe, eventsSince } from './table.mjs';
+import { observe, eventsSince, sideboardingView } from './table.mjs';
 import { recordingMarkdown } from './game-log.mjs';
 import { createCoordinator } from './coordinator.mjs';
 import { createCodexRunner } from './codex-player.mjs';
@@ -16,13 +16,14 @@ import { readCodexPlanUsage } from './plan-usage.mjs';
 import { recordPlanUsage, planUsageView } from './usage-tracking.mjs';
 import { assignAvatars, serveAvatar, avatarNames } from './avatars.mjs';
 import { createArchive } from './archive.mjs';
+import { preparationSources } from './preparation.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const precons = JSON.parse(readFileSync(join(here, 'precons.json'), 'utf8'));
+const matchFinished = state => !!state.result && (!state.series || state.series.status === 'complete');
 export const defaults = { model: 'gpt-6-luna', reasoning: 'high', speed: 'standard' };
-export const presets = precons.players.map((p, i) => ({
-  id: i === 0 ? 'white' : 'green', name: p.name, cards: p.deck.reduce((sum, c) => sum + (c.count ?? 1), 0),
-}));
+export const defaultPreparation = Object.freeze({ kind: 'jumpstart', source: 'zombies-vs-plants-v0.1' });
+// Retain the empty field for older clients without offering the retired demos.
+export const presets = Object.freeze([]);
 const json = (response, status, value) => {
   response.writeHead(status, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
   response.end(JSON.stringify(value));
@@ -45,26 +46,39 @@ const closeServer = server => new Promise((ok, fail) => server.close(error => er
 
 export function normalizeSetup(input) {
   if (!input || !Array.isArray(input.players) || input.players.length < 1) throw new Error('Add at least one player');
+  if (input.allowBanter !== undefined && typeof input.allowBanter !== 'boolean') throw new Error('AI may banter must be true or false');
+  const preparation = input.preparation ?? (input.players.length === 2
+    && input.players.every(p => p.deck == null && p.deckPreset == null) ? defaultPreparation : null);
+  if (preparation && (preparation.kind !== 'jumpstart'
+    || !preparationSources.some(source => source.id === preparation.source))) throw new Error('Unknown packet selection source');
   const players = input.players.map((p, i) => {
     if (['__proto__', 'constructor', 'prototype'].includes(p.id)) throw new Error('Choose a different player ID');
-    const choice = p.deck ?? p.deckPreset ?? (i % 2 ? 'green' : 'white');
-    const preset = typeof choice === 'string' ? presets.findIndex(item => item.id === choice) : -1;
-    if (!Array.isArray(choice) && preset < 0) throw new Error('Unknown deck preset');
+    const choice = p.deck ?? p.deckPreset;
+    if (p.sideboard !== undefined && !Array.isArray(p.sideboard)) throw new Error('Sideboards must be card arrays');
+    if (preparation && p.sideboard?.length) throw new Error('This Jumpstart boxed set has no sideboard');
+    if (!preparation && !Array.isArray(choice)) {
+      throw new Error('Choose a Jumpstart boxed set or supply a deck array for every player. The original test-deck presets are retired.');
+    }
     const model = p.model || defaults.model;
     const reasoning = p.reasoning || defaults.reasoning;
     if (!/^[\w.-]{1,120}$/.test(model)) throw new Error('Invalid model');
     if (!['low', 'medium', 'high', 'xhigh', 'max'].includes(reasoning)) throw new Error('Invalid reasoning setting');
     return {
       ...p, id: p.id || `p${i + 1}`, name: p.name || `Player ${i + 1}`,
-      deck: structuredClone(preset >= 0 ? precons.players[preset].deck : choice),
-      deckPreset: preset >= 0 ? presets[preset].id : null,
+      deck: preparation ? [] : structuredClone(choice),
+      ...(p.sideboard !== undefined ? { sideboard: structuredClone(p.sideboard) } : {}),
+      deckPreset: null,
+      ...(preparation ? { faction: p.faction || (i === 0 ? 'plants' : 'zombies') } : {}),
       model, reasoning, ai: p.ai !== false,
     };
   });
   return {
     ...input, title: input.title || 'Local playtest', players: assignAvatars(players),
+    allowBanter: input.allowBanter ?? true,
     layout: input.layout === 'emperor' ? 'emperor' : 'table',
-    references: input.references || [],
+    ...(preparation ? { preparation: { kind: preparation.kind, source: preparation.source } } : {}),
+    references: preparation ? [...new Set([...(input.references || []),
+      'boxed-sets/zombies-vs-plants-jumpstart.md', 'formats/jumpstart/variants/two-packet.md'])] : input.references || [],
   };
 }
 
@@ -95,10 +109,14 @@ export async function startApp({
     return {
       match: match ? {
         id: match.id, title: match.config.title, layout: match.config.layout,
-        phase: postgame?.status === 'pending' ? 'survey_pending' : coordinator?.status().state || 'paused',
-        session: match.session, players: match.config.players.map(({ deck, ...p }) => p),
+        allowBanter: match.config.allowBanter ?? true,
+        phase: table?.getState().preparation?.status === 'selecting' ? 'preparation'
+          : table?.getState().series?.status === 'between_games' ? 'between_games'
+          : postgame?.status === 'pending' ? 'survey_pending' : coordinator?.status().state || 'paused',
+        session: match.session, players: match.config.players.map(({ deck, sideboard, ...p }) => p),
       } : null,
-      coordinator: coordinator?.status() || null, presets, defaults, avatars: avatarNames, archive: true, humanControls: true,
+      coordinator: coordinator?.status() || null, presets, defaults, defaultPreparation, preparationSources,
+      avatars: avatarNames, archive: true, humanControls: true,
       postgame,
       planUsage: planUsageView(match?.planUsage, { error: usageError, refreshing: !!usageRequest }),
       rules: readRules({}, { comprehensivePath: activeRulesPath || configuredRulesPath, basicPath: activeBasicPath || basicRulesPath }),
@@ -125,21 +143,28 @@ export async function startApp({
     }
     let canAct = false;
     let message;
-    if (state.result) message = 'The game has ended. Complete your post-game questionnaire.';
+    if (matchFinished(state)) message = 'The match has ended. Complete your post-game questionnaire.';
     else if (closing || creating) message = 'The table is changing. Wait for it to reconnect.';
     else {
       try {
         coordinator.authorizeManual(playerId);
         canAct = true;
-        message = ['running', 'stepping'].includes(coordinator.status().mode)
+        message = state.series?.status === 'between_games'
+          ? 'Prepare for the next game, then confirm that you are ready. Your conversation and match score are retained.'
+          : state.preparation?.status === 'selecting'
+          ? 'Choose two packets from your faction, review the combined deck, and confirm your selection.'
+          : ['running', 'stepping'].includes(coordinator.status().mode)
           ? 'You have control. Make your moves, then pass priority or the turn.'
           : 'You have control while paused. Your moves are saved; Resume starts an AI after you hand off.';
       } catch {
-        message = 'Waiting for another player to hand control to you.';
+        message = state.series?.status === 'between_games'
+          ? 'Waiting for the other players to prepare for the next game.'
+          : state.preparation?.status === 'selecting'
+          ? 'Waiting for the other player to choose their packets.' : 'Waiting for another player to hand control to you.';
       }
     }
     const boardRevision = state.events.findLast(event => event.actions.some(action => action.type !== 'say'))?.revision ?? 0;
-    return { matchId, playerId, table: view, canAct, canChat: !state.result && !closing && !creating, boardRevision, message };
+    return { matchId, playerId, table: view, canAct, canChat: !matchFinished(state) && !closing && !creating, boardRevision, message };
   }
   function saveMatch() {
     if (match) save(join(root, 'matches', match.id, 'match.json'), {
@@ -194,7 +219,7 @@ export async function startApp({
     mkdirSync(folder, { recursive: true, mode: 0o700 });
     if (!existsSync(rulesPath) && existsSync(configuredRulesPath)) copyFileSync(configuredRulesPath, rulesPath);
     if (!existsSync(basicPath) && basicRulesPath && existsSync(basicRulesPath)) copyFileSync(basicRulesPath, basicPath);
-    if (!existsSync(rulingsPath)) save(rulingsPath, Object.fromEntries(precons.players.flatMap(p => p.deck)
+    if (!existsSync(rulingsPath)) save(rulingsPath, Object.fromEntries(config.players.flatMap(p => [...(p.deck || []), ...(p.sideboard || [])])
       .filter(card => card.scryfall_id && card.rulings_cache?.status === 'fetched')
       .map(({ scryfall_id, rulings, rulings_cache }) => [scryfall_id, { rulings, rulings_cache }])));
     const cardRulings = JSON.parse(readFileSync(rulingsPath, 'utf8'));
@@ -205,7 +230,7 @@ export async function startApp({
       nextTable = await startTable({
         session, setup: config, port: 0, comprehensivePath: rulesPath, basicPath, cardRulings, postgame: true,
         onCommit: (state, actor) => {
-          if (state.result) {
+          if (matchFinished(state)) {
             const survey = nextTable.getRecording()?.postgame;
             if (survey?.status === 'pending') nextCoordinator?.beginSurvey({
               pending: survey.players.filter(player => !survey.responses[player.id]).map(player => player.id),
@@ -216,7 +241,18 @@ export async function startApp({
           }
           const action = state.events.at(-1)?.actions?.at(-1);
           let handoff;
-          if (action?.type === 'pass' || action?.type === 'pass_turn') {
+          if (action?.type === 'ready_next_game' || (action?.type === 'result' && state.series?.status === 'between_games')) {
+            const between = state.series.status === 'between_games';
+            const preparing = state.preparation?.status === 'selecting';
+            handoff = nextCoordinator?.handoff(actor,
+              between ? state.series.currentPlayer : preparing ? state.preparation.currentPlayer : state.turn.active,
+              state.revision, between ? 'between_games' : preparing ? 'preparation' : 'setup');
+          } else if (action?.type === 'select_packets') {
+            const preparing = state.preparation?.status === 'selecting';
+            handoff = nextCoordinator?.handoff(actor,
+              preparing ? state.preparation.currentPlayer : state.turn.active,
+              state.revision, preparing ? 'preparation' : 'setup');
+          } else if (action?.type === 'pass' || action?.type === 'pass_turn') {
             handoff = nextCoordinator?.handoff(actor, action.next, state.revision, action.type === 'pass_turn' ? 'turn' : 'priority');
           } else nextCoordinator?.notify(state.revision);
           return handoff;
@@ -225,7 +261,7 @@ export async function startApp({
         beforeSurvey: (seat, args) => nextCoordinator.authorizeSurvey(seat, args.decision_id),
         onSurvey: (seat, args) => nextCoordinator.submitSurvey(seat, args.decision_id),
         beforeAction: (seat, args) => {
-          if (nextTable.getState().result) throw new Error('Gameplay has ended; submit post-game feedback instead');
+          if (matchFinished(nextTable.getState())) throw new Error('Gameplay has ended; submit post-game feedback instead');
           if (config.players.find(p => p.id === seat)?.ai) nextCoordinator.authorizeDecision(seat, args.decision_id);
           else nextCoordinator.authorizeManual(seat);
         },
@@ -253,6 +289,7 @@ export async function startApp({
         getConnection: seat => ({ url: nextTable.url, token: nextTable.getToken(seat), seat }),
         quickstart: readRules({ source: 'quickstart', start: 1, count: 120 }, { comprehensivePath: rulesPath }).text,
         basicRules: existsSync(basicPath) ? readFileSync(basicPath, 'utf8') : '',
+        allowBanter: config.allowBanter ?? true,
       });
       nextCoordinator = createCoordinator({
         players: config.players.map(p => ({ ...p, enabled: p.ai })), runPlayer, saved: savedCoordinator,
@@ -271,7 +308,7 @@ export async function startApp({
           }
         },
       });
-      if (nextTable.getState().result) {
+      if (matchFinished(nextTable.getState())) {
         const survey = nextTable.getRecording()?.postgame;
         if (survey?.status === 'pending') nextCoordinator.beginSurvey({
           pending: survey.players.filter(player => !survey.responses[player.id]).map(player => player.id),
@@ -282,16 +319,28 @@ export async function startApp({
       else {
         const state = nextTable.getState();
         nextCoordinator.notify(state.revision);
-        if (!savedCoordinator || (savedCoordinator.version ?? 1) < 2) {
+        if (state.series?.status === 'between_games') {
+          // The durable table determines the next readiness seat even if a
+          // crash interrupted the coordinator's save after the game result.
+          nextCoordinator.wake(state.series.currentPlayer, state.revision, 'between_games');
+        } else if (!savedCoordinator || (savedCoordinator.version ?? 1) < 2) {
           // New matches start with setup; old broadcast queues migrate to one
           // explicit owner inferred from their existing physical turn marker.
-          nextCoordinator.wake(state.turn.priority || state.turn.active, state.revision,
-            state.turn.phase.toLowerCase() === 'setup' ? 'setup' : 'resume');
+          nextCoordinator.wake(state.preparation?.status === 'selecting' ? state.preparation.currentPlayer : state.turn.priority || state.turn.active,
+            state.revision, state.preparation?.status === 'selecting' ? 'preparation'
+              : state.turn.phase.toLowerCase() === 'setup' ? 'setup' : 'resume');
         } else if (state.revision > (savedCoordinator.latestRevision ?? -1)) {
           // A table commit can survive a crash just before coordinator save.
           // Recover the last explicit handoff, never broadcast ordinary actions.
           const action = state.events.at(-1)?.actions?.at(-1);
-          if (action?.type === 'pass' || action?.type === 'pass_turn') {
+          if (action?.type === 'ready_next_game') {
+            const preparing = state.preparation?.status === 'selecting';
+            nextCoordinator.wake(preparing ? state.preparation.currentPlayer : state.turn.active,
+              state.revision, preparing ? 'preparation' : 'setup');
+          } else if (action?.type === 'select_packets') {
+            nextCoordinator.wake(state.preparation?.status === 'selecting' ? state.preparation.currentPlayer : state.turn.active,
+              state.revision, state.preparation?.status === 'selecting' ? 'preparation' : 'setup');
+          } else if (action?.type === 'pass' || action?.type === 'pass_turn') {
             nextCoordinator.wake(action.next, state.revision, action.type === 'pass_turn' ? 'turn' : 'priority');
           }
         }
@@ -379,6 +428,11 @@ export async function startApp({
         const playerId = humanPlayer(url.searchParams.get('matchId'), url.searchParams.get('playerId'));
         json(response, 200, table.readCard(playerId, url.searchParams.get('id'))); return;
       }
+      if (request.method === 'GET' && url.pathname === '/api/human/sideboard') {
+        const playerId = humanPlayer(url.searchParams.get('matchId'), url.searchParams.get('playerId'));
+        const state = table.getState();
+        json(response, 200, { revision: state.revision, ...sideboardingView(state, playerId) }); return;
+      }
       if (request.method === 'POST' && url.pathname === '/api/human/act') {
         const args = await bodyJSON(request);
         const playerId = humanPlayer(args.matchId, args.playerId);
@@ -434,7 +488,15 @@ export async function startApp({
         } else if (action === 'wake') {
           if (coordinator.status().mode !== 'paused' && coordinator.status().state !== 'stalled') throw new Error('Pause the match before giving control');
           coordinator.pause();
-          coordinator.wake(player, table.getState().revision, 'resume');
+          const state = table.getState();
+          if (state.preparation?.status === 'selecting' && player !== state.preparation.currentPlayer) {
+            throw new Error('Packet selection must continue with the player whose choice is pending.');
+          }
+          if (state.series?.status === 'between_games' && player !== state.series.currentPlayer) {
+            throw new Error('Continue with the player whose next-game confirmation is pending.');
+          }
+          coordinator.wake(player, state.revision, state.series?.status === 'between_games' ? 'between_games'
+            : state.preparation?.status === 'selecting' ? 'preparation' : 'resume');
         } else {
           if (action === 'start' || action === 'step') await refreshPlanUsage({ force: true });
           if (closing || version !== controlVersion || target !== coordinator) throw new Error('This control was superseded by a newer match control.');

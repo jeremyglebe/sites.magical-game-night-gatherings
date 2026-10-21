@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from "vue";
+import { playerLabel } from "../../../../shared/table-language.mjs";
 import {
   activityParts,
   avatarImage,
@@ -11,24 +12,24 @@ const props = defineProps({
   event: { type: Object, required: true },
   players: { type: Array, default: () => [] },
   configs: { type: Array, default: () => [] },
+  playerDetails: Boolean,
 });
-const emit = defineEmits(["inspect"]);
+const emit = defineEmits(["inspect", "player-details"]);
 const seat = computed(() =>
   props.players.findIndex((player) => player.id === props.event.actor),
 );
 const name = computed(
   () =>
-    props.players.find((player) => player.id === props.event.actor)?.name ||
-    props.event.actor ||
-    "Table",
+    playerLabel(props.event.actor, props.players),
 );
 const avatar = computed(() =>
   avatarImage(
     props.configs.find((player) => player.id === props.event.actor)?.avatar,
   ),
 );
+const canOpenPlayer = computed(() => props.playerDetails && seat.value >= 0);
 const failedImages = ref(new Set());
-const parts = computed(() => activityParts(props.event));
+const parts = computed(() => activityParts(props.event, props.players));
 </script>
 
 <template>
@@ -37,9 +38,16 @@ const parts = computed(() => activityParts(props.event));
     :class="players.length === 2 && seat === 1 ? 'chat-end' : 'chat-start'"
     :data-revision="event.revision"
   >
-    <div
-      class="chat-image avatar avatar-placeholder self-start pt-1"
-      aria-hidden="true"
+    <component
+      :is="canOpenPlayer ? 'button' : 'div'"
+      class="chat-image avatar avatar-placeholder mt-1 self-start"
+      :class="canOpenPlayer ? 'btn btn-sm btn-circle btn-ghost border-0 p-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary' : ''"
+      :type="canOpenPlayer ? 'button' : undefined"
+      :aria-hidden="canOpenPlayer ? undefined : true"
+      :aria-label="canOpenPlayer ? `View ${name} details` : undefined"
+      :aria-haspopup="canOpenPlayer ? 'dialog' : undefined"
+      :title="canOpenPlayer ? name : undefined"
+      @click="canOpenPlayer && emit('player-details', event.actor)"
     >
       <div class="w-8 rounded-full bg-base-300 text-base-content">
         <img
@@ -53,7 +61,7 @@ const parts = computed(() => activityParts(props.event));
         />
         <span v-else class="text-xs">{{ seat < 0 ? "·" : seat + 1 }}</span>
       </div>
-    </div>
+    </component>
     <div class="chat-header mb-1 flex flex-wrap gap-x-2 text-xs">
       <strong>{{ name }}</strong>
       <time

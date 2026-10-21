@@ -11,13 +11,13 @@ const seats = count => Array.from({ length: count }, (_, i) => ({
 }));
 
 test('avatar assignment preserves identities, avoids duplicates and keeps arbitrary seat counts', () => {
-  const input = seats(12);
+  const input = seats(avatarIds.length + 4);
   input[0].ai = false;
   input[3].avatar = 'robot-wizard';
   input[4].avatar = 'robot-wizard';
   input[5].avatar = '../../secret';
   const assigned = assignAvatars(input);
-  assert.equal(assigned.length, 12);
+  assert.equal(assigned.length, input.length);
   assert.equal(assigned[0].avatar, null, 'human seats do not consume a random portrait');
   assert.equal(assigned[3].avatar, 'robot-wizard', 'a saved identity survives earlier missing seats');
   assert.notEqual(assigned[4].avatar, 'robot-wizard');

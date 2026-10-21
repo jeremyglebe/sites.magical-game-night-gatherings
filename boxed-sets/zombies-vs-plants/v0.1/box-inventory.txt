@@ -1,0 +1,101 @@
+1 Abundant Growth
+1 Ash Barrens
+1 Awakener Druid
+1 Bayou Groff
+1 Binding Mummy
+1 Blooming Stinger
+1 Blossoming Defense
+1 Brackish Trudge
+1 Cast Out
+1 Cemetery Recruitment
+1 Compelling Deterrence
+1 Creeperhulk
+1 Crow of Dark Tidings
+1 Cultivate
+1 Dawntreader Elk
+1 Dead Weight
+1 Deathbloom Thallid
+1 Deathcap Marionette
+1 Diregraf Ghoul
+1 Disposal Mummy
+1 Dutiful Servants
+1 Embodiment of Insight
+1 Essence Scatter
+1 Eviscerate
+1 Fan Bearer
+1 Feed the Swarm
+1 Fertilid
+1 Fists of Ironwood
+1 Flowering of the White Tree
+21 Forest
+1 Fungal Fortitude
+1 Fungal Infection
+1 Gatecreeper Vine
+1 Genju of the Cedars
+1 Ghoultree
+1 Grapple with the Past
+1 Gravedigger
+1 Headless Skaab
+1 Healer's Hawk
+1 Hoofprints of the Stag
+1 Ilysian Caryatid
+1 In Oketra's Name
+1 Indomitable Ancients
+7 Island
+1 Jaddi Offshoot
+1 Juniper Order Rootweaver
+1 Leafkin Druid
+1 Liliana's Elite
+1 Living Totem
+1 Mold Folk
+1 Moonlit Lamenter
+1 Mulch
+1 Mummy Paramount
+1 Nature's Way
+1 Nissa's Zendikon
+1 Old Ghastbark
+1 Organ Hoarder
+1 Pacifism
+14 Plains
+1 Pulse of Murasa
+2 Ram Through
+1 Rampaging Growth
+1 Rancor
+1 Recover
+1 Regrowth
+2 Return to Nature
+1 Rise from the Grave
+1 Rootborn Defenses
+1 Rustwing Falcon
+1 Sacred Cat
+1 Screeching Skaab
+1 Seagraf Skaab
+1 Selhoff Entomber
+1 Shambling Ghast
+1 Skullcap Snail
+1 Sleep Paralysis
+2 Slitherhead
+1 Sludge Titan
+1 Sparring Mummy
+1 Stitched Assistant
+1 Stitched Mangler
+1 Stitchwing Skaab
+2 Sultai Devotee
+1 Sun-Dappled Celebrant
+1 Suntail Hawk
+14 Swamp
+1 Synapse Necromage
+1 Thallid Omnivore
+1 Thallid Soothsayer
+1 Think Twice
+1 Those Who Serve
+2 Thriving Grove
+2 Thriving Heath
+1 Thriving Isle
+2 Thriving Moor
+1 Time to Reflect
+1 Unconventional Tactics
+1 Undead Butler
+1 Vinelasher Kudzu
+1 Walking Corpse
+1 Zombie Goliath

@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { ExternalLink } from "@lucide/vue";
 import ReviewAvatar from "./ReviewAvatar.vue";
+import RatingDisplay from "./RatingDisplay.vue";
 import { formatDate } from "./review-format.js";
 const props = defineProps({
   recording: Object,
@@ -52,6 +53,13 @@ function scoreLabel(rating) {
       : `${Math.min(...values)}–${Math.max(...values)}/10`;
   return `${(values.reduce((a, b) => a + b, 0) / values.length).toFixed(1)}/10`;
 }
+function summaryScore(rating) {
+  const values = scores(rating);
+  if (!values.length) return null;
+  if (rating.id === "deck_strength")
+    return Math.min(...values) === Math.max(...values) ? values[0] : null;
+  return values.reduce((a, b) => a + b, 0) / values.length;
+}
 function evidence(revision) {
   if (!Number.isSafeInteger(revision)) return null;
   if (revision === props.recording.initial.revision) return 0;
@@ -100,6 +108,14 @@ function evidence(revision) {
           <strong class="my-1 block text-2xl tabular-nums">{{
             scoreLabel(rating)
           }}</strong>
+          <RatingDisplay
+            v-if="summaryScore(rating) !== null"
+            class="mb-2"
+            :score="summaryScore(rating)"
+            :label="rating.label || rating.id"
+            :neutral="rating.id === 'complexity' || rating.id === 'deck_strength'"
+            :show-value="false"
+          />
           <p class="text-xs text-base-content/65">
             {{
               rating.id === "deck_strength"
@@ -156,13 +172,11 @@ function evidence(revision) {
                 }}
               </dt>
               <dd class="mt-1 text-sm">
-                <strong>{{
-                  Number.isFinite(
-                    responses[player.id].answers?.ratings?.[rating.id]?.score,
-                  )
-                    ? `${responses[player.id].answers.ratings[rating.id].score}/10`
-                    : "Not enough evidence"
-                }}</strong>
+                <RatingDisplay
+                  :score="responses[player.id].answers?.ratings?.[rating.id]?.score ?? null"
+                  :label="rating.label || rating.id"
+                  :neutral="rating.id === 'complexity' || rating.id === 'deck_strength'"
+                />
                 <p
                   v-if="
                     responses[player.id].answers?.ratings?.[rating.id]?.reason

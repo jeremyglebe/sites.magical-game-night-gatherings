@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { startApp as startAppWithUsage } from './app.mjs';
+import { startApp as startAppWithUsage, normalizeSetup } from './app.mjs';
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -21,6 +21,64 @@ const setup = (count, ai = true) => ({
 const tick = () => new Promise(resolve => setImmediate(resolve));
 // Integration tests must not query the developer's account or launch Codex.
 const startApp = options => startAppWithUsage({ readPlanUsage: null, ...options });
+
+test('banter policy defaults on, rejects ambiguous values, and survives match recovery', async () => {
+  assert.equal(normalizeSetup(setup(1)).allowBanter, true);
+  for (const allowBanter of ['false', null, 0]) {
+    assert.throws(() => normalizeSetup({ ...setup(1), allowBanter }), /AI may banter must be true or false/);
+  }
+  for (const allowBanter of [true, false]) {
+    const directory = mkdtempSync(join(tmpdir(), 'game-night-table-talk-'));
+    const supplied = [];
+    const factory = options => { supplied.push(options.allowBanter); return async () => {}; };
+    let app;
+    try {
+      app = await startApp({ directory, port: 0, setup: { ...setup(1), allowBanter }, runPlayerFactory: factory });
+      const id = app.appState().match.id;
+      assert.equal(app.appState().match.allowBanter, allowBanter);
+      assert.equal(JSON.parse(readFileSync(join(directory, 'matches', id, 'match.json'))).config.allowBanter, allowBanter);
+      await app.close();
+      app = await startApp({ directory, port: 0, runPlayerFactory: factory });
+      assert.equal(app.appState().match.id, id);
+      assert.equal(app.appState().match.allowBanter, allowBanter);
+      assert.deepEqual(supplied, [allowBanter, allowBanter]);
+    } finally {
+      if (app?.server.listening) await app.close();
+      rmSync(directory, { recursive: true, force: true });
+    }
+  }
+});
+
+test('custom deck rulings are pinned and saved legacy deck presets do not change the resumed game', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'game-night-custom-deck-'));
+  let app;
+  const config = setup(2, false);
+  const rulings = [{ source: 'wotc', published_at: '2026-01-01', comment: 'Fixture ruling.' }];
+  const cache = { status: 'fetched', fetched_at: '2026-10-21T00:00:00Z', source: 'Test fixture',
+    uri: 'https://api.scryfall.com/cards/00000000-0000-0000-0000-000000000001/rulings' };
+  config.players[0].deck[0] = { ...config.players[0].deck[0], scryfall_id: 'fixture-card', rulings, rulings_cache: cache };
+  try {
+    app = await startApp({ directory, port: 0, setup: config });
+    const id = app.appState().match.id;
+    const folder = join(directory, 'matches', id);
+    assert.deepEqual(JSON.parse(readFileSync(join(folder, 'CardRulings.json'), 'utf8')), {
+      'fixture-card': { rulings, rulings_cache: cache },
+    });
+    const state = app.getTable().getState();
+    await app.close();
+    const path = join(folder, 'match.json');
+    const saved = JSON.parse(readFileSync(path, 'utf8'));
+    saved.config.players.forEach((player, index) => { player.deckPreset = index ? 'green' : 'white'; });
+    writeFileSync(path, JSON.stringify(saved));
+    app = await startApp({ directory, port: 0 });
+    assert.equal(app.appState().match.id, id);
+    assert.deepEqual(app.getTable().getState(), state);
+    assert.equal(app.getTable().getState().preparation, undefined);
+  } finally {
+    if (app?.server.listening) await app.close();
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
 
 test('the basic game guide is pinned locally and delivered separately from table instructions', async () => {
   const directory = mkdtempSync(join(tmpdir(), 'game-night-basic-guide-'));
@@ -234,7 +292,8 @@ test('only explicit handoffs wake the next player, speech is public, and the old
     assert.equal(peak, 1);
     assert.deepEqual(requests.map(r => r.player.id), ['p1', 'p2', 'p1']);
     const state = app.getTable().getState();
-    assert.deepEqual(state.turn, { number: 2, active: 'p2', priority: 'p2', phase: 'Untap' });
+    assert.deepEqual(state.turn, { number: 2, active: 'p2', priority: 'p2', phase: 'Untap',
+      counts: { p1: 0, p2: 1 }, totalTurns: 1, countsComplete: true });
     const history = await (await fetch(app.url + '/api/history?since=0')).json();
     assert.equal(history.events.length, 4);
     assert.ok(!JSON.stringify(history).includes('Private reasoning'));

@@ -2,6 +2,7 @@
 import { computed, nextTick, ref, watch } from "vue";
 import { X } from "@lucide/vue";
 import ReviewCard from "./ReviewCard.vue";
+import CardBack from "../table/CardBack.vue";
 import { imageURL } from "./review-format.js";
 const props = defineProps({ selection: Object, state: Object });
 const emit = defineEmits(["close", "inspect"]);
@@ -12,7 +13,12 @@ const card = computed(() => props.selection?.card);
 const title = computed(
   () => props.selection?.title || definition.value.name || "Card",
 );
-const source = computed(() => imageURL(definition.value));
+const ability = computed(() => (card.value?.kind || definition.value.kind) === "ability");
+const source = computed(() => ability.value ? null : imageURL(definition.value));
+const description = computed(() => ability.value
+  ? definition.value.long_description?.trim() || definition.value.oracle_text?.trim()
+    || definition.value.short_description?.trim() || definition.value.name
+  : definition.value.oracle_text);
 watch(
   () => props.selection,
   async (value) => {
@@ -79,6 +85,7 @@ watch(
             class="w-full max-w-xs rounded-lg object-contain"
             @error="failed = true"
           />
+          <CardBack v-else-if="ability" class="w-full max-w-xs rounded-lg" aria-label="Ability card back" />
           <p v-else class="rounded-lg bg-base-200 p-6 text-sm">
             No card image saved.
           </p>
@@ -90,7 +97,7 @@ watch(
           </p>
           <p class="whitespace-pre-wrap leading-relaxed">
             {{
-              definition.oracle_text ||
+              description ||
               "No Oracle text was saved for this card."
             }}
           </p>
@@ -131,7 +138,7 @@ watch(
               {{ card.note }}
             </p></template
           >
-          <section class="space-y-3 border-t border-base-300 pt-4">
+          <section v-if="!ability || definition.rulings?.length" class="space-y-3 border-t border-base-300 pt-4">
             <h3 class="font-semibold">Saved rulings</h3>
             <p v-if="!definition.rulings?.length" class="text-base-content/65">
               No rulings were saved for this card.

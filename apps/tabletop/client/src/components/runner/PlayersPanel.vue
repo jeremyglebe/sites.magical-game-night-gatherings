@@ -1,14 +1,14 @@
 <script setup>
 import { computed, ref } from "vue";
-import { Users, Settings2 } from "@lucide/vue";
-const props = defineProps({ app: Object, table: Object, busy: Boolean });
-defineEmits(["limits", "wake"]);
+import { Users } from "@lucide/vue";
+const props = defineProps({ app: Object, table: Object, busy: Boolean, embedded: Boolean });
+defineEmits(["wake"]);
 const recipient = ref("");
 const run = computed(() => props.app?.coordinator);
-const humanize = (v) =>
-  String(v || "idle")
-    .replaceAll("_", " ")
-    .replaceAll("-", " ");
+const notice = computed(() =>
+  run.value?.error || run.value?.reason ||
+  (["paused", "stalled"].includes(run.value?.state || run.value?.mode) ? run.value?.message : ""),
+);
 const recovery = computed(
   () =>
     run.value &&
@@ -29,41 +29,24 @@ function status(id) {
 </script>
 <template>
   <section
-    class="min-w-0 border-t border-base-300 pt-5"
-    aria-labelledby="players-heading"
+    class="min-w-0"
+    :class="embedded ? '' : 'border-t border-base-300 pt-5'"
+    :aria-labelledby="embedded ? undefined : 'players-heading'"
+    :aria-label="embedded ? 'Players' : undefined"
   >
-    <div class="mb-4 flex items-center justify-between">
-      <h2 id="players-heading" class="flex items-center gap-2 font-semibold">
-        <Users class="size-4" />Players
-      </h2>
-      <button
-        class="btn btn-sm btn-ghost"
-        :disabled="busy"
-        @click="$emit('limits')"
-      >
-        <Settings2 class="size-4" />Run limits
-      </button>
-    </div>
-    <p class="mb-2">
-      <span class="badge badge-sm">{{
-        humanize(run?.state || run?.mode)
-      }}</span>
+    <h2 v-if="!embedded" id="players-heading" class="mb-3 flex items-center gap-2 font-semibold">
+      <Users class="size-4" />Players
+    </h2>
+    <p v-if="notice" class="mb-3 break-words text-sm text-base-content/70" :role="run?.error ? 'alert' : undefined">
+      {{ notice }}
     </p>
-    <p class="mb-4 text-sm text-base-content/70">
-      {{
-        run?.error ||
-        run?.reason ||
-        run?.message ||
-        `${run?.decisions || 0} decisions recorded · Viewer can be closed`
-      }}
-    </p>
-    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-      <div
+    <ul class="space-y-3">
+      <li
         v-for="player in app?.match?.players || []"
         :key="player.id"
         class="flex items-start gap-3"
       >
-        <div v-if="player.avatar" class="avatar">
+        <div v-if="player.avatar" class="avatar shrink-0">
           <div class="w-10 rounded-full">
             <img
               :src="`/avatars/${player.avatar}.png`"
@@ -73,7 +56,7 @@ function status(id) {
             />
           </div>
         </div>
-        <div>
+        <div class="min-w-0 break-words">
           <h3 class="font-medium">{{ player.name }}</h3>
           <p class="text-sm text-base-content/70">{{ status(player.id) }}</p>
           <p class="text-xs text-base-content/60">
@@ -84,11 +67,11 @@ function status(id) {
             }}
           </p>
         </div>
-      </div>
-    </div>
+      </li>
+    </ul>
     <form
       v-if="recovery"
-      class="mt-5 flex flex-wrap items-end gap-2"
+      class="mt-3 flex flex-wrap items-end gap-2 border-t border-base-300 pt-3"
       @submit.prevent="$emit('wake', recipient)"
     >
       <label class="fieldset"

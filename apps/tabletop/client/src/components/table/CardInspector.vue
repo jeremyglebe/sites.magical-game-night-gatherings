@@ -1,5 +1,7 @@
 <script setup>
 import { computed, nextTick, reactive, ref, watch } from "vue";
+import CardBack from "./CardBack.vue";
+import { zoneLabel } from "../../../../shared/table-language.mjs";
 const props = defineProps({
   card: Object,
   table: Object,
@@ -46,12 +48,22 @@ const canEdit = computed(
     props.human?.canCommit &&
     openedContext.value === props.human.context(),
 );
-const targets = computed(() =>
-  Object.values(props.table?.zones || {})
-    .flatMap((z) => z.cards || [])
-    .filter((c) => c.id !== props.card?.id && !c.draft),
-);
+const battlefield = computed(() => props.table?.zones?.battlefield?.cards || []);
+const targets = computed(() => {
+  if (!battlefield.value.some(c => c.id === props.card?.id)) return [];
+  const excluded = new Set([props.card.id]);
+  let previousSize;
+  do {
+    previousSize = excluded.size;
+    for (const card of battlefield.value) {
+      if (excluded.has(card.attached_to)) excluded.add(card.id);
+    }
+  } while (excluded.size !== previousSize);
+  return battlefield.value.filter(c => !excluded.has(c.id) && !c.draft && c.editable !== false);
+});
+const attachedTo = computed(() => !props.historical && battlefield.value.find(c => c.id === shown.value.attached_to));
 const image = computed(() => {
+  if (shown.value.kind === "ability") return null;
   try {
     const u = new URL(shown.value.image_url);
     return u.protocol === "https:" && u.hostname === "cards.scryfall.io"
@@ -61,6 +73,10 @@ const image = computed(() => {
     return null;
   }
 });
+const description = computed(() => shown.value.kind === "ability"
+  ? shown.value.long_description?.trim() || shown.value.oracle_text?.trim()
+    || shown.value.short_description?.trim() || shown.value.name
+  : shown.value.oracle_text);
 watch(
   () => props.card,
   async (card) => {
@@ -174,6 +190,11 @@ function updateMarkers() {
           height="336"
           class="mx-auto aspect-[5/7] w-48 max-w-full rounded-xl object-contain"
         />
+        <CardBack
+          v-else-if="shown.kind === 'ability'"
+          class="mx-auto w-48 max-w-full rounded-xl"
+          aria-label="Ability card back"
+        />
         <div
           v-else
           class="grid aspect-[5/7] w-48 place-items-center rounded-xl bg-base-300 p-5 text-center"
@@ -182,12 +203,12 @@ function updateMarkers() {
         </div>
         <div class="min-w-0 space-y-3">
           <p class="text-primary">{{ shown.mana_cost }}</p>
-          <p class="font-medium">{{ shown.type_line }}</p>
+          <p class="font-medium">{{ shown.type_line || (shown.kind === 'ability' ? 'Ability' : '') }}</p>
           <p class="whitespace-pre-wrap text-sm leading-relaxed">
             {{
               loading
                 ? "Loading card text…"
-                : shown.oracle_text || "No rules text."
+                : description || "No rules text."
             }}
           </p>
           <p v-if="shown.power !== undefined" class="font-semibold">
@@ -195,6 +216,9 @@ function updateMarkers() {
           </p>
           <p v-if="shown.note" class="whitespace-pre-wrap text-sm">
             {{ shown.note }}
+          </p>
+          <p v-if="attachedTo" class="text-sm text-base-content/70">
+            Attached to {{ attachedTo.name || "Face-down card" }}
           </p>
           <details v-if="shown.rulings?.length">
             <summary class="cursor-pointer text-sm font-semibold">
@@ -262,20 +286,31 @@ function updateMarkers() {
           >
             Choose destination
           </button>
+          <button
+            v-if="card.attached_to"
+            class="btn btn-sm"
+            :disabled="!canEdit"
+            @click="queue(
+              { type: 'card', card: card.id, set: { attached_to: null } },
+              `Detach ${card.name}`,
+            )"
+          >
+            Detach
+          </button>
         </div>
         <form
           class="mt-5 flex flex-wrap items-end gap-2 border-t border-base-300 pt-4"
           @submit.prevent="
             queue(
               { type: 'move', card: card.id, to: destination, position },
-              `Move ${card.name} to ${destination} · ${position}`,
+              `Move ${card.name} to ${zoneLabel(table.zones[destination] || destination, table.players)} · ${position}`,
             )
           "
         >
           <label class="grid gap-1 text-xs"
             >Move to<select v-model="destination" class="select select-sm">
               <option v-for="(zone, id) in table.zones" :key="id" :value="id">
-                {{ id }}
+                {{ zoneLabel(zone, table.players) }}
               </option>
             </select></label
           >

@@ -15,6 +15,10 @@ import {
 } from "@lucide/vue";
 import { useRecording } from "../composables/useRecording.js";
 import GameTable from "../components/table/GameTable.vue";
+import TurnTracker from "../components/chat/TurnTracker.vue";
+import MatchScore from "../components/preparation/MatchScore.vue";
+import { gameSegments, decksForGame } from "../../../shared/replay.mjs";
+import { turnCountSummary } from "../../../shared/table-language.mjs";
 import ReviewConversation from "../components/review/ReviewConversation.vue";
 import ReviewDecks from "../components/review/ReviewDecks.vue";
 import ReviewFeedback from "../components/review/ReviewFeedback.vue";
@@ -57,6 +61,10 @@ const players = computed(() =>
     ...(game.value?.players?.find((p) => p.id === player.id) || {}),
   })),
 );
+const segments = computed(() => recording.value ? gameSegments(recording.value) : []);
+const deckGame = ref(1);
+const gameDecks = computed(() => recording.value ? decksForGame(recording.value, deckGame.value) : decks.value);
+const matchSeries = computed(() => recording.value?.frames?.reduce((series, frame) => frame.delta?.series ?? series, recording.value?.initial.series));
 const tableApp = computed(() => ({
   match: { layout: game.value?.layout, players: players.value },
 }));
@@ -114,6 +122,7 @@ watch(
   () => route.params.id,
   () => {
     selection.value = null;
+    deckGame.value = 1;
     tab.value = route.hash === "#feedback" ? "feedback" : "replay";
   },
 );
@@ -176,6 +185,13 @@ watch(position, async () => {
           >
         </div>
       </header>
+      <MatchScore :series="matchSeries" :players="players" />
+      <div class="space-y-1 text-sm text-base-content/75" aria-label="Turns played">
+        <p v-for="segment in segments" :key="segment.gameNumber">
+          <span v-if="segments.length > 1" class="font-semibold">Game {{ segment.gameNumber }} · </span>
+          {{ turnCountSummary(segment.turn, segment.players) }}
+        </p>
+      </div>
       <p
         class="rounded-lg border border-base-300 bg-base-200 px-4 py-3 text-sm"
       >
@@ -290,6 +306,13 @@ watch(position, async () => {
             </select></label
           >
         </div>
+        <label v-if="segments.length > 1" class="flex flex-wrap items-center gap-2 text-sm">
+          Jump to game
+          <select class="select select-sm w-auto" :value="state?.series?.gameNumber || 1" @change="showPosition(segments.find((item) => item.gameNumber === Number($event.target.value))?.position || 0)">
+            <option v-for="segment in segments" :key="segment.gameNumber" :value="segment.gameNumber">Game {{ segment.gameNumber }}{{ segment.result ? (segment.result.winners.length ? ' · ' + segment.result.winners.map((id) => players.find((player) => player.id === id)?.name || id).join(' & ') + ' won' : ' · Draw') : '' }}</option>
+          </select>
+        </label>
+        <MatchScore :series="state?.series" :players="players" />
         <p class="text-xs text-base-content/65" aria-live="polite">
           {{ positionNote }}
         </p>
@@ -316,14 +339,17 @@ watch(position, async () => {
               }}
             </p>
           </div>
-          <ReviewConversation
-            ref="conversation"
-            :events="events"
-            :players="players"
-            :position="position"
-            @seek="showPosition"
-            @inspect="inspect"
-          />
+          <div class="min-w-0">
+            <ReviewConversation
+              ref="conversation"
+              :events="events"
+              :players="players"
+              :position="position"
+              @seek="showPosition"
+              @inspect="inspect"
+            />
+            <TurnTracker v-if="table" :table="table" :app="tableApp" readonly />
+          </div>
         </div>
       </section>
       <section
@@ -332,7 +358,13 @@ watch(position, async () => {
         role="tabpanel"
         aria-labelledby="review-tab-decks"
       >
-        <ReviewDecks :decks="decks" :players="players" @inspect="inspect" />
+        <label v-if="segments.length > 1" class="mb-4 flex flex-wrap items-center gap-2 text-sm">
+          Decks for game
+          <select v-model.number="deckGame" class="select select-sm w-auto">
+            <option v-for="segment in segments" :key="segment.gameNumber" :value="segment.gameNumber">Game {{ segment.gameNumber }}</option>
+          </select>
+        </label>
+        <ReviewDecks :decks="gameDecks" :players="players" @inspect="inspect" />
       </section>
       <section
         v-show="tab === 'feedback'"

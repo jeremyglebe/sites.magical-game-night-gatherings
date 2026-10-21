@@ -1,0 +1,602 @@
+{
+  "researchedAt": "2026-10-21",
+  "queries": [
+    {
+      "query": "t:creature t:zombie (t:plant or t:treefolk or t:fungus) game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 11,
+      "hasMore": false
+    }
+  ],
+  "cards": [
+    {
+      "id": "5f1e9195-a711-4f4d-9d53-d5d230c092ef",
+      "oracle_id": "5fc888d1-241f-45e1-9c20-3c5ae0aadc30",
+      "name": "Black Oak of Odunos",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie Treefolk",
+      "oracle_text": "Defender\n{B}, Tap another untapped creature you control: This creature gets +1/+1 until end of turn.",
+      "power": "0",
+      "toughness": "5",
+      "scryfall_uri": "https://scryfall.com/card/bng/62/black-oak-of-odunos?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.jpg?1783939559",
+        "normal": "https://cards.scryfall.io/normal/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.jpg?1783939559",
+        "large": "https://cards.scryfall.io/large/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.jpg?1783939559",
+        "png": "https://cards.scryfall.io/png/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.png?1783939559",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.jpg?1783939559",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.jpg?1783939559",
+        "thumb": "https://cards.scryfall.io/thumb/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.webp?1783939559",
+        "grid": "https://cards.scryfall.io/grid/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.webp?1783939559",
+        "display": "https://cards.scryfall.io/display/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.webp?1783939559",
+        "art": "https://cards.scryfall.io/art/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.webp?1783939559",
+        "crop": "https://cards.scryfall.io/crop/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.webp?1783939559",
+        "jpeg": "https://cards.scryfall.io/normal/front/5/f/5f1e9195-a711-4f4d-9d53-d5d230c092ef.jpg?1783939559"
+      },
+      "set": "bng",
+      "collector_number": "62",
+      "released_at": "2014-02-07",
+      "research": {
+        "groups": [
+          "treefolk"
+        ],
+        "roles": [
+          "defense",
+          "creature support"
+        ],
+        "note": "A literal Zombie Treefolk: an undead tree that turns another creature's tap into extra power.",
+        "caution": "Defender prevents attacking normally; tapping helpers can remove available blockers.",
+        "manaNote": "Single black casting cost, but repeated boosts need black mana.",
+        "crossover": true,
+        "factions": [
+          "zombies"
+        ]
+      }
+    },
+    {
+      "id": "3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb",
+      "oracle_id": "94c47804-bb64-4a91-85c5-9241c39685aa",
+      "name": "Creakwood Ghoul",
+      "mana_cost": "{4}{B}",
+      "cmc": 5,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "type_line": "Creature — Plant Zombie",
+      "oracle_text": "{B/G}{B/G}: Exile target card from a graveyard. You gain 1 life.",
+      "power": "3",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/eve/34/creakwood-ghoul?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.jpg?1783942688",
+        "normal": "https://cards.scryfall.io/normal/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.jpg?1783942688",
+        "large": "https://cards.scryfall.io/large/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.jpg?1783942688",
+        "png": "https://cards.scryfall.io/png/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.png?1783942688",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.jpg?1783942688",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.jpg?1783942688",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.webp?1783942688",
+        "grid": "https://cards.scryfall.io/grid/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.webp?1783942688",
+        "display": "https://cards.scryfall.io/display/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.webp?1783942688",
+        "art": "https://cards.scryfall.io/art/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.webp?1783942688",
+        "crop": "https://cards.scryfall.io/crop/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.webp?1783942688",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/d/3d4e94d3-0df5-4d2b-a5d9-178fe1350ceb.jpg?1783942688"
+      },
+      "set": "eve",
+      "collector_number": "34",
+      "released_at": "2008-07-25",
+      "research": {
+        "groups": [
+          "plants"
+        ],
+        "roles": [
+          "graveyard interaction",
+          "life gain"
+        ],
+        "note": "A Plant Zombie with graveyard consumption and life gain; useful as a thematic crossover and repeatable graveyard interaction.",
+        "caution": "Five-mana body and low-impact activations need a role; exiling cards may undermine either side's recursion.",
+        "manaNote": "Casts with black; each activation uses two black/green hybrid symbols, payable entirely in black or green.",
+        "crossover": true,
+        "factions": [
+          "zombies"
+        ]
+      }
+    },
+    {
+      "id": "74c1b368-6fb0-4430-807e-d124f3077361",
+      "oracle_id": "3a2a6904-219a-4d16-b11a-1e0e2826814e",
+      "name": "Deathspore Thallid",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie Fungus",
+      "oracle_text": "At the beginning of your upkeep, put a spore counter on this creature.\nRemove three spore counters from this creature: Create a 1/1 green Saproling creature token.\nSacrifice a Saproling: Target creature gets -1/-1 until end of turn.",
+      "power": "1",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/tsr/109/deathspore-thallid?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.jpg?1783927824",
+        "normal": "https://cards.scryfall.io/normal/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.jpg?1783927824",
+        "large": "https://cards.scryfall.io/large/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.jpg?1783927824",
+        "png": "https://cards.scryfall.io/png/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.png?1783927824",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.jpg?1783927824",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.jpg?1783927824",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.webp?1783927824",
+        "grid": "https://cards.scryfall.io/grid/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.webp?1783927824",
+        "display": "https://cards.scryfall.io/display/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.webp?1783927824",
+        "art": "https://cards.scryfall.io/art/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.webp?1783927824",
+        "crop": "https://cards.scryfall.io/crop/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.webp?1783927824",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/4/74c1b368-6fb0-4430-807e-d124f3077361.jpg?1783927824"
+      },
+      "set": "tsr",
+      "collector_number": "109",
+      "released_at": "2021-03-19",
+      "research": {
+        "groups": [
+          "fungi"
+        ],
+        "roles": [
+          "token production",
+          "interaction",
+          "sacrifice outlet"
+        ],
+        "note": "A Zombie Fungus that grows Saprolings and turns them into creature shrinkage, bridging mushrooms and necromancy.",
+        "caution": "Spore production is slow; its removal outlet specifically needs Saprolings, not any creature.",
+        "manaNote": "Costs one generic and one black; abilities require no additional colored mana.",
+        "crossover": true,
+        "factions": [
+          "zombies"
+        ]
+      }
+    },
+    {
+      "id": "162a865b-617d-40bf-900f-4aeca3602600",
+      "oracle_id": "71358110-4e28-4794-befa-ea6e27e720ef",
+      "name": "Dreg Mangler",
+      "mana_cost": "{1}{B}{G}",
+      "cmc": 3,
+      "colors": [
+        "B",
+        "G"
+      ],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "type_line": "Creature — Plant Zombie",
+      "oracle_text": "Haste\nScavenge {3}{B}{G} ({3}{B}{G}, Exile this card from your graveyard: Put a number of +1/+1 counters equal to this card's power on target creature. Scavenge only as a sorcery.)",
+      "power": "3",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/2x2/204/dreg-mangler?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.jpg?1783921839",
+        "normal": "https://cards.scryfall.io/normal/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.jpg?1783921839",
+        "large": "https://cards.scryfall.io/large/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.jpg?1783921839",
+        "png": "https://cards.scryfall.io/png/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.png?1783921839",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.jpg?1783921839",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.jpg?1783921839",
+        "thumb": "https://cards.scryfall.io/thumb/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.webp?1783921839",
+        "grid": "https://cards.scryfall.io/grid/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.webp?1783921839",
+        "display": "https://cards.scryfall.io/display/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.webp?1783921839",
+        "art": "https://cards.scryfall.io/art/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.webp?1783921839",
+        "crop": "https://cards.scryfall.io/crop/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.webp?1783921839",
+        "jpeg": "https://cards.scryfall.io/normal/front/1/6/162a865b-617d-40bf-900f-4aeca3602600.jpg?1783921839"
+      },
+      "set": "2x2",
+      "collector_number": "204",
+      "released_at": "2022-07-08",
+      "research": {
+        "groups": [
+          "plants",
+          "zombies-green"
+        ],
+        "roles": [
+          "pressure",
+          "counters",
+          "graveyard value"
+        ],
+        "note": "A hasty Plant Zombie that can later enhance any creature through scavenge.",
+        "caution": "Scavenge exiles the card, so it cannot also be recovered with recursion.",
+        "manaNote": "Requires both black and green to cast and to scavenge.",
+        "crossover": true,
+        "factions": [
+          "zombies"
+        ]
+      }
+    },
+    {
+      "id": "9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35",
+      "oracle_id": "5f2628e3-e29a-4d77-bc27-6e1ce240d192",
+      "name": "Ghoultree",
+      "mana_cost": "{7}{G}",
+      "cmc": 8,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Zombie Treefolk",
+      "oracle_text": "This spell costs {1} less to cast for each creature card in your graveyard.",
+      "power": "10",
+      "toughness": "10",
+      "scryfall_uri": "https://scryfall.com/card/inr/198/ghoultree?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.jpg?1783908097",
+        "normal": "https://cards.scryfall.io/normal/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.jpg?1783908097",
+        "large": "https://cards.scryfall.io/large/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.jpg?1783908097",
+        "png": "https://cards.scryfall.io/png/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.png?1783908097",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.jpg?1783908097",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.jpg?1783908097",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.webp?1783908097",
+        "grid": "https://cards.scryfall.io/grid/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.webp?1783908097",
+        "display": "https://cards.scryfall.io/display/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.webp?1783908097",
+        "art": "https://cards.scryfall.io/art/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.webp?1783908097",
+        "crop": "https://cards.scryfall.io/crop/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.webp?1783908097",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/c/9c99fe73-5fe1-4fcb-8099-73c4a6fd0d35.jpg?1783908097"
+      },
+      "set": "inr",
+      "collector_number": "198",
+      "released_at": "2025-01-24",
+      "research": {
+        "groups": [
+          "treefolk",
+          "zombies-green"
+        ],
+        "roles": [
+          "finisher",
+          "graveyard payoff"
+        ],
+        "note": "A Zombie Treefolk whose cost falls as creatures fill its controller's graveyard; an undead tree candidate assigned to the Zombie faction.",
+        "caution": "Expensive without setup and has no built-in evasion. Printed mana value is eight even when cast cheaply.",
+        "manaNote": "Always needs green; graveyard creatures reduce only the generic portion.",
+        "crossover": true,
+        "factions": [
+          "zombies"
+        ]
+      }
+    },
+    {
+      "id": "ba88e031-b194-4621-9e97-2f33ee46f6d0",
+      "oracle_id": "a6fa840a-817c-4e84-9dd3-d28a011f2214",
+      "name": "Molderhulk",
+      "mana_cost": "{7}{B}{G}",
+      "cmc": 9,
+      "colors": [
+        "B",
+        "G"
+      ],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "type_line": "Creature — Fungus Zombie",
+      "oracle_text": "Undergrowth — This spell costs {1} less to cast for each creature card in your graveyard.\nWhen this creature enters, return target land card from your graveyard to the battlefield.",
+      "power": "6",
+      "toughness": "6",
+      "scryfall_uri": "https://scryfall.com/card/grn/190/molderhulk?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.jpg?1783934125",
+        "normal": "https://cards.scryfall.io/normal/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.jpg?1783934125",
+        "large": "https://cards.scryfall.io/large/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.jpg?1783934125",
+        "png": "https://cards.scryfall.io/png/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.png?1783934125",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.jpg?1783934125",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.jpg?1783934125",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.webp?1783934125",
+        "grid": "https://cards.scryfall.io/grid/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.webp?1783934125",
+        "display": "https://cards.scryfall.io/display/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.webp?1783934125",
+        "art": "https://cards.scryfall.io/art/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.webp?1783934125",
+        "crop": "https://cards.scryfall.io/crop/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.webp?1783934125",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/a/ba88e031-b194-4621-9e97-2f33ee46f6d0.jpg?1783934125"
+      },
+      "set": "grn",
+      "collector_number": "190",
+      "released_at": "2018-10-05",
+      "research": {
+        "groups": [
+          "fungi",
+          "zombies-green"
+        ],
+        "roles": [
+          "finisher",
+          "graveyard payoff",
+          "land recovery"
+        ],
+        "note": "A Fungus Zombie that rewards a creature-filled graveyard and returns a land when it enters.",
+        "caution": "Nine-mana printed cost needs graveyard support; it returns a land directly to the battlefield, not to hand.",
+        "manaNote": "Both black and green remain necessary after its generic cost reduction.",
+        "crossover": true,
+        "factions": [
+          "zombies"
+        ]
+      }
+    },
+    {
+      "id": "db9ce92b-79cc-4e26-b511-30ae8ea6a2a1",
+      "oracle_id": "85e18895-d1d2-46c7-afd0-31da410c0438",
+      "name": "Rhizome Lurcher",
+      "mana_cost": "{2}{B}{G}",
+      "cmc": 4,
+      "colors": [
+        "B",
+        "G"
+      ],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "type_line": "Creature — Fungus Zombie",
+      "oracle_text": "Undergrowth — This creature enters with a number of +1/+1 counters on it equal to the number of creature cards in your graveyard.",
+      "power": "2",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/grn/196/rhizome-lurcher?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.jpg?1783934125",
+        "normal": "https://cards.scryfall.io/normal/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.jpg?1783934125",
+        "large": "https://cards.scryfall.io/large/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.jpg?1783934125",
+        "png": "https://cards.scryfall.io/png/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.png?1783934125",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.jpg?1783934125",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.jpg?1783934125",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.webp?1783934125",
+        "grid": "https://cards.scryfall.io/grid/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.webp?1783934125",
+        "display": "https://cards.scryfall.io/display/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.webp?1783934125",
+        "art": "https://cards.scryfall.io/art/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.webp?1783934125",
+        "crop": "https://cards.scryfall.io/crop/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.webp?1783934125",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/b/db9ce92b-79cc-4e26-b511-30ae8ea6a2a1.jpg?1783934125"
+      },
+      "set": "grn",
+      "collector_number": "196",
+      "released_at": "2018-10-05",
+      "research": {
+        "groups": [
+          "fungi",
+          "zombies-green"
+        ],
+        "roles": [
+          "counters",
+          "graveyard payoff"
+        ],
+        "note": "A Fungus Zombie that grows from the creature cards already in its controller's graveyard.",
+        "caution": "Needs creature density and graveyard setup to outperform an ordinary four-drop.",
+        "manaNote": "Requires black and green.",
+        "crossover": true,
+        "factions": [
+          "zombies"
+        ]
+      }
+    },
+    {
+      "id": "21b6b9c8-110a-41ea-815b-17253447a02e",
+      "oracle_id": "9c50f6b1-8850-4b08-a994-3ccc17f25b83",
+      "name": "Shambling Shell",
+      "mana_cost": "{1}{B}{G}",
+      "cmc": 3,
+      "colors": [
+        "B",
+        "G"
+      ],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "type_line": "Creature — Plant Zombie",
+      "oracle_text": "Sacrifice this creature: Put a +1/+1 counter on target creature.\nDredge 3 (If you would draw a card, you may mill three cards instead. If you do, return this card from your graveyard to your hand.)",
+      "power": "3",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/ddj/57/shambling-shell?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.jpg?1783940400",
+        "normal": "https://cards.scryfall.io/normal/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.jpg?1783940400",
+        "large": "https://cards.scryfall.io/large/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.jpg?1783940400",
+        "png": "https://cards.scryfall.io/png/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.png?1783940400",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.jpg?1783940400",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.jpg?1783940400",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.webp?1783940400",
+        "grid": "https://cards.scryfall.io/grid/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.webp?1783940400",
+        "display": "https://cards.scryfall.io/display/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.webp?1783940400",
+        "art": "https://cards.scryfall.io/art/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.webp?1783940400",
+        "crop": "https://cards.scryfall.io/crop/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.webp?1783940400",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/1/21b6b9c8-110a-41ea-815b-17253447a02e.jpg?1783940400"
+      },
+      "set": "ddj",
+      "collector_number": "57",
+      "released_at": "2012-09-07",
+      "research": {
+        "groups": [
+          "plants",
+          "zombies-green"
+        ],
+        "roles": [
+          "sacrifice outlet",
+          "counters",
+          "recursion"
+        ],
+        "note": "A Plant Zombie that can sacrifice itself to grow any creature, then return through dredge.",
+        "caution": "Dredge replaces a draw and mills cards; repeated use in a forty-card deck needs care and competes with other graveyard uses.",
+        "manaNote": "Requires black and green to cast; the sacrifice ability itself is free.",
+        "crossover": true,
+        "factions": [
+          "zombies"
+        ]
+      }
+    },
+    {
+      "id": "4703f1d0-088e-4036-b50c-ce9f7c053ec7",
+      "oracle_id": "4b6966f6-052f-4d1d-a3bf-1d3cc91c71d4",
+      "name": "Slitherhead",
+      "mana_cost": "{B/G}",
+      "cmc": 1,
+      "colors": [
+        "B",
+        "G"
+      ],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "type_line": "Creature — Plant Zombie",
+      "oracle_text": "Scavenge {0} ({0}, Exile this card from your graveyard: Put a number of +1/+1 counters equal to this card's power on target creature. Scavenge only as a sorcery.)",
+      "power": "1",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/rvr/226/slitherhead?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.jpg?1783913275",
+        "normal": "https://cards.scryfall.io/normal/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.jpg?1783913275",
+        "large": "https://cards.scryfall.io/large/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.jpg?1783913275",
+        "png": "https://cards.scryfall.io/png/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.png?1783913275",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.jpg?1783913275",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.jpg?1783913275",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.webp?1783913275",
+        "grid": "https://cards.scryfall.io/grid/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.webp?1783913275",
+        "display": "https://cards.scryfall.io/display/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.webp?1783913275",
+        "art": "https://cards.scryfall.io/art/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.webp?1783913275",
+        "crop": "https://cards.scryfall.io/crop/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.webp?1783913275",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/7/4703f1d0-088e-4036-b50c-ce9f7c053ec7.jpg?1783913275"
+      },
+      "set": "rvr",
+      "collector_number": "226",
+      "released_at": "2024-01-12",
+      "research": {
+        "groups": [
+          "plants",
+          "zombies-green"
+        ],
+        "roles": [
+          "early creature",
+          "counters",
+          "graveyard value"
+        ],
+        "note": "Requested signature crossover: a Plant Zombie whose zero-cost scavenge grows any creature after it dies.",
+        "caution": "Scavenge is sorcery-speed and exiles the card; do not count the same card for both scavenge and recursion.",
+        "manaNote": "Its single hybrid symbol can be paid with either black OR green; it does not require both.",
+        "crossover": true,
+        "factions": [
+          "zombies"
+        ]
+      }
+    },
+    {
+      "id": "7f562c38-3c53-4dc6-9816-6e4be3355e2e",
+      "oracle_id": "11a28f60-2456-4ed5-b1cc-03c395f55e59",
+      "name": "Vulturous Zombie",
+      "mana_cost": "{3}{B}{G}",
+      "cmc": 5,
+      "colors": [
+        "B",
+        "G"
+      ],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "type_line": "Creature — Plant Zombie",
+      "oracle_text": "Flying\nWhenever a card is put into an opponent's graveyard from anywhere, put a +1/+1 counter on this creature.",
+      "power": "3",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/cm2/170/vulturous-zombie?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.jpg?1783934716",
+        "normal": "https://cards.scryfall.io/normal/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.jpg?1783934716",
+        "large": "https://cards.scryfall.io/large/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.jpg?1783934716",
+        "png": "https://cards.scryfall.io/png/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.png?1783934716",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.jpg?1783934716",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.jpg?1783934716",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.webp?1783934716",
+        "grid": "https://cards.scryfall.io/grid/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.webp?1783934716",
+        "display": "https://cards.scryfall.io/display/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.webp?1783934716",
+        "art": "https://cards.scryfall.io/art/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.webp?1783934716",
+        "crop": "https://cards.scryfall.io/crop/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.webp?1783934716",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/f/7f562c38-3c53-4dc6-9816-6e4be3355e2e.jpg?1783934716"
+      },
+      "set": "cm2",
+      "collector_number": "170",
+      "released_at": "2018-06-08",
+      "research": {
+        "groups": [
+          "plants",
+          "zombies-green"
+        ],
+        "roles": [
+          "finisher",
+          "evasion",
+          "graveyard payoff"
+        ],
+        "note": "A flying Plant Zombie that grows when cards enter an opponent's graveyard, giving the crossover pool an aerial threat.",
+        "caution": "Triggers on an opponent's graveyard, not its controller's. A growing flyer may be particularly strong against ground-focused Plants.",
+        "manaNote": "Requires both black and green.",
+        "crossover": true,
+        "factions": [
+          "zombies"
+        ]
+      }
+    },
+    {
+      "id": "be72ff91-f810-46c3-884f-6e65827824bc",
+      "oracle_id": "c72ab66b-2011-449c-93a6-1808669653f0",
+      "name": "Woodwraith Strangler",
+      "mana_cost": "{2}{B}{G}",
+      "cmc": 4,
+      "colors": [
+        "B",
+        "G"
+      ],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "type_line": "Creature — Plant Zombie",
+      "oracle_text": "Exile a creature card from your graveyard: Regenerate this creature.",
+      "power": "2",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/rav/241/woodwraith-strangler?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.jpg?1783943607",
+        "normal": "https://cards.scryfall.io/normal/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.jpg?1783943607",
+        "large": "https://cards.scryfall.io/large/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.jpg?1783943607",
+        "png": "https://cards.scryfall.io/png/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.png?1783943607",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.jpg?1783943607",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.jpg?1783943607",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.webp?1783943607",
+        "grid": "https://cards.scryfall.io/grid/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.webp?1783943607",
+        "display": "https://cards.scryfall.io/display/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.webp?1783943607",
+        "art": "https://cards.scryfall.io/art/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.webp?1783943607",
+        "crop": "https://cards.scryfall.io/crop/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.webp?1783943607",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/e/be72ff91-f810-46c3-884f-6e65827824bc.jpg?1783943607"
+      },
+      "set": "rav",
+      "collector_number": "241",
+      "released_at": "2005-10-07",
+      "research": {
+        "groups": [
+          "plants",
+          "zombies-green"
+        ],
+        "roles": [
+          "resilience",
+          "graveyard value"
+        ],
+        "note": "A Plant Zombie that consumes a creature card from its controller's graveyard to regenerate.",
+        "caution": "Regeneration is not returning a dead creature; exiling graveyard creatures competes with recursion and undergrowth.",
+        "manaNote": "Requires black and green to cast; its activated ability has no mana cost.",
+        "crossover": true,
+        "factions": [
+          "zombies"
+        ]
+      }
+    }
+  ]
+}

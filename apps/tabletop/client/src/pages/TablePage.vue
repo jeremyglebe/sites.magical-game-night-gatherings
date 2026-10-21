@@ -4,22 +4,22 @@ import {
   ref,
   reactive,
   watch,
-  nextTick,
-  onMounted,
-  onBeforeUnmount,
 } from "vue";
-import { Plus, TriangleAlert, RefreshCw, History } from "@lucide/vue";
+import { Plus, TriangleAlert, RefreshCw, History, Gauge, MoreHorizontal, Settings2, ClipboardList, ScrollText } from "@lucide/vue";
 import { useLiveTable } from "../composables/useLiveTable.js";
 import { useHumanPlayer } from "../composables/useHumanPlayer.js";
 import GameTable from "../components/table/GameTable.vue";
 import ChatPanel from "../components/chat/ChatPanel.vue";
+import TurnTracker from "../components/chat/TurnTracker.vue";
 import SetupPanel from "../components/setup/SetupPanel.vue";
-import SurveyPanel from "../components/survey/SurveyPanel.vue";
+import PreparationPanel from "../components/preparation/PreparationPanel.vue";
+import BetweenGamesPanel from "../components/preparation/BetweenGamesPanel.vue";
+import MatchScore from "../components/preparation/MatchScore.vue";
+import CardInspector from "../components/table/CardInspector.vue";
 import ResizableWorkspace from "../components/layout/ResizableWorkspace.vue";
 import RunControls from "../components/runner/RunControls.vue";
 import RunLimits from "../components/runner/RunLimits.vue";
-import PlayersPanel from "../components/runner/PlayersPanel.vue";
-import PlanUsage from "../components/runner/PlanUsage.vue";
+import TablePanels from "../components/runner/TablePanels.vue";
 const { app, table, connected, loading, error, legacy, refresh, request } =
   useLiveTable();
 const human = reactive(
@@ -27,27 +27,27 @@ const human = reactive(
 );
 const gameTable = ref(null),
   limits = ref(null),
+  panels = ref(null),
+  tableMenu = ref(null),
+  mobilePane = ref("table"),
   busy = ref(false),
   actionError = ref(""),
   showSetup = ref(false);
 const displayedTable = computed(
   () => human.displayTable || human.preview || human.view || table.value,
 );
+const preparing = computed(() => displayedTable.value?.preparation?.status === "selecting");
+const betweenGames = computed(() => displayedTable.value?.series?.status === "between_games");
+const preparationCard = ref(null);
+function inspectChatCard(card, options) {
+  if (preparing.value || betweenGames.value) preparationCard.value = card;
+  else gameTable.value?.inspect(card, options);
+}
 const humans = computed(
   () => app.value?.match?.players?.filter((p) => p.ai === false) || [],
 );
-const toolbar = ref(null);
-const toolbarHeight = ref(64);
-let toolbarObserver;
-onMounted(() => {
-  toolbarObserver = new ResizeObserver(() => {
-    // Measure the real wrapped toolbar rather than assuming a desktop height.
-    toolbarHeight.value =
-      toolbar.value.offsetTop + toolbar.value.offsetHeight + 8;
-  });
-  toolbarObserver.observe(toolbar.value);
-});
-onBeforeUnmount(() => toolbarObserver?.disconnect());
+function closeMenu() { tableMenu.value?.hidePopover(); }
+function openLimits() { closeMenu(); limits.value?.open(); }
 function changeSeat(event) {
   if (event.target.value) human.join(event.target.value);
   else human.leave();
@@ -56,6 +56,7 @@ watch(
   () => app.value?.match?.id,
   () => {
     showSetup.value = false;
+    mobilePane.value = "table";
     actionError.value = "";
   },
 );
@@ -78,27 +79,24 @@ function create(setup) {
   return operate("/api/match", setup);
 }
 async function newTable() {
+  closeMenu();
   if (["running", "stepping"].includes(app.value?.coordinator?.mode)) {
     actionError.value =
       "Pause or stop the current players before creating another table.";
     return;
   }
   showSetup.value = true;
-  await nextTick();
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 </script>
 <template>
   <main
-    class="mx-auto max-w-[2400px] p-2 sm:px-3"
-    :style="{ '--table-toolbar-height': `${toolbarHeight}px` }"
+    class="mx-auto flex h-dvh max-w-[2400px] flex-col overflow-hidden p-2 sm:px-3"
   >
     <header
-      ref="toolbar"
-      class="mb-2 flex min-h-10 flex-wrap items-center gap-x-3 gap-y-1.5 border-b border-base-300 pb-2"
+      class="relative z-20 mb-2 flex shrink-0 flex-col gap-1 border-b border-base-300 pb-2"
       aria-label="Table controls"
     >
-      <div class="flex min-w-0 flex-1 items-center gap-2">
+      <div class="flex min-w-0 items-center gap-2">
         <span
           class="status status-sm shrink-0"
           :class="connected ? 'status-success' : 'status-error'"
@@ -106,12 +104,17 @@ async function newTable() {
           :aria-label="connected ? 'Connected' : 'Disconnected'"
         ></span>
         <h1
-          class="max-w-56 truncate text-sm font-semibold"
+          class="truncate text-sm font-semibold"
           :title="app?.match?.title || table?.title || 'Game Night'"
         >
           {{ app?.match?.title || table?.title || "Game Night" }}
         </h1>
       </div>
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <div class="min-w-0 flex-1 max-sm:basis-full">
+          <MatchScore v-if="table && !showSetup" :series="table.series" :players="table.players" />
+        </div>
+        <div class="flex max-w-full shrink-0 flex-wrap items-center gap-1" role="group" aria-label="Table actions">
       <select
         v-if="table && !showSetup && humans.length"
         id="seat-selector"
@@ -126,21 +129,42 @@ async function newTable() {
           Play as {{ player.name }}
         </option>
       </select>
-      <a
-        v-if="app?.postgame && !showSetup"
-        href="#postgame-feedback"
-        class="btn btn-sm btn-ghost"
-        >Feedback</a
+      <div v-if="app?.postgame && !showSetup" class="tooltip tooltip-bottom inline-flex" data-tip="Game feedback">
+      <button
+        class="btn btn-sm btn-square btn-ghost"
+        aria-label="Feedback"
+        @click="panels.open('feedback')"
+        ><ClipboardList class="size-4" aria-hidden="true" /></button
       >
+      </div>
       <RunControls
         v-else-if="!legacy && app?.match && !showSetup"
         :run="app?.coordinator"
         :busy="busy"
         @control="operate('/api/control', { action: $event })"
       />
-      <RouterLink to="/games" class="btn btn-sm btn-ghost" title="Saved games"
-        ><History class="size-4" aria-hidden="true" />Games</RouterLink
-      >
+      <template v-if="table && app?.match && !showSetup">
+        <div class="tooltip tooltip-bottom inline-flex" data-tip="Plan usage">
+        <button class="btn btn-sm btn-ghost btn-square" @click="panels.open('usage')" aria-label="Plan usage">
+          <Gauge class="size-4" aria-hidden="true" />
+        </button>
+        </div>
+        <div role="group" aria-label="Workspace view" class="tabs tabs-box tabs-xs min-[1051px]:hidden">
+          <button class="tab tooltip tooltip-bottom" data-tip="Show the table" :class="mobilePane === 'table' ? 'tab-active' : ''" :aria-pressed="mobilePane === 'table'" aria-controls="table-pane" @click="mobilePane = 'table'">Table</button>
+          <button class="tab tooltip tooltip-bottom" data-tip="Show table chat" :class="mobilePane === 'chat' ? 'tab-active' : ''" :aria-pressed="mobilePane === 'chat'" aria-controls="chat-pane" @click="mobilePane = 'chat'">Chat</button>
+        </div>
+      </template>
+      <div class="tooltip tooltip-bottom tooltip-end inline-flex" data-tip="More table controls">
+      <button class="btn btn-sm btn-ghost btn-square [anchor-name:--table-menu]" popovertarget="table-menu" aria-label="More table controls"><MoreHorizontal class="size-4" aria-hidden="true" /></button>
+      </div>
+        </div>
+      </div>
+      <ul ref="tableMenu" id="table-menu" popover class="dropdown dropdown-end menu menu-sm z-30 w-48 rounded-box border border-base-300 bg-base-100 p-1 shadow-lg [position-anchor:--table-menu]">
+        <li v-if="table && app?.match"><RouterLink :to="`/games/${app.match.id}`" @click="closeMenu"><ScrollText class="size-4" aria-hidden="true" />Game log</RouterLink></li>
+        <li><RouterLink to="/games" @click="closeMenu"><History class="size-4" aria-hidden="true" />Saved games</RouterLink></li>
+        <li v-if="table && !legacy"><button @click="openLimits"><Settings2 class="size-4" aria-hidden="true" />Run limits</button></li>
+        <li v-if="table && app?.match && !showSetup"><button @click="newTable"><Plus class="size-4" aria-hidden="true" />New table</button></li>
+      </ul>
     </header>
     <div v-if="loading" class="flex items-center gap-3 py-12" role="status">
       <span class="loading loading-spinner loading-sm"></span>Connecting to your
@@ -149,7 +173,7 @@ async function newTable() {
     <template v-else>
       <div
         v-if="error || actionError"
-        class="alert alert-error alert-soft mb-4"
+        class="alert alert-error alert-soft mb-2 max-h-24 shrink-0 overflow-y-auto"
         role="alert"
       >
         <TriangleAlert class="size-5" /><span>{{ actionError || error }}</span
@@ -159,20 +183,38 @@ async function newTable() {
           Dismiss
         </button>
       </div>
+      <div v-if="!legacy && (!app?.match || showSetup)" class="min-h-0 flex-1 overflow-y-auto overscroll-contain">
       <SetupPanel
-        v-if="!legacy && (!app?.match || showSetup)"
         :app="app"
         :busy="busy"
         @create="create"
         @cancel="showSetup = false"
       />
+      </div>
       <template v-else-if="table">
-        <ResizableWorkspace>
+        <ResizableWorkspace :pane="mobilePane">
+          <PreparationPanel
+            v-if="preparing"
+            :table="displayedTable"
+            :app="app"
+            :human="human"
+            @inspect="inspectChatCard"
+          />
+          <BetweenGamesPanel
+            v-else-if="betweenGames"
+            :table="displayedTable"
+            :app="app"
+            :human="human"
+            @inspect="inspectChatCard"
+          />
           <GameTable
+            v-else
             ref="gameTable"
             :table="displayedTable"
             :app="app"
             :human="human"
+            :player-details="!!app?.match"
+            @player-details="panels.open('players')"
             compact
           />
           <template #chat>
@@ -182,46 +224,23 @@ async function newTable() {
               :human="human"
               :request="request"
               :connected="connected"
-              @inspect="(card, options) => gameTable?.inspect(card, options)"
+              :player-details="!!app?.match"
+              @player-details="panels.open('players')"
+              @inspect="inspectChatCard"
             />
-            <div
-              v-if="app?.match"
-              class="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-base-300 pt-2"
-            >
-              <RouterLink
-                :to="`/games/${app.match.id}`"
-                class="link text-sm text-primary"
-                >Game log</RouterLink
-              >
-              <button class="btn btn-sm btn-ghost" @click="newTable">
-                <Plus class="size-4" />New table
-              </button>
-            </div>
+            <TurnTracker
+              :table="displayedTable"
+              :app="app"
+              :human="human"
+              :player-details="!!app?.match"
+              @player-details="panels.open('players')"
+              @phase="gameTable?.setPhase($event)"
+              @edit-turn="gameTable?.editTurn()"
+            />
           </template>
         </ResizableWorkspace>
-        <SurveyPanel
-          v-if="app?.postgame"
-          id="postgame-feedback"
-          class="mt-3"
-          :app="app"
-          :request="request"
-          @changed="refresh"
-        />
-        <div v-if="!legacy" class="mt-6 grid gap-8 lg:grid-cols-2">
-          <PlayersPanel
-            :app="app"
-            :table="table"
-            :busy="busy"
-            @limits="limits.open()"
-            @wake="operate('/api/control', { action: 'wake', player: $event })"
-          />
-          <PlanUsage
-            :plan="app?.planUsage"
-            :run="app?.coordinator"
-            :request="request"
-            @changed="refresh"
-          />
-        </div>
+        <CardInspector v-if="preparing || betweenGames" :card="preparationCard" :table="displayedTable" readonly @close="preparationCard = null" />
+        <TablePanels ref="panels" :app="app" :table="table" :busy="busy" :request="request" @limits="openLimits" @wake="operate('/api/control', { action: 'wake', player: $event })" @changed="refresh" />
         <RunLimits
           ref="limits"
           :run="app?.coordinator"

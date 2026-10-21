@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { Gauge, RefreshCw } from "@lucide/vue";
-const props = defineProps({ plan: Object, run: Object, request: Function });
+const props = defineProps({ plan: Object, run: Object, request: Function, embedded: Boolean });
 const emit = defineEmits(["changed"]);
 const busy = ref(false),
   error = ref("");
@@ -47,11 +47,13 @@ async function refresh() {
 </script>
 <template>
   <section
-    class="min-w-0 border-t border-base-300 pt-5"
-    aria-labelledby="usage-heading"
+    class="min-w-0"
+    :class="embedded ? '' : 'border-t border-base-300 pt-5'"
+    :aria-labelledby="embedded ? undefined : 'usage-heading'"
+    :aria-label="embedded ? 'Plan usage' : undefined"
   >
-    <div class="mb-4 flex items-center justify-between">
-      <h2 id="usage-heading" class="flex items-center gap-2 font-semibold">
+    <div class="mb-4 flex items-center" :class="embedded ? 'justify-end' : 'justify-between'">
+      <h2 v-if="!embedded" id="usage-heading" class="flex items-center gap-2 font-semibold">
         <Gauge class="size-4" />Plan usage
       </h2>
       <button

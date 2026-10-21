@@ -5,16 +5,16 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { startTable } from './server.mjs';
 import { connectPlayer } from './player-client.mjs';
-import { demoSetup, runDemo } from './demo.mjs';
+import { demoSetup, runDemo } from './fixtures/scripted-table.mjs';
 
 const close = server => new Promise((ok, fail) => server.close(error => error ? fail(error) : ok()));
 
-test('default game needs no optional references and draws actual cards from a concealed library', async () => {
+test('custom game needs no optional references and draws actual cards from a concealed library', async () => {
   const dir = mkdtempSync(join(tmpdir(), 'game-night-default-'));
   const session = join(dir, 'session.json');
   let table, player;
   try {
-    const setup = JSON.parse(readFileSync(new URL('./precons.json', import.meta.url), 'utf8'));
+    const setup = JSON.parse(readFileSync(new URL('./fixtures/precons.json', import.meta.url), 'utf8'));
     table = await startTable({ session, setup, port: 0 });
     player = await connectPlayer({ seat: 'p1', session, url: table.url });
     const references = await player.tool('read_reference');
@@ -59,7 +59,7 @@ test('two real MCP processes share saved state with private views, conflict dete
     assert.equal((await fetch(url + '/api/observe')).status, 401);
     assert.equal((await fetch(url + '/api/act', { method: 'POST', body: '{}' })).status, 401);
     assert.deepEqual((await a.client.listTools()).tools.map(t => t.name),
-      ['observe_table', 'act', 'say', 'pass_priority', 'pass_turn', 'read_card', 'read_reference', 'read_events', 'read_rules', 'read_survey', 'submit_survey', 'complete_decision']);
+      ['observe_table', 'read_preparation', 'select_packets', 'read_sideboard', 'sideboard', 'ready_next_game', 'act', 'say', 'pass_priority', 'pass_turn', 'read_card', 'read_reference', 'read_events', 'read_rules', 'read_survey', 'submit_survey', 'complete_decision']);
     const initial = await a.tool('observe_table');
     const calls = await Promise.allSettled([a, b].map(p => p.tool('act', {
       revision: initial.revision, actions: [{ type: 'draw', count: 7 }], reason: 'Private reasoning about Serra Angel.',
@@ -100,7 +100,7 @@ test('two real MCP processes share saved state with private views, conflict dete
   }
 });
 
-test('the precon demonstration completes over MCP without claiming an AI result', async () => {
+test('the scripted regression fixture completes over MCP without claiming an AI result', async () => {
   const dir = mkdtempSync(join(tmpdir(), 'game-night-demo-'));
   const session = join(dir, 'session.json');
   let table;
@@ -130,7 +130,7 @@ test('the precon demonstration completes over MCP without claiming an AI result'
 test('legacy card reads use pinned rulings without rewriting history or bypassing hidden-card checks', async () => {
   const dir = mkdtempSync(join(tmpdir(), 'game-night-rulings-fallback-'));
   const session = join(dir, 'session.json');
-  const precons = JSON.parse(readFileSync(new URL('./precons.json', import.meta.url), 'utf8'));
+  const precons = JSON.parse(readFileSync(new URL('./fixtures/precons.json', import.meta.url), 'utf8'));
   const reference = precons.players[0].deck.find(card => card.name === 'Mentor of the Meek');
   const legacy = { ...reference, name: 'Legacy reference', count: 1 };
   delete legacy.rulings;
@@ -320,7 +320,8 @@ test('standalone MCP speech and handoffs stay explicit, public and usable withou
     assert.equal(view.turn.priority, 'two');
     assert.equal(view.decision_completed, undefined);
     view = await player.tool('pass_turn', { revision: 2, next: 'one', message: 'The next turn begins.' });
-    assert.deepEqual(view.turn, { number: 2, active: 'one', priority: 'one', phase: 'Untap' });
+    assert.deepEqual(view.turn, { number: 2, active: 'one', priority: 'one', phase: 'Untap',
+      counts: { one: 1, two: 0 }, totalTurns: 1, countsComplete: true });
     assert.equal(view.zones['one:hand'].count, 0);
     assert.equal(view.zones['one:library'].count, 3);
     assert.equal(view.decision_completed, undefined);
@@ -382,6 +383,102 @@ test('handoff response includes host completion metadata only after a durable co
     assert.equal(handoffs.length, 2);
   } finally {
     if (player) await player.close();
+    if (table?.server.listening) await close(table.server);
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('Jumpstart MCP reads local candidates and locks packets through authenticated atomic actions', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'game-night-packets-'));
+  const session = join(dir, 'session.json');
+  let table;
+  const clients = [];
+  const commits = [];
+  try {
+    table = await startTable({ session, port: 0,
+      setup: { preparation: { kind: 'jumpstart', source: 'zombies-vs-plants-v0.1' },
+        players: [{ id: 'one', faction: 'plants', deck: [] }, { id: 'two', faction: 'zombies', deck: [] }] },
+      onCommit(state, actor) { commits.push({ revision: state.revision, actor }); return { decision_completed: true }; },
+    });
+    assert.equal((await fetch(table.url + '/api/preparation')).status, 401);
+    for (const seat of ['one', 'two']) clients.push(await connectPlayer({ seat, session, url: table.url }));
+    const [one, two] = clients;
+    const initial = await one.tool('read_preparation');
+    assert.equal(initial.revision, 0);
+    assert.equal(initial.preparation.status, 'selecting');
+    assert.equal(initial.preparation.currentPlayer, 'one');
+    assert.equal(initial.preparation.decks, undefined);
+    assert.equal(initial.zones, undefined);
+    const candidates = initial.preparation.packets.filter(packet => packet.faction === 'plants');
+    assert(candidates.every(packet => packet.cards.some(card => card.oracle_text)));
+    const plantIds = candidates.slice(0, 2).map(packet => packet.id);
+    await assert.rejects(one.tool('act', { revision: 0, reason: 'Premature draw', actions: [{ type: 'draw', count: 7 }] }), /Choose packets/);
+    await assert.rejects(two.tool('select_packets', { revision: 0, packetIds: plantIds }), /selection turn/);
+    assert.equal(table.getState().revision, 0);
+    const selected = await one.tool('select_packets', { revision: 0, packetIds: plantIds, message: 'These themes complement each other.' });
+    assert.equal(selected.decision_completed, true);
+    assert.equal(selected.preparation.currentPlayer, 'two');
+    const second = await two.tool('read_preparation');
+    const zombieIds = second.preparation.packets.filter(packet => packet.faction === 'zombies').slice(0, 2).map(packet => packet.id);
+    const ready = await two.tool('select_packets', { revision: second.revision, packetIds: zombieIds });
+    assert.equal(ready.decision_completed, true);
+    assert.equal(ready.preparation.status, 'complete');
+    assert.equal(ready.zones['two:library'].count, 40);
+    assert.deepEqual(ready.zones['two:library'].cards, []);
+    assert.equal(ready.zones['two:hand'].count, 0);
+    assert.equal(ready.preparation.decks, undefined);
+    assert.equal(commits.length, 2);
+    assert.equal(table.getRecording().constructedDecks.two.reduce((sum, row) => sum + row.count, 0), 40);
+    const exported = JSON.parse(readFileSync(session + '.game.json', 'utf8'));
+    assert.equal(exported.constructedDecks.one.reduce((sum, row) => sum + row.count, 0), 40);
+    assert.match(readFileSync(session + '.game.md', 'utf8'), /Complete deck assembled from the selected Jumpstart packets/);
+  } finally {
+    for (const client of clients) await client.close();
+    if (table?.server.listening) await close(table.server);
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+
+test('real MCP sideboarding preserves private pools and resets only after every seat readies', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'game-night-series-mcp-'));
+  const session = join(dir, 'session.json');
+  let table;
+  const players = [];
+  try {
+    table = await startTable({ session, port: 0, postgame: true, setup: {
+      series: { mode: 'first_to', winsRequired: 2, sideboarding: true },
+      players: ['p1', 'p2'].map(id => ({ id, name: id, deck: [{ name: id + ' Main', count: 2 }], sideboard: [{ name: id + ' Reserve' }] })),
+    } });
+    for (const seat of ['p1', 'p2']) players.push(await connectPlayer({ seat, session, url: table.url }));
+    const [a, b] = players;
+    const result = await a.tool('act', { revision: 0, reason: 'First game finished', actions: [{ type: 'result', winners: ['p1'] }] });
+    assert.equal(result.series.status, 'between_games');
+    assert.equal(table.getRecording().postgame, undefined);
+    const pool = await a.tool('read_sideboard');
+    assert.equal(pool.canEdit, true);
+    assert.equal(pool.mainSize, 2);
+    assert.doesNotMatch(JSON.stringify(pool), /p2 Main|p2 Reserve|rosters/);
+    const reserve = pool.cards.find(card => card.definition.name === 'p1 Reserve');
+    const main = pool.cards.find(card => card.definition.name === 'p1 Main');
+    const swapped = await a.tool('sideboard', { revision: pool.revision, main: [{ id: reserve.id, count: 1 }, { id: main.id, count: 1 }] });
+    await a.tool('ready_next_game', { revision: swapped.revision, starting_player: 'p2', message: 'Ready for game two.' });
+    const next = await b.tool('read_sideboard');
+    const reset = await b.tool('ready_next_game', { revision: next.revision });
+    assert.equal(reset.series.gameNumber, 2);
+    assert.equal(reset.series.status, 'playing');
+    assert.equal(reset.result, null);
+    assert.equal(reset.turn.active, 'p2');
+    assert.equal(reset.zones['p1:library'].count, 2);
+    assert.deepEqual(reset.zones['p1:library'].cards, []);
+    assert.deepEqual(table.getRecording().gameDecks[1].players[0].cards.map(row => row.definition.name).sort(), ['p1 Main', 'p1 Reserve']);
+    await b.tool('act', { revision: reset.revision, reason: 'Second game finished', actions: [{ type: 'result', winners: ['p1'] }] });
+    const survey = await a.tool('read_survey');
+    assert.match(survey.schema.title, /Post-match/);
+    assert.equal(survey.series.games.length, 2);
+    assert.doesNotMatch(JSON.stringify(survey), /rosters|p2 Reserve/);
+  } finally {
+    for (const player of players) await player.close();
     if (table?.server.listening) await close(table.server);
     rmSync(dir, { recursive: true, force: true });
   }

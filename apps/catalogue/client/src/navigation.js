@@ -200,6 +200,14 @@ export const navigation = [
         link: "/boxed-sets/",
       },
       {
+        text: "Zombies vs Plants — Draft",
+        link: "/boxed-sets/zombies-vs-plants-jumpstart",
+      },
+      {
+        text: "New York Animal Invasion — Draft",
+        link: "/boxed-sets/new-york-animal-invasion",
+      },
+      {
         text: "Feudalism — Draft",
         link: "/boxed-sets/feudalism",
       },
@@ -210,6 +218,10 @@ export const navigation = [
     link: "/research/",
     collapsed: true,
     items: [
+      {
+        text: "Zombies vs Plants Cards",
+        link: "/research/zombies-vs-plants",
+      },
       {
         text: "Research Index",
         link: "/research/",

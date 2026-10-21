@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import { GripVertical } from "@lucide/vue";
+defineProps({ pane: { type: String, default: "table" } });
 const root = ref(null),
   width = ref(340),
   max = ref(720),
@@ -59,11 +60,11 @@ onUnmounted(() => observer?.disconnect());
 <template>
   <div
     ref="root"
-    class="grid items-start grid-cols-[minmax(0,1fr)_16px_var(--chat-width)] max-[1050px]:grid-cols-1 max-[1050px]:gap-6"
+    class="grid min-h-0 flex-1 items-stretch grid-cols-[minmax(0,1fr)_16px_var(--chat-width)] max-[1050px]:grid-cols-1"
     :class="{ 'select-none': dragging }"
     :style="{ '--chat-width': `${width}px` }"
   >
-    <section class="min-w-0" aria-label="Game field"><slot /></section>
+    <section id="table-pane" class="min-h-0 min-w-0 overflow-auto overscroll-contain" :class="pane === 'chat' ? 'max-[1050px]:hidden' : ''" aria-label="Game field"><slot /></section>
     <div
       role="separator"
       tabindex="0"
@@ -72,7 +73,7 @@ onUnmounted(() => observer?.disconnect());
       :aria-valuenow="width"
       :aria-valuemin="240"
       :aria-valuemax="max"
-      class="min-h-45 self-stretch max-[1050px]:hidden flex cursor-col-resize touch-none items-center justify-center rounded hover:bg-base-300 focus-visible:outline-2 focus-visible:outline-primary"
+      class="self-stretch max-[1050px]:hidden flex cursor-col-resize touch-none items-center justify-center rounded hover:bg-base-300 focus-visible:outline-2 focus-visible:outline-primary"
       @pointerdown="down"
       @pointermove="move"
       @pointerup="finish"
@@ -87,7 +88,7 @@ onUnmounted(() => observer?.disconnect());
     >
       <GripVertical class="size-4 text-base-content/40" aria-hidden="true" />
     </div>
-    <aside class="min-w-0 min-[1051px]:sticky min-[1051px]:top-4">
+    <aside id="chat-pane" class="flex min-h-0 min-w-0 flex-col overflow-y-auto overscroll-contain" :class="pane === 'table' ? 'max-[1050px]:hidden' : ''" aria-label="Chat and turn tracking">
       <slot name="chat" />
     </aside>
   </div>

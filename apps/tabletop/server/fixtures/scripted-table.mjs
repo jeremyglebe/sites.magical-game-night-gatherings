@@ -1,10 +1,7 @@
-import { readFileSync, existsSync } from 'node:fs';
-import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { parseArgs } from 'node:util';
+// Regression fixture only. New playtests use the Jumpstart boxed set.
+import { readFileSync } from 'node:fs';
 import { setTimeout as pause } from 'node:timers/promises';
-import { startTable } from './server.mjs';
-import { connectPlayer } from './player-client.mjs';
+import { connectPlayer } from '../player-client.mjs';
 
 export function demoSetup() {
   const setup = JSON.parse(readFileSync(new URL('./precons.json', import.meta.url), 'utf8'));
@@ -123,27 +120,4 @@ export async function runDemo({ session, url, stepMs = 700 }) {
     ], 'Skip empty remaining steps in this script; clear combat notes and damage during cleanup.');
     return { revision: (await white.tool('observe_table')).revision };
   } finally { for (const p of players) await p.close(); }
-}
-
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const { values } = parseArgs({ options: {
-    session: { type: 'string', default: '.playtest/demo-' + Date.now() + '.json' },
-    port: { type: 'string', default: '5180' }, 'step-ms': { type: 'string', default: '700' },
-    once: { type: 'boolean', default: false },
-  } });
-  let server;
-  try {
-    if (existsSync(values.session)) throw new Error('Choose a new demo session file; existing games are never overwritten.');
-    const stepMs = Number(values['step-ms']);
-    if (!Number.isInteger(stepMs) || stepMs < 0 || stepMs > 10000) throw new Error('step-ms must be 0–10000');
-    const table = await startTable({ session: values.session, setup: demoSetup(), port: Number(values.port) });
-    server = table.server;
-    console.log('Watch the scripted demonstration: ' + table.url);
-    console.log('Saved session: ' + resolve(values.session));
-    for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(() => process.exit(0)));
-    const result = await runDemo({ session: values.session, url: table.url, stepMs });
-    console.log('Completed ' + result.revision + ' table updates through two independent MCP connections. No AI game was run.');
-    if (values.once) server.close();
-    else console.log('Spectator page stays open. Press Ctrl+C to stop.');
-  } catch (error) { console.error(error.message); server?.close(); process.exitCode = 1; }
 }

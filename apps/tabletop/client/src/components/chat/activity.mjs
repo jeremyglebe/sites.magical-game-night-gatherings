@@ -1,7 +1,8 @@
 import { revealedCardSnapshots } from "../../../../shared/revealed-cards.mjs";
+import { actionText } from "../../../../shared/table-language.mjs";
 
 /** Keep speech and reveals in their original position between grouped actions. */
-export function activityParts(event) {
+export function activityParts(event, players = []) {
   const parts = [];
   let lines = [];
   const flush = () => {
@@ -20,7 +21,7 @@ export function activityParts(event) {
       flush();
       parts.push({
         kind: "reveal",
-        text: change.summary || "Revealed a card",
+        text: actionText(change, { players, actor: event.actor }),
         cards,
       });
     } else if (change.type === "say") say(change.text);
@@ -28,9 +29,9 @@ export function activityParts(event) {
       lines.push(
         change.type === "note" && typeof change.text === "string"
           ? `Note: ${change.text}`
-          : change.summary || "Table updated",
+          : actionText(change, { players, actor: event.actor }),
       );
-      if (["pass", "pass_turn"].includes(change.type)) say(change.message);
+      if (["pass", "pass_turn", "select_packets", "ready_next_game"].includes(change.type)) say(change.message);
     }
   }
   flush();
@@ -49,7 +50,7 @@ export function cardImage(card) {
 }
 
 export function avatarImage(avatar) {
-  return /^robot-(orc|wizard|dwarf|elf-ranger|knight|rogue|cleric|bard)$/.test(
+  return /^robot-(orc|wizard|dwarf|elf-ranger|knight|rogue|cleric|bard|plant|zombie)$/.test(
     avatar || "",
   )
     ? `/avatars/${avatar}.png`

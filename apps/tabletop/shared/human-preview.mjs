@@ -1,5 +1,6 @@
 // A projection of a draft, never an authoritative game state. In particular,
 // hidden-zone cards do not carry enough information to predict a draw or shuffle.
+import { advanceTurnCounts, turnWithCounts } from './turn-counts.mjs';
 const copy = value => structuredClone(value);
 const requireThat = (value, message) => { if (!value) throw new Error(message); };
 function integer(value, min = -100000, max = 100000) {
@@ -37,12 +38,28 @@ function findCard(table, id) {
 function syncCount(z) { z.hidden_count = Math.max(0, z.count - z.cards.length); }
 function detach(table, ids) {
   for (const z of Object.values(table.zones)) for (const card of z.cards) {
-    if (ids.has(card.attached_to)) card.attached_to = null;
+    if (ids.has(card.id) || ids.has(card.attached_to)) card.attached_to = null;
   }
+}
+function attach(table, card, targetId) {
+  if (targetId !== null) {
+    requireThat(typeof targetId === 'string' && targetId, 'Attachment target must be a card ID or null');
+    const source = findCard(table, card.id), target = findCard(table, targetId);
+    requireThat(source.zone.id === 'battlefield' && target.zone.id === 'battlefield'
+      && card.kind !== 'ability' && target.card.kind !== 'ability', 'Attachments require two cards on the battlefield');
+    requireThat(targetId !== card.id, 'Cannot attach a card to itself');
+    const cards = new Map(table.zones.battlefield.cards.map(c => [c.id, c]));
+    const seen = new Set([card.id]);
+    for (let id = targetId; id; id = cards.get(id)?.attached_to) {
+      requireThat(!seen.has(id), 'Attachments cannot form a cycle');
+      seen.add(id);
+    }
+  }
+  card.attached_to = targetId;
 }
 const zoneVisible = (z, actor) => z.visibility === 'public' || (z.visibility === 'owner' && z.owner === actor);
 function obscureIdentity(card) {
-  for (const key of ['name', 'type_line', 'mana_cost', 'power', 'toughness', 'scryfall_id', 'image_url', 'oracle_text', 'rulings', 'rulings_cache', 'token', 'kind', 'face', 'note']) delete card[key];
+  for (const key of ['name', 'type_line', 'mana_cost', 'power', 'toughness', 'scryfall_id', 'image_url', 'oracle_text', 'short_description', 'long_description', 'rulings', 'rulings_cache', 'token', 'kind', 'face', 'note']) delete card[key];
   card.name = 'Face-down card';
 }
 
@@ -56,6 +73,7 @@ function perform(table, actor, op, index, warn) {
   });
   function relocate(card, from, to, position = 'bottom') {
     requireThat(['top', 'bottom'].includes(position), 'Position must be top or bottom');
+    if (from.id !== 'battlefield' || to.id !== 'battlefield') detach(table, new Set([card.id]));
     from.cards = from.cards.filter(c => c.id !== card.id);
     from.count--;
     to.count++;
@@ -143,11 +161,7 @@ function perform(table, actor, op, index, warn) {
           case 'counters': card.counters = counters(value); break;
           case 'note': case 'face': card[key] = text(value); break;
           case 'attached_to':
-            if (value !== null) {
-              findCard(table, value);
-              requireThat(value !== card.id, 'Cannot attach a card to itself');
-            }
-            card.attached_to = value; break;
+            attach(table, card, value); break;
           default: throw new Error(`Unsupported card field: ${key}`);
         }
       }
@@ -199,6 +213,8 @@ function perform(table, actor, op, index, warn) {
       const z = zone(table, op.type === 'stack_item' ? 'stack' : op.to || 'battlefield');
       requireThat(op.definition && typeof op.definition === 'object', 'Expected card definition');
       requireThat(text(op.definition.name, 200).trim(), 'Card name is required');
+      if (op.definition.short_description !== undefined) text(op.definition.short_description, 500);
+      if (op.definition.long_description !== undefined) text(op.definition.long_description, 12000);
       const count = op.type === 'stack_item' ? 1 : integer(op.count ?? 1, 1, 100);
       for (let i = 0; i < count; i++) {
         const card = temporary({
@@ -245,6 +261,7 @@ function perform(table, actor, op, index, warn) {
 /** Recompute a seat's unsent actions. No logs, revision changes, or hidden reads. */
 export function previewHumanActions(seatFilteredTable, actor, actions) {
   let table = copy(seatFilteredTable);
+  table.turn = turnWithCounts(table);
   const errors = [], warnings = [];
   let appliedCount = 0;
   try {
@@ -258,6 +275,9 @@ export function previewHumanActions(seatFilteredTable, actor, actions) {
     try {
       if (action?.type === 'pass' || action?.type === 'pass_turn') requireThat(index === actions.length - 1, 'A handoff must be the last action');
       perform(next, actor, action, index, message => stepWarnings.push({ index, message }));
+      if (action.type === 'turn' || action.type === 'pass_turn') {
+        next.turn = advanceTurnCounts(table.turn, next.turn, action, table.players);
+      }
       table = next; appliedCount++;
       warnings.push(...stepWarnings);
     } catch (error) {

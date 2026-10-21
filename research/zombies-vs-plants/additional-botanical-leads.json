@@ -1,0 +1,647 @@
+{
+  "researchedAt": "2026-10-21",
+  "discoverySources": [
+    {
+      "url": "https://mtg.fandom.com/wiki/Plant",
+      "label": "MTG Wiki — Plant",
+      "use": "Discovery only",
+      "note": "Wiki trivia supplied research leads involving older botanical classifications. Current card types and rules were checked against Scryfall Oracle data; this wiki is not the rules authority."
+    },
+    {
+      "url": "https://mtg.fandom.com/wiki/Spuzzem",
+      "label": "MTG Wiki — Spuzzem",
+      "use": "Discovery only",
+      "note": "The wiki's plant-like Elemental lead prompted verification of Floral Spuzzem, already recorded in botanical-allies.json. Current Scryfall data identifies it as an Elemental, not a Plant."
+    }
+  ],
+  "queries": [
+    {
+      "query": "(!\"Floral Spuzzem\" or !\"Wall of Kelp\" or !\"Singing Tree\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 3,
+      "hasMore": false
+    },
+    {
+      "query": "(!\"Scarecrone\" or !\"Dryad Arbor\" or !\"Nessian Wanderer\" or !\"Kodama of the North Tree\" or !\"Splintering Wind\" or !\"Wicker Witch\" or !\"Wicker Warcrawler\" or !\"Woodcaller Automaton\" or !\"Rootwire Amalgam\" or !\"Kami of the Tended Garden\" or !\"Petalmane Baku\" or !\"Loam Dweller\" or !\"Birthing Boughs\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 13,
+      "hasMore": false
+    }
+  ],
+  "resolvedLeads": [
+    {
+      "name": "Timber Golem",
+      "lookup": "Scryfall exact English name lookup",
+      "result": "not_found",
+      "note": "The exact-name lookup returned no card. Do not treat this proposed name as a verified Magic card or silently replace it with a different card."
+    },
+    {
+      "name": "Nessian Wanderer",
+      "type_line": "Creature — Satyr Scout",
+      "scryfall_uri": "https://scryfall.com/card/cmm/905/nessian-wanderer?utm_source=api",
+      "result": "type correction; not included in botanical candidates",
+      "note": "Nessian Wanderer is a Satyr Scout, not a Dryad or Plant. Its enchantment-based land selection does not by itself establish the botanical creature theme."
+    }
+  ],
+  "cards": [
+    {
+      "id": "1345ee24-ffa3-44d1-a983-f25f54cda3f3",
+      "oracle_id": "c6836d78-ca71-4413-aced-d4de19976221",
+      "name": "Birthing Boughs",
+      "mana_cost": "{3}",
+      "cmc": 3,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Artifact",
+      "oracle_text": "{4}, {T}: Create a 2/2 colorless Shapeshifter creature token with changeling. (It is every creature type.)",
+      "scryfall_uri": "https://scryfall.com/card/mh1/221/birthing-boughs?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.jpg?1783933075",
+        "normal": "https://cards.scryfall.io/normal/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.jpg?1783933075",
+        "large": "https://cards.scryfall.io/large/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.jpg?1783933075",
+        "png": "https://cards.scryfall.io/png/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.png?1783933075",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.jpg?1783933075",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.jpg?1783933075",
+        "thumb": "https://cards.scryfall.io/thumb/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.webp?1783933075",
+        "grid": "https://cards.scryfall.io/grid/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.webp?1783933075",
+        "display": "https://cards.scryfall.io/display/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.webp?1783933075",
+        "art": "https://cards.scryfall.io/art/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.webp?1783933075",
+        "crop": "https://cards.scryfall.io/crop/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.webp?1783933075",
+        "jpeg": "https://cards.scryfall.io/normal/front/1/3/1345ee24-ffa3-44d1-a983-f25f54cda3f3.jpg?1783933075"
+      },
+      "set": "mh1",
+      "collector_number": "221",
+      "released_at": "2019-06-14",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "token production"
+        ],
+        "note": "A bough-themed artifact that can generate creature tokens without colored mana. Included as a thematic lead, not because changeling alone makes a card appropriate.",
+        "caution": "Creates Shapeshifters with changeling rather than dedicated botanical tokens. They are mechanically every creature type, but that should not replace a deliberate thematic choice; the repeated four-mana activation is slow.",
+        "manaNote": "Costs 3 and requires 4 plus tapping to create each token.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "e3ddbebf-72cd-4d1b-ba0d-d94934654ab7",
+      "oracle_id": "e996cd67-739c-40f4-b276-0042acf26c71",
+      "name": "Dryad Arbor",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Land Creature — Forest Dryad",
+      "oracle_text": "(This land isn't a spell, it's affected by summoning sickness, and it has \"{T}: Add {G}.\")",
+      "power": "1",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/dsc/273/dryad-arbor?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577",
+        "normal": "https://cards.scryfall.io/normal/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577",
+        "large": "https://cards.scryfall.io/large/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577",
+        "png": "https://cards.scryfall.io/png/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.png?1783909577",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.webp?1783909577",
+        "grid": "https://cards.scryfall.io/grid/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.webp?1783909577",
+        "display": "https://cards.scryfall.io/display/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.webp?1783909577",
+        "art": "https://cards.scryfall.io/art/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.webp?1783909577",
+        "crop": "https://cards.scryfall.io/crop/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.webp?1783909577",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577"
+      },
+      "set": "dsc",
+      "collector_number": "273",
+      "released_at": "2024-09-27",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "mana support",
+          "land creature"
+        ],
+        "note": "A genuine Dryad that is also a Forest land, bridging woodland flavor with land and creature interactions.",
+        "caution": "It is a Dryad, not a Plant. It is played as a land rather than cast as a spell, uses a land play, and cannot tap for mana immediately if affected by summoning sickness. Creature removal can also remove this mana source.",
+        "manaNote": "Has no mana cost; its Forest subtype provides a green-mana tap ability.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "bdedd830-9200-4e8b-84b4-00dc58cace35",
+      "oracle_id": "e2770ebf-24e3-4787-956b-ca01aaa50a6f",
+      "name": "Kami of the Tended Garden",
+      "mana_cost": "{3}{G}",
+      "cmc": 4,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Spirit",
+      "oracle_text": "At the beginning of your upkeep, sacrifice this creature unless you pay {G}.\nSoulshift 3 (When this creature dies, you may return target Spirit card with mana value 3 or less from your graveyard to your hand.)",
+      "power": "4",
+      "toughness": "4",
+      "scryfall_uri": "https://scryfall.com/card/sok/134/kami-of-the-tended-garden?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.jpg?1783944138",
+        "normal": "https://cards.scryfall.io/normal/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.jpg?1783944138",
+        "large": "https://cards.scryfall.io/large/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.jpg?1783944138",
+        "png": "https://cards.scryfall.io/png/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.png?1783944138",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.jpg?1783944138",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.jpg?1783944138",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.webp?1783944138",
+        "grid": "https://cards.scryfall.io/grid/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.webp?1783944138",
+        "display": "https://cards.scryfall.io/display/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.webp?1783944138",
+        "art": "https://cards.scryfall.io/art/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.webp?1783944138",
+        "crop": "https://cards.scryfall.io/crop/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.webp?1783944138",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/d/bdedd830-9200-4e8b-84b4-00dc58cace35.jpg?1783944138"
+      },
+      "set": "sok",
+      "collector_number": "134",
+      "released_at": "2005-06-03",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "midgame creature",
+          "spirit recursion"
+        ],
+        "note": "A garden-associated Spirit whose soulshift can recover a smaller Spirit ally, if such allies are selected later.",
+        "caution": "Requires green mana each upkeep or is sacrificed. Soulshift only returns a Spirit of mana value three or less, not a generic Plant, Treefolk, or Fungus.",
+        "manaNote": "Costs 3G and asks for G on each upkeep.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2d9b5c33-63c4-4ddd-9f04-37bb36970b43",
+      "oracle_id": "15d8f129-2518-45f4-9f34-a4fcd4d859af",
+      "name": "Kodama of the North Tree",
+      "mana_cost": "{2}{G}{G}{G}",
+      "cmc": 5,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Legendary Creature — Spirit",
+      "oracle_text": "Trample\nShroud (This creature can't be the target of spells or abilities.)",
+      "power": "6",
+      "toughness": "4",
+      "scryfall_uri": "https://scryfall.com/card/chk/222/kodama-of-the-north-tree?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.jpg?1783944287",
+        "normal": "https://cards.scryfall.io/normal/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.jpg?1783944287",
+        "large": "https://cards.scryfall.io/large/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.jpg?1783944287",
+        "png": "https://cards.scryfall.io/png/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.png?1783944287",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.jpg?1783944287",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.jpg?1783944287",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.webp?1783944287",
+        "grid": "https://cards.scryfall.io/grid/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.webp?1783944287",
+        "display": "https://cards.scryfall.io/display/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.webp?1783944287",
+        "art": "https://cards.scryfall.io/art/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.webp?1783944287",
+        "crop": "https://cards.scryfall.io/crop/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.webp?1783944287",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/d/2d9b5c33-63c4-4ddd-9f04-37bb36970b43.jpg?1783944287"
+      },
+      "set": "chk",
+      "collector_number": "222",
+      "released_at": "2004-10-01",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "finisher",
+          "woodland creature"
+        ],
+        "note": "A tree-associated legendary Spirit with trample and shroud; a botanical theme does not require its type line to say Plant.",
+        "caution": "Shroud prevents its controller from targeting it too, so targeted growth and protection spells cannot enhance it. It is a Spirit, not a Plant or Treefolk.",
+        "manaNote": "Costs 2GGG, making it difficult to cast on curve in a two-color combined deck.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "4f635b35-48c8-43e8-9d74-c01d3c0c74e1",
+      "oracle_id": "a61f7653-4c55-472f-b37c-617b94d0fecd",
+      "name": "Loam Dweller",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Spirit",
+      "oracle_text": "Whenever you cast a Spirit or Arcane spell, you may put a land card from your hand onto the battlefield tapped.",
+      "power": "2",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/bok/134/loam-dweller?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.jpg?1783944182",
+        "normal": "https://cards.scryfall.io/normal/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.jpg?1783944182",
+        "large": "https://cards.scryfall.io/large/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.jpg?1783944182",
+        "png": "https://cards.scryfall.io/png/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.png?1783944182",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.jpg?1783944182",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.jpg?1783944182",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.webp?1783944182",
+        "grid": "https://cards.scryfall.io/grid/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.webp?1783944182",
+        "display": "https://cards.scryfall.io/display/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.webp?1783944182",
+        "art": "https://cards.scryfall.io/art/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.webp?1783944182",
+        "crop": "https://cards.scryfall.io/crop/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.webp?1783944182",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/f/4f635b35-48c8-43e8-9d74-c01d3c0c74e1.jpg?1783944182"
+      },
+      "set": "bok",
+      "collector_number": "134",
+      "released_at": "2005-02-04",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "mana support"
+        ],
+        "note": "A soil-associated Spirit whose flavor text explicitly describes lilies and thorns springing up around it. Can develop lands when paired with Spirit or Arcane spells.",
+        "caution": "A generic Plant, Treefolk, or Fungus spell does not trigger it unless it is also a Spirit or Arcane spell. It puts a land from hand into play; it does not search the library.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "7c7ba032-66d6-41bd-af4f-9853b031a474",
+      "oracle_id": "f73f8eca-55fe-418f-a244-29ef82cfc47c",
+      "name": "Petalmane Baku",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Spirit",
+      "oracle_text": "Whenever you cast a Spirit or Arcane spell, you may put a ki counter on this creature.\n{1}, Remove X ki counters from this creature: Add X mana of any one color.",
+      "power": "1",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/bok/139/petalmane-baku?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.jpg?1783944181",
+        "normal": "https://cards.scryfall.io/normal/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.jpg?1783944181",
+        "large": "https://cards.scryfall.io/large/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.jpg?1783944181",
+        "png": "https://cards.scryfall.io/png/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.png?1783944181",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.jpg?1783944181",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.jpg?1783944181",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.webp?1783944181",
+        "grid": "https://cards.scryfall.io/grid/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.webp?1783944181",
+        "display": "https://cards.scryfall.io/display/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.webp?1783944181",
+        "art": "https://cards.scryfall.io/art/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.webp?1783944181",
+        "crop": "https://cards.scryfall.io/crop/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.webp?1783944181",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/c/7c7ba032-66d6-41bd-af4f-9853b031a474.jpg?1783944181"
+      },
+      "set": "bok",
+      "collector_number": "139",
+      "released_at": "2005-02-04",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "mana support"
+        ],
+        "note": "A petal-themed Spirit that stores ki counters and can convert them into mana of a chosen color.",
+        "caution": "Requires other Spirit or Arcane spells to build counters; ordinary botanical creatures do not inherently qualify. It cannot function as reliable fixing without that support.",
+        "manaNote": "Costs 1G; converting X counters costs 1 and produces X mana of one chosen color.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2498b591-4a80-459f-a639-fe4cf8880be2",
+      "oracle_id": "7644148f-3b26-447d-9f52-28c94c111b69",
+      "name": "Rootwire Amalgam",
+      "mana_cost": "{5}",
+      "cmc": 5,
+      "colors": [],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Artifact Creature — Golem",
+      "oracle_text": "Prototype {1}{G} — 2/3 (You may cast this spell with different mana cost, color, and size. It keeps its abilities and types.)\n{3}{G}{G}, Sacrifice this creature: Create an X/X colorless Golem artifact creature token, where X is three times this creature's power. It gains haste until end of turn. Activate only as a sorcery.",
+      "power": "5",
+      "toughness": "5",
+      "scryfall_uri": "https://scryfall.com/card/bro/203/rootwire-amalgam?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.jpg?1783920037",
+        "normal": "https://cards.scryfall.io/normal/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.jpg?1783920037",
+        "large": "https://cards.scryfall.io/large/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.jpg?1783920037",
+        "png": "https://cards.scryfall.io/png/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.png?1783920037",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.jpg?1783920037",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.jpg?1783920037",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.webp?1783920037",
+        "grid": "https://cards.scryfall.io/grid/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.webp?1783920037",
+        "display": "https://cards.scryfall.io/display/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.webp?1783920037",
+        "art": "https://cards.scryfall.io/art/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.webp?1783920037",
+        "crop": "https://cards.scryfall.io/crop/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.webp?1783920037",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/4/2498b591-4a80-459f-a639-fe4cf8880be2.jpg?1783920037"
+      },
+      "set": "bro",
+      "collector_number": "203",
+      "released_at": "2022-11-18",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "artifact creature",
+          "finisher"
+        ],
+        "note": "A rootwire-themed Golem offering an early prototype body or a larger artifact form, followed by a conversion into a much larger Golem token.",
+        "caution": "Its actual type is Golem, not Plant or Treefolk. Prototype and power-based token sizing add complexity; its name is a thematic lead rather than proof that all Golems are botanical.",
+        "manaNote": "Costs 5 normally or 1G as a prototype; its conversion ability costs 3GG.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "a8c9d86a-54a3-457c-b9b4-61f914de6e14",
+      "oracle_id": "f45716dc-c613-4b14-865d-419395fb02f6",
+      "name": "Scarecrone",
+      "mana_cost": "{3}",
+      "cmc": 3,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Artifact Creature — Scarecrow",
+      "oracle_text": "{1}, Sacrifice a Scarecrow: Draw a card.\n{4}, {T}: Return target artifact creature card from your graveyard to the battlefield.",
+      "power": "1",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/jmp/482/scarecrone?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.jpg?1783930333",
+        "normal": "https://cards.scryfall.io/normal/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.jpg?1783930333",
+        "large": "https://cards.scryfall.io/large/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.jpg?1783930333",
+        "png": "https://cards.scryfall.io/png/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.png?1783930333",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.jpg?1783930333",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.jpg?1783930333",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.webp?1783930333",
+        "grid": "https://cards.scryfall.io/grid/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.webp?1783930333",
+        "display": "https://cards.scryfall.io/display/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.webp?1783930333",
+        "art": "https://cards.scryfall.io/art/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.webp?1783930333",
+        "crop": "https://cards.scryfall.io/crop/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.webp?1783930333",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/8/a8c9d86a-54a3-457c-b9b4-61f914de6e14.jpg?1783930333"
+      },
+      "set": "jmp",
+      "collector_number": "482",
+      "released_at": "2020-07-17",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "artifact recursion",
+          "card draw",
+          "conditional thematic lead"
+        ],
+        "note": "A user-supplied field-craft/scarecrow lead, verified as an artifact Scarecrow. Keep it available if the theme expands to crop guardians; Oracle text alone does not establish botanical material.",
+        "caution": "It is neither a Golem nor a Plant. Its draw ability needs a Scarecrow sacrifice and its recovery ability needs an artifact creature, so an ordinary botanical packet supplies little support.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "0afa94e5-fef6-4f3a-9196-d7aa6dd841c2",
+      "oracle_id": "184f68a1-0c13-42f4-aee6-3ca744f6a30b",
+      "name": "Splintering Wind",
+      "mana_cost": "{2}{G}{G}",
+      "cmc": 4,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "{2}{G}: This enchantment deals 1 damage to target creature. Create a 1/1 green Splinter creature token. It has flying and \"Cumulative upkeep {G}.\" When it leaves the battlefield, it deals 1 damage to you and each creature you control. (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless they pay its upkeep cost for each age counter on it.)",
+      "scryfall_uri": "https://scryfall.com/card/all/99/splintering-wind?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.jpg?1783947168",
+        "normal": "https://cards.scryfall.io/normal/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.jpg?1783947168",
+        "large": "https://cards.scryfall.io/large/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.jpg?1783947168",
+        "png": "https://cards.scryfall.io/png/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.png?1783947168",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.jpg?1783947168",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.jpg?1783947168",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.webp?1783947168",
+        "grid": "https://cards.scryfall.io/grid/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.webp?1783947168",
+        "display": "https://cards.scryfall.io/display/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.webp?1783947168",
+        "art": "https://cards.scryfall.io/art/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.webp?1783947168",
+        "crop": "https://cards.scryfall.io/crop/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.webp?1783947168",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/a/0afa94e5-fef6-4f3a-9196-d7aa6dd841c2.jpg?1783947168"
+      },
+      "set": "all",
+      "collector_number": "99",
+      "released_at": "1996-06-10",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "interaction",
+          "token production",
+          "research curiosity"
+        ],
+        "note": "A wooden-splinter-themed enchantment that can damage a creature and create a green Splinter token. The token is explicitly 1/1 and has flying and cumulative upkeep G. The creating ability also makes it deal one damage to you and each creature you control when it leaves the battlefield.",
+        "caution": "Splinter is the token's actual creature subtype, not Plant or Treefolk. Repeated upkeep payments, age counters, and damage when tokens leave can make this awkward or actively harmful to a small-creature board.",
+        "manaNote": "Costs 2GG; each activation costs 2G, and each token accumulates a separate cumulative-upkeep requirement.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "488e7c73-62bc-4d51-bcb6-8126ec559b41",
+      "oracle_id": "0acadb47-17b2-47d8-9aad-5436931bc38c",
+      "name": "Wicker Warcrawler",
+      "mana_cost": "{5}",
+      "cmc": 5,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Artifact Creature — Scarecrow",
+      "oracle_text": "Whenever this creature attacks or blocks, put a -1/-1 counter on it at end of combat.",
+      "power": "6",
+      "toughness": "6",
+      "scryfall_uri": "https://scryfall.com/card/shm/269/wicker-warcrawler?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.jpg?1783942708",
+        "normal": "https://cards.scryfall.io/normal/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.jpg?1783942708",
+        "large": "https://cards.scryfall.io/large/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.jpg?1783942708",
+        "png": "https://cards.scryfall.io/png/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.png?1783942708",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.jpg?1783942708",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.jpg?1783942708",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.webp?1783942708",
+        "grid": "https://cards.scryfall.io/grid/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.webp?1783942708",
+        "display": "https://cards.scryfall.io/display/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.webp?1783942708",
+        "art": "https://cards.scryfall.io/art/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.webp?1783942708",
+        "crop": "https://cards.scryfall.io/crop/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.webp?1783942708",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/8/488e7c73-62bc-4d51-bcb6-8126ec559b41.jpg?1783942708"
+      },
+      "set": "shm",
+      "collector_number": "269",
+      "released_at": "2008-05-02",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "artifact creature",
+          "combat pressure",
+          "conditional thematic lead"
+        ],
+        "note": "A wicker-themed artificial creature, useful as a lead if constructed botanical materials fit the box's scope.",
+        "caution": "Its actual type is Scarecrow, not Plant or Golem. It acquires a -1/-1 counter at end of every combat in which it attacked or blocked, so its initially large body steadily deteriorates.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ae115587-012d-40ff-a20d-270fabf2f8c6",
+      "oracle_id": "cc2f945f-9048-4978-b61f-49eefb3d94d7",
+      "name": "Wicker Witch",
+      "mana_cost": "{3}",
+      "cmc": 3,
+      "colors": [],
+      "color_identity": [],
+      "type_line": "Artifact Creature — Scarecrow",
+      "oracle_text": "",
+      "power": "3",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/soi/268/wicker-witch?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.jpg?1783937699",
+        "normal": "https://cards.scryfall.io/normal/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.jpg?1783937699",
+        "large": "https://cards.scryfall.io/large/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.jpg?1783937699",
+        "png": "https://cards.scryfall.io/png/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.png?1783937699",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.jpg?1783937699",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.jpg?1783937699",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.webp?1783937699",
+        "grid": "https://cards.scryfall.io/grid/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.webp?1783937699",
+        "display": "https://cards.scryfall.io/display/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.webp?1783937699",
+        "art": "https://cards.scryfall.io/art/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.webp?1783937699",
+        "crop": "https://cards.scryfall.io/crop/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.webp?1783937699",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/e/ae115587-012d-40ff-a20d-270fabf2f8c6.jpg?1783937699"
+      },
+      "set": "soi",
+      "collector_number": "268",
+      "released_at": "2016-04-08",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "artifact creature",
+          "simple creature",
+          "conditional thematic lead"
+        ],
+        "note": "A wicker-themed Scarecrow with no rules text; a possible constructed-plant-material ally if that visual theme is accepted.",
+        "caution": "It is a Scarecrow, not a Plant. Its inclusion is a material/theme proposal rather than a plant-subtype synergy, and it has no special botanical ability.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "a0418156-bcba-4edc-8ea5-ce9ca9b979bd",
+      "oracle_id": "124c3af4-8545-479a-b44c-446da1c8b535",
+      "name": "Woodcaller Automaton",
+      "mana_cost": "{10}",
+      "cmc": 10,
+      "colors": [],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Artifact Creature — Construct",
+      "oracle_text": "Prototype {2}{G}{G} — 3/3 (You may cast this spell with different mana cost, color, and size. It keeps its abilities and types.)\nWhen this creature enters, if you cast it, untap target land you control. It becomes a Treefolk creature with haste and base power and toughness equal to this creature's power and toughness. It's still a land.",
+      "power": "8",
+      "toughness": "8",
+      "scryfall_uri": "https://scryfall.com/card/bro/292/woodcaller-automaton?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994",
+        "normal": "https://cards.scryfall.io/normal/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994",
+        "large": "https://cards.scryfall.io/large/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994",
+        "png": "https://cards.scryfall.io/png/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.png?1783919994",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.webp?1783919994",
+        "grid": "https://cards.scryfall.io/grid/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.webp?1783919994",
+        "display": "https://cards.scryfall.io/display/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.webp?1783919994",
+        "art": "https://cards.scryfall.io/art/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.webp?1783919994",
+        "crop": "https://cards.scryfall.io/crop/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.webp?1783919994",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994"
+      },
+      "set": "bro",
+      "collector_number": "292",
+      "released_at": "2022-11-18",
+      "research": {
+        "groups": [
+          "botanical-allies",
+          "treefolk"
+        ],
+        "roles": [
+          "artifact creature",
+          "land animation",
+          "finisher"
+        ],
+        "note": "A wood-themed Construct that explicitly turns one of your lands into a Treefolk creature, connecting a non-Treefolk card to genuine Treefolk support.",
+        "caution": "The Automaton is a Construct, not a Treefolk. The land-animation trigger requires that the Automaton was cast, so merely returning it from a graveyard does not trigger it. Animating a land exposes mana to creature removal.",
+        "manaNote": "Costs 10 normally or 2GG as a prototype; the animated land's base size uses the Automaton's power and toughness.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "3003bf1e-8085-45d8-882b-c449109e7631",
+      "oracle_id": "23f9bee4-ac7e-4828-82c0-576fee0d29b7",
+      "name": "Singing Tree",
+      "mana_cost": "{3}{G}",
+      "cmc": 4,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Plant",
+      "oracle_text": "{T}: Target attacking creature has base power 0 until end of turn.",
+      "power": "0",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/arn/54/singing-tree?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.jpg?1783948380",
+        "normal": "https://cards.scryfall.io/normal/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.jpg?1783948380",
+        "large": "https://cards.scryfall.io/large/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.jpg?1783948380",
+        "png": "https://cards.scryfall.io/png/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.png?1783948380",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.jpg?1783948380",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.jpg?1783948380",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.webp?1783948380",
+        "grid": "https://cards.scryfall.io/grid/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.webp?1783948380",
+        "display": "https://cards.scryfall.io/display/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.webp?1783948380",
+        "art": "https://cards.scryfall.io/art/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.webp?1783948380",
+        "crop": "https://cards.scryfall.io/crop/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.webp?1783948380",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/0/3003bf1e-8085-45d8-882b-c449109e7631.jpg?1783948380"
+      },
+      "set": "arn",
+      "collector_number": "54",
+      "released_at": "1993-12-17",
+      "research": {
+        "groups": [
+          "botanical-allies",
+          "plants"
+        ],
+        "roles": [
+          "defense",
+          "interaction"
+        ],
+        "note": "A tree-themed card whose current Oracle type is Plant, despite its name. Its tap ability can reduce an attacking creature's base power, supplying a defensive botanical tool without destroying it.",
+        "caution": "Sets base power to zero rather than preventing all damage; counters and other power bonuses still apply. Can target only an attacking creature and cannot use its tap ability immediately while affected by summoning sickness.",
+        "crossover": false
+      }
+    }
+  ]
+}

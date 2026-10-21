@@ -32,6 +32,13 @@ test('managed MCP uses only the supplied seat token and keeps decision acknowled
     assert.ok(act.inputSchema.properties.actions.items.properties.type.enum.includes('pass_turn'));
     assert.ok(act.inputSchema.properties.actions.items.properties.type.enum.includes('say'));
     assert.ok(act.inputSchema.properties.actions.items.properties.next);
+    const attachment = act.inputSchema.properties.actions.items.properties.set.properties.attached_to;
+    assert.ok(attachment.anyOf.some(type => type.type === 'null'));
+    assert.match(attachment.description, /instead of recording the relationship only in notes/);
+    const definition = act.inputSchema.properties.actions.items.properties.definition;
+    assert.equal(definition.properties.short_description.maxLength, 500);
+    assert.equal(definition.properties.long_description.maxLength, 12000);
+    assert.match(definition.description, /oracle_text.*fallback/);
     const complete = tools.find(tool => tool.name === 'complete_decision');
     assert.equal(complete.inputSchema.properties.decision_id, undefined);
     await client.callTool({ name: 'complete_decision', arguments: { status: 'no_op' } });
@@ -76,6 +83,43 @@ test('managed MCP uses only the supplied seat token and keeps decision acknowled
     await client.callTool({ name: 'submit_survey', arguments: { answers: { fixture: true }, playerId: 'other' } });
     assert.deepEqual(requests[9].body, { answers: { fixture: true }, decision_id: 'decision-123' });
     assert.equal(requests[9].url, '/api/survey');
+    const selection = tools.find(tool => tool.name === 'select_packets');
+    assert.equal(selection.inputSchema.properties.playerId, undefined);
+    assert.equal(selection.inputSchema.properties.decision_id, undefined);
+    assert.deepEqual(selection.inputSchema.required, ['revision', 'packetIds']);
+    assert.equal(selection.inputSchema.properties.packetIds.uniqueItems, true);
+    await client.callTool({ name: 'read_preparation', arguments: {} });
+    assert.equal(requests[10].url, '/api/preparation');
+    await client.callTool({ name: 'select_packets', arguments: {
+      revision: 7, packetIds: ['first', 'second'], message: 'These themes work together.',
+      playerId: 'other', decision_id: 'spoofed-decision',
+    } });
+    assert.deepEqual(requests[11].body, { revision: 7,
+      actions: [{ type: 'select_packets', packetIds: ['first', 'second'], message: 'These themes work together.' }],
+      reason: 'Choose Jumpstart packets', decision_id: 'decision-123',
+    });
+    assert.equal(requests[11].url, '/api/act');
+    for (const name of ['sideboard', 'ready_next_game']) {
+      const tool = tools.find(tool => tool.name === name);
+      assert.ok(tool);
+      assert.equal(tool.inputSchema.properties.playerId, undefined);
+      assert.equal(tool.inputSchema.properties.decision_id, undefined);
+    }
+    await client.callTool({ name: 'read_sideboard', arguments: { playerId: 'other' } });
+    assert.equal(requests[12].url, '/api/sideboard');
+    await client.callTool({ name: 'sideboard', arguments: {
+      revision: 8, main: [{ id: 'pool-entry', count: 2 }], playerId: 'other', decision_id: 'spoofed',
+    } });
+    assert.deepEqual(requests[13].body, { revision: 8,
+      actions: [{ type: 'sideboard', main: [{ id: 'pool-entry', count: 2 }] }],
+      reason: 'Adjust between-game deck allocation', decision_id: 'decision-123',
+    });
+    await client.callTool({ name: 'ready_next_game', arguments: { revision: 9, starting_player: 'other', message: 'Ready.', playerId: 'other' } });
+    assert.deepEqual(requests[14].body, { revision: 9,
+      actions: [{ type: 'ready_next_game', starting_player: 'other', message: 'Ready.' }],
+      reason: 'Ready for the next game', decision_id: 'decision-123',
+    });
+
     assert.ok(requests.every(request => request.authorization === 'Bearer one-seat-token'));
     assert.ok(requests.every(request => request.decisionId === 'decision-123'));
   } finally {

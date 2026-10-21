@@ -4,6 +4,8 @@ A boxed set is a personal, prebuilt game-night kit: decks, tokens, role cards, a
 
 | Box | Format family | Base ruleset | Status |
 | --- | --- | --- | --- |
+| [Zombies vs Plants: Jumpstart](zombies-vs-plants-jumpstart.md) | [Jumpstart](../formats/jumpstart/) | [Two-Packet Jumpstart](../formats/jumpstart/variants/two-packet.md) | v0.1 draft: eight complete twenty-card lists, setup, tokens, and test notes. Ready for initial playtests; balance untested. |
+| [New York is invaded by ordinary animals](new-york-animal-invasion.md) | [Horde](../formats/horde/) | Not yet selected | Future first Horde box, after the first overall project. Draft: mundane animals versus ordinary people. |
 | [Feudalism](feudalism.md) | [BANG-like hidden roles](../formats/bang-like/) | Not yet selected | Draft: recurring monarchy is recorded; roles, victory conditions, and components are still being designed. |
 
 ## Read a box's rules

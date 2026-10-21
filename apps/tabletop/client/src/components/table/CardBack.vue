@@ -1,13 +1,16 @@
+<script setup>
+import { Sparkle } from "@lucide/vue";
+</script>
 <template>
   <span
     role="img"
     aria-label="Concealed card"
-    class="inline-grid aspect-[5/7] shrink-0 place-items-center rounded border border-primary/50 bg-base-300 p-1 text-primary"
+    class="relative inline-block aspect-[5/7] min-h-0 min-w-0 shrink-0 overflow-hidden rounded border border-primary/50 bg-base-300 text-primary"
   >
     <span
-      class="grid h-full w-full place-items-center rounded-sm border border-primary/30 text-lg"
+      class="absolute inset-[12%] grid place-items-center rounded-sm border border-primary/30"
       aria-hidden="true"
-      >✦</span
+      ><Sparkle class="h-3/4 w-3/4 fill-current" /></span
     >
   </span>
 </template>

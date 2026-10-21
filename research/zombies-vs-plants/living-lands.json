@@ -1,0 +1,3793 @@
+{
+  "researchedAt": "2026-10-21",
+  "queries": [
+    {
+      "query": "(!\"Kormus Bell\" or !\"Living Lands\" or !\"Life and Limb\" or !\"Awakener Druid\" or !\"Llanowar Loamspeaker\" or !\"Sylvan Awakening\" or !\"Rude Awakening\" or !\"Animate Land\" or !\"Natural Affinity\" or !\"Treetop Village\" or !\"Hissing Quagmire\" or !\"Restless Cottage\" or !\"Lair of the Hydra\" or !\"Lumbering Falls\" or !\"Embodiment of Insight\" or !\"Sylvan Advocate\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 16,
+      "hasMore": false
+    },
+    {
+      "query": "(!\"Nissa, Who Shakes the World\" or !\"Wrenn and Realmbreaker\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 2,
+      "hasMore": false
+    },
+    {
+      "query": "(!\"Ambush Commander\" or !\"Awakening of Vitu-Ghazi\" or !\"Brave the Wilds\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 3,
+      "hasMore": false
+    },
+    {
+      "query": "(!\"Genju of the Cedars\" or !\"Fendeep Summoner\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 2,
+      "hasMore": false
+    },
+    {
+      "name": "Genju of the Fens",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    }
+  ],
+  "cards": [
+    {
+      "object": "card",
+      "id": "20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86",
+      "oracle_id": "b2bd58ea-b2c6-47f1-b082-7969f093bbc6",
+      "multiverse_ids": [
+        21377
+      ],
+      "mtgo_id": 13757,
+      "mtgo_foil_id": 13758,
+      "tcgplayer_id": 7125,
+      "cardmarket_id": 11824,
+      "name": "Animate Land",
+      "lang": "en",
+      "released_at": "2000-02-14",
+      "uri": "https://api.scryfall.com/cards/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86",
+      "scryfall_uri": "https://scryfall.com/card/nem/101/animate-land?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T12:30:17Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.jpg?1783945817",
+        "normal": "https://cards.scryfall.io/normal/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.jpg?1783945817",
+        "large": "https://cards.scryfall.io/large/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.jpg?1783945817",
+        "png": "https://cards.scryfall.io/png/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.png?1783945817",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.jpg?1783945817",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.jpg?1783945817",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.webp?1783945817",
+        "grid": "https://cards.scryfall.io/grid/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.webp?1783945817",
+        "display": "https://cards.scryfall.io/display/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.webp?1783945817",
+        "art": "https://cards.scryfall.io/art/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.webp?1783945817",
+        "crop": "https://cards.scryfall.io/crop/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.webp?1783945817",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/0/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86.jpg?1783945817"
+      },
+      "mana_cost": "{G}",
+      "cmc": 1,
+      "type_line": "Instant",
+      "oracle_text": "Until end of turn, target land becomes a 3/3 creature that's still a land.",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "not_legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "fa5d1fdb-f781-473d-b14d-50396d40d43f",
+      "set": "nem",
+      "set_name": "Nemesis",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/fa5d1fdb-f781-473d-b14d-50396d40d43f",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Anem&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/nem?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/20ff4e7d-fa50-48d2-8ab6-6b86e3a05e86/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab2bd58ea-b2c6-47f1-b082-7969f093bbc6&unique=prints",
+      "collector_number": "101",
+      "digital": false,
+      "rarity": "uncommon",
+      "flavor_text": "Irony is getting walked on by the earth instead of the other way around.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Rebecca Guay",
+      "artist_ids": [
+        "f8f662fa-d597-46a3-afb2-91d6e13243e2"
+      ],
+      "illustration_id": "d706c0e6-1596-4464-9d66-e65dd33f1b6c",
+      "border_color": "black",
+      "frame": "1997",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 24931,
+      "penny_rank": 8117,
+      "prices": {
+        "usd": "0.25",
+        "usd_foil": "5.35",
+        "usd_etched": null,
+        "eur": "0.19",
+        "eur_foil": "3.07",
+        "tix": "0.04"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=21377&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAnimate%2BLand",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAnimate%2BLand",
+        "edhrec": "https://edhrec.com/route/?cc=Animate+Land"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F7125%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=11824&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/13757?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "A cheap way to animate a Forest or Swamp without needing a botanical creature type.",
+        "caution": "Does not untap the land or give haste; a newly played land may be unable to attack. The land is exposed to creature removal for the turn.",
+        "manaNote": "Costs G; temporary animation.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "7de98df4-9552-4ba6-a324-1669dc077d4c",
+      "oracle_id": "7e8f5b34-fd16-4307-9104-17b584b25b14",
+      "multiverse_ids": [
+        489362
+      ],
+      "arena_id": 72441,
+      "tcgplayer_id": 216089,
+      "cardmarket_id": 472979,
+      "name": "Awakener Druid",
+      "lang": "en",
+      "released_at": "2020-07-17",
+      "uri": "https://api.scryfall.com/cards/7de98df4-9552-4ba6-a324-1669dc077d4c",
+      "scryfall_uri": "https://scryfall.com/card/jmp/379/awakener-druid?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T08:12:50Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.jpg?1783930370",
+        "normal": "https://cards.scryfall.io/normal/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.jpg?1783930370",
+        "large": "https://cards.scryfall.io/large/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.jpg?1783930370",
+        "png": "https://cards.scryfall.io/png/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.png?1783930370",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.jpg?1783930370",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.jpg?1783930370",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.webp?1783930370",
+        "grid": "https://cards.scryfall.io/grid/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.webp?1783930370",
+        "display": "https://cards.scryfall.io/display/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.webp?1783930370",
+        "art": "https://cards.scryfall.io/art/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.webp?1783930370",
+        "crop": "https://cards.scryfall.io/crop/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.webp?1783930370",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/d/7de98df4-9552-4ba6-a324-1669dc077d4c.jpg?1783930370"
+      },
+      "mana_cost": "{2}{G}",
+      "cmc": 3,
+      "type_line": "Creature — Human Druid",
+      "oracle_text": "When this creature enters, target Forest becomes a 4/5 green Treefolk creature for as long as this creature remains on the battlefield. It's still a land.",
+      "power": "1",
+      "toughness": "1",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "arena",
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "0f6ccf25-a627-4263-86df-5757137f1696",
+      "set": "jmp",
+      "set_name": "Jumpstart",
+      "set_type": "draft_innovation",
+      "set_uri": "https://api.scryfall.com/sets/0f6ccf25-a627-4263-86df-5757137f1696",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ajmp&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/jmp?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/7de98df4-9552-4ba6-a324-1669dc077d4c/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A7e8f5b34-fd16-4307-9104-17b584b25b14&unique=prints",
+      "collector_number": "379",
+      "digital": false,
+      "rarity": "uncommon",
+      "flavor_text": "The druids of Mazar treat each seedcone with respect for the warrior it will become.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Jason Chan",
+      "artist_ids": [
+        "8062d5a9-51b6-4822-933f-fa9e9dba8416"
+      ],
+      "illustration_id": "1b59ab72-c7d5-413d-9d2c-539e148ea92d",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 24350,
+      "penny_rank": 10850,
+      "preview": {
+        "source": "Wizards of the Coast",
+        "source_uri": "https://mtg-jp.com/reading/special/0034084/",
+        "previewed_at": "2020-06-18"
+      },
+      "prices": {
+        "usd": "0.28",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.12",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=489362&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAwakener%2BDruid",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAwakener%2BDruid",
+        "edhrec": "https://edhrec.com/route/?cc=Awakener+Druid"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F216089%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=472979&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Awakener+Druid&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands",
+          "treefolk"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "Turns an actual Forest into a sizeable Treefolk, making the Druid a direct botanical support candidate.",
+        "caution": "Animation lasts only while this Druid stays on the battlefield. It does not untap the Forest or give haste.",
+        "manaNote": "Costs 2G and requires a Forest target.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "2f3d83f7-b087-4e9b-8e98-6b9b060d0627",
+      "oracle_id": "ee1c7532-dc97-432d-964f-1c4087ab5248",
+      "multiverse_ids": [
+        496002
+      ],
+      "tcgplayer_id": 222673,
+      "cardmarket_id": 504295,
+      "name": "Embodiment of Insight",
+      "lang": "en",
+      "released_at": "2020-09-25",
+      "uri": "https://api.scryfall.com/cards/2f3d83f7-b087-4e9b-8e98-6b9b060d0627",
+      "scryfall_uri": "https://scryfall.com/card/znc/64/embodiment-of-insight?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T07:57:48Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.jpg?1783929468",
+        "normal": "https://cards.scryfall.io/normal/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.jpg?1783929468",
+        "large": "https://cards.scryfall.io/large/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.jpg?1783929468",
+        "png": "https://cards.scryfall.io/png/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.png?1783929468",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.jpg?1783929468",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.jpg?1783929468",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.webp?1783929468",
+        "grid": "https://cards.scryfall.io/grid/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.webp?1783929468",
+        "display": "https://cards.scryfall.io/display/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.webp?1783929468",
+        "art": "https://cards.scryfall.io/art/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.webp?1783929468",
+        "crop": "https://cards.scryfall.io/crop/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.webp?1783929468",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/f/2f3d83f7-b087-4e9b-8e98-6b9b060d0627.jpg?1783929468"
+      },
+      "mana_cost": "{4}{G}",
+      "cmc": 5,
+      "type_line": "Creature — Elemental",
+      "oracle_text": "Vigilance\nLand creatures you control have vigilance.\nLandfall — Whenever a land you control enters, you may have target land you control become a 3/3 Elemental creature with haste until end of turn. It's still a land.",
+      "power": "4",
+      "toughness": "4",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Vigilance",
+        "Landfall"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "not_legal"
+      },
+      "games": [
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "25c6bd9b-4e10-40a4-b9b5-0f4d9b5852a1",
+      "set": "znc",
+      "set_name": "Zendikar Rising Commander",
+      "set_type": "commander",
+      "set_uri": "https://api.scryfall.com/sets/25c6bd9b-4e10-40a4-b9b5-0f4d9b5852a1",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aznc&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/znc?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/2f3d83f7-b087-4e9b-8e98-6b9b060d0627/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aee1c7532-dc97-432d-964f-1c4087ab5248&unique=prints",
+      "collector_number": "64",
+      "digital": false,
+      "rarity": "uncommon",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Marco Nelor",
+      "artist_ids": [
+        "c0f95ec3-c7ca-47d6-be5c-b37dfce37be5"
+      ],
+      "illustration_id": "73a239f6-6861-45dd-ab60-7db6ca587900",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "edhrec_rank": 7201,
+      "penny_rank": 12448,
+      "prices": {
+        "usd": "0.25",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.20",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=496002&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DEmbodiment%2Bof%2BInsight",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DEmbodiment%2Bof%2BInsight",
+        "edhrec": "https://edhrec.com/route/?cc=Embodiment+of+Insight"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F222673%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=504295&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Embodiment+of+Insight&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "Turns landfall into temporary animated lands and gives your land creatures vigilance, supporting Forests or Swamps equally.",
+        "caution": "Five mana; animation is temporary. Landfall needs another land entering and the land is still vulnerable to creature removal.",
+        "manaNote": "Costs 4G; works on any land you control.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "6ef11b54-205a-48e9-92d0-5d416be869ef",
+      "oracle_id": "7fff5224-c002-4a32-86fe-9a4b18d78b50",
+      "multiverse_ids": [
+        407681
+      ],
+      "mtgo_id": 59255,
+      "mtgo_foil_id": 59256,
+      "tcgplayer_id": 110815,
+      "cardmarket_id": 287232,
+      "name": "Hissing Quagmire",
+      "lang": "en",
+      "released_at": "2016-01-22",
+      "uri": "https://api.scryfall.com/cards/6ef11b54-205a-48e9-92d0-5d416be869ef",
+      "scryfall_uri": "https://scryfall.com/card/ogw/171/hissing-quagmire?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:18:12Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.jpg?1783937892",
+        "normal": "https://cards.scryfall.io/normal/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.jpg?1783937892",
+        "large": "https://cards.scryfall.io/large/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.jpg?1783937892",
+        "png": "https://cards.scryfall.io/png/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.png?1783937892",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.jpg?1783937892",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.jpg?1783937892",
+        "thumb": "https://cards.scryfall.io/thumb/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.webp?1783937892",
+        "grid": "https://cards.scryfall.io/grid/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.webp?1783937892",
+        "display": "https://cards.scryfall.io/display/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.webp?1783937892",
+        "art": "https://cards.scryfall.io/art/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.webp?1783937892",
+        "crop": "https://cards.scryfall.io/crop/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.webp?1783937892",
+        "jpeg": "https://cards.scryfall.io/normal/front/6/e/6ef11b54-205a-48e9-92d0-5d416be869ef.jpg?1783937892"
+      },
+      "mana_cost": "",
+      "cmc": 0,
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped.\n{T}: Add {B} or {G}.\n{1}{B}{G}: Until end of turn, this land becomes a 2/2 black and green Elemental creature with deathtouch. It's still a land.",
+      "colors": [],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "keywords": [],
+      "produced_mana": [
+        "B",
+        "G"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "cd51d245-8f95-45b0-ab5f-e2b3a3eb5dfe",
+      "set": "ogw",
+      "set_name": "Oath of the Gatewatch",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/cd51d245-8f95-45b0-ab5f-e2b3a3eb5dfe",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aogw&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/ogw?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/6ef11b54-205a-48e9-92d0-5d416be869ef/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A7fff5224-c002-4a32-86fe-9a4b18d78b50&unique=prints",
+      "collector_number": "171",
+      "digital": false,
+      "rarity": "rare",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Cliff Childs",
+      "artist_ids": [
+        "ed6f7e03-20ba-4c73-bdda-4a4928480721"
+      ],
+      "illustration_id": "2ae46d29-b922-4a9f-a75c-d9b181995b78",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 6946,
+      "penny_rank": 839,
+      "prices": {
+        "usd": "0.77",
+        "usd_foil": "1.33",
+        "usd_etched": null,
+        "eur": "0.40",
+        "eur_foil": "1.36",
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=407681&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DHissing%2BQuagmire",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DHissing%2BQuagmire",
+        "edhrec": "https://edhrec.com/route/?cc=Hissing+Quagmire"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F110815%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=287232&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/59255?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation",
+          "mana source"
+        ],
+        "note": "A living mire that turns into a deathtouch Elemental; a strong swamp-themed lead and black/green mana source.",
+        "caution": "Its actual land type is simply Land, not Swamp or Forest. Enters tapped; animation and attacking compete with its mana ability.",
+        "manaNote": "Produces B or G; animating it costs 1BG.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "3bd054ed-9c91-4bc6-9d0d-0c045c089bd9",
+      "oracle_id": "d2d477a5-f055-4d47-a852-26e8239f2a01",
+      "multiverse_ids": [
+        2055
+      ],
+      "tcgplayer_id": 1816,
+      "cardmarket_id": 6185,
+      "name": "Kormus Bell",
+      "lang": "en",
+      "released_at": "1995-04-01",
+      "uri": "https://api.scryfall.com/cards/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9",
+      "scryfall_uri": "https://scryfall.com/card/4ed/332/kormus-bell?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T13:03:18Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.jpg?1783947798",
+        "normal": "https://cards.scryfall.io/normal/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.jpg?1783947798",
+        "large": "https://cards.scryfall.io/large/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.jpg?1783947798",
+        "png": "https://cards.scryfall.io/png/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.png?1783947798",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.jpg?1783947798",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.jpg?1783947798",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.webp?1783947798",
+        "grid": "https://cards.scryfall.io/grid/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.webp?1783947798",
+        "display": "https://cards.scryfall.io/display/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.webp?1783947798",
+        "art": "https://cards.scryfall.io/art/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.webp?1783947798",
+        "crop": "https://cards.scryfall.io/crop/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.webp?1783947798",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/b/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9.jpg?1783947798"
+      },
+      "mana_cost": "{4}",
+      "cmc": 4,
+      "type_line": "Artifact",
+      "oracle_text": "All Swamps are 1/1 black creatures that are still lands.",
+      "colors": [],
+      "color_identity": [],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "not_legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "legal",
+        "premodern": "legal",
+        "predh": "legal",
+        "tlr": "not_legal"
+      },
+      "games": [
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "2dd259d4-dc13-4956-a2dc-3e1d70b4a743",
+      "set": "4ed",
+      "set_name": "Fourth Edition",
+      "set_type": "core",
+      "set_uri": "https://api.scryfall.com/sets/2dd259d4-dc13-4956-a2dc-3e1d70b4a743",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3A4ed&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/4ed?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/3bd054ed-9c91-4bc6-9d0d-0c045c089bd9/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad2d477a5-f055-4d47-a852-26e8239f2a01&unique=prints",
+      "collector_number": "332",
+      "digital": false,
+      "rarity": "rare",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Christopher Rush",
+      "artist_ids": [
+        "c96773f0-346c-4f7d-9271-2d98cc5d86e1"
+      ],
+      "illustration_id": "6db2d40c-eb92-453c-8589-e2488489a135",
+      "border_color": "white",
+      "frame": "1993",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 13427,
+      "penny_rank": 16016,
+      "prices": {
+        "usd": "2.34",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "1.65",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=2055&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DKormus%2BBell",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DKormus%2BBell",
+        "edhrec": "https://edhrec.com/route/?cc=Kormus+Bell"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F1816%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=6185&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Kormus+Bell&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "The direct animated-Swamp lead: makes every Swamp a black creature without assigning a creature subtype.",
+        "caution": "Affects opponents' Swamps too. Creature removal can now destroy lands, and new Swamps are subject to summoning sickness. A potentially disruptive research candidate.",
+        "manaNote": "Costs 4 generic mana; needs actual Swamps or an effect that grants the Swamp subtype.",
+        "crossover": false
+      },
+      "rulings": [
+        {
+          "object": "ruling",
+          "oracle_id": "d2d477a5-f055-4d47-a852-26e8239f2a01",
+          "source": "wotc",
+          "published_at": "2008-08-01",
+          "comment": "A noncreature permanent that turns into a creature can attack, and its {T} abilities can be activated, only if its controller has continuously controlled that permanent since the beginning of their most recent turn. It doesn't matter how long the permanent has been a creature."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "d2d477a5-f055-4d47-a852-26e8239f2a01",
+          "source": "wotc",
+          "published_at": "2004-10-04",
+          "comment": "The lands are both lands and creatures at the same time. They are affected by anything that affects either permanent type."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "d2d477a5-f055-4d47-a852-26e8239f2a01",
+          "source": "wotc",
+          "published_at": "2004-10-04",
+          "comment": "It affects Swamps controlled by any and all players."
+        }
+      ]
+    },
+    {
+      "object": "card",
+      "id": "b670bb0f-680f-4036-bdb6-ac73e866a398",
+      "oracle_id": "126e9140-2c05-4c00-8b01-5653456c736a",
+      "multiverse_ids": [
+        527546
+      ],
+      "mtgo_id": 92020,
+      "arena_id": 77364,
+      "tcgplayer_id": 243438,
+      "cardmarket_id": 571867,
+      "name": "Lair of the Hydra",
+      "lang": "en",
+      "released_at": "2021-07-23",
+      "uri": "https://api.scryfall.com/cards/b670bb0f-680f-4036-bdb6-ac73e866a398",
+      "scryfall_uri": "https://scryfall.com/card/afr/259/lair-of-the-hydra?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T07:07:13Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.jpg?1783926433",
+        "normal": "https://cards.scryfall.io/normal/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.jpg?1783926433",
+        "large": "https://cards.scryfall.io/large/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.jpg?1783926433",
+        "png": "https://cards.scryfall.io/png/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.png?1783926433",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.jpg?1783926433",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.jpg?1783926433",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.webp?1783926433",
+        "grid": "https://cards.scryfall.io/grid/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.webp?1783926433",
+        "display": "https://cards.scryfall.io/display/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.webp?1783926433",
+        "art": "https://cards.scryfall.io/art/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.webp?1783926433",
+        "crop": "https://cards.scryfall.io/crop/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.webp?1783926433",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/6/b670bb0f-680f-4036-bdb6-ac73e866a398.jpg?1783926433"
+      },
+      "mana_cost": "",
+      "cmc": 0,
+      "type_line": "Land",
+      "oracle_text": "If you control two or more other lands, this land enters tapped.\n{T}: Add {G}.\n{X}{G}: Until end of turn, this land becomes an X/X green Hydra creature. It's still a land. X can't be 0.",
+      "colors": [],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "produced_mana": [
+        "G"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "arena",
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "e1ef87ba-ba92-4573-817f-543b996d2851",
+      "set": "afr",
+      "set_name": "Adventures in the Forgotten Realms",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/e1ef87ba-ba92-4573-817f-543b996d2851",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aafr&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/afr?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/b670bb0f-680f-4036-bdb6-ac73e866a398/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A126e9140-2c05-4c00-8b01-5653456c736a&unique=prints",
+      "collector_number": "259",
+      "digital": false,
+      "rarity": "rare",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Johannes Voss",
+      "artist_ids": [
+        "3593dd7e-c547-4a32-81cd-7da725f60118"
+      ],
+      "illustration_id": "70572801-1d3f-41e5-8d6e-070539e0d124",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 2540,
+      "penny_rank": 527,
+      "preview": {
+        "source": "BIG MAGIC",
+        "source_uri": "https://twitter.com/MtgBigmagic/status/1411973482557018115",
+        "previewed_at": "2021-07-05"
+      },
+      "prices": {
+        "usd": "0.39",
+        "usd_foil": "0.51",
+        "usd_etched": null,
+        "eur": "0.61",
+        "eur_foil": "1.03",
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=527546&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DLair%2Bof%2Bthe%2BHydra",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DLair%2Bof%2Bthe%2BHydra",
+        "edhrec": "https://edhrec.com/route/?cc=Lair+of+the+Hydra"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F243438%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=571867&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/92020?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation",
+          "mana source"
+        ],
+        "note": "A green living-land candidate whose creature form is a Hydra; investigate the landscape connection regardless of creature type.",
+        "caution": "Not actually a Forest. Enters tapped if you already control two other lands; activation needs extra mana beyond X.",
+        "manaNote": "Produces G; animation costs XG with X greater than zero.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "2721724d-92ae-4c0c-88dd-628888c468bf",
+      "oracle_id": "d0d7250b-70d2-43f9-ae15-837227061ccb",
+      "multiverse_ids": [
+        509580
+      ],
+      "mtgo_id": 86805,
+      "tcgplayer_id": 234028,
+      "cardmarket_id": 546896,
+      "name": "Life and Limb",
+      "lang": "en",
+      "released_at": "2021-03-19",
+      "uri": "https://api.scryfall.com/cards/2721724d-92ae-4c0c-88dd-628888c468bf",
+      "scryfall_uri": "https://scryfall.com/card/tsr/215/life-and-limb?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T07:29:36Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.jpg?1783927776",
+        "normal": "https://cards.scryfall.io/normal/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.jpg?1783927776",
+        "large": "https://cards.scryfall.io/large/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.jpg?1783927776",
+        "png": "https://cards.scryfall.io/png/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.png?1783927776",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.jpg?1783927776",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.jpg?1783927776",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.webp?1783927776",
+        "grid": "https://cards.scryfall.io/grid/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.webp?1783927776",
+        "display": "https://cards.scryfall.io/display/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.webp?1783927776",
+        "art": "https://cards.scryfall.io/art/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.webp?1783927776",
+        "crop": "https://cards.scryfall.io/crop/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.webp?1783927776",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/7/2721724d-92ae-4c0c-88dd-628888c468bf.jpg?1783927776"
+      },
+      "mana_cost": "{3}{G}",
+      "cmc": 4,
+      "type_line": "Enchantment",
+      "oracle_text": "All Forests and all Saprolings are 1/1 green Saproling creatures and Forest lands in addition to their other types. (They're affected by summoning sickness.)",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "not_legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "11e90d1b-0502-43e6-b056-e24836523c13",
+      "set": "tsr",
+      "set_name": "Time Spiral Remastered",
+      "set_type": "masters",
+      "set_uri": "https://api.scryfall.com/sets/11e90d1b-0502-43e6-b056-e24836523c13",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsr&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/tsr?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/2721724d-92ae-4c0c-88dd-628888c468bf/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad0d7250b-70d2-43f9-ae15-837227061ccb&unique=prints",
+      "collector_number": "215",
+      "digital": false,
+      "rarity": "rare",
+      "flavor_text": "\"It was a sight of pain and awe—a twisted forest, migrating across the salt plain in search of richer soil.\"\n—Edahlis, greenseeker",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Jim Nelson",
+      "artist_ids": [
+        "aa9f64d1-29e1-4c82-877e-44c18183f40b"
+      ],
+      "illustration_id": "a64254ee-bd95-4fcc-9793-8e1853bfc646",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 8363,
+      "penny_rank": 12522,
+      "preview": {
+        "source": "Wizards of the Coast",
+        "source_uri": "https://www.youtube.com/watch?v=7ZeH26SFA40",
+        "previewed_at": "2021-03-03"
+      },
+      "prices": {
+        "usd": "0.83",
+        "usd_foil": "1.39",
+        "usd_etched": null,
+        "eur": "0.39",
+        "eur_foil": "0.63",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=509580&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DLife%2Band%2BLimb",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DLife%2Band%2BLimb",
+        "edhrec": "https://edhrec.com/route/?cc=Life+and+Limb"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F234028%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=546896&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/86805?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands",
+          "fungi"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "Directly joins Forests and Saprolings: all become both land and creature, linking living lands with the Fungi theme.",
+        "caution": "Affects all players. New Forests cannot immediately tap for mana. With Sporemound, a land creates a Saproling land that triggers another token repeatedly; this mandatory loop needs careful review or exclusion.",
+        "manaNote": "Costs 3G; a major rules-complexity and board-risk candidate rather than a routine inclusion.",
+        "crossover": false
+      },
+      "rulings": [
+        {
+          "object": "ruling",
+          "oracle_id": "d0d7250b-70d2-43f9-ae15-837227061ccb",
+          "source": "wotc",
+          "published_at": "2021-03-19",
+          "comment": "Each Forest and Saproling will have the card types creature and land, and the subtypes Forest and Saproling. Each subtype maintains its correlation to the proper type: Forest isn't a creature type and Saproling isn't a land type."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "d0d7250b-70d2-43f9-ae15-837227061ccb",
+          "source": "wotc",
+          "published_at": "2021-03-19",
+          "comment": "Each Forest has the ability \"{T}: Add {G}.\""
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "d0d7250b-70d2-43f9-ae15-837227061ccb",
+          "source": "wotc",
+          "published_at": "2021-03-19",
+          "comment": "Forests enter the battlefield as land creatures, and abilities that trigger whenever a creature enters the battlefield will trigger. Because you haven't controlled these creatures since your turn began, you can't pay the {T} cost of their mana ability."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "d0d7250b-70d2-43f9-ae15-837227061ccb",
+          "source": "wotc",
+          "published_at": "2021-03-19",
+          "comment": "Saprolings enter the battlefield as land creatures, and abilities that trigger whenever a land enters the battlefield will trigger."
+        }
+      ]
+    },
+    {
+      "object": "card",
+      "id": "4805d850-e3c2-44b4-87f0-8bba4038717c",
+      "oracle_id": "8f0179fe-6d7d-49cc-ab06-d3b402c6fc8d",
+      "multiverse_ids": [
+        11385
+      ],
+      "tcgplayer_id": 2638,
+      "cardmarket_id": 11081,
+      "name": "Living Lands",
+      "lang": "en",
+      "released_at": "1999-04-21",
+      "uri": "https://api.scryfall.com/cards/4805d850-e3c2-44b4-87f0-8bba4038717c",
+      "scryfall_uri": "https://scryfall.com/card/6ed/238/living-lands?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T12:35:58Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.jpg?1783946158",
+        "normal": "https://cards.scryfall.io/normal/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.jpg?1783946158",
+        "large": "https://cards.scryfall.io/large/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.jpg?1783946158",
+        "png": "https://cards.scryfall.io/png/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.png?1783946158",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.jpg?1783946158",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.jpg?1783946158",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.webp?1783946158",
+        "grid": "https://cards.scryfall.io/grid/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.webp?1783946158",
+        "display": "https://cards.scryfall.io/display/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.webp?1783946158",
+        "art": "https://cards.scryfall.io/art/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.webp?1783946158",
+        "crop": "https://cards.scryfall.io/crop/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.webp?1783946158",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/8/4805d850-e3c2-44b4-87f0-8bba4038717c.jpg?1783946158"
+      },
+      "mana_cost": "{3}{G}",
+      "cmc": 4,
+      "type_line": "Enchantment",
+      "oracle_text": "All Forests are 1/1 creatures that are still lands.",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "not_legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "legal",
+        "predh": "legal",
+        "tlr": "not_legal"
+      },
+      "games": [
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "78ee1957-d5d4-4551-acae-b1b418e8a50b",
+      "set": "6ed",
+      "set_name": "Classic Sixth Edition",
+      "set_type": "core",
+      "set_uri": "https://api.scryfall.com/sets/78ee1957-d5d4-4551-acae-b1b418e8a50b",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3A6ed&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/6ed?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/4805d850-e3c2-44b4-87f0-8bba4038717c/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A8f0179fe-6d7d-49cc-ab06-d3b402c6fc8d&unique=prints",
+      "collector_number": "238",
+      "digital": false,
+      "rarity": "rare",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "John Matson",
+      "artist_ids": [
+        "a1685587-4b55-446b-b420-c37b202ed3f1"
+      ],
+      "illustration_id": "273185aa-c6ac-4e8f-a357-c3d7c043589f",
+      "border_color": "white",
+      "frame": "1997",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 17474,
+      "penny_rank": 16037,
+      "prices": {
+        "usd": "0.62",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.59",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=11385&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DLiving%2BLands",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DLiving%2BLands",
+        "edhrec": "https://edhrec.com/route/?cc=Living+Lands"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F2638%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=11081&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Living+Lands&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "Animates all actual Forests, regardless of whether their creature form has any botanical subtype.",
+        "caution": "Applies to every player and exposes Forest mana bases to creature removal. Does not grant haste, so newly played Forests cannot immediately tap for mana.",
+        "manaNote": "Costs 3G; actual Forest subtype matters.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "bd5611db-82dd-464d-8b03-70d7619dcefe",
+      "oracle_id": "08377424-619e-48ae-bc3c-fb199cd77cf9",
+      "multiverse_ids": [
+        574650
+      ],
+      "mtgo_id": 102816,
+      "arena_id": 82222,
+      "tcgplayer_id": 279821,
+      "cardmarket_id": 669127,
+      "name": "Llanowar Loamspeaker",
+      "lang": "en",
+      "released_at": "2022-09-09",
+      "uri": "https://api.scryfall.com/cards/bd5611db-82dd-464d-8b03-70d7619dcefe",
+      "scryfall_uri": "https://scryfall.com/card/dmu/170/llanowar-loamspeaker?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T05:41:37Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.jpg?1783921297",
+        "normal": "https://cards.scryfall.io/normal/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.jpg?1783921297",
+        "large": "https://cards.scryfall.io/large/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.jpg?1783921297",
+        "png": "https://cards.scryfall.io/png/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.png?1783921297",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.jpg?1783921297",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.jpg?1783921297",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.webp?1783921297",
+        "grid": "https://cards.scryfall.io/grid/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.webp?1783921297",
+        "display": "https://cards.scryfall.io/display/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.webp?1783921297",
+        "art": "https://cards.scryfall.io/art/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.webp?1783921297",
+        "crop": "https://cards.scryfall.io/crop/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.webp?1783921297",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/d/bd5611db-82dd-464d-8b03-70d7619dcefe.jpg?1783921297"
+      },
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "type_line": "Creature — Elf Druid",
+      "oracle_text": "{T}: Add one mana of any color.\n{T}: Target land you control becomes a 3/3 Elemental creature with haste until end of turn. It's still a land. Activate only as a sorcery.",
+      "power": "1",
+      "toughness": "3",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "produced_mana": [
+        "B",
+        "G",
+        "R",
+        "U",
+        "W"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo",
+        "arena"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "4e47a6cd-cdeb-4b0f-8f24-cfe1a0127cb3",
+      "set": "dmu",
+      "set_name": "Dominaria United",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/4e47a6cd-cdeb-4b0f-8f24-cfe1a0127cb3",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Admu&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/dmu?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/bd5611db-82dd-464d-8b03-70d7619dcefe/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A08377424-619e-48ae-bc3c-fb199cd77cf9&unique=prints",
+      "collector_number": "170",
+      "digital": false,
+      "rarity": "rare",
+      "flavor_text": "Twigs broken underfoot in Llanowar tend to return the favor.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Zara Alfonso",
+      "artist_ids": [
+        "329a7971-c37e-47f7-9143-58dc929420a7"
+      ],
+      "illustration_id": "62d7a926-e897-4f89-90db-8f12d42d8372",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 3961,
+      "penny_rank": 3463,
+      "preview": {
+        "source": "Wizards of the Coast",
+        "source_uri": "https://magic.wizards.com/en/articles/archive/card-image-gallery/dominaria-united",
+        "previewed_at": "2022-07-21"
+      },
+      "prices": {
+        "usd": "0.32",
+        "usd_foil": "0.32",
+        "usd_etched": null,
+        "eur": "0.21",
+        "eur_foil": "0.45",
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=574650&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DLlanowar%2BLoamspeaker",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DLlanowar%2BLoamspeaker",
+        "edhrec": "https://edhrec.com/route/?cc=Llanowar+Loamspeaker"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F279821%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=669127&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/102816?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "An Elf Druid included for what it does: fixes mana or turns a Forest, Swamp, or other land into a temporary Elemental.",
+        "caution": "Its two tap abilities compete; land animation is sorcery-speed and does not untap the target land. Lower thematic priority because it is an Elf; compare non-Elf enablers first.",
+        "manaNote": "Costs 1G and can produce any one color.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f",
+      "oracle_id": "c2878f4e-3044-4d60-8ec1-b325edfca397",
+      "multiverse_ids": [
+        532634
+      ],
+      "tcgplayer_id": 243996,
+      "cardmarket_id": 572422,
+      "name": "Lumbering Falls",
+      "lang": "en",
+      "released_at": "2021-07-23",
+      "uri": "https://api.scryfall.com/cards/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f",
+      "scryfall_uri": "https://scryfall.com/card/afc/247/lumbering-falls?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T07:02:32Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.jpg?1783926152",
+        "normal": "https://cards.scryfall.io/normal/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.jpg?1783926152",
+        "large": "https://cards.scryfall.io/large/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.jpg?1783926152",
+        "png": "https://cards.scryfall.io/png/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.png?1783926152",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.jpg?1783926152",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.jpg?1783926152",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.webp?1783926152",
+        "grid": "https://cards.scryfall.io/grid/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.webp?1783926152",
+        "display": "https://cards.scryfall.io/display/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.webp?1783926152",
+        "art": "https://cards.scryfall.io/art/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.webp?1783926152",
+        "crop": "https://cards.scryfall.io/crop/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.webp?1783926152",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.jpg?1783926152"
+      },
+      "mana_cost": "",
+      "cmc": 0,
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped.\n{T}: Add {G} or {U}.\n{2}{G}{U}: Until end of turn, this land becomes a 3/3 green and blue Elemental creature with hexproof. It's still a land.",
+      "colors": [],
+      "color_identity": [
+        "G",
+        "U"
+      ],
+      "keywords": [],
+      "produced_mana": [
+        "G",
+        "U"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "db1b46f9-893c-4623-9465-985ff6e4472c",
+      "set": "afc",
+      "set_name": "Forgotten Realms Commander",
+      "set_type": "commander",
+      "set_uri": "https://api.scryfall.com/sets/db1b46f9-893c-4623-9465-985ff6e4472c",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aafc&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/afc?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ac2878f4e-3044-4d60-8ec1-b325edfca397&unique=prints",
+      "collector_number": "247",
+      "digital": false,
+      "rarity": "rare",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Titus Lunter",
+      "artist_ids": [
+        "b11e6b3a-f4ca-4cf1-8fd7-475696de5f5c"
+      ],
+      "illustration_id": "ba2139a7-d677-4fb8-b01d-f77daff64910",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "edhrec_rank": 4939,
+      "penny_rank": 929,
+      "prices": {
+        "usd": "0.22",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.18",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=532634&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DLumbering%2BFalls",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DLumbering%2BFalls",
+        "edhrec": "https://edhrec.com/route/?cc=Lumbering+Falls"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F243996%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=572422&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Lumbering+Falls&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation",
+          "mana source"
+        ],
+        "note": "A wooded waterfall becoming an Elemental fits the living-land research beyond literal Plant or Treefolk types.",
+        "caution": "It is not actually a Forest. Enters tapped and requires both green and blue for animation.",
+        "manaNote": "Produces G or U; animation costs 2GU.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "4847f8e8-9979-427e-999a-26711e542f82",
+      "oracle_id": "09a1ab1b-d9f0-4a2a-a448-3190f85006e4",
+      "multiverse_ids": [
+        83182
+      ],
+      "mtgo_id": 22483,
+      "mtgo_foil_id": 22484,
+      "tcgplayer_id": 12745,
+      "cardmarket_id": 12458,
+      "name": "Natural Affinity",
+      "lang": "en",
+      "released_at": "2005-07-29",
+      "uri": "https://api.scryfall.com/cards/4847f8e8-9979-427e-999a-26711e542f82",
+      "scryfall_uri": "https://scryfall.com/card/9ed/256/natural-affinity?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T11:58:44Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.jpg?1783943924",
+        "normal": "https://cards.scryfall.io/normal/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.jpg?1783943924",
+        "large": "https://cards.scryfall.io/large/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.jpg?1783943924",
+        "png": "https://cards.scryfall.io/png/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.png?1783943924",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.jpg?1783943924",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.jpg?1783943924",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.webp?1783943924",
+        "grid": "https://cards.scryfall.io/grid/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.webp?1783943924",
+        "display": "https://cards.scryfall.io/display/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.webp?1783943924",
+        "art": "https://cards.scryfall.io/art/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.webp?1783943924",
+        "crop": "https://cards.scryfall.io/crop/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.webp?1783943924",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/8/4847f8e8-9979-427e-999a-26711e542f82.jpg?1783943924"
+      },
+      "mana_cost": "{2}{G}",
+      "cmc": 3,
+      "type_line": "Instant",
+      "oracle_text": "All lands become 2/2 creatures until end of turn. They're still lands.",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "e70c8572-4732-4e92-a140-b4e3c1c84c93",
+      "set": "9ed",
+      "set_name": "Ninth Edition",
+      "set_type": "core",
+      "set_uri": "https://api.scryfall.com/sets/e70c8572-4732-4e92-a140-b4e3c1c84c93",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3A9ed&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/9ed?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/4847f8e8-9979-427e-999a-26711e542f82/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A09a1ab1b-d9f0-4a2a-a448-3190f85006e4&unique=prints",
+      "collector_number": "256",
+      "digital": false,
+      "rarity": "rare",
+      "flavor_text": "As long as the dryads are a part of the forest, the forest is a part of the army.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Pete Venters",
+      "artist_ids": [
+        "d54c4a1a-c0c5-4834-84db-125d341f3ad8"
+      ],
+      "illustration_id": "8eebd31b-397a-450f-93da-980a26233d09",
+      "border_color": "white",
+      "frame": "2003",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 12228,
+      "penny_rank": 6137,
+      "prices": {
+        "usd": "6.66",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "1.28",
+        "eur_foil": null,
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=83182&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DNatural%2BAffinity",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DNatural%2BAffinity",
+        "edhrec": "https://edhrec.com/route/?cc=Natural+Affinity"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F12745%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=12458&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/22483?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "A broad forest-or-swamp animation spell that turns all lands into creatures for a turn.",
+        "caution": "Also gives the opponent an army and makes every land vulnerable to creature removal. Does not untap lands or give haste.",
+        "manaNote": "Costs 2G at instant speed; high board complexity.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "787eadf3-5005-4ae5-820f-4012a4d4e1a5",
+      "oracle_id": "7e16595f-bdeb-422e-b99a-bfc0ed52e9f8",
+      "multiverse_ids": [
+        629759
+      ],
+      "mtgo_id": 116904,
+      "arena_id": 86990,
+      "tcgplayer_id": 512205,
+      "cardmarket_id": 728108,
+      "name": "Restless Cottage",
+      "lang": "en",
+      "released_at": "2023-09-08",
+      "uri": "https://api.scryfall.com/cards/787eadf3-5005-4ae5-820f-4012a4d4e1a5",
+      "scryfall_uri": "https://scryfall.com/card/woe/258/restless-cottage?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T03:57:36Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.jpg?1783915056",
+        "normal": "https://cards.scryfall.io/normal/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.jpg?1783915056",
+        "large": "https://cards.scryfall.io/large/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.jpg?1783915056",
+        "png": "https://cards.scryfall.io/png/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.png?1783915056",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.jpg?1783915056",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.jpg?1783915056",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.webp?1783915056",
+        "grid": "https://cards.scryfall.io/grid/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.webp?1783915056",
+        "display": "https://cards.scryfall.io/display/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.webp?1783915056",
+        "art": "https://cards.scryfall.io/art/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.webp?1783915056",
+        "crop": "https://cards.scryfall.io/crop/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.webp?1783915056",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/8/787eadf3-5005-4ae5-820f-4012a4d4e1a5.jpg?1783915056"
+      },
+      "mana_cost": "",
+      "cmc": 0,
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped.\n{T}: Add {B} or {G}.\n{2}{B}{G}: This land becomes a 4/4 black and green Horror creature until end of turn. It's still a land.\nWhenever this land attacks, create a Food token and exile up to one target card from a graveyard.",
+      "colors": [],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "keywords": [
+        "Food"
+      ],
+      "produced_mana": [
+        "B",
+        "G"
+      ],
+      "all_parts": [
+        {
+          "object": "related_card",
+          "id": "0dcb97ff-9356-4be7-8991-091f950c0b63",
+          "component": "combo_piece",
+          "name": "Restless Cottage",
+          "type_line": "Land",
+          "uri": "https://api.scryfall.com/cards/0dcb97ff-9356-4be7-8991-091f950c0b63"
+        },
+        {
+          "object": "related_card",
+          "id": "f67727b7-819c-4e96-aa8e-1e01ecaf9f33",
+          "component": "token",
+          "name": "Food",
+          "type_line": "Token Artifact — Food",
+          "uri": "https://api.scryfall.com/cards/f67727b7-819c-4e96-aa8e-1e01ecaf9f33"
+        }
+      ],
+      "legalities": {
+        "standard": "legal",
+        "future": "legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "arena",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "79139661-13ee-43c4-8bad-a8c069f1a1df",
+      "set": "woe",
+      "set_name": "Wilds of Eldraine",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/79139661-13ee-43c4-8bad-a8c069f1a1df",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoe&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/woe?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/787eadf3-5005-4ae5-820f-4012a4d4e1a5/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A7e16595f-bdeb-422e-b99a-bfc0ed52e9f8&unique=prints",
+      "collector_number": "258",
+      "digital": false,
+      "rarity": "rare",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Jesper Ejsing",
+      "artist_ids": [
+        "a5f8354a-8b51-4e59-96b2-0e3aeae4fa1d"
+      ],
+      "illustration_id": "aad8eb11-a51c-42f7-9540-bd6517f51a17",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 3536,
+      "penny_rank": 1134,
+      "preview": {
+        "source": "Wizards of the Coast",
+        "source_uri": "",
+        "previewed_at": "2023-08-15"
+      },
+      "prices": {
+        "usd": "1.79",
+        "usd_foil": "1.72",
+        "usd_etched": null,
+        "eur": "1.10",
+        "eur_foil": "1.64",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=629759&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRestless%2BCottage",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRestless%2BCottage",
+        "edhrec": "https://edhrec.com/route/?cc=Restless+Cottage"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F512205%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=728108&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/116904?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation",
+          "mana source"
+        ],
+        "note": "A haunted woodland land that becomes a Horror, with graveyard interaction and Food as additional thematic hooks.",
+        "caution": "It is not actually a Forest or Swamp. Enters tapped; graveyard exile can interfere with either faction's recursion.",
+        "manaNote": "Produces B or G; animation costs 2BG.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "019897e4-d3ba-43b1-9bd9-2ebba6e3b349",
+      "oracle_id": "685a7f67-6809-4386-990f-c52d1846a584",
+      "multiverse_ids": [
+        393919
+      ],
+      "tcgplayer_id": 93733,
+      "cardmarket_id": 270090,
+      "name": "Rude Awakening",
+      "lang": "en",
+      "released_at": "2014-12-05",
+      "uri": "https://api.scryfall.com/cards/019897e4-d3ba-43b1-9bd9-2ebba6e3b349",
+      "scryfall_uri": "https://scryfall.com/card/gvl/22/rude-awakening?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:32:37Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.jpg?1783938757",
+        "normal": "https://cards.scryfall.io/normal/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.jpg?1783938757",
+        "large": "https://cards.scryfall.io/large/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.jpg?1783938757",
+        "png": "https://cards.scryfall.io/png/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.png?1783938757",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.jpg?1783938757",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.jpg?1783938757",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.webp?1783938757",
+        "grid": "https://cards.scryfall.io/grid/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.webp?1783938757",
+        "display": "https://cards.scryfall.io/display/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.webp?1783938757",
+        "art": "https://cards.scryfall.io/art/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.webp?1783938757",
+        "crop": "https://cards.scryfall.io/crop/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.webp?1783938757",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/1/019897e4-d3ba-43b1-9bd9-2ebba6e3b349.jpg?1783938757"
+      },
+      "mana_cost": "{4}{G}",
+      "cmc": 5,
+      "type_line": "Sorcery",
+      "oracle_text": "Choose one —\n• Untap all lands you control.\n• Until end of turn, lands you control become 2/2 creatures that are still lands.\nEntwine {2}{G} (Choose both if you pay the entwine cost.)",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Entwine"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "not_legal"
+      },
+      "games": [
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "db352daa-9827-44ca-ba19-511969a97689",
+      "set": "gvl",
+      "set_name": "Duel Decks Anthology: Garruk vs. Liliana",
+      "set_type": "duel_deck",
+      "set_uri": "https://api.scryfall.com/sets/db352daa-9827-44ca-ba19-511969a97689",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Agvl&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/gvl?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/019897e4-d3ba-43b1-9bd9-2ebba6e3b349/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A685a7f67-6809-4386-990f-c52d1846a584&unique=prints",
+      "collector_number": "22",
+      "digital": false,
+      "rarity": "rare",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Ittoku",
+      "artist_ids": [
+        "d3a47c28-84e9-4b53-a236-5066ae1bb62f"
+      ],
+      "illustration_id": "060a7b95-c796-4722-bd13-750d165a252a",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "edhrec_rank": 10085,
+      "penny_rank": 5565,
+      "prices": {
+        "usd": "1.27",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "1.12",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=393919&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DRude%2BAwakening",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DRude%2BAwakening",
+        "edhrec": "https://edhrec.com/route/?cc=Rude+Awakening"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F93733%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=270090&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Rude+Awakening&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "Can untap your lands, animate them, or do both: a possible living-forest or living-swamp finisher.",
+        "caution": "Five mana for one mode, eight for both. Does not grant haste; newly played lands may be unable to attack.",
+        "manaNote": "Costs 4G, plus entwine 2G for both modes.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc",
+      "oracle_id": "beaf7a85-426a-4a33-80c8-33ad01614ad3",
+      "multiverse_ids": [
+        496022
+      ],
+      "tcgplayer_id": 222646,
+      "cardmarket_id": 504395,
+      "name": "Sylvan Advocate",
+      "lang": "en",
+      "released_at": "2020-09-25",
+      "uri": "https://api.scryfall.com/cards/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc",
+      "scryfall_uri": "https://scryfall.com/card/znc/84/sylvan-advocate?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T07:57:41Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.jpg?1783929461",
+        "normal": "https://cards.scryfall.io/normal/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.jpg?1783929461",
+        "large": "https://cards.scryfall.io/large/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.jpg?1783929461",
+        "png": "https://cards.scryfall.io/png/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.png?1783929461",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.jpg?1783929461",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.jpg?1783929461",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.webp?1783929461",
+        "grid": "https://cards.scryfall.io/grid/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.webp?1783929461",
+        "display": "https://cards.scryfall.io/display/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.webp?1783929461",
+        "art": "https://cards.scryfall.io/art/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.webp?1783929461",
+        "crop": "https://cards.scryfall.io/crop/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.webp?1783929461",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/f/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc.jpg?1783929461"
+      },
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "type_line": "Creature — Elf Druid Ally",
+      "oracle_text": "Vigilance\nAs long as you control six or more lands, this creature and land creatures you control get +2/+2.",
+      "power": "2",
+      "toughness": "3",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Vigilance"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "25c6bd9b-4e10-40a4-b9b5-0f4d9b5852a1",
+      "set": "znc",
+      "set_name": "Zendikar Rising Commander",
+      "set_type": "commander",
+      "set_uri": "https://api.scryfall.com/sets/25c6bd9b-4e10-40a4-b9b5-0f4d9b5852a1",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aznc&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/znc?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/7f5ac7ee-52e0-4c30-83cd-d27c29c19dbc/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Abeaf7a85-426a-4a33-80c8-33ad01614ad3&unique=prints",
+      "collector_number": "84",
+      "digital": false,
+      "rarity": "rare",
+      "flavor_text": "\"The land gives of itself. Its abundance provides, even in times of chaos.\"",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Volkan Baǵa",
+      "artist_ids": [
+        "93bec3c0-0260-4d31-8064-5d01efb4153f"
+      ],
+      "illustration_id": "00e777da-9c29-44e7-a802-906347bbab35",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "edhrec_rank": 9077,
+      "penny_rank": 1545,
+      "prices": {
+        "usd": "0.33",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.16",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=496022&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSylvan%2BAdvocate",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSylvan%2BAdvocate",
+        "edhrec": "https://edhrec.com/route/?cc=Sylvan+Advocate"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F222646%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=504395&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Sylvan+Advocate&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land-creature support"
+        ],
+        "note": "Supports animated lands directly with a late-game power boost, despite being an Elf Druid Ally.",
+        "caution": "Its bonus needs six lands and strengthens land creatures, not every botanical creature or token. Lower thematic priority because it is an Elf; compare non-Elf enablers first.",
+        "manaNote": "Costs 1G; no off-color requirement.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "93ac4d3d-064e-459d-b3a4-6c0872a2da8c",
+      "oracle_id": "66b46257-b64c-4672-bf47-12bf0bcd6f8f",
+      "multiverse_ids": [
+        443071
+      ],
+      "mtgo_id": 67831,
+      "arena_id": 67470,
+      "tcgplayer_id": 162247,
+      "cardmarket_id": 319861,
+      "name": "Sylvan Awakening",
+      "lang": "en",
+      "released_at": "2018-04-27",
+      "uri": "https://api.scryfall.com/cards/93ac4d3d-064e-459d-b3a4-6c0872a2da8c",
+      "scryfall_uri": "https://scryfall.com/card/dom/183/sylvan-awakening?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T09:29:31Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.jpg?1783934971",
+        "normal": "https://cards.scryfall.io/normal/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.jpg?1783934971",
+        "large": "https://cards.scryfall.io/large/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.jpg?1783934971",
+        "png": "https://cards.scryfall.io/png/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.png?1783934971",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.jpg?1783934971",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.jpg?1783934971",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.webp?1783934971",
+        "grid": "https://cards.scryfall.io/grid/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.webp?1783934971",
+        "display": "https://cards.scryfall.io/display/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.webp?1783934971",
+        "art": "https://cards.scryfall.io/art/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.webp?1783934971",
+        "crop": "https://cards.scryfall.io/crop/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.webp?1783934971",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/3/93ac4d3d-064e-459d-b3a4-6c0872a2da8c.jpg?1783934971"
+      },
+      "mana_cost": "{2}{G}",
+      "cmc": 3,
+      "type_line": "Sorcery",
+      "oracle_text": "Until your next turn, all lands you control become 2/2 Elemental creatures with reach, indestructible, and haste. They're still lands.",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Indestructible"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "arena",
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "be1daba3-51c9-4e7e-9212-36e68addc26c",
+      "set": "dom",
+      "set_name": "Dominaria",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/be1daba3-51c9-4e7e-9212-36e68addc26c",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Adom&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/dom?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/93ac4d3d-064e-459d-b3a4-6c0872a2da8c/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A66b46257-b64c-4672-bf47-12bf0bcd6f8f&unique=prints",
+      "collector_number": "183",
+      "digital": false,
+      "rarity": "rare",
+      "flavor_text": "\"Yavimaya is aware, but not always awake. You will know the difference when you see it.\"\n—Karn",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Adam Paquette",
+      "artist_ids": [
+        "89023dad-e6c0-41e0-83fb-eb2bfbbdc3f2"
+      ],
+      "illustration_id": "9e596a18-87ec-4054-9ec4-e9faf8c0058e",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 5295,
+      "penny_rank": 3963,
+      "prices": {
+        "usd": "1.15",
+        "usd_foil": "3.24",
+        "usd_etched": null,
+        "eur": "1.00",
+        "eur_foil": "3.04",
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=443071&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSylvan%2BAwakening",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSylvan%2BAwakening",
+        "edhrec": "https://edhrec.com/route/?cc=Sylvan+Awakening"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F162247%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=319861&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/67831?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "Temporarily turns your Forests, Swamps, and other lands into protected Elementals with haste and reach.",
+        "caution": "Does not untap the lands, so mana spending reduces immediate attackers. Indestructible does not protect against exile or all toughness reduction.",
+        "manaNote": "Costs 2G; effect lasts until your next turn.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "14394198-0993-46ee-a3ea-5c7084a78772",
+      "oracle_id": "b53f216d-1592-4eee-b204-502a805fbc8c",
+      "multiverse_ids": [
+        442766
+      ],
+      "tcgplayer_id": 162880,
+      "cardmarket_id": 320649,
+      "name": "Treetop Village",
+      "lang": "en",
+      "released_at": "2018-04-06",
+      "uri": "https://api.scryfall.com/cards/14394198-0993-46ee-a3ea-5c7084a78772",
+      "scryfall_uri": "https://scryfall.com/card/ddu/30/treetop-village?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T09:31:22Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.jpg?1783935082",
+        "normal": "https://cards.scryfall.io/normal/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.jpg?1783935082",
+        "large": "https://cards.scryfall.io/large/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.jpg?1783935082",
+        "png": "https://cards.scryfall.io/png/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.png?1783935082",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.jpg?1783935082",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.jpg?1783935082",
+        "thumb": "https://cards.scryfall.io/thumb/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.webp?1783935082",
+        "grid": "https://cards.scryfall.io/grid/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.webp?1783935082",
+        "display": "https://cards.scryfall.io/display/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.webp?1783935082",
+        "art": "https://cards.scryfall.io/art/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.webp?1783935082",
+        "crop": "https://cards.scryfall.io/crop/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.webp?1783935082",
+        "jpeg": "https://cards.scryfall.io/normal/front/1/4/14394198-0993-46ee-a3ea-5c7084a78772.jpg?1783935082"
+      },
+      "mana_cost": "",
+      "cmc": 0,
+      "type_line": "Land",
+      "oracle_text": "This land enters tapped.\n{T}: Add {G}.\n{1}{G}: This land becomes a 3/3 green Ape creature with trample until end of turn. It's still a land. (It can deal excess combat damage to the player or planeswalker it's attacking.)",
+      "colors": [],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "produced_mana": [
+        "G"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "01e30e53-f292-4c39-ab09-435b015877f5",
+      "set": "ddu",
+      "set_name": "Duel Decks: Elves vs. Inventors",
+      "set_type": "duel_deck",
+      "set_uri": "https://api.scryfall.com/sets/01e30e53-f292-4c39-ab09-435b015877f5",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Addu&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/ddu?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/14394198-0993-46ee-a3ea-5c7084a78772/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab53f216d-1592-4eee-b204-502a805fbc8c&unique=prints",
+      "collector_number": "30",
+      "digital": false,
+      "rarity": "uncommon",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Rob Alexander",
+      "artist_ids": [
+        "35906871-6c78-4ab2-9ed1-e6792c8efb74"
+      ],
+      "illustration_id": "259f3315-4114-42e1-b2d2-5abe3a49918d",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "edhrec_rank": 5869,
+      "penny_rank": 1873,
+      "prices": {
+        "usd": "0.39",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.29",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=442766&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DTreetop%2BVillage",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DTreetop%2BVillage",
+        "edhrec": "https://edhrec.com/route/?cc=Treetop+Village"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F162880%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=320649&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Treetop+Village&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation",
+          "mana source"
+        ],
+        "note": "A forest landscape animating as an Ape illustrates why living lands merit investigation regardless of creature subtype.",
+        "caution": "Not actually a Forest. Enters tapped and its animation uses mana that cannot also cast a spell.",
+        "manaNote": "Produces G; animation costs 1G.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "f857bbe4-5619-4733-a0c7-69700f2ef4f3",
+      "oracle_id": "5aa3abf1-d56b-4f42-8c84-7e5a2c15ee0f",
+      "multiverse_ids": [
+        461096
+      ],
+      "mtgo_id": 71944,
+      "arena_id": 69620,
+      "tcgplayer_id": 188415,
+      "cardmarket_id": 372179,
+      "name": "Nissa, Who Shakes the World",
+      "lang": "en",
+      "released_at": "2019-05-03",
+      "uri": "https://api.scryfall.com/cards/f857bbe4-5619-4733-a0c7-69700f2ef4f3",
+      "scryfall_uri": "https://scryfall.com/card/war/169/nissa-who-shakes-the-world?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T09:03:30Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.jpg?1783933410",
+        "normal": "https://cards.scryfall.io/normal/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.jpg?1783933410",
+        "large": "https://cards.scryfall.io/large/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.jpg?1783933410",
+        "png": "https://cards.scryfall.io/png/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.png?1783933410",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.jpg?1783933410",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.jpg?1783933410",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.webp?1783933410",
+        "grid": "https://cards.scryfall.io/grid/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.webp?1783933410",
+        "display": "https://cards.scryfall.io/display/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.webp?1783933410",
+        "art": "https://cards.scryfall.io/art/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.webp?1783933410",
+        "crop": "https://cards.scryfall.io/crop/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.webp?1783933410",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/8/f857bbe4-5619-4733-a0c7-69700f2ef4f3.jpg?1783933410"
+      },
+      "mana_cost": "{3}{G}{G}",
+      "cmc": 5,
+      "type_line": "Legendary Planeswalker — Nissa",
+      "oracle_text": "Whenever you tap a Forest for mana, add an additional {G}.\n+1: Put three +1/+1 counters on up to one target noncreature land you control. Untap it. It becomes a 0/0 Elemental creature with vigilance and haste that's still a land.\n−8: You get an emblem with \"Lands you control have indestructible.\" Search your library for any number of Forest cards, put them onto the battlefield tapped, then shuffle.",
+      "loyalty": "5",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "produced_mana": [
+        "G"
+      ],
+      "all_parts": [
+        {
+          "object": "related_card",
+          "id": "f857bbe4-5619-4733-a0c7-69700f2ef4f3",
+          "component": "combo_piece",
+          "name": "Nissa, Who Shakes the World",
+          "type_line": "Legendary Planeswalker — Nissa",
+          "uri": "https://api.scryfall.com/cards/f857bbe4-5619-4733-a0c7-69700f2ef4f3"
+        },
+        {
+          "object": "related_card",
+          "id": "56b191fe-7a92-4d08-91a4-036699d08bc4",
+          "component": "combo_piece",
+          "name": "Nissa, Who Shakes the World Emblem",
+          "type_line": "Emblem — Nissa",
+          "uri": "https://api.scryfall.com/cards/56b191fe-7a92-4d08-91a4-036699d08bc4"
+        }
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "not_legal"
+      },
+      "games": [
+        "arena",
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "ee044f0b-e101-4ead-8d0e-aa510aad4277",
+      "set": "war",
+      "set_name": "War of the Spark",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/ee044f0b-e101-4ead-8d0e-aa510aad4277",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awar&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/war?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/f857bbe4-5619-4733-a0c7-69700f2ef4f3/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5aa3abf1-d56b-4f42-8c84-7e5a2c15ee0f&unique=prints",
+      "collector_number": "169",
+      "digital": false,
+      "rarity": "rare",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Chris Rallis",
+      "artist_ids": [
+        "a8e7b854-b15a-421a-b66d-6e68187ae285"
+      ],
+      "illustration_id": "76ad4b35-2969-44f7-900b-09c13e1c827b",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 1674,
+      "penny_rank": 1699,
+      "preview": {
+        "source": "Nissa Cosplay",
+        "source_uri": "https://twitter.com/NissaCosplay/status/1116067435004796928",
+        "previewed_at": "2019-04-10"
+      },
+      "prices": {
+        "usd": "3.51",
+        "usd_foil": "6.45",
+        "usd_etched": null,
+        "eur": "2.20",
+        "eur_foil": "4.35",
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=461096&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DNissa%252C%2BWho%2BShakes%2Bthe%2BWorld",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DNissa%252C%2BWho%2BShakes%2Bthe%2BWorld",
+        "edhrec": "https://edhrec.com/route/?cc=Nissa%2C+Who+Shakes+the+World"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F188415%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=372179&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/71944?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation",
+          "mana support"
+        ],
+        "note": "A Forest-focused planeswalker that can animate any of your noncreature lands into a vigilant Elemental and substantially increase green mana.",
+        "caution": "A strong repeatable engine with planeswalker rules and a large mana advantage; animated lands remain exposed to creature removal. Its mana bonus specifically requires Forests.",
+        "manaNote": "Costs 3GG; likely too strong for some introductory environments.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "6f807d91-b157-44e8-a431-49782184f876",
+      "oracle_id": "4566fb92-448e-4b3f-9045-9d74323c35d1",
+      "multiverse_ids": [
+        607275
+      ],
+      "mtgo_id": 110322,
+      "arena_id": 84511,
+      "tcgplayer_id": 489897,
+      "cardmarket_id": 703221,
+      "name": "Wrenn and Realmbreaker",
+      "lang": "en",
+      "released_at": "2023-04-21",
+      "uri": "https://api.scryfall.com/cards/6f807d91-b157-44e8-a431-49782184f876",
+      "scryfall_uri": "https://scryfall.com/card/mom/217/wrenn-and-realmbreaker?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T04:29:16Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/6/f/6f807d91-b157-44e8-a431-49782184f876.jpg?1783916956",
+        "normal": "https://cards.scryfall.io/normal/front/6/f/6f807d91-b157-44e8-a431-49782184f876.jpg?1783916956",
+        "large": "https://cards.scryfall.io/large/front/6/f/6f807d91-b157-44e8-a431-49782184f876.jpg?1783916956",
+        "png": "https://cards.scryfall.io/png/front/6/f/6f807d91-b157-44e8-a431-49782184f876.png?1783916956",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/6/f/6f807d91-b157-44e8-a431-49782184f876.jpg?1783916956",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/6/f/6f807d91-b157-44e8-a431-49782184f876.jpg?1783916956",
+        "thumb": "https://cards.scryfall.io/thumb/front/6/f/6f807d91-b157-44e8-a431-49782184f876.webp?1783916956",
+        "grid": "https://cards.scryfall.io/grid/front/6/f/6f807d91-b157-44e8-a431-49782184f876.webp?1783916956",
+        "display": "https://cards.scryfall.io/display/front/6/f/6f807d91-b157-44e8-a431-49782184f876.webp?1783916956",
+        "art": "https://cards.scryfall.io/art/front/6/f/6f807d91-b157-44e8-a431-49782184f876.webp?1783916956",
+        "crop": "https://cards.scryfall.io/crop/front/6/f/6f807d91-b157-44e8-a431-49782184f876.webp?1783916956",
+        "jpeg": "https://cards.scryfall.io/normal/front/6/f/6f807d91-b157-44e8-a431-49782184f876.jpg?1783916956"
+      },
+      "mana_cost": "{1}{G}{G}",
+      "cmc": 3,
+      "type_line": "Legendary Planeswalker — Wrenn",
+      "oracle_text": "Lands you control have \"{T}: Add one mana of any color.\"\n+1: Up to one target land you control becomes a 3/3 Elemental creature with vigilance, hexproof, and haste until your next turn. It's still a land.\n−2: Mill three cards. You may put a permanent card from among the milled cards into your hand.\n−7: You get an emblem with \"You may play lands and cast permanent spells from your graveyard.\"",
+      "loyalty": "4",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Mill"
+      ],
+      "produced_mana": [
+        "B",
+        "G",
+        "R",
+        "U",
+        "W"
+      ],
+      "all_parts": [
+        {
+          "object": "related_card",
+          "id": "17269aae-10bc-49ef-b6a7-94e0dd6cf677",
+          "component": "combo_piece",
+          "name": "Wrenn and Realmbreaker",
+          "type_line": "Legendary Planeswalker — Wrenn",
+          "uri": "https://api.scryfall.com/cards/17269aae-10bc-49ef-b6a7-94e0dd6cf677"
+        },
+        {
+          "object": "related_card",
+          "id": "0aa8ebb6-26dc-41eb-ae40-47c8e7b040a6",
+          "component": "combo_piece",
+          "name": "Wrenn and Realmbreaker Emblem",
+          "type_line": "Emblem",
+          "uri": "https://api.scryfall.com/cards/0aa8ebb6-26dc-41eb-ae40-47c8e7b040a6"
+        }
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo",
+        "arena"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "392f7315-dc53-40a3-a2cc-5482dbd498b3",
+      "set": "mom",
+      "set_name": "March of the Machine",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/392f7315-dc53-40a3-a2cc-5482dbd498b3",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amom&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/mom?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/6f807d91-b157-44e8-a431-49782184f876/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A4566fb92-448e-4b3f-9045-9d74323c35d1&unique=prints",
+      "collector_number": "217",
+      "digital": false,
+      "rarity": "mythic",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Cristi Balanescu",
+      "artist_ids": [
+        "c09ede88-a1b5-4a18-9895-dc8a965d28a5"
+      ],
+      "illustration_id": "02e257d3-0175-4153-a04c-fdddb41234ba",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": true,
+      "edhrec_rank": 2695,
+      "penny_rank": 4254,
+      "preview": {
+        "source": "Wizards of the Coast",
+        "source_uri": "https://magic.wizards.com/en/news/magic-story/episode-8-wrenn-and-eight",
+        "previewed_at": "2023-03-24"
+      },
+      "prices": {
+        "usd": "7.31",
+        "usd_foil": "7.78",
+        "usd_etched": null,
+        "eur": "3.54",
+        "eur_foil": "4.01",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=607275&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DWrenn%2Band%2BRealmbreaker",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DWrenn%2Band%2BRealmbreaker",
+        "edhrec": "https://edhrec.com/route/?cc=Wrenn+and+Realmbreaker"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F489897%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=703221&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/110322?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation",
+          "mana support"
+        ],
+        "note": "A Treefolk-associated planeswalker that animates any land as an Elemental and lets all your lands provide any color, tying land creatures to multicolor support.",
+        "caution": "Adds planeswalker rules, milling, and graveyard play. Its animation is temporary and does not untap the land. The emblem allows normal play/casting rather than free spells.",
+        "manaNote": "Costs 1GG before it can help fix other colors.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "e3ddbebf-72cd-4d1b-ba0d-d94934654ab7",
+      "oracle_id": "e996cd67-739c-40f4-b276-0042acf26c71",
+      "name": "Dryad Arbor",
+      "mana_cost": "",
+      "cmc": 0,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Land Creature — Forest Dryad",
+      "oracle_text": "(This land isn't a spell, it's affected by summoning sickness, and it has \"{T}: Add {G}.\")",
+      "power": "1",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/dsc/273/dryad-arbor?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577",
+        "normal": "https://cards.scryfall.io/normal/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577",
+        "large": "https://cards.scryfall.io/large/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577",
+        "png": "https://cards.scryfall.io/png/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.png?1783909577",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.webp?1783909577",
+        "grid": "https://cards.scryfall.io/grid/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.webp?1783909577",
+        "display": "https://cards.scryfall.io/display/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.webp?1783909577",
+        "art": "https://cards.scryfall.io/art/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.webp?1783909577",
+        "crop": "https://cards.scryfall.io/crop/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.webp?1783909577",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/3/e3ddbebf-72cd-4d1b-ba0d-d94934654ab7.jpg?1783909577"
+      },
+      "set": "dsc",
+      "collector_number": "273",
+      "released_at": "2024-09-27",
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "mana support",
+          "land creature"
+        ],
+        "note": "A genuine Dryad that is also a Forest land, bridging woodland flavor with land and creature interactions.",
+        "caution": "It is a Dryad, not a Plant. It is played as a land rather than cast as a spell, uses a land play, and cannot tap for mana immediately if affected by summoning sickness. Creature removal can also remove this mana source.",
+        "manaNote": "Has no mana cost; its Forest subtype provides a green-mana tap ability.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "a0418156-bcba-4edc-8ea5-ce9ca9b979bd",
+      "oracle_id": "124c3af4-8545-479a-b44c-446da1c8b535",
+      "name": "Woodcaller Automaton",
+      "mana_cost": "{10}",
+      "cmc": 10,
+      "colors": [],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Artifact Creature — Construct",
+      "oracle_text": "Prototype {2}{G}{G} — 3/3 (You may cast this spell with different mana cost, color, and size. It keeps its abilities and types.)\nWhen this creature enters, if you cast it, untap target land you control. It becomes a Treefolk creature with haste and base power and toughness equal to this creature's power and toughness. It's still a land.",
+      "power": "8",
+      "toughness": "8",
+      "scryfall_uri": "https://scryfall.com/card/bro/292/woodcaller-automaton?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994",
+        "normal": "https://cards.scryfall.io/normal/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994",
+        "large": "https://cards.scryfall.io/large/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994",
+        "png": "https://cards.scryfall.io/png/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.png?1783919994",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.webp?1783919994",
+        "grid": "https://cards.scryfall.io/grid/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.webp?1783919994",
+        "display": "https://cards.scryfall.io/display/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.webp?1783919994",
+        "art": "https://cards.scryfall.io/art/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.webp?1783919994",
+        "crop": "https://cards.scryfall.io/crop/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.webp?1783919994",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/0/a0418156-bcba-4edc-8ea5-ce9ca9b979bd.jpg?1783919994"
+      },
+      "set": "bro",
+      "collector_number": "292",
+      "released_at": "2022-11-18",
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "artifact creature",
+          "land animation",
+          "finisher"
+        ],
+        "note": "A wood-themed Construct that explicitly turns one of your lands into a Treefolk creature, connecting a non-Treefolk card to genuine Treefolk support.",
+        "caution": "The Automaton is a Construct, not a Treefolk. The land-animation trigger requires that the Automaton was cast, so merely returning it from a graveyard does not trigger it. Animating a land exposes mana to creature removal.",
+        "manaNote": "Costs 10 normally or 2GG as a prototype; the animated land's base size uses the Automaton's power and toughness.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "5ecbf790-619b-4b55-ae4c-29f1459b0031",
+      "oracle_id": "e75b2a97-b28d-43fe-8b1e-ba87a09f339c",
+      "multiverse_ids": [
+        393943
+      ],
+      "mtgo_id": 28859,
+      "tcgplayer_id": 93626,
+      "cardmarket_id": 269907,
+      "name": "Ambush Commander",
+      "lang": "en",
+      "released_at": "2014-12-05",
+      "uri": "https://api.scryfall.com/cards/5ecbf790-619b-4b55-ae4c-29f1459b0031",
+      "scryfall_uri": "https://scryfall.com/card/evg/1/ambush-commander?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:32:55Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.jpg?1783938775",
+        "normal": "https://cards.scryfall.io/normal/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.jpg?1783938775",
+        "large": "https://cards.scryfall.io/large/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.jpg?1783938775",
+        "png": "https://cards.scryfall.io/png/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.png?1783938775",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.jpg?1783938775",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.jpg?1783938775",
+        "thumb": "https://cards.scryfall.io/thumb/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.webp?1783938775",
+        "grid": "https://cards.scryfall.io/grid/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.webp?1783938775",
+        "display": "https://cards.scryfall.io/display/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.webp?1783938775",
+        "art": "https://cards.scryfall.io/art/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.webp?1783938775",
+        "crop": "https://cards.scryfall.io/crop/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.webp?1783938775",
+        "jpeg": "https://cards.scryfall.io/normal/front/5/e/5ecbf790-619b-4b55-ae4c-29f1459b0031.jpg?1783938775"
+      },
+      "mana_cost": "{3}{G}{G}",
+      "cmc": 5,
+      "type_line": "Creature — Elf",
+      "oracle_text": "Forests you control are 1/1 green Elf creatures that are still lands.\n{1}{G}, Sacrifice an Elf: Target creature gets +3/+3 until end of turn.",
+      "power": "2",
+      "toughness": "2",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "not_legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "legal",
+        "predh": "legal",
+        "tlr": "not_legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": false,
+      "finishes": [
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "d5dbdea8-45f6-4d22-990b-6b6897f99d18",
+      "set": "evg",
+      "set_name": "Duel Decks Anthology: Elves vs. Goblins",
+      "set_type": "duel_deck",
+      "set_uri": "https://api.scryfall.com/sets/d5dbdea8-45f6-4d22-990b-6b6897f99d18",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aevg&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/evg?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/5ecbf790-619b-4b55-ae4c-29f1459b0031/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ae75b2a97-b28d-43fe-8b1e-ba87a09f339c&unique=prints",
+      "collector_number": "1",
+      "digital": false,
+      "rarity": "rare",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Lucio Parrillo",
+      "artist_ids": [
+        "1b452d3f-5c32-46dc-adc3-83eba53052d5"
+      ],
+      "illustration_id": "bec6aec0-dc72-4089-b09f-c0a4f4a5d9dc",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "edhrec_rank": 13425,
+      "penny_rank": 12031,
+      "prices": {
+        "usd": null,
+        "usd_foil": "0.87",
+        "usd_etched": null,
+        "eur": null,
+        "eur_foil": "1.20",
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=393943&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAmbush%2BCommander",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAmbush%2BCommander",
+        "edhrec": "https://edhrec.com/route/?cc=Ambush+Commander"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F93626%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=269907&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/28859?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "Animates your actual Forests, but makes them Elves and is an Elf itself. Keep this as a comparison candidate while preferring other ways to build a living-forest theme.",
+        "caution": "Lower-priority thematic fit: the owner prefers to avoid turning the green packets into Elf decks. Its sacrifice ability can consume animated Forest lands; creature removal also threatens the mana base.",
+        "manaNote": "Costs 3GG; its activated ability needs 1G and an Elf sacrifice.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "b42b2fb4-8016-462c-8764-2639adec931f",
+      "oracle_id": "5c326102-005d-463c-b9f7-14b034b66baa",
+      "multiverse_ids": [
+        461079
+      ],
+      "mtgo_id": 71910,
+      "arena_id": 69603,
+      "tcgplayer_id": 188388,
+      "cardmarket_id": 372138,
+      "name": "Awakening of Vitu-Ghazi",
+      "lang": "en",
+      "released_at": "2019-05-03",
+      "uri": "https://api.scryfall.com/cards/b42b2fb4-8016-462c-8764-2639adec931f",
+      "scryfall_uri": "https://scryfall.com/card/war/152/awakening-of-vitu-ghazi?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T09:03:37Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.jpg?1783933417",
+        "normal": "https://cards.scryfall.io/normal/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.jpg?1783933417",
+        "large": "https://cards.scryfall.io/large/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.jpg?1783933417",
+        "png": "https://cards.scryfall.io/png/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.png?1783933417",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.jpg?1783933417",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.jpg?1783933417",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.webp?1783933417",
+        "grid": "https://cards.scryfall.io/grid/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.webp?1783933417",
+        "display": "https://cards.scryfall.io/display/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.webp?1783933417",
+        "art": "https://cards.scryfall.io/art/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.webp?1783933417",
+        "crop": "https://cards.scryfall.io/crop/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.webp?1783933417",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/4/b42b2fb4-8016-462c-8764-2639adec931f.jpg?1783933417"
+      },
+      "mana_cost": "{3}{G}{G}",
+      "cmc": 5,
+      "type_line": "Instant",
+      "oracle_text": "Put nine +1/+1 counters on target land you control. It becomes a legendary 0/0 Elemental creature with haste named Vitu-Ghazi. It's still a land.",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "not_legal"
+      },
+      "games": [
+        "arena",
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "ee044f0b-e101-4ead-8d0e-aa510aad4277",
+      "set": "war",
+      "set_name": "War of the Spark",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/ee044f0b-e101-4ead-8d0e-aa510aad4277",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awar&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/war?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/b42b2fb4-8016-462c-8764-2639adec931f/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5c326102-005d-463c-b9f7-14b034b66baa&unique=prints",
+      "collector_number": "152",
+      "digital": false,
+      "rarity": "rare",
+      "flavor_text": "The Eternal armies advanced on Vitu-Ghazi. At Nissa's command, Vitu-Ghazi advanced on them.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Jaime Jones",
+      "artist_ids": [
+        "92f6c2c1-fa57-4b52-99c4-0fd866c13dc9"
+      ],
+      "illustration_id": "24880d67-c06e-44ef-ace7-b507e3d03651",
+      "border_color": "black",
+      "frame": "2015",
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": true,
+      "edhrec_rank": 11912,
+      "penny_rank": 11264,
+      "preview": {
+        "source": "MTG: Young Mage",
+        "source_uri": "https://youtu.be/UZzADB47zss",
+        "previewed_at": "2019-04-10"
+      },
+      "prices": {
+        "usd": "0.31",
+        "usd_foil": "0.72",
+        "usd_etched": null,
+        "eur": "0.19",
+        "eur_foil": "0.41",
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=461079&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAwakening%2Bof%2BVitu-Ghazi",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAwakening%2Bof%2BVitu-Ghazi",
+        "edhrec": "https://edhrec.com/route/?cc=Awakening+of+Vitu-Ghazi"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F188388%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=372138&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/71910?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation"
+        ],
+        "note": "Animates a Forest, Swamp, or any other land into a huge legendary Elemental, using counters instead of depending on botanical creature types.",
+        "caution": "A five-mana instant makes one very large threat and leaves a land exposed to creature removal. It does not untap the target land; the nine counters remain a significant power jump.",
+        "manaNote": "Costs 3GG; grants haste but does not supply an untapped land.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "821b9e86-d108-42e5-b642-c5e07ab16c37",
+      "oracle_id": "49d189dd-9ce7-434f-931b-7110cd5255e7",
+      "multiverse_ids": [
+        629666
+      ],
+      "mtgo_id": 116666,
+      "arena_id": 86871,
+      "tcgplayer_id": 512716,
+      "cardmarket_id": 728463,
+      "name": "Brave the Wilds",
+      "lang": "en",
+      "released_at": "2023-09-08",
+      "uri": "https://api.scryfall.com/cards/821b9e86-d108-42e5-b642-c5e07ab16c37",
+      "scryfall_uri": "https://scryfall.com/card/woe/165/brave-the-wilds?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T03:58:04Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.jpg?1783915084",
+        "normal": "https://cards.scryfall.io/normal/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.jpg?1783915084",
+        "large": "https://cards.scryfall.io/large/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.jpg?1783915084",
+        "png": "https://cards.scryfall.io/png/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.png?1783915084",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.jpg?1783915084",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.jpg?1783915084",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.webp?1783915084",
+        "grid": "https://cards.scryfall.io/grid/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.webp?1783915084",
+        "display": "https://cards.scryfall.io/display/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.webp?1783915084",
+        "art": "https://cards.scryfall.io/art/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.webp?1783915084",
+        "crop": "https://cards.scryfall.io/crop/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.webp?1783915084",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/2/821b9e86-d108-42e5-b642-c5e07ab16c37.jpg?1783915084"
+      },
+      "mana_cost": "{G}",
+      "cmc": 1,
+      "type_line": "Sorcery",
+      "oracle_text": "Bargain (You may sacrifice an artifact, enchantment, or token as you cast this spell.)\nIf this spell was bargained, target land you control becomes a 3/3 Elemental creature with haste that's still a land.\nSearch your library for a basic land card, reveal it, put it into your hand, then shuffle.",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Bargain"
+      ],
+      "legalities": {
+        "standard": "legal",
+        "future": "legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "arena",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "79139661-13ee-43c4-8bad-a8c069f1a1df",
+      "set": "woe",
+      "set_name": "Wilds of Eldraine",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/79139661-13ee-43c4-8bad-a8c069f1a1df",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoe&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/woe?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/821b9e86-d108-42e5-b642-c5e07ab16c37/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A49d189dd-9ce7-434f-931b-7110cd5255e7&unique=prints",
+      "collector_number": "165",
+      "digital": false,
+      "rarity": "common",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Lucas Graciano",
+      "artist_ids": [
+        "ce98f39c-7cdd-47e6-a520-6c50443bb4c2"
+      ],
+      "illustration_id": "539f2efb-d6ab-4713-a4d0-ef46e97dd754",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 16519,
+      "penny_rank": 7664,
+      "preview": {
+        "source": "Vandal",
+        "source_uri": "https://vandal.elespanol.com/noticia/r21895/magic-desvelamos-en-vandal-cuatro-cartas-exclusivas-de-las-tierras-salvajes-de-eldraine-la-nueva-y-esperada-expansion",
+        "previewed_at": "2023-08-17"
+      },
+      "prices": {
+        "usd": "0.19",
+        "usd_foil": "0.30",
+        "usd_etched": null,
+        "eur": "0.09",
+        "eur_foil": "0.13",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=629666&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBrave%2Bthe%2BWilds",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBrave%2Bthe%2BWilds",
+        "edhrec": "https://edhrec.com/route/?cc=Brave+the+Wilds"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F512716%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=728463&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/116666?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "land animation",
+          "land search"
+        ],
+        "note": "Finds a basic land for color support and, when bargained, permanently animates an existing land as an Elemental. Spare Plants or Saprolings can pay the bargain cost.",
+        "caution": "The basic land goes to hand, not the battlefield. Bargain requires sacrificing an artifact, enchantment, or token; the animated land is an existing target and becomes vulnerable to creature removal.",
+        "manaNote": "Costs G; can find any basic land but needs an additional resource to animate a land.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "10fb2b62-eea7-469f-b237-fdce20b8bdcf",
+      "oracle_id": "7f207f0d-0834-45fc-aec3-534ec73cdc58",
+      "multiverse_ids": [
+        152607
+      ],
+      "mtgo_id": 29024,
+      "mtgo_foil_id": 29025,
+      "tcgplayer_id": 17980,
+      "cardmarket_id": 18890,
+      "name": "Fendeep Summoner",
+      "lang": "en",
+      "released_at": "2008-02-01",
+      "uri": "https://api.scryfall.com/cards/10fb2b62-eea7-469f-b237-fdce20b8bdcf",
+      "scryfall_uri": "https://scryfall.com/card/mor/61/fendeep-summoner?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T11:39:53Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.jpg?1783942793",
+        "normal": "https://cards.scryfall.io/normal/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.jpg?1783942793",
+        "large": "https://cards.scryfall.io/large/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.jpg?1783942793",
+        "png": "https://cards.scryfall.io/png/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.png?1783942793",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.jpg?1783942793",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.jpg?1783942793",
+        "thumb": "https://cards.scryfall.io/thumb/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.webp?1783942793",
+        "grid": "https://cards.scryfall.io/grid/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.webp?1783942793",
+        "display": "https://cards.scryfall.io/display/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.webp?1783942793",
+        "art": "https://cards.scryfall.io/art/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.webp?1783942793",
+        "crop": "https://cards.scryfall.io/crop/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.webp?1783942793",
+        "jpeg": "https://cards.scryfall.io/normal/front/1/0/10fb2b62-eea7-469f-b237-fdce20b8bdcf.jpg?1783942793"
+      },
+      "mana_cost": "{4}{B}",
+      "cmc": 5,
+      "type_line": "Creature — Treefolk Shaman",
+      "oracle_text": "{T}: Up to two target Swamps each become 3/5 Treefolk Warrior creatures in addition to their other types until end of turn.",
+      "power": "3",
+      "toughness": "5",
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "not_legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "c41550df-7b41-41a3-85ab-8612eb2f168f",
+      "set": "mor",
+      "set_name": "Morningtide",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/c41550df-7b41-41a3-85ab-8612eb2f168f",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amor&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/mor?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/10fb2b62-eea7-469f-b237-fdce20b8bdcf/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A7f207f0d-0834-45fc-aec3-534ec73cdc58&unique=prints",
+      "collector_number": "61",
+      "digital": false,
+      "rarity": "rare",
+      "flavor_text": "\"What is drowned is not forgotten. I will fulfill my oath. Come back to me, my brethren, as I have come back for you.\"",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Jesper Ejsing",
+      "artist_ids": [
+        "a5f8354a-8b51-4e59-96b2-0e3aeae4fa1d"
+      ],
+      "illustration_id": "84572e55-2175-43b3-9cbf-26bad6af876e",
+      "border_color": "black",
+      "frame": "2003",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 24627,
+      "prices": {
+        "usd": "0.47",
+        "usd_foil": "8.76",
+        "usd_etched": null,
+        "eur": "0.38",
+        "eur_foil": "1.76",
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=152607&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFendeep%2BSummoner",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFendeep%2BSummoner",
+        "edhrec": "https://edhrec.com/route/?cc=Fendeep+Summoner"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F17980%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=18890&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/29024?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "treefolk",
+          "living-lands"
+        ],
+        "roles": [
+          "Swamp animation",
+          "repeatable land animation"
+        ],
+        "note": "A black Treefolk Shaman that turns up to two actual Swamps into sizeable Treefolk Warriors. A direct link between the Treefolk theme and a living-swamp plan without Elf support.",
+        "caution": "Five mana and a tap ability mean it normally waits a turn before use. Animation does not untap the Swamps or grant haste; the targets can be any Swamps, including an opponent's.",
+        "manaNote": "Costs 4B; activation costs tapping this creature and needs Swamp targets.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "1254929b-0be1-4068-af69-7e59840c8b98",
+      "oracle_id": "ada3c285-3449-4037-8b44-42e128456a65",
+      "multiverse_ids": [
+        393895
+      ],
+      "tcgplayer_id": 93709,
+      "cardmarket_id": 269995,
+      "name": "Genju of the Cedars",
+      "lang": "en",
+      "released_at": "2014-12-05",
+      "uri": "https://api.scryfall.com/cards/1254929b-0be1-4068-af69-7e59840c8b98",
+      "scryfall_uri": "https://scryfall.com/card/gvl/13/genju-of-the-cedars?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:32:39Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.jpg?1783938759",
+        "normal": "https://cards.scryfall.io/normal/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.jpg?1783938759",
+        "large": "https://cards.scryfall.io/large/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.jpg?1783938759",
+        "png": "https://cards.scryfall.io/png/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.png?1783938759",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.jpg?1783938759",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.jpg?1783938759",
+        "thumb": "https://cards.scryfall.io/thumb/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.webp?1783938759",
+        "grid": "https://cards.scryfall.io/grid/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.webp?1783938759",
+        "display": "https://cards.scryfall.io/display/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.webp?1783938759",
+        "art": "https://cards.scryfall.io/art/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.webp?1783938759",
+        "crop": "https://cards.scryfall.io/crop/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.webp?1783938759",
+        "jpeg": "https://cards.scryfall.io/normal/front/1/2/1254929b-0be1-4068-af69-7e59840c8b98.jpg?1783938759"
+      },
+      "mana_cost": "{G}",
+      "cmc": 1,
+      "type_line": "Enchantment — Aura",
+      "oracle_text": "Enchant Forest\n{2}: Enchanted Forest becomes a 4/4 green Spirit creature until end of turn. It's still a land.\nWhen enchanted Forest is put into a graveyard, you may return this card from your graveyard to your hand.",
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Enchant"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "db352daa-9827-44ca-ba19-511969a97689",
+      "set": "gvl",
+      "set_name": "Duel Decks Anthology: Garruk vs. Liliana",
+      "set_type": "duel_deck",
+      "set_uri": "https://api.scryfall.com/sets/db352daa-9827-44ca-ba19-511969a97689",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Agvl&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/gvl?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/1254929b-0be1-4068-af69-7e59840c8b98/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aada3c285-3449-4037-8b44-42e128456a65&unique=prints",
+      "collector_number": "13",
+      "digital": false,
+      "rarity": "uncommon",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Arnie Swekel",
+      "artist_ids": [
+        "af10ecf2-eb82-4100-97b2-6c236b0fa644"
+      ],
+      "illustration_id": "a984b201-8064-4113-aeec-7fa633321899",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "edhrec_rank": 22764,
+      "penny_rank": 10675,
+      "prices": {
+        "usd": "0.38",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.33",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=393895&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DGenju%2Bof%2Bthe%2BCedars",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DGenju%2Bof%2Bthe%2BCedars",
+        "edhrec": "https://edhrec.com/route/?cc=Genju+of+the+Cedars"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F93709%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=269995&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Genju+of+the+Cedars&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "Forest animation",
+          "repeatable threat"
+        ],
+        "note": "A Forest-bound Spirit enchantment: turns an actual Forest into a 4/4 green Spirit for a turn, then can recover the Aura if the Forest dies.",
+        "caution": "Only enchants a Forest. Animation does not untap it or grant haste. The Aura can return from your graveyard when the Forest is put into a graveyard; the land itself is not recovered.",
+        "manaNote": "Costs G, then 2 generic mana per animation.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "d8e06ff3-5fdd-444d-916e-3764f795456e",
+      "oracle_id": "f6c9c0e6-b851-4ede-8d7a-190c7cfd9051",
+      "multiverse_ids": [
+        393896
+      ],
+      "tcgplayer_id": 93710,
+      "cardmarket_id": 269996,
+      "name": "Genju of the Fens",
+      "lang": "en",
+      "released_at": "2014-12-05",
+      "uri": "https://api.scryfall.com/cards/d8e06ff3-5fdd-444d-916e-3764f795456e",
+      "scryfall_uri": "https://scryfall.com/card/gvl/47/genju-of-the-fens?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:32:32Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.jpg?1783938752",
+        "normal": "https://cards.scryfall.io/normal/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.jpg?1783938752",
+        "large": "https://cards.scryfall.io/large/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.jpg?1783938752",
+        "png": "https://cards.scryfall.io/png/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.png?1783938752",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.jpg?1783938752",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.jpg?1783938752",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.webp?1783938752",
+        "grid": "https://cards.scryfall.io/grid/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.webp?1783938752",
+        "display": "https://cards.scryfall.io/display/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.webp?1783938752",
+        "art": "https://cards.scryfall.io/art/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.webp?1783938752",
+        "crop": "https://cards.scryfall.io/crop/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.webp?1783938752",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/8/d8e06ff3-5fdd-444d-916e-3764f795456e.jpg?1783938752"
+      },
+      "mana_cost": "{B}",
+      "cmc": 1,
+      "type_line": "Enchantment — Aura",
+      "oracle_text": "Enchant Swamp\n{2}: Until end of turn, enchanted Swamp becomes a 2/2 black Spirit creature with \"{B}: This creature gets +1/+1 until end of turn.\" It's still a land.\nWhen enchanted Swamp is put into a graveyard, you may return this card from your graveyard to your hand.",
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [
+        "Enchant"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "db352daa-9827-44ca-ba19-511969a97689",
+      "set": "gvl",
+      "set_name": "Duel Decks Anthology: Garruk vs. Liliana",
+      "set_type": "duel_deck",
+      "set_uri": "https://api.scryfall.com/sets/db352daa-9827-44ca-ba19-511969a97689",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Agvl&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/gvl?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/d8e06ff3-5fdd-444d-916e-3764f795456e/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Af6c9c0e6-b851-4ede-8d7a-190c7cfd9051&unique=prints",
+      "collector_number": "47",
+      "digital": false,
+      "rarity": "uncommon",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Tsutomu Kawade",
+      "artist_ids": [
+        "433a40d2-2caa-4cba-ba8d-0308a951d026"
+      ],
+      "illustration_id": "7e6922fd-18b5-4882-9ba5-9fb5fb46517a",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "edhrec_rank": 26467,
+      "penny_rank": 12473,
+      "prices": {
+        "usd": "0.21",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.31",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=393896&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DGenju%2Bof%2Bthe%2BFens",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DGenju%2Bof%2Bthe%2BFens",
+        "edhrec": "https://edhrec.com/route/?cc=Genju+of+the+Fens"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F93710%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=269996&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Genju+of+the+Fens&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "living-lands"
+        ],
+        "roles": [
+          "Swamp animation",
+          "repeatable threat"
+        ],
+        "note": "The swamp counterpart to Genju of the Cedars: animates an actual Swamp as a black Spirit with a repeatable temporary power-and-toughness boost.",
+        "caution": "Only enchants a Swamp. Animation does not untap it or grant haste. The Aura's graveyard-return ability does not recover the destroyed land.",
+        "manaNote": "Costs B, then 2 to animate; each additional +1/+1 costs B.",
+        "crossover": false
+      }
+    }
+  ]
+}

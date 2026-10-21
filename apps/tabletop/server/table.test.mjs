@@ -265,9 +265,9 @@ test('format references contain their expanded procedures and cannot access othe
   assert.throws(() => referenceLines('package.json'), /Invalid reference path/);
 });
 
-test('both supplied precons contain 60 verified cards and the demo preserves those lists', async () => {
-  const { demoSetup } = await import('./demo.mjs');
-  const precons = JSON.parse(readFileSync(new URL('./precons.json', import.meta.url), 'utf8'));
+test('legacy regression fixtures retain 60 verified cards and staged opening hands preserve their lists', async () => {
+  const { demoSetup } = await import('./fixtures/scripted-table.mjs');
+  const precons = JSON.parse(readFileSync(new URL('./fixtures/precons.json', import.meta.url), 'utf8'));
   const demo = demoSetup();
   for (const [i, p] of precons.players.entries()) {
     assert.equal(p.deck.reduce((sum, c) => sum + c.count, 0), 60);
@@ -429,7 +429,7 @@ test('turn handoff updates only explicit markers, with overridable number and ph
   state = act(state, 'p1', { type: 'card', card: token, set: { tapped: true, damage: 2 } });
   const before = structuredClone(state);
   state = act(state, 'p1', { type: 'pass_turn', next: 'p2', message: 'Your turn.' });
-  assert.deepEqual(state.turn, { number: 2, active: 'p2', priority: 'p2', phase: 'Untap' });
+  assert.deepEqual(state.turn, { number: 2, active: 'p2', priority: 'p2', phase: 'Untap', counts: { p1: 0, p2: 1 }, totalTurns: 1, countsComplete: true });
   assert.deepEqual(state.cards, before.cards);
   assert.deepEqual(state.zones, before.zones);
   assert.deepEqual(state.players, before.players);
@@ -438,7 +438,7 @@ test('turn handoff updates only explicit markers, with overridable number and ph
   assert.equal(change.message, 'Your turn.');
   assert.deepEqual(change.set, state.turn);
   state = act(state, 'p2', { type: 'pass_turn', next: 'p1', number: 9, phase: 'Extra turn setup' });
-  assert.deepEqual(state.turn, { number: 9, active: 'p1', priority: 'p1', phase: 'Extra turn setup' });
+  assert.deepEqual(state.turn, { number: 9, active: 'p1', priority: 'p1', phase: 'Extra turn setup', counts: { p1: 1, p2: 1 }, totalTurns: 2, countsComplete: true });
   assert.throws(() => act(state, 'p1', { type: 'pass_turn', next: 'missing' }), /Unknown player/);
   assert.throws(() => act(state, 'p1', { type: 'pass_turn', next: 'p2', number: 0 }), /Invalid integer/);
 });

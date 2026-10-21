@@ -3,6 +3,7 @@ import { defaultDataDirectory } from './paths.mjs';
 import { constants, openSync, closeSync, fstatSync, readFileSync, readdirSync, lstatSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { avatarIds } from './avatars.mjs';
+import { validateRecording as validateReplayRecording } from '../shared/replay.mjs';
 import { validateSurvey } from '../shared/survey.mjs';
 
 const validId = id => typeof id === 'string' && /^[A-Za-z0-9_-]{1,120}$/.test(id);
@@ -71,6 +72,7 @@ export function validateRecording(value) {
     }
     revision = frame.event.revision;
   }
+  validateReplayRecording(value);
   if (own(value, 'postgame')) validateSurvey(value.postgame);
   return value;
 }
@@ -78,11 +80,11 @@ export function validateRecording(value) {
 function recordingOnly(source) {
   const recording = validateRecording(source);
   // Select the recording itself, never a session envelope or coordinator state.
-  const clean = pick(recording, ['format', 'version', 'visibility', 'started_at', 'title', 'references', 'initial', 'frames', 'postgame']);
+  const clean = pick(recording, ['format', 'version', 'visibility', 'started_at', 'title', 'references', 'initial', 'frames', 'postgame', 'constructedDecks', 'gameDecks']);
   const setup = object(recording.setup) ? recording.setup : {};
-  clean.setup = pick(setup, ['title', 'shuffle', 'layout', 'references', 'limits']);
+  clean.setup = pick(setup, ['title', 'shuffle', 'layout', 'references', 'limits', 'preparation', 'series']);
   if (Array.isArray(setup.players)) clean.setup.players = setup.players.filter(object).map(p => pick(p,
-    ['id', 'name', 'life', 'deck', 'deckPreset', 'model', 'reasoning', 'ai', 'avatar']));
+    ['id', 'name', 'life', 'deck', 'sideboard', 'faction', 'deckPreset', 'model', 'reasoning', 'ai', 'avatar']));
   clean.references ??= [];
   return clean;
 }
@@ -90,8 +92,10 @@ function recordingOnly(source) {
 function summarize(id, recording, config) {
   let finalPlayers = recording.initial.players;
   let finalResult = recording.initial.result;
+  let series = recording.initial.series;
   for (const frame of recording.frames) {
     if (frame.delta.players) finalPlayers = frame.delta.players;
+    if (own(frame.delta, 'series')) series = frame.delta.series;
     if (own(frame.delta, 'result')) finalResult = frame.delta.result;
   }
   const last = recording.frames.at(-1)?.event;
@@ -105,7 +109,10 @@ function summarize(id, recording, config) {
     updatedAt: survey?.completedAt || Object.values(survey?.responses || {}).map(response => response.submittedAt).sort().at(-1)
       || last?.at || recording.started_at || recording.initial.created_at || null,
     revision: last?.revision ?? recording.initial.revision, frameCount: recording.frames.length,
-    completed: !!finalResult && (!survey || survey.status === 'completed'), result: finalResult, feedback,
+    completed: (series ? series.status === 'complete' : !!finalResult) && (!survey || survey.status === 'completed'),
+    result: series ? series.result : finalResult, feedback,
+    ...(series ? { series: { mode: series.mode, resetTo: series.resetTo || 'game', gameNumber: series.gameNumber, status: series.status,
+      winsRequired: series.winsRequired, maxGames: series.maxGames, scores: series.scores, games: series.games, result: series.result } } : {}),
     layout: config?.layout === 'emperor' || recording.setup.layout === 'emperor' ? 'emperor' : 'table',
     players: finalPlayers.map(player => {
       const details = configured.find(p => p?.id === player.id) || {};

@@ -1,5 +1,6 @@
 <script setup>
 import { computed, nextTick, reactive, ref, watch } from "vue";
+import { playerLabel, zoneLabel, phaseLabel } from "../../../../shared/table-language.mjs";
 const props = defineProps({ mode: String, table: Object, human: Object });
 const emit = defineEmits(["close"]);
 const dialog = ref(null),
@@ -65,6 +66,8 @@ watch(
       name: "",
       type_line: mode === "ability" ? "Ability" : "Token Creature",
       oracle_text: "",
+      short_description: "",
+      long_description: "",
       power: "",
       toughness: "",
       winners: [],
@@ -98,7 +101,7 @@ async function submit() {
               status: form.status,
             },
           },
-          `Update ${form.player}: ${form.life} life and counters`,
+          `Set ${playerLabel(form.player, props.table.players)} to ${form.life} life and update counters`,
         );
         break;
       case "markers":
@@ -111,13 +114,13 @@ async function submit() {
               active: form.active,
             },
           },
-          `Turn ${form.number} · ${form.active} · ${form.phase}`,
+          `Turn ${form.number} · ${playerLabel(form.active, props.table.players)} · ${phaseLabel(form.phase)}`,
         );
         break;
       case "peek":
         queue(
           { type: "peek", zone: form.zone, count: Number(form.count) },
-          `Look at top ${form.count} of ${form.zone}`,
+          `Look at the top ${form.count} card${Number(form.count) === 1 ? '' : 's'} of ${zoneLabel(props.table.zones[form.zone] || form.zone, props.table.players)}`,
         );
         break;
       case "draw-many":
@@ -130,6 +133,10 @@ async function submit() {
           name: form.name.trim(),
           type_line: form.type_line,
           oracle_text: form.oracle_text,
+          ...(props.mode === "ability" ? {
+            ...(form.short_description.trim() ? { short_description: form.short_description.trim() } : {}),
+            ...(form.long_description.trim() ? { long_description: form.long_description.trim() } : {}),
+          } : {}),
           ...(form.power ? { power: form.power } : {}),
           ...(form.toughness ? { toughness: form.toughness } : {}),
         };
@@ -175,7 +182,7 @@ function concede() {
         player: props.human.seatId,
         set: { status: "conceded" },
       },
-      `${props.human.seatId} concedes`,
+      `${playerLabel(props.human.seatId, props.table.players)} concedes`,
     );
   } catch (err) {
     error.value = err.message;
@@ -253,7 +260,7 @@ function concede() {
             another player.
           </p>
           <label class="grid gap-1 text-sm"
-            >Turn number<input
+            >Global turn marker<input
               v-model.number="form.number"
               class="input input-sm w-full"
               type="number"
@@ -283,7 +290,7 @@ function concede() {
           <label class="grid gap-1 text-sm"
             >Zone<select v-model="form.zone" class="select select-sm w-full">
               <option v-for="(zone, id) in table.zones" :key="id" :value="id">
-                {{ id }}
+                {{ zoneLabel(zone, table.players) }}
               </option>
             </select></label
           ></template
@@ -306,18 +313,29 @@ function concede() {
               class="input input-sm w-full"
               maxlength="200"
               required /></label
-          ><label class="grid gap-1 text-sm"
+          ><label v-if="mode === 'token'" class="grid gap-1 text-sm"
             >Type line<input
               v-model="form.type_line"
               class="input input-sm w-full" /></label
-          ><label class="grid gap-1 text-sm"
+          ><label v-if="mode === 'token'" class="grid gap-1 text-sm"
             >Rules text<textarea
               v-model="form.oracle_text"
               class="textarea textarea-sm w-full"
               maxlength="12000"
               rows="4"
             /></label
-          ><template v-if="mode === 'token'"
+          ><template v-if="mode === 'ability'">
+            <label class="grid gap-1 text-sm">
+              Short description
+              <textarea v-model="form.short_description" class="textarea textarea-sm w-full" maxlength="500" rows="2" placeholder="Return a creature card from your graveyard to your hand." />
+              <span class="text-xs text-base-content/60">Shown on hover. Uses the name if left blank.</span>
+            </label>
+            <label class="grid gap-1 text-sm">
+              Full description
+              <textarea v-model="form.long_description" class="textarea textarea-sm w-full" maxlength="12000" rows="4" placeholder="Optional effect text, chosen targets, or other public details." />
+              <span class="text-xs text-base-content/60">Shown when someone clicks the ability.</span>
+            </label>
+          </template><template v-if="mode === 'token'"
             ><div class="grid grid-cols-2 gap-3">
               <label class="grid gap-1 text-sm"
                 >Power<input

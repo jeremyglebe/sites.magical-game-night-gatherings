@@ -1,0 +1,1760 @@
+{
+  "schemaVersion": 1,
+  "title": "Zombies vs Plants: Jumpstart",
+  "version": "0.1",
+  "draftedAt": "2026-10-21",
+  "status": "Draft — unplaytested",
+  "baseRuleset": "formats/jumpstart/variants/two-packet.md",
+  "rules": {
+    "players": 2,
+    "packetsPerDeck": 2,
+    "cardsPerPacket": 20,
+    "factionRestriction": "Both distinct packets in a deck must belong to the same faction.",
+    "baselineMatch": "Plants vs Zombies",
+    "selection": "Assign opposite factions by agreement (coin-flip choice if needed). Each player inspects their faction’s four packet lists and chooses two different packets. Controlled tests may assign pairs; optional random selection draws two faction dividers without replacement.",
+    "startingPlayer": "Randomly determined independently of faction assignment.",
+    "startingLife": 20,
+    "mulligan": "Normal London mulligan; no free mulligan. Starting player skips their first draw step.",
+    "extraCards": false
+  },
+  "nonbasicDuplicatePolicy": "Singleton across compatible packets, except two Slitherheads and two Sultai Devotees in The Turned for its limited early Zombie pool. Shared spells across opposing factions are allowed.",
+  "cardFactsSource": "Scryfall MCP lookups and the saved research snapshot, verified through 2026-10-21. Referenced printing is for identification; other printings of the same card are usable with current Oracle text.",
+  "researchRetention": "All candidates remain in research for rebalancing and the future cube; this versioned selection does not prune the pool.",
+  "packets": [
+    {
+      "id": "ZP-P1",
+      "name": "Overgrowth",
+      "faction": "plants",
+      "color": "G",
+      "cards": [
+        {
+          "name": "Jaddi Offshoot",
+          "quantity": 1,
+          "role": "Early wall; landfall life gain",
+          "oracleId": "20faefbd-059c-4aae-81e3-31683bf9f7bf",
+          "scryfallUri": "https://scryfall.com/card/tdc/260/jaddi-offshoot",
+          "manaCost": "{G}",
+          "manaValue": 1,
+          "typeLine": "Creature — Plant"
+        },
+        {
+          "name": "Gatecreeper Vine",
+          "quantity": 1,
+          "role": "Defensive Plant; finds a basic land in hand",
+          "oracleId": "0f539127-535f-4e0d-abaa-e884521098d2",
+          "scryfallUri": "https://scryfall.com/card/ddm/48/gatecreeper-vine",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Creature — Plant"
+        },
+        {
+          "name": "Ilysian Caryatid",
+          "quantity": 1,
+          "role": "Any-color mana; improves with a large creature",
+          "oracleId": "5f2be3c2-060a-43e1-b63b-9cd3c78ffcb0",
+          "scryfallUri": "https://scryfall.com/card/cmm/297/ilysian-caryatid",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Creature — Plant"
+        },
+        {
+          "name": "Vinelasher Kudzu",
+          "quantity": 1,
+          "role": "Threat that grows with land drops",
+          "oracleId": "62204fac-a367-475c-bfb9-80a87af2d2f1",
+          "scryfallUri": "https://scryfall.com/card/ddm/50/vinelasher-kudzu",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Creature — Plant"
+        },
+        {
+          "name": "Blooming Stinger",
+          "quantity": 1,
+          "role": "Deathtouch body and temporary deathtouch support",
+          "oracleId": "ab282bb1-900e-40b8-9821-8e2de88927bc",
+          "scryfallUri": "https://scryfall.com/card/eoe/174/blooming-stinger",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Creature — Plant Scorpion"
+        },
+        {
+          "name": "Bayou Groff",
+          "quantity": 1,
+          "role": "Large Plant Dog; sacrifice fodder or pay five total",
+          "oracleId": "e83b2790-3cec-429c-a65d-6f4c7d025d37",
+          "scryfallUri": "https://scryfall.com/card/stx/121/bayou-groff",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Creature — Plant Dog"
+        },
+        {
+          "name": "Living Totem",
+          "quantity": 1,
+          "role": "Convoke body; a counter for another creature",
+          "oracleId": "0a2e2d97-1348-4fa6-ad94-4da23ad8f43b",
+          "scryfallUri": "https://scryfall.com/card/m15/184/living-totem",
+          "manaCost": "{3}{G}",
+          "manaValue": 4,
+          "typeLine": "Creature — Plant Elemental"
+        },
+        {
+          "name": "Creeperhulk",
+          "quantity": 1,
+          "role": "Trampling finisher; turns small allies into threats",
+          "oracleId": "c6423251-759a-48f1-a9ae-b49b98172c08",
+          "scryfallUri": "https://scryfall.com/card/cma/98/creeperhulk",
+          "manaCost": "{3}{G}{G}",
+          "manaValue": 5,
+          "typeLine": "Creature — Plant Elemental"
+        },
+        {
+          "name": "Fists of Ironwood",
+          "quantity": 1,
+          "role": "Two Saprolings and trample for a creature",
+          "oracleId": "2f6a5278-23bf-47b2-a2b9-dfff7d96f3dd",
+          "scryfallUri": "https://scryfall.com/card/rvr/139/fists-of-ironwood",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Enchantment — Aura"
+        },
+        {
+          "name": "Blossoming Defense",
+          "quantity": 1,
+          "role": "Protection and a combat boost",
+          "oracleId": "5a851367-1c4a-4cc9-a9c3-3d2775986b4c",
+          "scryfallUri": "https://scryfall.com/card/ecl/167/blossoming-defense",
+          "manaCost": "{G}",
+          "manaValue": 1,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Nature's Way",
+          "quantity": 1,
+          "role": "Creature-powered removal; vigilance and trample",
+          "oracleId": "8c04663a-1023-49a5-a0b9-78f24a72fb1e",
+          "scryfallUri": "https://scryfall.com/card/jmp/412/natures-way",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Sorcery"
+        },
+        {
+          "name": "Abundant Growth",
+          "quantity": 1,
+          "role": "Land fixing that replaces itself",
+          "oracleId": "947a2665-2f4d-4193-8768-118f85334549",
+          "scryfallUri": "https://scryfall.com/card/ecc/97/abundant-growth",
+          "manaCost": "{G}",
+          "manaValue": 1,
+          "typeLine": "Enchantment — Aura"
+        },
+        {
+          "name": "Thriving Grove",
+          "quantity": 1,
+          "role": "Green source; choose a second color as it enters",
+          "oracleId": "a8052556-8962-4130-86a8-6fb7b6a324f7",
+          "scryfallUri": "https://scryfall.com/card/msc/579/thriving-grove",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Land"
+        },
+        {
+          "name": "Forest",
+          "quantity": 7,
+          "role": "Basic green mana",
+          "oracleId": "b34bb2dc-c1af-4d77-b0b3-a0fb342a5fc6",
+          "scryfallUri": "https://scryfall.com/card/fdn/280/forest",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Basic Land — Forest"
+        }
+      ],
+      "plan": "Establish useful Plants, grow with land drops, and turn a large creature or spare Saproling into a trampling threat. Fixing and early blockers help whichever Plant packet joins it.",
+      "notes": [
+        "Bayou Groff costs two mana only if you also sacrifice a creature as a casting cost. Without that sacrifice it costs five mana total; its printed mana value stays two.",
+        "Creeperhulk sets base power and toughness to 5/5 and grants trample for the turn. Counters and other bonuses still apply; defender stays, so Jaddi Offshoot and Gatecreeper Vine still cannot attack.",
+        "Living Totem has convoke and can put its counter only on another creature. Creatures that just entered can help convoke, since convoke is not their tap ability.",
+        "Fists of Ironwood needs a legal creature target to resolve and enter before producing its two Saprolings. The enchanted creature can be either player’s creature.",
+        "Abundant Growth fixes color but does not add mana or change land types. Ilysian Caryatid must be able to use its tap ability; it produces two mana of one color if you control a creature with power at least four.",
+        "Nature’s Way deals damage from your creature, so deathtouch and lifelink apply. Blossoming Defense protects one creature from opposing targeted effects, not from every kind of removal."
+      ],
+      "risks": [
+        "Creeperhulk can make birds or Saprolings into very efficient finishers. Measure whether this one card decides too many games.",
+        "Two defenders and a mana creature make some opening hands passive. Bayou Groff is not a normal two-drop without fodder.",
+        "This packet has no flying or reach and only one creature-removal spell. Its partner must help it race or interact with flying threats."
+      ],
+      "tokens": [
+        {
+          "name": "Saproling",
+          "color": "G",
+          "power": "1",
+          "toughness": "1",
+          "abilities": []
+        }
+      ],
+      "markers": [
+        "+1/+1 counters for Vinelasher Kudzu and Living Totem"
+      ],
+      "cuts": [
+        {
+          "name": "Wood Elemental / Woodvine Elemental",
+          "reason": "Retain the botanical theme leads; land sacrifice and multicolor/parley complexity do not suit the simple green first draft."
+        },
+        {
+          "name": "Phytotitan",
+          "reason": "Another expensive recursive finisher would crowd the curve. Keep it as a replacement if Creeperhulk proves too strong."
+        }
+      ],
+      "slug": "overgrowth",
+      "counts": {
+        "total": 20,
+        "creatures": 8,
+        "otherSpells": 4,
+        "lands": 8
+      },
+      "curve": {
+        "1": 3,
+        "2": 7,
+        "3": 0,
+        "4": 1,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "duplicateExceptions": []
+    },
+    {
+      "id": "ZP-P2",
+      "name": "Ancient Grove",
+      "faction": "plants",
+      "color": "W",
+      "cards": [
+        {
+          "name": "Healer's Hawk",
+          "quantity": 1,
+          "role": "Early flying lifelinker",
+          "oracleId": "28a52ba1-95da-44e1-8ac5-0dc23c902394",
+          "scryfallUri": "https://scryfall.com/card/fdn/734/healers-hawk",
+          "manaCost": "{W}",
+          "manaValue": 1,
+          "typeLine": "Creature — Bird"
+        },
+        {
+          "name": "Rustwing Falcon",
+          "quantity": 1,
+          "role": "Simple early 1/2 flyer",
+          "oracleId": "438ee544-78a2-4e32-9343-70838b60ac16",
+          "scryfallUri": "https://scryfall.com/card/m19/36/rustwing-falcon",
+          "manaCost": "{W}",
+          "manaValue": 1,
+          "typeLine": "Creature — Bird"
+        },
+        {
+          "name": "Suntail Hawk",
+          "quantity": 1,
+          "role": "Simple early flyer; singleton variety",
+          "oracleId": "a8d31e2f-7b2e-4135-8074-9e6ef778bd80",
+          "scryfallUri": "https://scryfall.com/card/m14/40/suntail-hawk",
+          "manaCost": "{W}",
+          "manaValue": 1,
+          "typeLine": "Creature — Bird"
+        },
+        {
+          "name": "Juniper Order Rootweaver",
+          "quantity": 1,
+          "role": "Early Druid; optional green kicker improves an ally",
+          "oracleId": "5914d4d5-51b8-49c2-9459-bf5579df4990",
+          "scryfallUri": "https://scryfall.com/card/dmu/22/juniper-order-rootweaver",
+          "manaCost": "{1}{W}",
+          "manaValue": 2,
+          "typeLine": "Creature — Human Druid"
+        },
+        {
+          "name": "Moonlit Lamenter",
+          "quantity": 1,
+          "role": "Treefolk blocker with a paid card draw",
+          "oracleId": "ce009bd4-5ffb-46a4-a9dd-b9c060926467",
+          "scryfallUri": "https://scryfall.com/card/ecl/26/moonlit-lamenter",
+          "manaCost": "{2}{W}",
+          "manaValue": 3,
+          "typeLine": "Creature — Treefolk Cleric"
+        },
+        {
+          "name": "Indomitable Ancients",
+          "quantity": 1,
+          "role": "Large defensive Treefolk",
+          "oracleId": "2764741c-1f3e-459a-a487-54cbac2c84a6",
+          "scryfallUri": "https://scryfall.com/card/tdc/121/indomitable-ancients",
+          "manaCost": "{2}{W}{W}",
+          "manaValue": 4,
+          "typeLine": "Creature — Treefolk Warrior"
+        },
+        {
+          "name": "Old Ghastbark",
+          "quantity": 1,
+          "role": "Simple Treefolk body; white or green pays hybrid",
+          "oracleId": "a5207cb5-7519-4802-85c5-ac8c4313693e",
+          "scryfallUri": "https://scryfall.com/card/shm/232/old-ghastbark",
+          "manaCost": "{3}{G/W}{G/W}",
+          "manaValue": 5,
+          "typeLine": "Creature — Treefolk Warrior"
+        },
+        {
+          "name": "Sun-Dappled Celebrant",
+          "quantity": 1,
+          "role": "Convoke Treefolk finisher with vigilance",
+          "oracleId": "27c87371-697e-4ca6-a7f4-d99215d908bc",
+          "scryfallUri": "https://scryfall.com/card/ecl/37/sun-dappled-celebrant",
+          "manaCost": "{4}{W}{W}",
+          "manaValue": 6,
+          "typeLine": "Creature — Treefolk Cleric"
+        },
+        {
+          "name": "Hoofprints of the Stag",
+          "quantity": 1,
+          "role": "Slow, repeatable flying Elemental production",
+          "oracleId": "17739f55-486b-46ea-8785-70cc2bd2d872",
+          "scryfallUri": "https://scryfall.com/card/ecc/64/hoofprints-of-the-stag",
+          "manaCost": "{1}{W}",
+          "manaValue": 2,
+          "typeLine": "Kindred Enchantment — Elemental"
+        },
+        {
+          "name": "Flowering of the White Tree",
+          "quantity": 1,
+          "role": "Team-wide boost for either packet",
+          "oracleId": "3cda958a-f777-433d-850e-a6c8f581db4e",
+          "scryfallUri": "https://scryfall.com/card/ltr/15/flowering-of-the-white-tree",
+          "manaCost": "{W}{W}",
+          "manaValue": 2,
+          "typeLine": "Legendary Enchantment"
+        },
+        {
+          "name": "Pacifism",
+          "quantity": 1,
+          "role": "Stops a creature attacking or blocking",
+          "oracleId": "5f5e0b10-c8cf-450c-bfd3-bcb0528ec330",
+          "scryfallUri": "https://scryfall.com/card/m20/32/pacifism",
+          "manaCost": "{1}{W}",
+          "manaValue": 2,
+          "typeLine": "Enchantment — Aura"
+        },
+        {
+          "name": "Rootborn Defenses",
+          "quantity": 1,
+          "role": "Board protection and a copy of a creature token",
+          "oracleId": "04046ae4-5c51-434b-930c-f3b1d348bf4b",
+          "scryfallUri": "https://scryfall.com/card/plst/RVR-26/rootborn-defenses",
+          "manaCost": "{2}{W}",
+          "manaValue": 3,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Thriving Heath",
+          "quantity": 1,
+          "role": "White source; choose the paired packet’s color",
+          "oracleId": "d1946630-e224-40db-8f0d-388b09622288",
+          "scryfallUri": "https://scryfall.com/card/msc/580/thriving-heath",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Land"
+        },
+        {
+          "name": "Plains",
+          "quantity": 7,
+          "role": "Basic white mana",
+          "oracleId": "bc71ebf6-2056-41f7-be35-b2e5c34afa99",
+          "scryfallUri": "https://scryfall.com/card/fdn/272/plains",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Basic Land — Plains"
+        }
+      ],
+      "plan": "Birds and a woodland Druid occupy the early turns while sturdy Treefolk arrive. Team buffs and flying Elementals help the entire forty-card deck finish; the Treefolk do not need a tribal-only partner.",
+      "notes": [
+        "Healer’s Hawk, Rustwing Falcon, and Suntail Hawk are literal birds, not Bird people. Four Treefolk remain the central creature theme; the Druid is an explicit support choice.",
+        "Moonlit Lamenter starts as a 1/4 because of its -1/-1 counter. Its 1W sorcery-speed ability removes a counter and draws a card; removing its initial counter restores the printed 2/5 body. If a creature has +1/+1 and -1/-1 counters, matching pairs are removed as a state-based action.",
+        "Juniper Order Rootweaver is a two-mana 2/2 without green. Its optional G kicker works with either green partner; the white-black pair does not rely on it.",
+        "Hoofprints of the Stag is an enchantment, not an early creature. Each card drawn can give it one hoofprint counter. Pay 2W and remove four counters to make a 4/4 white flying Elemental, only during your turn.",
+        "Flowering of the White Tree gives the nonlegendary creatures in these lists +1/+1. Its separate legendary-creature bonus is not relevant to this version’s creatures. It is a static bonus, not counters.",
+        "Rootborn Defenses copies one creature token you already control, then gives your creatures indestructible for the turn. It still protects your creatures if there is no token to copy; animated lands are not tokens.",
+        "Old Ghastbark can be cast entirely with white mana; it remains both green and white. Convoke lets tapped-for-payment creatures pay generic mana or mana of their own color, including white birds paying Celebrant’s white symbols."
+      ],
+      "risks": [
+        "Flowering of the White Tree and Indomitable Ancients require WW. Do not count Flowering as a reliable turn-two play in a mixed-color deck; test white-black especially.",
+        "Indomitable Ancients and Old Ghastbark provide toughness more than offensive power. Check whether board stalls outweigh the flying and buff finishers.",
+        "Hoofprints requires several draws and another mana payment before providing a body. The birds and partner’s early creatures must cover that delay.",
+        "White has several different counters, convoke, populate, and one optional kicker. Observe the actual explanation burden and simplify if it distracts from the game."
+      ],
+      "tokens": [
+        {
+          "name": "Elemental",
+          "color": "W",
+          "power": "4",
+          "toughness": "4",
+          "abilities": [
+            "Flying"
+          ]
+        }
+      ],
+      "markers": [
+        "Hoofprint counters for Hoofprints of the Stag",
+        "One -1/-1 counter for Moonlit Lamenter",
+        "+1/+1 counters for kicked Juniper Order Rootweaver"
+      ],
+      "cuts": [
+        {
+          "name": "Alseid of Life’s Bounty / Angelic Wall / Mycologist / Kami of False Hope",
+          "reason": "Keep these nature-flavored low-cost alternatives in research. The first draft uses the three preferred birds and Rootweaver to preserve room for four Treefolk."
+        },
+        {
+          "name": "Beza, the Bounding Spring / Scion of Vitu-Ghazi",
+          "reason": "Both remain thematic alternatives; multiple conditional rewards or token/populate effects would compete with the main Treefolk finishers."
+        },
+        {
+          "name": "Juniper Order Advocate",
+          "reason": "Its green-creature-only support does not help a white-black pairing enough."
+        }
+      ],
+      "slug": "ancient-grove",
+      "counts": {
+        "total": 20,
+        "creatures": 8,
+        "otherSpells": 4,
+        "lands": 8
+      },
+      "curve": {
+        "1": 3,
+        "2": 4,
+        "3": 2,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 0,
+        "8": 0
+      },
+      "duplicateExceptions": []
+    },
+    {
+      "id": "ZP-P3",
+      "name": "Spore Swarm",
+      "faction": "plants",
+      "color": "B",
+      "cards": [
+        {
+          "name": "Deathcap Marionette",
+          "quantity": 1,
+          "role": "Early deathtouch blocker; optional graveyard setup",
+          "oracleId": "6c4247d0-6dc8-4139-bbf5-c83dfdc7be1f",
+          "scryfallUri": "https://scryfall.com/card/lci/100/deathcap-marionette",
+          "manaCost": "{1}{B}",
+          "manaValue": 2,
+          "typeLine": "Creature — Fungus"
+        },
+        {
+          "name": "Mold Folk",
+          "quantity": 1,
+          "role": "Lifelink threat; paid sacrifice outlet converts spare bodies into permanent growth",
+          "oracleId": "d0ec32d9-1d4e-4b6f-bc95-addbb484b0d3",
+          "scryfallUri": "https://scryfall.com/card/clb/133/mold-folk",
+          "manaCost": "{1}{B}",
+          "manaValue": 2,
+          "typeLine": "Creature — Fungus Warrior"
+        },
+        {
+          "name": "Skullcap Snail",
+          "quantity": 1,
+          "role": "Early Fungus body and one-shot hand disruption",
+          "oracleId": "6420e8a0-3ef4-4f95-bb6a-12409eef4d48",
+          "scryfallUri": "https://scryfall.com/card/lci/119/skullcap-snail",
+          "manaCost": "{1}{B}",
+          "manaValue": 2,
+          "typeLine": "Creature — Fungus Snail"
+        },
+        {
+          "name": "Deathbloom Thallid",
+          "quantity": 1,
+          "role": "Trading body that leaves a Saproling",
+          "oracleId": "ce873790-de4d-4ba3-8023-c44306ba3ff8",
+          "scryfallUri": "https://scryfall.com/card/m21/94/deathbloom-thallid",
+          "manaCost": "{2}{B}",
+          "manaValue": 3,
+          "typeLine": "Creature — Fungus"
+        },
+        {
+          "name": "Synapse Necromage",
+          "quantity": 1,
+          "role": "Trading body that leaves two attacking/sacrifice Fungus tokens",
+          "oracleId": "f5eace41-0f53-4084-8bec-1e079c04287b",
+          "scryfallUri": "https://scryfall.com/card/lci/125/synapse-necromage",
+          "manaCost": "{2}{B}",
+          "manaValue": 3,
+          "typeLine": "Creature — Fungus Wizard"
+        },
+        {
+          "name": "Brackish Trudge",
+          "quantity": 1,
+          "role": "Efficient attacker; later recovery after life gain",
+          "oracleId": "c775d3ef-2184-4425-8c8e-2bbc49687f76",
+          "scryfallUri": "https://scryfall.com/card/stx/65/brackish-trudge",
+          "manaCost": "{2}{B}",
+          "manaValue": 3,
+          "typeLine": "Creature — Fungus Beast"
+        },
+        {
+          "name": "Thallid Soothsayer",
+          "quantity": 1,
+          "role": "Paid sacrifice outlet for sustained card draw",
+          "oracleId": "eee801ea-e2dc-4b03-a9f9-e87566cb2ae8",
+          "scryfallUri": "https://scryfall.com/card/gnt/35/thallid-soothsayer",
+          "manaCost": "{3}{B}",
+          "manaValue": 4,
+          "typeLine": "Creature — Fungus"
+        },
+        {
+          "name": "Thallid Omnivore",
+          "quantity": 1,
+          "role": "Combat finisher using spare creatures; Saprolings add life gain",
+          "oracleId": "b9bb1b0e-38ce-40f1-882b-85f6c95610ff",
+          "scryfallUri": "https://scryfall.com/card/dom/106/thallid-omnivore",
+          "manaCost": "{3}{B}",
+          "manaValue": 4,
+          "typeLine": "Creature — Fungus"
+        },
+        {
+          "name": "Fungal Infection",
+          "quantity": 1,
+          "role": "Cheap interaction plus a Saproling",
+          "oracleId": "04a8858e-9033-403e-9346-5a2ad1bdf680",
+          "scryfallUri": "https://scryfall.com/card/dom/94/fungal-infection",
+          "manaCost": "{B}",
+          "manaValue": 1,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Fungal Fortitude",
+          "quantity": 1,
+          "role": "Flash power boost and one-shot death recovery",
+          "oracleId": "cf73d2e7-584f-41d0-8fc7-50d886dcf9fe",
+          "scryfallUri": "https://scryfall.com/card/lci/106/fungal-fortitude",
+          "manaCost": "{1}{B}",
+          "manaValue": 2,
+          "typeLine": "Enchantment — Aura"
+        },
+        {
+          "name": "Feed the Swarm",
+          "quantity": 1,
+          "role": "Creature or enchantment removal at a life cost",
+          "oracleId": "5825997b-10d7-4a36-972c-a80ddd90b8ed",
+          "scryfallUri": "https://scryfall.com/card/tle/257/feed-the-swarm",
+          "manaCost": "{1}{B}",
+          "manaValue": 2,
+          "typeLine": "Sorcery"
+        },
+        {
+          "name": "Recover",
+          "quantity": 1,
+          "role": "Creature recovery plus a card",
+          "oracleId": "f4361602-63da-430b-adbb-36d74e987aa6",
+          "scryfallUri": "https://scryfall.com/card/rix/84/recover",
+          "manaCost": "{2}{B}",
+          "manaValue": 3,
+          "typeLine": "Sorcery"
+        },
+        {
+          "name": "Thriving Moor",
+          "quantity": 1,
+          "role": "Black source with the paired packet's second color",
+          "oracleId": "bff416bb-d193-4c45-b2c1-7c297dbfad08",
+          "scryfallUri": "https://scryfall.com/card/msc/582/thriving-moor",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Land"
+        },
+        {
+          "name": "Swamp",
+          "quantity": 7,
+          "role": "Basic black mana",
+          "oracleId": "56719f6a-1a6c-4c0a-8d21-18f7d7350b68",
+          "scryfallUri": "https://scryfall.com/card/fdn/276/swamp",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Basic Land — Swamp"
+        }
+      ],
+      "plan": "Trade living Fungi in combat, keep the bodies they leave behind, and turn those spare creatures into cards, life, or a larger attacker. The packet functions on black mana; green Saproling tokens do not require green mana.",
+      "notes": [
+        "Eight creature cards, four noncreature spells, eight lands; all nonbasic cards singleton.",
+        "The three reusable sacrifice outlets are intentionally paid outlets (Mold Folk, Soothsayer, Omnivore), so they compete for mana rather than enabling an unrestricted free-sacrifice engine. Choose one outlet for the resource you actually need.",
+        "Mold Folk's lifelink and Thallid Omnivore's Saproling sacrifice can enable Brackish Trudge's return ability. Without life gain it remains a three-mana 4/2 that enters tapped.",
+        "Fungal Fortitude can save a nontoken creature through a death and retrigger an entry/death ability. The Aura does not return attached; tokens do not return after dying.",
+        "Deathcap Marionette's mill is optional; Recover or Fungal Fortitude can provide value without mandatory self-mill.",
+        "Thriving Moor chooses the paired packet's other color when entering; all spells remain castable using black."
+      ],
+      "risks": [
+        "Only two sources here produce Saprolings (Fungal Infection and Deathbloom Thallid); Synapse Necromage produces black Fungus tokens that cannot block. Do not treat the tokens as interchangeable.",
+        "Mold Folk, Soothsayer, and Omnivore can compete for fodder. Test whether eight creatures and three token-producing cards leave enough board presence.",
+        "Feed the Swarm costs life, and the packet has no flying creature or reach. Test aggressive opponents and life-gain reliability without adding targeted Zombie hate."
+      ],
+      "tokens": [
+        {
+          "name": "Saproling",
+          "color": "G",
+          "power": "1",
+          "toughness": "1",
+          "abilities": []
+        },
+        {
+          "name": "Fungus",
+          "color": "B",
+          "power": "1",
+          "toughness": "1",
+          "abilities": [
+            "This token can't block."
+          ]
+        }
+      ],
+      "markers": [
+        "+1/+1 counters for Mold Folk"
+      ],
+      "cuts": [
+        {
+          "name": "Deathspore Thallid",
+          "reason": "Zombie identity assigns it to the Zombie faction."
+        },
+        {
+          "name": "Broodrage Mycoid",
+          "reason": "Descend bookkeeping and repeated Fungus token engine deferred for simpler first draft."
+        },
+        {
+          "name": "Blightreaper Thallid",
+          "reason": "Transforming-card rules and additional repeatable token machinery deferred."
+        },
+        {
+          "name": "Boneyard Mycodrax",
+          "reason": "Graveyard-based size and scavenge add another graveyard accounting system."
+        },
+        {
+          "name": "Mold Demon",
+          "reason": "Seven mana plus sacrificing two Swamps is unsuitable for the intended curve."
+        },
+        {
+          "name": "Village Rites / Bone Splinters",
+          "reason": "Useful alternates retained, but more sacrifice costs could overtax the same fodder already wanted by three creature outlets."
+        }
+      ],
+      "pairingNotes": {
+        "Overgrowth": "Fungi leave bodies to receive green growth/trample and can reuse creatures after trading.",
+        "Ancient Grove": "Cheap Fungi and tokens help reach large Treefolk; birds with lifelink can enable Brackish Trudge. Recover can retrieve a large Treefolk.",
+        "Wild Awakening": "Druid/Elk/animated-land deaths can supply resource choices, but sacrificing animated mana sources is usually costly; use tokens first."
+      },
+      "slug": "spore-swarm",
+      "counts": {
+        "total": 20,
+        "creatures": 8,
+        "otherSpells": 4,
+        "lands": 8
+      },
+      "curve": {
+        "1": 1,
+        "2": 5,
+        "3": 4,
+        "4": 2,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "duplicateExceptions": []
+    },
+    {
+      "id": "ZP-P4",
+      "name": "Wild Awakening",
+      "faction": "plants",
+      "color": "G",
+      "cards": [
+        {
+          "name": "Leafkin Druid",
+          "quantity": 1,
+          "role": "Early botanical blocker and green mana acceleration",
+          "oracleId": "55eb9310-f24b-410b-850b-a7d0d5117946",
+          "scryfallUri": "https://scryfall.com/card/ncc/299/leafkin-druid",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Creature — Elemental Druid"
+        },
+        {
+          "name": "Dawntreader Elk",
+          "quantity": 1,
+          "role": "Early woodland body; trades itself for a basic land",
+          "oracleId": "de6d0248-79f6-48df-bdca-8ce207b2ec08",
+          "scryfallUri": "https://scryfall.com/card/jmp/387/dawntreader-elk",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Creature — Elk"
+        },
+        {
+          "name": "Fertilid",
+          "quantity": 1,
+          "role": "Elemental body whose counters can become basic lands and color fixing",
+          "oracleId": "21f1c6d7-8289-44b2-b88f-c09e202be200",
+          "scryfallUri": "https://scryfall.com/card/moc/296/fertilid",
+          "manaCost": "{2}{G}",
+          "manaValue": 3,
+          "typeLine": "Creature — Elemental"
+        },
+        {
+          "name": "Awakener Druid",
+          "quantity": 1,
+          "role": "Turns an established Forest into a substantial Treefolk while it remains in play",
+          "oracleId": "7e8f5b34-fd16-4307-9104-17b584b25b14",
+          "scryfallUri": "https://scryfall.com/card/jmp/379/awakener-druid",
+          "manaCost": "{2}{G}",
+          "manaValue": 3,
+          "typeLine": "Creature — Human Druid"
+        },
+        {
+          "name": "Embodiment of Insight",
+          "quantity": 1,
+          "role": "Vigilant finisher and recurring temporary land animation",
+          "oracleId": "ee1c7532-dc97-432d-964f-1c4087ab5248",
+          "scryfallUri": "https://scryfall.com/card/znc/64/embodiment-of-insight",
+          "manaCost": "{4}{G}",
+          "manaValue": 5,
+          "typeLine": "Creature — Elemental"
+        },
+        {
+          "name": "Genju of the Cedars",
+          "quantity": 1,
+          "role": "Repeatable Forest animation into a 4/4 Spirit",
+          "oracleId": "ada3c285-3449-4037-8b44-42e128456a65",
+          "scryfallUri": "https://scryfall.com/card/gvl/13/genju-of-the-cedars",
+          "manaCost": "{G}",
+          "manaValue": 1,
+          "typeLine": "Enchantment — Aura"
+        },
+        {
+          "name": "Nissa's Zendikon",
+          "quantity": 1,
+          "role": "Persistent 4/4 land creature with reach and haste; recovers its land on death",
+          "oracleId": "1b8c4cbe-b2fc-4d52-9382-1e03c40003be",
+          "scryfallUri": "https://scryfall.com/card/znr/197/nissas-zendikon",
+          "manaCost": "{3}{G}",
+          "manaValue": 4,
+          "typeLine": "Enchantment — Aura"
+        },
+        {
+          "name": "Rampaging Growth",
+          "quantity": 1,
+          "role": "Instant basic-land ramp with a temporary 4/3 blocker or attacker",
+          "oracleId": "acd81d2c-e438-44db-86eb-32fc9cb3fd8f",
+          "scryfallUri": "https://scryfall.com/card/j22/43/rampaging-growth",
+          "manaCost": "{3}{G}",
+          "manaValue": 4,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Cultivate",
+          "quantity": 1,
+          "role": "Land development and partner-color access",
+          "oracleId": "8b755881-a72d-4e21-a369-d2924eb4585a",
+          "scryfallUri": "https://scryfall.com/card/msc/172/cultivate",
+          "manaCost": "{2}{G}",
+          "manaValue": 3,
+          "typeLine": "Sorcery"
+        },
+        {
+          "name": "Ram Through",
+          "quantity": 1,
+          "role": "Creature-powered removal using a body or an animated land",
+          "oracleId": "4b1befff-48fa-47a3-832e-bdaf43495c02",
+          "scryfallUri": "https://scryfall.com/card/cmm/314/ram-through",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Return to Nature",
+          "quantity": 1,
+          "role": "Artifact/enchantment interaction or selective graveyard interaction",
+          "oracleId": "777b8ec4-a783-4297-96b7-4f200d0eb734",
+          "scryfallUri": "https://scryfall.com/card/moc/309/return-to-nature",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Pulse of Murasa",
+          "quantity": 1,
+          "role": "Recover a spent creature or destroyed land, plus life",
+          "oracleId": "d5b446a4-a761-42f0-acf0-ea0a1a9538d6",
+          "scryfallUri": "https://scryfall.com/card/c21/202/pulse-of-murasa",
+          "manaCost": "{2}{G}",
+          "manaValue": 3,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Ash Barrens",
+          "quantity": 1,
+          "role": "Colorless source or basic landcycling for either packet's mana",
+          "oracleId": "58257464-278e-45fa-8e0b-bcd9a7500bc1",
+          "scryfallUri": "https://scryfall.com/card/tmc/60/ash-barrens",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Land"
+        },
+        {
+          "name": "Forest",
+          "quantity": 7,
+          "role": "Basic green mana and Forest-animation targets",
+          "oracleId": "b34bb2dc-c1af-4d77-b0b3-a0fb342a5fc6",
+          "scryfallUri": "https://scryfall.com/card/fdn/280/forest",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Basic Land — Forest"
+        }
+      ],
+      "plan": "Develop and fix the mana base, establish an early defensive body, then let individual lands join combat as temporary or persistent creatures. Reuse land drops with Embodiment of Insight and recover a lost creature or land with Pulse of Murasa.",
+      "notes": [
+        "Five creature cards, seven noncreature spells, eight lands. Five cards animate lands when counting Awakener Druid and Embodiment of Insight, so creature-card count understates its eventual board presence.",
+        "Leafkin Druid, Dawntreader Elk, and Fertilid provide early presence without an Elf package. Dawntreader Elk is a deliberate woodland-animal support choice rather than a literal botanical creature.",
+        "Land animation usually does not untap the land. Pay for spells or abilities with other sources when you want the animated land to attack or block.",
+        "A land that became a creature this turn may attack or use a tap ability if you have controlled it continuously since your turn began; becoming a creature does not by itself reset that history. Newly played lands need haste while they are creatures.",
+        "Awakener Druid and Genju do not grant haste. Nissa's Zendikon, Rampaging Growth, and Embodiment of Insight do. Awakener's Forest stops being a creature when the Druid leaves; Genju and Embodiment animations end at end of turn.",
+        "Nissa's Zendikon returns the enchanted land card to hand when that land dies; the Aura goes to the graveyard. Genju can recover its Aura when the enchanted Forest goes to a graveyard, not the Forest itself.",
+        "Rampaging Growth puts a basic land onto the battlefield untapped unless something else changes that. It has reach and haste as a 4/3 Insect until end of turn, and remains a land afterward.",
+        "Ash Barrens supplies colorless if played; for fixing, pay one generic mana to discard it with basic landcycling and find a basic land in hand. That is not an extra land play.",
+        "Cultivate, Elk, and Fertilid can find a partner's basic Plains or Swamp, whereas Genju and Awakener specifically require an actual Forest."
+      ],
+      "risks": [
+        "Land creatures expose the mana base to ordinary creature removal. Five actual creature cards should be checked against each partner for hands containing support but no useful attacker.",
+        "Several animation durations and sizes require clear markers; the rules notes should be near the list. Avoid stacking multiple animation effects on one land unless necessary.",
+        "Ram Through needs a creature with useful power. Do not spend all available mana animating a land and leave no mana to cast it.",
+        "Ramp density may flood a combined deck or run out of basic lands to find; adjust one ramp spell or a land after playtesting rather than assuming eight lands is final."
+      ],
+      "tokens": [],
+      "markers": [
+        "+1/+1 counters for Fertilid",
+        "Land-animation reminder markers: 4/5 Treefolk; 4/4 Spirit; 4/4 Elemental with reach/haste; 4/3 Insect with reach/haste; 3/3 Elemental with haste. These represent existing lands, not creature tokens."
+      ],
+      "cuts": [
+        {
+          "name": "Animate Land",
+          "reason": "Replaced by Fertilid to improve actual creature count and early development."
+        },
+        {
+          "name": "Living Lands / Natural Affinity / Kormus Bell",
+          "reason": "Affect opposing lands and create excessive risk and board bookkeeping."
+        },
+        {
+          "name": "Life and Limb",
+          "reason": "Global type interactions and possible compulsory token loops are too complex for this first draft."
+        },
+        {
+          "name": "Awakening of Vitu-Ghazi",
+          "reason": "A nine-counter 9/9 is a much larger power spike than the chosen threats."
+        },
+        {
+          "name": "Woodcaller Automaton",
+          "reason": "Prototype adds another casting/size system; retain as a future alternative."
+        },
+        {
+          "name": "Sylvan Advocate / Llanowar Loamspeaker",
+          "reason": "Useful efficient options, but non-Elf alternatives preserve the owner's theme preference."
+        },
+        {
+          "name": "Planeswalkers",
+          "reason": "Additional card-type rules and powerful engines are unnecessary for the simple prototype."
+        }
+      ],
+      "pairingNotes": {
+        "Overgrowth": "The two green halves cast reliably, with Plant bodies covering early combat while lands supply more threats.",
+        "Ancient Grove": "Ramp and basic-land search help cast expensive white Treefolk; keep enough untapped mana for both spells and animated lands.",
+        "Spore Swarm": "Recovers bodies and lands while Fungi provide early combat and tokens. An animated land is a creature and can be sacrificed, but losing mana is a real cost."
+      },
+      "slug": "wild-awakening",
+      "counts": {
+        "total": 20,
+        "creatures": 5,
+        "otherSpells": 7,
+        "lands": 8
+      },
+      "curve": {
+        "1": 1,
+        "2": 4,
+        "3": 4,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "duplicateExceptions": []
+    },
+    {
+      "id": "ZP-Z1",
+      "name": "Restless Dead",
+      "faction": "zombies",
+      "color": "B",
+      "cards": [
+        {
+          "name": "Diregraf Ghoul",
+          "quantity": 1,
+          "role": "Early Zombie attacker; enters tapped.",
+          "oracleId": "6048fc70-0dcc-4b54-977d-16e240225f82",
+          "scryfallUri": "https://scryfall.com/card/fdn/171/diregraf-ghoul",
+          "manaCost": "{B}",
+          "manaValue": 1,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Shambling Ghast",
+          "quantity": 1,
+          "role": "Early body; death weakens a creature or makes a Treasure.",
+          "oracleId": "e5e6229a-3422-4afd-9a87-86daa2d31d3a",
+          "scryfallUri": "https://scryfall.com/card/afr/119/shambling-ghast",
+          "manaCost": "{B}",
+          "manaValue": 1,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Walking Corpse",
+          "quantity": 1,
+          "role": "Simple two-mana Zombie body.",
+          "oracleId": "fea95888-e16a-4209-9cd4-623f7f4d2f67",
+          "scryfallUri": "https://scryfall.com/card/m21/128/walking-corpse",
+          "manaCost": "{1}{B}",
+          "manaValue": 2,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Undead Butler",
+          "quantity": 1,
+          "role": "Stocks the graveyard and can recover a creature when it dies.",
+          "oracleId": "426fa8e8-b0f9-4b6c-b22b-04ec2073187a",
+          "scryfallUri": "https://scryfall.com/card/vow/133/undead-butler",
+          "manaCost": "{1}{B}",
+          "manaValue": 2,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Crow of Dark Tidings",
+          "quantity": 1,
+          "role": "Flying attacker and limited self-mill.",
+          "oracleId": "a4ffe297-5e82-43f9-91a4-7aa3d8dd3b4a",
+          "scryfallUri": "https://scryfall.com/card/fdn/519/crow-of-dark-tidings",
+          "manaCost": "{2}{B}",
+          "manaValue": 3,
+          "typeLine": "Creature — Zombie Bird"
+        },
+        {
+          "name": "Liliana's Elite",
+          "quantity": 1,
+          "role": "Ground threat that grows with creatures in your graveyard.",
+          "oracleId": "b6492082-d0ef-4f7c-a4b1-f8ecf6eb0890",
+          "scryfallUri": "https://scryfall.com/card/2x2/82/lilianas-elite",
+          "manaCost": "{2}{B}",
+          "manaValue": 3,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Gravedigger",
+          "quantity": 1,
+          "role": "Body plus creature recovery to hand.",
+          "oracleId": "1a2030cc-d7ee-4059-b2d7-fb95ea8e267b",
+          "scryfallUri": "https://scryfall.com/card/m20/103/gravedigger",
+          "manaCost": "{3}{B}",
+          "manaValue": 4,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Zombie Goliath",
+          "quantity": 1,
+          "role": "Simple larger Zombie finisher.",
+          "oracleId": "eadd88b6-e75a-4482-8382-561718121772",
+          "scryfallUri": "https://scryfall.com/card/cns/135/zombie-goliath",
+          "manaCost": "{4}{B}",
+          "manaValue": 5,
+          "typeLine": "Creature — Zombie Giant"
+        },
+        {
+          "name": "Dead Weight",
+          "quantity": 1,
+          "role": "Cheap removal for small creatures.",
+          "oracleId": "b1804304-fac1-4b19-a48d-6ade9407972a",
+          "scryfallUri": "https://scryfall.com/card/lci/99/dead-weight",
+          "manaCost": "{B}",
+          "manaValue": 1,
+          "typeLine": "Enchantment — Aura"
+        },
+        {
+          "name": "Cemetery Recruitment",
+          "quantity": 1,
+          "role": "Return a creature to hand; draw if it is a Zombie.",
+          "oracleId": "07792d72-d5db-41b9-871c-e720e12ce659",
+          "scryfallUri": "https://scryfall.com/card/fdn/517/cemetery-recruitment",
+          "manaCost": "{1}{B}",
+          "manaValue": 2,
+          "typeLine": "Sorcery"
+        },
+        {
+          "name": "Eviscerate",
+          "quantity": 1,
+          "role": "Simple unconditional creature removal at sorcery speed.",
+          "oracleId": "c3a89c67-1931-4d42-98c8-94a40cfd046e",
+          "scryfallUri": "https://scryfall.com/card/dom/91/eviscerate",
+          "manaCost": "{3}{B}",
+          "manaValue": 4,
+          "typeLine": "Sorcery"
+        },
+        {
+          "name": "Rise from the Grave",
+          "quantity": 1,
+          "role": "Reanimate a creature from either graveyard as an additional black Zombie.",
+          "oracleId": "4e769107-0f32-4181-9e57-ffebc2228d3a",
+          "scryfallUri": "https://scryfall.com/card/znc/53/rise-from-the-grave",
+          "manaCost": "{4}{B}",
+          "manaValue": 5,
+          "typeLine": "Sorcery"
+        },
+        {
+          "name": "Thriving Moor",
+          "quantity": 1,
+          "role": "Enters-tapped fixing; choose the partner's color.",
+          "oracleId": "bff416bb-d193-4c45-b2c1-7c297dbfad08",
+          "scryfallUri": "https://scryfall.com/card/msc/582/thriving-moor",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Land"
+        },
+        {
+          "name": "Swamp",
+          "quantity": 7,
+          "role": "Basic black mana.",
+          "oracleId": "56719f6a-1a6c-4c0a-8d21-18f7d7350b68",
+          "scryfallUri": "https://scryfall.com/card/fdn/276/swamp",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Basic Land — Swamp"
+        }
+      ],
+      "plan": "Trade cheap Zombies, turn their deaths and self-mill into resources, then reuse creatures or raise a large creature from either graveyard. A vanilla two-drop and five-drop keep the necromancy effects from filling every slot with engine text.",
+      "notes": [
+        "All spells have a single black pip; Thriving Moor plus seven Swamps avoids early BB demands.",
+        "Rise from the Grave may take an opposing creature. It remains that opponent's physical card and must return to its original packet during reset; track your control and its added black/Zombie characteristics.",
+        "Undead Butler must exile itself as its death trigger resolves to recover a creature. That copy cannot then be reanimated.",
+        "Crow of Dark Tidings mills two both on entry and on death. Milling is not drawing.",
+        "Liliana's Elite counts creature cards currently in your graveyard; recovering or exiling one reduces its size.",
+        "No nonbasic duplicates; one copy of each nonland card. No new Zombie token mechanic is introduced in this packet."
+      ],
+      "risks": [
+        "Crow plus Butler can mill seven cards in a normal enter-and-die cycle; repeated reanimation accelerates that. Watch library size in forty-card games, especially with blue or Sludge Titan.",
+        "Recovery shrinks Liliana's Elite and can reduce Ghoultree's discount when paired with The Turned. This is a real sequencing choice, not a hidden synergy.",
+        "Zombie Goliath is intentionally modest; if the packet cannot close games, revisit the finisher before adding an overwhelming global Zombie lord.",
+        "Rise from the Grave can create large swings against expensive Treefolk. Track whether it dominates late games."
+      ],
+      "tokens": [
+        {
+          "name": "Treasure",
+          "quantity": 1,
+          "properties": "Colorless artifact token with {T}, sacrifice: add one mana of any color.",
+          "source": "Shambling Ghast"
+        }
+      ],
+      "cuts": [
+        {
+          "name": "Lord of the Accursed",
+          "reason": "Global boost and team menace can over-reward the shared Zombie type versus the more diverse Plant faction."
+        },
+        {
+          "name": "Undead Augur",
+          "reason": "BB plus mandatory repeated draw/life-loss adds pressure and a snowballing engine."
+        },
+        {
+          "name": "Lazotep Reaver",
+          "reason": "Avoid adding the distinct Zombie Army/amass token subsystem in v0.1."
+        },
+        {
+          "name": "Ghoulraiser",
+          "reason": "Gravedigger has an easier single-black cost and chosen recovery rather than random selection."
+        },
+        {
+          "name": "Murder",
+          "reason": "Prefer Eviscerate's single black mana requirement for easy partner casting, accepting sorcery speed and an extra mana."
+        },
+        {
+          "name": "Butcher Ghoul",
+          "reason": "Undying and +1/+1-counter tracking remain a useful later alternative, but Walking Corpse is simpler."
+        }
+      ],
+      "slug": "restless-dead",
+      "counts": {
+        "total": 20,
+        "creatures": 8,
+        "otherSpells": 4,
+        "lands": 8
+      },
+      "curve": {
+        "1": 3,
+        "2": 3,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "markers": [],
+      "duplicateExceptions": []
+    },
+    {
+      "id": "ZP-Z2",
+      "name": "Stitched Together",
+      "faction": "zombies",
+      "color": "U",
+      "cards": [
+        {
+          "name": "Seagraf Skaab",
+          "quantity": 1,
+          "role": "Simple two-mana defensive stitched body.",
+          "oracleId": "1c7dd66f-a062-49ac-aa7c-1bf5ec069d73",
+          "scryfallUri": "https://scryfall.com/card/soi/84/seagraf-skaab",
+          "manaCost": "{1}{U}",
+          "manaValue": 2,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Screeching Skaab",
+          "quantity": 1,
+          "role": "Early attacker that mills two cards.",
+          "oracleId": "c339982a-45d6-4c1a-aefc-c72427b40744",
+          "scryfallUri": "https://scryfall.com/card/ema/69/screeching-skaab",
+          "manaCost": "{1}{U}",
+          "manaValue": 2,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Selhoff Entomber",
+          "quantity": 1,
+          "role": "Early blocker; discard a creature to draw and seed the graveyard.",
+          "oracleId": "3b97794a-3aaa-45a6-9cad-f1b768615b6d",
+          "scryfallUri": "https://scryfall.com/card/vow/76/selhoff-entomber",
+          "manaCost": "{1}{U}",
+          "manaValue": 2,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Headless Skaab",
+          "quantity": 1,
+          "role": "Large stitched blocker; assembling it consumes one creature card from the graveyard.",
+          "oracleId": "203365d4-4793-47af-840e-418bd5569d50",
+          "scryfallUri": "https://scryfall.com/card/dka/40/headless-skaab",
+          "manaCost": "{2}{U}",
+          "manaValue": 3,
+          "typeLine": "Creature — Zombie Warrior"
+        },
+        {
+          "name": "Stitched Assistant",
+          "quantity": 1,
+          "role": "Three-mana attacker with optional exploit for selection and a card.",
+          "oracleId": "eedbc164-032c-420f-ac59-bd2675ff1b69",
+          "scryfallUri": "https://scryfall.com/card/vow/81/stitched-assistant",
+          "manaCost": "{2}{U}",
+          "manaValue": 3,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Stitched Mangler",
+          "quantity": 1,
+          "role": "Temporarily freezes an opposing creature; enters tapped.",
+          "oracleId": "4c502f1b-7361-48c0-8def-0d3b3e9ff628",
+          "scryfallUri": "https://scryfall.com/card/inr/87/stitched-mangler",
+          "manaCost": "{2}{U}",
+          "manaValue": 3,
+          "typeLine": "Creature — Zombie Horror"
+        },
+        {
+          "name": "Organ Hoarder",
+          "quantity": 1,
+          "role": "Body plus card selection and graveyard setup.",
+          "oracleId": "a6f0dcbc-ca45-4ae8-961e-e42ef8d8a975",
+          "scryfallUri": "https://scryfall.com/card/mid/66/organ-hoarder",
+          "manaCost": "{3}{U}",
+          "manaValue": 4,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Stitchwing Skaab",
+          "quantity": 1,
+          "role": "Flying finisher with costly graveyard return.",
+          "oracleId": "0b40e537-d385-450d-93a9-b60a25bfe508",
+          "scryfallUri": "https://scryfall.com/card/soi/90/stitchwing-skaab",
+          "manaCost": "{3}{U}",
+          "manaValue": 4,
+          "typeLine": "Creature — Zombie Horror"
+        },
+        {
+          "name": "Compelling Deterrence",
+          "quantity": 1,
+          "role": "Bounce a nonland permanent; its owner discards if you control a Zombie.",
+          "oracleId": "fb0c9048-73ee-434b-a018-dbfbe32e56f5",
+          "scryfallUri": "https://scryfall.com/card/inr/57/compelling-deterrence",
+          "manaCost": "{1}{U}",
+          "manaValue": 2,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Think Twice",
+          "quantity": 1,
+          "role": "Modest draw, usable again through flashback.",
+          "oracleId": "fa85c5a2-8e83-4624-a35a-a0bbf17ecbb4",
+          "scryfallUri": "https://scryfall.com/card/msc/787/think-twice",
+          "manaCost": "{1}{U}",
+          "manaValue": 2,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Sleep Paralysis",
+          "quantity": 1,
+          "role": "Single-blue sustained creature lockdown.",
+          "oracleId": "5a8bd4a4-8b10-4eef-8341-28be2afa2c00",
+          "scryfallUri": "https://scryfall.com/card/m20/75/sleep-paralysis",
+          "manaCost": "{3}{U}",
+          "manaValue": 4,
+          "typeLine": "Enchantment — Aura"
+        },
+        {
+          "name": "Essence Scatter",
+          "quantity": 1,
+          "role": "Simple answer to a creature spell before it resolves.",
+          "oracleId": "46665089-aa3d-44c3-964d-6638dfbb5782",
+          "scryfallUri": "https://scryfall.com/card/sos/47/essence-scatter",
+          "manaCost": "{1}{U}",
+          "manaValue": 2,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Thriving Isle",
+          "quantity": 1,
+          "role": "Enters-tapped fixing; choose the partner's color.",
+          "oracleId": "69fc70b8-b143-4662-ac95-e2743037239d",
+          "scryfallUri": "https://scryfall.com/card/msc/581/thriving-isle",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Land"
+        },
+        {
+          "name": "Island",
+          "quantity": 7,
+          "role": "Basic blue mana.",
+          "oracleId": "b2c6aa39-2d2a-459c-a555-fb48ba993373",
+          "scryfallUri": "https://scryfall.com/card/fdn/274/island",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Basic Land — Island"
+        }
+      ],
+      "plan": "Build a board of stitched bodies, filter spare creatures into the graveyard, and use bounce, tapping, and a single counterspell to let attacks through. Headless Skaab uses one spare corpse; Stitchwing Skaab and Think Twice give this packet its own ways to use the graveyard with any partner.",
+      "notes": [
+        "All main spell costs and repeat-use costs require only one blue pip.",
+        "Headless Skaab cannot be cast unless a creature card can be exiled from your graveyard as its additional cost, and it enters tapped. Screeching Skaab, Selhoff Entomber, Organ Hoarder, and normal creature trades supply material.",
+        "Selhoff Entomber can discard only a creature card. It cannot discard a spare land or spell for its tap ability.",
+        "Exploit on Stitched Assistant is optional. If using it, the sacrificed creature may be the Assistant itself; sacrifice only when the card and scry are worth the lost body.",
+        "Stitchwing Skaab returns tapped from the graveyard for 1U plus discarding two cards; this is an activated ability, not casting it again.",
+        "Think Twice's flashback is another spell casting and exiles the spell afterward; it can be used after ordinary casting or after being milled.",
+        "Compelling Deterrence can target your own permanent, but if you control a Zombie its owner then discards too. Normally use it on the opponent.",
+        "Essence Scatter answers a creature spell on the stack, not a creature already on the battlefield.",
+        "Sleep Paralysis keeps its target from untapping during its controller's untap step while the Aura remains attached; it is not destruction.",
+        "No tokens or +1/+1 counters required by the blue packet itself. No nonbasic duplicates."
+      ],
+      "risks": [
+        "There is no one-drop, so all three two-drop bodies matter for early play. Check blue+green and blue+white starts rather than relying solely on black's one-drops.",
+        "Headless Skaab can be stranded in hand without a creature in the graveyard. If this happens too often, replace it with a standalone creature instead of adding more mill solely to force it.",
+        "One exile cost and a recurring flyer are deliberately the limit; don't add Skaab Ruinator or multiple corpse-consuming creatures before checking graveyard availability.",
+        "Blue+black is likely to have the most recursion/card advantage. Blue+white must still work through its normal bodies, tempo, and its own graveyard payoffs.",
+        "Discarding two cards to return Stitchwing Skaab is expensive and shouldn't be treated as free card advantage."
+      ],
+      "tokens": [],
+      "cuts": [
+        {
+          "name": "Armored Skaab",
+          "reason": "A second heavier mandatory self-mill source is unnecessary; Seagraf Skaab supplies a simpler defensive body."
+        },
+        {
+          "name": "Geralf, Visionary Stitcher",
+          "reason": "Global Zombie flying and scalable sacrifice tokens are too strong/complex for the first fair comparison."
+        },
+        {
+          "name": "Hordewing Skaab",
+          "reason": "Global Zombie flying can erase the intended contrast with the Plant faction's grounded big creatures."
+        },
+        {
+          "name": "Cleaver Skaab",
+          "reason": "Copy-token engines and repeated entry triggers are a later balancing experiment."
+        },
+        {
+          "name": "Falcon Abomination",
+          "reason": "Useful flyer, but decayed introduces another token rule; Stitchwing supplies evasive pressure without that subsystem."
+        },
+        {
+          "name": "Rooftop Nuisance",
+          "reason": "Casualty creates spell copies and sacrifice sequencing; Sleep Paralysis is simpler sustained interaction."
+        },
+        {
+          "name": "Forbidden Alchemy",
+          "reason": "Its flashback requires a black partner; Think Twice works fully with every pairing."
+        },
+        {
+          "name": "Skaab Ruinator",
+          "reason": "Exiling three creature cards and repeated graveyard casting demands too much dedicated support."
+        }
+      ],
+      "slug": "stitched-together",
+      "counts": {
+        "total": 20,
+        "creatures": 8,
+        "otherSpells": 4,
+        "lands": 8
+      },
+      "curve": {
+        "1": 0,
+        "2": 6,
+        "3": 3,
+        "4": 3,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "markers": [],
+      "duplicateExceptions": []
+    },
+    {
+      "id": "ZP-Z3",
+      "name": "Tomb Guard",
+      "faction": "zombies",
+      "color": "W",
+      "cards": [
+        {
+          "name": "Fan Bearer",
+          "quantity": 1,
+          "role": "One-mana Zombie; later taps attackers or blockers.",
+          "oracleId": "d2e7198a-0eb5-4d30-973f-4b2d9617436f",
+          "scryfallUri": "https://scryfall.com/card/gnt/12/fan-bearer",
+          "manaCost": "{W}",
+          "manaValue": 1,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Sacred Cat",
+          "quantity": 1,
+          "role": "One-mana lifelink body; later embalm returns it as a Zombie Cat token.",
+          "oracleId": "d85ea576-a794-44bf-b405-1f1c49477409",
+          "scryfallUri": "https://scryfall.com/card/akh/27/sacred-cat",
+          "manaCost": "{W}",
+          "manaValue": 1,
+          "typeLine": "Creature — Cat"
+        },
+        {
+          "name": "Binding Mummy",
+          "quantity": 1,
+          "role": "Zombie entries tap blockers and support the whole combined Zombie deck.",
+          "oracleId": "5adc9d0d-3393-4d91-be85-1f9dd344698b",
+          "scryfallUri": "https://scryfall.com/card/akh/6/binding-mummy",
+          "manaCost": "{1}{W}",
+          "manaValue": 2,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Mummy Paramount",
+          "quantity": 1,
+          "role": "Two-mana Zombie that attacks harder after more Zombies enter.",
+          "oracleId": "99cc909d-3cb2-499c-8231-41418745cd71",
+          "scryfallUri": "https://scryfall.com/card/hou/16/mummy-paramount",
+          "manaCost": "{1}{W}",
+          "manaValue": 2,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Those Who Serve",
+          "quantity": 1,
+          "role": "Simple three-mana 2/4 Zombie body.",
+          "oracleId": "0ee088dc-c7c7-4f7f-9d1f-be3d79550d95",
+          "scryfallUri": "https://scryfall.com/card/akh/32/those-who-serve",
+          "manaCost": "{2}{W}",
+          "manaValue": 3,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Disposal Mummy",
+          "quantity": 1,
+          "role": "Three-mana Zombie; removes a card from the opponent's graveyard.",
+          "oracleId": "002a9cea-8cf7-48ba-83eb-e1c87a7024e5",
+          "scryfallUri": "https://scryfall.com/card/hou/9/disposal-mummy",
+          "manaCost": "{2}{W}",
+          "manaValue": 3,
+          "typeLine": "Creature — Zombie Jackal"
+        },
+        {
+          "name": "Sparring Mummy",
+          "quantity": 1,
+          "role": "Four-mana 3/3 Zombie; untaps a creature or readies a used Fan Bearer.",
+          "oracleId": "414c97a3-cf31-4145-a431-3b1ad4343947",
+          "scryfallUri": "https://scryfall.com/card/bbd/108/sparring-mummy",
+          "manaCost": "{3}{W}",
+          "manaValue": 4,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Dutiful Servants",
+          "quantity": 1,
+          "role": "Simple four-mana 2/5 Zombie that stabilizes combat.",
+          "oracleId": "5837b3d9-b3cb-4333-b0db-ed38e49c997f",
+          "scryfallUri": "https://scryfall.com/card/hou/12/dutiful-servants",
+          "manaCost": "{3}{W}",
+          "manaValue": 4,
+          "typeLine": "Creature — Zombie"
+        },
+        {
+          "name": "Time to Reflect",
+          "quantity": 1,
+          "role": "Cheap conditional exile removal tied to Zombie combat.",
+          "oracleId": "7ce28a3c-5f93-4434-918e-1e74f9fc71d8",
+          "scryfallUri": "https://scryfall.com/card/akh/33/time-to-reflect",
+          "manaCost": "{W}",
+          "manaValue": 1,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "In Oketra's Name",
+          "quantity": 1,
+          "role": "Team combat boost, with the larger bonus applying to partner Zombies too.",
+          "oracleId": "f4a8756d-94df-40bc-a363-2938ada0a808",
+          "scryfallUri": "https://scryfall.com/card/akh/19/in-oketras-name",
+          "manaCost": "{1}{W}",
+          "manaValue": 2,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Unconventional Tactics",
+          "quantity": 1,
+          "role": "Temporary flying and size for a creature; Zombie entries can recover it.",
+          "oracleId": "95ee46ec-4b60-4fea-a09b-d15c083916b3",
+          "scryfallUri": "https://scryfall.com/card/hou/27/unconventional-tactics",
+          "manaCost": "{2}{W}",
+          "manaValue": 3,
+          "typeLine": "Sorcery"
+        },
+        {
+          "name": "Cast Out",
+          "quantity": 1,
+          "role": "Broad answer to a nonland permanent; cycling is available when needed.",
+          "oracleId": "f90b00f6-36e0-4988-9409-57297483a952",
+          "scryfallUri": "https://scryfall.com/card/dsc/98/cast-out",
+          "manaCost": "{3}{W}",
+          "manaValue": 4,
+          "typeLine": "Enchantment"
+        },
+        {
+          "name": "Thriving Heath",
+          "quantity": 1,
+          "role": "Enters tapped; choose the other packet's color for optional fixing.",
+          "oracleId": "d1946630-e224-40db-8f0d-388b09622288",
+          "scryfallUri": "https://scryfall.com/card/msc/580/thriving-heath",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Land"
+        },
+        {
+          "name": "Plains",
+          "quantity": 7,
+          "role": "Basic white mana.",
+          "oracleId": "bc71ebf6-2056-41f7-be35-b2e5c34afa99",
+          "scryfallUri": "https://scryfall.com/card/fdn/272/plains",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Basic Land — Plains"
+        }
+      ],
+      "counts": {
+        "total": 20,
+        "creatures": 8,
+        "otherSpells": 4,
+        "lands": 8
+      },
+      "plan": "Develop small mummies, use Zombie-entry triggers to clear blockers or grow attackers, and finish with a team boost or a temporarily flying threat. The partner contributes additional Zombies and threats.",
+      "notes": [
+        "Sacred Cat begins as a living Cat, not a Zombie. It is the packet's one deliberately chosen living creature: its embalm turns it into an ancient-tomb mummy, giving a simple introduction to the theme's return-from-death mechanic.",
+        "Embalm costs W, is activated only at sorcery speed from the graveyard, and exiles the original Sacred Cat card. Create a white 1/1 Zombie Cat token with lifelink and no mana cost; it is not the original card returned. Its entry triggers Binding Mummy and Mummy Paramount.",
+        "Fan Bearer must be able to tap and costs2 mana to activate. To prevent a creature attacking, tap it before attackers are declared; tapping an already-attacking creature does not remove it from combat.",
+        "Time to Reflect requires its target to have blocked or been blocked by a Zombie during the current turn. Casting it after blockers are declared but before damage can save a creature; it cannot exile an unrelated creature.",
+        "Mummy Paramount's bonus is temporary, not a +1/+1 counter. Binding Mummy triggers for another Zombie, not itself.",
+        "Unconventional Tactics is a sorcery. A Zombie entering can return it from the graveyard only after its controller pays W; its +3/+3 and flying last for the turn.",
+        "Cast Out's exile ends when the enchantment leaves. It can be cast with flash, and its cycling option costs W and discarding the card.",
+        "Thriving Heath is not a Plains. It enters tapped and chooses a nonwhite color as it enters; ordinarily choose the partner's mana color."
+      ],
+      "tokens": [
+        {
+          "name": "Sacred Cat embalm token",
+          "quantitySuggested": 1,
+          "color": "W",
+          "type": "Zombie Cat",
+          "power": 1,
+          "toughness": 1,
+          "abilities": [
+            "Lifelink"
+          ],
+          "note": "No mana cost; copied from Sacred Cat through embalm. Keep the original card separately exiled for reset."
+        }
+      ],
+      "risks": [
+        "Only modest base power on its creatures; wins may depend too heavily on a partner's large threat or In Oketra's Name. Adjust after tests rather than prematurely adding a powerful lord.",
+        "Cast Out and Time to Reflect are the main creature answers; flyers can otherwise evade the ground mummies.",
+        "Sacred Cat's lifelink and double body add resilience, while the rare absence of a Zombie in early hands can delay tribal payoffs."
+      ],
+      "slug": "tomb-guard",
+      "curve": {
+        "1": 3,
+        "2": 3,
+        "3": 3,
+        "4": 3,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "markers": [],
+      "cuts": [
+        {
+          "name": "God-Eternal Oketra",
+          "reason": "Too much repeating4/4 token power and return-to-library complexity for the baseline."
+        },
+        {
+          "name": "Priest of the Crossing",
+          "reason": "Death-triggered counters across the entire board can snowball sharply."
+        },
+        {
+          "name": "Pride of the Road",
+          "reason": "Adds the speed subsystem."
+        },
+        {
+          "name": "Embalmer's Tools",
+          "reason": "An extra engine and repeated-mill decisions are unnecessary with only one embalm card."
+        },
+        {
+          "name": "Anointed Procession",
+          "reason": "Narrow without token production and potentially excessive alongside a token-heavy partner."
+        }
+      ],
+      "duplicateExceptions": []
+    },
+    {
+      "id": "ZP-Z4",
+      "name": "The Turned",
+      "faction": "zombies",
+      "color": "G",
+      "cards": [
+        {
+          "name": "Slitherhead",
+          "quantity": 2,
+          "role": "Actual Plant Zombies; cheap bodies that can later scavenge a counter.",
+          "oracleId": "4b6966f6-052f-4d1d-a3bf-1d3cc91c71d4",
+          "scryfallUri": "https://scryfall.com/card/rvr/226/slitherhead",
+          "manaCost": "{B/G}",
+          "manaValue": 1,
+          "typeLine": "Creature — Plant Zombie"
+        },
+        {
+          "name": "Sultai Devotee",
+          "quantity": 2,
+          "role": "Two-mana deathtouch Zombies; optional mana filtering helps either partner.",
+          "oracleId": "ee7b3fc0-6128-4bf6-b3e7-7371e6f93c4b",
+          "scryfallUri": "https://scryfall.com/card/tdm/160/sultai-devotee",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Creature — Zombie Snake Druid"
+        },
+        {
+          "name": "Ghoultree",
+          "quantity": 1,
+          "role": "Zombie Treefolk finisher discounted by creature cards in the graveyard.",
+          "oracleId": "5f2628e3-e29a-4d77-bc27-6e1ce240d192",
+          "scryfallUri": "https://scryfall.com/card/inr/198/ghoultree",
+          "manaCost": "{7}{G}",
+          "manaValue": 8,
+          "typeLine": "Creature — Zombie Treefolk"
+        },
+        {
+          "name": "Sludge Titan",
+          "quantity": 1,
+          "role": "Large trampling Zombie; fills the graveyard and can recover a milled creature/land.",
+          "oracleId": "94dd397e-0127-4c79-b9d9-22ce62ccdfe7",
+          "scryfallUri": "https://scryfall.com/card/clu/43/sludge-titan",
+          "manaCost": "{4}{B/G}{B/G}",
+          "manaValue": 6,
+          "typeLine": "Creature — Zombie Giant"
+        },
+        {
+          "name": "Mulch",
+          "quantity": 1,
+          "role": "Finds lands while putting nonlands in the graveyard.",
+          "oracleId": "12c03a03-36bf-487e-b8be-e55399525da5",
+          "scryfallUri": "https://scryfall.com/card/dsc/189/mulch",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Sorcery"
+        },
+        {
+          "name": "Grapple with the Past",
+          "quantity": 1,
+          "role": "Limited self-mill and optional creature/land recovery.",
+          "oracleId": "d14c633d-977a-4f78-85c2-88582b3c3670",
+          "scryfallUri": "https://scryfall.com/card/tdc/257/grapple-with-the-past",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Regrowth",
+          "quantity": 1,
+          "role": "Recovers any card that was milled or used.",
+          "oracleId": "e6e4a8bd-5c40-4654-8de1-0da9afed90fd",
+          "scryfallUri": "https://scryfall.com/card/mh1/175/regrowth",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Sorcery"
+        },
+        {
+          "name": "Ram Through",
+          "quantity": 1,
+          "role": "Creature-based removal; especially relevant with deathtouch or a large trampler.",
+          "oracleId": "4b1befff-48fa-47a3-832e-bdaf43495c02",
+          "scryfallUri": "https://scryfall.com/card/cmm/314/ram-through",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Rancor",
+          "quantity": 1,
+          "role": "Repeatable trample and power boost, letting Ghoultree or small Zombies attack through blockers.",
+          "oracleId": "9d2d6479-531c-4ce1-b52b-00e36fa63b64",
+          "scryfallUri": "https://scryfall.com/card/2x2/156/rancor",
+          "manaCost": "{G}",
+          "manaValue": 1,
+          "typeLine": "Enchantment — Aura"
+        },
+        {
+          "name": "Return to Nature",
+          "quantity": 1,
+          "role": "Answer to artifacts, enchantments, or a key graveyard card.",
+          "oracleId": "777b8ec4-a783-4297-96b7-4f200d0eb734",
+          "scryfallUri": "https://scryfall.com/card/moc/309/return-to-nature",
+          "manaCost": "{1}{G}",
+          "manaValue": 2,
+          "typeLine": "Instant"
+        },
+        {
+          "name": "Thriving Grove",
+          "quantity": 1,
+          "role": "Enters tapped; choose the other packet's color for optional fixing.",
+          "oracleId": "a8052556-8962-4130-86a8-6fb7b6a324f7",
+          "scryfallUri": "https://scryfall.com/card/msc/579/thriving-grove",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Land"
+        },
+        {
+          "name": "Forest",
+          "quantity": 7,
+          "role": "Basic green mana.",
+          "oracleId": "b34bb2dc-c1af-4d77-b0b3-a0fb342a5fc6",
+          "scryfallUri": "https://scryfall.com/card/fdn/280/forest",
+          "manaCost": "",
+          "manaValue": 0,
+          "typeLine": "Basic Land — Forest"
+        }
+      ],
+      "counts": {
+        "total": 20,
+        "creatures": 6,
+        "otherSpells": 6,
+        "lands": 8
+      },
+      "plan": "Use expendable Plant Zombies and deathtouch creatures to contest early turns, fill the graveyard through trades and a small amount of self-mill, then cast an affordable Ghoultree or Sludge Titan. Recovery spells and Rancor keep threats useful.",
+      "notes": [
+        "Every spell is castable using green mana. Slitherhead and Sludge Titan are black-green cards with hybrid mana costs, but their symbols can all be paid with green. Their actual colors remain black and green.",
+        "The two repeated nonbasic cards are intentional: two Slitherheads and two Sultai Devotees preserve an actual-Zombie early curve without adding radiation, foretell, or obligate off-color cards. All other nonbasic cards are singleton within the Zombie faction.",
+        "Slitherhead's scavenge costs 0, exiles that card from the graveyard, and is activated only at sorcery speed. The resulting counter can help any creature. Removing the card means it no longer discounts a Ghoultree that has not been cast.",
+        "Sultai Devotee is a 2/1 with deathtouch. Its once-per-turn ability pays 1 to produce B, G, or U: this is filtering, not extra mana or a tap ability. Its body functions without using that ability.",
+        "Ghoultree costs one generic mana less for each creature card in its controller's graveyard, down to a minimum of G. It has no trample by itself; Rancor supplies that role.",
+        "Sludge Titan's mill 5 is mandatory whenever it enters or attacks. Recovery of a creature and/or land among those five cards is optional. Choosing not to attack can avoid another mill trigger. It does not recover arbitrary older graveyard cards.",
+        "Mulch reveals four and puts lands into hand, other cards into the graveyard; it does not put lands directly onto the battlefield. Grapple's recovery can choose any creature or land card already in the graveyard, not just its newly milled cards.",
+        "Ram Through deals damage from the chosen friendly creature, not from the spell itself. Deathtouch is therefore relevant; damage to the opposing player only arises from its trample clause.",
+        "Rancor returns only when it goes from the battlefield to a graveyard; an Aura spell that never entered does not trigger that return.",
+        "Thriving Grove is not a Forest. It enters tapped and chooses a nongreen color as it enters; ordinarily choose the partner's mana color."
+      ],
+      "tokens": [],
+      "risks": [
+        "This half has six creatures and no natural three- or four-mana creature. Every other Zombie half must contribute enough middle-curve bodies; assess the combined deck, not this half alone.",
+        "Sludge Titan repeatedly mills five cards in a forty-card deck. This is the main deliberate test risk, especially paired with blue. Track remaining library and do not attack automatically. If games are frequently lost to self-mill, replace Titan first rather than quietly changing its rules.",
+        "Scavenge, Regrowth, Grapple, and a partner's recursion/exile costs all remove resources that may be needed for Ghoultree's discount.",
+        "Rancor plus deathtouch/trample or Ram Through can be potent. Test its power against the largely ground-based Plant faction and do not assume low mana cost implies low impact.",
+        "Rancor and Ram Through need a creature; creature-light opening hands can leave support inactive. This is another reason for the two approved duplicate exceptions."
+      ],
+      "slug": "the-turned",
+      "curve": {
+        "1": 3,
+        "2": 7,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 1,
+        "7": 0,
+        "8": 1
+      },
+      "markers": [
+        "+1/+1 counters from Slitherhead scavenge"
+      ],
+      "cuts": [
+        {
+          "name": "Dreg Mangler; Shambling Shell; Skullbriar; Molderhulk; The Necrobloom",
+          "reason": "Retained in research, but these need off-color mana and cannot assume a specific partner."
+        },
+        {
+          "name": "God-Eternal Rhonas",
+          "reason": "Power-doubling, vigilance, deathtouch, and unusual library return make a high-impact and busy baseline finisher."
+        },
+        {
+          "name": "The Foretold Soldier",
+          "reason": "Forced-blocking, damage/exile, foretell, and recasting loop add unnecessary complexity."
+        },
+        {
+          "name": "Glowing One; Tato Farmer",
+          "reason": "Radiation adds an unrelated subsystem."
+        },
+        {
+          "name": "Moldervine Cloak",
+          "reason": "Dredge adds another draw-replacement/mill decision; Rancor fills the boost/evasion role with a simpler recurring Aura."
+        },
+        {
+          "name": "A second Ghoultree",
+          "reason": "Adds another slow opening-hand card rather than improving the early curve."
+        }
+      ],
+      "duplicateExceptions": [
+        {
+          "name": "Slitherhead",
+          "quantity": 2,
+          "reason": "The most direct botanical Zombie at one mana; a thin mono-green Zombie pool needs another early body without unrelated mechanics."
+        },
+        {
+          "name": "Sultai Devotee",
+          "quantity": 2,
+          "reason": "A second functional two-mana Zombie avoids filling the packet with expensive or subsystem-heavy green Zombies."
+        }
+      ]
+    }
+  ],
+  "curveDefinition": "Printed nonland mana value; excludes additional costs, reductions, convoke, and later activation payments."
+}

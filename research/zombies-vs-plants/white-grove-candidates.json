@@ -1,0 +1,3050 @@
+{
+  "researchedAt": "2026-10-21",
+  "queries": [
+    {
+      "name": "Hoofprints of the Stag",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Beza, the Bounding Spring",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Scion of Vitu-Ghazi",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Flowering of the White Tree",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Juniper Order Rootweaver",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Alseid of Life's Bounty",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Dryad Militant",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Mycologist",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Scarecrow Guide",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "name": "Juniper Order Advocate",
+      "method": "Scryfall MCP exact English name lookup and official rulings",
+      "total": 1
+    },
+    {
+      "name": "Harvestguard Alseids",
+      "method": "Scryfall MCP exact English name lookup and official rulings",
+      "total": 1
+    },
+    {
+      "name": "Observant Alseid",
+      "method": "Scryfall MCP exact English name lookup and official rulings",
+      "total": 1
+    },
+    {
+      "name": "Beckoning Will-o'-Wisp",
+      "method": "Scryfall MCP exact English name lookup and official rulings",
+      "total": 1
+    },
+    {
+      "name": "Kami of False Hope",
+      "method": "Scryfall MCP exact English name lookup and official rulings",
+      "total": 1
+    },
+    {
+      "query": "c:w -c:u -c:b -c:r -c:g art:tree t:creature mv<=2 game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 64,
+      "hasMore": false,
+      "treeOrForest": "tree",
+      "method": "Scryfall MCP search_cards",
+      "coverage": "Discovery query; selected thematic leads only, not all matching cards are included."
+    },
+    {
+      "query": "c:w -c:u -c:b -c:r -c:g art:forest t:creature mv<=2 game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 22,
+      "hasMore": false,
+      "treeOrForest": "forest",
+      "method": "Scryfall MCP search_cards",
+      "coverage": "Discovery query; selected thematic leads only, not all matching cards are included."
+    }
+  ],
+  "discoverySources": [
+    {
+      "url": "https://scryfall.com/card/ecc/64/hoofprints-of-the-stag",
+      "note": "Owner-nominated white botanical Elemental lead."
+    },
+    {
+      "url": "https://scryfall.com/card/blb/2/beza-the-bounding-spring",
+      "note": "Owner-nominated white botanical Elemental lead."
+    },
+    {
+      "url": "https://scryfall.com/card/dgm/7/scion-of-vitu-ghazi",
+      "note": "Owner-nominated white botanical Elemental lead."
+    },
+    {
+      "url": "https://scryfall.com/card/me2/20/juniper-order-advocate",
+      "note": "Owner's Juniper link destination; visible label instead names Juniper Order Druid."
+    },
+    {
+      "url": "https://scryfall.com/card/jou/13/harvestguard-alseids",
+      "note": "Owner-nominated white Nymph."
+    },
+    {
+      "url": "https://scryfall.com/card/ths/24/observant-alseid",
+      "note": "Owner-nominated white Nymph."
+    },
+    {
+      "url": "https://scryfall.com/card/clb/10/beckoning-will-o-wisp",
+      "note": "Owner-nominated grove spirit flavor."
+    },
+    {
+      "url": "https://scryfall.com/card/bok/10/kami-of-false-hope",
+      "note": "Owner-nominated tree-like spirit art."
+    },
+    {
+      "url": "https://scryfall.com/card/thb/1/alseid-of-lifes-bounty",
+      "note": "Owner-endorsed inexpensive nature spirit."
+    },
+    {
+      "url": "https://scryfall.com/card/tsr/29/mycologist",
+      "note": "Owner-nominated low-power fungal practitioner."
+    },
+    {
+      "url": "https://scryfall.com/card/dmu/22/juniper-order-rootweaver",
+      "note": "Owner-endorsed grove practitioner; optional green kicker."
+    },
+    {
+      "url": "https://scryfall.com/search?q=c%3Aw+-c%3Au+-c%3Ab+-c%3Ar+-c%3Ag+art%3Atree+t%3Acreature+mv%3C%3D2&unique=cards&as=grid&order=name",
+      "note": "Owner-supplied low-cost mono-white tree-art search. Executed with paper/nonfunny/research-date limits."
+    },
+    {
+      "url": "https://scryfall.com/search?q=c%3Aw+-c%3Au+-c%3Ab+-c%3Ar+-c%3Ag+art%3Aforest+t%3Acreature+mv%3C%3D2&unique=cards&as=grid&order=name",
+      "note": "Owner-supplied forest-art variant of the same search. Executed with paper/nonfunny/research-date limits."
+    },
+    {
+      "url": "https://scryfall.com/card/p02/10/angelic-wall?utm_source=api",
+      "note": "Selected forest-query printing: Portal Second Age #10, Rebecca Guay. Owner described forest and spiritual wing imagery; that is owner-supplied thematic interpretation, not agent visual inspection."
+    },
+    {
+      "url": "https://scryfall.com/card/10e/5/angelic-wall?utm_source=api",
+      "note": "Tree query instead returned Tenth Edition #5, John Avon, a different illustration. Metadata retained to avoid confusing the search printings; this is not the selected full card record."
+    }
+  ],
+  "cards": [
+    {
+      "object": "card",
+      "id": "af609bbd-2ed0-4a2b-b3e3-7120e86da9ce",
+      "oracle_id": "17739f55-486b-46ea-8785-70cc2bd2d872",
+      "multiverse_ids": [],
+      "resource_id": "DA6594C18F8F03BA85EDD9C531F2A725F9F83F1EE0342EF0536BA21E25D6327F",
+      "mtgo_id": 146063,
+      "tcgplayer_id": 671134,
+      "cardmarket_id": 864958,
+      "name": "Hoofprints of the Stag",
+      "lang": "en",
+      "released_at": "2026-01-23",
+      "uri": "https://api.scryfall.com/cards/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce",
+      "scryfall_uri": "https://scryfall.com/card/ecc/64/hoofprints-of-the-stag?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T02:58:32Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.jpg?1783911512",
+        "normal": "https://cards.scryfall.io/normal/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.jpg?1783911512",
+        "large": "https://cards.scryfall.io/large/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.jpg?1783911512",
+        "png": "https://cards.scryfall.io/png/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.png?1783911512",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.jpg?1783911512",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.jpg?1783911512",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.webp?1783911512",
+        "grid": "https://cards.scryfall.io/grid/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.webp?1783911512",
+        "display": "https://cards.scryfall.io/display/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.webp?1783911512",
+        "art": "https://cards.scryfall.io/art/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.webp?1783911512",
+        "crop": "https://cards.scryfall.io/crop/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.webp?1783911512",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/f/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce.jpg?1783911512"
+      },
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "type_line": "Kindred Enchantment — Elemental",
+      "oracle_text": "Whenever you draw a card, you may put a hoofprint counter on this enchantment.\n{2}{W}, Remove four hoofprint counters from this enchantment: Create a 4/4 white Elemental creature token with flying. Activate only during your turn.",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "all_parts": [
+        {
+          "object": "related_card",
+          "id": "af609bbd-2ed0-4a2b-b3e3-7120e86da9ce",
+          "component": "combo_piece",
+          "name": "Hoofprints of the Stag",
+          "type_line": "Kindred Enchantment — Elemental",
+          "uri": "https://api.scryfall.com/cards/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce"
+        },
+        {
+          "object": "related_card",
+          "id": "ee285548-04c8-4562-bf66-a0bb53acfe76",
+          "component": "token",
+          "name": "Elemental",
+          "type_line": "Token Creature — Elemental",
+          "uri": "https://api.scryfall.com/cards/ee285548-04c8-4562-bf66-a0bb53acfe76"
+        }
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+      "set": "ecc",
+      "set_name": "Lorwyn Eclipsed Commander",
+      "set_type": "commander",
+      "set_uri": "https://api.scryfall.com/sets/805b5a0c-f8bb-4555-86ea-eb9ec36a011a",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aecc&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/ecc?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/af609bbd-2ed0-4a2b-b3e3-7120e86da9ce/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A17739f55-486b-46ea-8785-70cc2bd2d872&unique=prints",
+      "collector_number": "64",
+      "digital": false,
+      "rarity": "rare",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Anthony S. Waters",
+      "artist_ids": [
+        "f009de11-3c8d-4663-b996-ca0c3e997fad"
+      ],
+      "illustration_id": "d72507ec-8129-401a-89c9-6e926c54f0a2",
+      "border_color": "black",
+      "frame": "2015",
+      "frame_effects": [
+        "enchantment"
+      ],
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "edhrec_rank": 9792,
+      "penny_rank": 7925,
+      "prices": {
+        "usd": "0.19",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.12",
+        "eur_foil": null,
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DHoofprints%2Bof%2Bthe%2BStag",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DHoofprints%2Bof%2Bthe%2BStag",
+        "edhrec": "https://edhrec.com/route/?cc=Hoofprints+of+the+Stag"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671134%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=864958&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/146063?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [
+        {
+          "object": "ruling",
+          "oracle_id": "17739f55-486b-46ea-8785-70cc2bd2d872",
+          "source": "wotc",
+          "published_at": "2007-10-01",
+          "comment": "If a spell or ability has you draw multiple cards, Hoofprints of the Stag's ability triggers that many times."
+        }
+      ],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early setup",
+          "token production",
+          "flying finisher"
+        ],
+        "note": "Owner-endorsed repeatable white botanical token engine, with Elemental imagery fitting the grove. This is a Kindred Enchantment, not a creature. Its two-mana setup works with every partner, and extra card draw from the other packet accelerates production of 4/4 flying Elementals.",
+        "caution": "Needs four hoofprint counters plus a three-mana activation before producing a blocker. Adds counter tracking and is not an answer to the early-creature gap.",
+        "manaNote": "Costs 1W; activation costs 2W and is allowed only during your turn.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "fc310a26-b6a0-4e42-98ab-bdfd7b06cb63",
+      "oracle_id": "020de6d7-f5a2-4036-ad25-451e5977b4d4",
+      "multiverse_ids": [
+        668916
+      ],
+      "mtgo_id": 129249,
+      "arena_id": 91538,
+      "tcgplayer_id": 558421,
+      "cardmarket_id": 777543,
+      "name": "Beza, the Bounding Spring",
+      "lang": "en",
+      "released_at": "2024-08-02",
+      "uri": "https://api.scryfall.com/cards/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63",
+      "scryfall_uri": "https://scryfall.com/card/blb/2/beza-the-bounding-spring?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T02:47:46Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.jpg?1783910866",
+        "normal": "https://cards.scryfall.io/normal/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.jpg?1783910866",
+        "large": "https://cards.scryfall.io/large/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.jpg?1783910866",
+        "png": "https://cards.scryfall.io/png/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.png?1783910866",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.jpg?1783910866",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.jpg?1783910866",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.webp?1783910866",
+        "grid": "https://cards.scryfall.io/grid/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.webp?1783910866",
+        "display": "https://cards.scryfall.io/display/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.webp?1783910866",
+        "art": "https://cards.scryfall.io/art/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.webp?1783910866",
+        "crop": "https://cards.scryfall.io/crop/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.webp?1783910866",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/c/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63.jpg?1783910866"
+      },
+      "mana_cost": "{2}{W}{W}",
+      "cmc": 4,
+      "type_line": "Legendary Creature — Elemental Elk",
+      "oracle_text": "When Beza enters, create a Treasure token if an opponent controls more lands than you. You gain 4 life if an opponent has more life than you. Create two 1/1 blue Fish creature tokens if an opponent controls more creatures than you. Draw a card if an opponent has more cards in hand than you.",
+      "power": "4",
+      "toughness": "5",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Treasure"
+      ],
+      "all_parts": [
+        {
+          "object": "related_card",
+          "id": "0fc98b72-d268-4ce5-93b4-57c812a24eff",
+          "component": "combo_piece",
+          "name": "Beza, the Bounding Spring",
+          "type_line": "Legendary Creature — Elemental Elk",
+          "uri": "https://api.scryfall.com/cards/0fc98b72-d268-4ce5-93b4-57c812a24eff"
+        },
+        {
+          "object": "related_card",
+          "id": "ff0357fb-d90c-49c7-b16a-8b52ac686c3b",
+          "component": "token",
+          "name": "Treasure",
+          "type_line": "Token Artifact — Treasure",
+          "uri": "https://api.scryfall.com/cards/ff0357fb-d90c-49c7-b16a-8b52ac686c3b"
+        },
+        {
+          "object": "related_card",
+          "id": "de0d6700-49f0-4233-97ba-cef7821c30ed",
+          "component": "token",
+          "name": "Fish",
+          "type_line": "Token Creature — Fish",
+          "uri": "https://api.scryfall.com/cards/de0d6700-49f0-4233-97ba-cef7821c30ed"
+        }
+      ],
+      "legalities": {
+        "standard": "legal",
+        "future": "legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "not_legal"
+      },
+      "games": [
+        "paper",
+        "mtgo",
+        "arena"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "a2f58272-bba6-439d-871e-7a46686ac018",
+      "set": "blb",
+      "set_name": "Bloomburrow",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/a2f58272-bba6-439d-871e-7a46686ac018",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ablb&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/blb?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/fc310a26-b6a0-4e42-98ab-bdfd7b06cb63/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A020de6d7-f5a2-4036-ad25-451e5977b4d4&unique=prints",
+      "collector_number": "2",
+      "digital": false,
+      "rarity": "mythic",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Martin Wittfooth",
+      "artist_ids": [
+        "9f549ccf-d237-47c5-ab39-1b2bbbb164fc"
+      ],
+      "illustration_id": "ef24c61f-ae89-4267-a90c-1771b13edea9",
+      "border_color": "black",
+      "frame": "2015",
+      "frame_effects": [
+        "legendary"
+      ],
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 4095,
+      "preview": {
+        "source": "Wizards of the Coast",
+        "source_uri": "https://magic.wizards.com/en/products/bloomburrow/card-image-gallery",
+        "previewed_at": "2024-07-09"
+      },
+      "prices": {
+        "usd": "4.17",
+        "usd_foil": "5.28",
+        "usd_etched": null,
+        "eur": "6.04",
+        "eur_foil": "7.24",
+        "tix": "2.66"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=668916&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBeza%252C%2Bthe%2BBounding%2BSpring",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBeza%252C%2Bthe%2BBounding%2BSpring",
+        "edhrec": "https://edhrec.com/route/?cc=Beza%2C+the+Bounding+Spring"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F558421%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=777543&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/129249?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [
+        {
+          "object": "ruling",
+          "oracle_id": "020de6d7-f5a2-4036-ad25-451e5977b4d4",
+          "source": "wotc",
+          "published_at": "2024-07-26",
+          "comment": "You compare the number of lands you control with the number of lands each opponent controls as Beza's ability resolves. At that time, if at least one opponent controls more lands than you, you'll create a Treasure token. Similarly, you compare life totals, creatures controlled, and cards in hand with each opponent as Beza's ability resolves. If at least one opponent has more life, creatures, or cards in hand than you, you'll get the appropriate bonus. It doesn't matter if you qualified for any of the previous bonuses or not."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "020de6d7-f5a2-4036-ad25-451e5977b4d4",
+          "source": "wotc",
+          "published_at": "2024-07-26",
+          "comment": "In a multiplayer game, you consider each opponent. If you have fewer lands than one opponent and less life than another, for example, you'll get both of those bonuses."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "020de6d7-f5a2-4036-ad25-451e5977b4d4",
+          "source": "wotc",
+          "published_at": "2024-07-26",
+          "comment": "No player may take any actions while Beza's ability is resolving. For example, you can't use the Treasure token to try and change the outcome of any of the other comparisons. However, in some unusual cases, that Treasure token might enter as a creature, in which case it might impact whether you get Fish or not."
+        }
+      ],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "large creature",
+          "catch-up value"
+        ],
+        "note": "User-nominated Elemental Elk for the white botanical theme. A 4/5 body can supply the combined deck's larger threats, with independent catch-up bonuses on entry.",
+        "caution": "Checks lands, life, creature count, and hand size separately. Treasure and blue Fish tokens add components and rules text; review power and simplicity before selecting.",
+        "manaNote": "Four mana including WW. No off-color mana is needed for its Fish or Treasure tokens.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "3cd20865-0a9a-4a72-92f9-77c8d6384b46",
+      "oracle_id": "a34c4d5c-6ecb-4da2-8734-a2f3d35cfe8b",
+      "multiverse_ids": [
+        369092
+      ],
+      "mtgo_id": 48288,
+      "mtgo_foil_id": 48289,
+      "tcgplayer_id": 67961,
+      "cardmarket_id": 261502,
+      "name": "Scion of Vitu-Ghazi",
+      "lang": "en",
+      "released_at": "2013-05-03",
+      "uri": "https://api.scryfall.com/cards/3cd20865-0a9a-4a72-92f9-77c8d6384b46",
+      "scryfall_uri": "https://scryfall.com/card/dgm/7/scion-of-vitu-ghazi?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:54:04Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.jpg?1783940044",
+        "normal": "https://cards.scryfall.io/normal/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.jpg?1783940044",
+        "large": "https://cards.scryfall.io/large/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.jpg?1783940044",
+        "png": "https://cards.scryfall.io/png/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.png?1783940044",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.jpg?1783940044",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.jpg?1783940044",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.webp?1783940044",
+        "grid": "https://cards.scryfall.io/grid/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.webp?1783940044",
+        "display": "https://cards.scryfall.io/display/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.webp?1783940044",
+        "art": "https://cards.scryfall.io/art/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.webp?1783940044",
+        "crop": "https://cards.scryfall.io/crop/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.webp?1783940044",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/c/3cd20865-0a9a-4a72-92f9-77c8d6384b46.jpg?1783940044"
+      },
+      "mana_cost": "{3}{W}{W}",
+      "cmc": 5,
+      "type_line": "Creature — Elemental",
+      "oracle_text": "When this creature enters, if you cast it from your hand, create a 1/1 white Bird creature token with flying, then populate. (Create a token that's a copy of a creature token you control.)",
+      "power": "4",
+      "toughness": "4",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Populate"
+      ],
+      "all_parts": [
+        {
+          "object": "related_card",
+          "id": "3cd20865-0a9a-4a72-92f9-77c8d6384b46",
+          "component": "combo_piece",
+          "name": "Scion of Vitu-Ghazi",
+          "type_line": "Creature — Elemental",
+          "uri": "https://api.scryfall.com/cards/3cd20865-0a9a-4a72-92f9-77c8d6384b46"
+        },
+        {
+          "object": "related_card",
+          "id": "456832f6-60b5-46d7-b37e-4fb44e60e792",
+          "component": "token",
+          "name": "Bird",
+          "type_line": "Token Creature — Bird",
+          "uri": "https://api.scryfall.com/cards/456832f6-60b5-46d7-b37e-4fb44e60e792"
+        }
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "not_legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "c8bd8520-cd98-45cd-b533-8d40c2087426",
+      "set": "dgm",
+      "set_name": "Dragon's Maze",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/c8bd8520-cd98-45cd-b533-8d40c2087426",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Adgm&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/dgm?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/3cd20865-0a9a-4a72-92f9-77c8d6384b46/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aa34c4d5c-6ecb-4da2-8734-a2f3d35cfe8b&unique=prints",
+      "collector_number": "7",
+      "digital": false,
+      "rarity": "rare",
+      "watermark": "selesnya",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Willian Murai",
+      "artist_ids": [
+        "5a553c8e-e3b9-40e0-bde5-1db621c53939"
+      ],
+      "illustration_id": "058fbc39-e1fa-4d1b-9b5d-11d059de3cb3",
+      "border_color": "black",
+      "frame": "2003",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 22658,
+      "penny_rank": 11402,
+      "prices": {
+        "usd": "0.21",
+        "usd_foil": "0.33",
+        "usd_etched": null,
+        "eur": "0.11",
+        "eur_foil": "0.47",
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=369092&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DScion%2Bof%2BVitu-Ghazi",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DScion%2Bof%2BVitu-Ghazi",
+        "edhrec": "https://edhrec.com/route/?cc=Scion+of+Vitu-Ghazi"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F67961%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=261502&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/48288?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [
+        {
+          "object": "ruling",
+          "oracle_id": "a34c4d5c-6ecb-4da2-8734-a2f3d35cfe8b",
+          "source": "wotc",
+          "published_at": "2024-01-12",
+          "comment": "The new creature token copies the characteristics of the original token as stated by the effect that created the original token."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "a34c4d5c-6ecb-4da2-8734-a2f3d35cfe8b",
+          "source": "wotc",
+          "published_at": "2024-01-12",
+          "comment": "Populate doesn't target the creature token you're copying. You choose that creature token as you're taking the populate action. You can choose any creature token you control. If a spell or ability causes you to create a creature token and then instructs you to populate, you may choose to copy the token you just created, or you may choose to copy another creature token you control."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "a34c4d5c-6ecb-4da2-8734-a2f3d35cfe8b",
+          "source": "wotc",
+          "published_at": "2024-01-12",
+          "comment": "If you choose to copy a creature token that's a copy of another creature, the new creature token will copy the characteristics of whatever the original token is copying."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "a34c4d5c-6ecb-4da2-8734-a2f3d35cfe8b",
+          "source": "wotc",
+          "published_at": "2024-01-12",
+          "comment": "If you control no creature tokens when you populate, nothing will happen."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "a34c4d5c-6ecb-4da2-8734-a2f3d35cfe8b",
+          "source": "wotc",
+          "published_at": "2024-01-12",
+          "comment": "The new token doesn't copy whether the original token is tapped or untapped, whether it has any counters on it or Auras and Equipment attached to it, or any noncopy effects that have changed its power, toughness, color, and so on."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "a34c4d5c-6ecb-4da2-8734-a2f3d35cfe8b",
+          "source": "wotc",
+          "published_at": "2024-01-12",
+          "comment": "Any enters-the-battlefield abilities of the copied token will trigger when the new token enters the battlefield. Any \"as [this creature] enters the battlefield\" or \"[this creature] enters the battlefield with\" abilities of the copied token will also work."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "a34c4d5c-6ecb-4da2-8734-a2f3d35cfe8b",
+          "source": "wotc",
+          "published_at": "2013-09-20",
+          "comment": "If a creature (such as Clone) enters the battlefield as a copy of this creature, the copy's \"enters-the-battlefield\" ability will still trigger as long as you cast that creature spell from your hand."
+        }
+      ],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "large creature",
+          "token production",
+          "populate"
+        ],
+        "note": "User-nominated botanical Elemental for white Treefolk support. When cast from hand it creates a Bird before populating, so it supplies its own token; it can instead copy a suitable creature token from the other packet.",
+        "caution": "Five mana does not improve the early curve. The token ability requires casting from hand and populate adds a token-copy decision.",
+        "manaNote": "Five mana including WW.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "2203b2cd-48e5-471a-85fe-dc81012e5d61",
+      "oracle_id": "3cda958a-f777-433d-850e-a6c8f581db4e",
+      "multiverse_ids": [
+        616845
+      ],
+      "mtgo_id": 111940,
+      "arena_id": 84707,
+      "tcgplayer_id": 499188,
+      "cardmarket_id": 716989,
+      "name": "Flowering of the White Tree",
+      "lang": "en",
+      "released_at": "2023-06-23",
+      "uri": "https://api.scryfall.com/cards/2203b2cd-48e5-471a-85fe-dc81012e5d61",
+      "scryfall_uri": "https://scryfall.com/card/ltr/15/flowering-of-the-white-tree?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T04:18:52Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.jpg?1783916332",
+        "normal": "https://cards.scryfall.io/normal/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.jpg?1783916332",
+        "large": "https://cards.scryfall.io/large/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.jpg?1783916332",
+        "png": "https://cards.scryfall.io/png/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.png?1783916332",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.jpg?1783916332",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.jpg?1783916332",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.webp?1783916332",
+        "grid": "https://cards.scryfall.io/grid/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.webp?1783916332",
+        "display": "https://cards.scryfall.io/display/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.webp?1783916332",
+        "art": "https://cards.scryfall.io/art/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.webp?1783916332",
+        "crop": "https://cards.scryfall.io/crop/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.webp?1783916332",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/2/2203b2cd-48e5-471a-85fe-dc81012e5d61.jpg?1783916332"
+      },
+      "mana_cost": "{W}{W}",
+      "cmc": 2,
+      "type_line": "Legendary Enchantment",
+      "oracle_text": "Legendary creatures you control get +2/+1 and have ward {1}.\nNonlegendary creatures you control get +1/+1.",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo",
+        "arena"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "08078706-ac5d-439b-8f01-894d38751367",
+      "set": "ltr",
+      "set_name": "The Lord of the Rings: Tales of Middle-earth",
+      "set_type": "draft_innovation",
+      "set_uri": "https://api.scryfall.com/sets/08078706-ac5d-439b-8f01-894d38751367",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Altr&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/ltr?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/2203b2cd-48e5-471a-85fe-dc81012e5d61/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A3cda958a-f777-433d-850e-a6c8f581db4e&unique=prints",
+      "collector_number": "15",
+      "digital": false,
+      "rarity": "rare",
+      "flavor_text": "Aragorn planted the new tree in the court by the fountain, and swiftly and gladly it began to grow.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Erikas Perl",
+      "artist_ids": [
+        "39cb50cf-0223-43c7-bd96-afb5f05c7e43"
+      ],
+      "illustration_id": "21584e29-234a-4c47-b911-2e6c63966ee1",
+      "border_color": "black",
+      "frame": "2015",
+      "frame_effects": [
+        "legendary"
+      ],
+      "security_stamp": "triangle",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "promo_types": [
+        "universesbeyond"
+      ],
+      "edhrec_rank": 814,
+      "penny_rank": 157,
+      "preview": {
+        "source": "Wizards of the Coast",
+        "source_uri": "https://magic.wizards.com/en/news/making-magic/crafting-the-ring-part-2",
+        "previewed_at": "2023-06-05"
+      },
+      "prices": {
+        "usd": "8.98",
+        "usd_foil": "11.86",
+        "usd_etched": null,
+        "eur": "6.33",
+        "eur_foil": "6.51",
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=616845&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DFlowering%2Bof%2Bthe%2BWhite%2BTree",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DFlowering%2Bof%2Bthe%2BWhite%2BTree",
+        "edhrec": "https://edhrec.com/route/?cc=Flowering+of+the+White+Tree"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F499188%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=716989&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/111940?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "team buff",
+          "cross-packet support"
+        ],
+        "note": "The White Tree theme fits the grove even though its bonus is not tied to a botanical creature type. Nonlegendary creatures from either packet get +1/+1; legendary creatures get the separate larger bonus and ward.",
+        "caution": "WW at two mana can be demanding in the combined deck. Distinguish the legendary and nonlegendary bonuses; the enchantment itself supplies no creature.",
+        "manaNote": "Costs WW; no other color or creature type is required.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "c56cf82f-8bbb-49ae-ad93-291cbec9126e",
+      "oracle_id": "5914d4d5-51b8-49c2-9459-bf5579df4990",
+      "multiverse_ids": [
+        574502
+      ],
+      "mtgo_id": 102520,
+      "arena_id": 82074,
+      "tcgplayer_id": 283270,
+      "cardmarket_id": 672098,
+      "name": "Juniper Order Rootweaver",
+      "lang": "en",
+      "released_at": "2022-09-09",
+      "uri": "https://api.scryfall.com/cards/c56cf82f-8bbb-49ae-ad93-291cbec9126e",
+      "scryfall_uri": "https://scryfall.com/card/dmu/22/juniper-order-rootweaver?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T05:42:44Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.jpg?1783921364",
+        "normal": "https://cards.scryfall.io/normal/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.jpg?1783921364",
+        "large": "https://cards.scryfall.io/large/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.jpg?1783921364",
+        "png": "https://cards.scryfall.io/png/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.png?1783921364",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.jpg?1783921364",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.jpg?1783921364",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.webp?1783921364",
+        "grid": "https://cards.scryfall.io/grid/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.webp?1783921364",
+        "display": "https://cards.scryfall.io/display/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.webp?1783921364",
+        "art": "https://cards.scryfall.io/art/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.webp?1783921364",
+        "crop": "https://cards.scryfall.io/crop/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.webp?1783921364",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/5/c56cf82f-8bbb-49ae-ad93-291cbec9126e.jpg?1783921364"
+      },
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "type_line": "Creature — Human Druid",
+      "oracle_text": "Kicker {G} (You may pay an additional {G} as you cast this spell.)\nWhen this creature enters, if it was kicked, put a +1/+1 counter on target creature you control.",
+      "power": "2",
+      "toughness": "2",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "G",
+        "W"
+      ],
+      "keywords": [
+        "Kicker"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "arena",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "4e47a6cd-cdeb-4b0f-8f24-cfe1a0127cb3",
+      "set": "dmu",
+      "set_name": "Dominaria United",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/4e47a6cd-cdeb-4b0f-8f24-cfe1a0127cb3",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Admu&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/dmu?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/c56cf82f-8bbb-49ae-ad93-291cbec9126e/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A5914d4d5-51b8-49c2-9459-bf5579df4990&unique=prints",
+      "collector_number": "22",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "\"What Phyrexia takes, the grace of Freyalise shall replenish.\"",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Matt Stewart",
+      "artist_ids": [
+        "20871267-2d8a-41d5-b03a-be3d557c5734"
+      ],
+      "illustration_id": "3c2b23ad-37c5-4bde-af0e-0e84037a2781",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 29415,
+      "preview": {
+        "source": "Ungeek",
+        "source_uri": "https://www.ungeek.ph/2022/08/magic-the-gathering-dominaria-united-card-preview-juniper-order-rootweaver/",
+        "previewed_at": "2022-08-23"
+      },
+      "prices": {
+        "usd": "0.05",
+        "usd_foil": "0.18",
+        "usd_etched": null,
+        "eur": "0.02",
+        "eur_foil": "0.06",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=574502&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DJuniper%2BOrder%2BRootweaver",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DJuniper%2BOrder%2BRootweaver",
+        "edhrec": "https://edhrec.com/route/?cc=Juniper+Order+Rootweaver"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F283270%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=672098&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/102520?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "botanical practitioner",
+          "optional growth"
+        ],
+        "note": "A Human Druid with an explicitly botanical identity. Its two-mana 2/2 body works in the white packet without help. Either green partner can enable its optional kicker to put a +1/+1 counter on an allied creature.",
+        "caution": "The green kicker is optional; never assume it is available when paired with black Fungi. Kicker and a counter add a small amount of rules text.",
+        "manaNote": "Base cost 1W, with optional G kicker. Green is not needed for the base creature.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "36c8c075-9597-412e-9fc4-9d73b4405d12",
+      "oracle_id": "d371031e-78be-4964-b521-b1eaa22a5480",
+      "multiverse_ids": [
+        476252
+      ],
+      "mtgo_id": 79126,
+      "arena_id": 70512,
+      "tcgplayer_id": 206945,
+      "cardmarket_id": 431304,
+      "name": "Alseid of Life's Bounty",
+      "lang": "en",
+      "released_at": "2020-01-24",
+      "uri": "https://api.scryfall.com/cards/36c8c075-9597-412e-9fc4-9d73b4405d12",
+      "scryfall_uri": "https://scryfall.com/card/thb/1/alseid-of-lifes-bounty?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T08:33:23Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.jpg?1783931603",
+        "normal": "https://cards.scryfall.io/normal/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.jpg?1783931603",
+        "large": "https://cards.scryfall.io/large/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.jpg?1783931603",
+        "png": "https://cards.scryfall.io/png/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.png?1783931603",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.jpg?1783931603",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.jpg?1783931603",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.webp?1783931603",
+        "grid": "https://cards.scryfall.io/grid/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.webp?1783931603",
+        "display": "https://cards.scryfall.io/display/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.webp?1783931603",
+        "art": "https://cards.scryfall.io/art/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.webp?1783931603",
+        "crop": "https://cards.scryfall.io/crop/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.webp?1783931603",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/6/36c8c075-9597-412e-9fc4-9d73b4405d12.jpg?1783931603"
+      },
+      "mana_cost": "{W}",
+      "cmc": 1,
+      "type_line": "Enchantment Creature — Nymph",
+      "oracle_text": "Lifelink\n{1}, Sacrifice this creature: Target creature or enchantment you control gains protection from the color of your choice until end of turn.",
+      "power": "1",
+      "toughness": "1",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Lifelink"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "arena",
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "5f23a78d-cda1-462a-8be3-a62b40c34913",
+      "set": "thb",
+      "set_name": "Theros Beyond Death",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/5f23a78d-cda1-462a-8be3-a62b40c34913",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Athb&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/thb?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/36c8c075-9597-412e-9fc4-9d73b4405d12/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad371031e-78be-4964-b521-b1eaa22a5480&unique=prints",
+      "collector_number": "1",
+      "digital": false,
+      "rarity": "uncommon",
+      "flavor_text": "\"Dawn-kissed, he nourishes the golden grain.\"\n—Psemilla, Meletian poet",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Magali Villeneuve",
+      "artist_ids": [
+        "9e6a55ae-be4d-4c23-a2a5-135737ffd879"
+      ],
+      "illustration_id": "787fdfd3-cd4f-46c5-b7d3-26816d0849d1",
+      "border_color": "black",
+      "frame": "2015",
+      "frame_effects": [
+        "enchantment"
+      ],
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 2836,
+      "penny_rank": 829,
+      "preview": {
+        "source": "HinaLyka",
+        "source_uri": "https://www.twitch.tv/videos/532064568",
+        "previewed_at": "2020-01-06"
+      },
+      "prices": {
+        "usd": "0.38",
+        "usd_foil": "0.62",
+        "usd_etched": null,
+        "eur": "0.40",
+        "eur_foil": "0.74",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=476252&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAlseid%2Bof%2BLife%2527s%2BBounty",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAlseid%2Bof%2BLife%2527s%2BBounty",
+        "edhrec": "https://edhrec.com/route/?cc=Alseid+of+Life%27s+Bounty"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F206945%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=431304&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/79126?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "protection",
+          "nature spirit"
+        ],
+        "note": "An owner-endorsed Nymph for the grove's nature-spirit theme. A one-mana lifelink body works with every partner, and its sacrifice ability can protect a creature or enchantment from either packet. Its actual type remains Nymph, not Plant or Spirit.",
+        "caution": "Protection has consequences for targeting, damage, blocking, and attached Auras. Evaluate that rules burden before using it in the simple prototype.",
+        "manaNote": "Costs W; protection ability costs 1 and sacrificing this creature.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "8fb36712-26e9-4ec7-8946-626bb7094c15",
+      "oracle_id": "b8ca5877-ac9e-4b15-8c23-c70f61b01895",
+      "multiverse_ids": [
+        680795
+      ],
+      "resource_id": "066A1F6AEBD1348923AEF13221653171A7FAF7738DF63D946A900798495EBC1F",
+      "mtgo_id": 134648,
+      "arena_id": 94084,
+      "tcgplayer_id": 591060,
+      "cardmarket_id": 796085,
+      "name": "Dryad Militant",
+      "lang": "en",
+      "released_at": "2024-11-15",
+      "uri": "https://api.scryfall.com/cards/8fb36712-26e9-4ec7-8946-626bb7094c15",
+      "scryfall_uri": "https://scryfall.com/card/fdn/656/dryad-militant?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T02:15:11Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.jpg?1783908911",
+        "normal": "https://cards.scryfall.io/normal/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.jpg?1783908911",
+        "large": "https://cards.scryfall.io/large/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.jpg?1783908911",
+        "png": "https://cards.scryfall.io/png/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.png?1783908911",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.jpg?1783908911",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.jpg?1783908911",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.webp?1783908911",
+        "grid": "https://cards.scryfall.io/grid/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.webp?1783908911",
+        "display": "https://cards.scryfall.io/display/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.webp?1783908911",
+        "art": "https://cards.scryfall.io/art/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.webp?1783908911",
+        "crop": "https://cards.scryfall.io/crop/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.webp?1783908911",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/f/8fb36712-26e9-4ec7-8946-626bb7094c15.jpg?1783908911"
+      },
+      "mana_cost": "{G/W}",
+      "cmc": 1,
+      "type_line": "Creature — Dryad Soldier",
+      "oracle_text": "({G/W} can be paid with either {G} or {W}.)\nIf an instant or sorcery card would be put into a graveyard from anywhere, exile it instead.",
+      "power": "2",
+      "toughness": "1",
+      "colors": [
+        "G",
+        "W"
+      ],
+      "color_identity": [
+        "G",
+        "W"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "legal",
+        "future": "legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "arena",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "a7ecb771-d1b6-4dec-8cf5-8d45179f21e0",
+      "set": "fdn",
+      "set_name": "Foundations",
+      "set_type": "core",
+      "set_uri": "https://api.scryfall.com/sets/a7ecb771-d1b6-4dec-8cf5-8d45179f21e0",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Afdn&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/fdn?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/8fb36712-26e9-4ec7-8946-626bb7094c15/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ab8ca5877-ac9e-4b15-8c23-c70f61b01895&unique=prints",
+      "collector_number": "656",
+      "digital": false,
+      "rarity": "uncommon",
+      "flavor_text": "\"Once, my guild welcomed outsiders. Too many preyed on our generosity, mistaking it for weakness. No more.\"",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Aaron J. Riley",
+      "artist_ids": [
+        "f21b412c-aef5-4d15-88be-4f40615acde3"
+      ],
+      "illustration_id": "ab65d198-a20e-4192-bfe5-3319fb34abab",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": false,
+      "story_spotlight": false,
+      "promo_types": [
+        "startercollection"
+      ],
+      "edhrec_rank": 19069,
+      "penny_rank": 353,
+      "prices": {
+        "usd": "0.11",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.23",
+        "eur_foil": null,
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=680795&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DDryad%2BMilitant",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DDryad%2BMilitant",
+        "edhrec": "https://edhrec.com/route/?cc=Dryad+Militant"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F591060%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=796085&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/134648?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "botanical ally"
+        ],
+        "note": "A one-mana 2/1 Dryad that can be cast entirely with white. Provides an actual botanical creature at the low end of the white grove's curve.",
+        "caution": "Its replacement effect exiles all players' instant and sorcery cards that would enter graveyards, including your own. Check interactions with spell recovery.",
+        "manaNote": "G/W hybrid can be paid with W; the card itself remains both green and white.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "cca60d13-137f-4438-bc51-7ea02ec3c515",
+      "oracle_id": "af0bf083-0624-4ccd-b282-a35937e925fe",
+      "multiverse_ids": [
+        509394
+      ],
+      "mtgo_id": 86421,
+      "tcgplayer_id": 233396,
+      "cardmarket_id": 542606,
+      "name": "Mycologist",
+      "lang": "en",
+      "released_at": "2021-03-19",
+      "uri": "https://api.scryfall.com/cards/cca60d13-137f-4438-bc51-7ea02ec3c515",
+      "scryfall_uri": "https://scryfall.com/card/tsr/29/mycologist?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T07:31:10Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.jpg?1783927870",
+        "normal": "https://cards.scryfall.io/normal/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.jpg?1783927870",
+        "large": "https://cards.scryfall.io/large/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.jpg?1783927870",
+        "png": "https://cards.scryfall.io/png/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.png?1783927870",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.jpg?1783927870",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.jpg?1783927870",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.webp?1783927870",
+        "grid": "https://cards.scryfall.io/grid/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.webp?1783927870",
+        "display": "https://cards.scryfall.io/display/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.webp?1783927870",
+        "art": "https://cards.scryfall.io/art/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.webp?1783927870",
+        "crop": "https://cards.scryfall.io/crop/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.webp?1783927870",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/c/cca60d13-137f-4438-bc51-7ea02ec3c515.jpg?1783927870"
+      },
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "type_line": "Creature — Human Druid",
+      "oracle_text": "At the beginning of your upkeep, put a spore counter on this creature.\nRemove three spore counters from this creature: Create a 1/1 green Saproling creature token.\nSacrifice a Saproling: You gain 2 life.",
+      "power": "0",
+      "toughness": "2",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "all_parts": [
+        {
+          "object": "related_card",
+          "id": "ed58cd8c-b11a-4109-b789-0eb92eaf0184",
+          "component": "token",
+          "name": "Saproling",
+          "type_line": "Token Creature — Saproling",
+          "uri": "https://api.scryfall.com/cards/ed58cd8c-b11a-4109-b789-0eb92eaf0184"
+        },
+        {
+          "object": "related_card",
+          "id": "cca60d13-137f-4438-bc51-7ea02ec3c515",
+          "component": "combo_piece",
+          "name": "Mycologist",
+          "type_line": "Creature — Human Druid",
+          "uri": "https://api.scryfall.com/cards/cca60d13-137f-4438-bc51-7ea02ec3c515"
+        }
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "11e90d1b-0502-43e6-b056-e24836523c13",
+      "set": "tsr",
+      "set_name": "Time Spiral Remastered",
+      "set_type": "masters",
+      "set_uri": "https://api.scryfall.com/sets/11e90d1b-0502-43e6-b056-e24836523c13",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Atsr&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/tsr?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/cca60d13-137f-4438-bc51-7ea02ec3c515/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aaf0bf083-0624-4ccd-b282-a35937e925fe&unique=prints",
+      "collector_number": "29",
+      "digital": false,
+      "rarity": "uncommon",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Kev Walker",
+      "artist_ids": [
+        "f366a0ee-a0cd-466d-ba6a-90058c7a31a6"
+      ],
+      "illustration_id": "af54b901-349f-4858-bac8-c33824b93b8f",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 19579,
+      "penny_rank": 17566,
+      "preview": {
+        "source": "Wizards of the Coast",
+        "source_uri": "https://magic.wizards.com/en/articles/archive/card-preview/its-time-time-spiral-remastered-2021-02-25",
+        "previewed_at": "2021-02-25"
+      },
+      "prices": {
+        "usd": "0.30",
+        "usd_foil": "0.46",
+        "usd_etched": null,
+        "eur": "0.13",
+        "eur_foil": "0.22",
+        "tix": "0.04"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=509394&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMycologist",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMycologist",
+        "edhrec": "https://edhrec.com/route/?cc=Mycologist"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F233396%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=542606&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/86421?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "treefolk",
+          "fungi",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early blocker",
+          "botanical practitioner",
+          "token production"
+        ],
+        "note": "An owner-nominated Human Druid cultivating Saprolings for a deliberately low-power grove. Its early 0/2 body and later tokens work without green mana. Black Fungi can supply compatible green Saprolings for its sacrifice ability; its own tokens can feed the partner's general sacrifice effects.",
+        "caution": "Slow token production requires three spore counters. The bookkeeping and delay make it a lower priority than a straightforward two-drop.",
+        "manaNote": "Costs 1W; neither the token nor life-gain ability needs green mana.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "3dc08461-bec6-4a18-b782-da4c92abb789",
+      "oracle_id": "cf7bb5d4-c33f-4879-a793-6d6f2a4d94be",
+      "multiverse_ids": [
+        629751
+      ],
+      "mtgo_id": 116888,
+      "arena_id": 86982,
+      "tcgplayer_id": 513897,
+      "cardmarket_id": 729960,
+      "name": "Scarecrow Guide",
+      "lang": "en",
+      "released_at": "2023-09-08",
+      "uri": "https://api.scryfall.com/cards/3dc08461-bec6-4a18-b782-da4c92abb789",
+      "scryfall_uri": "https://scryfall.com/card/woe/250/scarecrow-guide?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T03:57:37Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.jpg?1783915057",
+        "normal": "https://cards.scryfall.io/normal/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.jpg?1783915057",
+        "large": "https://cards.scryfall.io/large/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.jpg?1783915057",
+        "png": "https://cards.scryfall.io/png/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.png?1783915057",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.jpg?1783915057",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.jpg?1783915057",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.webp?1783915057",
+        "grid": "https://cards.scryfall.io/grid/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.webp?1783915057",
+        "display": "https://cards.scryfall.io/display/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.webp?1783915057",
+        "art": "https://cards.scryfall.io/art/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.webp?1783915057",
+        "crop": "https://cards.scryfall.io/crop/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.webp?1783915057",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/d/3dc08461-bec6-4a18-b782-da4c92abb789.jpg?1783915057"
+      },
+      "mana_cost": "{2}",
+      "cmc": 2,
+      "type_line": "Artifact Creature — Scarecrow",
+      "oracle_text": "Reach\n{1}: Add one mana of any color. Activate only once each turn.",
+      "power": "2",
+      "toughness": "1",
+      "colors": [],
+      "color_identity": [],
+      "keywords": [
+        "Reach"
+      ],
+      "produced_mana": [
+        "B",
+        "G",
+        "R",
+        "U",
+        "W"
+      ],
+      "legalities": {
+        "standard": "legal",
+        "future": "legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "arena",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "79139661-13ee-43c4-8bad-a8c069f1a1df",
+      "set": "woe",
+      "set_name": "Wilds of Eldraine",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/79139661-13ee-43c4-8bad-a8c069f1a1df",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Awoe&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/woe?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/3dc08461-bec6-4a18-b782-da4c92abb789/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Acf7bb5d4-c33f-4879-a793-6d6f2a4d94be&unique=prints",
+      "collector_number": "250",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "\"You're doing a splendid job, my noble stitched friend. Not a single bird has attacked us!\"\n—Troyan",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Carlos Palma Cruchaga",
+      "artist_ids": [
+        "f0c43e1b-1853-4abc-8a1b-d7dda6c1d592"
+      ],
+      "illustration_id": "331c3ca2-7cda-4d54-b80e-f91e97c859eb",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 14953,
+      "prices": {
+        "usd": "0.30",
+        "usd_foil": "0.24",
+        "usd_etched": null,
+        "eur": "0.08",
+        "eur_foil": "0.12",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=629751&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DScarecrow%2BGuide",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DScarecrow%2BGuide",
+        "edhrec": "https://edhrec.com/route/?cc=Scarecrow+Guide"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F513897%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=729960&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/116888?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "reach",
+          "mana filtering"
+        ],
+        "note": "A colorless crop-guardian candidate for the grove, a looser thematic ally rather than a botanical creature. A two-mana 2/1 with reach supplies an early body, and its filtering can help either packet's colors.",
+        "caution": "Its mana ability converts one mana into one mana and can be used only once per turn; it is not ramp.",
+        "manaNote": "Costs 2 generic mana. Filtering costs 1 generic mana to produce one mana of any color.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "4552650d-242e-4f8b-9359-d4aa19207fac",
+      "oracle_id": "ded2fc21-1a69-48f8-865a-467e21b2758b",
+      "multiverse_ids": [
+        184552
+      ],
+      "mtgo_id": 30678,
+      "mtgo_foil_id": 30679,
+      "name": "Juniper Order Advocate",
+      "lang": "en",
+      "released_at": "2008-09-22",
+      "uri": "https://api.scryfall.com/cards/4552650d-242e-4f8b-9359-d4aa19207fac",
+      "scryfall_uri": "https://scryfall.com/card/me2/20/juniper-order-advocate?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T11:37:20Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.jpg?1783942640",
+        "normal": "https://cards.scryfall.io/normal/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.jpg?1783942640",
+        "large": "https://cards.scryfall.io/large/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.jpg?1783942640",
+        "png": "https://cards.scryfall.io/png/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.png?1783942640",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.jpg?1783942640",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.jpg?1783942640",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.webp?1783942640",
+        "grid": "https://cards.scryfall.io/grid/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.webp?1783942640",
+        "display": "https://cards.scryfall.io/display/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.webp?1783942640",
+        "art": "https://cards.scryfall.io/art/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.webp?1783942640",
+        "crop": "https://cards.scryfall.io/crop/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.webp?1783942640",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/5/4552650d-242e-4f8b-9359-d4aa19207fac.jpg?1783942640"
+      },
+      "mana_cost": "{2}{W}",
+      "cmc": 3,
+      "type_line": "Creature — Human Knight",
+      "oracle_text": "As long as this creature is untapped, green creatures you control get +1/+1.",
+      "power": "1",
+      "toughness": "2",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "not_legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "7d51a13b-dcd2-4ec2-b3a7-c89288e00b4e",
+      "set": "me2",
+      "set_name": "Masters Edition II",
+      "set_type": "masters",
+      "set_uri": "https://api.scryfall.com/sets/7d51a13b-dcd2-4ec2-b3a7-c89288e00b4e",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ame2&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/me2?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/4552650d-242e-4f8b-9359-d4aa19207fac/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aded2fc21-1a69-48f8-865a-467e21b2758b&unique=prints",
+      "collector_number": "20",
+      "digital": true,
+      "rarity": "uncommon",
+      "flavor_text": "\"In these troubled times, we alone carry the hope of reconciliation between Elf and Human.\"\n—Jaeuhl Carthalion, Juniper Order advocate",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Douglas Shuler",
+      "artist_ids": [
+        "a9ddb513-51c7-455c-ab8f-5b90aae9f75b"
+      ],
+      "illustration_id": "973f74f8-789e-4866-a411-700e85dcc364",
+      "border_color": "black",
+      "frame": "1997",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 30850,
+      "prices": {
+        "usd": null,
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": null,
+        "eur_foil": null,
+        "tix": "0.06"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=184552&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DJuniper%2BOrder%2BAdvocate",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DJuniper%2BOrder%2BAdvocate",
+        "edhrec": "https://edhrec.com/route/?cc=Juniper+Order+Advocate"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fmagic%2Fproduct%3FproductLineName%3Dmagic%26q%3DJuniper%2BOrder%2BAdvocate%26view%3Dgrid",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Juniper+Order+Advocate&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/30678?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [
+        {
+          "object": "ruling",
+          "oracle_id": "ded2fc21-1a69-48f8-865a-467e21b2758b",
+          "source": "wotc",
+          "published_at": "2008-10-01",
+          "comment": "If Juniper Order Advocate somehow becomes green, its ability will affect itself."
+        }
+      ],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "green creature support",
+          "grove ally"
+        ],
+        "note": "The owner's link points to Advocate, despite its visible Druid label. A white Human Knight whose untapped anthem supports green Plants and Lands partners. Black Fungi may also create green Saprolings, so the bonus is not automatically blank in a white-black deck.",
+        "caution": "A three-mana 1/2 is weak without green creatures. It does not boost white Treefolk or black Fungus bodies, and the bonus switches off when it taps; lower priority for a packet that must work with all partners.",
+        "manaNote": "Costs 2W; its bonus cares about creature color, not spending green mana.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "3b9256e2-b59c-4997-91c1-4c565746d53d",
+      "oracle_id": "ad88bf37-bbb4-46f0-9994-1863c7c31a2a",
+      "multiverse_ids": [
+        380433
+      ],
+      "mtgo_id": 52066,
+      "mtgo_foil_id": 52067,
+      "tcgplayer_id": 82289,
+      "cardmarket_id": 266671,
+      "name": "Harvestguard Alseids",
+      "lang": "en",
+      "released_at": "2014-05-02",
+      "uri": "https://api.scryfall.com/cards/3b9256e2-b59c-4997-91c1-4c565746d53d",
+      "scryfall_uri": "https://scryfall.com/card/jou/13/harvestguard-alseids?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:44:19Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.jpg?1783939459",
+        "normal": "https://cards.scryfall.io/normal/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.jpg?1783939459",
+        "large": "https://cards.scryfall.io/large/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.jpg?1783939459",
+        "png": "https://cards.scryfall.io/png/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.png?1783939459",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.jpg?1783939459",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.jpg?1783939459",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.webp?1783939459",
+        "grid": "https://cards.scryfall.io/grid/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.webp?1783939459",
+        "display": "https://cards.scryfall.io/display/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.webp?1783939459",
+        "art": "https://cards.scryfall.io/art/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.webp?1783939459",
+        "crop": "https://cards.scryfall.io/crop/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.webp?1783939459",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/b/3b9256e2-b59c-4997-91c1-4c565746d53d.jpg?1783939459"
+      },
+      "mana_cost": "{2}{W}",
+      "cmc": 3,
+      "type_line": "Enchantment Creature — Nymph",
+      "oracle_text": "Constellation — Whenever this creature or another enchantment you control enters, prevent all damage that would be dealt to target creature this turn.",
+      "power": "2",
+      "toughness": "3",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Constellation"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "204d2dca-1887-4721-9558-164aa7bbeb4f",
+      "set": "jou",
+      "set_name": "Journey into Nyx",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/204d2dca-1887-4721-9558-164aa7bbeb4f",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ajou&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/jou?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/3b9256e2-b59c-4997-91c1-4c565746d53d/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Aad88bf37-bbb4-46f0-9994-1863c7c31a2a&unique=prints",
+      "collector_number": "13",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "Not all shields are forged of iron or bronze.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Igor Kieryluk",
+      "artist_ids": [
+        "9c3e9d17-509f-485c-9360-46d897ce716b"
+      ],
+      "illustration_id": "97505c25-956b-4f5c-9e66-32da422a675c",
+      "border_color": "black",
+      "frame": "2003",
+      "frame_effects": [
+        "enchantment"
+      ],
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 17815,
+      "penny_rank": 14991,
+      "prices": {
+        "usd": "0.09",
+        "usd_foil": "0.44",
+        "usd_etched": null,
+        "eur": "0.09",
+        "eur_foil": "0.26",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=380433&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DHarvestguard%2BAlseids",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DHarvestguard%2BAlseids",
+        "edhrec": "https://edhrec.com/route/?cc=Harvestguard+Alseids"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F82289%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=266671&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/52066?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [
+        {
+          "object": "ruling",
+          "oracle_id": "ad88bf37-bbb4-46f0-9994-1863c7c31a2a",
+          "source": "wotc",
+          "published_at": "2014-04-26",
+          "comment": "A constellation ability triggers whenever an enchantment enters the battlefield under your control for any reason. Enchantments with other card types, such as enchantment creatures, will also cause constellation abilities to trigger."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "ad88bf37-bbb4-46f0-9994-1863c7c31a2a",
+          "source": "wotc",
+          "published_at": "2014-04-26",
+          "comment": "An Aura spell without bestow that has an illegal target when it tries to resolve won't resolve and will be put into its owner's graveyard. It won't enter the battlefield and constellation abilities won't trigger. An Aura spell with bestow won't be countered this way. It will revert to being an enchantment creature and resolve, entering the battlefield and triggering constellation abilities."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "ad88bf37-bbb4-46f0-9994-1863c7c31a2a",
+          "source": "wotc",
+          "published_at": "2014-04-26",
+          "comment": "When an enchantment enters the battlefield under your control, each constellation ability of permanents you control will trigger. You can put these abilities on the stack in any order. The last ability you put on the stack will be the first one that resolves."
+        }
+      ],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "nature spirit",
+          "combat protection",
+          "enchantment support"
+        ],
+        "note": "An owner-nominated Nymph for the grove's nature-spirit theme. Its constellation ability triggers on its own arrival, so playing it before combat can protect an existing attacker from damage that turn without needing flash or another enchantment. Hoofprints and other enchantments can trigger it again.",
+        "caution": "Three mana is above the main one- and two-drop gap. Prevention only lasts that turn and does not stop destroy, exile, or toughness reduction; further triggers depend on enchantments.",
+        "manaNote": "Costs 2W for a 2/3; no partner color is required.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "e1410d10-476a-4ed2-ae44-75383ed0e359",
+      "oracle_id": "0eb0c9d2-bc5a-4ba3-bd83-57af1da51c3b",
+      "multiverse_ids": [
+        373733
+      ],
+      "mtgo_id": 50318,
+      "mtgo_foil_id": 50319,
+      "tcgplayer_id": 71051,
+      "cardmarket_id": 264070,
+      "name": "Observant Alseid",
+      "lang": "en",
+      "released_at": "2013-09-27",
+      "uri": "https://api.scryfall.com/cards/e1410d10-476a-4ed2-ae44-75383ed0e359",
+      "scryfall_uri": "https://scryfall.com/card/ths/24/observant-alseid?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T10:50:09Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.jpg?1783939809",
+        "normal": "https://cards.scryfall.io/normal/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.jpg?1783939809",
+        "large": "https://cards.scryfall.io/large/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.jpg?1783939809",
+        "png": "https://cards.scryfall.io/png/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.png?1783939809",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.jpg?1783939809",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.jpg?1783939809",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.webp?1783939809",
+        "grid": "https://cards.scryfall.io/grid/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.webp?1783939809",
+        "display": "https://cards.scryfall.io/display/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.webp?1783939809",
+        "art": "https://cards.scryfall.io/art/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.webp?1783939809",
+        "crop": "https://cards.scryfall.io/crop/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.webp?1783939809",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/1/e1410d10-476a-4ed2-ae44-75383ed0e359.jpg?1783939809"
+      },
+      "mana_cost": "{2}{W}",
+      "cmc": 3,
+      "type_line": "Enchantment Creature — Nymph",
+      "oracle_text": "Bestow {4}{W} (If you cast this card for its bestow cost, it's an Aura spell with enchant creature. It becomes a creature again if it's not attached.)\nVigilance\nEnchanted creature gets +2/+2 and has vigilance.",
+      "power": "2",
+      "toughness": "2",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Vigilance",
+        "Bestow"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "69093d6f-e25a-41a4-8cf5-688d7f11c0fb",
+      "set": "ths",
+      "set_name": "Theros",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/69093d6f-e25a-41a4-8cf5-688d7f11c0fb",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aths&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/ths?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/e1410d10-476a-4ed2-ae44-75383ed0e359/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A0eb0c9d2-bc5a-4ba3-bd83-57af1da51c3b&unique=prints",
+      "collector_number": "24",
+      "digital": false,
+      "rarity": "common",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Todd Lockwood",
+      "artist_ids": [
+        "d0b9f3cc-13fb-42b6-bc43-b034728e5c7b"
+      ],
+      "illustration_id": "16cb18c1-bb16-4ba2-95d3-a1349f9f360e",
+      "border_color": "black",
+      "frame": "2003",
+      "frame_effects": [
+        "enchantment"
+      ],
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 21753,
+      "penny_rank": 17624,
+      "prices": {
+        "usd": "0.08",
+        "usd_foil": "0.28",
+        "usd_etched": null,
+        "eur": "0.09",
+        "eur_foil": "0.33",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=373733&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DObservant%2BAlseid",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DObservant%2BAlseid",
+        "edhrec": "https://edhrec.com/route/?cc=Observant+Alseid"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F71051%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=264070&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/50318?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [
+        {
+          "object": "ruling",
+          "oracle_id": "0eb0c9d2-bc5a-4ba3-bd83-57af1da51c3b",
+          "source": "wotc",
+          "published_at": "2013-09-15",
+          "comment": "On the stack, a spell with bestow is either a creature spell or an Aura spell. It's never both, although it's an enchantment spell in either case."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "0eb0c9d2-bc5a-4ba3-bd83-57af1da51c3b",
+          "source": "wotc",
+          "published_at": "2013-09-15",
+          "comment": "Unlike other Aura spells, an Aura spell with bestow isn't countered if its target is illegal as it begins to resolve. Rather, the effect making it an Aura spell ends, it loses enchant creature, it returns to being an enchantment creature spell, and it resolves and enters the battlefield as an enchantment creature."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "0eb0c9d2-bc5a-4ba3-bd83-57af1da51c3b",
+          "source": "wotc",
+          "published_at": "2013-09-15",
+          "comment": "Unlike other Auras, an Aura with bestow isn't put into its owner's graveyard if it becomes unattached. Rather, the effect making it an Aura ends, it loses enchant creature, and it remains on the battlefield as an enchantment creature. It can attack (and its {T} abilities can be activated, if it has any) on the turn it becomes unattached if it's been under your control continuously, even as an Aura, since your most recent turn began."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "0eb0c9d2-bc5a-4ba3-bd83-57af1da51c3b",
+          "source": "wotc",
+          "published_at": "2013-09-15",
+          "comment": "If a permanent with bestow enters the battlefield by any method other than being cast, it will be an enchantment creature. You can't choose to pay the bestow cost and have it become an Aura."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "0eb0c9d2-bc5a-4ba3-bd83-57af1da51c3b",
+          "source": "wotc",
+          "published_at": "2013-09-15",
+          "comment": "Auras attached to a creature don't become tapped when the creature becomes tapped. Except in some rare cases, an Aura with bestow remains untapped when it becomes unattached and becomes a creature."
+        }
+      ],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "nature spirit",
+          "vigilance",
+          "late creature enhancement"
+        ],
+        "note": "An owner-nominated Nymph that can be played as a three-mana 2/2 with vigilance or later bestowed to strengthen a creature from either packet. It does not require other enchantments to function.",
+        "caution": "Neither the three-mana body nor five-mana bestow improves the one- and two-drop gap. Bestow's creature/Aura transitions add rules load, so retain as a lower-priority or cube candidate.",
+        "manaNote": "Creature cost 2W; optional bestow cost 4W.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "dc02d647-b95b-4442-a924-64a4c94a4e8d",
+      "oracle_id": "d39df714-bd0b-4de8-b9df-55713bab7f35",
+      "multiverse_ids": [
+        562893
+      ],
+      "mtgo_id": 100008,
+      "tcgplayer_id": 273016,
+      "cardmarket_id": 660259,
+      "name": "Beckoning Will-o'-Wisp",
+      "lang": "en",
+      "released_at": "2022-06-10",
+      "uri": "https://api.scryfall.com/cards/dc02d647-b95b-4442-a924-64a4c94a4e8d",
+      "scryfall_uri": "https://scryfall.com/card/clb/10/beckoning-will-o-wisp?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T06:06:58Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.jpg?1783922818",
+        "normal": "https://cards.scryfall.io/normal/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.jpg?1783922818",
+        "large": "https://cards.scryfall.io/large/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.jpg?1783922818",
+        "png": "https://cards.scryfall.io/png/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.png?1783922818",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.jpg?1783922818",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.jpg?1783922818",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.webp?1783922818",
+        "grid": "https://cards.scryfall.io/grid/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.webp?1783922818",
+        "display": "https://cards.scryfall.io/display/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.webp?1783922818",
+        "art": "https://cards.scryfall.io/art/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.webp?1783922818",
+        "crop": "https://cards.scryfall.io/crop/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.webp?1783922818",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/c/dc02d647-b95b-4442-a924-64a4c94a4e8d.jpg?1783922818"
+      },
+      "mana_cost": "{2}{W}",
+      "cmc": 3,
+      "type_line": "Creature — Spirit",
+      "oracle_text": "Flying\nLure the Unwary — At the beginning of combat on your turn, choose an opponent.\nCreatures attacking the last chosen player get +1/+0.",
+      "power": "1",
+      "toughness": "3",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying",
+        "Lure the Unwary"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "not_legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+      "set": "clb",
+      "set_name": "Commander Legends: Battle for Baldur's Gate",
+      "set_type": "draft_innovation",
+      "set_uri": "https://api.scryfall.com/sets/5e4c3fe8-fd57-4b20-ad56-c03790a16cea",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Aclb&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/clb?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/dc02d647-b95b-4442-a924-64a4c94a4e8d/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3Ad39df714-bd0b-4de8-b9df-55713bab7f35&unique=prints",
+      "collector_number": "10",
+      "digital": false,
+      "rarity": "uncommon",
+      "flavor_text": "Follow the light at your own risk.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Sam White",
+      "artist_ids": [
+        "66756146-32f8-4513-9aae-75a8e5117585"
+      ],
+      "illustration_id": "2c0d715d-b7a7-4a1f-b786-c8fa1b622215",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 20669,
+      "preview": {
+        "source": "Geekculture",
+        "source_uri": "https://geekculture.co/magic-the-gathering-commander-legends-battle-for-baldurs-gate-preview-beckoning-will-o-wisp/",
+        "previewed_at": "2022-05-24"
+      },
+      "prices": {
+        "usd": "0.21",
+        "usd_foil": "0.24",
+        "usd_etched": null,
+        "eur": "0.07",
+        "eur_foil": "0.20",
+        "tix": "0.06"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=562893&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DBeckoning%2BWill-o%2527-Wisp",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DBeckoning%2BWill-o%2527-Wisp",
+        "edhrec": "https://edhrec.com/route/?cc=Beckoning+Will-o%27-Wisp"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F273016%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=660259&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/100008?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "nature spirit",
+          "flying",
+          "attack support"
+        ],
+        "note": "The owner proposes a will-o'-wisp luring enemies into the grove as a thematic ally. A 1/3 flyer whose chosen-opponent attack bonus supports creatures from either packet, whether large Treefolk or a group of Fungus tokens.",
+        "caution": "Three mana, so not a solution to the earliest turns. The bonus applies to creatures attacking the last chosen player, not just your creatures; this matters if reused in multiplayer.",
+        "manaNote": "Costs 2W; the attack bonus needs no additional mana or partner color.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "44e4f5e6-935e-429f-89b4-4571376f442e",
+      "oracle_id": "49984248-4800-4f46-933a-fedd970ae910",
+      "multiverse_ids": [
+        74097
+      ],
+      "mtgo_id": 21665,
+      "mtgo_foil_id": 21666,
+      "tcgplayer_id": 12291,
+      "cardmarket_id": 12849,
+      "name": "Kami of False Hope",
+      "lang": "en",
+      "released_at": "2005-02-04",
+      "uri": "https://api.scryfall.com/cards/44e4f5e6-935e-429f-89b4-4571376f442e",
+      "scryfall_uri": "https://scryfall.com/card/bok/10/kami-of-false-hope?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T12:03:34Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.jpg?1783944214",
+        "normal": "https://cards.scryfall.io/normal/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.jpg?1783944214",
+        "large": "https://cards.scryfall.io/large/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.jpg?1783944214",
+        "png": "https://cards.scryfall.io/png/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.png?1783944214",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.jpg?1783944214",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.jpg?1783944214",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.webp?1783944214",
+        "grid": "https://cards.scryfall.io/grid/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.webp?1783944214",
+        "display": "https://cards.scryfall.io/display/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.webp?1783944214",
+        "art": "https://cards.scryfall.io/art/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.webp?1783944214",
+        "crop": "https://cards.scryfall.io/crop/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.webp?1783944214",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/4/44e4f5e6-935e-429f-89b4-4571376f442e.jpg?1783944214"
+      },
+      "mana_cost": "{W}",
+      "cmc": 1,
+      "type_line": "Creature — Spirit",
+      "oracle_text": "Sacrifice this creature: Prevent all combat damage that would be dealt this turn.",
+      "power": "1",
+      "toughness": "1",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "d4b88587-a1f5-4b47-9e24-78ec9e57bd0e",
+      "set": "bok",
+      "set_name": "Betrayers of Kamigawa",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/d4b88587-a1f5-4b47-9e24-78ec9e57bd0e",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Abok&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/bok?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/44e4f5e6-935e-429f-89b4-4571376f442e/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A49984248-4800-4f46-933a-fedd970ae910&unique=prints",
+      "collector_number": "10",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "\"Across the rift of battle, a bridge of gossamer. And for one moment, it holds.\"\n—Snow-Fur, kitsune poet",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Daren Bader",
+      "artist_ids": [
+        "7da1a585-c875-45e4-b322-5da9e8e1f651"
+      ],
+      "illustration_id": "194ecbb8-e077-4fe3-871c-066e5c1b0fb7",
+      "border_color": "black",
+      "frame": "2003",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 5429,
+      "penny_rank": 1788,
+      "prices": {
+        "usd": "1.75",
+        "usd_foil": "11.88",
+        "usd_etched": null,
+        "eur": "0.46",
+        "eur_foil": "5.69",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=74097&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DKami%2Bof%2BFalse%2BHope",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DKami%2Bof%2BFalse%2BHope",
+        "edhrec": "https://edhrec.com/route/?cc=Kami+of+False+Hope"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F12291%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=12849&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/21665?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "nature spirit",
+          "combat prevention"
+        ],
+        "note": "The owner identifies tree-like spiritual imagery as a grove fit despite its Spirit type. A one-mana body can later sacrifice itself to prevent all combat damage that turn, buying time for larger Treefolk or Hoofprints tokens.",
+        "caution": "Prevents your combat damage too. It buys one combat rather than providing a durable blocker; choose sacrifice timing deliberately.",
+        "manaNote": "Costs W for a 1/1; sacrificing it needs no mana.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "e0bb39fb-29fc-4e69-9918-47277b8af0d3",
+      "oracle_id": "4502b24f-604b-4e36-9168-31c1a1ab4dab",
+      "multiverse_ids": [
+        6498
+      ],
+      "tcgplayer_id": 99,
+      "cardmarket_id": 9950,
+      "name": "Angelic Wall",
+      "lang": "en",
+      "released_at": "1998-06-24",
+      "uri": "https://api.scryfall.com/cards/e0bb39fb-29fc-4e69-9918-47277b8af0d3",
+      "scryfall_uri": "https://scryfall.com/card/p02/10/angelic-wall?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T12:41:33Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.jpg?1783946493",
+        "normal": "https://cards.scryfall.io/normal/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.jpg?1783946493",
+        "large": "https://cards.scryfall.io/large/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.jpg?1783946493",
+        "png": "https://cards.scryfall.io/png/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.png?1783946493",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.jpg?1783946493",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.jpg?1783946493",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.webp?1783946493",
+        "grid": "https://cards.scryfall.io/grid/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.webp?1783946493",
+        "display": "https://cards.scryfall.io/display/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.webp?1783946493",
+        "art": "https://cards.scryfall.io/art/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.webp?1783946493",
+        "crop": "https://cards.scryfall.io/crop/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.webp?1783946493",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/0/e0bb39fb-29fc-4e69-9918-47277b8af0d3.jpg?1783946493"
+      },
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "type_line": "Creature — Wall",
+      "oracle_text": "Defender (This creature can't attack.)\nFlying",
+      "power": "0",
+      "toughness": "4",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Flying",
+        "Defender"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": false,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "ac67f18a-4f0e-407e-bab1-a9fe4f659565",
+      "set": "p02",
+      "set_name": "Portal Second Age",
+      "set_type": "starter",
+      "set_uri": "https://api.scryfall.com/sets/ac67f18a-4f0e-407e-bab1-a9fe4f659565",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Ap02&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/p02?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/e0bb39fb-29fc-4e69-9918-47277b8af0d3/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A4502b24f-604b-4e36-9168-31c1a1ab4dab&unique=prints",
+      "collector_number": "10",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "Be at peace, and observe its beauty. Be at war, and feel its justice.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Rebecca Guay",
+      "artist_ids": [
+        "f8f662fa-d597-46a3-afb2-91d6e13243e2"
+      ],
+      "illustration_id": "3bbd78d9-20a8-4813-86d4-bc823bf1bc54",
+      "border_color": "black",
+      "frame": "1997",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 8810,
+      "penny_rank": 11465,
+      "prices": {
+        "usd": "6.79",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.71",
+        "eur_foil": null,
+        "tix": null
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=6498&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DAngelic%2BWall",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DAngelic%2BWall",
+        "edhrec": "https://edhrec.com/route/?cc=Angelic+Wall"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F99%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=9950&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Angelic+Wall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early blocker",
+          "flying defense",
+          "grove guardian"
+        ],
+        "note": "The owner endorses Angelic Wall's forest and spiritual-wing imagery as a grove fit despite its actual Wall type. A two-mana 0/4 flyer with defender buys time for larger Treefolk and Hoofprints. This is the Portal Second Age printing returned by the forest-art search; the tree-art search instead returned John Avon's Tenth Edition illustration. The exact printing intended by the owner has not been confirmed.",
+        "caution": "Cannot attack, so it supplies early defense rather than offensive pressure. The thematic art reading is owner-supplied, not an independently inspected illustration claim.",
+        "manaNote": "Costs 1W; no partner color or support mechanic required.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "81d7ad75-1fa9-4683-b0d0-737368de3796",
+      "oracle_id": "21bf5ae1-d7a0-406d-88fd-009dfa919096",
+      "multiverse_ids": [
+        107696
+      ],
+      "mtgo_id": 23927,
+      "mtgo_foil_id": 23928,
+      "tcgplayer_id": 13729,
+      "cardmarket_id": 13211,
+      "name": "Martyred Rusalka",
+      "lang": "en",
+      "released_at": "2006-02-03",
+      "uri": "https://api.scryfall.com/cards/81d7ad75-1fa9-4683-b0d0-737368de3796",
+      "scryfall_uri": "https://scryfall.com/card/gpt/12/martyred-rusalka?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T11:52:09Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.jpg?1783943529",
+        "normal": "https://cards.scryfall.io/normal/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.jpg?1783943529",
+        "large": "https://cards.scryfall.io/large/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.jpg?1783943529",
+        "png": "https://cards.scryfall.io/png/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.png?1783943529",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.jpg?1783943529",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.jpg?1783943529",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.webp?1783943529",
+        "grid": "https://cards.scryfall.io/grid/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.webp?1783943529",
+        "display": "https://cards.scryfall.io/display/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.webp?1783943529",
+        "art": "https://cards.scryfall.io/art/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.webp?1783943529",
+        "crop": "https://cards.scryfall.io/crop/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.webp?1783943529",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/1/81d7ad75-1fa9-4683-b0d0-737368de3796.jpg?1783943529"
+      },
+      "mana_cost": "{W}",
+      "cmc": 1,
+      "type_line": "Creature — Spirit",
+      "oracle_text": "{W}, Sacrifice a creature: Target creature can't attack this turn.",
+      "power": "1",
+      "toughness": "1",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "594b4d09-8ce1-494d-bdb2-842c124bd087",
+      "set": "gpt",
+      "set_name": "Guildpact",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/594b4d09-8ce1-494d-bdb2-842c124bd087",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Agpt&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/gpt?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/81d7ad75-1fa9-4683-b0d0-737368de3796/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A21bf5ae1-d7a0-406d-88fd-009dfa919096&unique=prints",
+      "collector_number": "12",
+      "digital": false,
+      "rarity": "uncommon",
+      "flavor_text": "Rakdos cultists hanged her for sport in the township square. Her ghost now stands vigil at what has become known as the Tree of Weeping.",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Alex Horley-Orlandelli",
+      "artist_ids": [
+        "1631a2ad-bf03-4ab9-b86c-60da982d58a1"
+      ],
+      "illustration_id": "690c4640-ade0-446b-be5e-963db41688ba",
+      "border_color": "black",
+      "frame": "2003",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 21364,
+      "penny_rank": 16072,
+      "prices": {
+        "usd": "0.16",
+        "usd_foil": "1.85",
+        "usd_etched": null,
+        "eur": "0.07",
+        "eur_foil": "0.54",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=107696&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DMartyred%2BRusalka",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DMartyred%2BRusalka",
+        "edhrec": "https://edhrec.com/route/?cc=Martyred+Rusalka"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F13729%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=13211&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/23927?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "nature spirit",
+          "attack prevention",
+          "sacrifice outlet"
+        ],
+        "note": "A one-mana Spirit with a direct tree connection in its printed flavor: the ghost keeps vigil at the Tree of Weeping. Its sacrifice ability can use tokens or death-value creatures from black Fungi to stop an opposing creature attacking that turn.",
+        "caution": "Activate before attackers are declared; it does not remove an already-attacking creature from combat. Each use costs white mana and a creature, and extra sacrifice choices add some complexity.",
+        "manaNote": "Costs W for a 1/1; ability costs W plus sacrificing a creature.",
+        "crossover": false
+      }
+    },
+    {
+      "object": "card",
+      "id": "dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56",
+      "oracle_id": "95f47e9b-0290-4ec4-a1ba-bc5a432ffab2",
+      "multiverse_ids": [
+        534762
+      ],
+      "resource_id": "86E8E61B7F08CBD4C56BFD031CBD0565EABF5475C0ECD5296F5540F766CE4DBA",
+      "mtgo_id": 92938,
+      "arena_id": 78333,
+      "tcgplayer_id": 247988,
+      "cardmarket_id": 574810,
+      "name": "Candlegrove Witch",
+      "lang": "en",
+      "released_at": "2021-09-24",
+      "uri": "https://api.scryfall.com/cards/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56",
+      "scryfall_uri": "https://scryfall.com/card/mid/8/candlegrove-witch?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T06:54:25Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.jpg?1783925665",
+        "normal": "https://cards.scryfall.io/normal/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.jpg?1783925665",
+        "large": "https://cards.scryfall.io/large/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.jpg?1783925665",
+        "png": "https://cards.scryfall.io/png/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.png?1783925665",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.jpg?1783925665",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.jpg?1783925665",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.webp?1783925665",
+        "grid": "https://cards.scryfall.io/grid/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.webp?1783925665",
+        "display": "https://cards.scryfall.io/display/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.webp?1783925665",
+        "art": "https://cards.scryfall.io/art/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.webp?1783925665",
+        "crop": "https://cards.scryfall.io/crop/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.webp?1783925665",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/e/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56.jpg?1783925665"
+      },
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "type_line": "Creature — Human Warlock",
+      "oracle_text": "Coven — At the beginning of combat on your turn, if you control three or more creatures with different powers, this creature gains flying until end of turn.",
+      "power": "2",
+      "toughness": "2",
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Coven"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "legal",
+        "timeless": "legal",
+        "gladiator": "legal",
+        "pioneer": "legal",
+        "modern": "legal",
+        "legacy": "legal",
+        "pauper": "legal",
+        "vintage": "legal",
+        "penny": "not_legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "legal",
+        "competitivebrawl": "legal",
+        "alchemy": "not_legal",
+        "paupercommander": "legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "arena",
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": false,
+      "variation": false,
+      "set_id": "44b8eb8f-fa23-401a-98b5-1fbb9871128e",
+      "set": "mid",
+      "set_name": "Innistrad: Midnight Hunt",
+      "set_type": "expansion",
+      "set_uri": "https://api.scryfall.com/sets/44b8eb8f-fa23-401a-98b5-1fbb9871128e",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3Amid&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/mid?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/dedfe6ea-cd43-4ec4-83a1-1f0f74e27f56/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A95f47e9b-0290-4ec4-a1ba-bc5a432ffab2&unique=prints",
+      "collector_number": "8",
+      "digital": false,
+      "rarity": "common",
+      "flavor_text": "\"Like a thousand candles fighting back the darkness, we are strongest when we stand together.\"",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Anna Christenson",
+      "artist_ids": [
+        "4db0516b-e162-444f-ba7d-73f7d17fe66c"
+      ],
+      "illustration_id": "feb6bd10-cf69-4a07-a657-3fe875bbafc9",
+      "border_color": "black",
+      "frame": "2015",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 25033,
+      "preview": {
+        "source": "Stephen Croke",
+        "source_uri": "https://twitter.com/crokeyz/status/1434823316620075013",
+        "previewed_at": "2021-09-06"
+      },
+      "prices": {
+        "usd": "0.18",
+        "usd_foil": "0.26",
+        "usd_etched": null,
+        "eur": "0.04",
+        "eur_foil": "0.05",
+        "tix": "0.03"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=534762&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DCandlegrove%2BWitch",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DCandlegrove%2BWitch",
+        "edhrec": "https://edhrec.com/route/?cc=Candlegrove+Witch"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F247988%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=574810&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/92938?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [
+        {
+          "object": "ruling",
+          "oracle_id": "95f47e9b-0290-4ec4-a1ba-bc5a432ffab2",
+          "source": "wotc",
+          "published_at": "2021-09-24",
+          "comment": "For three creatures to have different powers from one another, each of their powers needs to be different. A 1/1 creature, a 2/1 creature, and another 2/1 creature aren't three creatures with different powers, even though both 2/1 creatures have different power than the 1/1 creature."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "95f47e9b-0290-4ec4-a1ba-bc5a432ffab2",
+          "source": "wotc",
+          "published_at": "2021-09-24",
+          "comment": "A creature has different power from another if their powers are different numbers. For example, a 1/1 creature and a 2/1 creature have different powers."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "95f47e9b-0290-4ec4-a1ba-bc5a432ffab2",
+          "source": "wotc",
+          "published_at": "2021-09-24",
+          "comment": "Many coven abilities, such as that of Dawnhart Wardens above, are triggered abilities with intervening if clauses. You must control three or more creatures with different powers at the time the ability triggers and at the time the ability tries to resolve. They do not, however, need to be the same set of creatures in both cases."
+        }
+      ],
+      "research": {
+        "groups": [
+          "treefolk",
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "grove practitioner",
+          "conditional flying"
+        ],
+        "note": "A forest-art search lead and grove-practitioner candidate. Its two-mana 2/2 body works with every partner. Different-sized Treefolk, Fungi, and tokens may enable its optional flying payoff.",
+        "caution": "Coven checks for three or more creatures with different powers when the beginning-of-combat ability would trigger and when it resolves. Adds a board-counting condition; the Warlock type alone does not establish botanical identity.",
+        "manaNote": "Costs 1W; no partner color or additional mana payment needed for coven.",
+        "crossover": false
+      }
+    }
+  ],
+  "resolvedLeads": [
+    {
+      "suppliedLabel": "https://scryfall.com/card/ice/251/juniper-order-druid",
+      "destination": "https://scryfall.com/card/me2/20/juniper-order-advocate",
+      "resolution": "The linked white candidate is Juniper Order Advocate (2W 1/2 Human Knight; untapped anthem for green creatures). Juniper Order Druid is a different green card (2G 1/1 Human Cleric Druid; tap to untap a land). The Druid name was verified separately through Scryfall MCP and is not treated as a white candidate."
+    },
+    {
+      "kind": "art-search-overlap",
+      "treeCount": 64,
+      "forestCount": 22,
+      "forestOnly": 12,
+      "combinedUniqueOracleIds": 76,
+      "note": "Counts refer to bounded tree and forest art searches, not the number of curated candidates."
+    }
+  ]
+}

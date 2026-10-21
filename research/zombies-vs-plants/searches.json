@@ -1,0 +1,804 @@
+{
+  "researchedAt": "2026-10-21",
+  "coverage": "Explicit botanical Zombie crossover query is complete; other pools are curated candidates, not exhaustive decklists.",
+  "sources": [
+    "crossover-candidates.json",
+    "plant-candidates.json",
+    "zombie-candidates.json",
+    "mana-candidates.json",
+    "botanical-allies.json",
+    "additional-botanical-leads.json",
+    "necrobloom-candidate.json",
+    "living-lands.json",
+    "plant-support-spells.json",
+    "zombie-support-spells.json",
+    "white-grove-candidates.json",
+    "white-grove-birds.json",
+    "draft-v0.1-additions.json",
+    "interaction-priority.json",
+    "interaction-zombies.json",
+    "interaction-plants.json"
+  ],
+  "queries": [
+    {
+      "source": "crossover-candidates.json",
+      "query": "t:creature t:zombie (t:plant or t:treefolk or t:fungus) game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 11,
+      "hasMore": false
+    },
+    {
+      "source": "plant-candidates.json",
+      "query": "t:creature t:treefolk game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 113,
+      "hasMore": false
+    },
+    {
+      "source": "plant-candidates.json",
+      "query": "t:creature t:plant game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 98,
+      "hasMore": false
+    },
+    {
+      "source": "plant-candidates.json",
+      "query": "t:creature t:fungus game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 68,
+      "hasMore": false
+    },
+    {
+      "source": "plant-candidates.json",
+      "query": "(o:saproling or o:plant or o:treefolk or o:fungus) -t:creature game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 69,
+      "hasMore": false
+    },
+    {
+      "source": "zombie-candidates.json",
+      "query": "t:creature t:zombie c=b game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 416,
+      "hasMore": true
+    },
+    {
+      "source": "zombie-candidates.json",
+      "query": "t:creature t:zombie c=u game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 59,
+      "hasMore": false
+    },
+    {
+      "source": "zombie-candidates.json",
+      "query": "t:creature t:zombie c=w game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 12,
+      "hasMore": false
+    },
+    {
+      "source": "mana-candidates.json",
+      "query": "(!\"Thriving Grove\" or !\"Thriving Moor\" or !\"Thriving Isle\" or !\"Thriving Heath\" or !\"Shimmerdrift Vale\" or !\"Uncharted Haven\" or !\"Evolving Wilds\" or !\"Ash Barrens\" or !\"Secluded Courtyard\" or !\"Abundant Growth\" or !\"Unbridled Growth\" or !\"Springleaf Drum\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 12,
+      "hasMore": false
+    },
+    {
+      "source": "botanical-allies.json",
+      "query": "(!\"Wood Elemental\" or !\"Root Elemental\" or !\"Thorn Elemental\" or !\"Verdant Force\" or !\"Avenger of Zendikar\" or !\"Fertilid\" or !\"Leafkin Druid\" or !\"Briarhorn\" or !\"Timbermare\" or !\"Multani, Yavimaya's Avatar\" or !\"Phylath, World Sculptor\" or !\"Cavalier of Thorns\" or !\"Floral Spuzzem\" or !\"Silverglade Elemental\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 14,
+      "hasMore": false
+    },
+    {
+      "source": "botanical-allies.json",
+      "query": "t:creature t:zombie t:elemental game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 2,
+      "hasMore": false,
+      "selection": "Skullbriar is a botanical flavor crossover. Invasion of Azgol // Ashen Reaper was reviewed but not selected as botanical."
+    },
+    {
+      "source": "additional-botanical-leads.json",
+      "query": "(!\"Floral Spuzzem\" or !\"Wall of Kelp\" or !\"Singing Tree\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 3,
+      "hasMore": false
+    },
+    {
+      "source": "additional-botanical-leads.json",
+      "query": "(!\"Scarecrone\" or !\"Dryad Arbor\" or !\"Nessian Wanderer\" or !\"Kodama of the North Tree\" or !\"Splintering Wind\" or !\"Wicker Witch\" or !\"Wicker Warcrawler\" or !\"Woodcaller Automaton\" or !\"Rootwire Amalgam\" or !\"Kami of the Tended Garden\" or !\"Petalmane Baku\" or !\"Loam Dweller\" or !\"Birthing Boughs\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 13,
+      "hasMore": false
+    },
+    {
+      "source": "necrobloom-candidate.json",
+      "name": "The Necrobloom",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "living-lands.json",
+      "query": "(!\"Kormus Bell\" or !\"Living Lands\" or !\"Life and Limb\" or !\"Awakener Druid\" or !\"Llanowar Loamspeaker\" or !\"Sylvan Awakening\" or !\"Rude Awakening\" or !\"Animate Land\" or !\"Natural Affinity\" or !\"Treetop Village\" or !\"Hissing Quagmire\" or !\"Restless Cottage\" or !\"Lair of the Hydra\" or !\"Lumbering Falls\" or !\"Embodiment of Insight\" or !\"Sylvan Advocate\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 16,
+      "hasMore": false
+    },
+    {
+      "source": "living-lands.json",
+      "query": "(!\"Nissa, Who Shakes the World\" or !\"Wrenn and Realmbreaker\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 2,
+      "hasMore": false
+    },
+    {
+      "source": "living-lands.json",
+      "query": "(!\"Ambush Commander\" or !\"Awakening of Vitu-Ghazi\" or !\"Brave the Wilds\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 3,
+      "hasMore": false
+    },
+    {
+      "source": "living-lands.json",
+      "query": "(!\"Genju of the Cedars\" or !\"Fendeep Summoner\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 2,
+      "hasMore": false
+    },
+    {
+      "source": "living-lands.json",
+      "name": "Genju of the Fens",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "plant-support-spells.json",
+      "query": "(o:saproling or o:plant or o:treefolk or o:fungus) -t:creature game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 69,
+      "hasMore": false
+    },
+    {
+      "source": "plant-support-spells.json",
+      "query": "(name:\"Rootborn Defenses\" or name:\"Sundering Growth\" or name:\"Growing Ranks\" or name:\"Vines of Vastwood\" or name:\"Blossoming Defense\" or name:\"Wrap in Vigor\" or name:\"Barkskin\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 6,
+      "hasMore": false
+    },
+    {
+      "source": "plant-support-spells.json",
+      "query": "(name:\"Blossombind\" or name:\"Pinecone Strike\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 2,
+      "hasMore": false
+    },
+    {
+      "source": "zombie-support-spells.json",
+      "query": "(!\"Zombie Infestation\" or !\"Dread Summons\" or !\"Moan of the Unhallowed\" or !\"Gisa's Bidding\" or !\"Open the Graves\" or !\"Dreadhorde Invasion\" or !\"Rise of the Dread Marn\" or !\"Dread Return\" or !\"Victimize\" or !\"Return from Extinction\" or !\"Patriarch's Bidding\" or !\"Crippling Fear\" or !\"Stitch Together\" or !\"Curse of the Restless Dead\" or !\"Graf Harvest\" or !\"Necromancer's Stockpile\" or !\"Secrets of the Dead\" or !\"Hour of Eternity\" or !\"Forbidden Alchemy\" or !\"Corpse Churn\" or !\"Anointed Procession\" or !\"Embalmer's Tools\" or !\"Door of Destinies\" or !\"Liliana, Death's Majesty\" or !\"Liliana, Untouched by Death\" or !\"Vivisection\" or !\"Corpse Cobble\" or !\"From Under the Floorboards\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 28,
+      "hasMore": false
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Hoofprints of the Stag",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Beza, the Bounding Spring",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Scion of Vitu-Ghazi",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Flowering of the White Tree",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Juniper Order Rootweaver",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Alseid of Life's Bounty",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Dryad Militant",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Mycologist",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Scarecrow Guide",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Juniper Order Advocate",
+      "method": "Scryfall MCP exact English name lookup and official rulings",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Harvestguard Alseids",
+      "method": "Scryfall MCP exact English name lookup and official rulings",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Observant Alseid",
+      "method": "Scryfall MCP exact English name lookup and official rulings",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Beckoning Will-o'-Wisp",
+      "method": "Scryfall MCP exact English name lookup and official rulings",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "name": "Kami of False Hope",
+      "method": "Scryfall MCP exact English name lookup and official rulings",
+      "total": 1
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "query": "c:w -c:u -c:b -c:r -c:g art:tree t:creature mv<=2 game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 64,
+      "hasMore": false,
+      "treeOrForest": "tree",
+      "method": "Scryfall MCP search_cards",
+      "coverage": "Discovery query; selected thematic leads only, not all matching cards are included."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "query": "c:w -c:u -c:b -c:r -c:g art:forest t:creature mv<=2 game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 22,
+      "hasMore": false,
+      "treeOrForest": "forest",
+      "method": "Scryfall MCP search_cards",
+      "coverage": "Discovery query; selected thematic leads only, not all matching cards are included."
+    },
+    {
+      "source": "white-grove-birds.json",
+      "query": "c:w -c:u -c:b -c:r -c:g t:bird mv<=2 game:paper -is:funny date<=2026-10-21 unique:cards",
+      "method": "Scryfall MCP search_cards",
+      "total": 40,
+      "hasMore": false,
+      "note": "Owner's low-cost white Bird query, bounded to paper/non-funny cards by research cutoff. Results include Bird people; selected candidates were curated to literal birds."
+    },
+    {
+      "source": "white-grove-birds.json",
+      "query": "c=w t:bird mv=3 game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 40,
+      "hasMore": false,
+      "method": "Scryfall MCP search_cards; selected three actual Bird support candidates from 40 results."
+    },
+    {
+      "source": "white-grove-birds.json",
+      "name": "Eagle of the Watch",
+      "method": "Scryfall MCP exact-name lookup and rulings",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "query": "t:fungus c=b game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 13,
+      "hasMore": false
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Thriving Moor",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Ash Barrens",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Nissa's Zendikon",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Leafkin Druid",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Dawntreader Elk",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Rampaging Growth",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Cultivate",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Ram Through",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Return to Nature",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Fungal Fortitude",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Feed the Swarm",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Recover",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "query": "c=u t:zombie mv<=3 game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 28,
+      "hasMore": false,
+      "method": "Scryfall MCP search_cards; selected records only are retained here."
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Walking Corpse",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Zombie Goliath",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Murder",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Butcher Ghoul",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Headless Skaab",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Falcon Abomination",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Rooftop Nuisance",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Think Twice",
+      "method": "Scryfall MCP exact-name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Sultai Devotee",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Sludge Titan",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Mulch",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Grapple with the Past",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Regrowth",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Ram Through",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Rancor",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Return to Nature",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Sacred Cat",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Cast Out",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Thriving Heath",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Thriving Grove",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Sun-Dappled Celebrant",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Nature's Way",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Eviscerate",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Sleep Paralysis",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Essence Scatter",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Pulse of Murasa",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Fertilid",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "source": "draft-v0.1-additions.json",
+      "name": "Pacifism",
+      "method": "Scryfall MCP exact-name lookup (Pacifism pinned to M20 in MCP search)",
+      "total": 1
+    },
+    {
+      "source": "interaction-priority.json",
+      "query": "Infernal Grasp",
+      "method": "Scryfall MCP get_card_by_name",
+      "reason": "Find a cheap answer that remains usable from an empty board after first playtest feedback."
+    },
+    {
+      "source": "interaction-zombies.json",
+      "query": "Tragic Slip",
+      "method": "mcp__scryfall__get_card_by_name",
+      "total": 1,
+      "hasMore": false
+    },
+    {
+      "source": "interaction-zombies.json",
+      "query": "Bone Splinters",
+      "method": "mcp__scryfall__get_card_by_name",
+      "total": 1,
+      "hasMore": false
+    },
+    {
+      "source": "interaction-zombies.json",
+      "query": "Bite Down",
+      "method": "mcp__scryfall__get_card_by_name",
+      "total": 1,
+      "hasMore": false
+    },
+    {
+      "source": "interaction-zombies.json",
+      "query": "Chill of the Grave",
+      "method": "mcp__scryfall__get_card_by_name",
+      "total": 1,
+      "hasMore": false
+    },
+    {
+      "source": "interaction-zombies.json",
+      "query": "Desert's Hold",
+      "method": "mcp__scryfall__get_card_by_name",
+      "total": 1,
+      "hasMore": false
+    },
+    {
+      "source": "interaction-plants.json",
+      "name": "Lignify",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "interaction-plants.json",
+      "name": "Utopia Vow",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "interaction-plants.json",
+      "name": "Fungal Infection",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    },
+    {
+      "source": "interaction-plants.json",
+      "name": "Insidious Fungus",
+      "method": "Previously verified Scryfall MCP card snapshot retained in the local research catalogue; no new external lookup",
+      "total": 1
+    },
+    {
+      "source": "interaction-plants.json",
+      "name": "Sundering Growth",
+      "method": "Previously verified Scryfall MCP card snapshot retained in the local research catalogue; no new external lookup",
+      "total": 1
+    },
+    {
+      "source": "interaction-plants.json",
+      "name": "Martyred Rusalka",
+      "method": "Previously verified Scryfall MCP card snapshot retained in the local research catalogue; no new external lookup",
+      "total": 1
+    },
+    {
+      "source": "interaction-plants.json",
+      "name": "Feed the Swarm",
+      "method": "Previously verified Scryfall MCP card snapshot retained in the local research catalogue; no new external lookup",
+      "total": 1
+    },
+    {
+      "source": "interaction-plants.json",
+      "name": "Eaten Alive",
+      "method": "Scryfall MCP exact English name lookup",
+      "total": 1
+    }
+  ],
+  "discoverySources": [
+    {
+      "source": "additional-botanical-leads.json",
+      "url": "https://mtg.fandom.com/wiki/Plant",
+      "label": "MTG Wiki — Plant",
+      "use": "Discovery only",
+      "note": "Wiki trivia supplied research leads involving older botanical classifications. Current card types and rules were checked against Scryfall Oracle data; this wiki is not the rules authority."
+    },
+    {
+      "source": "additional-botanical-leads.json",
+      "url": "https://mtg.fandom.com/wiki/Spuzzem",
+      "label": "MTG Wiki — Spuzzem",
+      "use": "Discovery only",
+      "note": "The wiki's plant-like Elemental lead prompted verification of Floral Spuzzem, already recorded in botanical-allies.json. Current Scryfall data identifies it as an Elemental, not a Plant."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/ecc/64/hoofprints-of-the-stag",
+      "note": "Owner-nominated white botanical Elemental lead."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/blb/2/beza-the-bounding-spring",
+      "note": "Owner-nominated white botanical Elemental lead."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/dgm/7/scion-of-vitu-ghazi",
+      "note": "Owner-nominated white botanical Elemental lead."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/me2/20/juniper-order-advocate",
+      "note": "Owner's Juniper link destination; visible label instead names Juniper Order Druid."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/jou/13/harvestguard-alseids",
+      "note": "Owner-nominated white Nymph."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/ths/24/observant-alseid",
+      "note": "Owner-nominated white Nymph."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/clb/10/beckoning-will-o-wisp",
+      "note": "Owner-nominated grove spirit flavor."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/bok/10/kami-of-false-hope",
+      "note": "Owner-nominated tree-like spirit art."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/thb/1/alseid-of-lifes-bounty",
+      "note": "Owner-endorsed inexpensive nature spirit."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/tsr/29/mycologist",
+      "note": "Owner-nominated low-power fungal practitioner."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/dmu/22/juniper-order-rootweaver",
+      "note": "Owner-endorsed grove practitioner; optional green kicker."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/search?q=c%3Aw+-c%3Au+-c%3Ab+-c%3Ar+-c%3Ag+art%3Atree+t%3Acreature+mv%3C%3D2&unique=cards&as=grid&order=name",
+      "note": "Owner-supplied low-cost mono-white tree-art search. Executed with paper/nonfunny/research-date limits."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/search?q=c%3Aw+-c%3Au+-c%3Ab+-c%3Ar+-c%3Ag+art%3Aforest+t%3Acreature+mv%3C%3D2&unique=cards&as=grid&order=name",
+      "note": "Owner-supplied forest-art variant of the same search. Executed with paper/nonfunny/research-date limits."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/p02/10/angelic-wall?utm_source=api",
+      "note": "Selected forest-query printing: Portal Second Age #10, Rebecca Guay. Owner described forest and spiritual wing imagery; that is owner-supplied thematic interpretation, not agent visual inspection."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "url": "https://scryfall.com/card/10e/5/angelic-wall?utm_source=api",
+      "note": "Tree query instead returned Tenth Edition #5, John Avon, a different illustration. Metadata retained to avoid confusing the search printings; this is not the selected full card record."
+    },
+    {
+      "source": "white-grove-birds.json",
+      "url": "https://scryfall.com/search?q=c%3Aw+-c%3Au+-c%3Ab+-c%3Ar+-c%3Ag+t%3Abird+mv%3C%3D2&unique=cards&as=grid&order=name",
+      "note": "Owner-supplied cheap white Bird search; owner explicitly wants actual birds rather than Bird people, warriors, or similar humanoids."
+    },
+    {
+      "source": "white-grove-birds.json",
+      "url": "https://scryfall.com/search?q=c%3Dw%20t%3Abird%20mv%3D3%20game%3Apaper%20-is%3Afunny%20date%3C%3D2026-10-21%20unique%3Acards",
+      "note": "White Birds with mana value three, paper/nonfunny/research cutoff; selection favors actual birds over humanoid bird people."
+    },
+    {
+      "source": "interaction-zombies.json",
+      "title": "First Zombies vs Plants v0.1 match and player feedback",
+      "url": "http://127.0.0.1:5180/games/e7dd2877-c60d-4b18-b5a1-7730d6216636#feedback",
+      "note": "Plants: Overgrowth + Spore Swarm; Zombies: Restless Dead + The Turned. A single game's feedback is a research prompt, not proof of global imbalance. Several Zombie answers stayed in the library, Eviscerate was milled, and Regrowth remained unused; draw variance and sequencing matter alongside interaction density."
+    },
+    {
+      "source": "interaction-plants.json",
+      "kind": "playtest",
+      "url": "http://127.0.0.1:5180/games/e7dd2877-c60d-4b18-b5a1-7730d6216636#feedback",
+      "note": "Both feedback and accepted actions were considered; the Plant deck's removal actually succeeded, so these are comparison candidates rather than blanket additions to the winning faction."
+    },
+    {
+      "source": "interaction-plants.json",
+      "kind": "local-research",
+      "path": "research/zombies-vs-plants/cards.json",
+      "note": "Existing candidate facts for Insidious Fungus, Sundering Growth, Martyred Rusalka, and Feed the Swarm; retained Oracle data from prior Scryfall MCP research."
+    }
+  ],
+  "resolvedLeads": [
+    {
+      "source": "additional-botanical-leads.json",
+      "name": "Timber Golem",
+      "lookup": "Scryfall exact English name lookup",
+      "result": "not_found",
+      "note": "The exact-name lookup returned no card. Do not treat this proposed name as a verified Magic card or silently replace it with a different card."
+    },
+    {
+      "source": "additional-botanical-leads.json",
+      "name": "Nessian Wanderer",
+      "type_line": "Creature — Satyr Scout",
+      "scryfall_uri": "https://scryfall.com/card/cmm/905/nessian-wanderer?utm_source=api",
+      "result": "type correction; not included in botanical candidates",
+      "note": "Nessian Wanderer is a Satyr Scout, not a Dryad or Plant. Its enchantment-based land selection does not by itself establish the botanical creature theme."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "suppliedLabel": "https://scryfall.com/card/ice/251/juniper-order-druid",
+      "destination": "https://scryfall.com/card/me2/20/juniper-order-advocate",
+      "resolution": "The linked white candidate is Juniper Order Advocate (2W 1/2 Human Knight; untapped anthem for green creatures). Juniper Order Druid is a different green card (2G 1/1 Human Cleric Druid; tap to untap a land). The Druid name was verified separately through Scryfall MCP and is not treated as a white candidate."
+    },
+    {
+      "source": "white-grove-candidates.json",
+      "kind": "art-search-overlap",
+      "treeCount": 64,
+      "forestCount": 22,
+      "forestOnly": 12,
+      "combinedUniqueOracleIds": 76,
+      "note": "Counts refer to bounded tree and forest art searches, not the number of curated candidates."
+    },
+    {
+      "source": "white-grove-birds.json",
+      "name": "Squadron Hawk",
+      "decision": "Not shortlisted for the first singleton-focused investigation: its entry ability needs additional copies. A future intentional-repeat version could revisit it."
+    },
+    {
+      "source": "white-grove-birds.json",
+      "name": "Glint Hawk",
+      "decision": "Not shortlisted as generic grove support: requires returning an artifact or sacrificing itself."
+    },
+    {
+      "source": "white-grove-birds.json",
+      "name": "War Falcon",
+      "decision": "Not shortlisted as generic grove support: cannot attack without a Knight or Soldier."
+    },
+    {
+      "source": "white-grove-birds.json",
+      "name": "Ranger's Hawk",
+      "decision": "Not shortlisted for the simple prototype: its dungeon ability introduces a separate subsystem."
+    },
+    {
+      "source": "white-grove-birds.json",
+      "name": "Duskrider Falcon",
+      "decision": "Not shortlisted as a simple baseline: protection from black is especially targeted in this Zombie matchup."
+    }
+  ]
+}

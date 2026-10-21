@@ -205,3 +205,37 @@ test('the integrated archive is available without resuming a match and has the a
     assert.equal((await fetch(app.url + '/api/games/old-game', { headers: { Origin: 'https://attacker.example' } })).status, 403);
   } finally { if (app) await app.close(); cleanup(directory); }
 });
+
+test('archive treats intermediate results as unfinished and preserves match decks and setup', () => {
+  const directory = temporary();
+  try {
+    const setup = { ...config, series: { mode: 'first_to', winsRequired: 2, sideboarding: true },
+      players: config.players.map(player => ({ ...player, sideboard: [{ name: player.id + ' reserve' }] })),
+    };
+    let state = createTable(setup), recording = createRecording(state, setup);
+    const act = (actor, actions) => {
+      const next = applyActions(state, actor, state.revision, actions, 'Archive series');
+      recording = appendRecording(recording, state, next); state = next;
+    };
+    act('p1', [{ type: 'result', winners: ['p1'] }]);
+    save(directory, 'series', { state, recording });
+    const archive = createArchive({ directory });
+    let entry = archive.read('series');
+    assert.equal(entry.game.completed, false);
+    assert.equal(entry.game.result, null);
+    assert.equal(entry.game.series.scores.p1, 1);
+    assert.deepEqual(entry.recording.setup.series, setup.series);
+    assert.deepEqual(entry.recording.setup.players[0].sideboard, setup.players[0].sideboard);
+    assert.equal(entry.recording.gameDecks[0].players[0].sideboard[0].definition.name, 'p1 reserve');
+    act('p1', [{ type: 'ready_next_game' }]);
+    act('p2', [{ type: 'ready_next_game' }]);
+    act('p1', [{ type: 'result', winners: ['p1'] }]);
+    save(directory, 'series', { state, recording });
+    entry = archive.read('series');
+    assert.equal(entry.game.completed, true);
+    assert.deepEqual(entry.game.result.winners, ['p1']);
+    assert.equal(entry.game.series.scores.p1, 2);
+    assert.equal(entry.recording.gameDecks.length, 2);
+    assert.doesNotMatch(JSON.stringify(entry.game), /rosters|reserve/);
+  } finally { cleanup(directory); }
+});

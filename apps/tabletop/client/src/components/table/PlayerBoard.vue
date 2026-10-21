@@ -1,8 +1,11 @@
 <script setup>
 import { computed, ref, useId } from "vue";
 import { Eye, Shuffle, RotateCcw, Ellipsis } from "@lucide/vue";
-import CardTile from "./CardTile.vue";
-import CardBack from "./CardBack.vue";
+import BattlefieldPile from "./BattlefieldPile.vue";
+import PlayerHand from "./PlayerHand.vue";
+import ZonePile from "./ZonePile.vue";
+import { zoneLabel } from "../../../../shared/table-language.mjs";
+import { battlefieldPiles } from "../../../../shared/battlefield-piles.mjs";
 const props = defineProps({
   player: Object,
   table: Object,
@@ -12,8 +15,12 @@ const props = defineProps({
   team: Boolean,
   readonly: Boolean,
   compact: Boolean,
+  upper: Boolean,
+  playerDetails: Boolean,
+  pileOrders: Object,
 });
-const emit = defineEmits(["inspect", "zone", "action", "select", "target"]);
+const emit = defineEmits(["inspect", "zone", "action", "select", "target", "player-details", "order"]);
+const canOpenPlayers = computed(() => props.playerDetails && !props.readonly);
 const actionsMenu = ref(null);
 const menuId = useId().replaceAll(":", "");
 function menuAction(action) {
@@ -23,7 +30,7 @@ function menuAction(action) {
 function inspectBoard() {
   emit("zone", {
     id: "battlefield",
-    name: `${props.player.name} · battlefield`,
+    name: zoneLabel({ id: "battlefield", owner: props.player.id }, props.table.players),
     cards: field.value,
     count: field.value.length,
   });
@@ -38,20 +45,25 @@ const field = computed(
       (c) => c.controller === props.player.id,
     ) || [],
 );
-const lanes = computed(() => [
-  {
-    name: "Permanents",
-    cards: field.value.filter(
-      (c) => !(c.type_line || "").split("—")[0].includes("Land"),
-    ),
-  },
-  {
-    name: "Lands",
-    cards: field.value.filter((c) =>
-      (c.type_line || "").split("—")[0].includes("Land"),
-    ),
-  },
-]);
+const piles = computed(() => battlefieldPiles(props.table.zones?.battlefield?.cards || [])
+  .filter((pile) => pile.root.controller === props.player.id));
+const lanes = computed(() => {
+  const groups = [
+    {
+      name: "Permanents",
+      piles: piles.value.filter(
+        (pile) => !(pile.root.type_line || "").split("—")[0].includes("Land"),
+      ),
+    },
+    {
+      name: "Lands",
+      piles: piles.value.filter((pile) =>
+        (pile.root.type_line || "").split("—")[0].includes("Land"),
+      ),
+    },
+  ];
+  return props.upper ? groups.reverse() : groups;
+});
 const hand = computed(
   () =>
     props.table.zones?.[`${props.player.id}:hand`] || { count: 0, cards: [] },
@@ -90,10 +102,6 @@ const status = computed(() => {
         : "Has control"
       : "";
 });
-const sourceSelected = (card) =>
-  props.human?.selectedSource?.cardId === card.id;
-const topCard = (z) =>
-  z.kind === "graveyard" ? z.cards?.at(-1) : z.cards?.[0];
 </script>
 <template>
   <section
@@ -108,7 +116,17 @@ const topCard = (z) =>
     :data-player="player.id"
   >
     <header v-if="compact" class="flex min-h-7 shrink-0 items-center gap-2">
-      <div v-if="config.avatar" class="avatar shrink-0">
+      <component
+        :is="canOpenPlayers ? 'button' : 'div'"
+        v-if="config.avatar"
+        :type="canOpenPlayers ? 'button' : undefined"
+        class="avatar shrink-0"
+        :class="canOpenPlayers ? 'btn btn-sm btn-circle btn-ghost size-7 border-0 p-0' : ''"
+        :aria-label="canOpenPlayers ? `View ${player.name} details` : undefined"
+        :aria-haspopup="canOpenPlayers ? 'dialog' : undefined"
+        :title="player.name"
+        @click="canOpenPlayers && emit('player-details', player.id)"
+      >
         <div class="w-7 rounded-full">
           <img
             :src="`/avatars/${config.avatar}.png`"
@@ -118,7 +136,7 @@ const topCard = (z) =>
             class="object-cover"
           />
         </div>
-      </div>
+      </component>
       <div class="min-w-0 flex-1">
         <h2 class="flex items-center gap-1.5 text-sm font-semibold leading-4">
           <span class="truncate">{{ player.name }}</span
@@ -207,8 +225,17 @@ const topCard = (z) =>
     </header>
     <header v-else class="mb-2 flex items-start justify-between gap-3">
       <div class="flex min-w-0 items-center gap-2">
-        <div v-if="config.avatar" class="avatar">
-          <div class="w-9 rounded-full">
+        <component
+          :is="canOpenPlayers ? 'button' : 'div'"
+          :type="canOpenPlayers ? 'button' : undefined"
+          class="avatar shrink-0"
+          :class="[!config.avatar && 'avatar-placeholder', canOpenPlayers && 'btn btn-sm btn-circle btn-ghost size-9 border-0 p-0']"
+          :aria-label="canOpenPlayers ? `View ${player.name} details` : undefined"
+          :aria-haspopup="canOpenPlayers ? 'dialog' : undefined"
+          :title="player.name"
+          @click="canOpenPlayers && emit('player-details', player.id)"
+        >
+          <div v-if="config.avatar" class="w-9 rounded-full">
             <img
               :src="`/avatars/${config.avatar}.png`"
               alt=""
@@ -217,12 +244,10 @@ const topCard = (z) =>
               class="object-cover"
             />
           </div>
-        </div>
-        <div v-else class="avatar avatar-placeholder">
-          <div class="w-9 rounded-full bg-base-300 text-base-content">
+          <div v-else class="w-9 rounded-full bg-base-300 text-base-content">
             <span class="text-xs">{{ index + 1 }}</span>
           </div>
-        </div>
+        </component>
         <div class="min-w-0">
           <div class="text-xs text-base-content/60">
             {{
@@ -266,11 +291,24 @@ const topCard = (z) =>
     >
       {{ status }}
     </p>
+    <PlayerHand
+      v-if="upper"
+      :player="player"
+      :hand="hand"
+      :human="human"
+      :own="own"
+      :compact="compact"
+      upper
+      @inspect="emit('inspect', $event)"
+      @select="emit('select', $event)"
+      @target="emit('target', $event)"
+      @action="emit('action', $event)"
+    />
     <div
       class="grid"
       :class="
         compact
-          ? 'min-h-0 flex-1 grid-cols-[minmax(0,1fr)_7.5rem] gap-2'
+          ? 'min-h-0 flex-2 grid-cols-[minmax(0,1fr)_7.5rem] gap-2'
           : 'grid-cols-[minmax(0,1fr)_7.5rem] gap-3 sm:grid-cols-[minmax(0,1fr)_9rem]'
       "
     >
@@ -278,7 +316,7 @@ const topCard = (z) =>
         class="flex min-w-0 flex-col"
         :class="
           compact
-            ? 'min-h-0 gap-1 [@media(min-width:900px)_and_(max-height:800px)]:flex-row [@media(min-width:900px)_and_(max-height:800px)]:gap-3'
+            ? 'min-h-0 gap-1'
             : 'gap-3'
         "
       >
@@ -301,7 +339,7 @@ const topCard = (z) =>
             :class="compact ? 'mb-0.5 text-[10px] leading-3' : 'mb-2 text-xs'"
           >
             <h3 class="tracking-wider uppercase">{{ lane.name }}</h3>
-            <span>{{ lane.cards.length }}</span>
+            <span>{{ lane.piles.reduce((count, pile) => count + pile.cards.length, 0) }}</span>
           </div>
           <div
             class="flex items-start"
@@ -314,19 +352,20 @@ const topCard = (z) =>
               emit('target', { zoneId: 'battlefield', controller: player.id })
             "
           >
-            <CardTile
-              v-for="card in lane.cards"
-              :key="card.id"
-              :card="card"
-              :dense="compact"
-              :fit-lane="compact"
-              :draggable="human?.canDrag?.({ cardId: card.id })"
-              :selected="sourceSelected(card)"
+            <BattlefieldPile
+              v-for="pile in lane.piles"
+              :key="pile.root.id"
+              :pile="pile"
+              :order="pileOrders?.[pile.root.id]"
+              :human="human"
+              :compact="compact"
+              :readonly="readonly"
               @inspect="emit('inspect', $event)"
               @select="emit('select', $event)"
+              @order="emit('order', $event)"
             />
             <span
-              v-if="!lane.cards.length"
+              v-if="!lane.piles.length"
               class="self-center text-xs text-base-content/45"
               >{{ own ? "Drop cards here" : "Empty" }}</span
             >
@@ -334,136 +373,31 @@ const topCard = (z) =>
         </section>
       </div>
       <div
-        class="grid border-l border-base-300"
+        class="grid min-w-0 grid-cols-2 auto-rows-max content-start border-l border-base-300"
         :class="
           compact
-            ? 'min-h-0 grid-cols-2 grid-rows-3 gap-1 pl-1.5'
-            : 'grid-cols-2 content-start gap-1.5 pl-2'
+            ? 'min-h-0 gap-1 overflow-y-auto overscroll-contain pl-1.5 [scrollbar-width:thin]'
+            : 'gap-1.5 pl-2'
         "
         :aria-label="`${player.name}’s card zones`"
       >
-        <section
+        <ZonePile
           v-for="zone in zones"
           :key="zone.id"
-          class="min-h-0 min-w-0 rounded-md border border-dashed border-base-content/25 p-1"
-          :class="zone.kind === 'library' ? 'row-span-2' : ''"
-          :data-hc-drop-zone="zone.id"
-          :data-hc-drop-position="zone.kind === 'library' ? 'top' : 'bottom'"
-          :data-hc-drop-label="`${player.name}’s ${zone.kind}`"
-        >
-          <div
-            v-if="!compact"
-            class="mb-1 flex flex-wrap justify-between gap-1 text-xs"
-          >
-            <strong class="font-medium">{{ zone.label }}</strong
-            ><span class="text-base-content/60">{{ zone.count }}</span>
-          </div>
-          <button
-            class="w-full rounded text-xs hover:bg-base-300 focus-visible:outline-2 focus-visible:outline-primary"
-            :class="
-              compact
-                ? 'flex min-h-0 items-center justify-center gap-1'
-                : 'grid min-h-12 place-items-center'
-            "
-            type="button"
-            :aria-label="`${player.name}: ${zone.kind}, ${zone.count} cards`"
-            :data-hc-draw-from="
-              own && zone.kind === 'library' ? zone.id : undefined
-            "
-            :data-hc-card="
-              zone.kind !== 'library' ? topCard(zone)?.id : undefined
-            "
-            @click="
-              human?.selectedSource
-                ? emit('target', {
-                    zoneId: zone.id,
-                    position: zone.kind === 'library' ? 'top' : 'bottom',
-                  })
-                : emit('zone', zone)
-            "
-            @keydown.space.prevent="
-              own && zone.kind === 'library'
-                ? emit('select', { drawFrom: zone.id })
-                : emit('zone', zone)
-            "
-          >
-            <CardBack
-              v-if="
-                zone.kind === 'library' || (zone.count && !zone.cards?.length)
-              "
-              :class="compact ? 'w-4' : 'my-1 w-10'"
-            />
-            <img
-              v-else-if="topCard(zone)?.image_url"
-              :src="topCard(zone).image_url"
-              alt=""
-              width="45"
-              height="63"
-              class="aspect-[5/7] object-contain"
-              :class="compact ? 'w-4' : 'w-10'"
-              :draggable="false"
-            />
-            <span
-              v-else-if="!compact"
-              class="break-words py-2 text-base-content/50"
-              >{{ topCard(zone)?.name || "Empty" }}</span
-            >
-            <span
-              v-if="compact"
-              class="min-w-0 flex-1 text-left text-[10px] leading-3"
-              ><span class="block truncate">{{
-                zone.kind === "graveyard"
-                  ? "Grave"
-                  : zone.kind === "sideboard"
-                    ? "Side"
-                    : zone.label
-              }}</span
-              ><span class="text-base-content/60">{{ zone.count }}</span></span
-            >
-          </button>
-          <div
-            v-if="zone.kind === 'library'"
-            class="flex flex-wrap justify-center"
-            :class="compact ? 'mt-0.5 gap-0' : 'mt-1 gap-1'"
-          >
-            <button
-              v-for="position in ['top', 'bottom']"
-              :key="position"
-              class="btn btn-xs btn-ghost px-1"
-              :class="compact ? 'h-4 min-h-4 text-[9px]' : ''"
-              type="button"
-              :aria-label="`${player.name}’s library ${position}`"
-              :data-hc-drop-zone="zone.id"
-              :data-hc-drop-position="position"
-              @click="
-                human?.selectedSource
-                  ? emit('target', { zoneId: zone.id, position })
-                  : emit('zone', zone)
-              "
-            >
-              {{ position === "top" ? "Top" : "Bottom" }}
-            </button>
-            <template v-if="own && !compact"
-              ><button
-                class="btn btn-xs px-1"
-                :disabled="!human.canCommit"
-                @click="emit('action', 'draw')"
-              >
-                Draw</button
-              ><button
-                class="btn btn-xs px-1"
-                :disabled="!human.canCommit"
-                @click="emit('action', 'shuffle')"
-              >
-                <Shuffle :size="12" aria-hidden="true" />Shuffle
-              </button></template
-            >
-          </div>
-        </section>
+          :zone="zone"
+          :player-name="player.name"
+          :own="own"
+          :selected-source="human?.selectedSource"
+          @zone="emit('zone', $event)"
+          @target="emit('target', $event)"
+          @select="emit('select', $event)"
+        />
       </div>
     </div>
     <div v-if="!compact" class="mt-3 flex flex-wrap justify-between gap-2">
       <div v-if="own" class="flex flex-wrap gap-1">
+        <button class="btn btn-xs" :disabled="!human.canCommit" @click="emit('action', 'draw')">Draw a card</button>
+        <button class="btn btn-xs" :disabled="!human.canCommit" @click="emit('action', 'shuffle')"><Shuffle :size="12" aria-hidden="true" />Shuffle</button>
         <button
           class="btn btn-xs"
           :disabled="!human.canCommit"
@@ -483,7 +417,7 @@ const topCard = (z) =>
         @click="
           emit('zone', {
             id: 'battlefield',
-            name: `${player.name} · battlefield`,
+            name: zoneLabel({ id: 'battlefield', owner: player.id }, table.players),
             cards: field,
             count: field.length,
           })
@@ -492,102 +426,18 @@ const topCard = (z) =>
         <Eye :size="12" aria-hidden="true" />Inspect board
       </button>
     </div>
-    <section
-      :id="own ? 'human-controls' : undefined"
-      class="shrink-0 border-t border-base-content/20"
-      :class="compact ? 'pt-1' : 'mt-3 pt-3'"
-      :aria-label="`${player.name}’s hand`"
-      :data-hc-drop-zone="`${player.id}:hand`"
-      :data-hc-drop-label="`${player.name}’s hand`"
-      @click.self="emit('target', { zoneId: `${player.id}:hand` })"
-    >
-      <div
-        class="flex items-center justify-between gap-2"
-        :class="compact ? 'mb-0.5 min-h-5' : 'mb-2'"
-      >
-        <button
-          v-if="own"
-          class="btn btn-xs btn-ghost px-0"
-          @click="emit('target', { zoneId: `${player.id}:hand` })"
-        >
-          Your hand
-        </button>
-        <h3
-          v-else
-          :class="
-            compact
-              ? 'text-[10px] font-medium uppercase tracking-wider'
-              : 'text-sm font-semibold'
-          "
-        >
-          Hand
-        </h3>
-        <span class="ml-auto text-xs text-base-content/60"
-          >{{ hand.count }} cards{{ own ? " · private" : "" }}</span
-        ><button
-          v-if="own"
-          class="btn btn-xs"
-          :disabled="human.busy"
-          @click="human.leave()"
-        >
-          Hide hand
-        </button>
-      </div>
-      <p v-if="own && !compact" class="mb-2 text-xs text-base-content/60">
-        Drag onto the battlefield or a zone. Moves stay queued until you send.
-      </p>
-      <div
-        class="flex items-start gap-1.5 overflow-x-auto pb-1"
-        :class="compact ? 'min-h-8' : 'min-h-14'"
-        @click.self="emit('target', { zoneId: `${player.id}:hand` })"
-      >
-        <CardTile
-          v-for="card in hand.cards || []"
-          :key="card.id"
-          :card="card"
-          :compact="!own"
-          :dense="compact"
-          :hand="own"
-          :draggable="human?.canDrag?.({ cardId: card.id })"
-          :selected="sourceSelected(card)"
-          @inspect="emit('inspect', $event)"
-          @select="emit('select', $event)"
-        />
-        <CardBack
-          v-for="n in Math.max(0, hand.count - (hand.cards?.length || 0))"
-          :key="`hidden-${n}`"
-          :class="compact ? 'w-[clamp(1.5rem,3.5dvh,2.5rem)]' : 'w-10'"
-        />
-        <span
-          v-if="!hand.count"
-          class="self-center text-xs text-base-content/45"
-          >Empty hand</span
-        >
-      </div>
-      <details v-if="own && !compact" class="mt-2">
-        <summary class="cursor-pointer py-1 text-xs text-base-content/70">
-          More table actions
-        </summary>
-        <div class="flex flex-wrap gap-1 py-2">
-          <button
-            v-for="[action, label] in [
-              ['draw-many', 'Draw cards'],
-              ['return', 'Return hand'],
-              ['peek', 'Look at cards'],
-              ['token', 'Create token'],
-              ['ability', 'Stack ability'],
-              ['outcome', 'Concede / outcome'],
-            ]"
-            :key="action"
-            class="btn btn-xs"
-            :disabled="!human.canCommit"
-            @click="emit('action', action)"
-          >
-            {{ label }}
-          </button>
-        </div>
-      </details>
-    </section>
+    <PlayerHand
+      v-if="!upper"
+      :player="player"
+      :hand="hand"
+      :human="human"
+      :own="own"
+      :compact="compact"
+      @inspect="emit('inspect', $event)"
+      @select="emit('select', $event)"
+      @target="emit('target', $event)"
+      @action="emit('action', $event)"
+    />
     <div
       v-if="outcome"
       class="pointer-events-none absolute inset-0 grid place-items-center rounded-xl bg-base-100/65"

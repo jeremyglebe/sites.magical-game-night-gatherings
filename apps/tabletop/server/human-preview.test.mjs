@@ -163,7 +163,7 @@ test('controllers, attachments, life, and handoffs update without inventing rule
   assert.equal(board[0].damage, 9); // No automatic lethal damage rule.
   assert.equal(board[1].attached_to, one.id);
   assert.equal(board[1].tapped, true); // No automatic untapping at handoff.
-  assert.deepEqual(result.table.turn, { number: 2, active: 'p2', priority: 'p2', phase: 'Untap' });
+  assert.deepEqual(result.table.turn, { number: 2, active: 'p2', priority: 'p2', phase: 'Untap', counts: { p1: 0, p2: 1 }, totalTurns: 1, countsComplete: true });
   assert.deepEqual(result.table.notes, table.notes);
   const detach = previewHumanActions(result.table, 'p1', [{ type: 'move', card: one.id, to: 'p1:library' }]);
   assert.equal(detach.table.zones.battlefield.cards[0].attached_to, null);

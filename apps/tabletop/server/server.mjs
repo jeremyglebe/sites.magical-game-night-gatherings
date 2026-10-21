@@ -5,7 +5,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { parseArgs } from 'node:util';
-import { applyActions, cardDetails, createTable, observe, eventsSince } from './table.mjs';
+import { applyActions, cardDetails, createTable, observe, eventsSince, sideboardingView } from './table.mjs';
 import { referenceLines } from './references.mjs';
 import { readRules } from './rules.mjs';
 import { createRecording, appendRecording, recordingMarkdown } from './game-log.mjs';
@@ -13,6 +13,7 @@ import { serveAvatar } from './avatars.mjs';
 import { createSurvey, submitSurveyResponse } from '../shared/survey.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
+const matchFinished = state => !!state.result && (!state.series || state.series.status === 'complete');
 const json = (response, status, value) => {
   response.writeHead(status, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
   response.end(JSON.stringify(value));
@@ -92,10 +93,11 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
     // Players never receive other respondents' answers, even after completion.
     return structuredClone({ available: true, version: survey.version, schema: survey.schema,
       status: survey.status, resultRevision: survey.resultRevision, player,
-      players: survey.players, response: survey.responses[actor] || null });
+      players: survey.players, ...(survey.series ? { series: survey.series } : {}),
+      response: survey.responses[actor] || null });
   }
   function submitSurvey(actor, args) {
-    if (!saved.state.result || !saved.recording?.postgame) throw new Error('The game has not entered its post-game survey');
+    if (!matchFinished(saved.state) || !saved.recording?.postgame) throw new Error('The match has not entered its post-game survey');
     if (Object.hasOwn(saved.recording.postgame.responses, actor)) {
       // A lost reply must not make a saved response look rejected. Validate an
       // exact retry under the authenticated seat without advancing twice.
@@ -141,14 +143,14 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
     return commit(actor, { revision: saved.state.revision, actions: [{ type: 'say', text }], reason: 'Public human table speech' });
   }
   function commit(actor, args) {
-    if (saved.state.result) throw new Error('Gameplay has ended; only post-game feedback may be submitted');
+    if (matchFinished(saved.state)) throw new Error('Gameplay has ended; only post-game feedback may be submitted');
     if (saved.recording?.postgame) throw new Error('Gameplay has ended; only post-game feedback may be submitted');
     // No asynchronous boundary between checking revision and saving the batch.
     const previous = saved.state;
     const state = applyActions(saved.state, actor, args.revision, args.actions, args.reason);
     const recording = appendRecording(saved.recording || createRecording(previous), previous, state);
-    if (postgame && state.result && !previous.result) {
-      recording.postgame = createSurvey(recording.setup?.players || state.players, state.revision);
+    if (postgame && matchFinished(state) && !matchFinished(previous)) {
+      recording.postgame = createSurvey(recording.setup?.players || state.players, state.revision, { series: state.series });
     }
     persist({ ...saved, state, recording });
     const completion = onCommit?.(state, actor);
@@ -180,6 +182,11 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
       const reply = value => json(response, 200, { ...value, ...steeringReply(actor, decisionId) });
       if (request.method === 'GET' && url.pathname === '/api/observe') {
         reply(observe(saved.state, actor));
+      } else if (request.method === 'GET' && url.pathname === '/api/preparation') {
+        const view = observe(saved.state, actor);
+        reply({ revision: view.revision, preparation: view.preparation || null });
+      } else if (request.method === 'GET' && url.pathname === '/api/sideboard') {
+        reply({ revision: saved.state.revision, ...sideboardingView(saved.state, actor) });
       } else if (request.method === 'GET' && url.pathname === '/api/events') {
         reply(eventsSince(saved.state, actor, Number(url.searchParams.get('since') || 0)));
       } else if (request.method === 'GET' && url.pathname === '/api/rules') {
@@ -262,7 +269,7 @@ export async function startTable({ session, setup, port = 5180, onCommit, onDeci
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const { values } = parseArgs({ options: {
     session: { type: 'string', default: '.playtest/table.json' },
-    setup: { type: 'string', default: fileURLToPath(new URL('./precons.json', import.meta.url)) }, port: { type: 'string', default: '5180' },
+    setup: { type: 'string' }, port: { type: 'string', default: '5180' },
   } });
   try {
     const { server, url } = await startTable({ ...values, port: Number(values.port) });

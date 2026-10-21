@@ -5,6 +5,7 @@ export const avatarNames = Object.freeze({
   'robot-orc': 'Orc', 'robot-wizard': 'Wizard', 'robot-dwarf': 'Dwarf',
   'robot-elf-ranger': 'Elf', 'robot-knight': 'Knight', 'robot-rogue': 'Rogue',
   'robot-cleric': 'Cleric', 'robot-bard': 'Bard',
+  'robot-plant': 'Plant', 'robot-zombie': 'Zombie',
 });
 export const avatarIds = Object.freeze(Object.keys(avatarNames));
 const knownAvatars = new Set(avatarIds);

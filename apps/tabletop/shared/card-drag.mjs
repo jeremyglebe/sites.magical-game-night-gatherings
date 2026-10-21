@@ -1,5 +1,7 @@
 const SOURCE_SELECTOR = '[data-hc-card], [data-hc-draw-from]';
 const TARGET_SELECTOR = '[data-hc-drop-zone]';
+const PILE_SELECTOR = '[data-hc-pile]';
+export const ATTACH_DWELL_MS = 650;
 
 function sourceOf(element) {
   const cardId = element.getAttribute('data-hc-card');
@@ -11,8 +13,9 @@ function targetOf(element) {
   const zoneId = element.getAttribute('data-hc-drop-zone');
   if (!zoneId) return null;
   const controller = element.getAttribute('data-hc-drop-controller');
+  const attachTo = element.getAttribute('data-hc-attach-to');
   return { zoneId, position: element.getAttribute('data-hc-drop-position') === 'top' ? 'top' : 'bottom',
-    ...(controller ? { controller } : {}) };
+    ...(controller ? { controller } : {}), ...(attachTo ? { attachTo } : {}) };
 }
 function labelOf(element, attribute, fallback) {
   return element.getAttribute(attribute) || element.getAttribute('aria-label') || fallback;
@@ -59,16 +62,73 @@ export function createCardDragController({ root, canStart, onDrop, onStatus = ()
     // Pointer-generated click follows pointerup. Keyboard clicks remain usable.
     clickTimer = win.setTimeout(() => { suppressedClick = false; clickTimer = null; }, 0);
   }
+  function notifyPile(element, active) {
+    element?.dispatchEvent(new win.CustomEvent('hc-pile-hover', {
+      bubbles: true, detail: { active },
+    }));
+  }
+  function markPile(element) {
+    const pile = element?.closest(PILE_SELECTOR);
+    const next = pile && root.contains(pile) ? pile : null;
+    if (next === gesture.pile) return;
+    notifyPile(gesture.pile, false);
+    gesture.pile = next;
+    notifyPile(next, true);
+  }
+  function clearAttachment(current = gesture) {
+    if (!current?.attachment) return;
+    win.clearTimeout(current.attachment.timer);
+    current.attachment.element.classList.remove('hc-attach-pending', 'hc-attach-armed');
+    current.attachment = null;
+  }
+  function inAttachmentCenter(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.width > 0 && rect.height > 0
+      && gesture.x >= rect.left + rect.width * .2 && gesture.x <= rect.left + rect.width * .8
+      && gesture.y >= rect.top + rect.height * .2 && gesture.y <= rect.top + rect.height * .8;
+  }
+  function attachmentStatus(element) {
+    const name = labelOf(element, 'data-hc-drop-label', 'this card');
+    return gesture.attachment?.armed ? `Release to attach to ${name}.`
+      : gesture.attachment ? `Hold here briefly to attach to ${name}.`
+        : `Hold over the center of ${name} to attach. Release elsewhere to cancel.`;
+  }
+  function markAttachment(element) {
+    const attachTo = element && targetOf(element)?.attachTo;
+    if (!attachTo || !inAttachmentCenter(element)) { clearAttachment(); return; }
+    if (gesture.attachment?.element === element && gesture.attachment.attachTo === attachTo) return;
+    clearAttachment();
+    const current = gesture;
+    const attachment = { element, attachTo, armed: false, timer: null };
+    current.attachment = attachment;
+    element.classList.add('hc-attach-pending');
+    attachment.timer = win.setTimeout(() => {
+      if (gesture !== current || !validGesture()) { sync(); return; }
+      // Re-evaluate layout and permission when the timer fires, including a
+      // target moved by scrolling or a pile expanded beneath a still pointer.
+      markTarget();
+      if (current.attachment !== attachment) return;
+      attachment.armed = true;
+      element.classList.remove('hc-attach-pending');
+      element.classList.add('hc-attach-armed', 'hc-drop-active');
+      current.status = attachmentStatus(element);
+      onStatus(current.status);
+    }, ATTACH_DWELL_MS);
+  }
   function cleanup() {
     const previous = gesture;
+    clearAttachment(previous);
     gesture = null;
     if (frame !== null) win.cancelAnimationFrame(frame);
     frame = null;
+    notifyPile(previous?.pile, false);
     previous?.observer?.disconnect();
     previous?.ghost?.remove();
     previous?.element.classList.remove('hc-drag-source');
-    for (const element of root.querySelectorAll('.hc-drop-ready, .hc-drop-active'))
-      element.classList.remove('hc-drop-ready', 'hc-drop-active');
+    const marked = new Set([...(previous?.targets || []), previous?.target,
+      ...root.querySelectorAll('.hc-drop-ready, .hc-drop-active, .hc-attach-pending, .hc-attach-armed')]);
+    for (const element of marked) if (element)
+      element.classList.remove('hc-drop-ready', 'hc-drop-active', 'hc-attach-pending', 'hc-attach-armed');
     root.classList.remove('hc-dragging');
     if (previous && root.hasPointerCapture?.(previous.pointerId)) root.releasePointerCapture(previous.pointerId);
     return previous;
@@ -85,15 +145,34 @@ export function createCardDragController({ root, canStart, onDrop, onStatus = ()
   }
   function markTarget() {
     if (!gesture?.dragged) return;
-    const hovered = doc.elementFromPoint(gesture.x, gesture.y)?.closest(TARGET_SELECTOR);
+    const element = doc.elementFromPoint(gesture.x, gesture.y);
+    // Pointer capture keeps native pointerenter/leave on the captured root.
+    // Piles still need geometric hover to reveal destinations during a drag.
+    markPile(element);
+    // A hover can reveal a new deck-bottom target without a new gesture.
+    const available = targets();
+    for (const target of gesture.targets) {
+      if (!available.includes(target)) target.classList.remove('hc-drop-ready');
+    }
+    gesture.targets = available;
+    for (const target of available) target.classList.add('hc-drop-ready');
+    const hovered = element?.closest(TARGET_SELECTOR);
     const next = hovered && gesture.targets.includes(hovered) && root.contains(hovered)
       && canDrop(gesture.source, targetOf(hovered), hovered) === true ? hovered : null;
-    if (next === gesture.target) return;
-    gesture.target?.classList.remove('hc-drop-active');
+    if (next !== gesture.target) gesture.target?.classList.remove('hc-drop-active');
     gesture.target = next;
-    next?.classList.add('hc-drop-active');
-    onStatus(next ? `Drop into ${labelOf(next, 'data-hc-drop-label', targetOf(next).zoneId)} to queue this action.`
-      : 'Drag onto a highlighted zone. Release elsewhere or press Escape to cancel.');
+    markAttachment(next);
+    const attachment = next && targetOf(next).attachTo;
+    if (next) {
+      if (!attachment || gesture.attachment?.armed) next.classList.add('hc-drop-active');
+      else next.classList.remove('hc-drop-active');
+    }
+    // Never walk up to a battlefield's zone when the nearest target is a card:
+    // an unarmed or invalid card drop must not change control or detach a card.
+    const status = next ? attachment ? attachmentStatus(next)
+      : `Drop into ${labelOf(next, 'data-hc-drop-label', targetOf(next).zoneId)} to queue this action.`
+      : 'Drag onto a highlighted zone. Release elsewhere or press Escape to cancel.';
+    if (status !== gesture.status) { gesture.status = status; onStatus(status); }
   }
   function positionGhost() {
     if (!gesture?.ghost) return;
@@ -133,7 +212,7 @@ export function createCardDragController({ root, canStart, onDrop, onStatus = ()
     root.setPointerCapture?.(current.pointerId);
     const ghost = current.element.cloneNode(true);
     ghost.classList.add('hc-drag-ghost');
-    ghost.classList.remove('hc-drop-ready', 'hc-drop-active');
+    ghost.classList.remove('hc-drop-ready', 'hc-drop-active', 'hc-attach-pending', 'hc-attach-armed');
     ghost.removeAttribute('id');
     for (const node of ghost.querySelectorAll('[id]')) node.removeAttribute('id');
     ghost.setAttribute('aria-hidden', 'true');
@@ -163,7 +242,7 @@ export function createCardDragController({ root, canStart, onDrop, onStatus = ()
     canceledPointer = null;
     gesture = { element, source, pointerId: event.pointerId, context: getContext(),
       startX: event.clientX, startY: event.clientY, x: event.clientX, y: event.clientY,
-      dragged: false, target: null, ghost: null, targets: [] };
+      dragged: false, target: null, ghost: null, targets: [], pile: null };
     if (win.MutationObserver) {
       gesture.observer = new win.MutationObserver(sync);
       gesture.observer.observe(root, { childList: true, subtree: true });
@@ -181,15 +260,18 @@ export function createCardDragController({ root, canStart, onDrop, onStatus = ()
   listen(doc, 'pointerup', event => {
     if (canceledPointer === event.pointerId) { canceledPointer = null; suppressClick(); return; }
     if (!gesture || event.pointerId !== gesture.pointerId) return;
-    const valid = validGesture();
+    let valid = validGesture();
     gesture.x = event.clientX; gesture.y = event.clientY;
     if (gesture.dragged && valid) markTarget();
+    valid = valid && validGesture();
+    const destination = gesture.target && targetOf(gesture.target);
+    const armed = !destination?.attachTo || gesture.attachment?.armed === true;
     const previous = cleanup();
     if (!previous.dragged) return;
     suppressClick(); event.preventDefault();
-    if (!valid || !previous.target) { onStatus('Drag canceled. Nothing was queued.'); return; }
+    if (!valid || !previous.target || !armed) { onStatus('Drag canceled. Nothing was queued.'); return; }
     try {
-      const queued = onDrop(previous.source, targetOf(previous.target));
+      const queued = onDrop(previous.source, destination);
       if (queued !== false) onStatus('Action queued. Undo it in chat before sending if you change your mind.');
     } catch (error) { onStatus(error.message || 'Could not queue that move.'); }
   });

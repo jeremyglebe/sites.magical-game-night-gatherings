@@ -1,0 +1,2487 @@
+{
+  "researchedAt": "2026-10-21",
+  "queries": [
+    {
+      "query": "t:creature t:zombie c=b game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 416,
+      "hasMore": true
+    },
+    {
+      "query": "t:creature t:zombie c=u game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 59,
+      "hasMore": false
+    },
+    {
+      "query": "t:creature t:zombie c=w game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 12,
+      "hasMore": false
+    }
+  ],
+  "cards": [
+    {
+      "id": "4682012c-d7e0-4257-b538-3de497507464",
+      "oracle_id": "6048fc70-0dcc-4b54-977d-16e240225f82",
+      "name": "Diregraf Ghoul",
+      "mana_cost": "{B}",
+      "cmc": 1,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "This creature enters tapped.",
+      "power": "2",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/fdn/171/diregraf-ghoul?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/6/4682012c-d7e0-4257-b538-3de497507464.jpg?1783909075",
+        "normal": "https://cards.scryfall.io/normal/front/4/6/4682012c-d7e0-4257-b538-3de497507464.jpg?1783909075",
+        "large": "https://cards.scryfall.io/large/front/4/6/4682012c-d7e0-4257-b538-3de497507464.jpg?1783909075",
+        "png": "https://cards.scryfall.io/png/front/4/6/4682012c-d7e0-4257-b538-3de497507464.png?1783909075",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/6/4682012c-d7e0-4257-b538-3de497507464.jpg?1783909075",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/6/4682012c-d7e0-4257-b538-3de497507464.jpg?1783909075",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/6/4682012c-d7e0-4257-b538-3de497507464.webp?1783909075",
+        "grid": "https://cards.scryfall.io/grid/front/4/6/4682012c-d7e0-4257-b538-3de497507464.webp?1783909075",
+        "display": "https://cards.scryfall.io/display/front/4/6/4682012c-d7e0-4257-b538-3de497507464.webp?1783909075",
+        "art": "https://cards.scryfall.io/art/front/4/6/4682012c-d7e0-4257-b538-3de497507464.webp?1783909075",
+        "crop": "https://cards.scryfall.io/crop/front/4/6/4682012c-d7e0-4257-b538-3de497507464.webp?1783909075",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/6/4682012c-d7e0-4257-b538-3de497507464.jpg?1783909075"
+      },
+      "set": "fdn",
+      "collector_number": "171",
+      "released_at": "2024-11-15",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "early creature"
+        ],
+        "note": "An inexpensive Zombie body that can trigger white mummy payoffs or receive tribal bonuses from any partner.",
+        "caution": "Enters tapped, so it cannot immediately block.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "d96198a7-dd19-4940-bf8f-23135011fc84",
+      "oracle_id": "e5e6229a-3422-4afd-9a87-86daa2d31d3a",
+      "name": "Shambling Ghast",
+      "mana_cost": "{B}",
+      "cmc": 1,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "When this creature dies, choose one —\n• Target creature an opponent controls gets -1/-1 until end of turn.\n• Create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+      "power": "1",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/afr/119/shambling-ghast?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.jpg?1783926489",
+        "normal": "https://cards.scryfall.io/normal/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.jpg?1783926489",
+        "large": "https://cards.scryfall.io/large/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.jpg?1783926489",
+        "png": "https://cards.scryfall.io/png/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.png?1783926489",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.jpg?1783926489",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.jpg?1783926489",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.webp?1783926489",
+        "grid": "https://cards.scryfall.io/grid/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.webp?1783926489",
+        "display": "https://cards.scryfall.io/display/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.webp?1783926489",
+        "art": "https://cards.scryfall.io/art/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.webp?1783926489",
+        "crop": "https://cards.scryfall.io/crop/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.webp?1783926489",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/9/d96198a7-dd19-4940-bf8f-23135011fc84.jpg?1783926489"
+      },
+      "set": "afr",
+      "collector_number": "119",
+      "released_at": "2021-07-23",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "early creature",
+          "interaction",
+          "mana support"
+        ],
+        "note": "A cheap Zombie with a useful death trigger; its Treasure option can help cast the other packet's spells.",
+        "caution": "Uses a modal death trigger and may require a Treasure token. Its -1/-1 effect lasts only for the turn.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "906c4c95-5815-44c8-8d3c-b0fda9db55a1",
+      "oracle_id": "bdf78365-5887-497e-af25-ca0cb731f35a",
+      "name": "Festering Mummy",
+      "mana_cost": "{B}",
+      "cmc": 1,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "When this creature dies, you may put a -1/-1 counter on target creature.",
+      "power": "1",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/akh/91/festering-mummy?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.jpg?1783936508",
+        "normal": "https://cards.scryfall.io/normal/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.jpg?1783936508",
+        "large": "https://cards.scryfall.io/large/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.jpg?1783936508",
+        "png": "https://cards.scryfall.io/png/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.png?1783936508",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.jpg?1783936508",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.jpg?1783936508",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.webp?1783936508",
+        "grid": "https://cards.scryfall.io/grid/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.webp?1783936508",
+        "display": "https://cards.scryfall.io/display/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.webp?1783936508",
+        "art": "https://cards.scryfall.io/art/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.webp?1783936508",
+        "crop": "https://cards.scryfall.io/crop/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.webp?1783936508",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/0/906c4c95-5815-44c8-8d3c-b0fda9db55a1.jpg?1783936508"
+      },
+      "set": "akh",
+      "collector_number": "91",
+      "released_at": "2017-04-28",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "early creature",
+          "interaction"
+        ],
+        "note": "A small mummy that can weaken a creature when it dies, supporting sacrifice effects and combat across packets.",
+        "caution": "Uses a -1/-1 counter, requiring distinction from temporary power reductions and +1/+1 counters.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "594bbe43-a8aa-42aa-bc49-cb4f3bc05cad",
+      "oracle_id": "85643f9b-49ea-434b-9f27-c1431064345e",
+      "name": "Lazotep Reaver",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie Beast",
+      "oracle_text": "When this creature enters, amass Zombies 1. (Put a +1/+1 counter on an Army you control. It's also a Zombie. If you don't control an Army, create a 0/0 black Zombie Army creature token first.)",
+      "power": "1",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/war/96/lazotep-reaver?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.jpg?1783933443",
+        "normal": "https://cards.scryfall.io/normal/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.jpg?1783933443",
+        "large": "https://cards.scryfall.io/large/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.jpg?1783933443",
+        "png": "https://cards.scryfall.io/png/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.png?1783933443",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.jpg?1783933443",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.jpg?1783933443",
+        "thumb": "https://cards.scryfall.io/thumb/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.webp?1783933443",
+        "grid": "https://cards.scryfall.io/grid/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.webp?1783933443",
+        "display": "https://cards.scryfall.io/display/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.webp?1783933443",
+        "art": "https://cards.scryfall.io/art/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.webp?1783933443",
+        "crop": "https://cards.scryfall.io/crop/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.webp?1783933443",
+        "jpeg": "https://cards.scryfall.io/normal/front/5/9/594bbe43-a8aa-42aa-bc49-cb4f3bc05cad.jpg?1783933443"
+      },
+      "set": "war",
+      "collector_number": "96",
+      "released_at": "2019-05-03",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "early creature",
+          "token production"
+        ],
+        "note": "Adds a Zombie body and amass support, providing material for attacks, entry triggers, or sacrifice.",
+        "caution": "Amass grows an existing Army when possible; it does not simply make a fresh token every time.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "9c3baad6-d087-436f-a9f4-c138639e3422",
+      "oracle_id": "c26887e1-27f4-4550-921b-53460e43c079",
+      "name": "Undead Augur",
+      "mana_cost": "{B}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie Wizard",
+      "oracle_text": "Whenever this creature or another Zombie you control dies, you draw a card and lose 1 life.",
+      "power": "2",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/mic/130/undead-augur?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.jpg?1783925332",
+        "normal": "https://cards.scryfall.io/normal/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.jpg?1783925332",
+        "large": "https://cards.scryfall.io/large/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.jpg?1783925332",
+        "png": "https://cards.scryfall.io/png/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.png?1783925332",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.jpg?1783925332",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.jpg?1783925332",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.webp?1783925332",
+        "grid": "https://cards.scryfall.io/grid/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.webp?1783925332",
+        "display": "https://cards.scryfall.io/display/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.webp?1783925332",
+        "art": "https://cards.scryfall.io/art/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.webp?1783925332",
+        "crop": "https://cards.scryfall.io/crop/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.webp?1783925332",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/c/9c3baad6-d087-436f-a9f4-c138639e3422.jpg?1783925332"
+      },
+      "set": "mic",
+      "collector_number": "130",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "card draw",
+          "death payoff"
+        ],
+        "note": "Turns deaths of Zombies from any of the three packets into cards.",
+        "caution": "The card draw and life loss are mandatory; several Zombies dying together can cost substantial life.",
+        "manaNote": "Costs BB, which is more demanding in a two-color combined deck.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "20bfecb3-2dc8-4549-9297-413131de8fdc",
+      "oracle_id": "3f372107-6c52-4f1f-8bf0-7b3fa21b2cae",
+      "name": "Lord of the Accursed",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "Other Zombies you control get +1/+1.\n{1}{B}, {T}: All Zombies gain menace until end of turn.",
+      "power": "2",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/mic/124/lord-of-the-accursed?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.jpg?1783925336",
+        "normal": "https://cards.scryfall.io/normal/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.jpg?1783925336",
+        "large": "https://cards.scryfall.io/large/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.jpg?1783925336",
+        "png": "https://cards.scryfall.io/png/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.png?1783925336",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.jpg?1783925336",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.jpg?1783925336",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.webp?1783925336",
+        "grid": "https://cards.scryfall.io/grid/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.webp?1783925336",
+        "display": "https://cards.scryfall.io/display/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.webp?1783925336",
+        "art": "https://cards.scryfall.io/art/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.webp?1783925336",
+        "crop": "https://cards.scryfall.io/crop/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.webp?1783925336",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/0/20bfecb3-2dc8-4549-9297-413131de8fdc.jpg?1783925336"
+      },
+      "set": "mic",
+      "collector_number": "124",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "tribal support",
+          "finisher"
+        ],
+        "note": "Boosts other Zombies regardless of color and can give the horde menace to finish combat stalls.",
+        "caution": "Its activated ability grants menace to all Zombies, including any opposing Zombies; the static bonus only affects your other Zombies.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "850ccdcb-2cd7-4f27-aa9b-917a62a5e94d",
+      "oracle_id": "614f748b-5d31-440d-a7c0-3ba12dc63c24",
+      "name": "Ghoulraiser",
+      "mana_cost": "{1}{B}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "When this creature enters, return a Zombie card at random from your graveyard to your hand.",
+      "power": "2",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/jmp/238/ghoulraiser?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.jpg?1783930423",
+        "normal": "https://cards.scryfall.io/normal/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.jpg?1783930423",
+        "large": "https://cards.scryfall.io/large/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.jpg?1783930423",
+        "png": "https://cards.scryfall.io/png/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.png?1783930423",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.jpg?1783930423",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.jpg?1783930423",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.webp?1783930423",
+        "grid": "https://cards.scryfall.io/grid/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.webp?1783930423",
+        "display": "https://cards.scryfall.io/display/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.webp?1783930423",
+        "art": "https://cards.scryfall.io/art/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.webp?1783930423",
+        "crop": "https://cards.scryfall.io/crop/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.webp?1783930423",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/5/850ccdcb-2cd7-4f27-aa9b-917a62a5e94d.jpg?1783930423"
+      },
+      "set": "jmp",
+      "collector_number": "238",
+      "released_at": "2020-07-17",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "recursion"
+        ],
+        "note": "A Zombie that recovers another Zombie card, with candidates supplied by any partner packet.",
+        "caution": "The returned card is selected at random, not chosen; an empty graveyard provides no value.",
+        "manaNote": "Costs 1BB.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "0fb714a0-e61b-4ccf-8de6-3a6bf87c8315",
+      "oracle_id": "1a2030cc-d7ee-4059-b2d7-fb95ea8e267b",
+      "name": "Gravedigger",
+      "mana_cost": "{3}{B}",
+      "cmc": 4,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "When this creature enters, you may return target creature card from your graveyard to your hand.",
+      "power": "2",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/m20/103/gravedigger?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.jpg?1783932993",
+        "normal": "https://cards.scryfall.io/normal/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.jpg?1783932993",
+        "large": "https://cards.scryfall.io/large/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.jpg?1783932993",
+        "png": "https://cards.scryfall.io/png/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.png?1783932993",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.jpg?1783932993",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.jpg?1783932993",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.webp?1783932993",
+        "grid": "https://cards.scryfall.io/grid/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.webp?1783932993",
+        "display": "https://cards.scryfall.io/display/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.webp?1783932993",
+        "art": "https://cards.scryfall.io/art/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.webp?1783932993",
+        "crop": "https://cards.scryfall.io/crop/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.webp?1783932993",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/f/0fb714a0-e61b-4ccf-8de6-3a6bf87c8315.jpg?1783932993"
+      },
+      "set": "m20",
+      "collector_number": "103",
+      "released_at": "2019-07-12",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "recursion"
+        ],
+        "note": "A simple Zombie body that can return any creature card from your graveyard to hand, including non-Zombie support creatures.",
+        "caution": "Four mana and a populated graveyard are needed for its full value.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2c9b8582-8887-4652-82e2-f9b11ee21545",
+      "oracle_id": "426fa8e8-b0f9-4b6c-b22b-04ec2073187a",
+      "name": "Undead Butler",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "When this creature enters, mill three cards. (Put the top three cards of your library into your graveyard.)\nWhen this creature dies, you may exile it. When you do, return target creature card from your graveyard to your hand.",
+      "power": "1",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/vow/133/undead-butler?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.jpg?1783924849",
+        "normal": "https://cards.scryfall.io/normal/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.jpg?1783924849",
+        "large": "https://cards.scryfall.io/large/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.jpg?1783924849",
+        "png": "https://cards.scryfall.io/png/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.png?1783924849",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.jpg?1783924849",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.jpg?1783924849",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.webp?1783924849",
+        "grid": "https://cards.scryfall.io/grid/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.webp?1783924849",
+        "display": "https://cards.scryfall.io/display/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.webp?1783924849",
+        "art": "https://cards.scryfall.io/art/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.webp?1783924849",
+        "crop": "https://cards.scryfall.io/crop/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.webp?1783924849",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/c/2c9b8582-8887-4652-82e2-f9b11ee21545.jpg?1783924849"
+      },
+      "set": "vow",
+      "collector_number": "133",
+      "released_at": "2021-11-19",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "graveyard setup",
+          "recursion",
+          "early creature"
+        ],
+        "note": "Seeds the graveyard and later recovers a creature, supporting blue self-mill and black recovery plans.",
+        "caution": "Returning a creature requires exiling the Butler when it dies, so that copy cannot itself be reused afterward.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2cd74e93-064a-42d7-8e6e-c413912a08cd",
+      "oracle_id": "a4ffe297-5e82-43f9-91a4-7aa3d8dd3b4a",
+      "name": "Crow of Dark Tidings",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie Bird",
+      "oracle_text": "Flying\nWhen this creature enters or dies, mill two cards. (Put the top two cards of your library into your graveyard.)",
+      "power": "2",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/fdn/519/crow-of-dark-tidings?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.jpg?1783908959",
+        "normal": "https://cards.scryfall.io/normal/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.jpg?1783908959",
+        "large": "https://cards.scryfall.io/large/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.jpg?1783908959",
+        "png": "https://cards.scryfall.io/png/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.png?1783908959",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.jpg?1783908959",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.jpg?1783908959",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.webp?1783908959",
+        "grid": "https://cards.scryfall.io/grid/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.webp?1783908959",
+        "display": "https://cards.scryfall.io/display/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.webp?1783908959",
+        "art": "https://cards.scryfall.io/art/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.webp?1783908959",
+        "crop": "https://cards.scryfall.io/crop/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.webp?1783908959",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/c/2cd74e93-064a-42d7-8e6e-c413912a08cd.jpg?1783908959"
+      },
+      "set": "fdn",
+      "collector_number": "519",
+      "released_at": "2024-11-15",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "evasion",
+          "graveyard setup"
+        ],
+        "note": "A flying Zombie that mills on both entering and dying; combines an attacker with fuel for recursion.",
+        "caution": "Repeated milling can consume a forty-card deck quickly; it is not card draw.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "a3da81fa-0bd1-4415-b112-3fa4438efe4b",
+      "oracle_id": "b6492082-d0ef-4f7c-a4b1-f8ecf6eb0890",
+      "name": "Liliana's Elite",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "This creature gets +1/+1 for each creature card in your graveyard.",
+      "power": "1",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/2x2/82/lilianas-elite?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.jpg?1783921902",
+        "normal": "https://cards.scryfall.io/normal/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.jpg?1783921902",
+        "large": "https://cards.scryfall.io/large/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.jpg?1783921902",
+        "png": "https://cards.scryfall.io/png/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.png?1783921902",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.jpg?1783921902",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.jpg?1783921902",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.webp?1783921902",
+        "grid": "https://cards.scryfall.io/grid/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.webp?1783921902",
+        "display": "https://cards.scryfall.io/display/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.webp?1783921902",
+        "art": "https://cards.scryfall.io/art/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.webp?1783921902",
+        "crop": "https://cards.scryfall.io/crop/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.webp?1783921902",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/3/a3da81fa-0bd1-4415-b112-3fa4438efe4b.jpg?1783921902"
+      },
+      "set": "2x2",
+      "collector_number": "82",
+      "released_at": "2022-07-08",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "graveyard payoff",
+          "finisher"
+        ],
+        "note": "Rewards the self-mill and creature trading available in blue and black, while remaining a Zombie for white triggers.",
+        "caution": "Needs creature cards in the graveyard and shrinks when those cards are recovered or exiled.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2b8c1b10-2155-404a-8f20-eb8f643849d6",
+      "oracle_id": "b685fff3-f1b4-42d5-9b7b-e0885bcc92d2",
+      "name": "Ghoulcaller's Chant",
+      "mana_cost": "{B}",
+      "cmc": 1,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Choose one —\n• Return target creature card from your graveyard to your hand.\n• Return two target Zombie cards from your graveyard to your hand.",
+      "scryfall_uri": "https://scryfall.com/card/isd/101/ghoulcallers-chant?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.jpg?1783940956",
+        "normal": "https://cards.scryfall.io/normal/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.jpg?1783940956",
+        "large": "https://cards.scryfall.io/large/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.jpg?1783940956",
+        "png": "https://cards.scryfall.io/png/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.png?1783940956",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.jpg?1783940956",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.jpg?1783940956",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.webp?1783940956",
+        "grid": "https://cards.scryfall.io/grid/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.webp?1783940956",
+        "display": "https://cards.scryfall.io/display/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.webp?1783940956",
+        "art": "https://cards.scryfall.io/art/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.webp?1783940956",
+        "crop": "https://cards.scryfall.io/crop/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.webp?1783940956",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/b/2b8c1b10-2155-404a-8f20-eb8f643849d6.jpg?1783940956"
+      },
+      "set": "isd",
+      "collector_number": "101",
+      "released_at": "2011-09-30",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "recursion"
+        ],
+        "note": "One cheap spell can recover two Zombies of any color, rewarding the shared theme across packets.",
+        "caution": "Returns cards to hand, not the battlefield; its stronger mode needs two Zombie targets.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "34a80873-86d7-44a9-894b-65e8f77dd2ea",
+      "oracle_id": "07792d72-d5db-41b9-871c-e720e12ce659",
+      "name": "Cemetery Recruitment",
+      "mana_cost": "{1}{B}",
+      "cmc": 2,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Return target creature card from your graveyard to your hand. If it's a Zombie card, draw a card.",
+      "scryfall_uri": "https://scryfall.com/card/fdn/517/cemetery-recruitment?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.jpg?1783908959",
+        "normal": "https://cards.scryfall.io/normal/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.jpg?1783908959",
+        "large": "https://cards.scryfall.io/large/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.jpg?1783908959",
+        "png": "https://cards.scryfall.io/png/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.png?1783908959",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.jpg?1783908959",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.jpg?1783908959",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.webp?1783908959",
+        "grid": "https://cards.scryfall.io/grid/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.webp?1783908959",
+        "display": "https://cards.scryfall.io/display/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.webp?1783908959",
+        "art": "https://cards.scryfall.io/art/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.webp?1783908959",
+        "crop": "https://cards.scryfall.io/crop/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.webp?1783908959",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/4/34a80873-86d7-44a9-894b-65e8f77dd2ea.jpg?1783908959"
+      },
+      "set": "fdn",
+      "collector_number": "517",
+      "released_at": "2024-11-15",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "recursion",
+          "card draw"
+        ],
+        "note": "Recovers a creature and draws an extra card if it is a Zombie, pairing naturally with either other Zombie packet.",
+        "caution": "Needs a creature target in the graveyard; non-Zombie support creatures do not provide the bonus card.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "f0f85057-5f4b-47d8-bb00-d993bed1a755",
+      "oracle_id": "4e769107-0f32-4181-9e57-ffebc2228d3a",
+      "name": "Rise from the Grave",
+      "mana_cost": "{4}{B}",
+      "cmc": 5,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Put target creature card from a graveyard onto the battlefield under your control. That creature is a black Zombie in addition to its other colors and types.",
+      "scryfall_uri": "https://scryfall.com/card/znc/53/rise-from-the-grave?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.jpg?1783929474",
+        "normal": "https://cards.scryfall.io/normal/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.jpg?1783929474",
+        "large": "https://cards.scryfall.io/large/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.jpg?1783929474",
+        "png": "https://cards.scryfall.io/png/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.png?1783929474",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.jpg?1783929474",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.jpg?1783929474",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.webp?1783929474",
+        "grid": "https://cards.scryfall.io/grid/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.webp?1783929474",
+        "display": "https://cards.scryfall.io/display/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.webp?1783929474",
+        "art": "https://cards.scryfall.io/art/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.webp?1783929474",
+        "crop": "https://cards.scryfall.io/crop/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.webp?1783929474",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/0/f0f85057-5f4b-47d8-bb00-d993bed1a755.jpg?1783929474"
+      },
+      "set": "znc",
+      "collector_number": "53",
+      "released_at": "2020-09-25",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "recursion",
+          "finisher"
+        ],
+        "note": "Necromancy that can revive a creature from either graveyard and make it an additional black Zombie.",
+        "caution": "Can steal the opponent's largest creature; the new color/type additions need to remain visible.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff",
+      "oracle_id": "bd104c7e-311e-4b03-98d3-5f20f3a99d26",
+      "name": "Liliana's Mastery",
+      "mana_cost": "{3}{B}{B}",
+      "cmc": 5,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "Zombies you control get +1/+1.\nWhen this enchantment enters, create two 2/2 black Zombie creature tokens.",
+      "scryfall_uri": "https://scryfall.com/card/mic/123/lilianas-mastery?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.jpg?1783925336",
+        "normal": "https://cards.scryfall.io/normal/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.jpg?1783925336",
+        "large": "https://cards.scryfall.io/large/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.jpg?1783925336",
+        "png": "https://cards.scryfall.io/png/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.png?1783925336",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.jpg?1783925336",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.jpg?1783925336",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.webp?1783925336",
+        "grid": "https://cards.scryfall.io/grid/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.webp?1783925336",
+        "display": "https://cards.scryfall.io/display/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.webp?1783925336",
+        "art": "https://cards.scryfall.io/art/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.webp?1783925336",
+        "crop": "https://cards.scryfall.io/crop/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.webp?1783925336",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/9/a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff.jpg?1783925336"
+      },
+      "set": "mic",
+      "collector_number": "123",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "tribal support",
+          "finisher"
+        ],
+        "note": "Creates two Zombies and increases the size of every Zombie you control, supporting all three colors.",
+        "caution": "A substantial board swing that may dominate a low-power packet environment.",
+        "manaNote": "Costs 3BB.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "155ae16c-f32b-421d-a92a-bf13d9f32891",
+      "oracle_id": "69d4ecac-4735-4667-bfc1-c8800b436d08",
+      "name": "Endless Ranks of the Dead",
+      "mana_cost": "{2}{B}{B}",
+      "cmc": 4,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "At the beginning of your upkeep, create X 2/2 black Zombie creature tokens, where X is half the number of Zombies you control, rounded down.",
+      "scryfall_uri": "https://scryfall.com/card/mic/116/endless-ranks-of-the-dead?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.jpg?1783925339",
+        "normal": "https://cards.scryfall.io/normal/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.jpg?1783925339",
+        "large": "https://cards.scryfall.io/large/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.jpg?1783925339",
+        "png": "https://cards.scryfall.io/png/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.png?1783925339",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.jpg?1783925339",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.jpg?1783925339",
+        "thumb": "https://cards.scryfall.io/thumb/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.webp?1783925339",
+        "grid": "https://cards.scryfall.io/grid/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.webp?1783925339",
+        "display": "https://cards.scryfall.io/display/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.webp?1783925339",
+        "art": "https://cards.scryfall.io/art/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.webp?1783925339",
+        "crop": "https://cards.scryfall.io/crop/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.webp?1783925339",
+        "jpeg": "https://cards.scryfall.io/normal/front/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.jpg?1783925339"
+      },
+      "set": "mic",
+      "collector_number": "116",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "tribal support"
+        ],
+        "note": "Grows a Zombie board over successive upkeeps using Zombies from either packet.",
+        "caution": "Does nothing without at least two Zombies and can snowball rapidly if left unanswered.",
+        "manaNote": "Costs 2BB.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a",
+      "oracle_id": "f5c2b700-da52-4436-b234-e32ba7759e17",
+      "name": "Dark Salvation",
+      "mana_cost": "{X}{X}{B}",
+      "cmc": 1,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Target player creates X 2/2 black Zombie creature tokens, then up to one target creature gets -1/-1 until end of turn for each Zombie that player controls.",
+      "scryfall_uri": "https://scryfall.com/card/mic/110/dark-salvation?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.jpg?1783925341",
+        "normal": "https://cards.scryfall.io/normal/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.jpg?1783925341",
+        "large": "https://cards.scryfall.io/large/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.jpg?1783925341",
+        "png": "https://cards.scryfall.io/png/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.png?1783925341",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.jpg?1783925341",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.jpg?1783925341",
+        "thumb": "https://cards.scryfall.io/thumb/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.webp?1783925341",
+        "grid": "https://cards.scryfall.io/grid/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.webp?1783925341",
+        "display": "https://cards.scryfall.io/display/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.webp?1783925341",
+        "art": "https://cards.scryfall.io/art/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.webp?1783925341",
+        "crop": "https://cards.scryfall.io/crop/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.webp?1783925341",
+        "jpeg": "https://cards.scryfall.io/normal/front/1/f/1fc4eec7-ce6c-4b63-aca8-fa409cc5ee5a.jpg?1783925341"
+      },
+      "set": "mic",
+      "collector_number": "110",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "token production",
+          "interaction"
+        ],
+        "note": "Combines Zombie creation with removal that scales with the selected player's Zombie count.",
+        "caution": "Two X symbols make the total cost 2X plus B; the removal counts existing Zombies too.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "82e6b971-3f5b-47e7-8209-98d72ee781fc",
+      "oracle_id": "b1804304-fac1-4b19-a48d-6ade9407972a",
+      "name": "Dead Weight",
+      "mana_cost": "{B}",
+      "cmc": 1,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Enchantment — Aura",
+      "oracle_text": "Enchant creature\nEnchanted creature gets -2/-2.",
+      "scryfall_uri": "https://scryfall.com/card/lci/99/dead-weight?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.jpg?1783913779",
+        "normal": "https://cards.scryfall.io/normal/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.jpg?1783913779",
+        "large": "https://cards.scryfall.io/large/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.jpg?1783913779",
+        "png": "https://cards.scryfall.io/png/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.png?1783913779",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.jpg?1783913779",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.jpg?1783913779",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.webp?1783913779",
+        "grid": "https://cards.scryfall.io/grid/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.webp?1783913779",
+        "display": "https://cards.scryfall.io/display/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.webp?1783913779",
+        "art": "https://cards.scryfall.io/art/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.webp?1783913779",
+        "crop": "https://cards.scryfall.io/crop/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.webp?1783913779",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/2/82e6b971-3f5b-47e7-8209-98d72ee781fc.jpg?1783913779"
+      },
+      "set": "lci",
+      "collector_number": "99",
+      "released_at": "2023-11-17",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "interaction"
+        ],
+        "note": "Cheap death-themed removal that gives the creature-heavy Zombie plan an early way to manage opposing threats.",
+        "caution": "Generic support rather than a Zombie payoff; larger creatures can survive the -2/-2 Aura.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "b1f73271-b70f-40ae-be64-f8de7805923a",
+      "oracle_id": "4e0b647a-6e1a-421b-bca9-8d5e346bda80",
+      "name": "Unearth",
+      "mana_cost": "{B}",
+      "cmc": 1,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Return target creature card with mana value 3 or less from your graveyard to the battlefield.\nCycling {2} ({2}, Discard this card: Draw a card.)",
+      "scryfall_uri": "https://scryfall.com/card/2x2/96/unearth?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.jpg?1783921900",
+        "normal": "https://cards.scryfall.io/normal/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.jpg?1783921900",
+        "large": "https://cards.scryfall.io/large/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.jpg?1783921900",
+        "png": "https://cards.scryfall.io/png/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.png?1783921900",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.jpg?1783921900",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.jpg?1783921900",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.webp?1783921900",
+        "grid": "https://cards.scryfall.io/grid/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.webp?1783921900",
+        "display": "https://cards.scryfall.io/display/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.webp?1783921900",
+        "art": "https://cards.scryfall.io/art/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.webp?1783921900",
+        "crop": "https://cards.scryfall.io/crop/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.webp?1783921900",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/1/b1f73271-b70f-40ae-be64-f8de7805923a.jpg?1783921900"
+      },
+      "set": "2x2",
+      "collector_number": "96",
+      "released_at": "2022-07-08",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "recursion",
+          "card selection"
+        ],
+        "note": "Returns a cheap creature directly to the battlefield and can be cycled when recursion is not useful.",
+        "caution": "Only recovers creatures with mana value three or less; does not recover the packet's larger finishers.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "37e34017-0aeb-4a93-9edf-596bf3597a0e",
+      "oracle_id": "97773064-6534-4761-8c73-3ffd713f4569",
+      "name": "Call of the Death-Dweller",
+      "mana_cost": "{2}{B}",
+      "cmc": 3,
+      "colors": [
+        "B"
+      ],
+      "color_identity": [
+        "B"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Return up to two target creature cards with total mana value 3 or less from your graveyard to the battlefield. Put a deathtouch counter on either of them. Then put a menace counter on either of them.",
+      "scryfall_uri": "https://scryfall.com/card/iko/78/call-of-the-death-dweller?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.jpg?1783931064",
+        "normal": "https://cards.scryfall.io/normal/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.jpg?1783931064",
+        "large": "https://cards.scryfall.io/large/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.jpg?1783931064",
+        "png": "https://cards.scryfall.io/png/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.png?1783931064",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.jpg?1783931064",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.jpg?1783931064",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.webp?1783931064",
+        "grid": "https://cards.scryfall.io/grid/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.webp?1783931064",
+        "display": "https://cards.scryfall.io/display/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.webp?1783931064",
+        "art": "https://cards.scryfall.io/art/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.webp?1783931064",
+        "crop": "https://cards.scryfall.io/crop/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.webp?1783931064",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/7/37e34017-0aeb-4a93-9edf-596bf3597a0e.jpg?1783931064"
+      },
+      "set": "iko",
+      "collector_number": "78",
+      "released_at": "2020-04-24",
+      "research": {
+        "groups": [
+          "zombies-black"
+        ],
+        "roles": [
+          "recursion",
+          "combat support"
+        ],
+        "note": "Can recover two small creatures from either packet and enhance them with keyword counters.",
+        "caution": "Returned creatures must total mana value three or less; deathtouch and menace counters require tracking.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "0efc87bc-2ae9-423d-8f95-6dbd18b57745",
+      "oracle_id": "c339982a-45d6-4c1a-aefc-c72427b40744",
+      "name": "Screeching Skaab",
+      "mana_cost": "{1}{U}",
+      "cmc": 2,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "When this creature enters, mill two cards.",
+      "power": "2",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/ema/69/screeching-skaab?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.jpg?1783937607",
+        "normal": "https://cards.scryfall.io/normal/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.jpg?1783937607",
+        "large": "https://cards.scryfall.io/large/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.jpg?1783937607",
+        "png": "https://cards.scryfall.io/png/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.png?1783937607",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.jpg?1783937607",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.jpg?1783937607",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.webp?1783937607",
+        "grid": "https://cards.scryfall.io/grid/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.webp?1783937607",
+        "display": "https://cards.scryfall.io/display/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.webp?1783937607",
+        "art": "https://cards.scryfall.io/art/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.webp?1783937607",
+        "crop": "https://cards.scryfall.io/crop/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.webp?1783937607",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/e/0efc87bc-2ae9-423d-8f95-6dbd18b57745.jpg?1783937607"
+      },
+      "set": "ema",
+      "collector_number": "69",
+      "released_at": "2016-06-10",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "early creature",
+          "graveyard setup"
+        ],
+        "note": "An early stitched Zombie that fuels recursion and graveyard payoffs from either packet.",
+        "caution": "Mills cards without replacing them in hand; the partner should provide a reason to use the graveyard.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ce4d00f2-30e6-41d5-b997-c66350fe783c",
+      "oracle_id": "74d85903-6404-41d9-bc00-81c6b2f61bb0",
+      "name": "Armored Skaab",
+      "mana_cost": "{2}{U}",
+      "cmc": 3,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie Warrior",
+      "oracle_text": "When this creature enters, mill four cards.",
+      "power": "1",
+      "toughness": "4",
+      "scryfall_uri": "https://scryfall.com/card/isd/43/armored-skaab?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.jpg?1783940980",
+        "normal": "https://cards.scryfall.io/normal/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.jpg?1783940980",
+        "large": "https://cards.scryfall.io/large/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.jpg?1783940980",
+        "png": "https://cards.scryfall.io/png/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.png?1783940980",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.jpg?1783940980",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.jpg?1783940980",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.webp?1783940980",
+        "grid": "https://cards.scryfall.io/grid/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.webp?1783940980",
+        "display": "https://cards.scryfall.io/display/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.webp?1783940980",
+        "art": "https://cards.scryfall.io/art/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.webp?1783940980",
+        "crop": "https://cards.scryfall.io/crop/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.webp?1783940980",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/e/ce4d00f2-30e6-41d5-b997-c66350fe783c.jpg?1783940980"
+      },
+      "set": "isd",
+      "collector_number": "43",
+      "released_at": "2011-09-30",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "defense",
+          "graveyard setup"
+        ],
+        "note": "A defensive stitched creature that puts four cards into the graveyard to enable recovery and other graveyard plans.",
+        "caution": "Four-card self-mill is substantial in a forty-card deck.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "9716d384-88d1-415e-882f-7fed9be1adc6",
+      "oracle_id": "a6f0dcbc-ca45-4ae8-961e-e42ef8d8a975",
+      "name": "Organ Hoarder",
+      "mana_cost": "{3}{U}",
+      "cmc": 4,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "When this creature enters, look at the top three cards of your library, then put one of them into your hand and the rest into your graveyard.",
+      "power": "3",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/mid/66/organ-hoarder?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.jpg?1783925635",
+        "normal": "https://cards.scryfall.io/normal/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.jpg?1783925635",
+        "large": "https://cards.scryfall.io/large/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.jpg?1783925635",
+        "png": "https://cards.scryfall.io/png/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.png?1783925635",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.jpg?1783925635",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.jpg?1783925635",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.webp?1783925635",
+        "grid": "https://cards.scryfall.io/grid/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.webp?1783925635",
+        "display": "https://cards.scryfall.io/display/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.webp?1783925635",
+        "art": "https://cards.scryfall.io/art/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.webp?1783925635",
+        "crop": "https://cards.scryfall.io/crop/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.webp?1783925635",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/7/9716d384-88d1-415e-882f-7fed9be1adc6.jpg?1783925635"
+      },
+      "set": "mid",
+      "collector_number": "66",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "card selection",
+          "graveyard setup"
+        ],
+        "note": "Provides a Zombie body and selects a card for hand while putting the other examined cards in the graveyard.",
+        "caution": "Four mana; it supplies selection and graveyard fuel rather than a particularly fast start.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d",
+      "oracle_id": "4c502f1b-7361-48c0-8def-0d3b3e9ff628",
+      "name": "Stitched Mangler",
+      "mana_cost": "{2}{U}",
+      "cmc": 3,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie Horror",
+      "oracle_text": "This creature enters tapped.\nWhen this creature enters, tap target creature an opponent controls. That creature doesn't untap during its controller's next untap step.",
+      "power": "2",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/inr/87/stitched-mangler?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.jpg?1783908157",
+        "normal": "https://cards.scryfall.io/normal/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.jpg?1783908157",
+        "large": "https://cards.scryfall.io/large/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.jpg?1783908157",
+        "png": "https://cards.scryfall.io/png/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.png?1783908157",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.jpg?1783908157",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.jpg?1783908157",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.webp?1783908157",
+        "grid": "https://cards.scryfall.io/grid/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.webp?1783908157",
+        "display": "https://cards.scryfall.io/display/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.webp?1783908157",
+        "art": "https://cards.scryfall.io/art/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.webp?1783908157",
+        "crop": "https://cards.scryfall.io/crop/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.webp?1783908157",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/9/e90cb0f1-d6fa-4a73-83bb-8870e59b1d7d.jpg?1783908157"
+      },
+      "set": "inr",
+      "collector_number": "87",
+      "released_at": "2025-01-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "interaction",
+          "tempo"
+        ],
+        "note": "A stitched Zombie that temporarily clears an opposing blocker and can support attacks from either packet.",
+        "caution": "Enters tapped and only delays the target's next untap rather than removing it permanently.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "f84bb1ce-a8a0-4a29-9129-b1d7041fd01a",
+      "oracle_id": "0b40e537-d385-450d-93a9-b60a25bfe508",
+      "name": "Stitchwing Skaab",
+      "mana_cost": "{3}{U}",
+      "cmc": 4,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie Horror",
+      "oracle_text": "Flying\n{1}{U}, Discard two cards: Return this card from your graveyard to the battlefield tapped.",
+      "power": "3",
+      "toughness": "1",
+      "scryfall_uri": "https://scryfall.com/card/soi/90/stitchwing-skaab?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.jpg?1783937783",
+        "normal": "https://cards.scryfall.io/normal/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.jpg?1783937783",
+        "large": "https://cards.scryfall.io/large/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.jpg?1783937783",
+        "png": "https://cards.scryfall.io/png/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.png?1783937783",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.jpg?1783937783",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.jpg?1783937783",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.webp?1783937783",
+        "grid": "https://cards.scryfall.io/grid/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.webp?1783937783",
+        "display": "https://cards.scryfall.io/display/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.webp?1783937783",
+        "art": "https://cards.scryfall.io/art/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.webp?1783937783",
+        "crop": "https://cards.scryfall.io/crop/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.webp?1783937783",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/8/f84bb1ce-a8a0-4a29-9129-b1d7041fd01a.jpg?1783937783"
+      },
+      "set": "soi",
+      "collector_number": "90",
+      "released_at": "2016-04-08",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "evasion",
+          "recursion"
+        ],
+        "note": "A flying stitched Zombie with its own graveyard return ability; discard can seed other recovery effects.",
+        "caution": "Returning it costs two discarded cards and brings it back tapped.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c",
+      "oracle_id": "7e5d2801-873f-4318-9c23-9a73e00e31a4",
+      "name": "Advanced Stitchwing",
+      "mana_cost": "{3}{U}{U}",
+      "cmc": 5,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie Horror",
+      "oracle_text": "Flying\n{2}{U}, Discard two cards: Return this card from your graveyard to the battlefield tapped.",
+      "power": "3",
+      "toughness": "4",
+      "scryfall_uri": "https://scryfall.com/card/2x2/36/advanced-stitchwing?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.jpg?1783921923",
+        "normal": "https://cards.scryfall.io/normal/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.jpg?1783921923",
+        "large": "https://cards.scryfall.io/large/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.jpg?1783921923",
+        "png": "https://cards.scryfall.io/png/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.png?1783921923",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.jpg?1783921923",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.jpg?1783921923",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.webp?1783921923",
+        "grid": "https://cards.scryfall.io/grid/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.webp?1783921923",
+        "display": "https://cards.scryfall.io/display/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.webp?1783921923",
+        "art": "https://cards.scryfall.io/art/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.webp?1783921923",
+        "crop": "https://cards.scryfall.io/crop/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.webp?1783921923",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/4/044b2bfc-a5cc-4505-831d-5e1e3a6fdb3c.jpg?1783921923"
+      },
+      "set": "2x2",
+      "collector_number": "36",
+      "released_at": "2022-07-08",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "evasion",
+          "recursion",
+          "finisher"
+        ],
+        "note": "A larger flying stitched Zombie with repeatable graveyard return, independent of black support.",
+        "caution": "Returning it costs two discarded cards and puts it onto the battlefield tapped.",
+        "manaNote": "Its initial spell costs 3UU; the return ability costs 2U.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "6e67802e-e0d9-4989-b1c2-77ef2ff69796",
+      "oracle_id": "485dea0d-2123-4e5c-91a1-25ba73f4f3cf",
+      "name": "Hordewing Skaab",
+      "mana_cost": "{4}{U}",
+      "cmc": 5,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie Horror",
+      "oracle_text": "Flying\nOther Zombies you control have flying.\nWhenever one or more Zombies you control deal combat damage to one or more of your opponents, you may draw cards equal to the number of opponents dealt damage this way. If you do, discard that many cards.",
+      "power": "3",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/mic/15/hordewing-skaab?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.jpg?1783925379",
+        "normal": "https://cards.scryfall.io/normal/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.jpg?1783925379",
+        "large": "https://cards.scryfall.io/large/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.jpg?1783925379",
+        "png": "https://cards.scryfall.io/png/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.png?1783925379",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.jpg?1783925379",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.jpg?1783925379",
+        "thumb": "https://cards.scryfall.io/thumb/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.webp?1783925379",
+        "grid": "https://cards.scryfall.io/grid/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.webp?1783925379",
+        "display": "https://cards.scryfall.io/display/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.webp?1783925379",
+        "art": "https://cards.scryfall.io/art/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.webp?1783925379",
+        "crop": "https://cards.scryfall.io/crop/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.webp?1783925379",
+        "jpeg": "https://cards.scryfall.io/normal/front/6/e/6e67802e-e0d9-4989-b1c2-77ef2ff69796.jpg?1783925379"
+      },
+      "set": "mic",
+      "collector_number": "15",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "tribal support",
+          "evasion",
+          "card selection",
+          "finisher"
+        ],
+        "note": "Gives other Zombies flying and turns their combat damage into optional draw-and-discard, tying all packet colors together.",
+        "caution": "Team-wide flying may overwhelm a Plant packet with insufficient reach or removal.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "30498d6c-29e2-4d05-a5bc-e2e623c5704d",
+      "oracle_id": "9fa66e03-7b20-43f6-8c53-1ce18169c382",
+      "name": "Cleaver Skaab",
+      "mana_cost": "{3}{U}",
+      "cmc": 4,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie Horror",
+      "oracle_text": "{3}, {T}, Sacrifice another Zombie: Create two tokens that are copies of the sacrificed creature.",
+      "power": "2",
+      "toughness": "4",
+      "scryfall_uri": "https://scryfall.com/card/mic/11/cleaver-skaab?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.jpg?1783925380",
+        "normal": "https://cards.scryfall.io/normal/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.jpg?1783925380",
+        "large": "https://cards.scryfall.io/large/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.jpg?1783925380",
+        "png": "https://cards.scryfall.io/png/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.png?1783925380",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.jpg?1783925380",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.jpg?1783925380",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.webp?1783925380",
+        "grid": "https://cards.scryfall.io/grid/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.webp?1783925380",
+        "display": "https://cards.scryfall.io/display/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.webp?1783925380",
+        "art": "https://cards.scryfall.io/art/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.webp?1783925380",
+        "crop": "https://cards.scryfall.io/crop/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.webp?1783925380",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/0/30498d6c-29e2-4d05-a5bc-e2e623c5704d.jpg?1783925380"
+      },
+      "set": "mic",
+      "collector_number": "11",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "token production",
+          "sacrifice outlet",
+          "tribal support"
+        ],
+        "note": "Replaces another Zombie with two token copies, reusing entry triggers and multiplying useful bodies from either partner.",
+        "caution": "Needs another Zombie and time to activate; copied tokens can create strong engines and substantial tracking.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2",
+      "oracle_id": "eedbc164-032c-420f-ac59-bd2675ff1b69",
+      "name": "Stitched Assistant",
+      "mana_cost": "{2}{U}",
+      "cmc": 3,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "Exploit (When this creature enters, you may sacrifice a creature.)\nWhen this creature exploits a creature, scry 1, then draw a card. (To scry 1, look at the top card of your library, then you may put that card on the bottom.)",
+      "power": "3",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/vow/81/stitched-assistant?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.jpg?1783924884",
+        "normal": "https://cards.scryfall.io/normal/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.jpg?1783924884",
+        "large": "https://cards.scryfall.io/large/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.jpg?1783924884",
+        "png": "https://cards.scryfall.io/png/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.png?1783924884",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.jpg?1783924884",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.jpg?1783924884",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.webp?1783924884",
+        "grid": "https://cards.scryfall.io/grid/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.webp?1783924884",
+        "display": "https://cards.scryfall.io/display/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.webp?1783924884",
+        "art": "https://cards.scryfall.io/art/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.webp?1783924884",
+        "crop": "https://cards.scryfall.io/crop/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.webp?1783924884",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/1/c1debb8c-d5e0-49e5-ab27-2d50e6f9d8d2.jpg?1783924884"
+      },
+      "set": "vow",
+      "collector_number": "81",
+      "released_at": "2021-11-19",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "card selection",
+          "sacrifice outlet"
+        ],
+        "note": "Exploit converts a creature into scry and a card, using expendable Zombies or death triggers from either packet.",
+        "caution": "The exploit choice can sacrifice the Assistant itself; players must evaluate the lost body.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "7cc22c2a-535a-46b5-817c-da5850abd669",
+      "oracle_id": "7932ddef-b274-4f56-be7f-72e82d17fc59",
+      "name": "Repository Skaab",
+      "mana_cost": "{3}{U}",
+      "cmc": 4,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "Exploit (When this creature enters, you may sacrifice a creature.)\nWhen this creature exploits a creature, return target instant or sorcery card from your graveyard to your hand.",
+      "power": "3",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/vow/73/repository-skaab?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.jpg?1783924886",
+        "normal": "https://cards.scryfall.io/normal/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.jpg?1783924886",
+        "large": "https://cards.scryfall.io/large/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.jpg?1783924886",
+        "png": "https://cards.scryfall.io/png/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.png?1783924886",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.jpg?1783924886",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.jpg?1783924886",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.webp?1783924886",
+        "grid": "https://cards.scryfall.io/grid/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.webp?1783924886",
+        "display": "https://cards.scryfall.io/display/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.webp?1783924886",
+        "art": "https://cards.scryfall.io/art/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.webp?1783924886",
+        "crop": "https://cards.scryfall.io/crop/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.webp?1783924886",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/c/7cc22c2a-535a-46b5-817c-da5850abd669.jpg?1783924886"
+      },
+      "set": "vow",
+      "collector_number": "73",
+      "released_at": "2021-11-19",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "spell recursion",
+          "sacrifice outlet"
+        ],
+        "note": "Exploit can recover an instant or sorcery of either color, supporting necromancy or white combat spells.",
+        "caution": "Needs both a useful spell in the graveyard and a creature to exploit for the full effect.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "f8805db2-5a26-43cf-9b74-f882c283e5e4",
+      "oracle_id": "3b97794a-3aaa-45a6-9cad-f1b768615b6d",
+      "name": "Selhoff Entomber",
+      "mana_cost": "{1}{U}",
+      "cmc": 2,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "{T}, Discard a creature card: Draw a card.",
+      "power": "1",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/vow/76/selhoff-entomber?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.jpg?1783924885",
+        "normal": "https://cards.scryfall.io/normal/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.jpg?1783924885",
+        "large": "https://cards.scryfall.io/large/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.jpg?1783924885",
+        "png": "https://cards.scryfall.io/png/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.png?1783924885",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.jpg?1783924885",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.jpg?1783924885",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.webp?1783924885",
+        "grid": "https://cards.scryfall.io/grid/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.webp?1783924885",
+        "display": "https://cards.scryfall.io/display/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.webp?1783924885",
+        "art": "https://cards.scryfall.io/art/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.webp?1783924885",
+        "crop": "https://cards.scryfall.io/crop/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.webp?1783924885",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/8/f8805db2-5a26-43cf-9b74-f882c283e5e4.jpg?1783924885"
+      },
+      "set": "vow",
+      "collector_number": "76",
+      "released_at": "2021-11-19",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "early creature",
+          "card selection",
+          "graveyard setup"
+        ],
+        "note": "A stitched Zombie that trades creature cards in hand for fresh draws and graveyard material.",
+        "caution": "Only creature cards can pay its discard cost; its tap ability cannot be used immediately without haste.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "69890076-9cc4-434f-8618-63b00fdf4515",
+      "oracle_id": "0a0743b0-07c2-4e11-8b30-6b1b8156bdd0",
+      "name": "Geralf, Visionary Stitcher",
+      "mana_cost": "{2}{U}",
+      "cmc": 3,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Legendary Creature — Human Wizard",
+      "oracle_text": "Zombies you control have flying.\n{U}, {T}, Sacrifice another nontoken creature: Create an X/X blue Zombie creature token, where X is the sacrificed creature's toughness.",
+      "power": "1",
+      "toughness": "4",
+      "scryfall_uri": "https://scryfall.com/card/vow/61/geralf-visionary-stitcher?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.jpg?1783924892",
+        "normal": "https://cards.scryfall.io/normal/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.jpg?1783924892",
+        "large": "https://cards.scryfall.io/large/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.jpg?1783924892",
+        "png": "https://cards.scryfall.io/png/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.png?1783924892",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.jpg?1783924892",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.jpg?1783924892",
+        "thumb": "https://cards.scryfall.io/thumb/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.webp?1783924892",
+        "grid": "https://cards.scryfall.io/grid/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.webp?1783924892",
+        "display": "https://cards.scryfall.io/display/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.webp?1783924892",
+        "art": "https://cards.scryfall.io/art/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.webp?1783924892",
+        "crop": "https://cards.scryfall.io/crop/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.webp?1783924892",
+        "jpeg": "https://cards.scryfall.io/normal/front/6/9/69890076-9cc4-434f-8618-63b00fdf4515.jpg?1783924892"
+      },
+      "set": "vow",
+      "collector_number": "61",
+      "released_at": "2021-11-19",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "tribal support",
+          "token production",
+          "sacrifice outlet"
+        ],
+        "note": "A thematic mad-scientist support creature that gives Zombies flying and turns other creatures into Zombie tokens.",
+        "caution": "Geralf is a Human Wizard, not a Zombie. Sacrifices must be other nontoken creatures, and the token's size uses toughness. Team-wide flying can be powerful.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "35f68eb3-9b40-4967-a52e-f95aec6e3fbf",
+      "oracle_id": "7996222e-68c8-4a5c-9531-c60cdd88ae05",
+      "name": "Startle",
+      "mana_cost": "{1}{U}",
+      "cmc": 2,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Target creature gets -2/-0 until end of turn. Create a 2/2 black Zombie creature token with decayed. (It can't block. When it attacks, sacrifice it at end of combat.)\nDraw a card.",
+      "scryfall_uri": "https://scryfall.com/card/mid/78/startle?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.jpg?1783925628",
+        "normal": "https://cards.scryfall.io/normal/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.jpg?1783925628",
+        "large": "https://cards.scryfall.io/large/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.jpg?1783925628",
+        "png": "https://cards.scryfall.io/png/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.png?1783925628",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.jpg?1783925628",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.jpg?1783925628",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.webp?1783925628",
+        "grid": "https://cards.scryfall.io/grid/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.webp?1783925628",
+        "display": "https://cards.scryfall.io/display/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.webp?1783925628",
+        "art": "https://cards.scryfall.io/art/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.webp?1783925628",
+        "crop": "https://cards.scryfall.io/crop/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.webp?1783925628",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/5/35f68eb3-9b40-4967-a52e-f95aec6e3fbf.jpg?1783925628"
+      },
+      "set": "mid",
+      "collector_number": "78",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "interaction",
+          "token production",
+          "card draw"
+        ],
+        "note": "A defensive combat trick that replaces itself and leaves a decayed Zombie token for attacks or sacrifice.",
+        "caution": "Decayed tokens cannot block and are sacrificed at end of combat after attacking.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "5cdbe4e3-f030-46fa-ae84-edf261b61706",
+      "oracle_id": "a28eb946-c7f2-4c90-ab6c-b194e290e33d",
+      "name": "Flip the Switch",
+      "mana_cost": "{2}{U}",
+      "cmc": 3,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Counter target spell unless its controller pays {4}. Create a 2/2 black Zombie creature token with decayed. (It can't block. When it attacks, sacrifice it at end of combat.)",
+      "scryfall_uri": "https://scryfall.com/card/mid/54/flip-the-switch?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.jpg?1783925640",
+        "normal": "https://cards.scryfall.io/normal/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.jpg?1783925640",
+        "large": "https://cards.scryfall.io/large/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.jpg?1783925640",
+        "png": "https://cards.scryfall.io/png/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.png?1783925640",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.jpg?1783925640",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.jpg?1783925640",
+        "thumb": "https://cards.scryfall.io/thumb/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.webp?1783925640",
+        "grid": "https://cards.scryfall.io/grid/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.webp?1783925640",
+        "display": "https://cards.scryfall.io/display/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.webp?1783925640",
+        "art": "https://cards.scryfall.io/art/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.webp?1783925640",
+        "crop": "https://cards.scryfall.io/crop/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.webp?1783925640",
+        "jpeg": "https://cards.scryfall.io/normal/front/5/c/5cdbe4e3-f030-46fa-ae84-edf261b61706.jpg?1783925640"
+      },
+      "set": "mid",
+      "collector_number": "54",
+      "released_at": "2021-09-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "interaction",
+          "token production"
+        ],
+        "note": "Counters an opposing spell unless its controller pays and adds a decayed Zombie to the table.",
+        "caution": "Requires leaving mana open; the opponent may pay to prevent the counter. The token has decayed.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "a16fccff-ca97-4416-b42f-86d314b1d0af",
+      "oracle_id": "390b862a-2a85-44bd-832c-f5bbd3eb4ea0",
+      "name": "Rise from the Tides",
+      "mana_cost": "{5}{U}",
+      "cmc": 6,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Create a tapped 2/2 black Zombie creature token for each instant and sorcery card in your graveyard.",
+      "scryfall_uri": "https://scryfall.com/card/inr/82/rise-from-the-tides?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.jpg?1783908155",
+        "normal": "https://cards.scryfall.io/normal/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.jpg?1783908155",
+        "large": "https://cards.scryfall.io/large/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.jpg?1783908155",
+        "png": "https://cards.scryfall.io/png/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.png?1783908155",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.jpg?1783908155",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.jpg?1783908155",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.webp?1783908155",
+        "grid": "https://cards.scryfall.io/grid/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.webp?1783908155",
+        "display": "https://cards.scryfall.io/display/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.webp?1783908155",
+        "art": "https://cards.scryfall.io/art/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.webp?1783908155",
+        "crop": "https://cards.scryfall.io/crop/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.webp?1783908155",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/1/a16fccff-ca97-4416-b42f-86d314b1d0af.jpg?1783908155"
+      },
+      "set": "inr",
+      "collector_number": "82",
+      "released_at": "2025-01-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "token production",
+          "graveyard payoff",
+          "finisher"
+        ],
+        "note": "A necromantic blue finisher that converts spent or milled instants and sorceries from both packets into Zombies.",
+        "caution": "Six mana; needs a sufficient spell count and creates the tokens tapped.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "31146f03-cb5e-4f33-aad7-ce970b914d90",
+      "oracle_id": "6835bf6d-7197-481b-ac26-276ce363b4ad",
+      "name": "Rooftop Storm",
+      "mana_cost": "{5}{U}",
+      "cmc": 6,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "You may pay {0} rather than pay the mana cost for Zombie creature spells you cast.",
+      "scryfall_uri": "https://scryfall.com/card/inr/83/rooftop-storm?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.jpg?1783908155",
+        "normal": "https://cards.scryfall.io/normal/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.jpg?1783908155",
+        "large": "https://cards.scryfall.io/large/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.jpg?1783908155",
+        "png": "https://cards.scryfall.io/png/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.png?1783908155",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.jpg?1783908155",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.jpg?1783908155",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.webp?1783908155",
+        "grid": "https://cards.scryfall.io/grid/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.webp?1783908155",
+        "display": "https://cards.scryfall.io/display/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.webp?1783908155",
+        "art": "https://cards.scryfall.io/art/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.webp?1783908155",
+        "crop": "https://cards.scryfall.io/crop/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.webp?1783908155",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/1/31146f03-cb5e-4f33-aad7-ce970b914d90.jpg?1783908155"
+      },
+      "set": "inr",
+      "collector_number": "83",
+      "released_at": "2025-01-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "tribal support",
+          "mana support"
+        ],
+        "note": "An iconic stitched-Zombie enchantment that removes the mana payment for casting Zombie creature spells of either packet color.",
+        "caution": "Six-mana engine with no immediate body; free Zombie casting can enable disproportionate recursion combinations.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "62ffc952-b763-4b9e-acdf-164253bdfe72",
+      "oracle_id": "fb0c9048-73ee-434b-a018-dbfbe32e56f5",
+      "name": "Compelling Deterrence",
+      "mana_cost": "{1}{U}",
+      "cmc": 2,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Return target nonland permanent to its owner's hand. Then that player discards a card if you control a Zombie.",
+      "scryfall_uri": "https://scryfall.com/card/inr/57/compelling-deterrence?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.jpg?1783908168",
+        "normal": "https://cards.scryfall.io/normal/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.jpg?1783908168",
+        "large": "https://cards.scryfall.io/large/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.jpg?1783908168",
+        "png": "https://cards.scryfall.io/png/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.png?1783908168",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.jpg?1783908168",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.jpg?1783908168",
+        "thumb": "https://cards.scryfall.io/thumb/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.webp?1783908168",
+        "grid": "https://cards.scryfall.io/grid/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.webp?1783908168",
+        "display": "https://cards.scryfall.io/display/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.webp?1783908168",
+        "art": "https://cards.scryfall.io/art/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.webp?1783908168",
+        "crop": "https://cards.scryfall.io/crop/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.webp?1783908168",
+        "jpeg": "https://cards.scryfall.io/normal/front/6/2/62ffc952-b763-4b9e-acdf-164253bdfe72.jpg?1783908168"
+      },
+      "set": "inr",
+      "collector_number": "57",
+      "released_at": "2025-01-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "interaction",
+          "tempo"
+        ],
+        "note": "Bounces a nonland permanent and adds discard when you control a Zombie, making the theme mechanically relevant.",
+        "caution": "Can target your own permanent too; if you control a Zombie, its controller must discard a card.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "6385509a-6814-4039-83fb-1fa5a7439696",
+      "oracle_id": "d36acdfe-2b1b-4c19-8b81-0b3127e480fe",
+      "name": "Necroduality",
+      "mana_cost": "{3}{U}",
+      "cmc": 4,
+      "colors": [
+        "U"
+      ],
+      "color_identity": [
+        "U"
+      ],
+      "type_line": "Enchantment",
+      "oracle_text": "Whenever a nontoken Zombie you control enters, create a token that's a copy of that creature.",
+      "scryfall_uri": "https://scryfall.com/card/inr/79/necroduality?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.jpg?1783908156",
+        "normal": "https://cards.scryfall.io/normal/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.jpg?1783908156",
+        "large": "https://cards.scryfall.io/large/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.jpg?1783908156",
+        "png": "https://cards.scryfall.io/png/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.png?1783908156",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.jpg?1783908156",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.jpg?1783908156",
+        "thumb": "https://cards.scryfall.io/thumb/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.webp?1783908156",
+        "grid": "https://cards.scryfall.io/grid/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.webp?1783908156",
+        "display": "https://cards.scryfall.io/display/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.webp?1783908156",
+        "art": "https://cards.scryfall.io/art/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.webp?1783908156",
+        "crop": "https://cards.scryfall.io/crop/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.webp?1783908156",
+        "jpeg": "https://cards.scryfall.io/normal/front/6/3/6385509a-6814-4039-83fb-1fa5a7439696.jpg?1783908156"
+      },
+      "set": "inr",
+      "collector_number": "79",
+      "released_at": "2025-01-24",
+      "research": {
+        "groups": [
+          "zombies-blue"
+        ],
+        "roles": [
+          "token production",
+          "tribal support"
+        ],
+        "note": "Copies nontoken Zombies entering under your control, extending white entry payoffs and black recursion.",
+        "caution": "A powerful duplication engine; copying a legendary Zombie invokes the legend rule and can create unintended complexity.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "fae54072-ae27-4aae-a2b7-71f4551934f6",
+      "oracle_id": "5adc9d0d-3393-4d91-be85-1f9dd344698b",
+      "name": "Binding Mummy",
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "Whenever another Zombie you control enters, you may tap target artifact or creature.",
+      "power": "2",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/akh/6/binding-mummy?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.jpg?1783936543",
+        "normal": "https://cards.scryfall.io/normal/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.jpg?1783936543",
+        "large": "https://cards.scryfall.io/large/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.jpg?1783936543",
+        "png": "https://cards.scryfall.io/png/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.png?1783936543",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.jpg?1783936543",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.jpg?1783936543",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.webp?1783936543",
+        "grid": "https://cards.scryfall.io/grid/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.webp?1783936543",
+        "display": "https://cards.scryfall.io/display/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.webp?1783936543",
+        "art": "https://cards.scryfall.io/art/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.webp?1783936543",
+        "crop": "https://cards.scryfall.io/crop/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.webp?1783936543",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/a/fae54072-ae27-4aae-a2b7-71f4551934f6.jpg?1783936543"
+      },
+      "set": "akh",
+      "collector_number": "6",
+      "released_at": "2017-04-28",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "early creature",
+          "interaction",
+          "tribal support"
+        ],
+        "note": "Each additional Zombie can tap an artifact or creature, so black or blue creatures naturally help clear blockers.",
+        "caution": "Only triggers for another Zombie entering under your control, not the Mummy itself.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ad806d67-4c98-438b-859f-b1358281e09d",
+      "oracle_id": "002a9cea-8cf7-48ba-83eb-e1c87a7024e5",
+      "name": "Disposal Mummy",
+      "mana_cost": "{2}{W}",
+      "cmc": 3,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Zombie Jackal",
+      "oracle_text": "When this creature enters, exile target card from an opponent's graveyard.",
+      "power": "2",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/hou/9/disposal-mummy?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.jpg?1783936067",
+        "normal": "https://cards.scryfall.io/normal/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.jpg?1783936067",
+        "large": "https://cards.scryfall.io/large/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.jpg?1783936067",
+        "png": "https://cards.scryfall.io/png/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.png?1783936067",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.jpg?1783936067",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.jpg?1783936067",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.webp?1783936067",
+        "grid": "https://cards.scryfall.io/grid/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.webp?1783936067",
+        "display": "https://cards.scryfall.io/display/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.webp?1783936067",
+        "art": "https://cards.scryfall.io/art/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.webp?1783936067",
+        "crop": "https://cards.scryfall.io/crop/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.webp?1783936067",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/d/ad806d67-4c98-438b-859f-b1358281e09d.jpg?1783936067"
+      },
+      "set": "hou",
+      "collector_number": "9",
+      "released_at": "2017-07-14",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "graveyard interaction"
+        ],
+        "note": "A mummy body with a straightforward effect that removes a card from the opponent's graveyard.",
+        "caution": "Its graveyard effect may be low-impact against a Plant packet without recursion.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "7684db4c-6eff-4da1-a410-48d707fb5bf1",
+      "oracle_id": "5837b3d9-b3cb-4333-b0db-ed38e49c997f",
+      "name": "Dutiful Servants",
+      "mana_cost": "{3}{W}",
+      "cmc": 4,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "",
+      "power": "2",
+      "toughness": "5",
+      "scryfall_uri": "https://scryfall.com/card/hou/12/dutiful-servants?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.jpg?1783936063",
+        "normal": "https://cards.scryfall.io/normal/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.jpg?1783936063",
+        "large": "https://cards.scryfall.io/large/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.jpg?1783936063",
+        "png": "https://cards.scryfall.io/png/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.png?1783936063",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.jpg?1783936063",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.jpg?1783936063",
+        "thumb": "https://cards.scryfall.io/thumb/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.webp?1783936063",
+        "grid": "https://cards.scryfall.io/grid/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.webp?1783936063",
+        "display": "https://cards.scryfall.io/display/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.webp?1783936063",
+        "art": "https://cards.scryfall.io/art/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.webp?1783936063",
+        "crop": "https://cards.scryfall.io/crop/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.webp?1783936063",
+        "jpeg": "https://cards.scryfall.io/normal/front/7/6/7684db4c-6eff-4da1-a410-48d707fb5bf1.jpg?1783936063"
+      },
+      "set": "hou",
+      "collector_number": "12",
+      "released_at": "2017-07-14",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "defense"
+        ],
+        "note": "A simple mummy body that benefits from general Zombie entry triggers and tribal boosts without adding rules overhead.",
+        "caution": "Four-mana vanilla creature; assess whether it meaningfully contributes to the packet's curve.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f",
+      "oracle_id": "d2e7198a-0eb5-4d30-973f-4b2d9617436f",
+      "name": "Fan Bearer",
+      "mana_cost": "{W}",
+      "cmc": 1,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "{2}, {T}: Tap target creature.",
+      "power": "1",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/gnt/12/fan-bearer?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.jpg?1783933990",
+        "normal": "https://cards.scryfall.io/normal/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.jpg?1783933990",
+        "large": "https://cards.scryfall.io/large/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.jpg?1783933990",
+        "png": "https://cards.scryfall.io/png/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.png?1783933990",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.jpg?1783933990",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.jpg?1783933990",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.webp?1783933990",
+        "grid": "https://cards.scryfall.io/grid/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.webp?1783933990",
+        "display": "https://cards.scryfall.io/display/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.webp?1783933990",
+        "art": "https://cards.scryfall.io/art/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.webp?1783933990",
+        "crop": "https://cards.scryfall.io/crop/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.webp?1783933990",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/f/4f587d8d-1bef-4e4b-9b94-94c0ae11bc8f.jpg?1783933990"
+      },
+      "set": "gnt",
+      "collector_number": "12",
+      "released_at": "2018-11-16",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "early creature",
+          "interaction"
+        ],
+        "note": "A one-mana mummy that can tap blockers or attackers later, useful with either partner color.",
+        "caution": "The ability costs two mana and tapping the Bearer; it requires timing before attackers are declared to prevent an attack.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "df70f155-2336-421c-8a9d-69772d2b51a8",
+      "oracle_id": "3b03358d-f87e-4939-afc9-5ee3f044146a",
+      "name": "God-Eternal Oketra",
+      "mana_cost": "{3}{W}{W}",
+      "cmc": 5,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Legendary Creature — Zombie God",
+      "oracle_text": "Double strike\nWhenever you cast a creature spell, create a 4/4 black Zombie Warrior creature token with vigilance.\nWhen God-Eternal Oketra dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.",
+      "power": "3",
+      "toughness": "6",
+      "scryfall_uri": "https://scryfall.com/card/war/16/god-eternal-oketra?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.jpg?1783933481",
+        "normal": "https://cards.scryfall.io/normal/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.jpg?1783933481",
+        "large": "https://cards.scryfall.io/large/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.jpg?1783933481",
+        "png": "https://cards.scryfall.io/png/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.png?1783933481",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.jpg?1783933481",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.jpg?1783933481",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.webp?1783933481",
+        "grid": "https://cards.scryfall.io/grid/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.webp?1783933481",
+        "display": "https://cards.scryfall.io/display/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.webp?1783933481",
+        "art": "https://cards.scryfall.io/art/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.webp?1783933481",
+        "crop": "https://cards.scryfall.io/crop/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.webp?1783933481",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/f/df70f155-2336-421c-8a9d-69772d2b51a8.jpg?1783933481"
+      },
+      "set": "war",
+      "collector_number": "16",
+      "released_at": "2019-05-03",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "token production",
+          "finisher"
+        ],
+        "note": "A Zombie deity that rewards creature spells from either packet with vigilant Zombie tokens.",
+        "caution": "Likely far above the desired starting power level; repeated 4/4 tokens and its library-return ability demand careful testing.",
+        "manaNote": "Costs 3WW.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "e8b1a3e5-cf77-439d-8e0d-cf6571f6891c",
+      "oracle_id": "99cc909d-3cb2-499c-8231-41418745cd71",
+      "name": "Mummy Paramount",
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "Whenever another Zombie you control enters, this creature gets +1/+1 until end of turn.",
+      "power": "2",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/hou/16/mummy-paramount?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.jpg?1783936060",
+        "normal": "https://cards.scryfall.io/normal/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.jpg?1783936060",
+        "large": "https://cards.scryfall.io/large/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.jpg?1783936060",
+        "png": "https://cards.scryfall.io/png/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.png?1783936060",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.jpg?1783936060",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.jpg?1783936060",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.webp?1783936060",
+        "grid": "https://cards.scryfall.io/grid/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.webp?1783936060",
+        "display": "https://cards.scryfall.io/display/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.webp?1783936060",
+        "art": "https://cards.scryfall.io/art/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.webp?1783936060",
+        "crop": "https://cards.scryfall.io/crop/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.webp?1783936060",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/8/e8b1a3e5-cf77-439d-8e0d-cf6571f6891c.jpg?1783936060"
+      },
+      "set": "hou",
+      "collector_number": "16",
+      "released_at": "2017-07-14",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "early creature",
+          "tribal support"
+        ],
+        "note": "Another Zombie entering temporarily grows this mummy, making all partner-color Zombies useful follow-up plays.",
+        "caution": "The bonus ends with the turn and does not use counters.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "4172222f-d871-4354-9a02-7af0001d8956",
+      "oracle_id": "2af236b0-6b30-4ddc-8735-864d2ffad68e",
+      "name": "Pride of the Road",
+      "mana_cost": "{3}{W}",
+      "cmc": 4,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Zombie Cat Warrior",
+      "oracle_text": "Vigilance\nStart your engines! (If you have no speed, it starts at 1. It increases once on each of your turns when an opponent loses life. Max speed is 4.)\nMax speed — At the beginning of combat on your turn, target creature or Vehicle you control gains double strike until end of turn.",
+      "power": "2",
+      "toughness": "5",
+      "scryfall_uri": "https://scryfall.com/card/dft/24/pride-of-the-road?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.jpg?1783907916",
+        "normal": "https://cards.scryfall.io/normal/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.jpg?1783907916",
+        "large": "https://cards.scryfall.io/large/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.jpg?1783907916",
+        "png": "https://cards.scryfall.io/png/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.png?1783907916",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.jpg?1783907916",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.jpg?1783907916",
+        "thumb": "https://cards.scryfall.io/thumb/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.webp?1783907916",
+        "grid": "https://cards.scryfall.io/grid/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.webp?1783907916",
+        "display": "https://cards.scryfall.io/display/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.webp?1783907916",
+        "art": "https://cards.scryfall.io/art/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.webp?1783907916",
+        "crop": "https://cards.scryfall.io/crop/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.webp?1783907916",
+        "jpeg": "https://cards.scryfall.io/normal/front/4/1/4172222f-d871-4354-9a02-7af0001d8956.jpg?1783907916"
+      },
+      "set": "dft",
+      "collector_number": "24",
+      "released_at": "2025-02-14",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "combat support"
+        ],
+        "note": "A vigilant mummy that can eventually grant double strike to a creature from either packet.",
+        "caution": "Introduces the speed subsystem and needs damage across turns before its payoff; optional complexity candidate.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "f0740a86-84eb-4720-b4d7-c5f5e561ddc7",
+      "oracle_id": "524e5098-9c6d-43ad-80cb-52fd6d14ef53",
+      "name": "Priest of the Crossing",
+      "mana_cost": "{3}{W}",
+      "cmc": 4,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Zombie Bird Cleric",
+      "oracle_text": "Flying\nAt the beginning of each end step, put X +1/+1 counters on each creature you control, where X is the number of creatures that died under your control this turn.",
+      "power": "3",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/drc/6/priest-of-the-crossing?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.jpg?1783907754",
+        "normal": "https://cards.scryfall.io/normal/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.jpg?1783907754",
+        "large": "https://cards.scryfall.io/large/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.jpg?1783907754",
+        "png": "https://cards.scryfall.io/png/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.png?1783907754",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.jpg?1783907754",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.jpg?1783907754",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.webp?1783907754",
+        "grid": "https://cards.scryfall.io/grid/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.webp?1783907754",
+        "display": "https://cards.scryfall.io/display/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.webp?1783907754",
+        "art": "https://cards.scryfall.io/art/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.webp?1783907754",
+        "crop": "https://cards.scryfall.io/crop/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.webp?1783907754",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/0/f0740a86-84eb-4720-b4d7-c5f5e561ddc7.jpg?1783907754"
+      },
+      "set": "drc",
+      "collector_number": "6",
+      "released_at": "2025-02-14",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "evasion",
+          "death payoff",
+          "tribal support"
+        ],
+        "note": "A flying Zombie cleric that rewards creature deaths by placing counters across your surviving board.",
+        "caution": "The bonus can become enormous after multiple deaths, especially with sacrifice outlets; counts creatures that died under your control.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "337f8889-d814-4422-ac6e-1416e5e4d4d1",
+      "oracle_id": "414c97a3-cf31-4145-a431-3b1ad4343947",
+      "name": "Sparring Mummy",
+      "mana_cost": "{3}{W}",
+      "cmc": 4,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "When this creature enters, untap target creature.",
+      "power": "3",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/bbd/108/sparring-mummy?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.jpg?1783934839",
+        "normal": "https://cards.scryfall.io/normal/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.jpg?1783934839",
+        "large": "https://cards.scryfall.io/large/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.jpg?1783934839",
+        "png": "https://cards.scryfall.io/png/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.png?1783934839",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.jpg?1783934839",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.jpg?1783934839",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.webp?1783934839",
+        "grid": "https://cards.scryfall.io/grid/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.webp?1783934839",
+        "display": "https://cards.scryfall.io/display/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.webp?1783934839",
+        "art": "https://cards.scryfall.io/art/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.webp?1783934839",
+        "crop": "https://cards.scryfall.io/crop/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.webp?1783934839",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/3/337f8889-d814-4422-ac6e-1416e5e4d4d1.jpg?1783934839"
+      },
+      "set": "bbd",
+      "collector_number": "108",
+      "released_at": "2018-06-08",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "combat support"
+        ],
+        "note": "A mummy that untaps a creature on entry, enabling a blocker or reusing a tap ability from either packet.",
+        "caution": "Untapping a newly cast creature does not remove summoning sickness.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f",
+      "oracle_id": "0ee088dc-c7c7-4f7f-9d1f-be3d79550d95",
+      "name": "Those Who Serve",
+      "mana_cost": "{2}{W}",
+      "cmc": 3,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Zombie",
+      "oracle_text": "",
+      "power": "2",
+      "toughness": "4",
+      "scryfall_uri": "https://scryfall.com/card/akh/32/those-who-serve?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.jpg?1783936530",
+        "normal": "https://cards.scryfall.io/normal/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.jpg?1783936530",
+        "large": "https://cards.scryfall.io/large/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.jpg?1783936530",
+        "png": "https://cards.scryfall.io/png/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.png?1783936530",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.jpg?1783936530",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.jpg?1783936530",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.webp?1783936530",
+        "grid": "https://cards.scryfall.io/grid/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.webp?1783936530",
+        "display": "https://cards.scryfall.io/display/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.webp?1783936530",
+        "art": "https://cards.scryfall.io/art/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.webp?1783936530",
+        "crop": "https://cards.scryfall.io/crop/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.webp?1783936530",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/4/b4f27dd9-7ee4-4cdc-8f65-a4349b6aa47f.jpg?1783936530"
+      },
+      "set": "akh",
+      "collector_number": "32",
+      "released_at": "2017-04-28",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "defense"
+        ],
+        "note": "A simple three-mana mummy that supplies a reliable body for shared Zombie payoffs.",
+        "caution": "Vanilla creature; offers little beyond stats without support.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "f903afd3-01b5-4892-bd78-8da1d2f36252",
+      "oracle_id": "6eb5193b-5ef0-4261-acdc-958e161c8118",
+      "name": "Wizened Mentor",
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Creature — Zombie Cleric",
+      "oracle_text": "Whenever an opponent activates an ability of a permanent that isn't a mana ability, you create a 1/1 white Zombie creature token. This ability triggers only once each turn.",
+      "power": "2",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/drc/8/wizened-mentor?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.jpg?1783907751",
+        "normal": "https://cards.scryfall.io/normal/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.jpg?1783907751",
+        "large": "https://cards.scryfall.io/large/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.jpg?1783907751",
+        "png": "https://cards.scryfall.io/png/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.png?1783907751",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.jpg?1783907751",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.jpg?1783907751",
+        "thumb": "https://cards.scryfall.io/thumb/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.webp?1783907751",
+        "grid": "https://cards.scryfall.io/grid/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.webp?1783907751",
+        "display": "https://cards.scryfall.io/display/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.webp?1783907751",
+        "art": "https://cards.scryfall.io/art/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.webp?1783907751",
+        "crop": "https://cards.scryfall.io/crop/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.webp?1783907751",
+        "jpeg": "https://cards.scryfall.io/normal/front/f/9/f903afd3-01b5-4892-bd78-8da1d2f36252.jpg?1783907751"
+      },
+      "set": "drc",
+      "collector_number": "8",
+      "released_at": "2025-02-14",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "token production",
+          "early creature"
+        ],
+        "note": "A mummy cleric that produces Zombie tokens when opponents activate qualifying permanent abilities.",
+        "caution": "Depends on the opposing packet containing relevant activated abilities; triggers only once each turn and excludes mana abilities.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ccf535ef-79ee-4a31-a614-f6c77fea72b5",
+      "oracle_id": "f4a8756d-94df-40bc-a363-2938ada0a808",
+      "name": "In Oketra's Name",
+      "mana_cost": "{1}{W}",
+      "cmc": 2,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Zombies you control get +2/+1 until end of turn. Other creatures you control get +1/+1 until end of turn.",
+      "scryfall_uri": "https://scryfall.com/card/akh/19/in-oketras-name?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.jpg?1783936539",
+        "normal": "https://cards.scryfall.io/normal/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.jpg?1783936539",
+        "large": "https://cards.scryfall.io/large/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.jpg?1783936539",
+        "png": "https://cards.scryfall.io/png/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.png?1783936539",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.jpg?1783936539",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.jpg?1783936539",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.webp?1783936539",
+        "grid": "https://cards.scryfall.io/grid/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.webp?1783936539",
+        "display": "https://cards.scryfall.io/display/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.webp?1783936539",
+        "art": "https://cards.scryfall.io/art/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.webp?1783936539",
+        "crop": "https://cards.scryfall.io/crop/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.webp?1783936539",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/c/ccf535ef-79ee-4a31-a614-f6c77fea72b5.jpg?1783936539"
+      },
+      "set": "akh",
+      "collector_number": "19",
+      "released_at": "2017-04-28",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "combat support",
+          "tribal support",
+          "finisher"
+        ],
+        "note": "An Amonkhet-themed team pump with a larger bonus for Zombies, applying across all partner colors.",
+        "caution": "Its bonus is temporary; non-Zombie support creatures receive the smaller bonus.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "b60ec4f7-7cf1-4b97-906b-536ab89b12be",
+      "oracle_id": "7ce28a3c-5f93-4434-918e-1e74f9fc71d8",
+      "name": "Time to Reflect",
+      "mana_cost": "{W}",
+      "cmc": 1,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Exile target creature that blocked or was blocked by a Zombie this turn.",
+      "scryfall_uri": "https://scryfall.com/card/akh/33/time-to-reflect?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.jpg?1783936533",
+        "normal": "https://cards.scryfall.io/normal/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.jpg?1783936533",
+        "large": "https://cards.scryfall.io/large/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.jpg?1783936533",
+        "png": "https://cards.scryfall.io/png/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.png?1783936533",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.jpg?1783936533",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.jpg?1783936533",
+        "thumb": "https://cards.scryfall.io/thumb/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.webp?1783936533",
+        "grid": "https://cards.scryfall.io/grid/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.webp?1783936533",
+        "display": "https://cards.scryfall.io/display/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.webp?1783936533",
+        "art": "https://cards.scryfall.io/art/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.webp?1783936533",
+        "crop": "https://cards.scryfall.io/crop/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.webp?1783936533",
+        "jpeg": "https://cards.scryfall.io/normal/front/b/6/b60ec4f7-7cf1-4b97-906b-536ab89b12be.jpg?1783936533"
+      },
+      "set": "akh",
+      "collector_number": "33",
+      "released_at": "2017-04-28",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "interaction",
+          "tribal support"
+        ],
+        "note": "Efficient mummy-themed removal tied directly to a Zombie blocking or being blocked.",
+        "caution": "The target must have blocked or been blocked by a Zombie earlier in the current turn; it cannot answer an unrelated creature.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ad60ebb9-4acc-41a8-90d9-04d55e414ed1",
+      "oracle_id": "c48ce123-bb07-4221-b3b3-0a458e101ca1",
+      "name": "Djeru's Resolve",
+      "mana_cost": "{W}",
+      "cmc": 1,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Instant",
+      "oracle_text": "Untap target creature. Prevent all damage that would be dealt to it this turn.\nCycling {2} ({2}, Discard this card: Draw a card.)",
+      "scryfall_uri": "https://scryfall.com/card/akh/11/djerus-resolve?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.jpg?1783936540",
+        "normal": "https://cards.scryfall.io/normal/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.jpg?1783936540",
+        "large": "https://cards.scryfall.io/large/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.jpg?1783936540",
+        "png": "https://cards.scryfall.io/png/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.png?1783936540",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.jpg?1783936540",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.jpg?1783936540",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.webp?1783936540",
+        "grid": "https://cards.scryfall.io/grid/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.webp?1783936540",
+        "display": "https://cards.scryfall.io/display/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.webp?1783936540",
+        "art": "https://cards.scryfall.io/art/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.webp?1783936540",
+        "crop": "https://cards.scryfall.io/crop/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.webp?1783936540",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/d/ad60ebb9-4acc-41a8-90d9-04d55e414ed1.jpg?1783936540"
+      },
+      "set": "akh",
+      "collector_number": "11",
+      "released_at": "2017-04-28",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "combat support",
+          "protection",
+          "card selection"
+        ],
+        "note": "An Amonkhet support trick that untaps and shields a creature, with cycling when the effect is not needed.",
+        "caution": "Provides no Zombie-specific bonus; protects from damage for the turn rather than from all removal.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "52db5673-ecd3-4e58-8dc9-b42c76f80186",
+      "oracle_id": "95ee46ec-4b60-4fea-a09b-d15c083916b3",
+      "name": "Unconventional Tactics",
+      "mana_cost": "{2}{W}",
+      "cmc": 3,
+      "colors": [
+        "W"
+      ],
+      "color_identity": [
+        "W"
+      ],
+      "type_line": "Sorcery",
+      "oracle_text": "Target creature gets +3/+3 and gains flying until end of turn.\nWhenever a Zombie you control enters, you may pay {W}. If you do, return this card from your graveyard to your hand.",
+      "scryfall_uri": "https://scryfall.com/card/hou/27/unconventional-tactics?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.jpg?1783936055",
+        "normal": "https://cards.scryfall.io/normal/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.jpg?1783936055",
+        "large": "https://cards.scryfall.io/large/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.jpg?1783936055",
+        "png": "https://cards.scryfall.io/png/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.png?1783936055",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.jpg?1783936055",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.jpg?1783936055",
+        "thumb": "https://cards.scryfall.io/thumb/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.webp?1783936055",
+        "grid": "https://cards.scryfall.io/grid/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.webp?1783936055",
+        "display": "https://cards.scryfall.io/display/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.webp?1783936055",
+        "art": "https://cards.scryfall.io/art/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.webp?1783936055",
+        "crop": "https://cards.scryfall.io/crop/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.webp?1783936055",
+        "jpeg": "https://cards.scryfall.io/normal/front/5/2/52db5673-ecd3-4e58-8dc9-b42c76f80186.jpg?1783936055"
+      },
+      "set": "hou",
+      "collector_number": "27",
+      "released_at": "2017-07-14",
+      "research": {
+        "groups": [
+          "zombies-white"
+        ],
+        "roles": [
+          "combat support",
+          "evasion",
+          "spell recursion"
+        ],
+        "note": "Gives a creature a temporary size boost and flying, then can return to hand when another Zombie enters.",
+        "caution": "The recovery trigger requires a white mana payment, and the spell is a sorcery.",
+        "crossover": false
+      }
+    }
+  ]
+}

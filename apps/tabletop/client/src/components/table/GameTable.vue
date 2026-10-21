@@ -8,17 +8,22 @@ import {
   watch,
 } from "vue";
 import PlayerBoard from "./PlayerBoard.vue";
+import StackZone from "./StackZone.vue";
 import CardTile from "./CardTile.vue";
 import CardInspector from "./CardInspector.vue";
 import TableActionDialog from "./TableActionDialog.vue";
+import { useBattlefieldPileOrder } from "../../composables/useBattlefieldPileOrder.js";
 import { createCardDragController } from "../../../../shared/card-drag.mjs";
+import { zoneLabel, phaseLabel } from "../../../../shared/table-language.mjs";
 const props = defineProps({
   table: { type: Object, required: true },
   app: Object,
   human: Object,
   readonly: Boolean,
   compact: Boolean,
+  playerDetails: Boolean,
 });
+const emit = defineEmits(["player-details"]);
 const root = ref(null),
   inspected = ref(null),
   historical = ref(false),
@@ -28,8 +33,18 @@ const root = ref(null),
   dragStatus = ref(""),
   seatChoice = ref("");
 let drag = null;
-const name = (id) =>
-  props.table.players.find((p) => p.id === id)?.name || id || "—";
+let dragStatusTimer = null;
+function showDragStatus(message) {
+  clearTimeout(dragStatusTimer);
+  dragStatus.value = message;
+  if (!drag?.active) dragStatusTimer = setTimeout(() => { dragStatus.value = ""; }, 3500);
+}
+const { orders: pileOrders, setOrder: setPileOrder } = useBattlefieldPileOrder(
+  () => `${props.app?.match?.id || props.table.id || 'table'}:${props.table.series?.gameNumber || 1}`,
+);
+function reorderPile({ rootId, ids }) {
+  setPileOrder(rootId, ids);
+}
 const players = computed(() => {
   const ps = [...props.table.players];
   if (
@@ -62,26 +77,6 @@ const columns = (count) =>
       : props.compact
         ? "grid-cols-3"
         : "grid-cols-1 lg:grid-cols-3";
-const phases = computed(() => [
-  ...new Set(
-    [
-      "Setup",
-      "Untap",
-      "Upkeep",
-      "Draw",
-      "Main 1",
-      "Begin combat",
-      "Declare attackers",
-      "Declare blockers",
-      "Combat damage",
-      "End combat",
-      "Main 2",
-      "End step",
-      "Cleanup",
-      props.table.turn?.phase,
-    ].filter(Boolean),
-  ),
-]);
 const boardIndex = (p) => props.table.players.findIndex((x) => x.id === p.id);
 const team = computed(
   () =>
@@ -104,12 +99,14 @@ function attempt(fn) {
     return fn();
   } catch (error) {
     if (props.human) props.human.error = error.message;
-    dragStatus.value = error.message;
+    showDragStatus(error.message);
     return false;
   }
 }
 function select(source) {
-  if (!props.readonly) attempt(() => props.human?.selectSource(source));
+  if (!props.readonly) {
+    attempt(() => props.human?.selectSource(source));
+  }
 }
 function target(dest) {
   if (props.human?.selectedSource)
@@ -127,6 +124,7 @@ function closePrivate() {
   zoneDialog.value?.close();
   actionMode.value = "";
   drag?.cancel();
+  clearTimeout(dragStatusTimer);
   dragStatus.value = "";
 }
 watch(() => props.human?.seatId, closePrivate);
@@ -154,11 +152,11 @@ function action(mode) {
     else actionMode.value = mode;
   });
 }
-function phase(event) {
+function setPhase(value) {
   attempt(() =>
     props.human.queue(
-      { type: "turn", set: { phase: event.target.value } },
-      `Set phase to ${event.target.value}`,
+      { type: "turn", set: { phase: value } },
+      `Move to ${phaseLabel(value)}`,
     ),
   );
 }
@@ -173,20 +171,24 @@ onMounted(() => {
     canDrop: (s, t) => props.human.canDrop(s, t),
     getContext: () => props.human.context(),
     onDrop: (s, t) => attempt(() => props.human.queueDrop(s, t)),
-    onStatus: (text) => (dragStatus.value = text),
+    onStatus: showDragStatus,
   });
 });
 watch(
   () => props.human?.context?.(),
   () => drag?.sync(),
 );
-onBeforeUnmount(() => drag?.destroy());
-defineExpose({ inspect });
+onBeforeUnmount(() => {
+  drag?.destroy();
+  clearTimeout(dragStatusTimer);
+});
+defineExpose({ inspect, setPhase, editTurn: () => action("markers") });
 </script>
 <template>
   <div
     ref="root"
-    class="min-w-0 [&_.hc-drop-ready]:outline [&_.hc-drop-ready]:outline-dashed [&_.hc-drop-ready]:outline-primary/60 [&_.hc-drop-ready]:outline-offset-2 [&_.hc-drop-active]:outline-2 [&_.hc-drop-active]:outline-solid [&_.hc-drop-active]:outline-primary [&_.hc-drop-active]:bg-primary/10 [&_.hc-drag-source]:opacity-40 [&.hc-dragging]:cursor-grabbing [&.hc-dragging]:[user-select:none]"
+    :class="compact ? 'flex h-full min-h-0 flex-col' : ''"
+    class="relative min-w-0 [&_.hc-drop-ready]:outline [&_.hc-drop-ready]:outline-dashed [&_.hc-drop-ready]:outline-primary/60 [&_.hc-drop-ready]:outline-offset-2 [&_.hc-drop-active]:outline-2 [&_.hc-drop-active]:outline-solid [&_.hc-drop-active]:outline-primary [&_.hc-drop-active]:bg-primary/10 [&_.hc-drag-source]:opacity-40 [&.hc-dragging]:cursor-grabbing [&.hc-dragging]:[user-select:none]"
     @keydown="keyboard"
   >
     <section
@@ -236,7 +238,7 @@ defineExpose({ inspect });
       v-if="readonly || table.players.length <= 6"
       :class="
         compact
-          ? 'flex h-[calc(100dvh-var(--table-toolbar-height,80px)-8px)] min-h-96 flex-col gap-1.5'
+          ? 'flex min-h-96 flex-1 flex-col gap-1.5'
           : ''
       "
       data-table-arena
@@ -260,6 +262,11 @@ defineExpose({ inspect });
           :team="team"
           :readonly="readonly"
           :compact="compact"
+          :player-details="playerDetails && !readonly"
+          :pile-orders="pileOrders"
+          @order="reorderPile"
+          upper
+          @player-details="emit('player-details', $event)"
           @inspect="inspect"
           @zone="browse"
           @action="action"
@@ -267,104 +274,15 @@ defineExpose({ inspect });
           @target="target"
         />
       </div>
-      <section
-        class="flex items-center border-y border-base-300 px-2"
-        :class="
-          compact ? 'min-h-12 shrink-0 gap-3 py-1' : 'my-3 flex-wrap gap-5 py-3'
-        "
-        aria-label="Shared table"
-      >
-        <div
-          :class="
-            compact
-              ? 'flex min-w-0 max-w-[75%] flex-wrap items-center gap-x-3 gap-y-1'
-              : 'min-w-40'
-          "
-        >
-          <div>
-            <p class="text-sm font-semibold">
-              Turn {{ table.turn.number }} · {{ name(table.turn.active) }}
-            </p>
-            <p
-              :class="
-                compact
-                  ? 'text-[10px] leading-4 text-base-content/65'
-                  : 'mt-1 text-xs text-base-content/65'
-              "
-            >
-              {{ table.turn.phase || "Setup" }} · Priority:
-              {{ name(table.turn.priority) }}
-            </p>
-          </div>
-          <div
-            v-if="human?.seatId && !readonly"
-            class="flex flex-wrap items-center gap-2"
-            :class="compact ? '' : 'mt-2'"
-          >
-            <label class="flex items-center gap-2 text-xs"
-              >Phase<select
-                aria-label="Turn phase"
-                :value="table.turn.phase || 'Setup'"
-                class="select"
-                :class="compact ? 'select-xs w-28' : 'select-sm w-36'"
-                :disabled="!human.canCommit"
-                @change="phase"
-              >
-                <option v-for="value in phases" :key="value">
-                  {{ value }}
-                </option>
-              </select></label
-            ><button
-              class="btn btn-xs"
-              :disabled="!human.canCommit"
-              @click="action('markers')"
-            >
-              Edit turn
-            </button>
-          </div>
-        </div>
-        <section
-          class="flex min-w-0 flex-1 items-center rounded-md border border-transparent"
-          :class="compact ? 'gap-2' : 'min-h-18 gap-3 p-1'"
-          data-hc-drop-zone="stack"
-          data-hc-drop-position="top"
-          data-hc-drop-label="Stack · top"
-          @click.self="target({ zoneId: 'stack', position: 'top' })"
-        >
-          <div class="shrink-0 text-xs tracking-wider text-base-content/70">
-            STACK<br /><span class="text-[10px] font-mono">TOP FIRST</span>
-          </div>
-          <div
-            class="flex min-w-0 flex-1 gap-2 overflow-x-auto py-1"
-            @click.self="target({ zoneId: 'stack', position: 'top' })"
-          >
-            <div
-              v-for="(card, index) in table.zones?.stack?.cards || []"
-              :key="card.id"
-              class="relative pt-1"
-            >
-              <span
-                v-if="index === 0"
-                class="pointer-events-none absolute -top-1 left-1 z-10 rounded bg-primary px-1 font-mono text-[10px] text-primary-content"
-                >TOP</span
-              ><CardTile
-                :card="card"
-                compact
-                :miniature="compact"
-                :draggable="human?.canDrag?.({ cardId: card.id })"
-                :selected="human?.selectedSource?.cardId === card.id"
-                @inspect="inspect"
-                @select="select"
-              />
-            </div>
-            <span
-              v-if="!table.zones?.stack?.cards?.length"
-              class="self-center text-sm text-base-content/50"
-              >Stack is empty</span
-            >
-          </div>
-        </section>
-      </section>
+      <StackZone
+        :table="table"
+        :human="human"
+        :readonly="readonly"
+        :compact="compact"
+        @inspect="inspect"
+        @select="select"
+        @target="target"
+      />
       <div
         class="grid"
         :class="[
@@ -383,6 +301,10 @@ defineExpose({ inspect });
           :team="team"
           :readonly="readonly"
           :compact="compact"
+          :player-details="playerDetails && !readonly"
+          :pile-orders="pileOrders"
+          @order="reorderPile"
+          @player-details="emit('player-details', $event)"
           @inspect="inspect"
           @zone="browse"
           @action="action"
@@ -397,7 +319,7 @@ defineExpose({ inspect });
         Cancel selection
       </button>
     </div>
-    <p v-if="dragStatus" class="mt-2 text-xs text-primary" aria-live="polite">
+    <p v-if="dragStatus" class="pointer-events-none absolute inset-x-2 bottom-2 z-10 rounded bg-base-100/95 px-2 py-1 text-xs text-primary shadow" aria-live="polite">
       {{ dragStatus }}
     </p>
     <footer
@@ -446,7 +368,7 @@ defineExpose({ inspect });
         <header class="mb-4 flex justify-between gap-3">
           <div>
             <h2 id="table-zone-title" class="text-xl font-semibold">
-              {{ zone?.name || zone?.id }}
+              {{ zoneLabel(zone, table.players) }}
             </h2>
             <p class="text-xs text-base-content/60">
               {{ zone?.count || 0 }} cards{{

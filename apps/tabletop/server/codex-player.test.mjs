@@ -107,6 +107,59 @@ test('every resume avoids empty-phase permission handoffs and counts the casting
   assert.match(prompt, /both have passed and resolution is due, without another pass from p1/);
 });
 
+test('fresh and resumed gameplay require persistent attachments rather than notes alone', () => {
+  for (const sessionId of [null, 'existing-player-history']) {
+    const prompt = playerPrompt({ ...request, sessionId });
+    assert.match(prompt, /"attached_to":"TARGET_ID"/);
+    assert.match(prompt, /attached_to:null to detach/);
+    assert.match(prompt, /real attached_to relationships instead of recording them only in notes or chat/);
+    assert.match(prompt, /opponent-controlled target is allowed/);
+    assert.match(prompt, /do not move or destroy the remaining cards/);
+  }
+});
+
+test('fresh and resumed decisions use configured names and only the chosen table-talk instruction', () => {
+  const players = [{ id: 'p1', name: 'Frederick' }, { id: 'p2', name: 'Gianmarco' }];
+  for (const sessionId of [null, 'existing-player-history']) {
+    for (const phase of ['game', 'preparation', 'between_games']) {
+      for (const allowBanter of [true, false]) {
+        const prompt = playerPrompt({ ...request, player: players[0], view: { players }, sessionId, phase, allowBanter });
+        assert(prompt.includes(JSON.stringify(players)));
+        assert.match(prompt, /configured display names consistently/);
+        assert.match(prompt, /Keep exact player IDs in structured tool arguments/);
+        assert.match(prompt, /replace earlier table-talk style instructions/);
+        assert.equal(prompt.includes('Add occasional brief banter'), allowBanter);
+        assert.equal(prompt.includes('When a human jokes or invites banter, respond in kind'), allowBanter);
+        assert.equal(prompt.includes('omit banter, jokes and flavor-only asides'), !allowBanter);
+        assert(!prompt.includes('allowBanter'), 'the model receives instructions, not a setting to interpret');
+        if (allowBanter) {
+          assert.match(prompt, /separate say message/);
+          assert.match(prompt, /Never add a response window, handoff, or delay just to get a joke answered/);
+          assert.match(prompt, /must not reveal hidden cards, private strategy/);
+        }
+      }
+    }
+  }
+  const survey = playerPrompt({ ...request, player: players[0], view: { players }, sessionId: 'existing-player-history', phase: 'survey', allowBanter: true });
+  assert(survey.includes(JSON.stringify(players)));
+  assert.match(survey, /configured display names consistently/);
+  assert(!survey.includes('Add occasional brief banter'), 'independent feedback stays focused on evidence');
+});
+
+test('the runner injects the host-selected table-talk policy into a resumed conversation', async t => {
+  const prompts = [];
+  const runner = createCodexRunner({
+    workspaceRoot: temporary(t), getConnection: () => connection, allowBanter: false,
+    spawnImpl: fakeSpawn((child, prompt) => {
+      prompts.push(prompt);
+      output(child, [{ type: 'thread.started', thread_id: 'own-history' }, { type: 'turn.completed' }]);
+    }),
+  });
+  await runner({ ...request, sessionId: 'own-history', allowBanter: true });
+  assert.match(prompts[0], /omit banter, jokes and flavor-only asides/);
+  assert(!prompts[0].includes('Add occasional brief banter'));
+});
+
 test('new and resumed sessions distinguish optional overrides and hidden libraries from missing setup', () => {
   for (const sessionId of [null, 'existing-player-history']) {
     for (const phase of ['Setup', 'Upkeep']) {
@@ -318,4 +371,75 @@ test('survey runner neither injects nor marks delivery of the beginner rules', a
   assert(enabled.includes('submit_survey'));
   assert(!enabled.includes('"act"'));
   assert.equal(existsSync(join(workspaceRoot, 'p1', 'basic-rules-context.json')), false);
+});
+
+test('packet selection prompts replace gameplay and stay terminal in fresh and resumed sessions', () => {
+  const preparation = { kind: 'jumpstart', status: 'selecting', currentPlayer: 'p1',
+    players: [{ id: 'p1', faction: 'plants', ready: false }],
+    packets: [{ id: 'plants-a', name: 'Local candidate', cards: [{ name: 'Candidate card', oracle_text: 'Cached rules' }] }],
+  };
+  for (const sessionId of [null, 'own-history']) {
+    const prompt = playerPrompt({ ...request, sessionId,
+      quickstart: 'Saved operational reference for subsequent play.',
+      view: { revision: 4, preparation, zones: { 'p1:library': { count: 0, cards: [] } } },
+    });
+    assert.match(prompt, /PACKET SELECTION ONLY/);
+    assert.match(prompt, /library is intentionally empty/);
+    assert.match(prompt, /exactly two distinct packet IDs from that faction/);
+    assert.match(prompt, /Local candidate/);
+    assert.match(prompt, /Cached rules/);
+    assert.match(prompt, /not individual-card booster drafting/);
+    assert.match(prompt, /no opening draw, no pass, and no complete_decision/);
+    assert.match(prompt, /never private chain-of-thought/);
+    assert.equal(prompt.includes('Saved operational reference for subsequent play.'), !sessionId);
+    assert.doesNotMatch(prompt, /Continue the game efficiently|prepare your own opening hand once/);
+  }
+  assert.match(playerPrompt({ ...request, wake: { kind: 'preparation' } }), /PACKET SELECTION ONLY/);
+  assert.match(playerPrompt({ ...request, phase: 'preparation' }), /PACKET SELECTION ONLY/);
+});
+
+test('packet selection worker exposes local choice tools without gameplay or shell tools', async t => {
+  const capture = {};
+  const runner = createCodexRunner({ workspaceRoot: temporary(t), getConnection: () => connection,
+    spawnImpl: fakeSpawn((child, prompt) => {
+      assert.match(prompt, /PACKET SELECTION ONLY/);
+      output(child, [{ type: 'thread.started', thread_id: 'own-history' }, { type: 'turn.completed' }]);
+    }, capture),
+  });
+  await runner({ ...request, sessionId: 'own-history', wake: { kind: 'preparation' } });
+  const value = capture.args.find(arg => arg.startsWith('mcp_servers.tabletop.enabled_tools='));
+  const enabled = JSON.parse(value.slice(value.indexOf('=') + 1));
+  for (const name of ['read_preparation', 'select_packets', 'read_reference', 'say']) assert(enabled.includes(name));
+  for (const name of ['act', 'pass_priority', 'pass_turn', 'submit_survey']) assert(!enabled.includes(name));
+  assert(capture.args.includes('features.shell_tool=false'));
+  assert(capture.args.includes('web_search="disabled"'));
+});
+
+
+test('between-game players retain their session and receive only readiness and sideboarding controls', () => {
+  const call = codexInvocation({ ...request, sessionId: 'own-history', phase: 'between_games', workspace: '/tmp/seat-p1', connection });
+  assert.deepEqual(call.args.slice(0, 3), ['exec', 'resume', 'own-history']);
+  const enabled = JSON.parse(call.args.find(value => value.startsWith('mcp_servers.tabletop.enabled_tools=')).split('=')[1]);
+  for (const name of ['read_sideboard', 'sideboard', 'ready_next_game']) assert(enabled.includes(name));
+  for (const name of ['act', 'pass_priority', 'pass_turn', 'select_packets', 'submit_survey']) assert(!enabled.includes(name));
+  const prompt = playerPrompt({ ...request, sessionId: 'own-history', phase: 'between_games', view: {
+    series: { status: 'between_games', gameNumber: 1, currentPlayer: 'p1', scores: { p1: 1, p2: 0 } },
+  } });
+  assert.match(prompt, /SAME match.*existing independent conversation/);
+  assert.match(prompt, /BETWEEN GAMES ONLY/);
+  assert.match(prompt, /Unselected Jumpstart packets are not a sideboard/);
+  assert.match(prompt, /original main-deck size/);
+  assert.match(prompt, /TERMINAL/);
+  assert.match(prompt, /Do not perform that reset manually/);
+  assert.doesNotMatch(prompt, /Continue the game efficiently/);
+});
+
+test('final series review explicitly covers all games rather than only the last board', () => {
+  const prompt = playerPrompt({ ...request, phase: 'survey', sessionId: 'own-history',
+    view: { series: { status: 'complete', gameNumber: 3 } }, survey: { scope: 'match' },
+  });
+  assert.match(prompt, /ENTIRE completed match/);
+  assert.match(prompt, /all games retained in your own conversation/);
+  assert.match(prompt, /sideboarding, new packet choices, or learning/);
+  assert.match(prompt, /Do not review only the last game/);
 });

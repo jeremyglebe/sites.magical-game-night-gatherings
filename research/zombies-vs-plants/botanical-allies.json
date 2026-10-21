@@ -1,0 +1,968 @@
+{
+  "researchedAt": "2026-10-21",
+  "queries": [
+    {
+      "query": "(!\"Wood Elemental\" or !\"Root Elemental\" or !\"Thorn Elemental\" or !\"Verdant Force\" or !\"Avenger of Zendikar\" or !\"Fertilid\" or !\"Leafkin Druid\" or !\"Briarhorn\" or !\"Timbermare\" or !\"Multani, Yavimaya's Avatar\" or !\"Phylath, World Sculptor\" or !\"Cavalier of Thorns\" or !\"Floral Spuzzem\" or !\"Silverglade Elemental\") game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 14,
+      "hasMore": false
+    },
+    {
+      "query": "t:creature t:zombie t:elemental game:paper -is:funny date<=2026-10-21 unique:cards",
+      "total": 2,
+      "hasMore": false,
+      "selection": "Skullbriar is a botanical flavor crossover. Invasion of Azgol // Ashen Reaper was reviewed but not selected as botanical."
+    }
+  ],
+  "cards": [
+    {
+      "id": "c6f1e60f-a195-4590-80b0-86767de6c423",
+      "oracle_id": "4ba5b3f6-503b-43e6-b66e-4f8c55cffed7",
+      "name": "Avenger of Zendikar",
+      "mana_cost": "{5}{G}{G}",
+      "cmc": 7,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental",
+      "oracle_text": "When this creature enters, create a 0/1 green Plant creature token for each land you control.\nLandfall — Whenever a land you control enters, you may put a +1/+1 counter on each Plant creature you control.",
+      "power": "5",
+      "toughness": "5",
+      "scryfall_uri": "https://scryfall.com/card/ecc/98/avenger-of-zendikar?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.jpg?1783904552",
+        "normal": "https://cards.scryfall.io/normal/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.jpg?1783904552",
+        "large": "https://cards.scryfall.io/large/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.jpg?1783904552",
+        "png": "https://cards.scryfall.io/png/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.png?1783904552",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.jpg?1783904552",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.jpg?1783904552",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.webp?1783904552",
+        "grid": "https://cards.scryfall.io/grid/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.webp?1783904552",
+        "display": "https://cards.scryfall.io/display/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.webp?1783904552",
+        "art": "https://cards.scryfall.io/art/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.webp?1783904552",
+        "crop": "https://cards.scryfall.io/crop/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.webp?1783904552",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/6/c6f1e60f-a195-4590-80b0-86767de6c423.jpg?1783904552"
+      },
+      "set": "ecc",
+      "collector_number": "98",
+      "released_at": "2026-01-23",
+      "research": {
+        "groups": [
+          "botanical-allies",
+          "plants"
+        ],
+        "roles": [
+          "token production",
+          "landfall",
+          "finisher"
+        ],
+        "note": "A botanical Elemental with explicit Plant support: it creates Plant tokens and its landfall ability grows every Plant creature you control.",
+        "caution": "The Avenger itself is an Elemental, so its Plant-only counters do not grow it. A large token wave plus landfall can dominate casual packets.",
+        "manaNote": "Costs 5GG.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce",
+      "oracle_id": "fcc7dd32-2198-446c-9144-e50d56ef53ed",
+      "name": "Briarhorn",
+      "mana_cost": "{3}{G}",
+      "cmc": 4,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental",
+      "oracle_text": "Flash\nWhen this creature enters, target creature gets +3/+3 until end of turn.\nEvoke {1}{G} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters.)",
+      "power": "3",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/ddr/3/briarhorn?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.jpg?1783937273",
+        "normal": "https://cards.scryfall.io/normal/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.jpg?1783937273",
+        "large": "https://cards.scryfall.io/large/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.jpg?1783937273",
+        "png": "https://cards.scryfall.io/png/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.png?1783937273",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.jpg?1783937273",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.jpg?1783937273",
+        "thumb": "https://cards.scryfall.io/thumb/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.webp?1783937273",
+        "grid": "https://cards.scryfall.io/grid/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.webp?1783937273",
+        "display": "https://cards.scryfall.io/display/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.webp?1783937273",
+        "art": "https://cards.scryfall.io/art/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.webp?1783937273",
+        "crop": "https://cards.scryfall.io/crop/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.webp?1783937273",
+        "jpeg": "https://cards.scryfall.io/normal/front/0/f/0fd09615-bcd2-4a2e-b9bf-8b4fd83291ce.jpg?1783937273"
+      },
+      "set": "ddr",
+      "collector_number": "3",
+      "released_at": "2016-09-02",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "combat support",
+          "interaction"
+        ],
+        "note": "A briar-themed Elemental that can act as a surprise creature and a temporary +3/+3 boost for any creature from either packet.",
+        "caution": "Evoke gives the entry boost but normally sacrifices the Briarhorn; the bonus is temporary. It receives no Plant- or Treefolk-specific benefit.",
+        "manaNote": "Costs 3G, or 1G to evoke.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ace83f5b-2349-46b8-b27f-bf705912a6df",
+      "oracle_id": "96b909ab-55f1-4cde-a675-2504de3da772",
+      "name": "Cavalier of Thorns",
+      "mana_cost": "{2}{G}{G}{G}",
+      "cmc": 5,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental Knight",
+      "oracle_text": "Reach\nWhen this creature enters, reveal the top five cards of your library. Put a land card from among them onto the battlefield and the rest into your graveyard.\nWhen this creature dies, you may exile it. If you do, put another target card from your graveyard on top of your library.",
+      "power": "5",
+      "toughness": "6",
+      "scryfall_uri": "https://scryfall.com/card/ecc/100/cavalier-of-thorns?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.jpg?1783904559",
+        "normal": "https://cards.scryfall.io/normal/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.jpg?1783904559",
+        "large": "https://cards.scryfall.io/large/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.jpg?1783904559",
+        "png": "https://cards.scryfall.io/png/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.png?1783904559",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.jpg?1783904559",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.jpg?1783904559",
+        "thumb": "https://cards.scryfall.io/thumb/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.webp?1783904559",
+        "grid": "https://cards.scryfall.io/grid/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.webp?1783904559",
+        "display": "https://cards.scryfall.io/display/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.webp?1783904559",
+        "art": "https://cards.scryfall.io/art/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.webp?1783904559",
+        "crop": "https://cards.scryfall.io/crop/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.webp?1783904559",
+        "jpeg": "https://cards.scryfall.io/normal/front/a/c/ace83f5b-2349-46b8-b27f-bf705912a6df.jpg?1783904559"
+      },
+      "set": "ecc",
+      "collector_number": "100",
+      "released_at": "2026-01-23",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "mana support",
+          "graveyard setup",
+          "recursion",
+          "defense"
+        ],
+        "note": "A thorn-themed Elemental Knight that combines reach with land development, graveyard setup, and a death-trigger recovery option.",
+        "caution": "Multiple effects and substantial stats make it a high-power, higher-complexity candidate. It is not a Plant or Treefolk; returning a card requires exiling the Cavalier.",
+        "manaNote": "Costs 2GGG, making it demanding in a two-color combined deck.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2d73ea23-52ab-4b92-b263-dc8b9e5a1010",
+      "oracle_id": "21f1c6d7-8289-44b2-b88f-c09e202be200",
+      "name": "Fertilid",
+      "mana_cost": "{2}{G}",
+      "cmc": 3,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental",
+      "oracle_text": "This creature enters with two +1/+1 counters on it.\n{1}{G}, Remove a +1/+1 counter from this creature: Target player searches their library for a basic land card, puts it onto the battlefield tapped, then shuffles.",
+      "power": "0",
+      "toughness": "0",
+      "scryfall_uri": "https://scryfall.com/card/moc/296/fertilid?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141",
+        "normal": "https://cards.scryfall.io/normal/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141",
+        "large": "https://cards.scryfall.io/large/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141",
+        "png": "https://cards.scryfall.io/png/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.png?1783917141",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.webp?1783917141",
+        "grid": "https://cards.scryfall.io/grid/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.webp?1783917141",
+        "display": "https://cards.scryfall.io/display/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.webp?1783917141",
+        "art": "https://cards.scryfall.io/art/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.webp?1783917141",
+        "crop": "https://cards.scryfall.io/crop/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.webp?1783917141",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/d/2d73ea23-52ab-4b92-b263-dc8b9e5a1010.jpg?1783917141"
+      },
+      "set": "moc",
+      "collector_number": "296",
+      "released_at": "2023-04-21",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "mana support",
+          "counter support"
+        ],
+        "note": "A fertilizer-themed Elemental that converts +1/+1 counters into basic-land searches, potentially fixing either partner color and reusing added counters.",
+        "caution": "Each activation removes a counter; without additional toughness or counters, using the last counter leaves it with zero toughness. Lands enter tapped. It is not a Plant.",
+        "manaNote": "Costs 2G and each land-search activation costs 1G.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "d141b9e3-7129-41e5-8b44-d3867e1c7e1d",
+      "oracle_id": "994de451-14f9-466f-a56e-da052b4666e5",
+      "name": "Floral Spuzzem",
+      "mana_cost": "{3}{G}",
+      "cmc": 4,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental",
+      "oracle_text": "Whenever this creature attacks and isn't blocked, you may destroy target artifact defending player controls. If you do, this creature assigns no combat damage this turn.",
+      "power": "2",
+      "toughness": "2",
+      "scryfall_uri": "https://scryfall.com/card/leg/187/floral-spuzzem?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.jpg?1783948048",
+        "normal": "https://cards.scryfall.io/normal/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.jpg?1783948048",
+        "large": "https://cards.scryfall.io/large/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.jpg?1783948048",
+        "png": "https://cards.scryfall.io/png/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.png?1783948048",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.jpg?1783948048",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.jpg?1783948048",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.webp?1783948048",
+        "grid": "https://cards.scryfall.io/grid/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.webp?1783948048",
+        "display": "https://cards.scryfall.io/display/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.webp?1783948048",
+        "art": "https://cards.scryfall.io/art/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.webp?1783948048",
+        "crop": "https://cards.scryfall.io/crop/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.webp?1783948048",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/1/d141b9e3-7129-41e5-8b44-d3867e1c7e1d.jpg?1783948048"
+      },
+      "set": "leg",
+      "collector_number": "187",
+      "released_at": "1994-06-01",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "artifact interaction",
+          "combat pressure"
+        ],
+        "note": "A flower-themed Elemental offering artifact removal when an attack gets through, broadening botanical interaction beyond creature types.",
+        "caution": "Artifact removal is conditional on going unblocked and replaces its combat damage that turn. It may have little purpose if the opposing packets contain few artifacts. It is not a Plant.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "9dc9111f-1ca6-4953-9f1e-cca55fa8c569",
+      "oracle_id": "55eb9310-f24b-410b-850b-a7d0d5117946",
+      "name": "Leafkin Druid",
+      "mana_cost": "{1}{G}",
+      "cmc": 2,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental Druid",
+      "oracle_text": "{T}: Add {G}. If you control four or more creatures, add {G}{G} instead.",
+      "power": "0",
+      "toughness": "3",
+      "scryfall_uri": "https://scryfall.com/card/ncc/299/leafkin-druid?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245",
+        "normal": "https://cards.scryfall.io/normal/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245",
+        "large": "https://cards.scryfall.io/large/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245",
+        "png": "https://cards.scryfall.io/png/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.png?1783923245",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245",
+        "thumb": "https://cards.scryfall.io/thumb/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.webp?1783923245",
+        "grid": "https://cards.scryfall.io/grid/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.webp?1783923245",
+        "display": "https://cards.scryfall.io/display/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.webp?1783923245",
+        "art": "https://cards.scryfall.io/art/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.webp?1783923245",
+        "crop": "https://cards.scryfall.io/crop/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.webp?1783923245",
+        "jpeg": "https://cards.scryfall.io/normal/front/9/d/9dc9111f-1ca6-4953-9f1e-cca55fa8c569.jpg?1783923245"
+      },
+      "set": "ncc",
+      "collector_number": "299",
+      "released_at": "2022-04-29",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "early creature",
+          "mana support"
+        ],
+        "note": "A leafkin Elemental Druid that provides early green mana and produces more when your battlefield has at least four creatures.",
+        "caution": "Its mana is only green, so it accelerates but does not directly fix another packet's color. It is neither a Plant nor a Treefolk.",
+        "manaNote": "Costs 1G; its tap ability produces G or GG, depending on your creature count.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "c37a0136-1c40-4cd1-8787-a25c377c1741",
+      "oracle_id": "4b8bf64b-4800-45ff-81c6-2857f34999b5",
+      "name": "Multani, Yavimaya's Avatar",
+      "mana_cost": "{4}{G}{G}",
+      "cmc": 6,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Legendary Creature — Elemental Avatar",
+      "oracle_text": "Reach, trample\nMultani gets +1/+1 for each land you control and each land card in your graveyard.\n{1}{G}, Return two lands you control to their owner's hand: Return this card from your graveyard to your hand.",
+      "power": "0",
+      "toughness": "0",
+      "scryfall_uri": "https://scryfall.com/card/eoc/100/multani-yavimayas-avatar?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.jpg?1783906034",
+        "normal": "https://cards.scryfall.io/normal/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.jpg?1783906034",
+        "large": "https://cards.scryfall.io/large/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.jpg?1783906034",
+        "png": "https://cards.scryfall.io/png/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.png?1783906034",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.jpg?1783906034",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.jpg?1783906034",
+        "thumb": "https://cards.scryfall.io/thumb/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.webp?1783906034",
+        "grid": "https://cards.scryfall.io/grid/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.webp?1783906034",
+        "display": "https://cards.scryfall.io/display/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.webp?1783906034",
+        "art": "https://cards.scryfall.io/art/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.webp?1783906034",
+        "crop": "https://cards.scryfall.io/crop/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.webp?1783906034",
+        "jpeg": "https://cards.scryfall.io/normal/front/c/3/c37a0136-1c40-4cd1-8787-a25c377c1741.jpg?1783906034"
+      },
+      "set": "eoc",
+      "collector_number": "100",
+      "released_at": "2025-08-01",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "land payoff",
+          "recursion",
+          "finisher"
+        ],
+        "note": "A woodland Elemental Avatar that grows with lands on the battlefield and in your graveyard, supporting land ramp and land-recovery themes.",
+        "caution": "Returning it from the graveyard requires returning two lands to hand, reducing current mana development. Its actual types are Elemental Avatar, not Plant or Treefolk.",
+        "manaNote": "Costs 4GG; the graveyard return ability costs 1G plus returning two lands.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "e7af88c9-70ca-484c-bddf-b705e0ea7bc7",
+      "oracle_id": "3d79cbe2-cf1b-4313-ab47-0118fcdbfc6c",
+      "name": "Phylath, World Sculptor",
+      "mana_cost": "{4}{R}{G}",
+      "cmc": 6,
+      "colors": [
+        "G",
+        "R"
+      ],
+      "color_identity": [
+        "G",
+        "R"
+      ],
+      "type_line": "Legendary Creature — Elemental",
+      "oracle_text": "When Phylath enters, create a 0/1 green Plant creature token for each basic land you control.\nLandfall — Whenever a land you control enters, put four +1/+1 counters on target Plant you control.",
+      "power": "5",
+      "toughness": "5",
+      "scryfall_uri": "https://scryfall.com/card/znr/234/phylath-world-sculptor?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.jpg?1783929320",
+        "normal": "https://cards.scryfall.io/normal/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.jpg?1783929320",
+        "large": "https://cards.scryfall.io/large/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.jpg?1783929320",
+        "png": "https://cards.scryfall.io/png/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.png?1783929320",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.jpg?1783929320",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.jpg?1783929320",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.webp?1783929320",
+        "grid": "https://cards.scryfall.io/grid/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.webp?1783929320",
+        "display": "https://cards.scryfall.io/display/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.webp?1783929320",
+        "art": "https://cards.scryfall.io/art/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.webp?1783929320",
+        "crop": "https://cards.scryfall.io/crop/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.webp?1783929320",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/7/e7af88c9-70ca-484c-bddf-b705e0ea7bc7.jpg?1783929320"
+      },
+      "set": "znr",
+      "collector_number": "234",
+      "released_at": "2020-09-25",
+      "research": {
+        "groups": [
+          "botanical-allies",
+          "plants"
+        ],
+        "roles": [
+          "token production",
+          "landfall",
+          "finisher"
+        ],
+        "note": "An Elemental that makes actual Plant tokens based on basic-land count and places four counters on a Plant for each subsequent landfall.",
+        "caution": "Its entry count uses basic lands, not all lands. The landfall target must be a Plant, so it cannot grow Phylath itself. A strong multicolor finisher rather than a mono-color default.",
+        "manaNote": "Costs 4RG; requires both red and green, independent of thematic grouping.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "e8d6e393-7378-4113-a5ff-44e9518eff76",
+      "oracle_id": "182d38b4-48bb-4050-a19a-c0a6bb241bbd",
+      "name": "Root Elemental",
+      "mana_cost": "{4}{G}{G}",
+      "cmc": 6,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental",
+      "oracle_text": "Morph {5}{G}{G} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)\nWhen this creature is turned face up, you may put a creature card from your hand onto the battlefield.",
+      "power": "6",
+      "toughness": "5",
+      "scryfall_uri": "https://scryfall.com/card/mkc/182/root-elemental?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.jpg?1783912987",
+        "normal": "https://cards.scryfall.io/normal/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.jpg?1783912987",
+        "large": "https://cards.scryfall.io/large/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.jpg?1783912987",
+        "png": "https://cards.scryfall.io/png/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.png?1783912987",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.jpg?1783912987",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.jpg?1783912987",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.webp?1783912987",
+        "grid": "https://cards.scryfall.io/grid/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.webp?1783912987",
+        "display": "https://cards.scryfall.io/display/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.webp?1783912987",
+        "art": "https://cards.scryfall.io/art/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.webp?1783912987",
+        "crop": "https://cards.scryfall.io/crop/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.webp?1783912987",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/8/e8d6e393-7378-4113-a5ff-44e9518eff76.jpg?1783912987"
+      },
+      "set": "mkc",
+      "collector_number": "182",
+      "released_at": "2024-02-09",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "finisher",
+          "mana cheating"
+        ],
+        "note": "A root-themed Elemental that can bring another creature from either packet onto the battlefield when turned face up.",
+        "caution": "Its special payoff requires morphing it, not simply casting it face up; adds face-down information and seven-mana morph timing. It is not a Plant or Treefolk.",
+        "manaNote": "Face-up spell costs 4GG; morph costs 5GG after the initial three-mana face-down play.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "ef0f6574-9035-4020-90ec-22a1e3816d00",
+      "oracle_id": "a6d5d164-a06a-4383-b9d2-a7a33400631d",
+      "name": "Silverglade Elemental",
+      "mana_cost": "{4}{G}",
+      "cmc": 5,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental",
+      "oracle_text": "When this creature enters, you may search your library for a Forest card, put that card onto the battlefield, then shuffle.",
+      "power": "4",
+      "toughness": "4",
+      "scryfall_uri": "https://scryfall.com/card/hop/78/silverglade-elemental?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.jpg?1783942317",
+        "normal": "https://cards.scryfall.io/normal/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.jpg?1783942317",
+        "large": "https://cards.scryfall.io/large/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.jpg?1783942317",
+        "png": "https://cards.scryfall.io/png/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.png?1783942317",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.jpg?1783942317",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.jpg?1783942317",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.webp?1783942317",
+        "grid": "https://cards.scryfall.io/grid/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.webp?1783942317",
+        "display": "https://cards.scryfall.io/display/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.webp?1783942317",
+        "art": "https://cards.scryfall.io/art/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.webp?1783942317",
+        "crop": "https://cards.scryfall.io/crop/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.webp?1783942317",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/f/ef0f6574-9035-4020-90ec-22a1e3816d00.jpg?1783942317"
+      },
+      "set": "hop",
+      "collector_number": "78",
+      "released_at": "2009-09-04",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "mana support",
+          "midgame creature"
+        ],
+        "note": "A forest-linked Elemental that searches for a Forest on entry, combining a body with development for larger botanical creatures.",
+        "caution": "The search is for a Forest card, not any basic land, so arbitrary off-color fixing is not guaranteed. It is not a Plant or Treefolk.",
+        "manaNote": "Costs 4G; the searched Forest is not instructed to enter tapped by this ability.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "da901037-20e6-4445-8e7e-1ccd2e8b13ae",
+      "oracle_id": "9cdf840d-314e-46ef-9c04-74f145d9e65b",
+      "name": "Thorn Elemental",
+      "mana_cost": "{5}{G}{G}",
+      "cmc": 7,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental",
+      "oracle_text": "You may have this creature assign its combat damage as though it weren't blocked.",
+      "power": "7",
+      "toughness": "7",
+      "scryfall_uri": "https://scryfall.com/card/dom/185/thorn-elemental?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.jpg?1783934971",
+        "normal": "https://cards.scryfall.io/normal/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.jpg?1783934971",
+        "large": "https://cards.scryfall.io/large/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.jpg?1783934971",
+        "png": "https://cards.scryfall.io/png/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.png?1783934971",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.jpg?1783934971",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.jpg?1783934971",
+        "thumb": "https://cards.scryfall.io/thumb/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.webp?1783934971",
+        "grid": "https://cards.scryfall.io/grid/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.webp?1783934971",
+        "display": "https://cards.scryfall.io/display/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.webp?1783934971",
+        "art": "https://cards.scryfall.io/art/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.webp?1783934971",
+        "crop": "https://cards.scryfall.io/crop/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.webp?1783934971",
+        "jpeg": "https://cards.scryfall.io/normal/front/d/a/da901037-20e6-4445-8e7e-1ccd2e8b13ae.jpg?1783934971"
+      },
+      "set": "dom",
+      "collector_number": "185",
+      "released_at": "2018-04-27",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "finisher",
+          "combat pressure"
+        ],
+        "note": "A thorn-themed Elemental whose damage-assignment option can close a game through a crowded battlefield.",
+        "caution": "Its ability is not trample: choosing to assign as unblocked deals its combat damage to the defender rather than also assigning damage to blockers. It is not a Plant or Treefolk.",
+        "manaNote": "Costs 5GG.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "2d604bac-58b7-4479-8ab8-2e0680746e0e",
+      "oracle_id": "8e25e4f5-5676-480f-a52b-43ebb6f31537",
+      "name": "Timbermare",
+      "mana_cost": "{3}{G}",
+      "cmc": 4,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental Horse",
+      "oracle_text": "Haste\nEcho {5}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.)\nWhen this creature enters, tap all other creatures.",
+      "power": "5",
+      "toughness": "5",
+      "scryfall_uri": "https://scryfall.com/card/plc/140/timbermare?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.jpg?1783943138",
+        "normal": "https://cards.scryfall.io/normal/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.jpg?1783943138",
+        "large": "https://cards.scryfall.io/large/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.jpg?1783943138",
+        "png": "https://cards.scryfall.io/png/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.png?1783943138",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.jpg?1783943138",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.jpg?1783943138",
+        "thumb": "https://cards.scryfall.io/thumb/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.webp?1783943138",
+        "grid": "https://cards.scryfall.io/grid/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.webp?1783943138",
+        "display": "https://cards.scryfall.io/display/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.webp?1783943138",
+        "art": "https://cards.scryfall.io/art/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.webp?1783943138",
+        "crop": "https://cards.scryfall.io/crop/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.webp?1783943138",
+        "jpeg": "https://cards.scryfall.io/normal/front/2/d/2d604bac-58b7-4479-8ab8-2e0680746e0e.jpg?1783943138"
+      },
+      "set": "plc",
+      "collector_number": "140",
+      "released_at": "2007-02-02",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "tempo",
+          "finisher"
+        ],
+        "note": "A timber-themed Elemental Horse that can force a sudden attack by tapping every other creature.",
+        "caution": "Also taps your own creatures, so it can interrupt a wider-board attack. Its large echo cost may make it a one-turn threat. It is neither a Plant nor a Treefolk.",
+        "manaNote": "Costs 3G initially and asks for 5G echo during the following relevant upkeep.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "1d972f97-1945-440b-8bd3-63038db22257",
+      "oracle_id": "7a21ea22-3cd7-4c11-8895-5943c0d93a0d",
+      "name": "Verdant Force",
+      "mana_cost": "{5}{G}{G}{G}",
+      "cmc": 8,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental",
+      "oracle_text": "At the beginning of each upkeep, create a 1/1 green Saproling creature token.",
+      "power": "7",
+      "toughness": "7",
+      "scryfall_uri": "https://scryfall.com/card/dom/187/verdant-force?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.jpg?1783934970",
+        "normal": "https://cards.scryfall.io/normal/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.jpg?1783934970",
+        "large": "https://cards.scryfall.io/large/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.jpg?1783934970",
+        "png": "https://cards.scryfall.io/png/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.png?1783934970",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.jpg?1783934970",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.jpg?1783934970",
+        "thumb": "https://cards.scryfall.io/thumb/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.webp?1783934970",
+        "grid": "https://cards.scryfall.io/grid/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.webp?1783934970",
+        "display": "https://cards.scryfall.io/display/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.webp?1783934970",
+        "art": "https://cards.scryfall.io/art/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.webp?1783934970",
+        "crop": "https://cards.scryfall.io/crop/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.webp?1783934970",
+        "jpeg": "https://cards.scryfall.io/normal/front/1/d/1d972f97-1945-440b-8bd3-63038db22257.jpg?1783934970"
+      },
+      "set": "dom",
+      "collector_number": "187",
+      "released_at": "2018-04-27",
+      "research": {
+        "groups": [
+          "botanical-allies",
+          "fungi"
+        ],
+        "roles": [
+          "token production",
+          "finisher"
+        ],
+        "note": "A verdant Elemental that creates Saprolings to supply the fungal side's token and sacrifice synergies.",
+        "caution": "Triggers on every upkeep, not only yours. The body is an Elemental and the tokens are Saprolings; neither is automatically a Plant or Fungus. Its continuing production may overwhelm a low-power game.",
+        "manaNote": "Costs 5GGG, so both total cost and triple-green requirements are significant.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "edc71122-2951-43eb-8ca8-1cda6d231013",
+      "oracle_id": "2b6da458-e075-4696-a74f-c8846e0cc370",
+      "name": "Wood Elemental",
+      "mana_cost": "{3}{G}",
+      "cmc": 4,
+      "colors": [
+        "G"
+      ],
+      "color_identity": [
+        "G"
+      ],
+      "type_line": "Creature — Elemental",
+      "oracle_text": "As this creature enters, sacrifice any number of untapped Forests.\nWood Elemental's power and toughness are each equal to the number of Forests sacrificed as it entered.",
+      "power": "*",
+      "toughness": "*",
+      "scryfall_uri": "https://scryfall.com/card/leg/215/wood-elemental?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.jpg?1783948042",
+        "normal": "https://cards.scryfall.io/normal/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.jpg?1783948042",
+        "large": "https://cards.scryfall.io/large/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.jpg?1783948042",
+        "png": "https://cards.scryfall.io/png/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.png?1783948042",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.jpg?1783948042",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.jpg?1783948042",
+        "thumb": "https://cards.scryfall.io/thumb/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.webp?1783948042",
+        "grid": "https://cards.scryfall.io/grid/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.webp?1783948042",
+        "display": "https://cards.scryfall.io/display/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.webp?1783948042",
+        "art": "https://cards.scryfall.io/art/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.webp?1783948042",
+        "crop": "https://cards.scryfall.io/crop/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.webp?1783948042",
+        "jpeg": "https://cards.scryfall.io/normal/front/e/d/edc71122-2951-43eb-8ca8-1cda6d231013.jpg?1783948042"
+      },
+      "set": "leg",
+      "collector_number": "215",
+      "released_at": "1994-06-01",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "woodland creature",
+          "research curiosity"
+        ],
+        "note": "The owner's explicit example of a plant-themed creature whose actual type is Elemental. Keep it in the research pool regardless of its eventual power evaluation.",
+        "caution": "It requires sacrificing untapped Forests as it enters; those lands cannot also be tapped to pay its spell cost. Sacrificing none leaves a 0/0, and a useful body costs substantial future mana production. It is not a Plant or Treefolk for subtype payoffs.",
+        "manaNote": "Costs 3G, then needs additional untapped Forests to sacrifice; other basic land types cannot pay that entry requirement.",
+        "crossover": false
+      }
+    },
+    {
+      "id": "8acdb147-2339-4c55-b4f6-6a79679f2040",
+      "oracle_id": "b265ac18-3923-46ba-b7b6-4190855815e1",
+      "name": "Woodvine Elemental",
+      "mana_cost": "{4}{G}{W}",
+      "cmc": 6,
+      "colors": [
+        "G",
+        "W"
+      ],
+      "color_identity": [
+        "G",
+        "W"
+      ],
+      "type_line": "Creature — Elemental",
+      "oracle_text": "Trample\nParley — Whenever this creature attacks, each player reveals the top card of their library. For each nonland card revealed this way, attacking creatures you control get +1/+1 until end of turn. Then each player draws a card.",
+      "power": "4",
+      "toughness": "4",
+      "scryfall_uri": "https://scryfall.com/card/cns/52/woodvine-elemental?utm_source=api",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.jpg?1783939370",
+        "normal": "https://cards.scryfall.io/normal/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.jpg?1783939370",
+        "large": "https://cards.scryfall.io/large/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.jpg?1783939370",
+        "png": "https://cards.scryfall.io/png/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.png?1783939370",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.jpg?1783939370",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.jpg?1783939370",
+        "thumb": "https://cards.scryfall.io/thumb/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.webp?1783939370",
+        "grid": "https://cards.scryfall.io/grid/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.webp?1783939370",
+        "display": "https://cards.scryfall.io/display/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.webp?1783939370",
+        "art": "https://cards.scryfall.io/art/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.webp?1783939370",
+        "crop": "https://cards.scryfall.io/crop/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.webp?1783939370",
+        "jpeg": "https://cards.scryfall.io/normal/front/8/a/8acdb147-2339-4c55-b4f6-6a79679f2040.jpg?1783939370"
+      },
+      "set": "cns",
+      "collector_number": "52",
+      "released_at": "2014-06-06",
+      "research": {
+        "groups": [
+          "botanical-allies"
+        ],
+        "roles": [
+          "combat support",
+          "card draw",
+          "finisher"
+        ],
+        "note": "The owner's additional explicit botanical Elemental example. Its attack trigger can strengthen all your attacking creatures, regardless of their creature types, so it can support Plants, Treefolk, Fungi, or other allies.",
+        "caution": "Parley reveals cards and then gives every player a draw, including opponents. The power boost depends on revealed nonlands and scales with player count. Woodvine itself is an Elemental, not a Plant or Treefolk.",
+        "crossover": false,
+        "manaNote": "Costs 4GW, so it needs both green and white mana."
+      }
+    },
+    {
+      "object": "card",
+      "id": "3dd0bf11-4e43-43f1-82e3-755beed0ede0",
+      "oracle_id": "088ac883-6f44-4046-bf19-81c7fd952e55",
+      "multiverse_ids": [
+        571610
+      ],
+      "mtgo_id": 102038,
+      "tcgplayer_id": 276836,
+      "cardmarket_id": 665190,
+      "name": "Skullbriar, the Walking Grave",
+      "lang": "en",
+      "released_at": "2022-07-08",
+      "uri": "https://api.scryfall.com/cards/3dd0bf11-4e43-43f1-82e3-755beed0ede0",
+      "scryfall_uri": "https://scryfall.com/card/2x2/277/skullbriar-the-walking-grave?utm_source=api",
+      "layout": "normal",
+      "highres_image": true,
+      "image_status": "highres_scan",
+      "image_updated_at": "2026-07-13T05:50:04Z",
+      "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.jpg?1783921804",
+        "normal": "https://cards.scryfall.io/normal/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.jpg?1783921804",
+        "large": "https://cards.scryfall.io/large/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.jpg?1783921804",
+        "png": "https://cards.scryfall.io/png/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.png?1783921804",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.jpg?1783921804",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.jpg?1783921804",
+        "thumb": "https://cards.scryfall.io/thumb/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.webp?1783921804",
+        "grid": "https://cards.scryfall.io/grid/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.webp?1783921804",
+        "display": "https://cards.scryfall.io/display/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.webp?1783921804",
+        "art": "https://cards.scryfall.io/art/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.webp?1783921804",
+        "crop": "https://cards.scryfall.io/crop/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.webp?1783921804",
+        "jpeg": "https://cards.scryfall.io/normal/front/3/d/3dd0bf11-4e43-43f1-82e3-755beed0ede0.jpg?1783921804"
+      },
+      "mana_cost": "{B}{G}",
+      "cmc": 2,
+      "type_line": "Legendary Creature — Zombie Elemental",
+      "oracle_text": "Haste\nWhenever Skullbriar deals combat damage to a player, put a +1/+1 counter on it.\nCounters remain on Skullbriar as it moves to any zone other than a player's hand or library.",
+      "power": "1",
+      "toughness": "1",
+      "colors": [
+        "B",
+        "G"
+      ],
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "keywords": [
+        "Haste"
+      ],
+      "legalities": {
+        "standard": "not_legal",
+        "future": "not_legal",
+        "historic": "not_legal",
+        "timeless": "not_legal",
+        "gladiator": "not_legal",
+        "pioneer": "not_legal",
+        "modern": "not_legal",
+        "legacy": "legal",
+        "pauper": "not_legal",
+        "vintage": "legal",
+        "penny": "legal",
+        "commander": "legal",
+        "oathbreaker": "legal",
+        "standardbrawl": "not_legal",
+        "brawl": "not_legal",
+        "competitivebrawl": "not_legal",
+        "alchemy": "not_legal",
+        "paupercommander": "not_legal",
+        "duel": "legal",
+        "oldschool": "not_legal",
+        "premodern": "not_legal",
+        "predh": "not_legal",
+        "tlr": "legal"
+      },
+      "games": [
+        "paper",
+        "mtgo"
+      ],
+      "reserved": false,
+      "game_changer": false,
+      "foil": true,
+      "nonfoil": true,
+      "finishes": [
+        "nonfoil",
+        "foil"
+      ],
+      "oversized": false,
+      "promo": false,
+      "reprint": true,
+      "variation": false,
+      "set_id": "5a645837-b050-449f-ac90-1e7ccbf45031",
+      "set": "2x2",
+      "set_name": "Double Masters 2022",
+      "set_type": "masters",
+      "set_uri": "https://api.scryfall.com/sets/5a645837-b050-449f-ac90-1e7ccbf45031",
+      "set_search_uri": "https://api.scryfall.com/cards/search?order=set&q=e%3A2x2&unique=prints",
+      "scryfall_set_uri": "https://scryfall.com/sets/2x2?utm_source=api",
+      "rulings_uri": "https://api.scryfall.com/cards/3dd0bf11-4e43-43f1-82e3-755beed0ede0/rulings",
+      "prints_search_uri": "https://api.scryfall.com/cards/search?order=released&q=oracleid%3A088ac883-6f44-4046-bf19-81c7fd952e55&unique=prints",
+      "collector_number": "277",
+      "digital": false,
+      "rarity": "rare",
+      "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+      "artist": "Nils Hamm",
+      "artist_ids": [
+        "c540d1fc-1500-457f-93cf-d6069ee66546"
+      ],
+      "illustration_id": "f6491088-1623-4bd3-985e-e5f34146446b",
+      "border_color": "black",
+      "frame": "2015",
+      "frame_effects": [
+        "legendary"
+      ],
+      "security_stamp": "oval",
+      "full_art": false,
+      "textless": false,
+      "booster": true,
+      "story_spotlight": false,
+      "edhrec_rank": 9016,
+      "penny_rank": 9627,
+      "preview": {
+        "source": "Judge Academy",
+        "source_uri": "https://twitter.com/JudgeAcademy/status/1539627463080378368",
+        "previewed_at": "2022-06-22"
+      },
+      "prices": {
+        "usd": "2.40",
+        "usd_foil": "3.54",
+        "usd_etched": null,
+        "eur": "0.52",
+        "eur_foil": "3.11",
+        "tix": "0.02"
+      },
+      "related_uris": {
+        "gatherer": "https://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=571610&printed=false",
+        "tcgplayer_infinite_articles": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Farticles&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Farticles%3FproductLineName%3Dmagic%26q%3DSkullbriar%252C%2Bthe%2BWalking%2BGrave",
+        "tcgplayer_infinite_decks": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&trafcat=tcgplayer.com%2Fsearch%2Fdecks&u=https%3A%2F%2Fwww.tcgplayer.com%2Fsearch%2Fdecks%3FproductLineName%3Dmagic%26q%3DSkullbriar%252C%2Bthe%2BWalking%2BGrave",
+        "edhrec": "https://edhrec.com/route/?cc=Skullbriar%2C+the+Walking+Grave"
+      },
+      "purchase_uris": {
+        "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F276836%3Fpage%3D1",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=665190&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards/102038?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+      },
+      "rulings": [
+        {
+          "object": "ruling",
+          "oracle_id": "088ac883-6f44-4046-bf19-81c7fd952e55",
+          "source": "wotc",
+          "published_at": "2011-09-22",
+          "comment": "Skullbriar will get one +1/+1 counter each time it deals combat damage to a player (including you if its combat damage gets redirected), regardless of how much damage is dealt."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "088ac883-6f44-4046-bf19-81c7fd952e55",
+          "source": "wotc",
+          "published_at": "2011-09-22",
+          "comment": "Skullbriar retains all counters, not just +1/+1 counters."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "088ac883-6f44-4046-bf19-81c7fd952e55",
+          "source": "wotc",
+          "published_at": "2011-09-22",
+          "comment": "The counters that remain on Skullbriar as it changes zones aren't \"placed\" on Skullbriar. Effects like Doubling Season's and Melira, Sylvok Outcast's won't affect those counters."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "088ac883-6f44-4046-bf19-81c7fd952e55",
+          "source": "wotc",
+          "published_at": "2011-09-22",
+          "comment": "Counters that adjust power and/or toughness affect Skullbriar's power and/or toughness in zones other than the battlefield. For example, a Skullbriar in the command zone with a +1/+1 counter on it will be 2/2."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "088ac883-6f44-4046-bf19-81c7fd952e55",
+          "source": "wotc",
+          "published_at": "2011-09-22",
+          "comment": "Effects that last \"for as long as that creature has a [kind of] counter on it,\" such as Aven Mimeomancer's, stop applying to Skullbriar once it leaves the battlefield. Even though Skullbriar retains the counters, it becomes a new object with no relation to its last existence in its previous zone."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "088ac883-6f44-4046-bf19-81c7fd952e55",
+          "source": "wotc",
+          "published_at": "2011-09-22",
+          "comment": "Skullbriar's last ability only works if it has that ability in the zone it's moving from. For example, with Yixlid Jailer (\"Cards in graveyards lose all abilities\") on the battlefield, a Skullbriar with a counter on it in a graveyard loses that counter when it's put onto the battlefield. Conversely, that Skullbriar moving from the graveyard to the battlefield would retain that counter if Humility (\"All creatures lose all abilities and are 1/1\") were on the battlefield; if Skullbriar then left the battlefield with Humility still on the battlefield, it would lose the counter."
+        },
+        {
+          "object": "ruling",
+          "oracle_id": "088ac883-6f44-4046-bf19-81c7fd952e55",
+          "source": "wotc",
+          "published_at": "2011-09-22",
+          "comment": "If a card becomes a copy of Skullbriar, counters will remain on that card when it leaves the battlefield (unless it goes to your hand or library). Once it does so, it stops being a copy of Skullbriar, so those counters will cease to exist when that card next changes zones."
+        }
+      ],
+      "research": {
+        "groups": [
+          "botanical-allies",
+          "zombies-black",
+          "zombies-green"
+        ],
+        "factions": [
+          "zombies"
+        ],
+        "roles": [
+          "early attacker",
+          "counter growth",
+          "recursion payoff",
+          "botanical undead theme"
+        ],
+        "note": "A plant-like mass of roots and overgrowth animated as a Zombie Elemental: a priority botanical undead candidate assigned exclusively to the Zombie faction even though its type line does not say Plant. Haste and combat damage grow it, while retained counters reward returning it from the graveyard.",
+        "caution": "Retains every kind of counter, including harmful counters, when changing zones except to a hand or library. This unusual exception adds tracking complexity; it is neither a Plant nor a Treefolk for type-specific bonuses.",
+        "manaNote": "Costs BG, needing both black and green early. A thematic fit with black Zombies does not make it castable in an otherwise black-white or black-blue pairing without fixing.",
+        "crossover": false,
+        "thematicCrossover": true
+      }
+    }
+  ]
+}

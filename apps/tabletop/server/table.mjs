@@ -1,4 +1,8 @@
 import { randomInt, randomUUID } from 'node:crypto';
+import { freshTurnCounts, advanceTurnCounts, turnWithCounts } from '../shared/turn-counts.mjs';
+import { createPreparation, observePreparation, applyPreparation } from './preparation.mjs';
+import { createSeries, observeSeries, pinSeriesDecks, recordSeriesResult, sideboard, readyNextGame } from './series.mjs';
+export { sideboardingView } from './series.mjs';
 
 const copy = value => structuredClone(value);
 function requireThat(value, message) {
@@ -64,6 +68,8 @@ function definition(value) {
   for (const key of ['type_line', 'oracle_text', 'mana_cost', 'power', 'toughness', 'scryfall_id']) {
     if (value[key] !== undefined) result[key] = text(value[key], 12000);
   }
+  if (value.short_description !== undefined) result.short_description = text(value.short_description, 500);
+  if (value.long_description !== undefined) result.long_description = text(value.long_description, 12000);
   Object.assign(result, cachedRulings(value));
   if (value.image_url) {
     const url = new URL(value.image_url);
@@ -103,17 +109,35 @@ function visibleCard(state, actor, id) {
   requireThat(visible(state, actor, id), 'Card is not available in your view');
   return state.cards[id];
 }
+function detach(state, id) {
+  if (state.cards[id]) state.cards[id].attached_to = null;
+  for (const card of Object.values(state.cards)) if (card.attached_to === id) card.attached_to = null;
+}
+function attach(state, actor, card, targetId) {
+  if (targetId !== null) {
+    requireThat(typeof targetId === 'string' && targetId, 'Attachment target must be a card ID or null');
+    const target = visibleCard(state, actor, targetId);
+    requireThat(location(state, card.id)?.id === 'battlefield' && location(state, targetId)?.id === 'battlefield'
+      && card.kind !== 'ability' && target.kind !== 'ability', 'Attachments require two cards on the battlefield');
+    requireThat(targetId !== card.id, 'Cannot attach a card to itself');
+    const seen = new Set([card.id]);
+    for (let id = targetId; id; id = state.cards[id]?.attached_to) {
+      requireThat(!seen.has(id), 'Attachments cannot form a cycle');
+      seen.add(id);
+    }
+  }
+  card.attached_to = targetId;
+}
 // A concealed card gets a new handle so previously exposed IDs cannot track it.
 function conceal(state, id) {
   const card = state.cards[id];
   const newId = randomUUID();
+  detach(state, id);
   delete state.cards[id];
   card.id = newId;
   card.known_to = [];
-  card.attached_to = null;
   state.cards[newId] = card;
   for (const z of Object.values(state.zones)) z.cards = z.cards.map(c => c === id ? newId : c);
-  for (const c of Object.values(state.cards)) if (c.attached_to === id) c.attached_to = null;
   return newId;
 }
 function shuffle(state, id) {
@@ -129,6 +153,9 @@ function move(state, id, destination, position = 'bottom') {
   requireThat(from, 'Card not found');
   requireThat(['top', 'bottom'].includes(position), 'Position must be top or bottom');
   const to = zone(state, destination);
+  // Only unlink physical relationships. Players decide what happens to an
+  // unattached Aura or other object under the game rules.
+  if (from.id !== 'battlefield' || to.id !== 'battlefield') detach(state, id);
   from.cards.splice(from.cards.indexOf(id), 1);
   if (position === 'top') to.cards.unshift(id);
   else to.cards.push(id);
@@ -143,7 +170,7 @@ export function createTable(config) {
   const state = {
     version: 1, title: text(config.title || 'Playtest table', 200), revision: 0,
     created_at: new Date().toISOString(), players: [], zones: {}, cards: {},
-    turn: { number: 1, active: config.players[0].id, priority: null, phase: 'Setup' },
+    turn: { number: 1, active: config.players[0].id, priority: null, phase: 'Setup', ...freshTurnCounts(config.players) },
     notes: [], result: null, events: [], references: config.references || [],
   };
   function makeZone(id, owner, visibility) {
@@ -160,6 +187,25 @@ export function createTable(config) {
   }
   makeZone('battlefield', null, 'public');
   makeZone('stack', null, 'public');
+  const series = createSeries(config, state.players);
+  if (series) state.series = series;
+  for (const p of config.players) {
+    requireThat(p.sideboard === undefined || Array.isArray(p.sideboard), 'Supply sideboard cards as a list');
+    for (const entry of p.sideboard || []) {
+      const count = integer(entry.count ?? 1, 1, 500);
+      for (let i = 0; i < count; i++) addCard(state, p.id, p.id + ':sideboard', entry, entry.token === true);
+    }
+  }
+  const preparation = createPreparation(config);
+  if (preparation) {
+    for (const packet of preparation.packets) {
+      packet.cards = packet.cards.map(entry => ({ ...definition(entry), count: entry.count }));
+    }
+    state.preparation = preparation;
+    state.turn.phase = 'Pack selection';
+    state.turn.priority = preparation.currentPlayer;
+    return state;
+  }
   for (const p of config.players) {
     requireThat(Array.isArray(p.deck) && p.deck.length > 0, 'Supply a deck for each player');
     for (const entry of p.deck) {
@@ -168,7 +214,43 @@ export function createTable(config) {
     }
     if (config.shuffle !== false) shuffle(state, p.id + ':library');
   }
+  pinSeriesDecks(state);
   return state;
+}
+
+function resetForNextGame(state) {
+  const rebuilding = state.series.resetTo === 'preparation';
+  state.cards = {};
+  state.zones = {};
+  for (const p of state.players) {
+    const roster = state.series.rosters[p.id];
+    Object.assign(p, { life: roster.initialLife, counters: {}, mana: {}, note: '', status: 'active' });
+    if (rebuilding) { roster.cards = []; roster.mainSize = 0; }
+    for (const [name, visibility] of [['library', 'hidden'], ['hand', 'owner'], ['sideboard', 'owner'],
+      ['graveyard', 'public'], ['exile', 'public'], ['command', 'public']]) {
+      const id = p.id + ':' + name;
+      state.zones[id] = { id, owner: p.id, visibility, cards: [] };
+    }
+    for (const entry of roster.cards) {
+      for (let i = 0; i < entry.total; i++) {
+        addCard(state, p.id, p.id + (i < entry.main ? ':library' : ':sideboard'), entry.definition, entry.token);
+      }
+    }
+    shuffle(state, p.id + ':library');
+  }
+  for (const id of ['battlefield', 'stack']) state.zones[id] = { id, owner: null, visibility: 'public', cards: [] };
+  const starter = state.series.nextStartingPlayer;
+  state.turn = { number: 1, active: starter, priority: starter, phase: 'Setup', ...freshTurnCounts(state.players) };
+  if (rebuilding) {
+    state.preparation.status = 'selecting';
+    state.preparation.currentPlayer = state.players[0].id;
+    state.preparation.players = state.preparation.players.map(p => ({ ...p, selectedPacketIds: [], ready: false }));
+    state.preparation.decks = null;
+    state.turn.phase = 'Pack selection';
+    state.turn.priority = state.preparation.currentPlayer;
+  }
+  state.notes = [];
+  state.result = null;
 }
 
 export function cardDetails(state, actor, id) {
@@ -191,8 +273,9 @@ export function observe(state, actor = null) {
         attached_to: c.attached_to && visible(state, actor, c.attached_to) ? c.attached_to : null,
       };
       if (identityVisible(state, actor, id)) {
-        const { oracle_text, image_url, rulings, rulings_cache, ...briefDefinition } = c.definition;
+        const { oracle_text, long_description, image_url, rulings, rulings_cache, ...briefDefinition } = c.definition;
         Object.assign(publicState, briefDefinition, { token: c.token, kind: c.kind, face: c.face, note: c.note });
+        if (c.kind === 'ability') publicState.short_description = c.definition.short_description?.trim() || c.definition.name;
         if (actor === null && image_url) publicState.image_url = image_url;
       } else publicState.name = 'Face-down card';
       cards.push(publicState);
@@ -205,7 +288,9 @@ export function observe(state, actor = null) {
   return {
     title: state.title, revision: state.revision,
     players: state.players.map(p => ({ status: 'active', ...copy(p) })),
-    turn: copy(state.turn), zones, notes: copy(state.notes), result: copy(state.result),
+    turn: turnWithCounts(state), zones, notes: copy(state.notes), result: copy(state.result),
+    ...(state.preparation ? { preparation: observePreparation(state.preparation, actor) } : {}),
+    ...(state.series ? { series: observeSeries(state.series) } : {}),
     events: state.events.slice(-12).map(e => projectEvent(e, actor)),
   };
 }
@@ -233,7 +318,42 @@ export function eventsSince(state, actor = null, since = 0) {
 
 function perform(state, actor, op) {
   requireThat(op && typeof op === 'object', 'Invalid action');
+  if (state.series?.status === 'between_games') {
+    requireThat(['say', 'note', 'sideboard', 'ready_next_game'].includes(op.type), 'Prepare the next game before taking game actions');
+  } else if (state.series?.status === 'complete') throw new Error('Gameplay has ended');
+  if (state.preparation?.status === 'selecting') {
+    requireThat(['say', 'note', 'select_packets'].includes(op.type), 'Choose packets before taking game actions');
+  }
   switch (op.type) {
+    case 'select_packets': {
+      const selection = applyPreparation(state.preparation, actor, op);
+      state.preparation = selection.preparation;
+      state.turn.priority = selection.nextPlayer;
+      if (selection.decks) {
+        for (const p of state.players) {
+          requireThat(state.zones[p.id + ':library'].cards.length === 0, 'Prepared libraries must be empty');
+          for (const entry of selection.decks[p.id]) {
+            for (let i = 0; i < entry.count; i++) addCard(state, p.id, p.id + ':library', entry);
+          }
+          shuffle(state, p.id + ':library');
+        }
+        const starter = state.series?.nextStartingPlayer || state.players[0].id;
+        state.turn = { number: 1, active: starter, priority: starter, phase: 'Setup', ...freshTurnCounts(state.players) };
+        pinSeriesDecks(state);
+      }
+      if (op.message !== undefined) speak(state, actor, op.message);
+      const names = op.packetIds.map(id => state.preparation.packets.find(p => p.id === id).name);
+      return `${actor} selected ${names.join(' + ')}${selection.decks ? '; all decks are ready for opening hands' : ''}`;
+    }
+    case 'sideboard':
+      sideboard(state, actor, op.main);
+      return `${actor} updated their main deck and sideboard for game ${state.series.gameNumber + 1}`;
+    case 'ready_next_game': {
+      const started = readyNextGame(state, actor, op.starting_player);
+      if (started) resetForNextGame(state);
+      if (op.message !== undefined) speak(state, actor, op.message);
+      return `${actor} is ready for the next game${started ? `; game ${state.series.gameNumber} started with ${state.series.nextStartingPlayer}` : ''}`;
+    }
     case 'draw': {
       const count = integer(op.count ?? 1, 0, 100);
       const from = zone(state, op.from || actor + ':library');
@@ -283,11 +403,7 @@ function perform(state, actor, op) {
           case 'counters': c.counters = counters(value); break;
           case 'note': case 'face': c[key] = text(value); break;
           case 'attached_to':
-            if (value !== null) {
-              visibleCard(state, actor, value);
-              requireThat(value !== c.id, 'Cannot attach a card to itself');
-            }
-            c.attached_to = value; break;
+            attach(state, actor, c, value); break;
           default: throw new Error('Unsupported card field: ' + key);
         }
       }
@@ -353,8 +469,8 @@ function perform(state, actor, op) {
       requireThat(op.type === 'remove_token' ? c.token : c.kind === 'ability', 'Only tokens or ability objects can be removed; move ordinary cards to a zone');
       const z = location(state, c.id);
       z.cards = z.cards.filter(id => id !== c.id);
+      detach(state, c.id);
       delete state.cards[c.id];
-      for (const other of Object.values(state.cards)) if (other.attached_to === c.id) other.attached_to = null;
       return actor + ' removed a ' + (c.token ? 'token' : 'stack ability');
     }
     case 'zone': {
@@ -374,6 +490,7 @@ function perform(state, actor, op) {
       requireThat(Array.isArray(op.winners), 'Supply winner IDs, or [] for a draw');
       for (const id of op.winners) player(state, id);
       state.result = { winners: [...new Set(op.winners)], explanation: text(op.explanation || ''), reported_by: actor };
+      recordSeriesResult(state);
       return actor + ' reported a game result';
     default: throw new Error('Unknown action type');
   }
@@ -428,14 +545,22 @@ function finishAction(state, actor, op, change, summary) {
     change.player = op.player || actor;
     change.set = copy(op.set);
   }
-  if (op.type === 'turn') change.set = copy(op.set);
-  if (op.type === 'pass' || op.type === 'pass_turn') {
-    change.next = op.next;
+  if (op.type === 'turn') change.set = { ...copy(op.set), counts: copy(state.turn.counts),
+    totalTurns: state.turn.totalTurns, countsComplete: state.turn.countsComplete };
+  if (op.type === 'pass' || op.type === 'pass_turn' || op.type === 'select_packets' || op.type === 'ready_next_game') {
+    change.next = op.type === 'select_packets' ? state.turn.priority : op.next;
+    if (op.type === 'ready_next_game') {
+      change.next = state.series.currentPlayer || state.turn.priority;
+      change.game_started = state.series.status === 'playing';
+      change.game_number = state.series.gameNumber;
+      if (change.game_started) change.set = copy(state.turn);
+    }
     if (op.message !== undefined) change.message = op.message;
     if (op.type === 'pass_turn') change.set = copy(state.turn);
   }
   if (op.type === 'note' || op.type === 'say') change.text = op.text;
   if (op.type === 'result') change.result = copy(state.result);
+  if (['result', 'ready_next_game', 'sideboard'].includes(op.type) && state.series) change.series = observeSeries(state.series);
   if (op.type === 'zone') change.zone = copy(state.zones[op.id]);
   return change;
 }
@@ -455,10 +580,10 @@ function describeChanges(original, state, changes, viewer, initialIds, host = fa
     if (change.type === 'reveal' && (host || viewer === change.actor || change.disclosedTo?.includes(viewer))) {
       detail.revealedCards = copy(change.revealedCards);
     }
-    for (const key of ['from', 'to', 'count', 'next', 'player', 'text', 'message', 'result', 'zone']) {
+    for (const key of ['from', 'to', 'count', 'next', 'player', 'text', 'message', 'result', 'zone', 'series', 'game_number', 'game_started']) {
       if (change[key] !== undefined) detail[key] = copy(change[key]);
     }
-    if (['say', 'pass', 'pass_turn'].includes(change.type)) detail.actor = change.actor;
+    if (['say', 'pass', 'pass_turn', 'select_packets', 'ready_next_game'].includes(change.type)) detail.actor = change.actor;
     const label = cards.length ? cards.join(', ') : 'a concealed card';
     if (change.type === 'move') detail.summary = `${change.actor} moved ${label} from ${change.from} to ${change.to}`;
     if (change.type === 'draw' && cards.length) detail.summary += ': ' + cards.join(', ');
@@ -505,16 +630,21 @@ export function applyActions(original, actor, expectedRevision, actions, reason)
   player(original, actor);
   requireThat(expectedRevision === original.revision, 'Table changed. Read the table and retry with its current revision.');
   requireThat(Array.isArray(actions) && actions.length > 0 && actions.length <= 30, 'Supply 1–30 actions');
-  const handoffs = actions.map((op, index) => ['pass', 'pass_turn'].includes(op?.type) ? index : -1).filter(index => index >= 0);
+  const handoffs = actions.map((op, index) => ['pass', 'pass_turn', 'select_packets', 'ready_next_game', 'result'].includes(op?.type) ? index : -1).filter(index => index >= 0);
   requireThat(handoffs.length <= 1, 'A batch may contain only one priority or turn handoff');
   requireThat(!handoffs.length || handoffs[0] === actions.length - 1, 'A handoff must be the last action in its batch');
   text(reason);
   requireThat(reason.trim().length > 0, 'Give a short reason for the action');
   const state = copy(original);
+  state.turn = turnWithCounts(original);
   const initialIds = new Map(Object.entries(state.cards).map(([id, card]) => [card, id]));
   const changes = actions.map(op => {
     const before = captureAction(state, actor, op);
+    const previousTurn = copy(state.turn);
     const summary = perform(state, actor, op);
+    if (op.type === 'turn' || op.type === 'pass_turn') {
+      state.turn = advanceTurnCounts(previousTurn, state.turn, op, state.players);
+    }
     return finishAction(state, actor, op, before, summary);
   });
   const publicEvent = describeChanges(original, state, changes, null, initialIds);

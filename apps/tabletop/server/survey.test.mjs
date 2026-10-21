@@ -134,3 +134,24 @@ test('summary counts evidence and unknowns without a composite score or merging 
   assert.equal('overall' in summary, false);
   assert.equal('score' in summary, false);
 });
+
+
+test('match surveys pin all game outcomes and whole-match wording without private deck pools', () => {
+  const series = { mode: 'best_of', winsRequired: 2, maxGames: 3, status: 'complete', scores: { p1: 2, p2: 0 },
+    games: [1, 2].map(number => ({ number, endedRevision: number * 10, result: { winners: ['p1'], explanation: 'Reported win' } })),
+    result: { winners: ['p1'], explanation: 'Reached two wins' }, rosters: { p2: 'Private reserve cards' },
+  };
+  const survey = createSurvey(players, 20, { at, series });
+  assert.equal(survey.scope, 'match');
+  assert.equal(survey.schema.title, 'Post-match playtest survey');
+  assert.match(survey.schema.introduction, /all 2 games/);
+  assert.match(survey.schema.ratings[0].question, /across this match/);
+  assert.match(survey.schema.textQuestions.find(question => question.id === 'balance_factors').help, /sideboarding/);
+  assert.equal(survey.series.games.length, 2);
+  assert.deepEqual(survey.series.result.winners, ['p1']);
+  assert.doesNotMatch(JSON.stringify(surveyForPlayer(survey, 'p1')), /rosters|Private reserve/);
+  assert.equal(validateSurvey(survey), survey);
+  series.scores.p1 = 99;
+  assert.equal(survey.series.scores.p1, 2);
+  assert.equal(SURVEY_SCHEMA.title, 'Post-game playtest survey');
+});
