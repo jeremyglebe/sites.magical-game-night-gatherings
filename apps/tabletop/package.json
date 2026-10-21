@@ -1,0 +1,29 @@
+{
+  "name": "@game-night/tabletop",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "vite build --config vite.config.mjs",
+    "dev": "vite --config vite.config.mjs",
+    "start": "node server/app.mjs",
+    "review": "node server/review-server.mjs",
+    "test": "node --test \"server/*.test.mjs\" \"client/src/**/*.test.mjs\""
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "daisyui": "^5.7.50",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.4"
+  },
+  "dependencies": {
+    "@lucide/vue": "^1.60.0",
+    "vue": "^3.5.44",
+    "vue-router": "^4.6.4",
+    "@modelcontextprotocol/sdk": "1.0.1",
+    "@openai/codex": "0.163.0"
+  }
+}

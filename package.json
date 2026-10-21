@@ -3,14 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "playtest": "node experiments/tabletop/app.mjs",
-    "playtest:review": "node experiments/tabletop/review-server.mjs",
-    "playtest:rules": "node experiments/tabletop/sync-rules.mjs",
-    "playtest:headless": "node experiments/tabletop/app.mjs --headless",
-    "playtest:serve": "node experiments/tabletop/server.mjs",
-    "playtest:mcp": "node experiments/tabletop/mcp.mjs",
-    "playtest:demo": "node experiments/tabletop/demo.mjs",
-    "playtest:test": "node --test experiments/tabletop/*.test.mjs",
+    "playtest": "npm run tabletop:build && node apps/tabletop/server/app.mjs",
+    "playtest:review": "npm run tabletop:build && node apps/tabletop/server/review-server.mjs",
+    "playtest:rules": "node apps/tabletop/server/sync-rules.mjs",
+    "playtest:headless": "node apps/tabletop/server/app.mjs --headless",
+    "playtest:serve": "node apps/tabletop/server/server.mjs",
+    "playtest:mcp": "node apps/tabletop/server/mcp.mjs",
+    "playtest:demo": "node apps/tabletop/server/demo.mjs",
+    "playtest:test": "npm run tabletop:test",
     "dev": "vitepress --host 127.0.0.1",
     "research:render": "node scripts/render-everyday-research.mjs",
     "build": "vitepress build",
@@ -20,12 +20,20 @@
     "publish:github": "npm run build:github && npm run copy:docs",
     "preview": "vitepress preview --host 127.0.0.1",
     "serve:static": "python -m http.server 5174 --directory .vitepress/dist",
-    "serve:docs": "python -m http.server 5175 --directory docs"
+    "serve:docs": "python -m http.server 5175 --directory docs",
+    "tabletop:build": "npm run build --workspace @game-night/tabletop",
+    "tabletop:dev": "npm run dev --workspace @game-night/tabletop",
+    "tabletop:start": "node apps/tabletop/server/app.mjs",
+    "tabletop:review": "node apps/tabletop/server/review-server.mjs",
+    "tabletop:test": "node --test \"apps/tabletop/server/*.test.mjs\" \"apps/tabletop/client/src/**/*.test.mjs\"",
+    "catalogue:dev": "vitepress --host 127.0.0.1",
+    "catalogue:build": "vitepress build"
   },
   "devDependencies": {
-    "@modelcontextprotocol/sdk": "1.0.1",
-    "@openai/codex": "0.163.0",
     "scryfall-mcp-server": "0.1.1",
     "vitepress": "^1.6.4"
-  }
+  },
+  "workspaces": [
+    "apps/tabletop"
+  ]
 }

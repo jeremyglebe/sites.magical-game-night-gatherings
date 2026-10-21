@@ -1,10 +1,19 @@
-# MTG Game Night Catalogue
+# Game Night
 
 This is a fan-made working catalogue for Magic: The Gathering game-night formats and boxed-set ideas. It collects official-style, fan-made, and personal variants that are useful for casual prebuilt nights.
 
 The boxed sets described here are personal play kits and catalogue entries, not products.
 
-The [local playtester](experiments/tabletop/README.md) launches independent Codex CLI players, coordinates table updates, and saves game logs for later review. Run `npm run playtest` for its optional browser table (up to six visible players), or `npm run playtest:headless` without a viewer. It is separate from the published catalogue. `npm run playtest:demo` remains a scripted demonstration without model calls.
+## Two sections, one repository
+
+| Section | Source | Development |
+| --- | --- | --- |
+| **Tabletop App** | [`apps/tabletop/`](apps/tabletop/README.md) — local Vue + daisyUI client, Node server, MCP tools, players and saved games | `npm run playtest` builds and starts the app. For UI development, use `npm run tabletop:dev` alongside the server. |
+| **Catalogue Site** | Root Markdown folders and `.vitepress/` — published rules, formats and box sets | `npm run catalogue:dev` (or `npm run dev`) |
+
+The Tabletop App launches independent Codex CLI players, coordinates explicit handoffs, and saves game recordings. Its optional browser table shows up to six players; `npm run playtest:headless` runs without a viewer. `npm run playtest:review` opens the saved-game library, and `npm run playtest:demo` is a scripted demonstration without model calls. Private game data stays in the ignored root `.playtest/` directory. See the [Tabletop App architecture and commands](apps/tabletop/README.md).
+
+The Catalogue Site keeps its existing source paths and published URLs. Its build does not include the local Tabletop App or private game data.
 
 The site is authored in Markdown. Format parent pages link to separate, complete rulesets; boxed-set pages identify their base rules and spell out every change. Preserve rules detail when editing. See [AGENTS.md](AGENTS.md) for the editing conventions.
 

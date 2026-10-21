@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@plugin "daisyui" { themes: false; }
+@plugin "daisyui/theme" {
+  name: "game-night";
+  default: true;
+  prefersdark: false;
+  color-scheme: dark;
+  --color-base-100: #101816;
+  --color-base-200: #182420;
+  --color-base-300: #35483d;
+  --color-base-content: #edf0e7;
+  --color-primary: #dbd3a8;
+  --color-primary-content: #182420;
+  --color-secondary: #a8b9ac;
+  --color-secondary-content: #101816;
+  --color-accent: #b9d8b1;
+  --color-accent-content: #101816;
+  --color-neutral: #0c1411;
+  --color-neutral-content: #edf0e7;
+  --color-info: #b3cde2;
+  --color-info-content: #101816;
+  --color-success: #b9d8b1;
+  --color-success-content: #101816;
+  --color-warning: #e6c681;
+  --color-warning-content: #101816;
+  --color-error: #efa797;
+  --color-error-content: #101816;
+  --radius-selector: 0.25rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.625rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
